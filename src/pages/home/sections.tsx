@@ -39,6 +39,7 @@ export function HeroSection() {
   }) as string[];
 
   return (
+    <>
     <section className="relative overflow-hidden">
       <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 py-12 sm:px-6 lg:flex-row lg:items-end lg:gap-12">
         <div className="max-w-xl space-y-6 lg:flex-1">
@@ -52,17 +53,6 @@ export function HeroSection() {
               <Link to={paths.howItWorks}>{t("hero.secondaryCta")}</Link>
             </Button>
           </div>
-          <ul className="flex flex-wrap gap-2 pt-2">
-            {trustPoints.map((point) => (
-              <li
-                key={point}
-                className="inline-flex items-center gap-1.5 rounded-full bg-white/55 px-3 py-1 text-sm text-ink-muted ring-1 ring-white/60 backdrop-blur-sm"
-              >
-                <Check className="size-3.5 text-sage-500" aria-hidden />
-                {point}
-              </li>
-            ))}
-          </ul>
         </div>
 
         {/* Layered hero: the cut-out photo sits against a quiet Assessment Ring
@@ -106,6 +96,25 @@ export function HeroSection() {
         </div>
       </div>
     </section>
+
+    {/* Trust strip — the hero assurance points as a single non-wrapping row
+        directly under the hero; scrolls horizontally on narrow screens. */}
+    <div className="border-y border-white/50 bg-white/40 backdrop-blur-md">
+      <div className="overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <ul className="mx-auto flex w-max items-center gap-x-6 px-4 py-3 text-xs text-ink-muted sm:px-6">
+          {trustPoints.map((point) => (
+            <li
+              key={point}
+              className="inline-flex items-center gap-1.5 whitespace-nowrap"
+            >
+              <Check className="size-3.5 shrink-0 text-sage-500" aria-hidden />
+              {point}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+    </>
   );
 }
 
