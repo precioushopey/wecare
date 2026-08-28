@@ -219,5 +219,11 @@
       "product": "Produkt",
       "followUp": "Nachsorge"
     }
+  },
+  "medicalNotice": {
+    "heading": "Wichtige Hinweise zu medizinischem Cannabis",
+    "body": "Medizinisches Cannabis ist ein verschreibungspflichtiges Arzneimittel. Wie jedes Medikament kann es Nebenwirkungen haben – häufig Müdigkeit, Schwindel, verminderte Konzentration oder Wechselwirkungen mit anderen Medikamenten. Die Wirkung ist individuell.",
+    "body2": "Die Anwendung erfolgt nur nach einer ärztlichen Prüfung und unter ärztlicher Begleitung und ersetzt keine Standardtherapie, die deine Ärztin oder dein Arzt für nötig hält. Setze ein Medikament nie eigenständig an oder ab und verändere es nicht selbst.",
+    "disclaimer": "Die Inhalte dieser Website sind allgemein und ersetzen keine individuelle ärztliche Beratung, Diagnose oder Behandlung. Wende dich bei gesundheitlichen Fragen an deine Ärztin oder deinen Arzt."
   }
 }

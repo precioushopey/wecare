@@ -6,6 +6,7 @@ import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 import { Button } from "@/app/components/ui/button";
 import { paths } from "@/app/paths";
 import { usePageTitle } from "@/app/usePageTitle";
+import { MedicalNotice } from "@/components/marketing/MedicalNotice";
 import { Reveal } from "@/components/marketing/Reveal";
 import { Section, SectionHeading } from "@/components/marketing/Section";
 import { IMG, siteImage } from "@/data/siteImages";
@@ -174,6 +175,12 @@ export function ConditionLandingPage({
           </div>
         </Section>
       ) : null}
+
+      <Section tone="surface">
+        <Reveal className="mx-auto max-w-3xl">
+          <MedicalNotice />
+        </Reveal>
+      </Section>
 
       <Section tone="brand">
         <div className="flex flex-col items-start gap-6">
