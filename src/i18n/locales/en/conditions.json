@@ -1,0 +1,122 @@
+{
+  "shared": {
+    "explanationHeading": "What this is about",
+    "situationsHeading": "Common situations",
+    "howWeHelpHeading": "How WeCare helps",
+    "matchedHeading": "What you might be matched with",
+    "matchedNote": "You see your personal match after the assessment — not before.",
+    "notSurePrompt": "Not sure this is your concern?",
+    "notSureCta": "Start the general assessment"
+  },
+  "sleep": {
+    "shortTitle": "Sleep",
+    "assessmentCta": "Start Sleep Assessment",
+    "hero": {
+      "title": "Struggling to fall asleep or stay asleep?",
+      "subtitle": "Answer a short assessment and discover a suitable evening support solution."
+    },
+    "explanation": "Many people experience poor sleep quality, difficulty relaxing at night, or waking up tired. A short assessment places how often and how strongly this affects you.",
+    "situations": {
+      "a": "Difficulty falling asleep",
+      "b": "Waking up during the night",
+      "c": "Restless evenings",
+      "d": "Poor sleep quality",
+      "e": "Feeling tired the next day"
+    },
+    "helpSteps": {
+      "a": "You answer a short assessment",
+      "b": "We understand your sleep-related needs",
+      "c": "We match you with a suitable solution",
+      "d": "You can continue to product or support"
+    }
+  },
+  "pain": {
+    "shortTitle": "Body comfort",
+    "assessmentCta": "Start Pain Assessment",
+    "hero": {
+      "title": "Living with daily body discomfort?",
+      "subtitle": "Complete a short assessment and get matched with a suitable body comfort solution."
+    },
+    "explanation": "Body discomfort can affect movement, daily routine, work and rest. A short assessment helps understand the level and frequency of what you feel.",
+    "situations": {
+      "a": "Body discomfort",
+      "b": "Muscle tension",
+      "c": "Back discomfort",
+      "d": "Joint discomfort",
+      "e": "Physical pressure",
+      "f": "Long-term discomfort"
+    },
+    "helpSteps": {
+      "a": "You describe your discomfort",
+      "b": "We understand the level and frequency",
+      "c": "We match you with a suitable body comfort solution",
+      "d": "You continue with the recommended option"
+    }
+  },
+  "stressAnxiety": {
+    "shortTitle": "Daily balance",
+    "assessmentCta": "Start Stress Assessment",
+    "hero": {
+      "title": "Feeling stressed, tense or unable to relax?",
+      "subtitle": "Answer a short assessment and find a suitable daily balance solution."
+    },
+    "explanation": "Stress and anxiety-related feelings can affect focus, sleep, mood and daily routine. A short assessment places how this shows up in your day.",
+    "situations": {
+      "a": "Daily pressure",
+      "b": "Restlessness",
+      "c": "Difficulty relaxing",
+      "d": "Stress-related sleep issues",
+      "e": "Mental tension",
+      "f": "Busy lifestyle"
+    },
+    "helpSteps": {
+      "a": "You answer a few simple questions",
+      "b": "We understand your daily routine needs",
+      "c": "We recommend a suitable balance solution",
+      "d": "You continue with the option that fits you"
+    }
+  },
+  "migraine": {
+    "shortTitle": "Head tension",
+    "assessmentCta": "Start Migraine Assessment",
+    "hero": {
+      "title": "Recurring head tension or migraine-related discomfort?",
+      "subtitle": "Start a short assessment and discover a suitable support path."
+    },
+    "explanation": "Recurring head tension can affect focus, sleep, work and daily life. A short assessment helps understand the frequency and strength of what you experience.",
+    "situations": {
+      "a": "Head tension",
+      "b": "Recurring pressure",
+      "c": "Migraine-related discomfort",
+      "d": "Light sensitivity",
+      "e": "Focus disruption",
+      "f": "Head discomfort during the day"
+    },
+    "helpSteps": {
+      "a": "You describe your head tension pattern",
+      "b": "We understand the frequency and strength",
+      "c": "We match you with a suitable support option",
+      "d": "You continue with the recommended solution"
+    }
+  },
+  "generalWellness": {
+    "shortTitle": "General wellbeing",
+    "assessmentCta": "Start the general assessment",
+    "hero": {
+      "title": "Not sure what it's about?",
+      "subtitle": "This assessment helps you place your concern."
+    },
+    "explanation": "If your concern doesn't clearly fit one topic, this assessment takes you through the same questions and places your answers.",
+    "situations": {
+      "a": "Several topics apply at once",
+      "b": "You don't know where to start",
+      "c": "You want an orientation before committing"
+    },
+    "helpSteps": {
+      "a": "You answer a short assessment",
+      "b": "We place your answers against the four problem areas",
+      "c": "We match you with a suitable solution",
+      "d": "You can continue to product or support"
+    }
+  }
+}

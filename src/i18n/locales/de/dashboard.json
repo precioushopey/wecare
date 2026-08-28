@@ -1,0 +1,121 @@
+{
+  "title": "Mein Bereich",
+  "nav": {
+    "home": "Übersicht",
+    "assessment": "Mein Assessment",
+    "recommendation": "Meine Empfehlung",
+    "orders": "Meine Bestellungen",
+    "followUp": "Nachsorge",
+    "support": "Support",
+    "profile": "Profil"
+  },
+  "assessment": {
+    "title": "Mein Assessment",
+    "empty": "Du hast noch kein Assessment abgeschlossen.",
+    "emptyCta": "Assessment starten",
+    "completedNote": "Zuletzt in diesem Browser abgeschlossen.",
+    "problem": "Anliegen",
+    "frequency": "Häufigkeit",
+    "strength": "Stärke",
+    "retake": "Erneut durchführen"
+  },
+  "recommendation": {
+    "title": "Meine Empfehlung",
+    "empty": "Noch keine Empfehlung vorhanden.",
+    "emptyCta": "Assessment starten",
+    "primary": "Primär",
+    "secondary": "Alternative",
+    "view": "Empfohlene Lösung ansehen",
+    "inReview": "Diese Empfehlung ist in ärztlicher Prüfung."
+  },
+  "orders": {
+    "title": "Meine Bestellungen",
+    "empty": "Du hast noch keine Bestellungen.",
+    "emptyCta": "Zum Shop",
+    "orderLabel": "Bestellung {{id}}",
+    "placedOn": "Bestellt am {{date}}",
+    "status": "Status",
+    "statuses": {
+      "processing": "In Bearbeitung",
+      "inReview": "In ärztlicher Prüfung",
+      "shipped": "Versendet",
+      "delivered": "Geliefert"
+    },
+    "grams": "{{count}} g"
+  },
+  "followUp": {
+    "title": "Nachsorge",
+    "empty": "Dein Check-in erscheint hier, sobald du eine empfohlene Lösung hast.",
+    "emptyCta": "Assessment starten",
+    "prompt": "Wie war deine Erfahrung mit deiner empfohlenen Lösung?",
+    "promptHint": "Es gibt keine falsche Antwort – das hilft uns nur, dich weiter zu begleiten.",
+    "options": {
+      "good": "Gut",
+      "stronger": "Ich möchte etwas Stärkeres",
+      "lighter": "Ich möchte etwas Milderes",
+      "format": "Ich möchte eine andere Form ausprobieren",
+      "support": "Ich brauche Unterstützung"
+    },
+    "responses": {
+      "good": "Schön zu hören. Wir melden uns später wieder – im Moment gibt es nichts zu ändern.",
+      "stronger": "Verstanden. Hier ist eine stärkere Option, die zu deinem Anliegen passt. Eine Rezeptänderung prüft die Ärztin oder der Arzt.",
+      "lighter": "Verstanden. Hier ist eine mildere Option, die zu deinem Anliegen passt. Eine Rezeptänderung prüft die Ärztin oder der Arzt.",
+      "format": "Du kannst eine andere Form erhalten (Blüte oder Inhalator). Unser Team richtet das für deine nächste Bestellung ein.",
+      "support": "Kein Problem. Unser Team hilft bei Dosierung, Lieferung oder allem anderen."
+    },
+    "yourAnswer": "Deine Antwort",
+    "toSupport": "Support kontaktieren",
+    "change": "Antwort ändern",
+    "windowNote": "Wir melden uns 14–21 Tage nach dem Start deiner Lösung.",
+    "actions": {
+      "reorder": "Gleiches Produkt erneut bestellen",
+      "trySecondary": "Zweite Empfehlung ausprobieren",
+      "retake": "Assessment wiederholen",
+      "contact": "Support kontaktieren"
+    },
+    "updateCta": "Meine Empfehlung aktualisieren"
+  },
+  "support": {
+    "title": "Support",
+    "body": "Fragen zu Assessment, Rezept oder Lieferung? Unser Team hilft weiter.",
+    "contactCta": "Kontakt aufnehmen"
+  },
+  "profile": {
+    "title": "Profil",
+    "name": "Name",
+    "email": "E-Mail",
+    "language": "Sprache",
+    "signOut": "Abmelden"
+  },
+  "auth": {
+    "signInTitle": "Anmelden",
+    "signInIntro": "Melde dich an, um dein Assessment, deine Empfehlung und deine Bestellungen zu sehen.",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "signIn": "Anmelden",
+    "demoNote": "Demo-Anmeldung: Es werden keine echten Zugangsdaten geprüft. Ein Backend wird später angebunden.",
+    "requiredNote": "Bitte melde dich an, um diesen Bereich zu sehen."
+  },
+  "greeting": {
+    "morning": "Guten Morgen, {{name}}",
+    "afternoon": "Guten Tag, {{name}}",
+    "evening": "Guten Abend, {{name}}",
+    "subtitle": "Schön, dass du wieder da bist."
+  },
+  "home": {
+    "title": "Übersicht",
+    "problemLabel": "Zuletzt gewähltes Anliegen",
+    "recommendationLabel": "Empfohlenes Produkt",
+    "orderStatusLabel": "Bestellstatus",
+    "noOrders": "Noch keine Bestellungen",
+    "followUpLabel": "Nachsorge",
+    "followUpReminder": "Wir melden uns 14–21 Tage nach dem Start deiner Lösung.",
+    "followUpDone": "Danke – dein Check-in ist erfasst.",
+    "followUpCta": "Nachsorge öffnen",
+    "viewRecommendation": "Empfehlung ansehen",
+    "viewOrders": "Bestellungen ansehen",
+    "supportCta": "Support kontaktieren",
+    "empty": "Schließe das Assessment ab, um deinen Bereich einzurichten.",
+    "emptyCta": "Assessment starten"
+  }
+}

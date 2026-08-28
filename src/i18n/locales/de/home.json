@@ -1,0 +1,126 @@
+{
+  "hero": {
+    "title": "Finde die richtige Unterstützung bei Schlaf, Schmerzen, Stress und Migräne.",
+    "subtitle": "Beantworte ein kurzes Assessment – wir finden die passende Lösung für deine Bedürfnisse.",
+    "primaryCta": "Kostenloses Assessment starten",
+    "secondaryCta": "So funktioniert's",
+    "ariaImage": "Frau in einer Online-Videosprechstunde mit einer Ärztin",
+    "chipTime": "Etwa 60–90 Sekunden",
+    "chipMatch": "1–2 passende Lösungen",
+    "trustPoints": [
+      "Kurzes, geführtes Assessment",
+      "Passende Empfehlungen",
+      "Diskreter Online-Ablauf",
+      "Ausgewählte Wellness-Lösungen",
+      "Kein verwirrender Produktkatalog"
+    ]
+  },
+  "chooseProblem": {
+    "eyebrow": "Wo du startest",
+    "title": "Womit können wir dir helfen?",
+    "intro": "Wähle den Bereich, der dich am meisten betrifft. Jedes Assessment ist darauf abgestimmt.",
+    "cards": {
+      "sleep": {
+        "title": "Schlafprobleme",
+        "description": "Schwer einschlafen, nachts aufwachen oder schlechte Schlafqualität.",
+        "cta": "Schlaf-Assessment starten"
+      },
+      "pain": {
+        "title": "Schmerzen",
+        "description": "Anhaltende Schmerzen oder körperliche Beschwerden, die den Alltag bestimmen.",
+        "cta": "Schmerz-Assessment starten"
+      },
+      "stressAnxiety": {
+        "title": "Stress & Angst",
+        "description": "Innere Unruhe, kreisende Gedanken oder dauerhafte Anspannung.",
+        "cta": "Stress-Assessment starten"
+      },
+      "migraine": {
+        "title": "Migräne",
+        "description": "Wiederkehrende Migräne-Attacken oder häufige Spannungskopfschmerzen.",
+        "cta": "Migräne-Assessment starten"
+      }
+    }
+  },
+  "howItWorks": {
+    "eyebrow": "Ablauf",
+    "title": "So funktioniert WeCare",
+    "intro": "Vier Schritte von deinem Anliegen zur passenden Lösung.",
+    "steps": {
+      "choose": {
+        "title": "Wähle dein Hauptanliegen",
+        "description": "Starte mit dem Bereich, der dich betrifft – Schlaf, Schmerzen, Stress oder Migräne."
+      },
+      "assessment": {
+        "title": "Beantworte ein kurzes Assessment",
+        "description": "Ein paar kurze Fragen dazu, wie es dir geht. Dauert etwa eine Minute."
+      },
+      "match": {
+        "title": "Erhalte eine passende Lösung",
+        "description": "Wir führen dich anhand deiner Antworten zu einer oder zwei Lösungen."
+      },
+      "continue": {
+        "title": "Weiter zu Produkt, Support oder Nachsorge",
+        "description": "Geh weiter zu deiner Lösung, frag nach Support oder melde dich später zurück."
+      }
+    }
+  },
+  "solutionsPreview": {
+    "eyebrow": "Lösungen",
+    "title": "Einfache Empfehlungen. Kein verwirrender Katalog.",
+    "intro": "WeCare zeigt nicht Hunderte Produkte. Wir führen dich anhand deiner Antworten zu 1–2 passenden Lösungen.",
+    "narrowNote": "Von Hunderten Produkten zu dem, was zu dir passt.",
+    "cards": {
+      "sleep": {
+        "title": "Schlaf-Unterstützung",
+        "description": "Zum Zur-Ruhe-Kommen und für erholsamere Nächte."
+      },
+      "pain": {
+        "title": "Körper-Komfort",
+        "description": "Für den Umgang mit anhaltenden körperlichen Beschwerden."
+      },
+      "stressAnxiety": {
+        "title": "Alltags-Balance",
+        "description": "Bei innerer Unruhe, Anspannung und Alltagsstress."
+      },
+      "migraine": {
+        "title": "Kopf & Spannung",
+        "description": "Bei wiederkehrender Migräne und Spannungskopfschmerzen."
+      }
+    },
+    "cta": "Assessment starten"
+  },
+  "trust": {
+    "eyebrow": "Warum WeCare",
+    "title": "Eine geführte und verantwortungsvolle Erfahrung",
+    "intro": "WeCare hilft Nutzer:innen, über einen kurzen geführten Prozess eine passende Lösung zu wählen. Empfehlungen basieren auf den Bedürfnissen, Produktpräferenzen und Wellness-Zielen der Nutzer:innen.",
+    "items": {
+      "discreet": {
+        "title": "Diskreter Ablauf",
+        "description": "Alles läuft online, vertraulich und in deinem Tempo."
+      },
+      "clear": {
+        "title": "Klare Empfehlungen",
+        "description": "Du erhältst eine oder zwei passende Lösungen, keine endlose Auswahl."
+      },
+      "guidance": {
+        "title": "Produkt-Begleitung",
+        "description": "Wir erklären, wofür jede Lösung gedacht ist und wie du sie anwendest."
+      },
+      "support": {
+        "title": "Support verfügbar",
+        "description": "Fragen unterwegs? Unser Team ist erreichbar, wenn du es brauchst."
+      },
+      "austria": {
+        "title": "Auf Österreich ausgerichtet",
+        "description": "Gestaltet für den Zugang und die Versorgung in Österreich."
+      }
+    }
+  },
+  "finalCta": {
+    "title": "Starte mit deinem Anliegen. WeCare führt dich zur passenden Lösung.",
+    "subtitle": "Das Assessment ist kostenlos und dauert etwa eine Minute.",
+    "cta": "Kostenloses Assessment starten",
+    "chip": "Kostenlos · etwa 1 Minute"
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "start": {
+    "title": "Your assessment",
+    "intro": "Six short questions about how you feel — about 60 to 90 seconds. This is not a medical form.",
+    "prefilledNote": "Pre-selected: {{condition}}",
+    "progress": "Question {{current}} of {{total}}",
+    "back": "Back",
+    "next": "Next",
+    "submit": "Show My Recommended Solution",
+    "selectPrompt": "Choose an option to continue.",
+    "resumeNote": "We saved your previous answers.",
+    "restart": "Start over",
+    "reassurance": "No documents needed. You can change any answer before you finish."
+  },
+  "questions": {
+    "q1": {
+      "title": "What do you need help with today?",
+      "options": {
+        "sleep": "Sleep Problems",
+        "pain": "Pain / Body Discomfort",
+        "stressAnxiety": "Stress & Anxiety",
+        "migraine": "Migraine / Head Tension"
+      }
+    },
+    "q2": {
+      "title": "How often does this affect you?",
+      "options": {
+        "sometimes": "Sometimes",
+        "weekly": "Weekly",
+        "almostDaily": "Almost daily",
+        "daily": "Daily"
+      }
+    },
+    "q3": {
+      "title": "How strong is it?",
+      "options": {
+        "mild": "Mild",
+        "moderate": "Moderate",
+        "strong": "Strong",
+        "veryStrong": "Very strong"
+      }
+    },
+    "q4": {
+      "title": "Have you tried anything before?",
+      "options": {
+        "no": "No, not yet",
+        "basic": "Yes, basic wellness products",
+        "cbd": "Yes, CBD products",
+        "prescription": "Yes, prescription medication",
+        "notSure": "I am not sure"
+      }
+    },
+    "q5": {
+      "title": "Have you used CBD before?",
+      "options": {
+        "new": "No, I am new",
+        "oil": "Yes, CBD oil",
+        "flowers": "Yes, CBD flowers",
+        "vape": "Yes, CBD vape",
+        "other": "Yes, other"
+      }
+    },
+    "q6": {
+      "title": "What type of support do you prefer?",
+      "options": {
+        "oil": "Oil",
+        "flower": "Flower",
+        "vape": "Vape",
+        "guidance": "Not sure, I need guidance"
+      }
+    }
+  },
+  "result": {
+    "title": "Your recommended solution is ready.",
+    "intro": "Based on your answers, WeCare matched you with the most suitable support option.",
+    "summaryHeading": "Your answers",
+    "labels": {
+      "problem": "Selected problem",
+      "frequency": "Frequency",
+      "strength": "Strength"
+    },
+    "primaryHeading": "Recommended product",
+    "secondaryHeading": "Secondary product",
+    "explanationHeading": "Why this recommendation",
+    "gentleNudge": "New to medical cannabis? We keep your first step gentle: a lower-THC solution, and your doctor can start you on an oil for controlled dosing before flower or vape. You can adjust later with medical guidance.",
+    "disclaimer": "This recommendation is based on your answers and wellness preferences. It does not replace medical advice.",
+    "viewSolution": "View Recommended Solution",
+    "changeAnswers": "Change My Answers",
+    "reviewRequiredNote": "Medical cannabis is prescription-only. Your assessment is reviewed by a doctor; a prescription is issued only if it is medically appropriate.",
+    "explanations": {
+      "sleep": "Based on your sleep answers, we start with an evening support solution that tends to be calming. A stronger option is available if you need to step up.",
+      "pain": "Based on your answers, we start with a body comfort solution for daily support. A stronger option is available as an advanced step.",
+      "stressAnxiety": "Based on your answers, we start with a daily balance solution for a calmer routine. A stronger option is available if you need to step up.",
+      "migraine": "Based on your answers, we start with head tension support built around daily balance. A second option is available depending on how it feels."
+    },
+    "advancedHeading": "Advanced option"
+  },
+  "medicalReview": {
+    "title": "Your assessment is with a licensed doctor",
+    "intro": "This is an interim step — there's nothing you need to do right now.",
+    "turnaround": "Review usually takes 24–48 hours.",
+    "notGuaranteed": "A prescription is issued only if it is medically appropriate. It is not guaranteed.",
+    "stepsHeading": "What happens next",
+    "steps": {
+      "review": {
+        "title": "Medical review",
+        "description": "Your answers from the assessment are reviewed."
+      },
+      "outcome": {
+        "title": "Outcome",
+        "description": "You get a message as soon as the review is complete."
+      },
+      "next": {
+        "title": "What follows",
+        "description": "With a prescription, the pharmacy ships your order; otherwise you receive a wellness recommendation."
+      }
+    },
+    "statusLabel": "Status",
+    "statusValue": "In medical review",
+    "toDashboard": "View status in my area",
+    "toSolution": "View the recommendation now"
+  }
+}

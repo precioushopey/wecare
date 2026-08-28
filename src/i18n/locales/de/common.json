@@ -1,0 +1,223 @@
+{
+  "brand": {
+    "name": "WeCare",
+    "tagline": "Starte mit deinem Anliegen. WeCare führt dich zur passenden Lösung."
+  },
+  "nav": {
+    "home": "Startseite",
+    "sleep": "Schlaf",
+    "pain": "Schmerzen",
+    "stressAnxiety": "Stress & Angst",
+    "migraine": "Migräne",
+    "howItWorks": "So funktioniert's",
+    "faq": "Häufige Fragen",
+    "login": "Anmelden",
+    "startAssessment": "Assessment starten",
+    "primary": "Hauptnavigation",
+    "openMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen"
+  },
+  "cta": {
+    "startFreeAssessment": "Kostenloses Assessment starten",
+    "howItWorks": "So funktioniert's",
+    "showRecommendation": "Meine empfohlene Lösung anzeigen",
+    "viewRecommendedSolution": "Empfohlene Lösung ansehen",
+    "changeAnswers": "Antworten ändern",
+    "continue": "Weiter",
+    "checkAvailability": "Verfügbarkeit prüfen",
+    "addToCart": "In den Warenkorb"
+  },
+  "language": {
+    "label": "Sprache",
+    "de": "Deutsch",
+    "en": "English",
+    "short": {
+      "de": "DE",
+      "en": "EN"
+    },
+    "switchTo": "Zu {{language}} wechseln"
+  },
+  "assessmentRing": {
+    "progress": "{{answered}} von {{total}} Fragen beantwortet",
+    "complete": "Alle Fragen beantwortet"
+  },
+  "footer": {
+    "disclaimer": "WeCare bietet eine ärztliche Prüfung und – sofern medizinisch sinnvoll – ein Rezept. Nicht jede Person erhält ein Rezept.",
+    "copyright": "© {{year}} WeCare. Alle Rechte vorbehalten.",
+    "emergencyDisclaimer": "WeCare ersetzt keine Notfallversorgung.",
+    "social": "Soziale Medien",
+    "shipping": "Versand",
+    "payment": "Zahlungsarten",
+    "appStores": "App herunterladen",
+    "headings": {
+      "concerns": "Anliegen",
+      "wecare": "WeCare",
+      "legal": "Rechtliches"
+    },
+    "links": {
+      "about": "Über uns",
+      "careers": "Karriere",
+      "providers": "Für Ärzt:innen",
+      "contact": "Kontakt",
+      "knowledgeHub": "Wissens-Hub",
+      "imprint": "Impressum",
+      "privacy": "Datenschutz",
+      "terms": "AGB",
+      "dashboard": "Mein Bereich",
+      "shop": "Shop",
+      "cookies": "Cookie-Richtlinie",
+      "productDisclaimer": "Produkt-Haftungsausschluss",
+      "shipping": "Versandrichtlinie",
+      "refunds": "Rückerstattung",
+      "labTests": "Labortests / COA"
+    }
+  },
+  "pages": {
+    "placeholderNote": "Diese Seite entsteht in einer späteren Phase des Rebuilds.",
+    "home": {
+      "title": "Finde die richtige Unterstützung bei Schlaf, Schmerzen, Stress und Migräne",
+      "subtitle": "Beantworte ein paar Fragen und erhalte eine persönliche Empfehlung – mit ärztlicher Prüfung, wenn sie medizinisch sinnvoll ist."
+    },
+    "conditions": {
+      "sleep": {
+        "title": "Schlafprobleme",
+        "description": "Schwer in den Schlaf finden, nachts wach liegen oder unausgeruht aufwachen – finde heraus, was dir helfen kann."
+      },
+      "pain": {
+        "title": "Chronische Schmerzen",
+        "description": "Anhaltende Schmerzen oder Körperbeschwerden, die den Alltag bestimmen – finde einen Ansatz, der zu dir passt."
+      },
+      "stressAnxiety": {
+        "title": "Stress & Angst",
+        "description": "Innere Unruhe, kreisende Gedanken oder ständige Anspannung – finde heraus, was dir zu mehr Ruhe verhelfen kann."
+      },
+      "migraine": {
+        "title": "Migräne & Kopfspannung",
+        "description": "Wiederkehrende Migräne oder Spannungskopfschmerzen – finde eine Unterstützung, die auf deine Situation abgestimmt ist."
+      },
+      "generalWellness": {
+        "title": "Allgemeines Wohlbefinden",
+        "description": "Nicht sicher, worum es genau geht? Dieses Assessment hilft dir, dein Anliegen einzuordnen."
+      }
+    },
+    "howItWorks": {
+      "title": "So funktioniert WeCare",
+      "description": "Vom Anliegen zur Empfehlung – und, wenn medizinisch sinnvoll, zur ärztlichen Prüfung und zum Rezept."
+    },
+    "faq": {
+      "title": "Häufige Fragen",
+      "description": "Antworten zu Assessment, ärztlicher Prüfung, Rezept und Lieferung."
+    },
+    "assessmentStart": {
+      "title": "Dein Assessment",
+      "description": "Sechs kurze Fragen zu deinem Anliegen. Am Ende erhältst du deine empfohlene Lösung."
+    },
+    "result": {
+      "title": "Deine empfohlene Lösung ist bereit",
+      "description": "Basierend auf deinen Antworten und Präferenzen. Ersetzt keine ärztliche Beratung."
+    },
+    "medicalReview": {
+      "title": "Dein Assessment liegt bei einer Ärztin oder einem Arzt",
+      "description": "Die Prüfung dauert in der Regel 24–48 Stunden. Ein Rezept wird nur ausgestellt, wenn es medizinisch sinnvoll ist."
+    },
+    "solution": {
+      "title": "Empfohlene Lösung",
+      "description": "Warum sie empfohlen wird, wofür sie geeignet ist, Inhaltsstoffe und geprüfte Laborwerte."
+    },
+    "shop": {
+      "title": "Shop",
+      "description": "Warenkorb und Bestellung. Erreichbar über deinen Bereich, die Produktseiten und den Footer."
+    },
+    "dashboard": {
+      "title": "Mein Bereich",
+      "description": "Assessment, Empfehlung, Bestellungen, Nachsorge, Support und Profil."
+    },
+    "login": {
+      "title": "Anmelden",
+      "description": "Melde dich an, um dein Assessment, deine Empfehlung und deine Bestellungen zu sehen."
+    },
+    "about": {
+      "title": "Über uns",
+      "description": "Wer hinter WeCare steht und warum wir problem-orientiert arbeiten."
+    },
+    "careers": {
+      "title": "Karriere",
+      "description": "Offene Stellen und wie es ist, bei WeCare zu arbeiten."
+    },
+    "providers": {
+      "title": "Für Ärzt:innen",
+      "description": "Wie Ärzt:innen mit WeCare zusammenarbeiten."
+    },
+    "contact": {
+      "title": "Kontakt",
+      "description": "So erreichst du unser Team."
+    },
+    "knowledgeHub": {
+      "title": "Wissens-Hub",
+      "description": "Fundierte Artikel zu Schlaf, Schmerzen, Stress und Migräne."
+    },
+    "legal": {
+      "imprint": {
+        "title": "Impressum",
+        "description": "Unternehmensangaben und rechtliche Informationen zu WeCare."
+      },
+      "privacy": {
+        "title": "Datenschutzerklärung",
+        "description": "Wie WeCare deine personenbezogenen Daten erhebt, nutzt und schützt."
+      },
+      "terms": {
+        "title": "AGB",
+        "description": "Die Bedingungen, die bei der Nutzung von WeCare und bei Bestellungen gelten."
+      },
+      "cookies": {
+        "title": "Cookie-Richtlinie",
+        "description": "Welche Cookies WeCare verwendet und wie du sie steuern kannst."
+      },
+      "productDisclaimer": {
+        "title": "Produkt-Haftungsausschluss",
+        "description": "Diese Produkte sind nicht zur Diagnose, Behandlung, Heilung oder Vorbeugung von Krankheiten bestimmt."
+      },
+      "shipping": {
+        "title": "Versandrichtlinie",
+        "description": "Lieferzeiten, Versanddienstleister, Gebühren und Versandgebiete von WeCare."
+      },
+      "refunds": {
+        "title": "Rückerstattungsrichtlinie",
+        "description": "Wann und wie Rücksendungen und Rückerstattungen abgewickelt werden."
+      }
+    },
+    "notFound": {
+      "title": "Diese Seite gibt es nicht",
+      "description": "Der Link ist möglicherweise veraltet oder die Adresse falsch geschrieben.",
+      "backHome": "Zur Startseite",
+      "notSure": "Nicht sicher, was du brauchst?"
+    },
+    "labTests": {
+      "title": "Labortests / COA",
+      "description": "Analysezertifikat-Werte für jede WeCare-Lösung – Cannabinoide, Charge, Testdatum und Sicherheitsprüfung."
+    }
+  },
+  "foundation": {
+    "title": "WeCare — Fundament",
+    "intro": "Design-Tokens, Schriftarten und die Zweisprachigkeit (DE Standard / EN umschaltbar) sind eingerichtet. Interne Referenzseite, nicht in der Navigation verlinkt.",
+    "paletteHeading": "Farben",
+    "typographyHeading": "Typografie",
+    "typographyDisplay": "TT Hoves — Überschriften (Fallback: Inter), mit ä, ö, ü und ß",
+    "typographyBody": "Inter — Fließtext und Bedienoberfläche",
+    "typographyAccent": "Batangas — Akzente (Fallback: Inter)",
+    "typographyData": "Monospace — ausschließlich für geprüfte Laborwerte (CBD 12,4 % · Charge A-2214 · 14.03.2026)",
+    "ringHeading": "Assessment-Ring",
+    "ringCaption": "Wiederkehrendes visuelles Element: „Ein paar Fragen beantworten, ein Ergebnis erhalten.“"
+  },
+  "journey": {
+    "label": "Dein Weg",
+    "stepOf": "Schritt {{current}} von {{total}}",
+    "steps": {
+      "problem": "Anliegen",
+      "assessment": "Assessment",
+      "solution": "Empfehlung",
+      "product": "Produkt",
+      "followUp": "Nachsorge"
+    }
+  }
+}

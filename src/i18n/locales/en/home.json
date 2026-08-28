@@ -1,0 +1,126 @@
+{
+  "hero": {
+    "title": "Find the right support for sleep, pain, stress and migraine.",
+    "subtitle": "Answer a short assessment and get matched with a suitable solution based on your needs.",
+    "primaryCta": "Start Free Assessment",
+    "secondaryCta": "How It Works",
+    "ariaImage": "Woman in an online video consultation with a doctor",
+    "chipTime": "About 60–90 seconds",
+    "chipMatch": "1–2 matched solutions",
+    "trustPoints": [
+      "Short guided assessment",
+      "Matched recommendations",
+      "Discreet online process",
+      "Selected wellness solutions",
+      "No confusing product catalog"
+    ]
+  },
+  "chooseProblem": {
+    "eyebrow": "Where to start",
+    "title": "What do you need help with?",
+    "intro": "Pick the area that affects you most. Each assessment is tailored to that problem.",
+    "cards": {
+      "sleep": {
+        "title": "Sleep Problems",
+        "description": "Difficulty falling asleep, waking up at night or poor sleep quality.",
+        "cta": "Start Sleep Assessment"
+      },
+      "pain": {
+        "title": "Pain",
+        "description": "Persistent pain or physical discomfort that shapes your day.",
+        "cta": "Start Pain Assessment"
+      },
+      "stressAnxiety": {
+        "title": "Stress & Anxiety",
+        "description": "Restlessness, racing thoughts or constant inner tension.",
+        "cta": "Start Stress Assessment"
+      },
+      "migraine": {
+        "title": "Migraine",
+        "description": "Recurring migraine attacks or frequent tension headaches.",
+        "cta": "Start Migraine Assessment"
+      }
+    }
+  },
+  "howItWorks": {
+    "eyebrow": "The process",
+    "title": "How WeCare works",
+    "intro": "Four steps from your problem to the right solution.",
+    "steps": {
+      "choose": {
+        "title": "Choose your main problem",
+        "description": "Start with the area that affects you — sleep, pain, stress or migraine."
+      },
+      "assessment": {
+        "title": "Answer a short assessment",
+        "description": "A few quick questions about how you feel. It takes about a minute."
+      },
+      "match": {
+        "title": "Get matched with a suitable solution",
+        "description": "We guide you to one or two solutions based on your answers."
+      },
+      "continue": {
+        "title": "Continue to product, support or follow-up",
+        "description": "Move on to your solution, ask for support, or check in later."
+      }
+    }
+  },
+  "solutionsPreview": {
+    "eyebrow": "Solutions",
+    "title": "Simple recommendations. No confusing catalog.",
+    "intro": "WeCare does not show hundreds of products. We guide you to 1–2 suitable solutions based on your answers.",
+    "narrowNote": "From hundreds of products down to what fits you.",
+    "cards": {
+      "sleep": {
+        "title": "Sleep Support",
+        "description": "For winding down and more restful nights."
+      },
+      "pain": {
+        "title": "Body Comfort Support",
+        "description": "For managing persistent physical discomfort."
+      },
+      "stressAnxiety": {
+        "title": "Daily Balance Support",
+        "description": "For restlessness, tension and everyday stress."
+      },
+      "migraine": {
+        "title": "Head Tension Support",
+        "description": "For recurring migraine and tension headaches."
+      }
+    },
+    "cta": "Start Assessment"
+  },
+  "trust": {
+    "eyebrow": "Why WeCare",
+    "title": "A guided and responsible experience",
+    "intro": "WeCare helps users choose a suitable solution through a short guided process. Recommendations are based on user needs, product preferences and wellness goals.",
+    "items": {
+      "discreet": {
+        "title": "Discreet process",
+        "description": "Everything happens online, privately, at your own pace."
+      },
+      "clear": {
+        "title": "Clear recommendations",
+        "description": "You get one or two suitable solutions, not endless options."
+      },
+      "guidance": {
+        "title": "Product guidance",
+        "description": "We explain what each solution is for and how to use it."
+      },
+      "support": {
+        "title": "Support available",
+        "description": "Questions along the way? Our team is reachable when you need it."
+      },
+      "austria": {
+        "title": "Austria-focused experience",
+        "description": "Built for how care and access work in Austria."
+      }
+    }
+  },
+  "finalCta": {
+    "title": "Start with your problem. WeCare will guide you to the right solution.",
+    "subtitle": "The assessment is free and takes about a minute.",
+    "cta": "Start Free Assessment",
+    "chip": "Free · about 1 minute"
+  }
+}

@@ -1,0 +1,223 @@
+{
+  "brand": {
+    "name": "WeCare",
+    "tagline": "Start with your problem. WeCare will guide you to the right solution."
+  },
+  "nav": {
+    "home": "Home",
+    "sleep": "Sleep",
+    "pain": "Pain",
+    "stressAnxiety": "Stress & Anxiety",
+    "migraine": "Migraine",
+    "howItWorks": "How it works",
+    "faq": "FAQ",
+    "login": "Login",
+    "startAssessment": "Start assessment",
+    "primary": "Primary navigation",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "cta": {
+    "startFreeAssessment": "Start free assessment",
+    "howItWorks": "How it works",
+    "showRecommendation": "Show my recommended solution",
+    "viewRecommendedSolution": "View recommended solution",
+    "changeAnswers": "Change my answers",
+    "continue": "Continue",
+    "checkAvailability": "Check availability",
+    "addToCart": "Add to cart"
+  },
+  "language": {
+    "label": "Language",
+    "de": "Deutsch",
+    "en": "English",
+    "short": {
+      "de": "DE",
+      "en": "EN"
+    },
+    "switchTo": "Switch to {{language}}"
+  },
+  "assessmentRing": {
+    "progress": "{{answered}} of {{total}} questions answered",
+    "complete": "All questions answered"
+  },
+  "footer": {
+    "disclaimer": "WeCare provides a medical review and, where medically appropriate, a prescription. Not everyone receives a prescription.",
+    "copyright": "© {{year}} WeCare. All rights reserved.",
+    "emergencyDisclaimer": "WeCare does not replace emergency care.",
+    "social": "Social media",
+    "shipping": "Shipping",
+    "payment": "Payment methods",
+    "appStores": "Download the app",
+    "headings": {
+      "concerns": "Concerns",
+      "wecare": "WeCare",
+      "legal": "Legal"
+    },
+    "links": {
+      "about": "About us",
+      "careers": "Careers",
+      "providers": "For providers",
+      "contact": "Contact",
+      "knowledgeHub": "Knowledge hub",
+      "imprint": "Imprint",
+      "privacy": "Privacy",
+      "terms": "Terms",
+      "dashboard": "My area",
+      "shop": "Shop",
+      "cookies": "Cookie policy",
+      "productDisclaimer": "Product disclaimer",
+      "shipping": "Shipping policy",
+      "refunds": "Refund policy",
+      "labTests": "Lab tests / COA"
+    }
+  },
+  "pages": {
+    "placeholderNote": "This page is built in a later phase of the rebuild.",
+    "home": {
+      "title": "Find the right support for sleep, pain, stress and migraine",
+      "subtitle": "Answer a few questions and get a personal recommendation — with a medical review when it is medically appropriate."
+    },
+    "conditions": {
+      "sleep": {
+        "title": "Sleep problems",
+        "description": "Trouble falling asleep, waking in the night or not feeling rested — find out what could help."
+      },
+      "pain": {
+        "title": "Chronic pain",
+        "description": "Persistent pain or body discomfort shaping your day — find an approach that fits you."
+      },
+      "stressAnxiety": {
+        "title": "Stress & anxiety",
+        "description": "Restlessness, racing thoughts or constant tension — see what might help you feel more settled."
+      },
+      "migraine": {
+        "title": "Migraine & head tension",
+        "description": "Recurring migraine or tension headaches — find support matched to your situation."
+      },
+      "generalWellness": {
+        "title": "General wellbeing",
+        "description": "Not sure what it's about? This assessment helps you place your concern."
+      }
+    },
+    "howItWorks": {
+      "title": "How WeCare works",
+      "description": "From your problem to a recommendation — and, where medically appropriate, to a medical review and prescription."
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "description": "Answers about the assessment, medical review, prescriptions and delivery."
+    },
+    "assessmentStart": {
+      "title": "Your assessment",
+      "description": "Six short questions about your concern. At the end you get your recommended solution."
+    },
+    "result": {
+      "title": "Your recommended solution is ready",
+      "description": "Based on your answers and preferences. It does not replace medical advice."
+    },
+    "medicalReview": {
+      "title": "Your assessment is with a licensed doctor",
+      "description": "Review usually takes 24–48 hours. A prescription is issued only if it is medically appropriate."
+    },
+    "solution": {
+      "title": "Recommended solution",
+      "description": "Why it's recommended, what it suits, ingredients and verified lab values."
+    },
+    "shop": {
+      "title": "Shop",
+      "description": "Cart and checkout. Reachable from your area, the product pages and the footer."
+    },
+    "dashboard": {
+      "title": "My area",
+      "description": "Assessment, recommendation, orders, follow-up, support and profile."
+    },
+    "login": {
+      "title": "Login",
+      "description": "Sign in to see your assessment, recommendation and orders."
+    },
+    "about": {
+      "title": "About us",
+      "description": "Who is behind WeCare and why we work problem-first."
+    },
+    "careers": {
+      "title": "Careers",
+      "description": "Open roles and what it's like to work at WeCare."
+    },
+    "providers": {
+      "title": "For providers",
+      "description": "How doctors work with WeCare."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "How to reach our team."
+    },
+    "knowledgeHub": {
+      "title": "Knowledge hub",
+      "description": "Well-founded articles on sleep, pain, stress and migraine."
+    },
+    "legal": {
+      "imprint": {
+        "title": "Impressum",
+        "description": "Company details and legal information for WeCare."
+      },
+      "privacy": {
+        "title": "Privacy Policy",
+        "description": "How WeCare collects, uses and protects your personal data."
+      },
+      "terms": {
+        "title": "Terms & Conditions",
+        "description": "The terms that apply when you use WeCare and place an order."
+      },
+      "cookies": {
+        "title": "Cookie Policy",
+        "description": "Which cookies WeCare uses and how you can control them."
+      },
+      "productDisclaimer": {
+        "title": "Product Disclaimer",
+        "description": "These products are not intended to diagnose, treat, cure or prevent any disease."
+      },
+      "shipping": {
+        "title": "Shipping Policy",
+        "description": "Delivery times, carriers, fees and where WeCare ships."
+      },
+      "refunds": {
+        "title": "Refund Policy",
+        "description": "When and how returns and refunds are handled."
+      }
+    },
+    "notFound": {
+      "title": "This page doesn't exist",
+      "description": "The link may be outdated or the address mistyped.",
+      "backHome": "Back to home",
+      "notSure": "Not sure what you need?"
+    },
+    "labTests": {
+      "title": "Lab Tests / COA",
+      "description": "Certificate-of-analysis values for every WeCare solution — cannabinoids, batch, test date and safety testing."
+    }
+  },
+  "foundation": {
+    "title": "WeCare — foundation",
+    "intro": "Design tokens, fonts and the DE-default / EN-toggle localisation layer are in place. Internal reference page, not linked from navigation.",
+    "paletteHeading": "Colour",
+    "typographyHeading": "Typography",
+    "typographyDisplay": "TT Hoves — headings (fallback: Inter), with clean ä, ö, ü and ß",
+    "typographyBody": "Inter — body and UI text",
+    "typographyAccent": "Batangas — accents (fallback: Inter)",
+    "typographyData": "Monospace — verified lab values only (CBD 12.4% · batch A-2214 · 2026-03-14)",
+    "ringHeading": "Assessment ring",
+    "ringCaption": "The recurring visual device: “answer a few questions, get a result.”"
+  },
+  "journey": {
+    "label": "Your path",
+    "stepOf": "Step {{current}} of {{total}}",
+    "steps": {
+      "problem": "Concern",
+      "assessment": "Assessment",
+      "solution": "Recommendation",
+      "product": "Product",
+      "followUp": "Follow-up"
+    }
+  }
+}

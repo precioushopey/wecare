@@ -1,0 +1,185 @@
+{
+  "index": {
+    "title": "Unsere Lösungen",
+    "intro": "Fünf abgestimmte Lösungen für Schlaf, Schmerzen, Stress und Migräne. Welche zu dir passt, ergibt sich aus dem Assessment.",
+    "startAssessment": "Assessment starten",
+    "resultCount": "{{count}} Lösungen",
+    "guideTitle": "Der beste Weg zu deiner Lösung ist das Assessment",
+    "guideBody": "Diese Übersicht zeigt alle Lösungen als Referenz. Deine persönliche Empfehlung – und die Belieferung – ergeben sich aus dem Assessment und der ärztlichen Prüfung.",
+    "fullRange": "Alle Lösungen"
+  },
+  "card": {
+    "pricePerGram": "ab {{price}} / 1 g",
+    "forProblems": "Bei: {{problems}}",
+    "learnMore": "Mehr erfahren"
+  },
+  "solution": {
+    "backToShop": "Zurück zu den Lösungen",
+    "forProblems": "Bei: {{problems}}",
+    "prescriptionBadge": "Nur nach ärztlicher Freigabe",
+    "thcRangeLabel": "THC-Bereich",
+    "pricePerGram": "ab {{price}} / 1 g",
+    "amountLabel": "Menge",
+    "grams": "{{count}} g",
+    "addToCart": "In den Warenkorb",
+    "checkAvailability": "Verfügbarkeit prüfen",
+    "whyHeading": "Warum empfohlen",
+    "usageHeading": "Anwendung",
+    "suitabilityHeading": "Wofür geeignet",
+    "dispensedHeading": "Wird beliefert als",
+    "dispensedIntro": "Je nach Verfügbarkeit erhältst du eine dieser geprüften Sorten. Alle entsprechen dem Profil von {{name}}.",
+    "coaHeading": "Analysezertifikat (COA) – Beispiel-Charge",
+    "coaIntro": "Laborwerte einer repräsentativen Charge. Jede Lieferung enthält ein chargenspezifisches Zertifikat.",
+    "notSureTitle": "Nicht sicher, ob das zu dir passt?",
+    "notSureBody": "Das Assessment führt dich in wenigen Minuten zur passenden Empfehlung.",
+    "notSureCta": "Assessment starten",
+    "formatHeading": "Produktform",
+    "formatValue": "Erhältlich als Öl oder getrocknete Blüte. Öl ist die übliche Einstiegsform; die passende Form bestätigt die verschreibende Ärztin oder der Arzt.",
+    "ingredientsHeading": "Wichtigste Inhaltsstoffe",
+    "ingredientsValue": "Vollspektrum-Medizinalcannabis – THC {{thc}}, mit CBD und Neben-Cannabinoiden (CBG, CBN) sowie den natürlichen Terpenen der Sorte. Ohne Zusätze.",
+    "oilFormulationHeading": "Öl-Rezeptur — Einstiegsformat",
+    "oilFormulationNote": "Das Vollspektrum-CBD-Öl, auf dem diese Lösung basiert – das Format, das üblicherweise für den Start vorgeschlagen wird. Das Zertifikat unten bezieht sich auf die getrocknete Blüte, die nach Ausstellung einer Verschreibung beliefert wird.",
+    "oilStrengthLabel": "Vollspektrum",
+    "oilStrengthValue": "{{pct}} %",
+    "oilMelatoninLabel": "Zugesetzt",
+    "oilMelatoninValue": "Melatonin",
+    "labTestedBadge": "Laborgeprüft",
+    "continue": "Weiter"
+  },
+  "solutions": {
+    "night-now": {
+      "category": "Schlaf-Unterstützung",
+      "blurb": "Eine auf die Nacht ausgerichtete Lösung für alle, die ihre Abendroutine unterstützen möchten.",
+      "why": "Für gelegentliche oder leichte Schlafprobleme und innere Unruhe am Abend. Niedriger THC-Bereich für einen behutsamen Start.",
+      "usage": "Abends, etwa ein bis zwei Stunden vor dem Schlafengehen. Die genaue Dosierung legt die Ärztin oder der Arzt fest.",
+      "suitability": "Auch geeignet, wenn du noch wenig Erfahrung mit medizinischem Cannabis hast."
+    },
+    "calm-night": {
+      "category": "Erweiterte Schlaf-Unterstützung",
+      "blurb": "Eine stärkere Nacht-Option für alle, die tiefere Abend-Unterstützung suchen.",
+      "why": "Für stärkere oder häufige Schlafprobleme, wenn eine leichte Lösung nicht ausreicht. Beruhigendes, körperbetontes Profil.",
+      "usage": "Am Abend vor dem Schlafengehen. Beginn mit einer niedrigen Dosis, Anpassung in der Nachsorge.",
+      "suitability": "Für Anwender:innen mit etwas Erfahrung. Nach ärztlicher Prüfung."
+    },
+    "deep-ease": {
+      "category": "Körper-Komfort-Unterstützung",
+      "blurb": "Eine auf den Körper ausgerichtete Lösung für alle, die tägliche Komfort-Unterstützung suchen.",
+      "why": "Bei chronischen Schmerzen, Muskel- und Gelenkbeschwerden im Alltag. Ausgewogenes Profil für den Tag.",
+      "usage": "Über den Tag verteilt nach ärztlichem Dosierplan. Anpassung an deinen Alltag in der Nachsorge.",
+      "suitability": "Für anhaltende, den Alltag einschränkende Beschwerden. Nach ärztlicher Prüfung."
+    },
+    "synergy-forte": {
+      "category": "Alltags-Balance-Unterstützung",
+      "blurb": "Eine ausgewogene Lösung für alle, die täglich Ruhe, Balance und Routine-Unterstützung suchen.",
+      "why": "Bei leichter bis mittlerer Anspannung, innerer Unruhe und Spannungskopfschmerzen. Ausgewogenes Profil, tagsüber einsetzbar.",
+      "usage": "Tagsüber nach Bedarf im Rahmen des ärztlichen Dosierplans.",
+      "suitability": "Als erster Schritt bei Stress- und Migräne-Themen. Nach ärztlicher Prüfung."
+    },
+    "synergy-ultra": {
+      "category": "Erweiterte Balance-Unterstützung",
+      "blurb": "Eine stärkere ausgewogene Lösung für alle, die fortgeschrittene tägliche Unterstützung suchen.",
+      "why": "Bei stärkerer Anspannung, Angst oder Schmerzen und für erfahrene Anwender:innen. Höherer THC-Bereich.",
+      "usage": "Nach ärztlichem Dosierplan. Beginn niedrig, langsame Steigerung.",
+      "suitability": "Für stärkere Beschwerden oder wenn eine leichtere Lösung nicht ausreicht. Nach ärztlicher Prüfung."
+    }
+  },
+  "strain": {
+    "specs": {
+      "genetics": "Genetik",
+      "thc": "THC",
+      "cbd": "CBD",
+      "producer": "Hersteller",
+      "origin": "Herkunft",
+      "form": "Form"
+    },
+    "types": {
+      "indica": "Indica",
+      "sativa": "Sativa",
+      "hybrid": "Hybrid"
+    },
+    "forms": {
+      "flower": "Blüte",
+      "inhaler": "Dosierinhalator"
+    }
+  },
+  "coaLabels": {
+    "cbd": "CBD",
+    "cbg": "CBG",
+    "cbn": "CBN",
+    "thc": "THC",
+    "batch": "Chargennummer",
+    "testedOn": "Prüfdatum",
+    "safety": "Sicherheitsprüfung",
+    "product": "Lösung"
+  },
+  "coaSafetyValue": "Auf Pestizide, Schwermetalle, Aflatoxine und mikrobielle Belastung geprüft",
+  "faq": {
+    "faqHeading": "Häufige Fragen",
+    "dosage": {
+      "q": "Wie wird dosiert?",
+      "a": "Die Dosierung legt die Ärztin oder der Arzt fest und passt sie in der Nachsorge an deinen Alltag an."
+    },
+    "driving": {
+      "q": "Darf ich damit Auto fahren?",
+      "a": "THC-haltige Produkte können die Fahrtüchtigkeit beeinträchtigen. Die ärztliche Beratung geht darauf ein."
+    },
+    "delivery": {
+      "q": "Wie erfolgt die Lieferung?",
+      "a": "Der Versand erfolgt aus der Apotheke – erst nach ärztlicher Freigabe und Ausstellung des Rezepts."
+    }
+  },
+  "cart": {
+    "title": "Warenkorb",
+    "empty": "Dein Warenkorb ist leer.",
+    "emptyCta": "Zu den Lösungen",
+    "grams": "{{count}} g",
+    "increase": "Menge erhöhen",
+    "decrease": "Menge verringern",
+    "remove": "Entfernen",
+    "subtotal": "Zwischensumme",
+    "shipping": "Versand",
+    "shippingFree": "Kostenlos",
+    "total": "Gesamt",
+    "checkout": "Zur Kasse",
+    "continueShopping": "Weiter stöbern",
+    "prescriptionNotice": "Alle Artikel sind rezeptpflichtig und werden erst nach ärztlicher Freigabe versendet."
+  },
+  "checkout": {
+    "title": "Kasse",
+    "contactHeading": "Kontakt",
+    "shippingHeading": "Lieferadresse",
+    "fields": {
+      "email": "E-Mail",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "street": "Straße und Hausnummer",
+      "postalCode": "PLZ",
+      "city": "Ort",
+      "country": "Land"
+    },
+    "countryValue": "Österreich",
+    "summaryHeading": "Bestellübersicht",
+    "placeOrder": "Bestellung abschließen",
+    "paymentNote": "Dies ist ein Demo-Checkout – es wird keine Zahlung ausgeführt und es werden keine Kartendaten erfasst.",
+    "backToCart": "Zurück zum Warenkorb",
+    "required": "Pflichtfeld",
+    "paymentHeading": "Zahlungsart",
+    "paymentMethods": {
+      "invoice": "Auf Rechnung",
+      "bankTransfer": "Banküberweisung"
+    },
+    "deliveryLabel": "Lieferung",
+    "deliveryFree": "Kostenlos",
+    "termsHeading": "Bestätigung",
+    "termsLabel": "Ich akzeptiere die AGB und die Datenschutzerklärung.",
+    "disclaimerLabel": "Mir ist bewusst, dass dieses Produkt nicht zur Diagnose, Behandlung, Heilung oder Vorbeugung von Krankheiten bestimmt ist.",
+    "customerHeading": "Kundendaten"
+  },
+  "confirmation": {
+    "title": "Danke für deine Bestellung",
+    "body": "Wir haben deine Bestellung erhalten. Der Versand erfolgt aus der Apotheke, sobald die ärztliche Freigabe vorliegt.",
+    "orderLabel": "Bestellnummer: {{id}}",
+    "toOrders": "Zu meinen Bestellungen",
+    "toHome": "Zur Startseite"
+  }
+}

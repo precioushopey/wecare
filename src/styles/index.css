@@ -1,0 +1,459 @@
+@import "./fonts.css";
+@import "tailwindcss" source(none);
+@import "tw-animate-css";
+
+@source "../**/*.{js,ts,jsx,tsx}";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ══════════════════════════════════════════════════════════════════════════
+   WeCare brand primitives — WECARE BRAND BOOK 2026
+
+   Color system (brand book):
+     Light Azure  #f9fdfe   lightest tint
+     Azure        #218390   PRIMARY brand colour  (printed hex #2d190e is a
+                            typo in the book; #218390 is the actual swatch)
+     Dark Azure   #0d444b   deepest brand
+     Light Green  #e8f4ed   secondary / soft fills, "answered" states
+
+   The two brand ramps are exposed under the existing Tailwind keys so
+   components need no churn:
+     petrol-*  = the Azure teal ramp   (primary brand / trust / medical UI)
+     sage-*    = the Light Green ramp  (secondary accent / progress / success)
+   `danger-*` is a functional error red only — not a brand colour.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* `static` → every token below is always emitted as a CSS variable, so the
+   full ramps are available via var() even where no literal utility is used. */
+@theme static {
+  /* ── Azure ramp (Tailwind key: petrol) ──────────────────────────────── */
+  --color-petrol-50: #f2fafb;
+  --color-petrol-100: #dcf1f3;
+  --color-petrol-200: #b9e2e6;
+  --color-petrol-300: #8bccd3;
+  --color-petrol-400: #54acb6;
+  --color-petrol-500: #318f9b;
+  --color-petrol-600: #218390; /* Azure — brand */
+  --color-petrol-700: #1a6a74;
+  --color-petrol-800: #134e56;
+  --color-petrol-900: #0d444b; /* Dark Azure */
+  --color-petrol-950: #082f34;
+
+  /* ── Light Green ramp (Tailwind key: sage) ──────────────────────────── */
+  --color-sage-50: #f1f9f4;
+  --color-sage-100: #e8f4ed; /* Light Green */
+  --color-sage-200: #cfe8da;
+  --color-sage-300: #aed7c1;
+  --color-sage-400: #82bd9f;
+  --color-sage-500: #5aa080;
+  --color-sage-600: #438068;
+  --color-sage-700: #376454;
+  --color-sage-800: #2d4e43;
+  --color-sage-900: #254038;
+
+  /* ── Functional error red (not a brand colour) ──────────────────────── */
+  --color-danger-50: #fbeeeb;
+  --color-danger-100: #f5d7d0;
+  --color-danger-200: #e9b1a5;
+  --color-danger-300: #dc8a79;
+  --color-danger-400: #cd6853;
+  --color-danger-500: #bd5240;
+  --color-danger-600: #ac4435;
+  --color-danger-700: #8a372b;
+  --color-danger-800: #6a2c23;
+  --color-danger-900: #4d221c;
+
+  /* ── "Care blue" — soft sky companion, gradients + glass tints only ──── */
+  --color-sky-50: #f2f7fd;
+  --color-sky-100: #e6f0fb;
+  --color-sky-200: #cfe2f6;
+  --color-sky-300: #a9c7ec;
+  --color-sky-400: #7ea9dd;
+  --color-sky-500: #5a89cc;
+
+  /* ── Canonical brand names (aliases) ────────────────────────────────── */
+  --color-light-azure: #f9fdfe;
+  --color-azure: #218390;
+  --color-dark-azure: #0d444b;
+  --color-light-green: #e8f4ed;
+
+  /* ── Flat surface / text tokens ─────────────────────────────────────── */
+  --color-ink: #0d2e33; /* primary text — very dark teal, reads near-black */
+  --color-ink-muted: #4c6a6f; /* secondary text */
+  --color-surface: #f4f5fa; /* page ground — cool near-white (brand book) */
+  --color-surface-raised: #ffffff; /* cards, panels */
+  --color-border: #dbe3e6; /* hairlines, dividers */
+
+  /* ── Fonts (source tokens in fonts.css as --wc-font-*) ──────────────── */
+  --font-sans: var(--wc-font-sans);
+  --font-display: var(--wc-font-display);
+  --font-accent: var(--wc-font-accent);
+  --font-serif: var(--wc-font-accent);
+  --font-mono: var(--wc-font-data);
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Semantic layer — maps shadcn/ui token names onto the WeCare palette.
+   ────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --font-size: 16px;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+
+  --background: var(--color-surface);
+  --foreground: var(--color-ink);
+  --card: var(--color-surface-raised);
+  --card-foreground: var(--color-ink);
+  --popover: var(--color-surface-raised);
+  --popover-foreground: var(--color-ink);
+
+  /* Azure carries brand / trust / medical-review UI */
+  --primary: var(--color-azure);
+  --primary-foreground: #ffffff;
+
+  --secondary: var(--color-sage-100);
+  --secondary-foreground: var(--color-petrol-800);
+
+  --muted: #eef1f3;
+  --muted-foreground: var(--color-ink-muted);
+
+  --accent: var(--color-sage-100);
+  --accent-foreground: var(--color-petrol-800);
+
+  --destructive: var(--color-danger-600);
+  --destructive-foreground: #ffffff;
+
+  --border: var(--color-border);
+  --input: var(--color-border);
+  --input-background: var(--color-surface-raised);
+  --switch-background: var(--color-sage-300);
+  --ring: var(--color-azure);
+
+  /* No warm accent in the brand book — the brand colour is the CTA. */
+  --cta: var(--color-azure);
+  --cta-hover: var(--color-dark-azure);
+  --cta-foreground: #ffffff;
+
+  /* progress / "answered" / checkmarks + the Assessment Ring */
+  --progress: var(--color-azure);
+  --progress-track: var(--color-border);
+
+  --radius: 1.25rem; /* softer — liquid-glass design language */
+
+  /* ── Liquid glass + gradient system ("We Care" refinement) ──────────── */
+  --page-gradient: linear-gradient(
+    177deg,
+    #eef4fb 0%,
+    #f5f8fb 42%,
+    #ecf6f2 100%
+  );
+  --cta-gradient: linear-gradient(118deg, #218390 0%, #2aa7b0 100%);
+  --footer-gradient: linear-gradient(
+    162deg,
+    #0a2c42 0%,
+    #0d444b 52%,
+    #12586c 100%
+  );
+
+  --glass-bg: rgba(255, 255, 255, 0.66);
+  --glass-bg-strong: rgba(255, 255, 255, 0.82);
+  --glass-border: rgba(255, 255, 255, 0.7);
+  --glass-highlight: rgba(255, 255, 255, 0.9);
+  --glass-blur: 18px;
+
+  --shadow-soft: 0 4px 20px -8px rgba(13, 68, 75, 0.12);
+  --shadow-float: 0 24px 55px -24px rgba(13, 68, 75, 0.22);
+  --shadow-glow: 0 0 50px -12px rgba(42, 167, 176, 0.4);
+
+  --chart-1: var(--color-azure);
+  --chart-2: var(--color-sage-500);
+  --chart-3: var(--color-dark-azure);
+  --chart-4: var(--color-sage-300);
+  --chart-5: var(--color-ink-muted);
+
+  --sidebar: var(--color-surface-raised);
+  --sidebar-foreground: var(--color-ink);
+  --sidebar-primary: var(--color-azure);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: var(--color-sage-100);
+  --sidebar-accent-foreground: var(--color-petrol-800);
+  --sidebar-border: var(--color-border);
+  --sidebar-ring: var(--color-azure);
+}
+
+/* Dark theme is SCAFFOLD ONLY — not a brand-book deliverable, not reviewed.
+   Present so shadcn `dark:` variants don't render broken if `.dark` is set. */
+.dark {
+  --background: var(--color-petrol-950);
+  --foreground: var(--color-light-azure);
+  --card: var(--color-petrol-900);
+  --card-foreground: var(--color-light-azure);
+  --popover: var(--color-petrol-900);
+  --popover-foreground: var(--color-light-azure);
+  --primary: var(--color-petrol-300);
+  --primary-foreground: var(--color-petrol-950);
+  --secondary: var(--color-petrol-800);
+  --secondary-foreground: var(--color-light-azure);
+  --muted: var(--color-petrol-900);
+  --muted-foreground: var(--color-petrol-300);
+  --accent: var(--color-petrol-800);
+  --accent-foreground: var(--color-light-azure);
+  --destructive: var(--color-danger-400);
+  --destructive-foreground: var(--color-petrol-950);
+  --border: color-mix(in srgb, var(--color-light-azure) 14%, transparent);
+  --input: color-mix(in srgb, var(--color-light-azure) 14%, transparent);
+  --input-background: var(--color-petrol-900);
+  --ring: var(--color-petrol-300);
+  --progress: var(--color-petrol-300);
+  --progress-track: color-mix(in srgb, var(--color-light-azure) 14%, transparent);
+  --cta: var(--color-petrol-300);
+  --cta-hover: var(--color-petrol-200);
+  --cta-foreground: var(--color-petrol-950);
+  --page-gradient: linear-gradient(177deg, #0a2733 0%, #0b2f38 50%, #0a2a30 100%);
+  --glass-bg: rgba(13, 68, 75, 0.5);
+  --glass-bg-strong: rgba(13, 68, 75, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.14);
+  --glass-highlight: rgba(255, 255, 255, 0.08);
+  --sidebar: var(--color-petrol-900);
+  --sidebar-foreground: var(--color-light-azure);
+  --sidebar-accent: var(--color-petrol-800);
+  --sidebar-accent-foreground: var(--color-light-azure);
+  --sidebar-border: color-mix(in srgb, var(--color-light-azure) 14%, transparent);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-cta: var(--cta);
+  --color-cta-hover: var(--cta-hover);
+  --color-cta-foreground: var(--cta-foreground);
+  --color-progress: var(--progress);
+  --color-progress-track: var(--progress-track);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 8px);
+  --radius-md: calc(var(--radius) - 4px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 20px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    font-size: var(--font-size);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply text-foreground;
+    background: var(--color-surface);
+    background-image: var(--page-gradient);
+    background-attachment: fixed;
+    font-family: var(--wc-font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Headings — TT Hoves (→ Inter). Modern, precise, medium-weight. */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--wc-font-display);
+    line-height: 1.18;
+    letter-spacing: -0.011em;
+    color: var(--color-ink);
+    text-wrap: balance;
+  }
+
+  h1 {
+    font-size: var(--text-4xl);
+    font-weight: 600;
+    line-height: 1.1;
+  }
+
+  h2 {
+    font-size: var(--text-3xl);
+    font-weight: 600;
+  }
+
+  h3 {
+    font-size: var(--text-2xl);
+    font-weight: 600;
+  }
+
+  h4 {
+    font-size: var(--text-xl);
+    font-weight: 500;
+  }
+
+  h5 {
+    font-size: var(--text-lg);
+    font-weight: 500;
+  }
+
+  h6 {
+    font-size: var(--text-base);
+    font-weight: 500;
+  }
+
+  p {
+    line-height: 1.6;
+  }
+
+  /* Monospace — verified data only (COA values, batch numbers, prices, IDs). */
+  code,
+  kbd,
+  samp,
+  pre {
+    font-family: var(--wc-font-data);
+  }
+
+  label,
+  button {
+    font-family: var(--wc-font-sans);
+    font-weight: 500;
+  }
+
+  input,
+  textarea,
+  select {
+    font-family: var(--wc-font-sans);
+    font-weight: 400;
+  }
+
+  ::selection {
+    background: var(--color-sage-200);
+    color: var(--color-ink);
+  }
+
+  .brand-scrollbar::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+  }
+  .brand-scrollbar::-webkit-scrollbar-track {
+    background: var(--color-surface);
+    border-radius: 4px;
+  }
+  .brand-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 4px;
+  }
+  .brand-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--color-ink-muted);
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Liquid-glass surface primitives. Use `.glass` on calm / marketing surfaces
+   (cards, panels, nav) that float over the page gradient. Keep dense data
+   surfaces (forms, tables, question cards) solid for legibility.
+   ────────────────────────────────────────────────────────────────────────── */
+@layer components {
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur)) saturate(1.4);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.4);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-2xl);
+    box-shadow:
+      var(--shadow-soft),
+      inset 0 1px 0 0 var(--glass-highlight);
+  }
+
+  .glass-strong {
+    background: var(--glass-bg-strong);
+    backdrop-filter: blur(calc(var(--glass-blur) + 6px)) saturate(1.4);
+    -webkit-backdrop-filter: blur(calc(var(--glass-blur) + 6px)) saturate(1.4);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-2xl);
+    box-shadow:
+      var(--shadow-float),
+      inset 0 1px 0 0 var(--glass-highlight);
+  }
+
+  .glass-hover {
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+  .glass-hover:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      var(--shadow-float),
+      inset 0 1px 0 0 var(--glass-highlight);
+  }
+
+  /* Soft radial "held" glow behind a floating product / hero image. */
+  .image-glow {
+    background: radial-gradient(
+      60% 60% at 50% 45%,
+      rgba(42, 167, 176, 0.16) 0%,
+      rgba(126, 169, 221, 0.1) 45%,
+      transparent 78%
+    );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass-hover:hover {
+    transform: none;
+  }
+}
+
+/* No backdrop-filter support → fall back to a near-opaque surface. */
+@supports not (
+  (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+) {
+  .glass,
+  .glass-strong {
+    background: var(--glass-bg-strong);
+  }
+}
+
+/* Soft-fade the lower edge of floating cut-out photography so the raw
+   rectangular bottom of a photo never reads as a hard crop on the page. */
+.image-fade-b {
+  -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
+}
+

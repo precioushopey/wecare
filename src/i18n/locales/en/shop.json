@@ -1,0 +1,185 @@
+{
+  "index": {
+    "title": "Our solutions",
+    "intro": "Five matched solutions for sleep, pain, stress and migraine. Which one fits you comes from the assessment.",
+    "startAssessment": "Start assessment",
+    "resultCount": "{{count}} solutions",
+    "guideTitle": "The best way to your solution is the assessment",
+    "guideBody": "This overview shows all solutions for reference. Your personal recommendation — and delivery — come from the assessment and the medical review.",
+    "fullRange": "All solutions"
+  },
+  "card": {
+    "pricePerGram": "from {{price}} / 1 g",
+    "forProblems": "For: {{problems}}",
+    "learnMore": "Learn more"
+  },
+  "solution": {
+    "backToShop": "Back to solutions",
+    "forProblems": "For: {{problems}}",
+    "prescriptionBadge": "Only after medical approval",
+    "thcRangeLabel": "THC range",
+    "pricePerGram": "from {{price}} / 1 g",
+    "amountLabel": "Amount",
+    "grams": "{{count}} g",
+    "addToCart": "Add to cart",
+    "checkAvailability": "Check availability",
+    "whyHeading": "Why it's recommended",
+    "usageHeading": "How it's used",
+    "suitabilityHeading": "What it suits",
+    "dispensedHeading": "Dispensed as",
+    "dispensedIntro": "Depending on availability you receive one of these tested strains. All match the profile of {{name}}.",
+    "coaHeading": "Certificate of analysis (COA) — example batch",
+    "coaIntro": "Lab values for a representative batch. Every delivery carries its own batch certificate.",
+    "notSureTitle": "Not sure this is right for you?",
+    "notSureBody": "The assessment guides you to the right recommendation in a few minutes.",
+    "notSureCta": "Start assessment",
+    "formatHeading": "Product format",
+    "formatValue": "Available as oil or dried flower. Oil is the usual starting format; your prescribing doctor confirms what suits you.",
+    "ingredientsHeading": "Key ingredients",
+    "ingredientsValue": "Full-spectrum medical cannabis — THC {{thc}}, with CBD and minor cannabinoids (CBG, CBN) plus the strain's natural terpenes. No additives.",
+    "oilFormulationHeading": "Oil formulation — starting format",
+    "oilFormulationNote": "The full-spectrum CBD oil this solution is based on — the format usually suggested to start with. The certificate below covers the dried-flower batch dispensed once a prescription is issued.",
+    "oilStrengthLabel": "Full spectrum",
+    "oilStrengthValue": "{{pct}} %",
+    "oilMelatoninLabel": "Added",
+    "oilMelatoninValue": "Melatonin",
+    "labTestedBadge": "Lab tested",
+    "continue": "Continue"
+  },
+  "solutions": {
+    "night-now": {
+      "category": "Sleep Support",
+      "blurb": "A night-focused solution for users looking to support their evening routine.",
+      "why": "For occasional or mild sleep problems and evening restlessness. A low THC range for a careful start.",
+      "usage": "In the evening, about one to two hours before bed. The doctor sets the exact dosage.",
+      "suitability": "Also suitable if you have little experience with medical cannabis."
+    },
+    "calm-night": {
+      "category": "Advanced Sleep Support",
+      "blurb": "A stronger night-time option for users looking for deeper evening support.",
+      "why": "For stronger or frequent sleep problems when a light solution isn't enough. A calming, body-focused profile.",
+      "usage": "In the evening before bed. Start with a low dose, adjust during follow-up.",
+      "suitability": "For users with some experience. After medical review."
+    },
+    "deep-ease": {
+      "category": "Body Comfort Support",
+      "blurb": "A body-focused solution for users looking for daily comfort support.",
+      "why": "For chronic pain, muscle and joint discomfort through the day. A balanced daytime profile.",
+      "usage": "Through the day per the medical dosing plan. Adjusted to your routine during follow-up.",
+      "suitability": "For persistent discomfort that limits daily life. After medical review."
+    },
+    "synergy-forte": {
+      "category": "Daily Balance Support",
+      "blurb": "A balanced solution for users looking for daily calm, balance and routine support.",
+      "why": "For mild to moderate tension, restlessness and tension headaches. A balanced profile you can use during the day.",
+      "usage": "During the day as needed within the medical dosing plan.",
+      "suitability": "As a first step for stress and migraine concerns. After medical review."
+    },
+    "synergy-ultra": {
+      "category": "Advanced Balance Support",
+      "blurb": "A stronger balanced solution for users looking for advanced daily support.",
+      "why": "For stronger tension, anxiety or pain, and for experienced users. A higher THC range.",
+      "usage": "Per the medical dosing plan. Start low, increase slowly.",
+      "suitability": "For stronger symptoms or when a lighter solution isn't enough. After medical review."
+    }
+  },
+  "strain": {
+    "specs": {
+      "genetics": "Genetics",
+      "thc": "THC",
+      "cbd": "CBD",
+      "producer": "Producer",
+      "origin": "Origin",
+      "form": "Form"
+    },
+    "types": {
+      "indica": "Indica",
+      "sativa": "Sativa",
+      "hybrid": "Hybrid"
+    },
+    "forms": {
+      "flower": "Flower",
+      "inhaler": "Metered-dose inhaler"
+    }
+  },
+  "coaLabels": {
+    "cbd": "CBD",
+    "cbg": "CBG",
+    "cbn": "CBN",
+    "thc": "THC",
+    "batch": "Batch number",
+    "testedOn": "Test date",
+    "safety": "Safety testing",
+    "product": "Solution"
+  },
+  "coaSafetyValue": "Tested for pesticides, heavy metals, aflatoxins and microbial contamination",
+  "faq": {
+    "faqHeading": "FAQ",
+    "dosage": {
+      "q": "How is it dosed?",
+      "a": "The doctor sets the dosage and adjusts it to your routine during follow-up."
+    },
+    "driving": {
+      "q": "Can I drive while using it?",
+      "a": "Products containing THC can affect your ability to drive. The medical consultation covers this."
+    },
+    "delivery": {
+      "q": "How is it delivered?",
+      "a": "Shipping is from the pharmacy — only after medical approval and a prescription is issued."
+    }
+  },
+  "cart": {
+    "title": "Cart",
+    "empty": "Your cart is empty.",
+    "emptyCta": "Go to solutions",
+    "grams": "{{count}} g",
+    "increase": "Increase amount",
+    "decrease": "Decrease amount",
+    "remove": "Remove",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "shippingFree": "Free",
+    "total": "Total",
+    "checkout": "Checkout",
+    "continueShopping": "Keep browsing",
+    "prescriptionNotice": "All items are prescription-only and are shipped only after medical approval."
+  },
+  "checkout": {
+    "title": "Checkout",
+    "contactHeading": "Contact",
+    "shippingHeading": "Shipping address",
+    "fields": {
+      "email": "Email",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "street": "Street and number",
+      "postalCode": "Postal code",
+      "city": "City",
+      "country": "Country"
+    },
+    "countryValue": "Austria",
+    "summaryHeading": "Order summary",
+    "placeOrder": "Place order",
+    "paymentNote": "This is a demo checkout — no payment is taken and no card details are collected.",
+    "backToCart": "Back to cart",
+    "required": "Required",
+    "paymentHeading": "Payment method",
+    "paymentMethods": {
+      "invoice": "Pay by invoice",
+      "bankTransfer": "Bank transfer"
+    },
+    "deliveryLabel": "Delivery",
+    "deliveryFree": "Free",
+    "termsHeading": "Confirmation",
+    "termsLabel": "I accept the Terms & Conditions and the Privacy Policy.",
+    "disclaimerLabel": "I understand this product is not intended to diagnose, treat, cure or prevent disease.",
+    "customerHeading": "Customer details"
+  },
+  "confirmation": {
+    "title": "Thank you for your order",
+    "body": "We've received your order. It ships from the pharmacy once medical approval is in place.",
+    "orderLabel": "Order number: {{id}}",
+    "toOrders": "Go to my orders",
+    "toHome": "Back to home"
+  }
+}

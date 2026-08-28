@@ -1,0 +1,121 @@
+{
+  "title": "My area",
+  "nav": {
+    "home": "Overview",
+    "assessment": "My Assessment",
+    "recommendation": "My Recommendation",
+    "orders": "My Orders",
+    "followUp": "Follow-up",
+    "support": "Support",
+    "profile": "Profile"
+  },
+  "assessment": {
+    "title": "My assessment",
+    "empty": "You haven't completed an assessment yet.",
+    "emptyCta": "Start assessment",
+    "completedNote": "Last completed in this browser.",
+    "problem": "Concern",
+    "frequency": "Frequency",
+    "strength": "Strength",
+    "retake": "Retake"
+  },
+  "recommendation": {
+    "title": "My recommendation",
+    "empty": "No recommendation yet.",
+    "emptyCta": "Start assessment",
+    "primary": "Primary",
+    "secondary": "Alternative",
+    "view": "View recommended solution",
+    "inReview": "This recommendation is in medical review."
+  },
+  "orders": {
+    "title": "My orders",
+    "empty": "You have no orders yet.",
+    "emptyCta": "Go to shop",
+    "orderLabel": "Order {{id}}",
+    "placedOn": "Placed on {{date}}",
+    "status": "Status",
+    "statuses": {
+      "processing": "Processing",
+      "inReview": "In medical review",
+      "shipped": "Shipped",
+      "delivered": "Delivered"
+    },
+    "grams": "{{count}} g"
+  },
+  "followUp": {
+    "title": "Follow-up",
+    "empty": "Your check-in appears here once you have a recommended solution.",
+    "emptyCta": "Start the assessment",
+    "prompt": "How was your experience with your recommended solution?",
+    "promptHint": "There are no wrong answers — this just helps us guide you.",
+    "options": {
+      "good": "Good",
+      "stronger": "I want something stronger",
+      "lighter": "I want something lighter",
+      "format": "I want to try another format",
+      "support": "I need support"
+    },
+    "responses": {
+      "good": "Great to hear. We'll check in again later — nothing to change for now.",
+      "stronger": "Understood. Here is a stronger option matched to your problem. Any prescription change is reviewed by the doctor.",
+      "lighter": "Understood. Here is a gentler option matched to your problem. Any prescription change is reviewed by the doctor.",
+      "format": "You can be dispensed a different format (flower or inhaler). Our team can set that up for your next order.",
+      "support": "No problem. Our team can help with dosage, delivery or anything else."
+    },
+    "yourAnswer": "Your answer",
+    "toSupport": "Contact support",
+    "change": "Change my answer",
+    "windowNote": "We check in 14–21 days after you start your solution.",
+    "actions": {
+      "reorder": "Reorder same product",
+      "trySecondary": "Try secondary recommendation",
+      "retake": "Retake assessment",
+      "contact": "Contact support"
+    },
+    "updateCta": "Update My Recommendation"
+  },
+  "support": {
+    "title": "Support",
+    "body": "Questions about the assessment, prescription or delivery? Our team can help.",
+    "contactCta": "Get in touch"
+  },
+  "profile": {
+    "title": "Profile",
+    "name": "Name",
+    "email": "Email",
+    "language": "Language",
+    "signOut": "Sign out"
+  },
+  "auth": {
+    "signInTitle": "Login",
+    "signInIntro": "Sign in to see your assessment, recommendation and orders.",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign in",
+    "demoNote": "Demo login: no real credentials are checked. A backend will be connected later.",
+    "requiredNote": "Please sign in to see this area."
+  },
+  "greeting": {
+    "morning": "Good morning, {{name}}",
+    "afternoon": "Good afternoon, {{name}}",
+    "evening": "Good evening, {{name}}",
+    "subtitle": "Good to see you again."
+  },
+  "home": {
+    "title": "Overview",
+    "problemLabel": "Last selected problem",
+    "recommendationLabel": "Recommended product",
+    "orderStatusLabel": "Order status",
+    "noOrders": "No orders yet",
+    "followUpLabel": "Follow-up",
+    "followUpReminder": "We check in 14–21 days after you start your solution.",
+    "followUpDone": "Thanks — your check-in is recorded.",
+    "followUpCta": "Open follow-up",
+    "viewRecommendation": "View recommendation",
+    "viewOrders": "View orders",
+    "supportCta": "Contact support",
+    "empty": "Complete the assessment to set up your area.",
+    "emptyCta": "Start the assessment"
+  }
+}
