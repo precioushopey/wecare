@@ -122,5 +122,34 @@
     "subtitle": "Das Assessment ist kostenlos und dauert etwa eine Minute.",
     "cta": "Kostenloses Assessment starten",
     "chip": "Kostenlos · etwa 1 Minute"
+  },
+  "comparison": {
+    "eyebrow": "Warum WeCare",
+    "title": "Zwei Wege zur passenden Lösung",
+    "intro": "Die meisten Cannabis-Seiten starten mit einem Katalog. WeCare startet mit deinem Anliegen.",
+    "themLabel": "Ein typischer Online-Shop",
+    "usLabel": "Mit WeCare",
+    "rows": {
+      "start": {
+        "them": "Hunderte Produkte durchscrollen",
+        "us": "Ein kurzes, geführtes Assessment beantworten"
+      },
+      "result": {
+        "them": "Eine lange Liste, die du selbst vergleichst",
+        "us": "Eine oder zwei auf dich abgestimmte Lösungen"
+      },
+      "review": {
+        "them": "Ärztliche Prüfung als Zusatz",
+        "us": "Ärztliche Prüfung ist Teil des Ablaufs"
+      },
+      "focus": {
+        "them": "Produkt zuerst",
+        "us": "Dein Anliegen zuerst"
+      },
+      "market": {
+        "them": "Für einen allgemeinen Markt gemacht",
+        "us": "Für die Versorgung in Österreich gemacht"
+      }
+    }
   }
 }

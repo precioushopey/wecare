@@ -1,6 +1,7 @@
 import { usePageTitle } from "@/app/usePageTitle";
 import {
   ChooseProblemSection,
+  ComparisonSection,
   FinalCtaSection,
   HeroSection,
   HowItWorksSection,
@@ -19,6 +20,7 @@ export function HomePage() {
       <ChooseProblemSection />
       <SolutionsPreviewSection />
       <TrustSection />
+      <ComparisonSection />
       <FinalCtaSection />
       {/* Explainer moved below the final CTA; "How It Works" is no longer in
           the primary nav (see PRIMARY_NAV in app/paths.ts). */}

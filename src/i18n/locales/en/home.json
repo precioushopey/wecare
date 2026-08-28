@@ -122,5 +122,34 @@
     "subtitle": "The assessment is free and takes about a minute.",
     "cta": "Start Free Assessment",
     "chip": "Free · about 1 minute"
+  },
+  "comparison": {
+    "eyebrow": "Why WeCare",
+    "title": "Two ways to find what helps",
+    "intro": "Most cannabis sites start with a catalog. WeCare starts with your problem.",
+    "themLabel": "A typical online shop",
+    "usLabel": "With WeCare",
+    "rows": {
+      "start": {
+        "them": "Scroll through hundreds of products",
+        "us": "Answer a short, guided assessment"
+      },
+      "result": {
+        "them": "A long list to compare yourself",
+        "us": "One or two solutions matched to you"
+      },
+      "review": {
+        "them": "Medical review is an add-on",
+        "us": "Medical review is part of the flow"
+      },
+      "focus": {
+        "them": "Product first",
+        "us": "Your problem first"
+      },
+      "market": {
+        "them": "Built for a general market",
+        "us": "Built for how care works in Austria"
+      }
+    }
   }
 }

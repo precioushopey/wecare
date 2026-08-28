@@ -9,6 +9,7 @@ import {
   ListChecks,
   Lock,
   MapPin,
+  Minus,
   Sparkles,
   type LucideIcon,
 } from "lucide-react";
@@ -384,6 +385,58 @@ export function TrustSection() {
           </Reveal>
         ))}
       </div>
+    </Section>
+  );
+}
+
+/* ── Comparison — guided vs. catalog (added Aug 2026, owner request) ─────── */
+
+const COMPARISON_ROWS = ["start", "result", "review", "focus", "market"] as const;
+
+export function ComparisonSection() {
+  const { t } = useTranslation("home");
+
+  return (
+    <Section tone="raised">
+      <Reveal>
+        <SectionHeading
+          eyebrow={t("comparison.eyebrow")}
+          title={t("comparison.title")}
+          intro={t("comparison.intro")}
+        />
+      </Reveal>
+      <Reveal>
+        <div className="mt-10 overflow-hidden rounded-3xl glass-strong">
+          <div className="grid grid-cols-2 border-b border-white/50 text-sm font-semibold">
+            <div className="p-4 text-ink-muted sm:p-5">
+              {t("comparison.themLabel")}
+            </div>
+            <div className="bg-petrol-600/5 p-4 text-petrol-800 sm:p-5">
+              {t("comparison.usLabel")}
+            </div>
+          </div>
+          <dl className="divide-y divide-white/40">
+            {COMPARISON_ROWS.map((row) => (
+              <div key={row} className="grid grid-cols-2 text-sm">
+                <dt className="flex items-start gap-2 p-4 text-ink-muted sm:p-5">
+                  <Minus
+                    className="mt-0.5 size-4 shrink-0 text-ink-muted/60"
+                    aria-hidden
+                  />
+                  {t(`comparison.rows.${row}.them`)}
+                </dt>
+                <dd className="flex items-start gap-2 bg-petrol-600/5 p-4 text-ink sm:p-5">
+                  <Check
+                    className="mt-0.5 size-4 shrink-0 text-sage-500"
+                    aria-hidden
+                  />
+                  {t(`comparison.rows.${row}.us`)}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </Reveal>
     </Section>
   );
 }
