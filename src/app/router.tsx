@@ -20,12 +20,13 @@ import {
   AboutPage,
   CareersPage,
   ContactPage,
-  KnowledgeHubPage,
   LegalPage,
   ProvidersPage,
 } from "@/pages/content";
 import { CostsPage } from "@/pages/CostsPage";
 import { FaqPage } from "@/pages/FaqPage";
+import { KnowledgeArticlePage } from "@/pages/KnowledgeArticlePage";
+import { KnowledgeHubPage } from "@/pages/KnowledgeHubPage";
 import { LabTestsPage } from "@/pages/LabTestsPage";
 import { DashboardLayout } from "@/pages/dashboard/DashboardLayout";
 import {
@@ -122,6 +123,7 @@ export const router = createBrowserRouter([
       { path: paths.providers, element: <ProvidersPage /> },
       { path: paths.contact, element: <ContactPage /> },
       { path: paths.knowledgeHub, element: <KnowledgeHubPage /> },
+      { path: "/knowledge-hub/:slug", element: <KnowledgeArticlePage /> },
 
       { path: paths.legal.imprint, element: <LegalPage doc="imprint" /> },
       { path: paths.legal.privacy, element: <LegalPage doc="privacy" /> },

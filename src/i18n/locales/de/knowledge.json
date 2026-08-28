@@ -1,0 +1,54 @@
+{
+  "title": "Wissens-Hub",
+  "intro": "Verständlicher Hintergrund zu Schlaf, Schmerzen, Stress und Migräne – und dazu, wie der WeCare-Ablauf funktioniert.",
+  "readTime": "{{count}} Min. Lesezeit",
+  "topics": {
+    "all": "Alle Themen",
+    "sleep": "Schlaf",
+    "pain": "Schmerzen",
+    "stressAnxiety": "Stress & Angst",
+    "migraine": "Migräne",
+    "process": "Der Ablauf",
+    "safety": "Sicherheit"
+  },
+  "articles": {
+    "understanding-sleep-problems": {
+      "title": "Schlafprobleme und ihre häufigen Ursachen verstehen",
+      "summary": "Stress, Schmerzen, Alltag und andere Gesundheitsfaktoren können den Schlaf stören – ein Blick darauf, was eine ärztliche Prüfung berücksichtigt."
+    },
+    "ongoing-pain-when-to-seek-guidance": {
+      "title": "Mit anhaltenden Schmerzen leben: wann ärztlicher Rat sinnvoll ist",
+      "summary": "Langanhaltende Beschwerden haben viele Ursachen. Wie Ärztinnen und Ärzte die Schmerzgeschichte einordnen und was du zur Prüfung mitbringen solltest."
+    },
+    "everyday-stress-and-tension": {
+      "title": "Alltagsstress und Anspannung: was hilft",
+      "summary": "Hintergrund zu innerer Unruhe und dem Gefühl, nicht abschalten zu können, und wann geführte Unterstützung sinnvoll sein kann."
+    },
+    "recurring-migraine-and-head-tension": {
+      "title": "Wiederkehrende Migräne und Kopfspannung",
+      "summary": "Wie wiederkehrende Kopfschmerzen den Alltag beeinflussen und was eine Prüfung vor einer Empfehlung betrachtet."
+    },
+    "what-a-medical-review-looks-at": {
+      "title": "Was eine ärztliche Prüfung betrachtet",
+      "summary": "Vom Fragebogen zur Ärztin oder zum Arzt: welche Angaben zählen und warum nichts automatisch entschieden wird."
+    },
+    "how-a-prescription-is-decided": {
+      "title": "Wie über eine Verschreibung entschieden wird – falls überhaupt",
+      "summary": "Eine Verschreibung erfolgt nur, wenn eine Ärztin oder ein Arzt sie für sinnvoll hält. Worauf diese Entscheidung beruht."
+    },
+    "from-pharmacy-to-your-door": {
+      "title": "Von der Apotheke zu dir nach Hause: die Lieferung erklärt",
+      "summary": "Wie eine freigegebene Verschreibung von einer zugelassenen Partnerapotheke bearbeitet und diskret versandt wird."
+    },
+    "using-a-solution-safely": {
+      "title": "Eine Lösung sicher anwenden: was du der Ärztin oder dem Arzt sagen solltest",
+      "summary": "Vorerkrankungen, Allergien und aktuelle Medikamente sind wichtig. Warum gefragt wird und was du erwähnen solltest."
+    }
+  },
+  "article": {
+    "back": "Alle Artikel",
+    "read": "Lesen",
+    "inPreparation": "Der vollständige Artikel wird gerade geschrieben und ärztlich geprüft. In der Zwischenzeit ist das Assessment der schnellste Weg zu einer Empfehlung für deine Situation.",
+    "cta": "Zum kostenlosen Assessment"
+  }
+}

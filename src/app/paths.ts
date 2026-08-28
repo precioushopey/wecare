@@ -53,6 +53,7 @@ export const paths = {
   providers: "/providers",
   contact: "/contact",
   knowledgeHub: "/knowledge-hub",
+  knowledgeArticle: (slug: string) => `/knowledge-hub/${slug}`,
 
   legal: {
     imprint: "/legal/imprint",

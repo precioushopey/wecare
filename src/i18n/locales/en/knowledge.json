@@ -1,0 +1,54 @@
+{
+  "title": "Knowledge Hub",
+  "intro": "Plain-language background on sleep, pain, stress and migraine — and on how the WeCare process works.",
+  "readTime": "{{count}} min read",
+  "topics": {
+    "all": "All topics",
+    "sleep": "Sleep",
+    "pain": "Pain",
+    "stressAnxiety": "Stress & Anxiety",
+    "migraine": "Migraine",
+    "process": "The process",
+    "safety": "Safety"
+  },
+  "articles": {
+    "understanding-sleep-problems": {
+      "title": "Understanding sleep problems and their common causes",
+      "summary": "Stress, pain, routine and other health factors can all disrupt sleep — a look at what a medical review considers."
+    },
+    "ongoing-pain-when-to-seek-guidance": {
+      "title": "Living with ongoing pain: when to seek guidance",
+      "summary": "Long-term discomfort has many causes. How doctors think about pain history, and what to bring to a review."
+    },
+    "everyday-stress-and-tension": {
+      "title": "Everyday stress and tension: what helps",
+      "summary": "Context on restlessness and being unable to switch off, and when guided support may be appropriate."
+    },
+    "recurring-migraine-and-head-tension": {
+      "title": "Recurring migraine and head tension",
+      "summary": "How recurring head pain affects daily life, and what a review looks at before any recommendation."
+    },
+    "what-a-medical-review-looks-at": {
+      "title": "What a medical review looks at",
+      "summary": "From questionnaire to doctor: what information matters, and why nothing is decided automatically."
+    },
+    "how-a-prescription-is-decided": {
+      "title": "How a prescription is decided — if it is",
+      "summary": "A prescription is issued only when a doctor considers it appropriate. What that decision rests on."
+    },
+    "from-pharmacy-to-your-door": {
+      "title": "From pharmacy to your door: delivery explained",
+      "summary": "How an approved prescription is filled by a licensed partner pharmacy and shipped discreetly."
+    },
+    "using-a-solution-safely": {
+      "title": "Using a solution safely: what to tell the doctor",
+      "summary": "Existing conditions, allergies and current medication all matter. Why the doctor asks, and what to mention."
+    }
+  },
+  "article": {
+    "back": "All articles",
+    "read": "Read",
+    "inPreparation": "The full article is being written and medically reviewed. In the meantime, the assessment is the quickest way to a recommendation for your situation.",
+    "cta": "Start the free assessment"
+  }
+}

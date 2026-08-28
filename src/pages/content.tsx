@@ -42,15 +42,6 @@ export function ContactPage() {
   );
 }
 
-export function KnowledgeHubPage() {
-  return (
-    <PagePlaceholder
-      titleKey="pages.knowledgeHub.title"
-      descriptionKey="pages.knowledgeHub.description"
-    />
-  );
-}
-
 type LegalDoc =
   | "imprint"
   | "privacy"

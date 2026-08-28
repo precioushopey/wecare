@@ -9,6 +9,7 @@ import deDashboard from "./locales/de/dashboard.json";
 import deShop from "./locales/de/shop.json";
 import deFaq from "./locales/de/faq.json";
 import deCosts from "./locales/de/costs.json";
+import deKnowledge from "./locales/de/knowledge.json";
 import enCommon from "./locales/en/common.json";
 import enHome from "./locales/en/home.json";
 import enConditions from "./locales/en/conditions.json";
@@ -17,6 +18,7 @@ import enDashboard from "./locales/en/dashboard.json";
 import enShop from "./locales/en/shop.json";
 import enFaq from "./locales/en/faq.json";
 import enCosts from "./locales/en/costs.json";
+import enKnowledge from "./locales/en/knowledge.json";
 
 export const SUPPORTED_LANGUAGES = ["de", "en"] as const;
 export type Language = (typeof SUPPORTED_LANGUAGES)[number];
@@ -54,6 +56,7 @@ export const NAMESPACES = [
   "shop",
   "faq",
   "costs",
+  "knowledge",
 ] as const;
 
 export const resources = {
@@ -66,6 +69,7 @@ export const resources = {
     shop: deShop,
     faq: deFaq,
     costs: deCosts,
+    knowledge: deKnowledge,
   },
   en: {
     common: enCommon,
@@ -76,6 +80,7 @@ export const resources = {
     shop: enShop,
     faq: enFaq,
     costs: enCosts,
+    knowledge: enKnowledge,
   },
 } as const;
 
