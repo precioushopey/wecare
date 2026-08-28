@@ -1,0 +1,32 @@
+{
+  "title": "What to expect — and what it costs",
+  "intro": "No surprises. Here is how the money side works, step by step.",
+  "steps": {
+    "assessment": {
+      "heading": "The assessment is free",
+      "body": "Answering the assessment and seeing your recommended solution costs nothing. You don't need an account or a payment method to get your match."
+    },
+    "review": {
+      "heading": "The medical review",
+      "body": "If your result goes to a doctor for review, any fee for that review is shown to you first. You confirm it before anything is charged — never automatically."
+    },
+    "solution": {
+      "heading": "Your solution",
+      "body": "You only pay for the solution itself, and only once a prescription is issued. The price per gram is shown on every solution page and in your cart before you order."
+    },
+    "delivery": {
+      "heading": "Delivery",
+      "body": "Delivery from the pharmacy is included. There is no separate shipping fee."
+    }
+  },
+  "reimbursement": {
+    "heading": "Private insurance and reimbursement",
+    "body": "If you have private health insurance or want to claim a cost back, we can issue an itemised invoice after your prescription. Whether a cost is reimbursed is decided by your insurer, not by WeCare."
+  },
+  "paying": {
+    "heading": "Paying",
+    "body": "You can pay by invoice or bank transfer. Payment is only ever taken after a doctor has approved your prescription."
+  },
+  "disclaimer": "Exact fees depend on the medical review and are always shown before they apply. This page explains the process, not a fixed price.",
+  "cta": "Start the free assessment"
+}

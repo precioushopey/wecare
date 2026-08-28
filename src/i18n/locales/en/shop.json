@@ -170,6 +170,8 @@
     },
     "deliveryLabel": "Delivery",
     "deliveryFree": "Free",
+    "reviewFeeNote": "This covers your solution and delivery. Any medical-review fee is shown and confirmed separately before it applies.",
+    "reviewFeeLink": "What to expect",
     "termsHeading": "Confirmation",
     "termsLabel": "I accept the Terms & Conditions and the Privacy Policy.",
     "disclaimerLabel": "I understand this product is not intended to diagnose, treat, cure or prevent disease.",

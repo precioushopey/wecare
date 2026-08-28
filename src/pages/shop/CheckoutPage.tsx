@@ -202,6 +202,15 @@ export function CheckoutPage() {
               {formatPriceEur(totalEur, language)}
             </span>
           </div>
+          <p className="mt-3 text-xs text-ink-muted">
+            {t("checkout.reviewFeeNote")}{" "}
+            <Link
+              to={paths.costs}
+              className="underline underline-offset-2 hover:text-ink"
+            >
+              {t("checkout.reviewFeeLink")}
+            </Link>
+          </p>
           <Button
             type="submit"
             variant="cta"

@@ -18,6 +18,8 @@ export const paths = {
 
   howItWorks: "/how-it-works",
   faq: "/faq",
+  /** Qualitative "what to expect / what it costs" page. */
+  costs: "/costs",
 
   assessment: {
     start: "/assessment/start",
@@ -73,9 +75,8 @@ export const paths = {
  * Primary top-nav items, in order. No shop / product-catalog language.
  * "How It Works" and "FAQ" are intentionally NOT in the primary nav — the
  * How-It-Works explainer lives on the homepage as a section after the final
- * CTA, and the FAQ page is an unbuilt stub with nothing to show yet. Both
- * routes still exist (`/how-it-works`, `/faq`) for the links that reference
- * them and for their later content passes.
+ * CTA (and `/how-it-works` redirects there); the FAQ has a real page but is
+ * linked only from the footer. Do not re-add either to this list.
  */
 export const PRIMARY_NAV = [
   { key: "sleep", to: paths.conditions.sleep },

@@ -170,6 +170,8 @@
     },
     "deliveryLabel": "Lieferung",
     "deliveryFree": "Kostenlos",
+    "reviewFeeNote": "Das deckt deine Lösung und die Lieferung ab. Eine eventuelle Gebühr für die ärztliche Prüfung wird separat angezeigt und bestätigt, bevor sie anfällt.",
+    "reviewFeeLink": "Was dich erwartet",
     "termsHeading": "Bestätigung",
     "termsLabel": "Ich akzeptiere die AGB und die Datenschutzerklärung.",
     "disclaimerLabel": "Mir ist bewusst, dass dieses Produkt nicht zur Diagnose, Behandlung, Heilung oder Vorbeugung von Krankheiten bestimmt ist.",

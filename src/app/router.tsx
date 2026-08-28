@@ -24,6 +24,7 @@ import {
   LegalPage,
   ProvidersPage,
 } from "@/pages/content";
+import { CostsPage } from "@/pages/CostsPage";
 import { FaqPage } from "@/pages/FaqPage";
 import { LabTestsPage } from "@/pages/LabTestsPage";
 import { DashboardLayout } from "@/pages/dashboard/DashboardLayout";
@@ -86,6 +87,7 @@ export const router = createBrowserRouter([
         element: <Navigate to="/#how-it-works" replace />,
       },
       { path: paths.faq, element: <FaqPage /> },
+      { path: paths.costs, element: <CostsPage /> },
 
       { path: paths.assessment.start, element: <AssessmentStartPage /> },
       { path: paths.assessment.result, element: <ResultPage /> },
