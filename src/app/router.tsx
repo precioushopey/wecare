@@ -20,12 +20,11 @@ import {
   AboutPage,
   CareersPage,
   ContactPage,
-  FaqPage,
-  HowItWorksPage,
   KnowledgeHubPage,
   LegalPage,
   ProvidersPage,
 } from "@/pages/content";
+import { FaqPage } from "@/pages/FaqPage";
 import { LabTestsPage } from "@/pages/LabTestsPage";
 import { DashboardLayout } from "@/pages/dashboard/DashboardLayout";
 import {
@@ -81,7 +80,11 @@ export const router = createBrowserRouter([
         element: <Navigate to={paths.conditions.generalWellness} replace />,
       },
 
-      { path: paths.howItWorks, element: <HowItWorksPage /> },
+      // "How It Works" is a homepage section now — redirect to its anchor.
+      {
+        path: paths.howItWorks,
+        element: <Navigate to="/#how-it-works" replace />,
+      },
       { path: paths.faq, element: <FaqPage /> },
 
       { path: paths.assessment.start, element: <AssessmentStartPage /> },

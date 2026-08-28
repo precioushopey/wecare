@@ -55,6 +55,11 @@ export function SiteFooter() {
                 </Link>
               </li>
               <li>
+                <Link to={paths.faq} className={footerLink}>
+                  {t("nav.faq")}
+                </Link>
+              </li>
+              <li>
                 <Link to={paths.about} className={footerLink}>
                   {t("footer.links.about")}
                 </Link>

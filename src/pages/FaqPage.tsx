@@ -1,0 +1,72 @@
+import { Link } from "react-router";
+import { useTranslation } from "react-i18next";
+
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/app/components/ui/accordion";
+import { Button } from "@/app/components/ui/button";
+import { paths } from "@/app/paths";
+import { usePageTitle } from "@/app/usePageTitle";
+
+/**
+ * FAQ page — categorised service questions (how it works, medical review,
+ * solutions & delivery, privacy). Not in the primary nav (owner decision); the
+ * footer links here. Content only describes how the process works — no medical
+ * claims, per the Austria language rules.
+ */
+const CATEGORIES = ["start", "review", "orders", "privacy"] as const;
+
+export function FaqPage() {
+  const { t } = useTranslation("faq");
+  usePageTitle(t("title"));
+
+  return (
+    <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6">
+      <h1>{t("title")}</h1>
+      <p className="mt-3 text-lg text-ink-muted">{t("intro")}</p>
+
+      <div className="mt-10 space-y-10">
+        {CATEGORIES.map((cat) => {
+          const items = Object.keys(
+            t(`categories.${cat}.items`, { returnObjects: true }) as Record<
+              string,
+              unknown
+            >,
+          );
+          return (
+            <section key={cat}>
+              <h2 className="text-xl">{t(`categories.${cat}.heading`)}</h2>
+              <Accordion type="single" collapsible className="mt-3">
+                {items.map((key) => (
+                  <AccordionItem key={key} value={`${cat}-${key}`}>
+                    <AccordionTrigger>
+                      {t(`categories.${cat}.items.${key}.q`)}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-ink-muted">
+                      {t(`categories.${cat}.items.${key}.a`)}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </section>
+          );
+        })}
+      </div>
+
+      <div className="glass mt-12 flex flex-col gap-3 rounded-3xl p-6 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <p className="font-display text-base text-ink">
+            {t("contact.heading")}
+          </p>
+          <p className="mt-1 text-sm text-ink-muted">{t("contact.body")}</p>
+        </div>
+        <Button asChild variant="cta" className="shrink-0">
+          <Link to={paths.contact}>{t("contact.cta")}</Link>
+        </Button>
+      </div>
+    </div>
+  );
+}

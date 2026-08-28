@@ -179,7 +179,8 @@ export function HowItWorksSection() {
   const { t } = useTranslation("home");
 
   return (
-    <Section tone="surface">
+    // `#how-it-works` is the redirect target for the retired /how-it-works page.
+    <Section tone="surface" id="how-it-works" className="scroll-mt-24">
       <Reveal>
         <SectionHeading
           eyebrow={t("howItWorks.eyebrow")}

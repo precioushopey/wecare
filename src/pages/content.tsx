@@ -1,24 +1,10 @@
 import { PagePlaceholder } from "./PagePlaceholder";
 
-/** Content / trust pages (spec Section 4). Built out in their own passes. */
-
-export function HowItWorksPage() {
-  return (
-    <PagePlaceholder
-      titleKey="pages.howItWorks.title"
-      descriptionKey="pages.howItWorks.description"
-    />
-  );
-}
-
-export function FaqPage() {
-  return (
-    <PagePlaceholder
-      titleKey="pages.faq.title"
-      descriptionKey="pages.faq.description"
-    />
-  );
-}
+/**
+ * Content / trust pages (spec Section 4). Built out in their own passes.
+ * "How It Works" now redirects to the homepage `#how-it-works` section, and
+ * the FAQ has a real page (`src/pages/FaqPage.tsx`) — neither is here.
+ */
 
 export function AboutPage() {
   return (

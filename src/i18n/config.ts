@@ -7,12 +7,14 @@ import deConditions from "./locales/de/conditions.json";
 import deAssessment from "./locales/de/assessment.json";
 import deDashboard from "./locales/de/dashboard.json";
 import deShop from "./locales/de/shop.json";
+import deFaq from "./locales/de/faq.json";
 import enCommon from "./locales/en/common.json";
 import enHome from "./locales/en/home.json";
 import enConditions from "./locales/en/conditions.json";
 import enAssessment from "./locales/en/assessment.json";
 import enDashboard from "./locales/en/dashboard.json";
 import enShop from "./locales/en/shop.json";
+import enFaq from "./locales/en/faq.json";
 
 export const SUPPORTED_LANGUAGES = ["de", "en"] as const;
 export type Language = (typeof SUPPORTED_LANGUAGES)[number];
@@ -48,6 +50,7 @@ export const NAMESPACES = [
   "assessment",
   "dashboard",
   "shop",
+  "faq",
 ] as const;
 
 export const resources = {
@@ -58,6 +61,7 @@ export const resources = {
     assessment: deAssessment,
     dashboard: deDashboard,
     shop: deShop,
+    faq: deFaq,
   },
   en: {
     common: enCommon,
@@ -66,6 +70,7 @@ export const resources = {
     assessment: enAssessment,
     dashboard: enDashboard,
     shop: enShop,
+    faq: enFaq,
   },
 } as const;
 

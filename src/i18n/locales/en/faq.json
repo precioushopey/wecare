@@ -1,0 +1,75 @@
+{
+  "title": "Frequently asked questions",
+  "intro": "How the WeCare process works — from your first question, through the medical review, to follow-up.",
+  "categories": {
+    "start": {
+      "heading": "Getting started",
+      "items": {
+        "how": {
+          "q": "How does WeCare work?",
+          "a": "You choose the area you want help with and answer a short assessment — about a minute. Based on your answers you're matched with one or two suitable solutions. A licensed doctor then reviews your assessment; a prescription is issued only if they consider it appropriate for you."
+        },
+        "appointment": {
+          "q": "Do I need an appointment?",
+          "a": "No. Everything is completed online at your own pace. There are no waiting rooms and no fixed appointment times."
+        },
+        "time": {
+          "q": "How long does it take?",
+          "a": "The assessment itself takes about 60 to 90 seconds. The medical review is handled separately, and you're notified when there's an update."
+        }
+      }
+    },
+    "review": {
+      "heading": "Medical review",
+      "items": {
+        "who": {
+          "q": "Who reviews my assessment?",
+          "a": "A licensed doctor. Treatment decisions are always made by a medical professional — nothing is approved automatically."
+        },
+        "everyone": {
+          "q": "Does everyone receive a prescription?",
+          "a": "No. A prescription is issued only when a doctor decides it is medically appropriate. The assessment result is a recommendation, not a guarantee of treatment."
+        },
+        "pharmacy": {
+          "q": "Is WeCare an online pharmacy?",
+          "a": "No. WeCare guides you to a suitable solution and arranges the medical review. If a prescription is issued, a licensed partner pharmacy handles dispensing and delivery."
+        }
+      }
+    },
+    "orders": {
+      "heading": "Solutions and delivery",
+      "items": {
+        "without": {
+          "q": "Can I order a solution without a prescription?",
+          "a": "No. The matched solutions are prescription-only and are dispensed after medical approval. They are never sold directly from the site."
+        },
+        "delivery": {
+          "q": "How is my order delivered?",
+          "a": "Approved orders are shipped discreetly from the pharmacy. Delivery is included in the price."
+        },
+        "reorder": {
+          "q": "Can I reorder or change my recommendation?",
+          "a": "Yes. After about two to three weeks WeCare checks in on how the solution is working for you. From your dashboard you can reorder, try the secondary option, retake the assessment or contact support."
+        }
+      }
+    },
+    "privacy": {
+      "heading": "Privacy and safety",
+      "items": {
+        "private": {
+          "q": "Is my information private?",
+          "a": "Yes. Your personal and health data is encrypted and handled in line with the GDPR. Only the people involved in your medical review can see it."
+        },
+        "suitable": {
+          "q": "How do I know a solution is suitable for me?",
+          "a": "That is what the assessment and the medical review are for. If a doctor needs more detail about existing conditions, allergies or current medication, they will follow up before making a decision."
+        }
+      }
+    }
+  },
+  "contact": {
+    "heading": "Still have a question?",
+    "body": "Our team can help with anything the assessment doesn't cover.",
+    "cta": "Contact us"
+  }
+}

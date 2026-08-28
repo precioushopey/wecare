@@ -3,6 +3,7 @@ import { Outlet, ScrollRestoration } from "react-router";
 import { Providers } from "@/app/Providers";
 import { GradientBackdrop } from "@/components/marketing/GradientBackdrop";
 
+import { ScrollToHash } from "./ScrollToHash";
 import { SiteFooter } from "./SiteFooter";
 import { SiteHeader } from "./SiteHeader";
 
@@ -18,6 +19,7 @@ export function RootLayout() {
         </main>
         <SiteFooter />
         <ScrollRestoration />
+        <ScrollToHash />
       </div>
     </Providers>
   );

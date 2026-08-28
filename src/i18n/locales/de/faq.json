@@ -1,0 +1,75 @@
+{
+  "title": "Häufige Fragen",
+  "intro": "Wie der WeCare-Ablauf funktioniert – von deiner ersten Frage über die ärztliche Prüfung bis zur Nachsorge.",
+  "categories": {
+    "start": {
+      "heading": "Erste Schritte",
+      "items": {
+        "how": {
+          "q": "Wie funktioniert WeCare?",
+          "a": "Du wählst den Bereich, bei dem du Unterstützung möchtest, und beantwortest ein kurzes Assessment – etwa eine Minute. Anhand deiner Antworten wirst du einer oder zwei passenden Lösungen zugeordnet. Anschließend prüft eine zugelassene Ärztin oder ein zugelassener Arzt dein Assessment; eine Verschreibung erfolgt nur, wenn sie medizinisch als sinnvoll erachtet wird."
+        },
+        "appointment": {
+          "q": "Brauche ich einen Termin?",
+          "a": "Nein. Alles läuft online in deinem Tempo. Es gibt keine Wartezimmer und keine festen Termine."
+        },
+        "time": {
+          "q": "Wie lange dauert das?",
+          "a": "Das Assessment selbst dauert etwa 60 bis 90 Sekunden. Die ärztliche Prüfung erfolgt separat, und du wirst benachrichtigt, sobald es Neues gibt."
+        }
+      }
+    },
+    "review": {
+      "heading": "Ärztliche Prüfung",
+      "items": {
+        "who": {
+          "q": "Wer prüft mein Assessment?",
+          "a": "Eine zugelassene Ärztin oder ein zugelassener Arzt. Behandlungsentscheidungen trifft immer eine medizinische Fachperson – nichts wird automatisch freigegeben."
+        },
+        "everyone": {
+          "q": "Erhält jede Person eine Verschreibung?",
+          "a": "Nein. Eine Verschreibung erfolgt nur, wenn eine Ärztin oder ein Arzt sie als medizinisch sinnvoll erachtet. Das Ergebnis des Assessments ist eine Empfehlung, keine Garantie für eine Behandlung."
+        },
+        "pharmacy": {
+          "q": "Ist WeCare eine Online-Apotheke?",
+          "a": "Nein. WeCare führt dich zu einer passenden Lösung und organisiert die ärztliche Prüfung. Wird eine Verschreibung ausgestellt, übernimmt eine zugelassene Partnerapotheke die Abgabe und den Versand."
+        }
+      }
+    },
+    "orders": {
+      "heading": "Lösungen und Lieferung",
+      "items": {
+        "without": {
+          "q": "Kann ich eine Lösung ohne Verschreibung bestellen?",
+          "a": "Nein. Die zugeordneten Lösungen sind verschreibungspflichtig und werden erst nach ärztlicher Freigabe abgegeben. Sie werden nie direkt über die Website verkauft."
+        },
+        "delivery": {
+          "q": "Wie wird meine Bestellung geliefert?",
+          "a": "Freigegebene Bestellungen werden diskret von der Apotheke versandt. Die Lieferung ist im Preis enthalten."
+        },
+        "reorder": {
+          "q": "Kann ich nachbestellen oder meine Empfehlung ändern?",
+          "a": "Ja. Nach etwa zwei bis drei Wochen meldet sich WeCare, um zu erfahren, wie die Lösung für dich funktioniert. In deinem Dashboard kannst du nachbestellen, die Zweitoption ausprobieren, das Assessment wiederholen oder den Support kontaktieren."
+        }
+      }
+    },
+    "privacy": {
+      "heading": "Datenschutz und Sicherheit",
+      "items": {
+        "private": {
+          "q": "Sind meine Angaben vertraulich?",
+          "a": "Ja. Deine persönlichen und gesundheitlichen Daten werden verschlüsselt und gemäß DSGVO verarbeitet. Nur die an deiner ärztlichen Prüfung beteiligten Personen können sie einsehen."
+        },
+        "suitable": {
+          "q": "Woher weiß ich, ob eine Lösung für mich geeignet ist?",
+          "a": "Genau dafür sind das Assessment und die ärztliche Prüfung da. Braucht eine Ärztin oder ein Arzt mehr Details zu Vorerkrankungen, Allergien oder aktuellen Medikamenten, wird vor einer Entscheidung nachgefragt."
+        }
+      }
+    }
+  },
+  "contact": {
+    "heading": "Noch eine Frage?",
+    "body": "Unser Team hilft bei allem, was das Assessment nicht abdeckt.",
+    "cta": "Kontakt aufnehmen"
+  }
+}
