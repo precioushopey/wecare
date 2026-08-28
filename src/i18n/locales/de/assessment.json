@@ -93,7 +93,22 @@
       "stressAnxiety": "Auf Basis deiner Antworten starten wir mit einer Alltags-Balance-Lösung für eine ruhigere Routine. Eine stärkere Option ist verfügbar, wenn du hochdosieren musst.",
       "migraine": "Auf Basis deiner Antworten starten wir mit einer Kopfspannungs-Unterstützung rund um die Alltags-Balance. Eine zweite Option ist je nach Empfinden verfügbar."
     },
-    "advancedHeading": "Fortgeschrittene Option"
+    "advancedHeading": "Fortgeschrittene Option",
+    "nextHeading": "Wie es weitergeht",
+    "next": {
+      "view": {
+        "title": "Lösung ansehen",
+        "body": "Öffne deine empfohlene Lösung, wähle eine Menge und lege sie in den Warenkorb."
+      },
+      "review": {
+        "title": "Ärztliche Prüfung",
+        "body": "Eine Ärztin oder ein Arzt prüft, ob sie für dich geeignet ist. Eine Verschreibung erfolgt nur, wenn es sinnvoll ist."
+      },
+      "delivery": {
+        "title": "Diskrete Lieferung",
+        "body": "Nach der Freigabe versendet eine zugelassene Apotheke deine Bestellung diskret zu dir nach Hause."
+      }
+    }
   },
   "medicalReview": {
     "title": "Dein Assessment liegt bei einer lizenzierten Ärztin oder einem Arzt",

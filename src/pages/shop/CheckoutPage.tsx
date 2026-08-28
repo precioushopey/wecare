@@ -8,6 +8,7 @@ import { Input } from "@/app/components/ui/input";
 import { Label } from "@/app/components/ui/label";
 import { paths } from "@/app/paths";
 import { usePageTitle } from "@/app/usePageTitle";
+import { JourneyStepper } from "@/components/marketing/JourneyStepper";
 import { SOLUTION_BY_ID } from "@/data/solutions";
 import { useCart } from "@/features/cart/CartContext";
 import { addOrder } from "@/features/orders/orders";
@@ -69,6 +70,7 @@ export function CheckoutPage() {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6">
+      <JourneyStepper current="product" className="mb-8" />
       <h1>{t("checkout.title")}</h1>
 
       <form onSubmit={onSubmit} className="mt-8 grid gap-8 lg:grid-cols-[1fr_20rem]">

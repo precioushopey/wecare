@@ -156,6 +156,28 @@ export function ResultPage() {
           <Link to={paths.assessment.start}>{t("result.changeAnswers")}</Link>
         </Button>
       </div>
+
+      {/* What's still ahead — review and delivery come after you pick the solution. */}
+      <div className="mt-10 rounded-3xl glass p-6">
+        <h2 className="text-base">{t("result.nextHeading")}</h2>
+        <ol className="mt-4 grid gap-4 sm:grid-cols-3">
+          {(["view", "review", "delivery"] as const).map((k, i) => (
+            <li key={k} className="flex gap-3">
+              <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-sage-100 font-display text-sm text-petrol-700">
+                {i + 1}
+              </span>
+              <div>
+                <p className="text-sm font-medium text-ink">
+                  {t(`result.next.${k}.title`)}
+                </p>
+                <p className="mt-0.5 text-xs text-ink-muted">
+                  {t(`result.next.${k}.body`)}
+                </p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
     </div>
   );
 }

@@ -93,7 +93,22 @@
       "stressAnxiety": "Based on your answers, we start with a daily balance solution for a calmer routine. A stronger option is available if you need to step up.",
       "migraine": "Based on your answers, we start with head tension support built around daily balance. A second option is available depending on how it feels."
     },
-    "advancedHeading": "Advanced option"
+    "advancedHeading": "Advanced option",
+    "nextHeading": "What happens next",
+    "next": {
+      "view": {
+        "title": "View your solution",
+        "body": "Open your recommended solution, choose an amount and add it to your cart."
+      },
+      "review": {
+        "title": "Medical review",
+        "body": "A doctor checks that it is suitable for you. A prescription is issued only if appropriate."
+      },
+      "delivery": {
+        "title": "Discreet delivery",
+        "body": "Once approved, a licensed pharmacy ships your order discreetly to your door."
+      }
+    }
   },
   "medicalReview": {
     "title": "Your assessment is with a licensed doctor",

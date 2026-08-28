@@ -6,6 +6,7 @@ import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 import { Button } from "@/app/components/ui/button";
 import { paths } from "@/app/paths";
 import { usePageTitle } from "@/app/usePageTitle";
+import { JourneyStepper } from "@/components/marketing/JourneyStepper";
 import { SOLUTION_BY_ID, solutionImage } from "@/data/solutions";
 import { useCart } from "@/features/cart/CartContext";
 import { useLanguage } from "@/i18n/useLanguage";
@@ -32,6 +33,7 @@ export function CartPage() {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6">
+      <JourneyStepper current="product" className="mb-8" />
       <h1>{t("cart.title")}</h1>
 
       <ul className="mt-8 divide-y divide-white/40 rounded-3xl glass-strong">
