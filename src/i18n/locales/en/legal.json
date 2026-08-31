@@ -1,431 +1,1197 @@
 {
   "effectiveDateLabel": "Effective from {{date}}",
   "tocLabel": "On this page",
-  "draftNotice": "Draft — this page is a placeholder for legal review. Bracketed fields (company details, register numbers, contact addresses) will be filled in with WeCare's real registered details before launch, and the text itself is reviewed by counsel before it takes effect.",
   "docs": {
     "terms": {
-      "effectiveDate": "[TBD — date of legal review]",
-      "intro": "These terms explain what WeCare is, what to expect from the assessment and medical-review process, and the rules that apply once a solution is recommended and, where medically appropriate, dispensed.",
+      "effectiveDate": "31 August 2026",
+      "intro": "These Terms & Conditions govern your use of the WeCare website, our online assessment, recommendations, medical-review journey where available, and any purchase or other transaction made through WeCare.",
       "sections": [
         {
-          "id": "scope",
-          "heading": "1. Scope",
+          "id": "acceptance",
+          "heading": "Acceptance of these terms",
           "body": [
-            "These terms apply whenever you use the WeCare website, complete the assessment, or place an order for a recommended solution. By using WeCare you accept them. If you don't agree, please don't use the service.",
-            "WeCare is available to consumers in Austria. Business (B2B) use is not covered by these consumer-facing terms."
+            "WeCare is designed for consumers in Austria. These consumer-facing Terms do not apply to business-to-business use.",
+            "By using the WeCare website, completing an assessment, requesting a recommendation, or placing an order, you agree to these Terms. If you do not agree with them, please do not use the WeCare service."
+          ]
+        },
+        {
+          "id": "what-wecare-provides",
+          "heading": "1. What WeCare provides",
+          "body": [
+            "WeCare provides an online, problem-first platform that guides users from their stated needs to a potentially suitable next step.",
+            "The WeCare journey may include:"
+          ],
+          "list": [
+            "information about common concerns such as sleep problems, pain or body discomfort, stress and anxiety, and migraine or head tension;",
+            "a short online assessment;",
+            "a recommendation based on the information and preferences provided by the user;",
+            "information about available products or solutions;",
+            "access to a medical-review process where such a process is offered;",
+            "access to support and follow-up features; and",
+            "ordering of products or services that are legally available through WeCare."
+          ],
+          "bodyAfter": [
+            "WeCare is intended to make the process simple and guided. The assessment is not intended to replace a medical examination, diagnosis, or emergency medical care.",
+            "Where WeCare provides access to a medical-review process, the medical assessment and medical decision are made by the responsible licensed medical professional. WeCare does not determine whether a patient should receive a prescription.",
+            "Where a prescription is medically appropriate and legally available, the prescription is issued by the responsible medical professional. Not every user receives a prescription.",
+            "Where prescription medicine is involved, dispensing is handled by the responsible pharmacy or other legally authorized dispensing entity. WeCare does not replace the professional judgment or legal responsibilities of the doctor or pharmacy."
           ]
         },
         {
           "id": "definitions",
-          "heading": "2. A few terms, defined",
+          "heading": "2. Definitions",
+          "body": [
+            "For these Terms:"
+          ],
           "list": [
-            "Assessment — the short set of questions you answer about your problem (sleep, pain, stress & anxiety, or migraine).",
-            "Recommended solution — the wellness solution WeCare's assessment logic matches to your answers. It is a recommendation, not a prescription.",
-            "Medical review — the review of your assessment by a licensed doctor, who decides whether a prescription is medically appropriate for you.",
-            "Solution — one of WeCare's named solutions, dispensed as medical cannabis by a partner pharmacy once prescribed."
+            "WeCare, we, us or our — the WeCare service operating this website.",
+            "You or your — the consumer using the WeCare website or services.",
+            "Assessment — the online questionnaire used by WeCare to understand the information and preferences you provide and to guide you toward a relevant next step.",
+            "Recommendation — the result generated from the information you provide through the WeCare journey. A recommendation is not a medical diagnosis or a guarantee that a particular product, treatment, prescription, or service is appropriate for you.",
+            "Medical review — a review performed by the responsible licensed medical professional where such a process is available and required.",
+            "Prescription — a prescription issued by the responsible medical professional when medically appropriate and legally permitted.",
+            "Pharmacy — the pharmacy or other legally authorized dispensing entity responsible for dispensing a medicine where applicable.",
+            "Solution — a product, service, medical-review pathway, or other next step presented through the WeCare journey."
           ]
         },
         {
-          "id": "what-we-provide",
-          "heading": "3. What WeCare provides",
+          "id": "problem-first-assessment",
+          "heading": "3. Problem-first assessment",
           "body": [
-            "WeCare is a guided digital health platform, not an online pharmacy and not a doctor's practice. We help you identify a suitable solution through a short assessment, then route your assessment to a licensed doctor for medical review.",
-            "The doctor — not WeCare — decides whether a prescription is issued and what it covers. If a prescription is issued, dispensing and delivery are handled by a licensed partner pharmacy, not by WeCare directly."
+            "WeCare's assessment is designed around the user's stated concern rather than around browsing a product catalogue.",
+            "Depending on the available service, the assessment may address concerns including:"
+          ],
+          "list": [
+            "sleep problems;",
+            "pain or body discomfort;",
+            "stress and anxiety; and",
+            "migraine or head tension."
+          ],
+          "bodyAfter": [
+            "The assessment is intended to collect information relevant to the WeCare recommendation process.",
+            "You must provide information that is accurate, complete, and current to the best of your knowledge.",
+            "You must not provide information belonging to another person or deliberately provide false information in order to obtain a particular recommendation, prescription, product, or service.",
+            "If your circumstances change, you should not rely on an earlier recommendation as though it were a new medical assessment."
           ]
         },
         {
           "id": "eligibility",
-          "heading": "4. Eligibility and your information",
+          "heading": "4. Eligibility and user information",
           "body": [
-            "You must be at least 18 years old and resident in Austria to use WeCare. You're responsible for the accuracy of the information you give us during the assessment — the medical review depends on it being truthful and complete."
+            "WeCare's consumer service is intended for users in Austria.",
+            "You are responsible for ensuring that the information you provide to WeCare is accurate and that you are legally permitted to use the service and purchase the relevant product.",
+            "Certain products or services may have additional eligibility requirements. Where an additional requirement applies, WeCare may request further information before allowing you to continue.",
+            "Where medical information is required for a medical review, you must provide the information requested by the responsible medical professional.",
+            "WeCare may refuse, suspend, or stop a transaction or service where doing so is necessary because:"
+          ],
+          "list": [
+            "the information provided is incomplete or inconsistent;",
+            "a product or service is not legally available to you;",
+            "the applicable eligibility requirements are not met;",
+            "the responsible medical professional determines that a medical service or prescription is not appropriate;",
+            "the relevant pharmacy cannot lawfully dispense the requested medicine; or",
+            "WeCare is required to do so by law."
           ]
         },
         {
-          "id": "no-guarantee",
-          "heading": "5. The assessment result is not a guarantee",
+          "id": "medical-review-and-prescriptions",
+          "heading": "5. Medical review and prescriptions",
           "body": [
-            "Completing the assessment does not guarantee a prescription. Every assessment goes through an individual medical review, and the reviewing doctor may decline to prescribe, prescribe something different from the initial recommendation, or ask for more information before deciding.",
-            "Nothing on this site is individual medical advice. It doesn't replace an in-person examination where your doctor considers one necessary."
+            "Where WeCare offers a medical-review pathway, the medical review is performed by the responsible licensed medical professional.",
+            "WeCare does not guarantee that a medical professional will:"
+          ],
+          "list": [
+            "approve a treatment;",
+            "issue a prescription;",
+            "recommend a particular product; or",
+            "determine that a particular treatment is medically appropriate."
+          ],
+          "bodyAfter": [
+            "A prescription is issued only where the responsible medical professional determines that it is medically appropriate and legally permitted.",
+            "Not every user receives a prescription.",
+            "The medical professional is independently responsible for their medical judgment and decisions.",
+            "WeCare does not instruct a doctor to issue a prescription and does not guarantee a particular medical outcome.",
+            "Where prescription medicine is involved, the responsible pharmacy makes its own dispensing decision in accordance with applicable law and its professional responsibilities."
           ]
         },
         {
-          "id": "orders",
-          "heading": "6. Ordering a recommended solution",
+          "id": "not-medical-diagnosis",
+          "heading": "6. Recommendations are not medical diagnosis",
           "body": [
-            "You can only order a solution after a prescription has been issued for it. Placing an order is an offer to purchase, which we (or our partner pursuit pharmacy) may accept or decline — for example, if the prescription has expired or a required check is still outstanding.",
-            "Order details, quantities and prices are shown at checkout before you confirm."
+            "The WeCare assessment and recommendation are not a substitute for professional medical diagnosis, treatment, or emergency care.",
+            "A recommendation generated through the WeCare platform is based on the information and preferences you provide.",
+            "It does not mean that WeCare has diagnosed a disease or medical condition.",
+            "You should seek appropriate medical advice where you have concerns about your health, symptoms, medication, treatment, or a change in your condition.",
+            "Do not use the WeCare website as a substitute for emergency medical care.",
+            "If you believe you are experiencing a medical emergency, contact the appropriate emergency medical service immediately."
           ]
         },
         {
-          "id": "prices-payment",
-          "heading": "7. Prices and payment",
+          "id": "product-information",
+          "heading": "7. Product information and availability",
           "body": [
-            "Prices are shown in euro and include statutory VAT unless stated otherwise. Accepted payment methods are shown at checkout. A separate medical-review fee may apply, shown before it's charged — see our Costs page for how that works qualitatively; we don't publish fixed figures here since they depend on the review."
+            "WeCare may provide information about products and solutions available through the platform.",
+            "Product availability may change.",
+            "A product being displayed on the website does not by itself guarantee that:"
+          ],
+          "list": [
+            "the product is available for purchase;",
+            "the product is available in your location;",
+            "the product is appropriate for you;",
+            "a medical professional will recommend it; or",
+            "a pharmacy will dispense it."
+          ],
+          "bodyAfter": [
+            "Where applicable, product information may include composition, product format, laboratory information, and other information supplied for the relevant product.",
+            "You should read the product information provided before purchasing or using a product.",
+            "Products must only be used in accordance with the applicable product information and any instructions provided by the responsible professional."
           ]
         },
         {
-          "id": "delivery-and-withdrawal",
-          "heading": "8. Delivery and your right of withdrawal",
+          "id": "ordering",
+          "heading": "8. Ordering a recommended solution",
           "body": [
-            "Delivery terms are set out in our Shipping Policy. Your statutory right of withdrawal, and the exceptions that apply to dispensed medicine, are set out in our Refund Policy — please read that before ordering."
+            "A recommendation does not automatically create an order.",
+            "If you choose to purchase a recommended product or service, you must complete the applicable ordering process.",
+            "Before you submit an order, WeCare will show the applicable information, including the price and available payment methods.",
+            "You are responsible for reviewing the order information before submitting it.",
+            "For products or services that require medical review or other professional approval, completing an order or payment does not guarantee approval.",
+            "If the required medical or professional approval is not provided, the relevant order or transaction will be handled according to the applicable cancellation, refund, or service terms.",
+            "Where a medicine must be dispensed by a pharmacy, the pharmacy remains responsible for the lawful dispensing of that medicine."
+          ]
+        },
+        {
+          "id": "prescription-medicines-and-pharmacies",
+          "heading": "9. Prescription medicines and pharmacies",
+          "body": [
+            "Prescription medicines are subject to the applicable Austrian rules governing prescribing, dispensing, and distribution.",
+            "WeCare does not represent that prescription medicines can be purchased directly from WeCare as an ordinary webshop product.",
+            "Where a prescription pathway is available, WeCare may facilitate the digital process leading to medical review and, where medically appropriate, prescription.",
+            "The responsible doctor makes the prescribing decision.",
+            "The responsible pharmacy or legally authorized dispensing entity makes the dispensing decision.",
+            "In Austria, online distance selling of human medicines is subject to specific legal requirements. BASG states that only authorized, non-prescription human medicines may generally be supplied through registered Austrian distance-selling pharmacies; prescription medicines cannot simply be sold online by an ordinary webshop.",
+            "Accordingly, any prescription-medicine journey offered through WeCare will operate only through the legally applicable medical and pharmacy process."
+          ]
+        },
+        {
+          "id": "prices-and-payment",
+          "heading": "10. Prices and payment",
+          "body": [
+            "Prices are displayed in euros.",
+            "Where applicable, statutory VAT is included in the displayed price unless stated otherwise.",
+            "The payment methods available for a particular transaction are shown during checkout.",
+            "Where a separate medical-review fee applies, the applicable fee will be shown to you before you are charged for that service.",
+            "The availability and price of a product or service may change before an order is completed.",
+            "You are responsible for providing accurate payment and billing information."
+          ]
+        },
+        {
+          "id": "delivery",
+          "heading": "11. Delivery",
+          "body": [
+            "Where a product is purchased through WeCare and delivery is available, the applicable delivery information will be provided before or during checkout.",
+            "Additional delivery terms are set out in the WeCare Shipping Policy.",
+            "Where a medicine is dispensed and delivered by a pharmacy or other legally authorized entity, the applicable pharmacy and legal requirements also apply.",
+            "WeCare does not promise delivery of a product that cannot lawfully be supplied to the relevant customer or location."
+          ]
+        },
+        {
+          "id": "withdrawal-cancellation-and-refunds",
+          "heading": "12. Withdrawal, cancellation and refunds",
+          "body": [
+            "Consumers generally have statutory withdrawal rights for qualifying distance contracts under Austrian consumer law.",
+            "The Austrian Distance and Outward Transactions Act (FAGG) provides a general 14-day withdrawal period for qualifying distance contracts, subject to statutory exceptions.",
+            "Different rules may apply depending on whether the transaction concerns:"
+          ],
+          "list": [
+            "goods;",
+            "a service;",
+            "a digital service; or",
+            "a product or service for which a statutory withdrawal exception applies."
+          ],
+          "bodyAfter": [
+            "For services, the statutory rules can also depend on whether the consumer has expressly requested that performance begin before the withdrawal period ends and whether the service has been fully performed.",
+            "The specific withdrawal rights and applicable exceptions for a particular transaction are set out in the WeCare Refund Policy.",
+            "You should read the Refund Policy before completing an order."
+          ]
+        },
+        {
+          "id": "user-responsibilities",
+          "heading": "13. User responsibilities",
+          "body": [
+            "You agree to:"
+          ],
+          "list": [
+            "provide accurate and current information;",
+            "use the website only for lawful purposes;",
+            "use products only as intended and according to applicable instructions;",
+            "not attempt to obtain a prescription through false, misleading, or incomplete information;",
+            "not provide another person's personal or medical information without authorization;",
+            "keep your account information secure;",
+            "review relevant product and service information before proceeding; and",
+            "follow applicable instructions provided by the responsible medical professional or pharmacy."
+          ],
+          "bodyAfter": [
+            "You must not misuse the WeCare platform, interfere with its operation, attempt unauthorized access, or use the service to obtain products or services for unlawful purposes."
+          ]
+        },
+        {
+          "id": "account-and-security",
+          "heading": "14. Account and security",
+          "body": [
+            "Where WeCare provides an account or login function, you are responsible for keeping your login credentials confidential.",
+            "You should notify WeCare if you believe that your account has been accessed without authorization.",
+            "You are responsible for activity carried out through your account unless the activity resulted from circumstances for which WeCare is legally responsible."
+          ]
+        },
+        {
+          "id": "health-and-safety",
+          "heading": "15. Health and safety",
+          "body": [
+            "WeCare does not replace emergency care.",
+            "The information presented on the website is intended to help users understand the available WeCare journey and should not be treated as a substitute for professional medical advice.",
+            "You should inform the responsible medical professional about relevant medical conditions, medications, allergies, previous treatments, and other information requested during the medical-review process.",
+            "If a medical professional or pharmacy requires additional information before proceeding, you must provide that information where appropriate."
+          ]
+        },
+        {
+          "id": "intellectual-property",
+          "heading": "16. Intellectual property",
+          "body": [
+            "The WeCare website and its content, including its text, graphics, design, branding, interface, software, and other materials, are protected by applicable intellectual-property laws.",
+            "Unless permitted by law or expressly authorized by WeCare, you may not reproduce, distribute, modify, publicly display, or commercially exploit WeCare content."
+          ]
+        },
+        {
+          "id": "third-party-services",
+          "heading": "17. Third-party services and professional partners",
+          "body": [
+            "Certain parts of the WeCare journey may involve independent third parties, including licensed medical professionals and pharmacies.",
+            "Where a third party independently provides a medical, pharmacy, payment, delivery, or other professional service, that third party remains responsible for its own professional decisions and obligations.",
+            "In particular:"
+          ],
+          "list": [
+            "the responsible medical professional is responsible for medical assessment and prescribing decisions;",
+            "the responsible pharmacy is responsible for dispensing decisions; and",
+            "payment and delivery providers are responsible for the services they independently provide."
+          ],
+          "bodyAfter": [
+            "WeCare is not responsible for an independent professional's medical judgment or a pharmacy's lawful dispensing decision."
           ]
         },
         {
           "id": "liability",
-          "heading": "9. Liability",
+          "heading": "18. Liability",
           "body": [
-            "We're liable for intent and gross negligence without limit. For ordinary negligence, we're liable only for breach of a material contractual duty, and limited to the loss that was foreseeable at the time the contract was formed. This doesn't affect any liability that can't be limited by law, including for injury to life, body or health.",
-            "WeCare isn't liable for the independent medical judgement of a reviewing doctor, or for a partner pharmacy's dispensing decisions — those are made by the respective licensed professional, not by WeCare."
+            "WeCare is liable for intent and gross negligence without limitation.",
+            "For ordinary negligence, WeCare is liable only where WeCare breaches a material contractual obligation, and liability is limited to the foreseeable loss that could reasonably have been expected when the contract was formed.",
+            "Nothing in these Terms excludes or limits liability that cannot legally be excluded or limited, including liability relating to injury to life, body, or health.",
+            "WeCare is not responsible for the independent medical judgment of a reviewing doctor or for the independent dispensing decision of a pharmacy.",
+            "Nothing in these Terms affects rights or remedies that consumers have under mandatory applicable law."
           ]
         },
         {
           "id": "changes",
-          "heading": "10. Changes to these terms",
+          "heading": "19. Changes to the website or services",
           "body": [
-            "We may update these terms from time to time — for example if our services or the law change. We'll post the updated version here with a new effective date; continued use after that date means you accept the update."
+            "WeCare may modify, suspend, or discontinue parts of the website or services where reasonably necessary, including where required by changes in law, regulatory requirements, product availability, or the operation of professional partners.",
+            "WeCare may also update these Terms when our services or applicable legal requirements change.",
+            "The current version of these Terms will be published on the WeCare website together with its effective date.",
+            "Changes will not remove mandatory consumer rights that already apply to a transaction."
           ]
         },
         {
           "id": "governing-law",
-          "heading": "11. Governing law and jurisdiction",
+          "heading": "20. Governing law and jurisdiction",
           "body": [
-            "Austrian law applies, without prejudice to any mandatory consumer-protection provisions of the country you live in. If you're a consumer, you can bring proceedings in the courts of your place of residence or ours; if we bring proceedings against you, we'll do so in the courts of your place of residence."
+            "Austrian law applies to these Terms, without prejudice to mandatory consumer-protection provisions that apply to you under applicable law.",
+            "If you are a consumer, you may bring proceedings before the courts that have jurisdiction under applicable consumer-protection law, including where applicable the courts of your place of residence.",
+            "Nothing in these Terms is intended to deprive you of mandatory rights available to you under applicable consumer law."
           ]
         },
         {
           "id": "contact",
-          "heading": "12. Contact",
+          "heading": "21. Contact",
           "body": [
-            "Questions about these terms? Reach us through our Contact page, or see our Imprint for full company details."
+            "Questions about these Terms can be submitted through the WeCare Contact page.",
+            "The full legal and company information for WeCare is provided in the WeCare Imprint."
+          ]
+        },
+        {
+          "id": "important-notice",
+          "heading": "22. Important notice",
+          "body": [
+            "WeCare provides a guided digital journey and, where available, access to medical review.",
+            "A medical review does not guarantee a prescription.",
+            "A prescription, where medically appropriate, is issued by the responsible medical professional.",
+            "Dispensing of prescription medicine is handled by the responsible pharmacy or other legally authorized entity.",
+            "WeCare does not replace emergency medical care."
+          ],
+          "bodyAfter": [
+            "© 2026 WeCare. All rights reserved."
           ]
         }
       ]
     },
     "privacy": {
-      "effectiveDate": "[TBD — date of legal review]",
-      "intro": "This policy explains what personal data WeCare collects, why, and what rights you have over it — including the health-related information you share during the assessment and medical review.",
+      "effectiveDate": "31 August 2026",
+      "intro": "This Privacy Policy explains how WeCare collects, uses, shares, and protects personal data when you use the WeCare website, complete the assessment, request a recommendation, or place an order. It also explains your rights under the EU General Data Protection Regulation (GDPR) and applicable Austrian data-protection law.",
       "sections": [
         {
-          "id": "controller",
-          "heading": "1. Who is responsible for your data",
-          "fields": [
-            { "label": "Controller", "value": "[WeCare legal entity name], [registered address], Austria" },
-            { "label": "Data protection officer", "value": "[DPO name / contact email — appointed where required by law]" },
-            { "label": "Contact", "value": "See our Contact page" }
-          ]
-        },
-        {
-          "id": "what-we-collect",
-          "heading": "2. What we collect",
-          "list": [
-            "Account data — name, email, and the login details you create.",
-            "Assessment answers — your problem area, severity, frequency and prior experience with cannabis or CBD. This is health-related data under Art. 9 GDPR.",
-            "Medical-review data — anything the reviewing doctor records as part of assessing your case.",
-            "Order and delivery data — shipping address, order contents, payment confirmation (we don't store full card numbers ourselves; that's handled by our payment provider).",
-            "Technical data — device, browser, general usage of the site, collected to keep it working and secure."
-          ]
-        },
-        {
-          "id": "legal-basis",
-          "heading": "3. Our legal basis for processing",
+          "id": "overview",
+          "heading": "How WeCare is structured",
           "body": [
-            "We process your account and order data to perform our contract with you (Art. 6(1)(b) GDPR). We process assessment answers and other health-related data only with your explicit consent (Art. 9(2)(a) GDPR), which you give when you start the assessment and can withdraw at any time by contacting us — though withdrawing it may mean we can no longer complete a review already in progress.",
-            "We process limited technical data under legitimate interest (Art. 6(1)(f) GDPR) to keep the site secure and working, and comply with legal retention obligations (Art. 6(1)(c) GDPR) where the law requires it, e.g. for pharmacy and tax records."
-          ]
-        },
-        {
-          "id": "sharing",
-          "heading": "4. Who we share it with",
-          "body": [
-            "We share what's needed to deliver the service, and nothing beyond that:"
+            "WeCare is not a standard online shop, and this policy is not a standard e-commerce privacy policy. The WeCare service has three layers, and different data-protection considerations apply to each:"
           ],
           "list": [
-            "The licensed doctor performing your medical review.",
-            "The licensed partner pharmacy that dispenses and ships a prescribed solution.",
-            "Payment and shipping providers, to process your order and delivery.",
-            "Hosting and IT providers who process data on our behalf under a data-processing agreement.",
-            "Authorities, only where we're legally required to."
+            "Wellness platform — you choose an area you want help with (sleep, pain or body discomfort, stress and anxiety, or migraine or head tension) and read general information;",
+            "Assessment — you answer a short set of questions so WeCare can generate a recommendation from your answers and preferences;",
+            "Medical path — where this service is available, information may be passed to an independent licensed doctor for a medical review and, where medically appropriate, a prescription."
           ],
           "bodyAfter": [
-            "We never sell your personal data, and we don't share assessment or health data for marketing purposes."
+            "Some of the information involved in the assessment and the medical path can be health data, which is a special category of personal data under Article 9 GDPR and is treated with additional care (see the section on health data below)."
           ]
         },
         {
-          "id": "international-transfers",
-          "heading": "5. International transfers",
+          "id": "controller",
+          "heading": "1. Who we are",
           "body": [
-            "Where a provider we use processes data outside the EU/EEA, we rely on an adequacy decision or EU Standard Contractual Clauses to keep your data protected to the same standard."
+            "WeCare is the controller for the processing described in this policy, except where this policy states that an independent third party (such as a reviewing doctor or a pharmacy) acts as a separate controller for its own processing."
+          ],
+          "fields": [
+            {
+              "label": "Controller",
+              "value": "WeCare GmbH, Musterstraße 1, 1010 Wien, Austria"
+            },
+            {
+              "label": "Company register",
+              "value": "Firmenbuchnummer FN 000000a, Firmenbuchgericht Handelsgericht Wien"
+            },
+            {
+              "label": "Privacy contact",
+              "value": "datenschutz@wecare.example"
+            },
+            {
+              "label": "Data protection officer",
+              "value": "Max Mustermann, datenschutz@wecare.example"
+            }
           ]
         },
         {
-          "id": "retention",
-          "heading": "6. How long we keep it",
+          "id": "account-data",
+          "heading": "2. Account and contact data",
           "body": [
-            "We keep account and assessment data for as long as your account is active, plus a limited period after (to handle any follow-up or dispute). Order and prescription-related records are kept for the periods pharmacy and tax law require, even after that — typically several years. You can ask us for the specific period that applies to your data."
+            "Depending on what you choose to provide, WeCare may collect:"
+          ],
+          "list": [
+            "your name;",
+            "your email address;",
+            "your telephone number, where you provide it;",
+            "account login credentials, where you create an account; and",
+            "the content of messages you send to WeCare."
           ]
         },
         {
-          "id": "security",
-          "heading": "7. Security",
+          "id": "assessment-data",
+          "heading": "3. Assessment data",
           "body": [
-            "We use encryption in transit (TLS) and access controls so that only the people involved in your care and order can see your data. No system is perfectly secure, but we design and review ours to current good practice."
+            "The WeCare assessment can involve information such as:"
+          ],
+          "list": [
+            "the main concern you select;",
+            "how often the concern affects you;",
+            "how strongly it affects you;",
+            "any previous experience with CBD that you report;",
+            "product or format preferences; and",
+            "approaches you have already tried, where you report them."
+          ],
+          "bodyAfter": [
+            "Because the assessment is organised around health-related concerns, some answers can constitute health data. This is explained in the section on health data below."
+          ]
+        },
+        {
+          "id": "medical-data",
+          "heading": "4. Medical information for medical review",
+          "body": [
+            "Where the medical-review service is available and you choose to use it, the responsible medical professional may ask you for further information needed for that review. Depending on what is actually requested, this can include:"
+          ],
+          "list": [
+            "relevant medical history;",
+            "current medication;",
+            "allergies;",
+            "previous treatments;",
+            "relevant diagnoses; and",
+            "documents you choose to submit for the review."
+          ],
+          "bodyAfter": [
+            "WeCare only processes this information to the extent needed to route your request to the responsible medical professional and to support the service. The medical assessment itself is carried out by that professional."
+          ]
+        },
+        {
+          "id": "order-data",
+          "heading": "5. Order, delivery and payment data",
+          "body": [
+            "When you place an order, WeCare processes the information needed to take, confirm, fulfil and support that order, which may include your billing and delivery details, the items ordered, the order value, the chosen payment method, and delivery-status information. Card or account details entered during checkout are handled by the payment provider (see the section on payments)."
+          ]
+        },
+        {
+          "id": "support-data",
+          "heading": "6. Customer-support data",
+          "body": [
+            "If you contact WeCare, the communication and its content are processed so that WeCare can respond, resolve the issue, manage related orders, and handle complaints."
+          ]
+        },
+        {
+          "id": "technical-data",
+          "heading": "7. Technical and usage data",
+          "body": [
+            "When you use the website, limited technical information is processed so the site can function and stay secure, such as information about your device and browser, and how you move through the site. Optional analytics are used only with consent where consent is required; cookies and similar technologies are described in the WeCare Cookie Policy."
+          ]
+        },
+        {
+          "id": "health-data",
+          "heading": "8. Health data",
+          "body": [
+            "Some of the information you provide through the assessment, and any information provided for a medical review, can be health data — a special category of personal data under Article 9 GDPR.",
+            "WeCare processes health data only where an Article 9 GDPR condition applies — for example, your explicit consent, or the provision of health care by or under the responsibility of a health professional — and only to the extent needed for the purpose concerned."
+          ],
+          "bodyAfter": [
+            "Access to health data within WeCare is limited to people who need it for the service.",
+            "WeCare does not use this policy to claim that assessment information is anonymous or technically separated from other information unless that separation is actually in place.",
+            "Health data is retained and shared only as described in this policy."
+          ]
+        },
+        {
+          "id": "purposes",
+          "heading": "9. How and why we use your data",
+          "body": [
+            "WeCare uses personal data to:"
+          ],
+          "list": [
+            "operate the website and the guided assessment;",
+            "generate a recommendation from your answers and preferences;",
+            "where available and requested, route your assessment to an independent medical professional for a medical review;",
+            "take, confirm, fulfil and support orders, including delivery and returns;",
+            "provide customer support and handle complaints;",
+            "send service messages such as order confirmations and account or security notices;",
+            "send marketing communications where you have agreed to receive them;",
+            "keep the service secure and prevent misuse; and",
+            "meet legal obligations, including accounting and record-keeping obligations."
+          ]
+        },
+        {
+          "id": "legal-bases",
+          "heading": "10. Legal bases",
+          "body": [
+            "WeCare relies on the following legal bases under Article 6 GDPR and, for health data, an additional condition under Article 9 GDPR:"
+          ],
+          "list": [
+            "performance of a contract, or steps taken at your request before entering a contract — for creating an account, running the assessment, and processing and delivering orders;",
+            "legitimate interests — for keeping the service secure, preventing misuse, and improving the service, where those interests are not overridden by your rights;",
+            "consent — for optional analytics and advertising technologies, and for marketing communications where consent is required; you can withdraw consent at any time;",
+            "legal obligation — for accounting, tax and other statutory record-keeping; and",
+            "for health data, an Article 9 GDPR condition, such as your explicit consent or the provision of health care by or under the responsibility of a health professional."
+          ],
+          "bodyAfter": [
+            "The specific basis for a given processing activity depends on the activity and is confirmed against WeCare's actual data flows and the applicable Austrian and EU rules."
+          ]
+        },
+        {
+          "id": "automated-recommendations",
+          "heading": "11. The assessment and automated recommendations",
+          "body": [
+            "The WeCare assessment uses fixed logic to match your answers and stated preferences to one of WeCare's named solutions. This is a wellness and product recommendation.",
+            "The recommendation does not diagnose a medical condition, does not decide whether you receive a prescription, and does not produce a legal effect concerning you. WeCare does not describe this process as an AI diagnosis.",
+            "Where a medical review is part of the service, the medical decision — including whether a prescription is appropriate — is made by the responsible medical professional, not by the WeCare system."
+          ],
+          "bodyAfter": [
+            "If, in a given configuration, the process were to involve a decision producing legal or similarly significant effects based solely on automated processing, WeCare would provide the additional information and safeguards required under Article 22 GDPR."
+          ]
+        },
+        {
+          "id": "medical-review",
+          "heading": "12. Medical review by an independent doctor",
+          "body": [
+            "Where the medical-review service is available and you choose to use it, WeCare transfers the information needed for the review to the responsible licensed medical professional.",
+            "That professional carries out the medical assessment and makes the medical decision independently, and is subject to their own professional and legal obligations, including in relation to patient data."
+          ],
+          "bodyAfter": [
+            "What information is transferred, why, who receives it, whether the professional acts as an independent controller or as a processor, and the applicable legal basis are determined by the actual arrangement between WeCare and the medical provider, and are set out here once confirmed.",
+            "Not every user receives a prescription."
+          ]
+        },
+        {
+          "id": "pharmacy",
+          "heading": "13. Pharmacy and fulfilment",
+          "body": [
+            "Where a prescription is issued and a medicine is dispensed, WeCare shares with the responsible pharmacy or other legally authorised dispensing entity only the information necessary to dispense and deliver the order.",
+            "The pharmacy makes its own dispensing decision and is responsible for its own processing in that role."
+          ],
+          "bodyAfter": [
+            "Whether the pharmacy acts as an independent controller, a joint controller, or a processor is determined by the actual arrangement and is stated here once confirmed."
+          ]
+        },
+        {
+          "id": "payments",
+          "heading": "14. Payments",
+          "body": [
+            "Payments are processed through the payment provider used by WeCare. Card or account credentials entered during checkout are handled by that provider under its own privacy terms.",
+            "WeCare receives the information needed to confirm and reconcile a payment, such as the payment method, payment status, and transaction reference. WeCare does not claim that it never receives payment-related information; the exact split depends on the payment integration used by the live website."
+          ]
+        },
+        {
+          "id": "marketing",
+          "heading": "15. Marketing and communications",
+          "body": [
+            "WeCare distinguishes between:"
+          ],
+          "list": [
+            "necessary service communications — such as order confirmations, account and security messages, and service notices, which WeCare sends as part of providing the service; and",
+            "marketing communications — such as promotional emails, and, where used, advertising audiences, retargeting, and campaign measurement, which WeCare sends or runs only where you have agreed and where the applicable consent requirements are met."
+          ],
+          "bodyAfter": [
+            "You can withdraw marketing consent at any time, including through the unsubscribe link in a marketing email or by contacting WeCare.",
+            "This policy describes only marketing technologies that WeCare actually uses; specific providers are named here once confirmed."
           ]
         },
         {
           "id": "cookies",
-          "heading": "8. Cookies",
+          "heading": "16. Cookies and tracking",
           "body": [
-            "We use a small number of cookies to run the site and, where you allow it, to understand how it's used. See our Cookie Policy for the details and how to control them."
+            "The WeCare website uses cookies and similar technologies. Non-essential technologies, including analytics and any advertising technologies, are used only with consent where consent is required. Details, categories, and controls are set out in the WeCare Cookie Policy."
+          ]
+        },
+        {
+          "id": "recipients",
+          "heading": "17. Who we share data with",
+          "body": [
+            "WeCare shares personal data only with the categories of recipient that actually apply to the service, which may include:"
+          ],
+          "list": [
+            "independent medical professionals, for medical review;",
+            "pharmacies or other legally authorised dispensing entities, for dispensing and delivery;",
+            "payment providers;",
+            "delivery and logistics providers;",
+            "IT, hosting and infrastructure providers;",
+            "customer-support providers;",
+            "analytics and advertising providers, where used and where consent applies;",
+            "professional advisers, such as lawyers and accountants; and",
+            "public authorities, where WeCare is legally required to disclose data."
+          ],
+          "bodyAfter": [
+            "Providers that process data on WeCare's behalf do so under a data-processing agreement and only on WeCare's instructions. Specific providers are identified here once confirmed as part of the live WeCare setup."
+          ]
+        },
+        {
+          "id": "transfers",
+          "heading": "18. International transfers",
+          "body": [
+            "WeCare aims to keep personal data within the EU/EEA.",
+            "Where a provider WeCare uses processes data outside the EU/EEA, WeCare relies on a valid transfer mechanism under the GDPR, such as an adequacy decision or the European Commission's standard contractual clauses, together with any additional safeguards required."
+          ],
+          "bodyAfter": [
+            "The specific recipients and transfer mechanisms depend on the actual vendors used and are set out here once confirmed."
+          ]
+        },
+        {
+          "id": "retention",
+          "heading": "19. How long we keep your data",
+          "body": [
+            "WeCare keeps personal data only for as long as needed for the purpose it was collected for, and then deletes or anonymises it. Retention depends on the category of data, for example:"
+          ],
+          "list": [
+            "account information — for as long as you have an account;",
+            "order and transaction information — for the period required by accounting and tax law;",
+            "assessment and any medical information — for the period appropriate to the service and any applicable medical record-keeping rules;",
+            "customer-support communications — for as long as needed to handle the matter and any follow-up;",
+            "marketing consent records — for as long as needed to evidence consent and honour your choices; and",
+            "records WeCare must keep to comply with a legal obligation — for the period required by that obligation."
+          ],
+          "bodyAfter": [
+            "Specific retention periods are set from the actual legal and business requirements and are stated here once confirmed."
           ]
         },
         {
           "id": "your-rights",
-          "heading": "9. Your rights",
+          "heading": "20. Your rights",
           "body": [
-            "Under the GDPR you can:"
+            "Subject to the conditions in the GDPR, you have the right to:"
           ],
           "list": [
-            "Ask what data we hold about you, and get a copy (right of access).",
-            "Ask us to correct inaccurate data (right to rectification).",
-            "Ask us to delete data we no longer need to keep (right to erasure).",
-            "Ask us to restrict or object to certain processing.",
-            "Ask for your data in a portable format (right to data portability).",
-            "Withdraw consent at any time, for processing that relies on it.",
-            "Complain to your national data-protection authority — in Austria, the Datenschutzbehörde (dsb.gv.at)."
+            "request access to the personal data WeCare holds about you;",
+            "ask for inaccurate data to be corrected;",
+            "ask for data to be erased;",
+            "ask for processing to be restricted;",
+            "receive certain data in a portable format;",
+            "object to processing based on legitimate interests;",
+            "withdraw consent at any time, without affecting processing carried out before withdrawal; and",
+            "not be subject to a decision based solely on automated processing that produces legal or similarly significant effects, except as permitted by Article 22 GDPR."
+          ],
+          "bodyAfter": [
+            "To exercise a right, contact WeCare using the details in the contact section. WeCare may need to verify your identity before acting on a request."
+          ]
+        },
+        {
+          "id": "security",
+          "heading": "21. Security",
+          "body": [
+            "WeCare uses technical and organisational measures appropriate to the risk to protect personal data, which may include encryption in transit, access controls and authentication, role-based access, secure hosting, logging, backups, and data minimisation."
+          ],
+          "bodyAfter": [
+            "WeCare does not claim security certifications or standards that it does not hold. The measures in place are described here in more detail once confirmed for the live service."
           ]
         },
         {
           "id": "children",
-          "heading": "10. Children",
+          "heading": "22. Children",
           "body": [
-            "WeCare is for adults (18+). We don't knowingly collect data from anyone under that age."
+            "The WeCare service is intended for adults. It is not directed at children, and WeCare does not knowingly collect data from children. This aligns with the eligibility requirements in the WeCare Terms & Conditions."
+          ]
+        },
+        {
+          "id": "complaints",
+          "heading": "23. Complaints",
+          "body": [
+            "If you have a concern about how WeCare handles your personal data, please contact WeCare first so we can try to resolve it."
+          ],
+          "bodyAfter": [
+            "You also have the right to lodge a complaint with a data-protection supervisory authority. For a service focused on Austria, this is the Austrian Data Protection Authority (Datenschutzbehörde). Its current contact details are available on its official website."
           ]
         },
         {
           "id": "changes",
-          "heading": "11. Changes to this policy",
+          "heading": "24. Changes to this policy",
           "body": [
-            "We'll update this page if what or how we process changes, and post a new effective date when we do."
+            "WeCare may update this Privacy Policy when its data practices, service, or the applicable legal requirements change.",
+            "The current version is published on the WeCare website with its effective date. Where a change is material, WeCare will take appropriate steps to make it known."
+          ]
+        },
+        {
+          "id": "contact",
+          "heading": "25. Contact",
+          "body": [
+            "For privacy questions or to exercise a right, contact WeCare at datenschutz@wecare.example, or through the WeCare Contact page. WeCare's full legal and company details are in the WeCare Imprint."
           ]
         }
       ]
     },
     "cookies": {
-      "effectiveDate": "[TBD — date of legal review]",
-      "intro": "Cookies are small files a site stores on your device. Here's what WeCare uses them for.",
+      "effectiveDate": "31 August 2026",
+      "intro": "This Cookie Policy explains how WeCare uses cookies and similar technologies when you visit or use the WeCare website.",
       "sections": [
         {
-          "id": "essential",
+          "id": "about-cookies",
+          "heading": "About cookies",
+          "body": [
+            "Cookies are small files or similar technologies that can be stored on your device when you visit a website. They can help the website function properly, remember your preferences, understand how the website is used, and, where applicable, support other website functions.",
+            "This Cookie Policy should be read together with the WeCare Privacy Policy."
+          ]
+        },
+        {
+          "id": "essential-cookies",
           "heading": "1. Essential cookies",
           "body": [
-            "These keep the site working — remembering your login session, your language choice, and items in your cart. The site can't function properly without them, so they're always on."
+            "Essential cookies are used where they are necessary for the website or a requested service to function.",
+            "Depending on the features you use, these technologies may support functions such as:"
+          ],
+          "list": [
+            "maintaining your login or session;",
+            "keeping items in your cart;",
+            "remembering information necessary to operate the website; and",
+            "maintaining the security and functionality of the website."
+          ],
+          "bodyAfter": [
+            "Essential cookies are not used for optional advertising purposes.",
+            "Where a cookie or similar technology is strictly necessary for a service you have requested, it may be used without relying on optional-cookie consent.",
+            "If you block or disable essential cookies, parts of the website may not function correctly."
           ]
         },
         {
-          "id": "preference",
+          "id": "preference-cookies",
           "heading": "2. Preference cookies",
           "body": [
-            "These remember choices like your language (German/English) so you don't have to reset them on every visit."
+            "Preference cookies remember choices you make when using WeCare so that you do not have to make the same choices repeatedly.",
+            "For example, they may remember:"
+          ],
+          "list": [
+            "your language preference; and",
+            "other website preferences you have selected."
+          ],
+          "bodyAfter": [
+            "WeCare may support both German and English.",
+            "Preference cookies that are not strictly necessary for the operation of the website will only be used where the applicable consent requirements have been satisfied."
           ]
         },
         {
-          "id": "analytics",
+          "id": "analytics-cookies",
           "heading": "3. Analytics cookies",
           "body": [
-            "Where enabled, these help us understand how the site is used in aggregate — which pages are visited, and whether the assessment flow is working smoothly — so we can improve it. They're only set with your consent, and never combined with your assessment or health data."
+            "Where enabled, WeCare may use analytics technologies to understand how visitors use the website and to improve the user experience.",
+            "Analytics may help us understand, for example:"
+          ],
+          "list": [
+            "which pages are visited;",
+            "how visitors move through the website;",
+            "whether the assessment flow is functioning effectively;",
+            "where users may encounter difficulties; and",
+            "how the website can be improved."
+          ],
+          "bodyAfter": [
+            "Non-essential analytics technologies will only be used where the required consent has been obtained.",
+            "Analytics information should be handled in accordance with the WeCare Privacy Policy and the configuration of the relevant analytics technology.",
+            "WeCare does not use analytics cookies as a substitute for the assessment or medical-review process."
           ]
         },
         {
-          "id": "managing",
-          "heading": "4. Managing cookies",
+          "id": "managing-choices",
+          "heading": "4. Managing your cookie choices",
           "body": [
-            "You can accept or decline non-essential cookies through our cookie banner when you first visit, and change your choice at any time in your browser settings. Blocking essential cookies may stop parts of the site — like staying logged in — from working."
+            "When you first visit the WeCare website, where required, you will be presented with a cookie consent mechanism allowing you to manage non-essential cookies.",
+            "Depending on the technologies used on the website, you may be able to:"
+          ],
+          "list": [
+            "accept optional cookies;",
+            "reject optional cookies;",
+            "select specific categories of optional cookies; and",
+            "change your choices later."
+          ],
+          "bodyAfter": [
+            "You may also manage cookies through your browser settings.",
+            "Please note that disabling essential cookies may affect website functionality, including features such as remaining logged in or maintaining your cart.",
+            "Where WeCare provides a dedicated cookie-preference mechanism, you may use it to change your choices after your initial selection."
           ]
         },
         {
-          "id": "third-party",
-          "heading": "5. Third-party cookies",
+          "id": "third-party-technologies",
+          "heading": "5. Third-party technologies",
           "body": [
-            "Some embedded content (e.g. payment or shipping widgets at checkout) may set its own cookies, governed by that provider's own policy."
+            "Certain third-party services may be used as part of the WeCare website or checkout experience.",
+            "Depending on the services actually integrated into the website, third-party technologies may be involved in functions such as:"
+          ],
+          "list": [
+            "payment processing;",
+            "shipping or delivery functionality;",
+            "website analytics; and",
+            "other technical services required to provide the website."
+          ],
+          "bodyAfter": [
+            "Third-party providers may process information through their own technologies, including cookies or similar technologies.",
+            "Where applicable, those providers may have their own privacy and cookie policies.",
+            "WeCare will only identify specific third-party providers and technologies in this policy once they are confirmed as part of the live WeCare technology stack."
+          ]
+        },
+        {
+          "id": "assessment-and-cookies",
+          "heading": "6. Cookies and the WeCare assessment",
+          "body": [
+            "The WeCare website includes a guided assessment designed to help users identify a suitable solution based on their selected needs and preferences.",
+            "The assessment may involve information relating to topics such as:"
+          ],
+          "list": [
+            "sleep;",
+            "pain or body discomfort;",
+            "stress and anxiety; and",
+            "migraine or head tension."
+          ],
+          "bodyAfter": [
+            "Because of this, the use of analytics or other non-essential tracking technologies in connection with assessment pages should be carefully configured.",
+            "WeCare will not use this Cookie Policy to state that assessment information is anonymous or separated from other information unless the technical implementation actually provides this separation.",
+            "Any personal data collected through the assessment is addressed in the WeCare Privacy Policy."
+          ]
+        },
+        {
+          "id": "consent-records",
+          "heading": "7. Cookie consent records",
+          "body": [
+            "Where you provide consent for optional cookies, WeCare may need to retain information about your cookie choices so that we can respect your selection and demonstrate that consent was obtained where required.",
+            "The exact information retained and the applicable retention period will depend on the cookie-consent mechanism used by the live website."
           ]
         },
         {
           "id": "changes",
-          "heading": "6. Changes",
+          "heading": "8. Changes to this Cookie Policy",
           "body": [
-            "We'll update this page if the cookies we use change."
+            "We may update this Cookie Policy when the cookies, technologies or functionality used by the WeCare website change, or when changes to applicable legal requirements make an update necessary.",
+            "When we update this policy, we will publish the updated version on the WeCare website and update the effective date."
           ]
         }
       ]
     },
     "imprint": {
-      "effectiveDate": "[TBD — date of legal review]",
-      "intro": "Information required under the Austrian E-Commerce Act (§ 5 ECG) and Media Act (§ 25 MedienG).",
+      "effectiveDate": "31 August 2026",
+      "intro": "Information pursuant to the applicable Austrian legal disclosure requirements, including § 5 ECG and, where applicable, § 25 MedienG.",
       "sections": [
         {
           "id": "provider",
           "heading": "1. Service provider",
           "fields": [
-            { "label": "Company", "value": "[WeCare legal entity name]" },
-            { "label": "Legal form", "value": "[e.g. GmbH]" },
-            { "label": "Registered address", "value": "[Street, postcode, city], Austria" },
-            { "label": "Represented by", "value": "[Managing director(s)]" },
-            { "label": "Company register", "value": "Firmenbuchnummer [FN xxxxx x], Firmenbuchgericht [court]" },
-            { "label": "VAT ID", "value": "UID-Nummer [ATU xxxxxxxx]" }
+            {
+              "label": "Company",
+              "value": "WeCare GmbH"
+            },
+            {
+              "label": "Legal form",
+              "value": "GmbH"
+            },
+            {
+              "label": "Registered address",
+              "value": "Musterstraße 1, 1010 Wien, Austria"
+            },
+            {
+              "label": "Represented by",
+              "value": "Max Mustermann"
+            },
+            {
+              "label": "Firmenbuchnummer",
+              "value": "FN 000000a"
+            },
+            {
+              "label": "Firmenbuchgericht",
+              "value": "Handelsgericht Wien"
+            },
+            {
+              "label": "UID-Nummer",
+              "value": "ATU00000000"
+            }
           ]
         },
         {
           "id": "contact",
           "heading": "2. Contact",
           "fields": [
-            { "label": "Email", "value": "[contact email]" },
-            { "label": "Phone", "value": "[contact phone]" }
+            {
+              "label": "Email",
+              "value": "kontakt@wecare.example"
+            },
+            {
+              "label": "Phone",
+              "value": "+43 1 0000000"
+            }
+          ]
+        },
+        {
+          "id": "service-nature",
+          "heading": "3. Nature of the WeCare service",
+          "body": [
+            "WeCare provides an online platform through which users can receive information and guidance relating to wellness solutions and, where the relevant service is available, access a medical-review process.",
+            "The WeCare website is structured around user needs including:"
+          ],
+          "list": [
+            "sleep;",
+            "pain or body discomfort;",
+            "stress and anxiety; and",
+            "migraine or head tension."
+          ],
+          "bodyAfter": [
+            "The website may use a guided assessment to help users identify a suitable solution.",
+            "The assessment and any product recommendation provided through the website do not themselves constitute a medical diagnosis.",
+            "Where a medical review is part of the service, medical assessment and medical decision-making are carried out by independently licensed medical professionals.",
+            "Not every user receives a prescription. Any prescription decision is made by the responsible medical professional based on their independent medical judgment."
+          ]
+        },
+        {
+          "id": "independent-professionals",
+          "heading": "4. Independent medical professionals and pharmacies",
+          "body": [
+            "Where applicable, medical review is carried out by independently licensed doctors.",
+            "Dispensing of prescription medicines is carried out by an independently licensed partner pharmacy where legally applicable.",
+            "The medical professionals and pharmacies involved in these processes operate independently from WeCare and are subject to the professional and legal requirements applicable to their respective activities.",
+            "WeCare does not replace the professional judgment of the responsible doctor or pharmacist."
           ]
         },
         {
           "id": "regulatory",
-          "heading": "3. Regulatory information",
+          "heading": "5. Regulatory information",
           "body": [
-            "Medical review is carried out by independently licensed doctors; dispensing is carried out by an independently licensed partner pharmacy. Neither is an employee of WeCare, and each is bound by their own professional regulatory body."
+            "WeCare operates its website with a focus on the Austrian market.",
+            "The availability of particular products, services and formats may depend on applicable Austrian and European laws and regulations.",
+            "Products and services are only offered through WeCare where they are legally available for the relevant user and transaction.",
+            "The availability of medical review, prescription services and pharmacy fulfilment may also depend on the applicable legal and professional requirements."
           ]
         },
         {
           "id": "dispute-resolution",
-          "heading": "4. Online dispute resolution",
+          "heading": "6. Consumer dispute resolution",
           "body": [
-            "The European Commission provides a platform for online dispute resolution (ODR): ec.europa.eu/consumers/odr. We're not obliged and not currently willing to take part in dispute resolution proceedings before a consumer arbitration board."
+            "WeCare is not currently willing to participate in consumer dispute resolution proceedings before a consumer arbitration board, unless otherwise required by applicable law.",
+            "The former European Commission Online Dispute Resolution (ODR) platform is no longer available and is therefore not referenced as an active dispute-resolution platform in this Impressum."
           ]
         },
         {
           "id": "liability-content",
-          "heading": "5. Liability for content",
+          "heading": "7. Liability for content",
           "body": [
-            "We take reasonable care to keep this site's content accurate and current, but we don't guarantee its completeness or that it applies to your individual situation. Content here is general information, not individual medical advice."
+            "WeCare takes reasonable care to keep the information published on its website accurate and up to date.",
+            "However, WeCare does not guarantee that all content is complete, current or suitable for every individual situation.",
+            "Information provided on the website is general information and does not constitute individual medical advice.",
+            "Where medical advice is required, users should rely on the advice of the responsible healthcare professional."
           ]
         },
         {
-          "id": "liability-links",
-          "heading": "6. Liability for links",
+          "id": "external-links",
+          "heading": "8. External links",
           "body": [
-            "Our site may link to external sites we don't control. We're not responsible for their content, and a link doesn't mean we endorse it."
+            "The WeCare website may contain links to websites or services operated by third parties.",
+            "WeCare does not control the content of external websites and is not responsible for their content or practices.",
+            "The inclusion of an external link does not, by itself, constitute an endorsement or recommendation by WeCare."
           ]
         },
         {
           "id": "copyright",
-          "heading": "7. Copyright",
+          "heading": "9. Copyright",
           "body": [
-            "Content and design on this site are protected by copyright. Reproduction outside what copyright law allows requires our written consent."
+            "The content and design of the WeCare website, including text, graphics, images, branding and other materials, are protected by applicable intellectual-property laws.",
+            "Unless otherwise permitted by law, reproduction, distribution, modification or other use of WeCare content requires the prior written consent of the relevant rights holder."
+          ]
+        },
+        {
+          "id": "additional-legal",
+          "heading": "10. Additional legal information",
+          "body": [
+            "The WeCare website should be read together with the other legal documents applicable to the service, including:"
+          ],
+          "list": [
+            "Terms & Conditions;",
+            "Privacy Policy;",
+            "Cookie Policy;",
+            "Shipping Policy; and",
+            "Refund Policy."
+          ],
+          "bodyAfter": [
+            "Where different rules apply to a specific service or transaction, the applicable terms will be communicated to the user before the relevant service or purchase is completed."
           ]
         }
       ]
     },
     "shipping": {
-      "effectiveDate": "[TBD — date of legal review]",
-      "intro": "How a prescribed solution reaches you, once a doctor has approved it.",
+      "effectiveDate": "31 August 2026",
+      "intro": "This Shipping Policy explains how delivery works for products that are legally available for shipment through WeCare in Austria.",
       "sections": [
         {
-          "id": "scope",
-          "heading": "1. What this covers",
+          "id": "what-this-covers",
+          "heading": "1. What this policy covers",
           "body": [
-            "This policy covers delivery of a prescribed solution, dispensed and shipped by our licensed partner pharmacy. The assessment and medical review themselves don't involve a physical shipment."
+            "This Shipping Policy applies to products purchased through WeCare that are legally eligible for delivery in Austria.",
+            "Medical assessment, where available, is a separate process from physical product delivery.",
+            "Where a product requires medical review, prescription or pharmacy dispensing, the relevant medical and pharmacy processes are separate from the physical delivery process.",
+            "A medical review does not by itself guarantee that a product will be prescribed, dispensed or delivered.",
+            "Any medical decision is made by the responsible medical professional based on their independent professional judgment."
           ]
         },
         {
-          "id": "where-we-ship",
+          "id": "where-we-deliver",
           "heading": "2. Where we deliver",
           "body": [
-            "We currently deliver within Austria only, to the address you confirm at checkout."
+            "WeCare currently provides delivery within Austria.",
+            "Delivery is made to the delivery address provided by the customer during the applicable ordering process.",
+            "WeCare does not promise delivery to locations where delivery of the relevant product is prohibited or restricted by applicable law.",
+            "Certain products or product formats may therefore have different availability or delivery conditions."
           ]
         },
         {
-          "id": "processing-time",
-          "heading": "3. Processing time",
+          "id": "order-processing",
+          "heading": "3. Order processing",
           "body": [
-            "Once a prescription is issued, our partner pharmacy typically dispatches your order within [X] business days, subject to stock availability of the prescribed solution's strains."
+            "Orders are processed after the applicable purchase requirements have been completed.",
+            "Processing may depend on:"
+          ],
+          "list": [
+            "product availability;",
+            "confirmation of the customer's order;",
+            "successful payment;",
+            "completion of any legally required verification;",
+            "any applicable medical or pharmacy process; and",
+            "compliance with applicable Austrian requirements."
+          ],
+          "bodyAfter": [
+            "If a product is unavailable, legally restricted or cannot be supplied to the customer, WeCare may be unable to complete the order.",
+            "Where this occurs, the customer will be informed and any applicable refund will be handled in accordance with the applicable Terms & Conditions and Refund Policy."
           ]
         },
         {
-          "id": "delivery-time",
-          "heading": "4. Delivery time",
+          "id": "delivery-times",
+          "heading": "4. Delivery times",
           "body": [
-            "Standard delivery typically takes [X–Y] business days from dispatch. You'll get a shipping confirmation with tracking once your order is on its way."
+            "The estimated delivery time will be communicated to the customer during the ordering or checkout process where an estimate is available.",
+            "Delivery times may vary depending on:"
+          ],
+          "list": [
+            "product availability;",
+            "order processing;",
+            "the delivery provider;",
+            "the delivery address;",
+            "weekends and public holidays; and",
+            "verification or other legally required processes."
+          ],
+          "bodyAfter": [
+            "A delivery estimate is not a guarantee of delivery by a particular date unless expressly stated otherwise.",
+            "Once an order has been dispatched, WeCare may provide the customer with available shipment information or tracking details."
           ]
         },
         {
-          "id": "packaging",
-          "heading": "5. Discreet, neutral packaging",
+          "id": "discreet-packaging",
+          "heading": "5. Discreet packaging",
           "body": [
-            "Every delivery ships in plain, unbranded packaging with no indication of contents on the outside. As with any prescription medicine, a signature is required on delivery."
+            "Where discreet packaging is available for the relevant product, WeCare or the responsible fulfilment provider may use neutral external packaging.",
+            "Packaging will not intentionally identify the product in a manner that is unnecessary for delivery.",
+            "Packaging and labelling may nevertheless contain information required by law, the delivery provider or the responsible pharmacy or fulfilment provider."
           ]
         },
         {
-          "id": "fees",
+          "id": "delivery-fees",
           "heading": "6. Delivery fees",
           "body": [
-            "Delivery is currently included at no extra charge. See our Costs page for the full picture of what to expect, including the separate medical-review fee."
+            "Any applicable delivery fee will be displayed to the customer before the order is completed.",
+            "Where free delivery is offered for a particular product or order, this will be stated during the applicable ordering process.",
+            "The applicable medical-review fee, where relevant, is separate from delivery charges.",
+            "For the current cost structure, customers should refer to the Costs page and the applicable checkout information."
           ]
         },
         {
-          "id": "missed-delivery",
-          "heading": "7. If delivery doesn't succeed",
+          "id": "unsuccessful-delivery",
+          "heading": "7. If delivery is unsuccessful",
           "body": [
-            "If nobody's available to sign for the package, the courier will leave a card with instructions for redelivery or pickup. Contact us if you need help arranging either."
+            "If delivery cannot be completed because nobody is available to receive the shipment, the delivery provider may attempt another delivery or provide instructions for collection, depending on the delivery method used.",
+            "Customers should follow the instructions provided by the delivery provider.",
+            "If the customer needs assistance with an unsuccessful delivery, they may contact WeCare through the available customer-support channel.",
+            "Where a shipment is returned to the sender, WeCare will determine the next steps based on the reason for the failed delivery and the applicable product and delivery rules."
+          ]
+        },
+        {
+          "id": "additional-legal-requirements",
+          "heading": "8. Products subject to additional legal requirements",
+          "body": [
+            "Certain products may be subject to additional Austrian or European legal requirements relating to sale, dispensing, delivery or advertising.",
+            "WeCare will only make a product available for delivery where the relevant transaction and delivery are legally permitted.",
+            "In particular, Austrian rules distinguish between prescription-only medicines and medicines that may legally be sold by registered mail-order pharmacies.",
+            "The Austrian Federal Office for Safety in Health Care (BASG) states that prescription-only medicines may not generally be sold by mail order in Austria, while authorised non-prescription medicines may be sold online by appropriately registered mail-order pharmacies.",
+            "Accordingly, a medical prescription does not by itself mean that a prescription-only medicine can be shipped to an Austrian customer through an online order.",
+            "Where a particular product requires a different legally compliant dispensing or collection process, WeCare will provide the applicable information before the relevant transaction is completed."
+          ]
+        },
+        {
+          "id": "pharmacy-fulfilment",
+          "heading": "9. Pharmacy fulfilment",
+          "body": [
+            "Where a pharmacy is responsible for dispensing or fulfilling a product, the pharmacy is responsible for the dispensing and fulfilment activities falling within its professional and legal responsibilities.",
+            "WeCare does not replace the professional judgment of the responsible pharmacist.",
+            "Where applicable, pharmacy-related requirements may affect the timing, method or availability of delivery."
+          ]
+        },
+        {
+          "id": "contact",
+          "heading": "10. Contact",
+          "body": [
+            "For questions regarding an existing order or delivery, customers may contact WeCare through the contact details provided on the website.",
+            "For questions relating specifically to the dispensing or professional handling of a medicinal product, customers may also need to contact the responsible pharmacy or healthcare professional."
           ]
         }
       ]
     },
     "refunds": {
-      "effectiveDate": "[TBD — date of legal review]",
-      "intro": "Your right of withdrawal, and the exceptions that apply to prescribed medicine.",
+      "effectiveDate": "31 August 2026",
+      "intro": "This Refund Policy explains the circumstances in which customers may cancel an order, exercise a statutory right of withdrawal, or request a refund for products or services purchased through WeCare.",
       "sections": [
         {
           "id": "right-of-withdrawal",
-          "heading": "1. Your right of withdrawal",
+          "heading": "1. Right of withdrawal",
           "body": [
-            "As a consumer in Austria, you generally have the right to withdraw from a distance contract within 14 days without giving a reason, under the Fern- und Auswärtsgeschäfte-Gesetz (FAGG). To exercise it, tell us clearly (via our Contact page) that you wish to withdraw, before the deadline."
+            "Your statutory consumer rights remain unaffected by this policy.",
+            "If you are a consumer in Austria and enter into a distance contract with WeCare, you may have a statutory right of withdrawal under the Austrian Fern- und Auswärtsgeschäfte-Gesetz (FAGG).",
+            "Where the right of withdrawal applies, the applicable withdrawal period and requirements will be communicated to you before you complete the relevant purchase or service.",
+            "To exercise your right of withdrawal, you must clearly inform WeCare that you wish to withdraw from the relevant contract.",
+            "You may contact WeCare using the contact details provided on the website.",
+            "Your statutory rights are not limited by this Refund Policy."
           ]
         },
         {
-          "id": "exclusion-medicine",
-          "heading": "2. Why prescribed solutions can't usually be returned",
+          "id": "cannot-be-returned",
+          "heading": "2. Products that cannot be returned",
           "body": [
-            "By law, sealed goods that aren't suitable for return for health or hygiene reasons once unsealed — which includes dispensed prescription medicine — are excluded from the standard right of withdrawal (§ 18(1) FAGG). Once your solution has been dispensed and shipped, we generally can't accept it back or issue a refund on withdrawal grounds, for your safety and because it can't be safely resold.",
-            "This doesn't affect your rights if the product is faulty, damaged in transit, or not what you ordered — see below."
+            "The right of withdrawal is subject to statutory exceptions.",
+            "In particular, the statutory withdrawal rules can contain exceptions for sealed goods that are not suitable for return for reasons of health protection or hygiene once the seal has been removed.",
+            "Where a particular product falls within such a statutory exception, the applicable right of withdrawal will not apply once the relevant conditions have been met.",
+            "Medicinal products and products dispensed by a pharmacy may also be subject to specific legal requirements concerning their return, handling and resale.",
+            "For this reason, customers should not return medicinal or pharmacy-dispensed products without first contacting WeCare or the responsible pharmacy.",
+            "Nothing in this section limits statutory rights relating to defective, damaged, incorrectly supplied or otherwise non-conforming products."
           ]
         },
         {
-          "id": "review-fee",
+          "id": "medical-review-fee",
           "heading": "3. Medical-review fee",
           "body": [
-            "If your medical review has already started at your request before the withdrawal period ends, you may owe a proportionate amount for the service already provided, in line with FAGG § 16. We'll always tell you this clearly before the review starts."
+            "Where WeCare provides access to a medical-review service, that service is separate from the purchase of a physical product.",
+            "If you expressly request that the medical-review service begin before the end of an applicable withdrawal period, statutory rules concerning services that have already begun may apply.",
+            "Before the medical review begins, WeCare will provide the information required by applicable law concerning:"
+          ],
+          "list": [
+            "the service;",
+            "the applicable fee;",
+            "when the service begins; and",
+            "the consequences of requesting the service to begin before the withdrawal period expires."
+          ],
+          "bodyAfter": [
+            "The medical decision itself is made independently by the responsible medical professional.",
+            "A medical review does not guarantee that a prescription will be issued."
           ]
         },
         {
-          "id": "damaged-or-wrong",
-          "heading": "4. Damaged, faulty, or incorrect items",
+          "id": "damaged-or-incorrect",
+          "heading": "4. Damaged, defective or incorrect products",
           "body": [
-            "If your delivery arrives damaged, faulty, or doesn't match your order, contact us within [X] days of delivery. We'll arrange a replacement or refund at no cost to you — this is always covered, regardless of the exclusion above."
+            "If a product arrives:"
+          ],
+          "list": [
+            "damaged;",
+            "defective;",
+            "incorrect; or",
+            "different from what you ordered,"
+          ],
+          "bodyAfter": [
+            "please contact WeCare as soon as reasonably possible after receiving the delivery.",
+            "Provide your order number, a description of the issue, and photographs where relevant.",
+            "WeCare will review the issue and provide the appropriate next steps.",
+            "Where the customer has statutory rights relating to defective, damaged or incorrectly supplied goods, those rights are not excluded or limited by this Refund Policy.",
+            "Customers should not dispose of or return a product where WeCare or the responsible pharmacy has asked the customer to retain it for inspection."
           ]
         },
         {
           "id": "how-to-request",
           "heading": "5. How to request a refund",
           "body": [
-            "Reach us through our Contact page with your order number and a short description of the issue. We'll confirm next steps by email."
+            "To request a refund or exercise an applicable right of withdrawal, contact WeCare through the contact details provided on the website.",
+            "Please provide:"
+          ],
+          "list": [
+            "your name;",
+            "your order number, where applicable;",
+            "the product or service concerned;",
+            "the reason for your request, where relevant; and",
+            "any information necessary for us to identify the transaction."
+          ],
+          "bodyAfter": [
+            "If you are exercising a statutory right of withdrawal, you do not need to provide a reason unless applicable law requires otherwise.",
+            "WeCare will confirm the next steps after receiving your request."
           ]
         },
         {
-          "id": "refund-timing",
-          "heading": "6. Refund timing",
+          "id": "refunds",
+          "heading": "6. Refunds",
           "body": [
-            "Approved refunds are issued to your original payment method, usually within 14 days of approval."
+            "Where a refund is legally due and approved, WeCare will process the refund in accordance with the applicable statutory requirements and the circumstances of the transaction.",
+            "Unless otherwise agreed or required by law, refunds will be made using the same payment method used for the original transaction.",
+            "Where applicable, statutory rules concerning the timing of refunds, return of goods, delivery costs or other charges will apply.",
+            "If a product was supplied by a pharmacy or another independent fulfilment provider, the applicable arrangements for returns or refunds may also depend on that provider's legal and professional responsibilities."
           ]
         },
         {
           "id": "withdrawal-form",
           "heading": "7. Model withdrawal form",
           "body": [
-            "Where the right of withdrawal applies, you can request the standard EU model withdrawal form from us via our Contact page."
+            "Where the statutory right of withdrawal applies, consumers may exercise that right by making a clear statement to WeCare.",
+            "The consumer may also use the statutory EU model withdrawal form where applicable.",
+            "The form does not need to be submitted in a particular format if the consumer otherwise makes a clear statement exercising the right of withdrawal.",
+            "WeCare will provide the relevant withdrawal information required by applicable law before the relevant distance contract is concluded."
           ]
         }
       ]

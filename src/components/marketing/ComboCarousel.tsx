@@ -8,8 +8,8 @@ import { type ConditionKey } from "@/features/conditions/conditions";
 
 /**
  * The Solutions-section carousel: one slide per problem, each a `ComboCard`
- * (the recommended solution pair as floating product photos + name chips).
- * Low-emphasis, no prices, no buy CTAs.
+ * (the recommended solution pair by name + category — no product imagery
+ * pre-assessment). Low-emphasis, no prices, no buy CTAs.
  *
  * Dependency-free: a scroll-snap track (native swipe) + prev/next + dots.
  */

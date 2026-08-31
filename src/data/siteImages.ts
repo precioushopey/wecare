@@ -23,6 +23,8 @@ export const IMG = {
   homeDoctor: "How it works Page",
   homeGuidance: "Condition Page",
   homeTrust: "Homepage/Hero",
+  /** Left-hand welcome panel on the login page. */
+  login: "Homepage/13",
   problem: {
     sleep: "Homepage/9",
     pain: "Homepage/10",

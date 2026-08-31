@@ -147,30 +147,26 @@ export function ConditionLandingPage({
 
       {isConditionKey(conditionKey) ? (
         <Section tone="surface" reveal={false}>
-          {/* Two panels: the section heading + the standing medical-safety
-              notice on the left; the matched pair (+ assessment CTA) on the
-              right. */}
-          <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-start lg:gap-16">
-            <div>
-              <Reveal>
-                <SectionHeading
-                  title={t("shared.matchedHeading")}
-                  intro={t("shared.matchedNote")}
-                />
-              </Reveal>
-              <Reveal className="mt-8">
-                <MedicalNotice />
-              </Reveal>
-            </div>
+          {/* Mobile order: heading, then the matched pair + CTA, then the
+              safety notice. On lg it resolves to two columns — heading above
+              the notice on the left, the matched pair + CTA spanning the
+              right (grid auto-placement + `lg:row-span-2` on the pair). */}
+          <div className="flex flex-col gap-10 lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-16 lg:gap-y-0">
+            <Reveal>
+              <SectionHeading
+                title={t("shared.matchedHeading")}
+                intro={t("shared.matchedNote")}
+              />
+            </Reveal>
 
-            <div>
+            <div className="lg:row-span-2">
               <Reveal>
                 <ComboCard problem={conditionKey} showHeader={false} />
               </Reveal>
               <div className="mt-8">
-                {/* Full-width while the two panels are stacked (< lg), so the
-                    CTA doesn't float mid-row on mobile; natural width once
-                    the columns split. */}
+                {/* Full-width while the panels are stacked (< lg), so the CTA
+                    doesn't float mid-row on mobile; natural width once the
+                    columns split. */}
                 <Button
                   asChild
                   variant="cta"
@@ -181,6 +177,10 @@ export function ConditionLandingPage({
                 </Button>
               </div>
             </div>
+
+            <Reveal className="lg:mt-8">
+              <MedicalNotice />
+            </Reveal>
           </div>
         </Section>
       ) : (

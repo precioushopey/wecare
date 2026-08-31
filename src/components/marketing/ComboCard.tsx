@@ -1,10 +1,8 @@
 import { Sparkles } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
-import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 import { cn } from "@/app/components/ui/utils";
-import { FloatingChip } from "@/components/marketing/FloatingChip";
-import { SOLUTION_BY_ID, solutionImage, type SolutionId } from "@/data/solutions";
+import { SOLUTION_BY_ID, type SolutionId } from "@/data/solutions";
 import { matchedSolutionIds } from "@/features/assessment/recommendation";
 import {
   CONDITION_BY_KEY,
@@ -12,10 +10,11 @@ import {
 } from "@/features/conditions/conditions";
 
 /**
- * One problem's recommended solution pair as a "combo" — the two product
- * photos floating on a soft `glass-strong` surface, each wearing a frosted
- * name chip, with the combined THC range below. Low-emphasis, no prices, no
- * buy CTAs.
+ * One problem's recommended solution pair as a "combo" — the two solutions by
+ * name + category on a soft `glass-strong` surface, with the combined THC range
+ * below. Deliberately **no product / strain imagery**: those are shown only
+ * after the assessment (owner/compliance decision, Aug 2026 — "grass pics only
+ * after the questionnaire"). Low-emphasis, no prices, no buy CTAs.
  *
  * Used per slide inside `ComboCarousel` (homepage, `showHeader`) and standalone
  * in the "What you might be matched with" block on a problem landing page
@@ -62,53 +61,30 @@ export function ComboCard({
         </>
       ) : null}
 
-      {/* The combo — the two matched solutions' photos side by side. Each
-          carries a frosted name chip pinned to a corner of its own photo
-          (primary top-left, secondary bottom-right) so the label stays with
-          the photo without sitting over the bud. */}
+      {/* The matched pair — name + category only. No bud / product photos on
+          pre-assessment surfaces. */}
       <div
         className={cn(
-          "image-glow relative flex flex-1 items-center justify-center gap-1 px-1 py-2",
+          "flex flex-1 flex-col justify-center gap-2.5",
           showHeader && "mt-4",
         )}
       >
-        {ids.map((id, i) => {
+        {ids.map((id) => {
           const s = SOLUTION_BY_ID[id];
-          const primary = i === 0;
           return (
             <div
               key={id}
-              className={cn(
-                "relative flex max-w-[46%] shrink-0 justify-center",
-                primary ? "-mr-3 z-10" : "-ml-3 z-0",
-              )}
+              className="flex items-center gap-3 rounded-2xl border border-white/50 bg-white/45 p-3 dark:border-white/10 dark:bg-white/[0.05]"
             >
-              <ImageWithFallback
-                src={solutionImage(s)}
-                alt=""
-                loading="lazy"
-                decoding="async"
-                className={cn(
-                  "h-40 w-auto max-w-full object-contain drop-shadow-[0_26px_40px_-18px_rgba(13,68,75,0.55)] sm:h-52 lg:h-60",
-                  primary ? "rotate-[-7deg]" : "rotate-[7deg]",
-                )}
-              />
-              <FloatingChip
-                icon={<Sparkles className="size-3.5 sm:size-4" />}
-                className={cn(
-                  "absolute z-20 max-w-[94%] gap-1.5 px-2.5 py-1 text-[11px] sm:gap-2 sm:px-3.5 sm:py-1.5 sm:text-[13px]",
-                  primary
-                    ? "left-0 top-0 -translate-x-1 -translate-y-1 sm:-translate-x-2 sm:-translate-y-2"
-                    : "bottom-0 right-0 translate-x-1 translate-y-1 sm:translate-x-2 sm:translate-y-2",
-                )}
-              >
-                <span className="flex flex-col leading-tight">
-                  <span className="font-semibold text-ink">{s.name}</span>
-                  <span className="font-semibold text-ink">
-                    {t(`shop:solutions.${id}.category`)}
-                  </span>
+              <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-xl text-white shadow-[0_8px_20px_-10px_rgba(42,167,176,0.55)] [background-image:var(--cta-gradient)]">
+                <Sparkles className="size-4" strokeWidth={1.75} aria-hidden />
+              </span>
+              <span className="flex min-w-0 flex-col leading-tight">
+                <span className="truncate font-semibold text-ink">{s.name}</span>
+                <span className="truncate text-xs font-medium text-petrol-600">
+                  {t(`shop:solutions.${id}.category`)}
                 </span>
-              </FloatingChip>
+              </span>
             </div>
           );
         })}

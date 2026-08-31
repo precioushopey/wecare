@@ -27,14 +27,17 @@ interface LegalSection {
 }
 
 /**
- * Real content for every /legal/* document (doc section 15) — draft text,
- * original to WeCare (not copied from any reference site), following the
- * project's Austria language rules (never "treats/cures", never a guaranteed
- * prescription). Bracketed placeholders stand in for facts that depend on a
- * real registered entity (address, Firmenbuch/company-register number, VAT
- * ID, DPO contact) — WeCare isn't one yet. `legal:draftNotice` says so on
- * every page; replace both before launch. Content lives in `legal.json`
- * (`legal:docs.<doc>`), title/one-line description stay in `common:pages.legal.*`.
+ * Content for every /legal/* document (doc section 15) — draft text, rewritten
+ * Aug 31 2026 from owner-supplied source files (see CLAUDE.md "Legal page
+ * content"), following the project's Austria language rules (never
+ * "treats/cures", never a guaranteed prescription). Entity facts (`WeCare
+ * GmbH`, `Musterstraße 1, 1010 Wien`, `FN 000000a`, `ATU00000000`, `Max
+ * Mustermann`, `*@wecare.example`, effective date `31 August 2026`) are
+ * **temporary placeholder values** — obviously-provisional, to be replaced
+ * with WeCare's real registered details before launch. The visible "draft"
+ * banner was removed (owner request, Aug 31 2026). Content lives in
+ * `legal.json` (`legal:docs.<doc>`); title/one-line description stay in
+ * `common:pages.legal.*`.
  */
 export function LegalPage({ doc }: { doc: LegalDoc }) {
   const { t } = useTranslation(["legal", "common"]);
@@ -59,17 +62,8 @@ export function LegalPage({ doc }: { doc: LegalDoc }) {
         {intro ? <p className="mt-4 text-lg text-ink-muted">{intro}</p> : null}
       </Reveal>
 
-      <Reveal className="mt-6">
-        <div
-          role="note"
-          className="glass rounded-2xl p-4 text-sm text-ink-muted"
-        >
-          {t("legal:draftNotice")}
-        </div>
-      </Reveal>
-
       {sections.length > 4 ? (
-        <Reveal className="mt-8">
+        <Reveal className="mt-10">
           <nav aria-label={t("legal:tocLabel")} className="glass rounded-2xl p-5">
             <p className="text-sm font-medium text-ink">{t("legal:tocLabel")}</p>
             <ol className="mt-2 grid gap-1.5 text-sm sm:grid-cols-2">

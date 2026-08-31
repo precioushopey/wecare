@@ -1,431 +1,1197 @@
 {
   "effectiveDateLabel": "Gültig ab {{date}}",
   "tocLabel": "Auf dieser Seite",
-  "draftNotice": "Entwurf — diese Seite ist ein Platzhalter zur rechtlichen Prüfung. Eckige Klammern (Firmendaten, Registernummern, Kontaktadressen) werden vor dem Launch mit den echten, eingetragenen Daten von WeCare ausgefüllt, und der Text selbst wird vor Inkrafttreten von einer Rechtsberatung geprüft.",
   "docs": {
     "terms": {
-      "effectiveDate": "[noch offen — Datum der rechtlichen Prüfung]",
-      "intro": "Diese Bedingungen erklären, was WeCare ist, was Sie vom Assessment und der ärztlichen Prüfung erwarten können, und welche Regeln gelten, sobald eine Lösung empfohlen und – falls medizinisch angemessen – abgegeben wird.",
+      "effectiveDate": "31. August 2026",
+      "intro": "Diese Allgemeinen Geschäftsbedingungen (AGB) regeln Ihre Nutzung der WeCare-Website, unseres Online-Assessments, der Empfehlungen, des Ablaufs der ärztlichen Prüfung, sofern verfügbar, sowie jeglichen über WeCare getätigten Kaufs oder sonstiger Transaktionen.",
       "sections": [
         {
-          "id": "scope",
-          "heading": "1. Geltungsbereich",
+          "id": "acceptance",
+          "heading": "Zustimmung zu diesen Bedingungen",
           "body": [
-            "Diese Bedingungen gelten, sobald Sie die Website von WeCare nutzen, das Assessment ausfüllen oder eine empfohlene Lösung bestellen. Mit der Nutzung von WeCare akzeptieren Sie diese Bedingungen. Wenn Sie nicht einverstanden sind, nutzen Sie WeCare bitte nicht.",
-            "WeCare steht Verbraucher:innen in Österreich zur Verfügung. Die gewerbliche Nutzung (B2B) ist von diesen verbraucherbezogenen Bedingungen nicht erfasst."
+            "WeCare ist für Verbraucher:innen in Österreich bestimmt. Diese verbraucherbezogenen Bedingungen gelten nicht für die Nutzung zwischen Unternehmen (B2B).",
+            "Mit der Nutzung der WeCare-Website, dem Ausfüllen eines Assessments, der Anforderung einer Empfehlung oder der Aufgabe einer Bestellung stimmen Sie diesen Bedingungen zu. Wenn Sie nicht einverstanden sind, nutzen Sie den WeCare-Dienst bitte nicht."
+          ]
+        },
+        {
+          "id": "what-wecare-provides",
+          "heading": "1. Was WeCare bietet",
+          "body": [
+            "WeCare stellt eine problemorientierte Online-Plattform bereit, die Nutzer:innen von ihrem geäußerten Anliegen zu einem möglicherweise geeigneten nächsten Schritt führt.",
+            "Der WeCare-Ablauf kann Folgendes umfassen:"
+          ],
+          "list": [
+            "Informationen zu häufigen Anliegen wie Schlafproblemen, Schmerzen oder Körperbeschwerden, Stress und Angst sowie Migräne oder Kopfspannung;",
+            "ein kurzes Online-Assessment;",
+            "eine Empfehlung auf Grundlage der von der nutzenden Person angegebenen Informationen und Präferenzen;",
+            "Informationen zu verfügbaren Produkten oder Lösungen;",
+            "Zugang zu einem Verfahren der ärztlichen Prüfung, sofern ein solches angeboten wird;",
+            "Zugang zu Support- und Nachsorgefunktionen; und",
+            "die Bestellung von Produkten oder Dienstleistungen, die rechtlich über WeCare verfügbar sind."
+          ],
+          "bodyAfter": [
+            "WeCare soll den Ablauf einfach und geführt gestalten. Das Assessment ersetzt keine ärztliche Untersuchung, Diagnose oder notfallmedizinische Versorgung.",
+            "Sofern WeCare Zugang zu einem Verfahren der ärztlichen Prüfung bietet, werden die medizinische Beurteilung und die medizinische Entscheidung von der verantwortlichen approbierten medizinischen Fachperson getroffen. WeCare entscheidet nicht darüber, ob eine Patientin oder ein Patient ein Rezept erhält.",
+            "Sofern ein Rezept medizinisch angemessen und rechtlich zulässig ist, wird es von der verantwortlichen medizinischen Fachperson ausgestellt. Nicht jede nutzende Person erhält ein Rezept.",
+            "Sofern ein verschreibungspflichtiges Arzneimittel betroffen ist, erfolgt die Abgabe durch die verantwortliche Apotheke oder eine andere rechtlich zur Abgabe befugte Stelle. WeCare ersetzt nicht die fachliche Beurteilung oder die rechtlichen Pflichten der Ärztin bzw. des Arztes oder der Apotheke."
           ]
         },
         {
           "id": "definitions",
-          "heading": "2. Ein paar Begriffe",
+          "heading": "2. Begriffsbestimmungen",
+          "body": [
+            "Für diese Bedingungen gilt:"
+          ],
           "list": [
-            "Assessment — die kurze Reihe von Fragen zu Ihrem Anliegen (Schlaf, Schmerzen, Stress & Angst oder Migräne).",
-            "Empfohlene Lösung — die Wellness-Lösung, die die Assessment-Logik von WeCare anhand Ihrer Antworten zuordnet. Es handelt sich um eine Empfehlung, kein Rezept.",
-            "Ärztliche Prüfung — die Prüfung Ihres Assessments durch eine approbierte Ärztin oder einen approbierten Arzt, die/der entscheidet, ob ein Rezept für Sie medizinisch angemessen ist.",
-            "Lösung — eine der namentlich benannten Lösungen von WeCare, die nach Verschreibung durch eine Partnerapotheke als medizinisches Cannabis abgegeben wird."
+            "WeCare, wir, uns oder unser — der WeCare-Dienst, der diese Website betreibt.",
+            "Sie oder Ihr — die Verbraucherin oder der Verbraucher, die/der die WeCare-Website oder -Dienste nutzt.",
+            "Assessment — der Online-Fragebogen, mit dem WeCare die von Ihnen angegebenen Informationen und Präferenzen erfasst und Sie zu einem relevanten nächsten Schritt führt.",
+            "Empfehlung — das Ergebnis, das aus den von Ihnen im WeCare-Ablauf angegebenen Informationen erzeugt wird. Eine Empfehlung ist keine medizinische Diagnose und keine Zusicherung, dass ein bestimmtes Produkt, eine bestimmte Behandlung, ein Rezept oder eine Dienstleistung für Sie geeignet ist.",
+            "Ärztliche Prüfung — eine Prüfung durch die verantwortliche approbierte medizinische Fachperson, sofern ein solches Verfahren verfügbar und erforderlich ist.",
+            "Rezept — eine von der verantwortlichen medizinischen Fachperson ausgestellte Verschreibung, sofern medizinisch angemessen und rechtlich zulässig.",
+            "Apotheke — die Apotheke oder eine andere rechtlich zur Abgabe befugte Stelle, die für die Abgabe eines Arzneimittels verantwortlich ist, sofern zutreffend.",
+            "Lösung — ein Produkt, eine Dienstleistung, ein Weg der ärztlichen Prüfung oder ein anderer nächster Schritt, der im WeCare-Ablauf dargestellt wird."
           ]
         },
         {
-          "id": "what-we-provide",
-          "heading": "3. Was WeCare bietet",
+          "id": "problem-first-assessment",
+          "heading": "3. Problemorientiertes Assessment",
           "body": [
-            "WeCare ist eine geführte digitale Gesundheitsplattform – keine Online-Apotheke und keine Arztpraxis. Wir helfen Ihnen, über ein kurzes Assessment eine passende Lösung zu identifizieren, und leiten Ihr Assessment anschließend an eine approbierte Ärztin oder einen approbierten Arzt zur ärztlichen Prüfung weiter.",
-            "Die Ärztin oder der Arzt – nicht WeCare – entscheidet, ob ein Rezept ausgestellt wird und was es umfasst. Wird ein Rezept ausgestellt, erfolgen Abgabe und Versand durch eine unabhängig lizenzierte Partnerapotheke, nicht durch WeCare selbst."
+            "Das Assessment von WeCare ist auf das geäußerte Anliegen der nutzenden Person ausgerichtet und nicht auf das Durchsuchen eines Produktkatalogs.",
+            "Je nach verfügbarem Dienst kann das Assessment Anliegen behandeln, darunter:"
+          ],
+          "list": [
+            "Schlafprobleme;",
+            "Schmerzen oder Körperbeschwerden;",
+            "Stress und Angst; und",
+            "Migräne oder Kopfspannung."
+          ],
+          "bodyAfter": [
+            "Das Assessment dient dazu, Informationen zu erfassen, die für den Empfehlungsprozess von WeCare relevant sind.",
+            "Sie müssen Angaben machen, die nach bestem Wissen richtig, vollständig und aktuell sind.",
+            "Sie dürfen keine Angaben verwenden, die einer anderen Person gehören, und keine bewusst falschen Angaben machen, um eine bestimmte Empfehlung, ein Rezept, ein Produkt oder eine Dienstleistung zu erhalten.",
+            "Wenn sich Ihre Umstände ändern, sollten Sie sich nicht auf eine frühere Empfehlung verlassen, als wäre sie eine neue ärztliche Beurteilung."
           ]
         },
         {
           "id": "eligibility",
-          "heading": "4. Voraussetzungen und Ihre Angaben",
+          "heading": "4. Voraussetzungen und Nutzerangaben",
           "body": [
-            "Sie müssen mindestens 18 Jahre alt sein und Ihren Wohnsitz in Österreich haben, um WeCare zu nutzen. Sie sind für die Richtigkeit der Angaben verantwortlich, die Sie im Assessment machen – die ärztliche Prüfung setzt voraus, dass diese wahrheitsgemäß und vollständig sind."
+            "Der Verbraucherdienst von WeCare ist für Nutzer:innen in Österreich bestimmt.",
+            "Sie sind dafür verantwortlich, dass die von Ihnen gegenüber WeCare gemachten Angaben richtig sind und dass Sie den Dienst rechtlich nutzen und das jeweilige Produkt erwerben dürfen.",
+            "Bestimmte Produkte oder Dienstleistungen können zusätzliche Voraussetzungen haben. Sofern eine zusätzliche Voraussetzung gilt, kann WeCare weitere Informationen anfordern, bevor Sie fortfahren können.",
+            "Sofern für eine ärztliche Prüfung medizinische Informationen erforderlich sind, müssen Sie die von der verantwortlichen medizinischen Fachperson angeforderten Informationen bereitstellen.",
+            "WeCare kann eine Transaktion oder Dienstleistung ablehnen, aussetzen oder beenden, sofern dies erforderlich ist, weil:"
+          ],
+          "list": [
+            "die bereitgestellten Informationen unvollständig oder widersprüchlich sind;",
+            "ein Produkt oder eine Dienstleistung für Sie rechtlich nicht verfügbar ist;",
+            "die geltenden Voraussetzungen nicht erfüllt sind;",
+            "die verantwortliche medizinische Fachperson feststellt, dass eine medizinische Leistung oder ein Rezept nicht angemessen ist;",
+            "die betreffende Apotheke das angeforderte Arzneimittel nicht rechtmäßig abgeben kann; oder",
+            "WeCare gesetzlich dazu verpflichtet ist."
           ]
         },
         {
-          "id": "no-guarantee",
-          "heading": "5. Das Assessment-Ergebnis ist keine Garantie",
+          "id": "medical-review-and-prescriptions",
+          "heading": "5. Ärztliche Prüfung und Rezepte",
           "body": [
-            "Das Ausfüllen des Assessments garantiert kein Rezept. Jedes Assessment durchläuft eine individuelle ärztliche Prüfung, und die prüfende Ärztin oder der prüfende Arzt kann die Verschreibung ablehnen, etwas anderes als die anfängliche Empfehlung verschreiben oder vor der Entscheidung weitere Informationen anfordern.",
-            "Nichts auf dieser Website stellt eine individuelle medizinische Beratung dar. Sie ersetzt keine persönliche Untersuchung, die Ihre Ärztin oder Ihr Arzt für erforderlich hält."
+            "Sofern WeCare einen Weg der ärztlichen Prüfung anbietet, wird die ärztliche Prüfung von der verantwortlichen approbierten medizinischen Fachperson durchgeführt.",
+            "WeCare sichert nicht zu, dass eine medizinische Fachperson:"
+          ],
+          "list": [
+            "eine Behandlung genehmigt;",
+            "ein Rezept ausstellt;",
+            "ein bestimmtes Produkt empfiehlt; oder",
+            "feststellt, dass eine bestimmte Behandlung medizinisch angemessen ist."
+          ],
+          "bodyAfter": [
+            "Ein Rezept wird nur ausgestellt, sofern die verantwortliche medizinische Fachperson feststellt, dass es medizinisch angemessen und rechtlich zulässig ist.",
+            "Nicht jede nutzende Person erhält ein Rezept.",
+            "Die medizinische Fachperson ist für ihre medizinische Beurteilung und ihre Entscheidungen eigenständig verantwortlich.",
+            "WeCare weist eine Ärztin oder einen Arzt nicht an, ein Rezept auszustellen, und sichert kein bestimmtes medizinisches Ergebnis zu.",
+            "Sofern ein verschreibungspflichtiges Arzneimittel betroffen ist, trifft die verantwortliche Apotheke ihre eigene Abgabeentscheidung im Einklang mit dem geltenden Recht und ihren beruflichen Pflichten."
           ]
         },
         {
-          "id": "orders",
-          "heading": "6. Bestellung einer empfohlenen Lösung",
+          "id": "not-medical-diagnosis",
+          "heading": "6. Empfehlungen sind keine medizinische Diagnose",
           "body": [
-            "Sie können eine Lösung erst bestellen, nachdem dafür ein Rezept ausgestellt wurde. Eine Bestellung ist ein Kaufangebot, das wir (bzw. unsere Partnerapotheke) annehmen oder ablehnen können – etwa wenn das Rezept abgelaufen ist oder eine erforderliche Prüfung noch aussteht.",
-            "Bestelldetails, Mengen und Preise werden vor der Bestätigung im Checkout angezeigt."
+            "Das WeCare-Assessment und die Empfehlung sind kein Ersatz für eine professionelle medizinische Diagnose, Behandlung oder Notfallversorgung.",
+            "Eine über die WeCare-Plattform erzeugte Empfehlung beruht auf den von Ihnen angegebenen Informationen und Präferenzen.",
+            "Sie bedeutet nicht, dass WeCare eine Krankheit oder einen medizinischen Zustand diagnostiziert hat.",
+            "Bei Fragen zu Ihrer Gesundheit, zu Symptomen, Medikamenten, einer Behandlung oder einer Veränderung Ihres Zustands sollten Sie geeigneten ärztlichen Rat einholen.",
+            "Nutzen Sie die WeCare-Website nicht als Ersatz für die notfallmedizinische Versorgung.",
+            "Wenn Sie glauben, einen medizinischen Notfall zu haben, wenden Sie sich unverzüglich an den zuständigen medizinischen Notdienst."
           ]
         },
         {
-          "id": "prices-payment",
-          "heading": "7. Preise und Zahlung",
+          "id": "product-information",
+          "heading": "7. Produktinformationen und Verfügbarkeit",
           "body": [
-            "Preise werden in Euro inklusive der gesetzlichen Umsatzsteuer angezeigt, sofern nicht anders angegeben. Akzeptierte Zahlungsarten werden im Checkout angezeigt. Zusätzlich kann eine Gebühr für die ärztliche Prüfung anfallen, die vor der Berechnung angezeigt wird – siehe unsere Seite „Kosten“ für den qualitativen Ablauf; feste Beträge veröffentlichen wir hier nicht, da sie von der Prüfung abhängen."
+            "WeCare kann Informationen zu Produkten und Lösungen bereitstellen, die über die Plattform verfügbar sind.",
+            "Die Produktverfügbarkeit kann sich ändern.",
+            "Die Anzeige eines Produkts auf der Website gewährleistet für sich genommen nicht, dass:"
+          ],
+          "list": [
+            "das Produkt zum Kauf verfügbar ist;",
+            "das Produkt an Ihrem Ort verfügbar ist;",
+            "das Produkt für Sie geeignet ist;",
+            "eine medizinische Fachperson es empfiehlt; oder",
+            "eine Apotheke es abgibt."
+          ],
+          "bodyAfter": [
+            "Sofern zutreffend, können Produktinformationen Zusammensetzung, Produktform, Laborinformationen und weitere für das jeweilige Produkt bereitgestellte Angaben umfassen.",
+            "Sie sollten die bereitgestellten Produktinformationen lesen, bevor Sie ein Produkt kaufen oder verwenden.",
+            "Produkte dürfen nur im Einklang mit den geltenden Produktinformationen und etwaigen Anweisungen der verantwortlichen Fachperson verwendet werden."
           ]
         },
         {
-          "id": "delivery-and-withdrawal",
-          "heading": "8. Lieferung und Widerrufsrecht",
+          "id": "ordering",
+          "heading": "8. Bestellung einer empfohlenen Lösung",
           "body": [
-            "Die Lieferbedingungen sind in unserer Versandrichtlinie geregelt. Ihr gesetzliches Widerrufsrecht sowie die Ausnahmen, die für abgegebene Arzneimittel gelten, sind in unserer Rückerstattungsrichtlinie geregelt – bitte lesen Sie diese vor einer Bestellung."
+            "Eine Empfehlung führt nicht automatisch zu einer Bestellung.",
+            "Wenn Sie sich für den Kauf eines empfohlenen Produkts oder einer empfohlenen Dienstleistung entscheiden, müssen Sie den jeweiligen Bestellvorgang abschließen.",
+            "Bevor Sie eine Bestellung absenden, zeigt WeCare Ihnen die maßgeblichen Informationen an, einschließlich Preis und verfügbarer Zahlungsarten.",
+            "Sie sind dafür verantwortlich, die Bestellinformationen vor dem Absenden zu prüfen.",
+            "Bei Produkten oder Dienstleistungen, die eine ärztliche Prüfung oder eine andere fachliche Freigabe erfordern, gewährleistet der Abschluss einer Bestellung oder Zahlung keine Freigabe.",
+            "Wird die erforderliche medizinische oder fachliche Freigabe nicht erteilt, wird die betreffende Bestellung oder Transaktion gemäß den geltenden Storno-, Rückerstattungs- oder Leistungsbedingungen behandelt.",
+            "Sofern ein Arzneimittel von einer Apotheke abgegeben werden muss, bleibt die Apotheke für die rechtmäßige Abgabe dieses Arzneimittels verantwortlich."
+          ]
+        },
+        {
+          "id": "prescription-medicines-and-pharmacies",
+          "heading": "9. Verschreibungspflichtige Arzneimittel und Apotheken",
+          "body": [
+            "Verschreibungspflichtige Arzneimittel unterliegen den geltenden österreichischen Vorschriften über Verschreibung, Abgabe und Vertrieb.",
+            "WeCare stellt nicht dar, dass verschreibungspflichtige Arzneimittel als gewöhnliches Webshop-Produkt direkt bei WeCare gekauft werden können.",
+            "Sofern ein Verschreibungsweg verfügbar ist, kann WeCare den digitalen Prozess unterstützen, der zur ärztlichen Prüfung und – sofern medizinisch angemessen – zur Verschreibung führt.",
+            "Die verantwortliche Ärztin oder der verantwortliche Arzt trifft die Verschreibungsentscheidung.",
+            "Die verantwortliche Apotheke oder eine andere rechtlich zur Abgabe befugte Stelle trifft die Abgabeentscheidung.",
+            "In Österreich unterliegt der Online-Versandhandel mit Humanarzneimitteln besonderen rechtlichen Anforderungen. Das BASG weist darauf hin, dass über registrierte österreichische Versandapotheken grundsätzlich nur zugelassene, nicht verschreibungspflichtige Humanarzneimittel abgegeben werden dürfen; verschreibungspflichtige Arzneimittel können nicht einfach von einem gewöhnlichen Webshop online verkauft werden.",
+            "Ein etwaiger über WeCare angebotener Ablauf für verschreibungspflichtige Arzneimittel läuft dementsprechend ausschließlich über den rechtlich anwendbaren ärztlichen und apothekenrechtlichen Prozess."
+          ]
+        },
+        {
+          "id": "prices-and-payment",
+          "heading": "10. Preise und Zahlung",
+          "body": [
+            "Die Preise werden in Euro angegeben.",
+            "Sofern zutreffend, ist die gesetzliche Umsatzsteuer im angezeigten Preis enthalten, sofern nicht anders angegeben.",
+            "Die für eine bestimmte Transaktion verfügbaren Zahlungsarten werden während des Bezahlvorgangs angezeigt.",
+            "Sofern eine gesonderte Gebühr für die ärztliche Prüfung anfällt, wird Ihnen die jeweilige Gebühr angezeigt, bevor Ihnen diese Leistung berechnet wird.",
+            "Verfügbarkeit und Preis eines Produkts oder einer Dienstleistung können sich ändern, bevor eine Bestellung abgeschlossen ist.",
+            "Sie sind dafür verantwortlich, richtige Zahlungs- und Rechnungsangaben zu machen."
+          ]
+        },
+        {
+          "id": "delivery",
+          "heading": "11. Lieferung",
+          "body": [
+            "Sofern ein Produkt über WeCare gekauft wird und eine Lieferung verfügbar ist, werden die maßgeblichen Lieferinformationen vor oder während des Bezahlvorgangs bereitgestellt.",
+            "Weitere Lieferbedingungen sind in der Versandrichtlinie von WeCare festgelegt.",
+            "Sofern ein Arzneimittel von einer Apotheke oder einer anderen rechtlich befugten Stelle abgegeben und geliefert wird, gelten zusätzlich die einschlägigen apotheken- und rechtlichen Anforderungen.",
+            "WeCare sagt keine Lieferung eines Produkts zu, das der betreffenden Kundin bzw. dem betreffenden Kunden oder an den betreffenden Ort nicht rechtmäßig geliefert werden darf."
+          ]
+        },
+        {
+          "id": "withdrawal-cancellation-and-refunds",
+          "heading": "12. Rücktritt, Stornierung und Rückerstattung",
+          "body": [
+            "Verbraucher:innen haben bei qualifizierten Fernabsatzverträgen nach österreichischem Verbraucherrecht grundsätzlich gesetzliche Rücktrittsrechte.",
+            "Das österreichische Fern- und Auswärtsgeschäfte-Gesetz (FAGG) sieht für qualifizierte Fernabsatzverträge eine allgemeine Rücktrittsfrist von 14 Tagen vor, vorbehaltlich gesetzlicher Ausnahmen.",
+            "Je nachdem, ob die Transaktion Folgendes betrifft, können unterschiedliche Regeln gelten:"
+          ],
+          "list": [
+            "Waren;",
+            "eine Dienstleistung;",
+            "eine digitale Dienstleistung; oder",
+            "ein Produkt oder eine Dienstleistung, für die eine gesetzliche Rücktrittsausnahme gilt."
+          ],
+          "bodyAfter": [
+            "Bei Dienstleistungen können die gesetzlichen Regeln zudem davon abhängen, ob die Verbraucherin bzw. der Verbraucher ausdrücklich verlangt hat, dass die Ausführung vor Ablauf der Rücktrittsfrist beginnt, und ob die Dienstleistung vollständig erbracht wurde.",
+            "Die konkreten Rücktrittsrechte und die geltenden Ausnahmen für eine bestimmte Transaktion sind in der Rückerstattungsrichtlinie von WeCare festgelegt.",
+            "Sie sollten die Rückerstattungsrichtlinie lesen, bevor Sie eine Bestellung abschließen."
+          ]
+        },
+        {
+          "id": "user-responsibilities",
+          "heading": "13. Pflichten der Nutzer:innen",
+          "body": [
+            "Sie verpflichten sich:"
+          ],
+          "list": [
+            "richtige und aktuelle Angaben zu machen;",
+            "die Website nur für rechtmäßige Zwecke zu nutzen;",
+            "Produkte nur bestimmungsgemäß und gemäß den geltenden Anweisungen zu verwenden;",
+            "nicht zu versuchen, ein Rezept durch falsche, irreführende oder unvollständige Angaben zu erhalten;",
+            "keine personenbezogenen oder medizinischen Informationen einer anderen Person ohne deren Berechtigung anzugeben;",
+            "Ihre Kontoinformationen sicher aufzubewahren;",
+            "relevante Produkt- und Dienstleistungsinformationen zu prüfen, bevor Sie fortfahren; und",
+            "die geltenden Anweisungen der verantwortlichen medizinischen Fachperson oder Apotheke zu befolgen."
+          ],
+          "bodyAfter": [
+            "Sie dürfen die WeCare-Plattform nicht missbrauchen, ihren Betrieb nicht stören, keinen unbefugten Zugriff versuchen und den Dienst nicht nutzen, um Produkte oder Dienstleistungen für rechtswidrige Zwecke zu erhalten."
+          ]
+        },
+        {
+          "id": "account-and-security",
+          "heading": "14. Konto und Sicherheit",
+          "body": [
+            "Sofern WeCare eine Konto- oder Anmeldefunktion bereitstellt, sind Sie dafür verantwortlich, Ihre Anmeldedaten vertraulich zu halten.",
+            "Sie sollten WeCare benachrichtigen, wenn Sie den Verdacht haben, dass auf Ihr Konto unbefugt zugegriffen wurde.",
+            "Sie sind für über Ihr Konto durchgeführte Aktivitäten verantwortlich, es sei denn, die Aktivität ergab sich aus Umständen, für die WeCare rechtlich verantwortlich ist."
+          ]
+        },
+        {
+          "id": "health-and-safety",
+          "heading": "15. Gesundheit und Sicherheit",
+          "body": [
+            "WeCare ersetzt keine Notfallversorgung.",
+            "Die auf der Website dargestellten Informationen sollen Nutzer:innen helfen, den verfügbaren WeCare-Ablauf zu verstehen, und sind nicht als Ersatz für professionellen ärztlichen Rat zu verstehen.",
+            "Sie sollten die verantwortliche medizinische Fachperson über relevante Erkrankungen, Medikamente, Allergien, frühere Behandlungen und weitere im Rahmen der ärztlichen Prüfung angeforderte Informationen informieren.",
+            "Wenn eine medizinische Fachperson oder Apotheke vor dem Fortfahren zusätzliche Informationen benötigt, müssen Sie diese Informationen bereitstellen, sofern angemessen."
+          ]
+        },
+        {
+          "id": "intellectual-property",
+          "heading": "16. Geistiges Eigentum",
+          "body": [
+            "Die WeCare-Website und ihre Inhalte, einschließlich Texte, Grafiken, Gestaltung, Branding, Benutzeroberfläche, Software und sonstiger Materialien, sind durch die geltenden Gesetze zum geistigen Eigentum geschützt.",
+            "Sofern nicht gesetzlich erlaubt oder von WeCare ausdrücklich gestattet, dürfen Sie WeCare-Inhalte nicht vervielfältigen, verbreiten, verändern, öffentlich zugänglich machen oder gewerblich verwerten."
+          ]
+        },
+        {
+          "id": "third-party-services",
+          "heading": "17. Drittdienste und fachliche Partner",
+          "body": [
+            "Bestimmte Teile des WeCare-Ablaufs können unabhängige Dritte einbeziehen, darunter approbierte medizinische Fachpersonen und Apotheken.",
+            "Sofern ein Dritter eigenständig eine medizinische, apothekenbezogene, Zahlungs-, Liefer- oder sonstige fachliche Leistung erbringt, bleibt dieser Dritte für seine eigenen fachlichen Entscheidungen und Pflichten verantwortlich.",
+            "Insbesondere:"
+          ],
+          "list": [
+            "ist die verantwortliche medizinische Fachperson für die medizinische Beurteilung und die Verschreibungsentscheidungen verantwortlich;",
+            "ist die verantwortliche Apotheke für die Abgabeentscheidungen verantwortlich; und",
+            "sind Zahlungs- und Lieferdienstleister für die von ihnen eigenständig erbrachten Leistungen verantwortlich."
+          ],
+          "bodyAfter": [
+            "WeCare ist nicht für die medizinische Beurteilung einer unabhängigen Fachperson oder für die rechtmäßige Abgabeentscheidung einer Apotheke verantwortlich."
           ]
         },
         {
           "id": "liability",
-          "heading": "9. Haftung",
+          "heading": "18. Haftung",
           "body": [
-            "Für Vorsatz und grobe Fahrlässigkeit haften wir unbeschränkt. Bei leichter Fahrlässigkeit haften wir nur für die Verletzung wesentlicher Vertragspflichten, begrenzt auf den bei Vertragsschluss vorhersehbaren Schaden. Gesetzlich zwingende Haftung – etwa für Schäden an Leben, Körper oder Gesundheit – bleibt hiervon unberührt.",
-            "WeCare haftet nicht für die eigenständige medizinische Einschätzung einer prüfenden Ärztin oder eines prüfenden Arztes oder für Abgabeentscheidungen einer Partnerapotheke – diese werden von der jeweils zuständigen, unabhängig lizenzierten Fachperson getroffen, nicht von WeCare."
+            "WeCare haftet für Vorsatz und grobe Fahrlässigkeit unbeschränkt.",
+            "Für einfache Fahrlässigkeit haftet WeCare nur bei Verletzung einer wesentlichen Vertragspflicht, und die Haftung ist auf den vorhersehbaren Schaden begrenzt, mit dem bei Vertragsschluss vernünftigerweise zu rechnen war.",
+            "Nichts in diesen Bedingungen schließt eine Haftung aus oder beschränkt sie, die gesetzlich nicht ausgeschlossen oder beschränkt werden kann, einschließlich der Haftung für die Verletzung von Leben, Körper oder Gesundheit.",
+            "WeCare ist nicht für die eigenständige medizinische Beurteilung einer prüfenden Ärztin oder eines prüfenden Arztes oder für die eigenständige Abgabeentscheidung einer Apotheke verantwortlich.",
+            "Diese Bedingungen berühren keine Rechte oder Ansprüche, die Verbraucher:innen nach zwingendem geltendem Recht zustehen."
           ]
         },
         {
           "id": "changes",
-          "heading": "10. Änderungen dieser Bedingungen",
+          "heading": "19. Änderungen der Website oder der Dienste",
           "body": [
-            "Wir können diese Bedingungen von Zeit zu Zeit aktualisieren – etwa wenn sich unsere Leistungen oder die Rechtslage ändern. Die aktualisierte Fassung wird hier mit einem neuen Gültigkeitsdatum veröffentlicht; die weitere Nutzung nach diesem Datum gilt als Zustimmung zur Aktualisierung."
+            "WeCare kann Teile der Website oder der Dienste ändern, aussetzen oder einstellen, sofern dies vernünftigerweise erforderlich ist, einschließlich sofern dies aufgrund von Gesetzesänderungen, regulatorischen Anforderungen, der Produktverfügbarkeit oder des Betriebs fachlicher Partner erforderlich ist.",
+            "WeCare kann diese Bedingungen auch aktualisieren, wenn sich unsere Dienste oder die geltenden rechtlichen Anforderungen ändern.",
+            "Die jeweils aktuelle Fassung dieser Bedingungen wird zusammen mit ihrem Gültigkeitsdatum auf der WeCare-Website veröffentlicht.",
+            "Änderungen entziehen keine zwingenden Verbraucherrechte, die für eine Transaktion bereits gelten."
           ]
         },
         {
           "id": "governing-law",
-          "heading": "11. Anwendbares Recht und Gerichtsstand",
+          "heading": "20. Anwendbares Recht und Gerichtsstand",
           "body": [
-            "Es gilt österreichisches Recht, unbeschadet zwingender verbraucherschutzrechtlicher Bestimmungen Ihres Wohnsitzstaates. Als Verbraucher:in können Sie Klage am Gericht Ihres Wohnsitzes oder unseres Sitzes erheben; erheben wir Klage gegen Sie, tun wir dies am Gericht Ihres Wohnsitzes."
+            "Auf diese Bedingungen ist österreichisches Recht anwendbar, unbeschadet zwingender verbraucherschützender Bestimmungen, die nach geltendem Recht für Sie gelten.",
+            "Wenn Sie Verbraucher:in sind, können Sie ein Verfahren vor den Gerichten anstrengen, die nach dem geltenden Verbraucherschutzrecht zuständig sind, einschließlich – sofern zutreffend – der Gerichte an Ihrem Wohnsitz.",
+            "Nichts in diesen Bedingungen soll Ihnen zwingende Rechte entziehen, die Ihnen nach geltendem Verbraucherrecht zustehen."
           ]
         },
         {
           "id": "contact",
-          "heading": "12. Kontakt",
+          "heading": "21. Kontakt",
           "body": [
-            "Fragen zu diesen Bedingungen? Sie erreichen uns über unsere Kontaktseite; vollständige Firmendaten finden Sie in unserem Impressum."
+            "Fragen zu diesen Bedingungen können über die Kontaktseite von WeCare gestellt werden.",
+            "Die vollständigen rechtlichen und Unternehmensangaben zu WeCare finden Sie im Impressum von WeCare."
+          ]
+        },
+        {
+          "id": "important-notice",
+          "heading": "22. Wichtiger Hinweis",
+          "body": [
+            "WeCare bietet einen geführten digitalen Ablauf und, sofern verfügbar, Zugang zur ärztlichen Prüfung.",
+            "Eine ärztliche Prüfung gewährleistet kein Rezept.",
+            "Ein Rezept wird, sofern medizinisch angemessen, von der verantwortlichen medizinischen Fachperson ausgestellt.",
+            "Die Abgabe verschreibungspflichtiger Arzneimittel erfolgt durch die verantwortliche Apotheke oder eine andere rechtlich befugte Stelle.",
+            "WeCare ersetzt keine notfallmedizinische Versorgung."
+          ],
+          "bodyAfter": [
+            "© 2026 WeCare. Alle Rechte vorbehalten."
           ]
         }
       ]
     },
     "privacy": {
-      "effectiveDate": "[noch offen — Datum der rechtlichen Prüfung]",
-      "intro": "Diese Erklärung beschreibt, welche personenbezogenen Daten WeCare erhebt, warum, und welche Rechte Sie darüber haben – einschließlich der gesundheitsbezogenen Angaben, die Sie im Assessment und bei der ärztlichen Prüfung teilen.",
+      "effectiveDate": "31. August 2026",
+      "intro": "Diese Datenschutzerklärung erläutert, wie WeCare personenbezogene Daten erhebt, verwendet, weitergibt und schützt, wenn Sie die WeCare-Website nutzen, das Assessment ausfüllen, eine Empfehlung anfordern oder eine Bestellung aufgeben. Sie erläutert außerdem Ihre Rechte nach der EU-Datenschutz-Grundverordnung (DSGVO) und dem geltenden österreichischen Datenschutzrecht.",
       "sections": [
         {
-          "id": "controller",
-          "heading": "1. Verantwortliche Stelle",
-          "fields": [
-            { "label": "Verantwortlicher", "value": "[Firmenname von WeCare], [eingetragene Adresse], Österreich" },
-            { "label": "Datenschutzbeauftragte:r", "value": "[Name / Kontakt-E-Mail — sofern gesetzlich erforderlich bestellt]" },
-            { "label": "Kontakt", "value": "Siehe unsere Kontaktseite" }
-          ]
-        },
-        {
-          "id": "what-we-collect",
-          "heading": "2. Welche Daten wir erheben",
-          "list": [
-            "Kontodaten — Name, E-Mail-Adresse und die von Ihnen erstellten Login-Daten.",
-            "Assessment-Antworten — Ihr Anliegen, Schweregrad, Häufigkeit und bisherige Erfahrung mit Cannabis oder CBD. Dies sind gesundheitsbezogene Daten im Sinne von Art. 9 DSGVO.",
-            "Daten aus der ärztlichen Prüfung — alles, was die prüfende Ärztin oder der prüfende Arzt im Rahmen der Beurteilung Ihres Falls festhält.",
-            "Bestell- und Lieferdaten — Lieferadresse, Bestellinhalt, Zahlungsbestätigung (vollständige Kartendaten speichern wir nicht selbst; das übernimmt unser Zahlungsdienstleister).",
-            "Technische Daten — Gerät, Browser und allgemeine Nutzung der Website, erhoben, um sie funktionsfähig und sicher zu halten."
-          ]
-        },
-        {
-          "id": "legal-basis",
-          "heading": "3. Rechtsgrundlage der Verarbeitung",
+          "id": "overview",
+          "heading": "Aufbau von WeCare",
           "body": [
-            "Konto- und Bestelldaten verarbeiten wir zur Vertragserfüllung (Art. 6 Abs. 1 lit. b DSGVO). Assessment-Antworten und andere gesundheitsbezogene Daten verarbeiten wir nur mit Ihrer ausdrücklichen Einwilligung (Art. 9 Abs. 2 lit. a DSGVO), die Sie mit dem Start des Assessments erteilen und jederzeit über unsere Kontaktseite widerrufen können – ein Widerruf kann allerdings bedeuten, dass eine bereits laufende Prüfung nicht abgeschlossen werden kann.",
-            "Begrenzte technische Daten verarbeiten wir auf Basis berechtigten Interesses (Art. 6 Abs. 1 lit. f DSGVO), um die Website sicher und funktionsfähig zu halten, sowie zur Erfüllung gesetzlicher Aufbewahrungspflichten (Art. 6 Abs. 1 lit. c DSGVO), etwa für apotheken- und steuerrechtliche Aufzeichnungen."
-          ]
-        },
-        {
-          "id": "sharing",
-          "heading": "4. An wen wir Daten weitergeben",
-          "body": [
-            "Wir geben nur weiter, was für die Erbringung der Leistung nötig ist, und nicht mehr:"
+            "WeCare ist kein gewöhnlicher Online-Shop, und diese Erklärung ist keine gewöhnliche E-Commerce-Datenschutzerklärung. Der WeCare-Dienst hat drei Ebenen, für die jeweils unterschiedliche datenschutzrechtliche Erwägungen gelten:"
           ],
           "list": [
-            "Die approbierte Ärztin oder der approbierte Arzt, die/der Ihre ärztliche Prüfung durchführt.",
-            "Die lizenzierte Partnerapotheke, die eine verschriebene Lösung abgibt und versendet.",
-            "Zahlungs- und Versanddienstleister zur Abwicklung von Bestellung und Lieferung.",
-            "Hosting- und IT-Dienstleister, die Daten in unserem Auftrag auf Grundlage eines Auftragsverarbeitungsvertrags verarbeiten.",
-            "Behörden, ausschließlich soweit gesetzlich vorgeschrieben."
+            "Wellness-Plattform — Sie wählen einen Bereich, in dem Sie Unterstützung möchten (Schlaf, Schmerzen oder Körperbeschwerden, Stress und Angst oder Migräne oder Kopfspannung), und lesen allgemeine Informationen;",
+            "Assessment — Sie beantworten eine kurze Reihe von Fragen, damit WeCare aus Ihren Antworten und Präferenzen eine Empfehlung erstellen kann;",
+            "Medizinischer Weg — sofern dieser Dienst verfügbar ist, können Informationen an eine unabhängige approbierte Ärztin oder einen unabhängigen approbierten Arzt zur ärztlichen Prüfung und – sofern medizinisch angemessen – zur Verschreibung weitergegeben werden."
           ],
           "bodyAfter": [
-            "Wir verkaufen Ihre personenbezogenen Daten niemals und geben Assessment- oder Gesundheitsdaten nicht zu Marketingzwecken weiter."
+            "Ein Teil der Informationen, die beim Assessment und auf dem medizinischen Weg anfallen, kann Gesundheitsdaten darstellen. Diese sind eine besondere Kategorie personenbezogener Daten nach Art. 9 DSGVO und werden mit zusätzlicher Sorgfalt behandelt (siehe den Abschnitt zu Gesundheitsdaten unten)."
           ]
         },
         {
-          "id": "international-transfers",
-          "heading": "5. Übermittlung in Drittländer",
+          "id": "controller",
+          "heading": "1. Verantwortlicher",
           "body": [
-            "Verarbeitet ein von uns eingesetzter Dienstleister Daten außerhalb der EU/des EWR, stützen wir uns auf einen Angemessenheitsbeschluss oder die EU-Standardvertragsklauseln, um denselben Schutzstandard sicherzustellen."
+            "WeCare ist Verantwortlicher für die in dieser Erklärung beschriebene Verarbeitung, außer wo diese Erklärung angibt, dass ein unabhängiger Dritter (etwa eine prüfende Ärztin oder ein prüfender Arzt oder eine Apotheke) für seine eigene Verarbeitung als eigener Verantwortlicher handelt."
+          ],
+          "fields": [
+            {
+              "label": "Verantwortlicher",
+              "value": "WeCare GmbH, Musterstraße 1, 1010 Wien, Österreich"
+            },
+            {
+              "label": "Firmenbuch",
+              "value": "Firmenbuchnummer FN 000000a, Firmenbuchgericht Handelsgericht Wien"
+            },
+            {
+              "label": "Datenschutz-Kontakt",
+              "value": "datenschutz@wecare.example"
+            },
+            {
+              "label": "Datenschutzbeauftragte:r",
+              "value": "Max Mustermann, datenschutz@wecare.example"
+            }
           ]
         },
         {
-          "id": "retention",
-          "heading": "6. Speicherdauer",
+          "id": "account-data",
+          "heading": "2. Konto- und Kontaktdaten",
           "body": [
-            "Konto- und Assessment-Daten speichern wir, solange Ihr Konto aktiv ist, zuzüglich eines begrenzten Zeitraums danach (für eventuelle Rückfragen oder Streitfälle). Bestell- und rezeptbezogene Aufzeichnungen bewahren wir darüber hinaus für die apotheken- und steuerrechtlich vorgeschriebenen Fristen auf – in der Regel mehrere Jahre. Die für Ihre Daten konkret geltende Frist teilen wir Ihnen auf Anfrage mit."
+            "Je nachdem, was Sie angeben, kann WeCare erheben:"
+          ],
+          "list": [
+            "Ihren Namen;",
+            "Ihre E-Mail-Adresse;",
+            "Ihre Telefonnummer, sofern Sie sie angeben;",
+            "Anmeldedaten für ein Konto, sofern Sie ein Konto erstellen; und",
+            "den Inhalt von Nachrichten, die Sie an WeCare senden."
           ]
         },
         {
-          "id": "security",
-          "heading": "7. Sicherheit",
+          "id": "assessment-data",
+          "heading": "3. Assessment-Daten",
           "body": [
-            "Wir setzen Verschlüsselung bei der Übertragung (TLS) sowie Zugriffskontrollen ein, damit nur die an Ihrer Behandlung und Bestellung beteiligten Personen Ihre Daten einsehen können. Kein System ist absolut sicher, aber wir entwickeln und überprüfen unseres nach aktuellem Stand der Technik."
+            "Das WeCare-Assessment kann Informationen betreffen wie:"
+          ],
+          "list": [
+            "das von Ihnen gewählte Hauptanliegen;",
+            "wie häufig das Anliegen Sie betrifft;",
+            "wie stark es Sie betrifft;",
+            "eine von Ihnen angegebene frühere Erfahrung mit CBD;",
+            "Produkt- oder Formpräferenzen; und",
+            "bereits von Ihnen ausprobierte Ansätze, sofern Sie sie angeben."
+          ],
+          "bodyAfter": [
+            "Da das Assessment um gesundheitsbezogene Anliegen herum aufgebaut ist, können einzelne Antworten Gesundheitsdaten darstellen. Dies wird im Abschnitt zu Gesundheitsdaten unten erläutert."
+          ]
+        },
+        {
+          "id": "medical-data",
+          "heading": "4. Medizinische Informationen für die ärztliche Prüfung",
+          "body": [
+            "Sofern der Dienst der ärztlichen Prüfung verfügbar ist und Sie sich für seine Nutzung entscheiden, kann die verantwortliche medizinische Fachperson Sie um weitere für diese Prüfung erforderliche Informationen bitten. Je nachdem, was tatsächlich angefordert wird, kann dies umfassen:"
+          ],
+          "list": [
+            "relevante Krankengeschichte;",
+            "aktuelle Medikation;",
+            "Allergien;",
+            "frühere Behandlungen;",
+            "relevante Diagnosen; und",
+            "Dokumente, die Sie für die Prüfung übermitteln."
+          ],
+          "bodyAfter": [
+            "WeCare verarbeitet diese Informationen nur insoweit, wie es erforderlich ist, um Ihre Anfrage an die verantwortliche medizinische Fachperson weiterzuleiten und den Dienst zu unterstützen. Die medizinische Beurteilung selbst wird von dieser Fachperson durchgeführt."
+          ]
+        },
+        {
+          "id": "order-data",
+          "heading": "5. Bestell-, Liefer- und Zahlungsdaten",
+          "body": [
+            "Wenn Sie eine Bestellung aufgeben, verarbeitet WeCare die Informationen, die erforderlich sind, um diese Bestellung entgegenzunehmen, zu bestätigen, auszuführen und zu unterstützen. Dazu können Ihre Rechnungs- und Lieferangaben, die bestellten Artikel, der Bestellwert, die gewählte Zahlungsart und Informationen zum Lieferstatus gehören. Während des Bezahlvorgangs eingegebene Karten- oder Kontodaten werden vom Zahlungsdienstleister verarbeitet (siehe den Abschnitt zu Zahlungen)."
+          ]
+        },
+        {
+          "id": "support-data",
+          "heading": "6. Support-Daten",
+          "body": [
+            "Wenn Sie WeCare kontaktieren, werden die Kommunikation und ihr Inhalt verarbeitet, damit WeCare antworten, das Anliegen lösen, zugehörige Bestellungen verwalten und Beschwerden bearbeiten kann."
+          ]
+        },
+        {
+          "id": "technical-data",
+          "heading": "7. Technische Daten und Nutzungsdaten",
+          "body": [
+            "Wenn Sie die Website nutzen, werden begrenzte technische Informationen verarbeitet, damit die Website funktioniert und sicher bleibt, etwa Informationen über Ihr Gerät und Ihren Browser sowie darüber, wie Sie sich durch die Website bewegen. Optionale Analysen werden nur mit Einwilligung verwendet, sofern eine Einwilligung erforderlich ist; Cookies und ähnliche Technologien werden in der Cookie-Richtlinie von WeCare beschrieben."
+          ]
+        },
+        {
+          "id": "health-data",
+          "heading": "8. Gesundheitsdaten",
+          "body": [
+            "Ein Teil der Informationen, die Sie über das Assessment angeben, sowie alle für eine ärztliche Prüfung bereitgestellten Informationen können Gesundheitsdaten sein – eine besondere Kategorie personenbezogener Daten nach Art. 9 DSGVO.",
+            "WeCare verarbeitet Gesundheitsdaten nur, wenn eine Bedingung nach Art. 9 DSGVO vorliegt – etwa Ihre ausdrückliche Einwilligung oder die Gesundheitsversorgung durch oder unter der Verantwortung einer Fachperson des Gesundheitswesens – und nur insoweit, wie es für den jeweiligen Zweck erforderlich ist."
+          ],
+          "bodyAfter": [
+            "Der Zugriff auf Gesundheitsdaten innerhalb von WeCare ist auf Personen beschränkt, die diese für den Dienst benötigen.",
+            "WeCare verwendet diese Erklärung nicht, um zu behaupten, dass Assessment-Informationen anonym oder technisch von anderen Informationen getrennt sind, sofern diese Trennung nicht tatsächlich besteht.",
+            "Gesundheitsdaten werden nur wie in dieser Erklärung beschrieben aufbewahrt und weitergegeben."
+          ]
+        },
+        {
+          "id": "purposes",
+          "heading": "9. Wie und wozu wir Ihre Daten verwenden",
+          "body": [
+            "WeCare verwendet personenbezogene Daten, um:"
+          ],
+          "list": [
+            "die Website und das geführte Assessment zu betreiben;",
+            "aus Ihren Antworten und Präferenzen eine Empfehlung zu erstellen;",
+            "sofern verfügbar und angefordert, Ihr Assessment an eine unabhängige medizinische Fachperson zur ärztlichen Prüfung weiterzuleiten;",
+            "Bestellungen entgegenzunehmen, zu bestätigen, auszuführen und zu unterstützen, einschließlich Lieferung und Rücksendungen;",
+            "Kundensupport zu leisten und Beschwerden zu bearbeiten;",
+            "Servicenachrichten wie Bestellbestätigungen und Konto- oder Sicherheitshinweise zu senden;",
+            "Marketingmitteilungen zu senden, sofern Sie deren Erhalt zugestimmt haben;",
+            "den Dienst sicher zu halten und Missbrauch vorzubeugen; und",
+            "gesetzliche Pflichten zu erfüllen, einschließlich Aufbewahrungs- und Buchführungspflichten."
+          ]
+        },
+        {
+          "id": "legal-bases",
+          "heading": "10. Rechtsgrundlagen",
+          "body": [
+            "WeCare stützt sich auf die folgenden Rechtsgrundlagen nach Art. 6 DSGVO und, für Gesundheitsdaten, auf eine zusätzliche Bedingung nach Art. 9 DSGVO:"
+          ],
+          "list": [
+            "Erfüllung eines Vertrags oder Durchführung vorvertraglicher Maßnahmen auf Ihre Anfrage – für die Erstellung eines Kontos, die Durchführung des Assessments sowie die Abwicklung und Lieferung von Bestellungen;",
+            "berechtigte Interessen – um den Dienst sicher zu halten, Missbrauch vorzubeugen und den Dienst zu verbessern, sofern diese Interessen nicht von Ihren Rechten überwogen werden;",
+            "Einwilligung – für optionale Analyse- und Werbetechnologien sowie für Marketingmitteilungen, sofern eine Einwilligung erforderlich ist; Sie können die Einwilligung jederzeit widerrufen;",
+            "rechtliche Verpflichtung – für Buchführung, Steuer und sonstige gesetzliche Aufbewahrung; und",
+            "für Gesundheitsdaten eine Bedingung nach Art. 9 DSGVO, etwa Ihre ausdrückliche Einwilligung oder die Gesundheitsversorgung durch oder unter der Verantwortung einer Fachperson des Gesundheitswesens."
+          ],
+          "bodyAfter": [
+            "Die konkrete Grundlage für eine bestimmte Verarbeitung hängt von der jeweiligen Tätigkeit ab und wird anhand der tatsächlichen Datenflüsse von WeCare und der geltenden österreichischen und EU-Vorschriften bestätigt."
+          ]
+        },
+        {
+          "id": "automated-recommendations",
+          "heading": "11. Assessment und automatisierte Empfehlungen",
+          "body": [
+            "Das WeCare-Assessment verwendet eine feste Logik, um Ihre Antworten und angegebenen Präferenzen einer der namentlich benannten Lösungen von WeCare zuzuordnen. Dabei handelt es sich um eine Wellness- und Produktempfehlung.",
+            "Die Empfehlung diagnostiziert keinen medizinischen Zustand, entscheidet nicht darüber, ob Sie ein Rezept erhalten, und entfaltet Ihnen gegenüber keine rechtliche Wirkung. WeCare bezeichnet diesen Vorgang nicht als KI-Diagnose.",
+            "Sofern eine ärztliche Prüfung Teil des Dienstes ist, wird die medizinische Entscheidung – einschließlich der Frage, ob ein Rezept angemessen ist – von der verantwortlichen medizinischen Fachperson getroffen, nicht vom WeCare-System."
+          ],
+          "bodyAfter": [
+            "Sollte der Vorgang in einer bestimmten Konfiguration eine ausschließlich auf automatisierter Verarbeitung beruhende Entscheidung mit rechtlicher oder ähnlich erheblicher Wirkung umfassen, würde WeCare die nach Art. 22 DSGVO erforderlichen zusätzlichen Informationen und Schutzmaßnahmen bereitstellen."
+          ]
+        },
+        {
+          "id": "medical-review",
+          "heading": "12. Ärztliche Prüfung durch eine unabhängige Ärztin oder einen unabhängigen Arzt",
+          "body": [
+            "Sofern der Dienst der ärztlichen Prüfung verfügbar ist und Sie sich für seine Nutzung entscheiden, übermittelt WeCare die für die Prüfung erforderlichen Informationen an die verantwortliche approbierte medizinische Fachperson.",
+            "Diese Fachperson führt die medizinische Beurteilung durch und trifft die medizinische Entscheidung eigenständig und unterliegt ihren eigenen beruflichen und rechtlichen Pflichten, auch in Bezug auf Patientendaten."
+          ],
+          "bodyAfter": [
+            "Welche Informationen übermittelt werden, warum, wer sie erhält, ob die Fachperson als eigener Verantwortlicher oder als Auftragsverarbeiter handelt und welche Rechtsgrundlage gilt, richtet sich nach der tatsächlichen Vereinbarung zwischen WeCare und dem medizinischen Anbieter und wird hier angegeben, sobald dies bestätigt ist.",
+            "Nicht jede nutzende Person erhält ein Rezept."
+          ]
+        },
+        {
+          "id": "pharmacy",
+          "heading": "13. Apotheke und Abwicklung",
+          "body": [
+            "Sofern ein Rezept ausgestellt und ein Arzneimittel abgegeben wird, gibt WeCare an die verantwortliche Apotheke oder eine andere rechtlich zur Abgabe befugte Stelle nur die Informationen weiter, die zur Abgabe und Lieferung der Bestellung erforderlich sind.",
+            "Die Apotheke trifft ihre eigene Abgabeentscheidung und ist für ihre eigene Verarbeitung in dieser Rolle verantwortlich."
+          ],
+          "bodyAfter": [
+            "Ob die Apotheke als eigener Verantwortlicher, als gemeinsam Verantwortlicher oder als Auftragsverarbeiter handelt, richtet sich nach der tatsächlichen Vereinbarung und wird hier angegeben, sobald dies bestätigt ist."
+          ]
+        },
+        {
+          "id": "payments",
+          "heading": "14. Zahlungen",
+          "body": [
+            "Zahlungen werden über den von WeCare eingesetzten Zahlungsdienstleister abgewickelt. Während des Bezahlvorgangs eingegebene Karten- oder Kontodaten werden von diesem Dienstleister nach dessen eigenen Datenschutzbestimmungen verarbeitet.",
+            "WeCare erhält die Informationen, die zur Bestätigung und Abstimmung einer Zahlung erforderlich sind, etwa Zahlungsart, Zahlungsstatus und Transaktionsreferenz. WeCare behauptet nicht, niemals zahlungsbezogene Informationen zu erhalten; die genaue Aufteilung hängt von der auf der Live-Website eingesetzten Zahlungsintegration ab."
+          ]
+        },
+        {
+          "id": "marketing",
+          "heading": "15. Marketing und Kommunikation",
+          "body": [
+            "WeCare unterscheidet zwischen:"
+          ],
+          "list": [
+            "notwendigen Servicemitteilungen – etwa Bestellbestätigungen, Konto- und Sicherheitsnachrichten sowie Servicehinweise, die WeCare im Rahmen der Erbringung des Dienstes sendet; und",
+            "Marketingmitteilungen – etwa Werbe-E-Mails sowie, sofern eingesetzt, Werbezielgruppen, Retargeting und Kampagnenmessung, die WeCare nur sendet oder durchführt, sofern Sie zugestimmt haben und die geltenden Einwilligungsanforderungen erfüllt sind."
+          ],
+          "bodyAfter": [
+            "Sie können eine Marketing-Einwilligung jederzeit widerrufen, auch über den Abmeldelink in einer Marketing-E-Mail oder durch Kontaktaufnahme mit WeCare.",
+            "Diese Erklärung beschreibt nur Marketingtechnologien, die WeCare tatsächlich einsetzt; konkrete Anbieter werden hier benannt, sobald dies bestätigt ist."
           ]
         },
         {
           "id": "cookies",
-          "heading": "8. Cookies",
+          "heading": "16. Cookies und Tracking",
           "body": [
-            "Wir verwenden eine kleine Anzahl an Cookies, um die Website zu betreiben und, sofern Sie zustimmen, um deren Nutzung zu verstehen. Details und Kontrollmöglichkeiten finden Sie in unserer Cookie-Richtlinie."
+            "Die WeCare-Website verwendet Cookies und ähnliche Technologien. Nicht unbedingt erforderliche Technologien, einschließlich Analyse- und etwaiger Werbetechnologien, werden nur mit Einwilligung verwendet, sofern eine Einwilligung erforderlich ist. Einzelheiten, Kategorien und Steuerungsmöglichkeiten sind in der Cookie-Richtlinie von WeCare festgelegt."
+          ]
+        },
+        {
+          "id": "recipients",
+          "heading": "17. Empfänger der Daten",
+          "body": [
+            "WeCare gibt personenbezogene Daten nur an die Empfängerkategorien weiter, die tatsächlich für den Dienst gelten. Dazu können gehören:"
+          ],
+          "list": [
+            "unabhängige medizinische Fachpersonen für die ärztliche Prüfung;",
+            "Apotheken oder andere rechtlich zur Abgabe befugte Stellen für Abgabe und Lieferung;",
+            "Zahlungsdienstleister;",
+            "Liefer- und Logistikdienstleister;",
+            "IT-, Hosting- und Infrastrukturdienstleister;",
+            "Dienstleister für den Kundensupport;",
+            "Analyse- und Werbedienstleister, sofern eingesetzt und sofern eine Einwilligung gilt;",
+            "berufliche Berater wie Anwält:innen und Steuerberater:innen; und",
+            "Behörden, sofern WeCare gesetzlich zur Offenlegung verpflichtet ist."
+          ],
+          "bodyAfter": [
+            "Dienstleister, die Daten im Auftrag von WeCare verarbeiten, tun dies auf Grundlage eines Auftragsverarbeitungsvertrags und nur nach Weisung von WeCare. Konkrete Dienstleister werden hier benannt, sobald sie als Teil des Live-Setups von WeCare bestätigt sind."
+          ]
+        },
+        {
+          "id": "transfers",
+          "heading": "18. Internationale Übermittlungen",
+          "body": [
+            "WeCare ist bestrebt, personenbezogene Daten innerhalb der EU/des EWR zu belassen.",
+            "Sofern ein von WeCare eingesetzter Dienstleister Daten außerhalb der EU/des EWR verarbeitet, stützt sich WeCare auf einen gültigen Übermittlungsmechanismus nach der DSGVO, etwa einen Angemessenheitsbeschluss oder die Standardvertragsklauseln der Europäischen Kommission, zusammen mit etwaigen erforderlichen zusätzlichen Garantien."
+          ],
+          "bodyAfter": [
+            "Die konkreten Empfänger und Übermittlungsmechanismen hängen von den tatsächlich eingesetzten Anbietern ab und werden hier angegeben, sobald dies bestätigt ist."
+          ]
+        },
+        {
+          "id": "retention",
+          "heading": "19. Speicherdauer",
+          "body": [
+            "WeCare speichert personenbezogene Daten nur so lange, wie es für den Zweck erforderlich ist, für den sie erhoben wurden, und löscht oder anonymisiert sie anschließend. Die Speicherdauer hängt von der Datenkategorie ab, zum Beispiel:"
+          ],
+          "list": [
+            "Kontoinformationen – solange Sie ein Konto haben;",
+            "Bestell- und Transaktionsinformationen – für den nach Buchführungs- und Steuerrecht erforderlichen Zeitraum;",
+            "Assessment- und etwaige medizinische Informationen – für den dem Dienst und etwaigen geltenden Regeln zur medizinischen Aufbewahrung angemessenen Zeitraum;",
+            "Support-Kommunikation – solange dies zur Bearbeitung des Anliegens und etwaiger Nachfassvorgänge erforderlich ist;",
+            "Aufzeichnungen über Marketing-Einwilligungen – solange dies zum Nachweis der Einwilligung und zur Berücksichtigung Ihrer Entscheidungen erforderlich ist; und",
+            "Aufzeichnungen, die WeCare zur Erfüllung einer rechtlichen Verpflichtung führen muss – für den nach dieser Verpflichtung erforderlichen Zeitraum."
+          ],
+          "bodyAfter": [
+            "Konkrete Speicherfristen werden anhand der tatsächlichen rechtlichen und geschäftlichen Anforderungen festgelegt und hier angegeben, sobald dies bestätigt ist."
           ]
         },
         {
           "id": "your-rights",
-          "heading": "9. Ihre Rechte",
+          "heading": "20. Ihre Rechte",
           "body": [
-            "Nach der DSGVO können Sie:"
+            "Vorbehaltlich der Voraussetzungen der DSGVO haben Sie das Recht:"
           ],
           "list": [
-            "Auskunft verlangen, welche Daten wir über Sie gespeichert haben, und eine Kopie erhalten (Auskunftsrecht).",
-            "Die Berichtigung unrichtiger Daten verlangen (Recht auf Berichtigung).",
-            "Die Löschung von Daten verlangen, die wir nicht mehr aufbewahren müssen (Recht auf Löschung).",
-            "Die Einschränkung bestimmter Verarbeitungen verlangen oder ihr widersprechen.",
-            "Ihre Daten in einem übertragbaren Format anfordern (Recht auf Datenübertragbarkeit).",
-            "Eine erteilte Einwilligung jederzeit widerrufen.",
-            "Sich bei Ihrer nationalen Datenschutzbehörde beschweren — in Österreich der Datenschutzbehörde (dsb.gv.at)."
+            "Auskunft über die von WeCare zu Ihnen gespeicherten personenbezogenen Daten zu verlangen;",
+            "die Berichtigung unrichtiger Daten zu verlangen;",
+            "die Löschung von Daten zu verlangen;",
+            "die Einschränkung der Verarbeitung zu verlangen;",
+            "bestimmte Daten in einem übertragbaren Format zu erhalten;",
+            "der auf berechtigten Interessen beruhenden Verarbeitung zu widersprechen;",
+            "eine Einwilligung jederzeit zu widerrufen, ohne dass die vor dem Widerruf erfolgte Verarbeitung berührt wird; und",
+            "nicht einer ausschließlich auf automatisierter Verarbeitung beruhenden Entscheidung mit rechtlicher oder ähnlich erheblicher Wirkung unterworfen zu werden, außer soweit dies nach Art. 22 DSGVO zulässig ist."
+          ],
+          "bodyAfter": [
+            "Um ein Recht auszuüben, kontaktieren Sie WeCare über die Angaben im Abschnitt „Kontakt“. WeCare muss Ihre Identität möglicherweise überprüfen, bevor einer Anfrage nachgekommen wird."
+          ]
+        },
+        {
+          "id": "security",
+          "heading": "21. Sicherheit",
+          "body": [
+            "WeCare setzt dem Risiko angemessene technische und organisatorische Maßnahmen zum Schutz personenbezogener Daten ein. Dazu können Verschlüsselung bei der Übertragung, Zugriffskontrollen und Authentifizierung, rollenbasierte Zugriffe, sicheres Hosting, Protokollierung, Backups und Datenminimierung gehören."
+          ],
+          "bodyAfter": [
+            "WeCare beansprucht keine Sicherheitszertifizierungen oder -standards, über die es nicht verfügt. Die konkreten Maßnahmen werden hier näher beschrieben, sobald sie für den Live-Betrieb bestätigt sind."
           ]
         },
         {
           "id": "children",
-          "heading": "10. Minderjährige",
+          "heading": "22. Minderjährige",
           "body": [
-            "WeCare richtet sich an Erwachsene (18+). Wir erheben wissentlich keine Daten von Personen unter diesem Alter."
+            "Der WeCare-Dienst ist für Erwachsene bestimmt. Er richtet sich nicht an Kinder, und WeCare erhebt wissentlich keine Daten von Kindern. Dies steht im Einklang mit den Voraussetzungen in den AGB von WeCare."
+          ]
+        },
+        {
+          "id": "complaints",
+          "heading": "23. Beschwerden",
+          "body": [
+            "Wenn Sie eine Beschwerde darüber haben, wie WeCare mit Ihren personenbezogenen Daten umgeht, kontaktieren Sie bitte zunächst WeCare, damit wir versuchen können, die Angelegenheit zu klären."
+          ],
+          "bodyAfter": [
+            "Sie haben außerdem das Recht, Beschwerde bei einer Datenschutz-Aufsichtsbehörde einzulegen. Für einen auf Österreich ausgerichteten Dienst ist dies die österreichische Datenschutzbehörde. Deren aktuelle Kontaktdaten finden Sie auf ihrer offiziellen Website."
           ]
         },
         {
           "id": "changes",
-          "heading": "11. Änderungen dieser Erklärung",
+          "heading": "24. Änderungen dieser Erklärung",
           "body": [
-            "Wir aktualisieren diese Seite, wenn sich Umfang oder Art unserer Datenverarbeitung ändert, und veröffentlichen dabei ein neues Gültigkeitsdatum."
+            "WeCare kann diese Datenschutzerklärung aktualisieren, wenn sich die Datenpraktiken, der Dienst oder die geltenden rechtlichen Anforderungen ändern.",
+            "Die jeweils aktuelle Fassung wird mit ihrem Gültigkeitsdatum auf der WeCare-Website veröffentlicht. Bei einer wesentlichen Änderung wird WeCare angemessene Schritte unternehmen, um darauf hinzuweisen."
+          ]
+        },
+        {
+          "id": "contact",
+          "heading": "25. Kontakt",
+          "body": [
+            "Für Datenschutzfragen oder zur Ausübung eines Rechts kontaktieren Sie WeCare unter datenschutz@wecare.example oder über die Kontaktseite von WeCare. Die vollständigen rechtlichen und Unternehmensangaben von WeCare finden Sie im Impressum von WeCare."
           ]
         }
       ]
     },
     "cookies": {
-      "effectiveDate": "[noch offen — Datum der rechtlichen Prüfung]",
-      "intro": "Cookies sind kleine Dateien, die eine Website auf Ihrem Gerät speichert. Hier erfahren Sie, wofür WeCare sie einsetzt.",
+      "effectiveDate": "31. August 2026",
+      "intro": "Diese Cookie-Richtlinie erläutert, wie WeCare Cookies und ähnliche Technologien verwendet, wenn Sie die WeCare-Website besuchen oder nutzen.",
       "sections": [
         {
-          "id": "essential",
-          "heading": "1. Notwendige Cookies",
+          "id": "about-cookies",
+          "heading": "Über Cookies",
           "body": [
-            "Diese sorgen dafür, dass die Website funktioniert — sie merken sich Ihre Anmeldesitzung, Ihre Sprachwahl und die Inhalte Ihres Warenkorbs. Ohne sie kann die Website nicht ordnungsgemäß funktionieren, daher sind sie immer aktiv."
+            "Cookies sind kleine Dateien oder ähnliche Technologien, die auf Ihrem Gerät gespeichert werden können, wenn Sie eine Website besuchen. Sie können dazu beitragen, dass die Website ordnungsgemäß funktioniert, Ihre Präferenzen speichern, verständlich machen, wie die Website genutzt wird, und – sofern zutreffend – weitere Website-Funktionen unterstützen.",
+            "Diese Cookie-Richtlinie ist zusammen mit der Datenschutzerklärung von WeCare zu lesen."
           ]
         },
         {
-          "id": "preference",
+          "id": "essential-cookies",
+          "heading": "1. Unbedingt erforderliche Cookies",
+          "body": [
+            "Unbedingt erforderliche Cookies werden eingesetzt, wenn sie für die Funktion der Website oder eines angeforderten Dienstes notwendig sind.",
+            "Je nach den von Ihnen genutzten Funktionen können diese Technologien Funktionen unterstützen wie:"
+          ],
+          "list": [
+            "die Aufrechterhaltung Ihrer Anmeldung oder Sitzung;",
+            "das Speichern von Artikeln in Ihrem Warenkorb;",
+            "das Speichern von Informationen, die für den Betrieb der Website erforderlich sind; und",
+            "die Aufrechterhaltung der Sicherheit und Funktionsfähigkeit der Website."
+          ],
+          "bodyAfter": [
+            "Unbedingt erforderliche Cookies werden nicht für optionale Werbezwecke verwendet.",
+            "Sofern ein Cookie oder eine ähnliche Technologie für einen von Ihnen angeforderten Dienst unbedingt erforderlich ist, kann sie ohne Rückgriff auf eine Einwilligung für optionale Cookies verwendet werden.",
+            "Wenn Sie unbedingt erforderliche Cookies blockieren oder deaktivieren, funktionieren Teile der Website möglicherweise nicht korrekt."
+          ]
+        },
+        {
+          "id": "preference-cookies",
           "heading": "2. Präferenz-Cookies",
           "body": [
-            "Diese merken sich Einstellungen wie Ihre Sprache (Deutsch/Englisch), damit Sie diese nicht bei jedem Besuch neu festlegen müssen."
+            "Präferenz-Cookies merken sich Entscheidungen, die Sie bei der Nutzung von WeCare treffen, damit Sie dieselben Entscheidungen nicht wiederholt treffen müssen.",
+            "Beispielsweise können sie Folgendes speichern:"
+          ],
+          "list": [
+            "Ihre Sprachpräferenz; und",
+            "weitere von Ihnen ausgewählte Website-Präferenzen."
+          ],
+          "bodyAfter": [
+            "WeCare kann sowohl Deutsch als auch Englisch unterstützen.",
+            "Präferenz-Cookies, die für den Betrieb der Website nicht unbedingt erforderlich sind, werden nur verwendet, wenn die geltenden Einwilligungsanforderungen erfüllt sind."
           ]
         },
         {
-          "id": "analytics",
+          "id": "analytics-cookies",
           "heading": "3. Analyse-Cookies",
           "body": [
-            "Sofern aktiviert, helfen uns diese zu verstehen, wie die Website insgesamt genutzt wird — welche Seiten besucht werden und ob der Assessment-Ablauf reibungslos funktioniert —, damit wir sie verbessern können. Sie werden nur mit Ihrer Einwilligung gesetzt und niemals mit Ihren Assessment- oder Gesundheitsdaten verknüpft."
+            "Sofern aktiviert, kann WeCare Analysetechnologien verwenden, um zu verstehen, wie Besucher:innen die Website nutzen, und um die Nutzererfahrung zu verbessern.",
+            "Analysen können uns beispielsweise helfen zu verstehen:"
+          ],
+          "list": [
+            "welche Seiten besucht werden;",
+            "wie sich Besucher:innen durch die Website bewegen;",
+            "ob der Assessment-Ablauf wirksam funktioniert;",
+            "wo Nutzer:innen auf Schwierigkeiten stoßen könnten; und",
+            "wie die Website verbessert werden kann."
+          ],
+          "bodyAfter": [
+            "Nicht unbedingt erforderliche Analysetechnologien werden nur verwendet, wenn die erforderliche Einwilligung eingeholt wurde.",
+            "Analyseinformationen sollten im Einklang mit der Datenschutzerklärung von WeCare und der Konfiguration der jeweiligen Analysetechnologie behandelt werden.",
+            "WeCare verwendet Analyse-Cookies nicht als Ersatz für das Assessment oder die ärztliche Prüfung."
           ]
         },
         {
-          "id": "managing",
-          "heading": "4. Cookies verwalten",
+          "id": "managing-choices",
+          "heading": "4. Verwaltung Ihrer Cookie-Auswahl",
           "body": [
-            "Sie können nicht notwendige Cookies über unseren Cookie-Banner beim ersten Besuch zulassen oder ablehnen und Ihre Auswahl jederzeit in Ihren Browsereinstellungen ändern. Das Blockieren notwendiger Cookies kann dazu führen, dass Teile der Website — etwa das Angemeldet-Bleiben — nicht funktionieren."
+            "Wenn Sie die WeCare-Website zum ersten Mal besuchen, wird Ihnen, sofern erforderlich, ein Cookie-Einwilligungsmechanismus angezeigt, mit dem Sie nicht unbedingt erforderliche Cookies verwalten können.",
+            "Je nach den auf der Website verwendeten Technologien können Sie möglicherweise:"
+          ],
+          "list": [
+            "optionale Cookies akzeptieren;",
+            "optionale Cookies ablehnen;",
+            "bestimmte Kategorien optionaler Cookies auswählen; und",
+            "Ihre Auswahl später ändern."
+          ],
+          "bodyAfter": [
+            "Sie können Cookies auch über Ihre Browsereinstellungen verwalten.",
+            "Bitte beachten Sie, dass das Deaktivieren unbedingt erforderlicher Cookies die Funktionsfähigkeit der Website beeinträchtigen kann, einschließlich Funktionen wie dem Angemeldetbleiben oder dem Erhalt Ihres Warenkorbs.",
+            "Sofern WeCare einen eigenen Mechanismus zur Cookie-Präferenz bereitstellt, können Sie diesen nutzen, um Ihre Auswahl nach Ihrer ursprünglichen Entscheidung zu ändern."
           ]
         },
         {
-          "id": "third-party",
-          "heading": "5. Cookies Dritter",
+          "id": "third-party-technologies",
+          "heading": "5. Technologien von Dritten",
           "body": [
-            "Manche eingebundenen Inhalte (z. B. Zahlungs- oder Versand-Widgets im Checkout) können eigene Cookies setzen, die der jeweiligen Richtlinie des Anbieters unterliegen."
+            "Bestimmte Dienste von Dritten können als Teil der WeCare-Website oder des Bezahlvorgangs verwendet werden.",
+            "Je nach den tatsächlich in die Website integrierten Diensten können Technologien von Dritten an Funktionen beteiligt sein wie:"
+          ],
+          "list": [
+            "Zahlungsabwicklung;",
+            "Versand- oder Lieferfunktionen;",
+            "Website-Analyse; und",
+            "andere technische Dienste, die zur Bereitstellung der Website erforderlich sind."
+          ],
+          "bodyAfter": [
+            "Drittanbieter können Informationen über ihre eigenen Technologien verarbeiten, einschließlich Cookies oder ähnlicher Technologien.",
+            "Sofern zutreffend, können diese Anbieter über eigene Datenschutz- und Cookie-Richtlinien verfügen.",
+            "WeCare wird bestimmte Drittanbieter und Technologien in dieser Richtlinie erst dann benennen, wenn sie als Teil des Live-Technologie-Stacks von WeCare bestätigt sind."
+          ]
+        },
+        {
+          "id": "assessment-and-cookies",
+          "heading": "6. Cookies und das WeCare-Assessment",
+          "body": [
+            "Die WeCare-Website umfasst ein geführtes Assessment, das Nutzer:innen helfen soll, anhand ihrer ausgewählten Bedürfnisse und Präferenzen eine geeignete Lösung zu identifizieren.",
+            "Das Assessment kann Informationen zu Themen betreffen wie:"
+          ],
+          "list": [
+            "Schlaf;",
+            "Schmerzen oder Körperbeschwerden;",
+            "Stress und Angst; und",
+            "Migräne oder Kopfspannung."
+          ],
+          "bodyAfter": [
+            "Aus diesem Grund sollte der Einsatz von Analyse- oder anderen nicht unbedingt erforderlichen Tracking-Technologien im Zusammenhang mit Assessment-Seiten sorgfältig konfiguriert werden.",
+            "WeCare wird diese Cookie-Richtlinie nicht dazu verwenden, zu erklären, dass Assessment-Informationen anonym oder von anderen Informationen getrennt sind, es sei denn, die technische Umsetzung stellt diese Trennung tatsächlich sicher.",
+            "Alle über das Assessment erhobenen personenbezogenen Daten werden in der Datenschutzerklärung von WeCare behandelt."
+          ]
+        },
+        {
+          "id": "consent-records",
+          "heading": "7. Aufzeichnungen zur Cookie-Einwilligung",
+          "body": [
+            "Sofern Sie eine Einwilligung für optionale Cookies erteilen, muss WeCare möglicherweise Informationen über Ihre Cookie-Auswahl speichern, damit wir Ihre Auswahl berücksichtigen und, sofern erforderlich, nachweisen können, dass eine Einwilligung eingeholt wurde.",
+            "Welche Informationen genau gespeichert werden und welche Speicherdauer gilt, hängt vom Cookie-Einwilligungsmechanismus der Live-Website ab."
           ]
         },
         {
           "id": "changes",
-          "heading": "6. Änderungen",
+          "heading": "8. Änderungen dieser Cookie-Richtlinie",
           "body": [
-            "Wir aktualisieren diese Seite, wenn sich die von uns eingesetzten Cookies ändern."
+            "Wir können diese Cookie-Richtlinie aktualisieren, wenn sich die von der WeCare-Website verwendeten Cookies, Technologien oder Funktionen ändern oder wenn Änderungen der geltenden rechtlichen Anforderungen eine Aktualisierung erforderlich machen.",
+            "Wenn wir diese Richtlinie aktualisieren, veröffentlichen wir die aktualisierte Fassung auf der WeCare-Website und aktualisieren das Gültigkeitsdatum."
           ]
         }
       ]
     },
     "imprint": {
-      "effectiveDate": "[noch offen — Datum der rechtlichen Prüfung]",
-      "intro": "Angaben gemäß § 5 ECG (E-Commerce-Gesetz) und § 25 Mediengesetz.",
+      "effectiveDate": "31. August 2026",
+      "intro": "Angaben gemäß den geltenden österreichischen Offenlegungspflichten, insbesondere § 5 ECG (E-Commerce-Gesetz) und, sofern zutreffend, § 25 Mediengesetz.",
       "sections": [
         {
           "id": "provider",
           "heading": "1. Diensteanbieter",
           "fields": [
-            { "label": "Unternehmen", "value": "[Firmenname von WeCare]" },
-            { "label": "Rechtsform", "value": "[z. B. GmbH]" },
-            { "label": "Sitz", "value": "[Straße, PLZ, Ort], Österreich" },
-            { "label": "Vertreten durch", "value": "[Geschäftsführung]" },
-            { "label": "Firmenbuch", "value": "Firmenbuchnummer [FN xxxxx x], Firmenbuchgericht [Gericht]" },
-            { "label": "UID-Nummer", "value": "[ATU xxxxxxxx]" }
+            {
+              "label": "Unternehmen",
+              "value": "WeCare GmbH"
+            },
+            {
+              "label": "Rechtsform",
+              "value": "GmbH"
+            },
+            {
+              "label": "Sitz",
+              "value": "Musterstraße 1, 1010 Wien, Österreich"
+            },
+            {
+              "label": "Vertreten durch",
+              "value": "Max Mustermann"
+            },
+            {
+              "label": "Firmenbuchnummer",
+              "value": "FN 000000a"
+            },
+            {
+              "label": "Firmenbuchgericht",
+              "value": "Handelsgericht Wien"
+            },
+            {
+              "label": "UID-Nummer",
+              "value": "ATU00000000"
+            }
           ]
         },
         {
           "id": "contact",
           "heading": "2. Kontakt",
           "fields": [
-            { "label": "E-Mail", "value": "[Kontakt-E-Mail]" },
-            { "label": "Telefon", "value": "[Kontakt-Telefon]" }
+            {
+              "label": "E-Mail",
+              "value": "kontakt@wecare.example"
+            },
+            {
+              "label": "Telefon",
+              "value": "+43 1 0000000"
+            }
+          ]
+        },
+        {
+          "id": "service-nature",
+          "heading": "3. Art des WeCare-Dienstes",
+          "body": [
+            "WeCare stellt eine Online-Plattform bereit, über die Nutzer:innen Informationen und Orientierung zu Wellness-Lösungen erhalten und, sofern der jeweilige Dienst verfügbar ist, Zugang zu einem Verfahren der ärztlichen Prüfung erhalten können.",
+            "Die WeCare-Website ist um Nutzerbedürfnisse herum aufgebaut, darunter:"
+          ],
+          "list": [
+            "Schlaf;",
+            "Schmerzen oder Körperbeschwerden;",
+            "Stress und Angst; und",
+            "Migräne oder Kopfspannung."
+          ],
+          "bodyAfter": [
+            "Die Website kann ein geführtes Assessment verwenden, um Nutzer:innen zu helfen, eine geeignete Lösung zu identifizieren.",
+            "Das Assessment und eine über die Website bereitgestellte Produktempfehlung stellen für sich genommen keine medizinische Diagnose dar.",
+            "Sofern eine ärztliche Prüfung Teil des Dienstes ist, werden die medizinische Beurteilung und die medizinische Entscheidungsfindung von unabhängig approbierten medizinischen Fachpersonen durchgeführt.",
+            "Nicht jede nutzende Person erhält ein Rezept. Eine etwaige Verschreibungsentscheidung wird von der verantwortlichen medizinischen Fachperson auf Grundlage ihrer eigenständigen medizinischen Beurteilung getroffen."
+          ]
+        },
+        {
+          "id": "independent-professionals",
+          "heading": "4. Unabhängige medizinische Fachpersonen und Apotheken",
+          "body": [
+            "Sofern zutreffend, wird die ärztliche Prüfung von unabhängig approbierten Ärztinnen und Ärzten durchgeführt.",
+            "Die Abgabe verschreibungspflichtiger Arzneimittel erfolgt, sofern rechtlich anwendbar, durch eine unabhängig lizenzierte Partnerapotheke.",
+            "Die an diesen Prozessen beteiligten medizinischen Fachpersonen und Apotheken handeln unabhängig von WeCare und unterliegen den für ihre jeweilige Tätigkeit geltenden beruflichen und rechtlichen Anforderungen.",
+            "WeCare ersetzt nicht die fachliche Beurteilung der verantwortlichen Ärztin bzw. des verantwortlichen Arztes oder der verantwortlichen Apothekerin bzw. des verantwortlichen Apothekers."
           ]
         },
         {
           "id": "regulatory",
-          "heading": "3. Regulatorische Hinweise",
+          "heading": "5. Regulatorische Informationen",
           "body": [
-            "Die ärztliche Prüfung erfolgt durch unabhängig approbierte Ärzt:innen, die Abgabe durch eine unabhängig lizenzierte Partnerapotheke. Beide sind nicht bei WeCare angestellt und unterliegen jeweils ihrer eigenen berufsrechtlichen Aufsicht."
+            "WeCare betreibt seine Website mit Fokus auf den österreichischen Markt.",
+            "Die Verfügbarkeit bestimmter Produkte, Dienstleistungen und Formen kann von den geltenden österreichischen und europäischen Gesetzen und Vorschriften abhängen.",
+            "Produkte und Dienstleistungen werden über WeCare nur angeboten, sofern sie für die jeweilige nutzende Person und Transaktion rechtlich verfügbar sind.",
+            "Die Verfügbarkeit von ärztlicher Prüfung, Verschreibungsleistungen und Apothekenabwicklung kann ebenfalls von den geltenden rechtlichen und beruflichen Anforderungen abhängen."
           ]
         },
         {
           "id": "dispute-resolution",
-          "heading": "4. Online-Streitbeilegung",
+          "heading": "6. Verbraucherstreitbeilegung",
           "body": [
-            "Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: ec.europa.eu/consumers/odr. Wir sind zur Teilnahme an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle weder verpflichtet noch derzeit bereit."
+            "WeCare ist derzeit nicht bereit, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen, sofern nicht gesetzlich etwas anderes vorgeschrieben ist.",
+            "Die frühere Plattform der Europäischen Kommission zur Online-Streitbeilegung (OS) steht nicht mehr zur Verfügung und wird daher in diesem Impressum nicht als aktive Streitbeilegungsplattform genannt."
           ]
         },
         {
           "id": "liability-content",
-          "heading": "5. Haftung für Inhalte",
+          "heading": "7. Haftung für Inhalte",
           "body": [
-            "Wir achten mit angemessener Sorgfalt auf die Richtigkeit und Aktualität der Inhalte dieser Website, übernehmen jedoch keine Gewähr für deren Vollständigkeit oder Anwendbarkeit auf Ihre individuelle Situation. Die Inhalte sind allgemeine Informationen und keine individuelle medizinische Beratung."
+            "WeCare achtet mit angemessener Sorgfalt darauf, die auf seiner Website veröffentlichten Informationen richtig und aktuell zu halten.",
+            "WeCare gewährleistet jedoch nicht, dass alle Inhalte vollständig, aktuell oder für jede individuelle Situation geeignet sind.",
+            "Die auf der Website bereitgestellten Informationen sind allgemeine Informationen und stellen keine individuelle ärztliche Beratung dar.",
+            "Sofern ärztlicher Rat erforderlich ist, sollten sich Nutzer:innen auf den Rat der verantwortlichen medizinischen Fachperson verlassen."
           ]
         },
         {
-          "id": "liability-links",
-          "heading": "6. Haftung für Links",
+          "id": "external-links",
+          "heading": "8. Externe Links",
           "body": [
-            "Unsere Website kann auf externe Websites verlinken, auf die wir keinen Einfluss haben. Für deren Inhalte übernehmen wir keine Verantwortung; ein Link stellt keine Billigung dar."
+            "Die WeCare-Website kann Links zu Websites oder Diensten enthalten, die von Dritten betrieben werden.",
+            "WeCare kontrolliert die Inhalte externer Websites nicht und ist für deren Inhalte oder Praktiken nicht verantwortlich.",
+            "Die Aufnahme eines externen Links stellt für sich genommen keine Befürwortung oder Empfehlung durch WeCare dar."
           ]
         },
         {
           "id": "copyright",
-          "heading": "7. Urheberrecht",
+          "heading": "9. Urheberrecht",
           "body": [
-            "Inhalte und Gestaltung dieser Website sind urheberrechtlich geschützt. Eine Verwertung, die über das urheberrechtlich Zulässige hinausgeht, bedarf unserer schriftlichen Zustimmung."
+            "Die Inhalte und die Gestaltung der WeCare-Website, einschließlich Texte, Grafiken, Bilder, Branding und sonstiger Materialien, sind durch die geltenden Gesetze zum geistigen Eigentum geschützt.",
+            "Sofern gesetzlich nicht anders zulässig, bedürfen Vervielfältigung, Verbreitung, Bearbeitung oder sonstige Nutzung von WeCare-Inhalten der vorherigen schriftlichen Zustimmung der jeweiligen Rechteinhaberin bzw. des jeweiligen Rechteinhabers."
+          ]
+        },
+        {
+          "id": "additional-legal",
+          "heading": "10. Weitere rechtliche Informationen",
+          "body": [
+            "Die WeCare-Website ist zusammen mit den weiteren für den Dienst geltenden rechtlichen Dokumenten zu lesen, darunter:"
+          ],
+          "list": [
+            "Allgemeine Geschäftsbedingungen (AGB);",
+            "Datenschutzerklärung;",
+            "Cookie-Richtlinie;",
+            "Versandrichtlinie; und",
+            "Rückerstattungsrichtlinie."
+          ],
+          "bodyAfter": [
+            "Sofern für einen bestimmten Dienst oder eine bestimmte Transaktion abweichende Regeln gelten, werden die geltenden Bedingungen der nutzenden Person mitgeteilt, bevor der jeweilige Dienst oder Kauf abgeschlossen wird."
           ]
         }
       ]
     },
     "shipping": {
-      "effectiveDate": "[noch offen — Datum der rechtlichen Prüfung]",
-      "intro": "Wie eine verschriebene Lösung zu Ihnen gelangt, sobald eine Ärztin oder ein Arzt sie freigegeben hat.",
+      "effectiveDate": "31. August 2026",
+      "intro": "Diese Versandrichtlinie erläutert, wie die Lieferung von Produkten funktioniert, die über WeCare in Österreich rechtlich zum Versand verfügbar sind.",
       "sections": [
         {
-          "id": "scope",
-          "heading": "1. Was diese Richtlinie umfasst",
+          "id": "what-this-covers",
+          "heading": "1. Was diese Richtlinie abdeckt",
           "body": [
-            "Diese Richtlinie betrifft die Lieferung einer verschriebenen Lösung, die von unserer lizenzierten Partnerapotheke abgegeben und versendet wird. Das Assessment und die ärztliche Prüfung selbst beinhalten keinen physischen Versand."
+            "Diese Versandrichtlinie gilt für über WeCare gekaufte Produkte, die in Österreich rechtlich lieferfähig sind.",
+            "Die ärztliche Prüfung ist, sofern verfügbar, ein von der physischen Produktlieferung getrennter Vorgang.",
+            "Sofern ein Produkt eine ärztliche Prüfung, ein Rezept oder eine Abgabe durch eine Apotheke erfordert, sind die betreffenden ärztlichen und apothekenbezogenen Vorgänge vom physischen Liefervorgang getrennt.",
+            "Eine ärztliche Prüfung gewährleistet für sich genommen nicht, dass ein Produkt verschrieben, abgegeben oder geliefert wird.",
+            "Eine etwaige medizinische Entscheidung wird von der verantwortlichen medizinischen Fachperson auf Grundlage ihrer eigenständigen fachlichen Beurteilung getroffen."
           ]
         },
         {
-          "id": "where-we-ship",
-          "heading": "2. Liefergebiet",
+          "id": "where-we-deliver",
+          "heading": "2. Wohin wir liefern",
           "body": [
-            "Wir liefern derzeit ausschließlich innerhalb Österreichs, an die im Checkout bestätigte Adresse."
+            "WeCare bietet derzeit eine Lieferung innerhalb Österreichs an.",
+            "Die Lieferung erfolgt an die von der Kundin bzw. dem Kunden im jeweiligen Bestellvorgang angegebene Lieferadresse.",
+            "WeCare sagt keine Lieferung an Orte zu, an denen die Lieferung des betreffenden Produkts nach geltendem Recht verboten oder eingeschränkt ist.",
+            "Bestimmte Produkte oder Produktformen können daher abweichende Verfügbarkeiten oder Lieferbedingungen haben."
           ]
         },
         {
-          "id": "processing-time",
-          "heading": "3. Bearbeitungszeit",
+          "id": "order-processing",
+          "heading": "3. Bearbeitung von Bestellungen",
           "body": [
-            "Sobald ein Rezept ausgestellt ist, versendet unsere Partnerapotheke Ihre Bestellung in der Regel innerhalb von [X] Werktagen, vorbehaltlich der Verfügbarkeit der verschriebenen Sorten."
+            "Bestellungen werden bearbeitet, nachdem die jeweiligen Kaufvoraussetzungen erfüllt sind.",
+            "Die Bearbeitung kann abhängen von:"
+          ],
+          "list": [
+            "der Produktverfügbarkeit;",
+            "der Bestätigung der Bestellung durch die Kundin bzw. den Kunden;",
+            "einer erfolgreichen Zahlung;",
+            "dem Abschluss einer etwaigen gesetzlich vorgeschriebenen Überprüfung;",
+            "einem etwaigen anwendbaren ärztlichen oder apothekenbezogenen Vorgang; und",
+            "der Einhaltung der geltenden österreichischen Anforderungen."
+          ],
+          "bodyAfter": [
+            "Wenn ein Produkt nicht verfügbar oder rechtlich eingeschränkt ist oder der Kundin bzw. dem Kunden nicht geliefert werden kann, kann WeCare die Bestellung möglicherweise nicht abschließen.",
+            "In diesem Fall wird die Kundin bzw. der Kunde informiert, und eine etwaige Rückerstattung wird gemäß den geltenden AGB und der Rückerstattungsrichtlinie abgewickelt."
           ]
         },
         {
-          "id": "delivery-time",
-          "heading": "4. Lieferzeit",
+          "id": "delivery-times",
+          "heading": "4. Lieferzeiten",
           "body": [
-            "Die Standardlieferung dauert ab Versand in der Regel [X–Y] Werktage. Sobald Ihre Bestellung unterwegs ist, erhalten Sie eine Versandbestätigung mit Sendungsverfolgung."
+            "Die voraussichtliche Lieferzeit wird der Kundin bzw. dem Kunden im Bestell- oder Bezahlvorgang mitgeteilt, sofern eine Schätzung verfügbar ist.",
+            "Die Lieferzeiten können variieren, abhängig von:"
+          ],
+          "list": [
+            "der Produktverfügbarkeit;",
+            "der Bestellbearbeitung;",
+            "dem Lieferdienstleister;",
+            "der Lieferadresse;",
+            "Wochenenden und Feiertagen; und",
+            "Überprüfungen oder anderen gesetzlich vorgeschriebenen Vorgängen."
+          ],
+          "bodyAfter": [
+            "Eine Lieferschätzung ist keine Zusicherung der Lieferung bis zu einem bestimmten Datum, sofern nicht ausdrücklich etwas anderes angegeben ist.",
+            "Sobald eine Bestellung versandt wurde, kann WeCare der Kundin bzw. dem Kunden verfügbare Versandinformationen oder Sendungsverfolgungsdetails bereitstellen."
           ]
         },
         {
-          "id": "packaging",
-          "heading": "5. Diskrete, neutrale Verpackung",
+          "id": "discreet-packaging",
+          "heading": "5. Diskrete Verpackung",
           "body": [
-            "Jede Lieferung erfolgt in neutraler, unbeschrifteter Verpackung ohne äußerlich erkennbaren Hinweis auf den Inhalt. Wie bei jedem verschreibungspflichtigen Arzneimittel ist bei der Zustellung eine Unterschrift erforderlich."
+            "Sofern für das betreffende Produkt eine diskrete Verpackung verfügbar ist, können WeCare oder der verantwortliche Abwicklungsdienstleister eine neutrale Außenverpackung verwenden.",
+            "Die Verpackung weist das Produkt nicht absichtlich in einer für die Lieferung nicht erforderlichen Weise aus.",
+            "Verpackung und Kennzeichnung können dennoch Informationen enthalten, die gesetzlich, vom Lieferdienstleister oder von der verantwortlichen Apotheke bzw. dem verantwortlichen Abwicklungsdienstleister verlangt werden."
           ]
         },
         {
-          "id": "fees",
-          "heading": "6. Versandkosten",
+          "id": "delivery-fees",
+          "heading": "6. Liefergebühren",
           "body": [
-            "Der Versand ist derzeit ohne Aufpreis inkludiert. Den vollständigen Überblick, was Sie erwartet, einschließlich der separaten Gebühr für die ärztliche Prüfung, finden Sie auf unserer Seite „Kosten“."
+            "Eine etwaige Liefergebühr wird der Kundin bzw. dem Kunden angezeigt, bevor die Bestellung abgeschlossen wird.",
+            "Sofern für ein bestimmtes Produkt oder eine bestimmte Bestellung eine kostenlose Lieferung angeboten wird, wird dies im jeweiligen Bestellvorgang angegeben.",
+            "Die etwaige Gebühr für die ärztliche Prüfung ist, sofern relevant, von den Liefergebühren getrennt.",
+            "Für die aktuelle Kostenstruktur sollten sich Kund:innen auf die Kosten-Seite und die jeweiligen Informationen im Bezahlvorgang beziehen."
           ]
         },
         {
-          "id": "missed-delivery",
-          "heading": "7. Wenn die Zustellung nicht gelingt",
+          "id": "unsuccessful-delivery",
+          "heading": "7. Bei erfolgloser Zustellung",
           "body": [
-            "Ist niemand zur Übernahme der Sendung anwesend, hinterlässt der Zusteller eine Benachrichtigung mit Hinweisen zur erneuten Zustellung oder Abholung. Kontaktieren Sie uns, wenn Sie dabei Unterstützung benötigen."
+            "Wenn die Zustellung nicht abgeschlossen werden kann, weil niemand zur Entgegennahme der Sendung verfügbar ist, kann der Lieferdienstleister einen weiteren Zustellversuch unternehmen oder Anweisungen zur Abholung bereitstellen, je nach verwendeter Zustellmethode.",
+            "Kund:innen sollten die Anweisungen des Lieferdienstleisters befolgen.",
+            "Wenn die Kundin bzw. der Kunde Unterstützung bei einer erfolglosen Zustellung benötigt, kann sie bzw. er WeCare über den verfügbaren Kundensupport-Kanal kontaktieren.",
+            "Wird eine Sendung an den Absender zurückgesandt, bestimmt WeCare die nächsten Schritte anhand des Grundes für die fehlgeschlagene Zustellung und der geltenden Produkt- und Lieferregeln."
+          ]
+        },
+        {
+          "id": "additional-legal-requirements",
+          "heading": "8. Produkte mit zusätzlichen rechtlichen Anforderungen",
+          "body": [
+            "Bestimmte Produkte können zusätzlichen österreichischen oder europäischen rechtlichen Anforderungen in Bezug auf Verkauf, Abgabe, Lieferung oder Bewerbung unterliegen.",
+            "WeCare stellt ein Produkt nur dann zur Lieferung bereit, wenn die betreffende Transaktion und Lieferung rechtlich zulässig sind.",
+            "Insbesondere unterscheiden die österreichischen Vorschriften zwischen verschreibungspflichtigen Arzneimitteln und Arzneimitteln, die von registrierten Versandapotheken rechtmäßig verkauft werden dürfen.",
+            "Das österreichische Bundesamt für Sicherheit im Gesundheitswesen (BASG) weist darauf hin, dass verschreibungspflichtige Arzneimittel in Österreich grundsätzlich nicht im Versandhandel verkauft werden dürfen, während zugelassene nicht verschreibungspflichtige Arzneimittel von entsprechend registrierten Versandapotheken online verkauft werden dürfen.",
+            "Ein ärztliches Rezept bedeutet daher für sich genommen nicht, dass ein verschreibungspflichtiges Arzneimittel über eine Online-Bestellung an eine Kundin bzw. einen Kunden in Österreich versandt werden kann.",
+            "Sofern ein bestimmtes Produkt einen anderen rechtskonformen Abgabe- oder Abholvorgang erfordert, stellt WeCare die entsprechenden Informationen bereit, bevor die betreffende Transaktion abgeschlossen wird."
+          ]
+        },
+        {
+          "id": "pharmacy-fulfilment",
+          "heading": "9. Abwicklung durch die Apotheke",
+          "body": [
+            "Sofern eine Apotheke für die Abgabe oder Abwicklung eines Produkts verantwortlich ist, ist die Apotheke für die Abgabe- und Abwicklungstätigkeiten verantwortlich, die in ihren fachlichen und rechtlichen Verantwortungsbereich fallen.",
+            "WeCare ersetzt nicht die fachliche Beurteilung der verantwortlichen Apothekerin bzw. des verantwortlichen Apothekers.",
+            "Sofern zutreffend, können apothekenbezogene Anforderungen Zeitpunkt, Methode oder Verfügbarkeit der Lieferung beeinflussen."
+          ]
+        },
+        {
+          "id": "contact",
+          "heading": "10. Kontakt",
+          "body": [
+            "Bei Fragen zu einer bestehenden Bestellung oder Lieferung können sich Kund:innen über die auf der Website angegebenen Kontaktdaten an WeCare wenden.",
+            "Bei Fragen, die speziell die Abgabe oder die fachliche Handhabung eines Arzneimittels betreffen, müssen sich Kund:innen möglicherweise auch an die verantwortliche Apotheke oder medizinische Fachperson wenden."
           ]
         }
       ]
     },
     "refunds": {
-      "effectiveDate": "[noch offen — Datum der rechtlichen Prüfung]",
-      "intro": "Ihr Widerrufsrecht und die Ausnahmen, die für verschriebene Arzneimittel gelten.",
+      "effectiveDate": "31. August 2026",
+      "intro": "Diese Rückerstattungsrichtlinie erläutert, unter welchen Umständen Kund:innen eine Bestellung stornieren, ein gesetzliches Rücktrittsrecht ausüben oder eine Rückerstattung für über WeCare gekaufte Produkte oder Dienstleistungen verlangen können.",
       "sections": [
         {
           "id": "right-of-withdrawal",
-          "heading": "1. Ihr Widerrufsrecht",
+          "heading": "1. Rücktrittsrecht",
           "body": [
-            "Als Verbraucher:in in Österreich haben Sie grundsätzlich das Recht, einen Fernabsatzvertrag innerhalb von 14 Tagen ohne Angabe von Gründen zu widerrufen (Fern- und Auswärtsgeschäfte-Gesetz, FAGG). Um dieses Recht auszuüben, teilen Sie uns vor Ablauf der Frist über unsere Kontaktseite eindeutig mit, dass Sie widerrufen möchten."
+            "Ihre gesetzlichen Verbraucherrechte bleiben von dieser Richtlinie unberührt.",
+            "Wenn Sie Verbraucher:in in Österreich sind und einen Fernabsatzvertrag mit WeCare abschließen, steht Ihnen möglicherweise ein gesetzliches Rücktrittsrecht nach dem österreichischen Fern- und Auswärtsgeschäfte-Gesetz (FAGG) zu.",
+            "Sofern das Rücktrittsrecht gilt, werden Ihnen die geltende Rücktrittsfrist und die geltenden Anforderungen mitgeteilt, bevor Sie den betreffenden Kauf oder die betreffende Dienstleistung abschließen.",
+            "Um Ihr Rücktrittsrecht auszuüben, müssen Sie WeCare eindeutig mitteilen, dass Sie vom betreffenden Vertrag zurücktreten möchten.",
+            "Sie können WeCare über die auf der Website angegebenen Kontaktdaten kontaktieren.",
+            "Ihre gesetzlichen Rechte werden durch diese Rückerstattungsrichtlinie nicht eingeschränkt."
           ]
         },
         {
-          "id": "exclusion-medicine",
-          "heading": "2. Warum verschriebene Lösungen in der Regel nicht zurückgenommen werden können",
+          "id": "cannot-be-returned",
+          "heading": "2. Produkte, die nicht zurückgegeben werden können",
           "body": [
-            "Versiegelte Waren, die aus Gründen des Gesundheitsschutzes oder der Hygiene nach dem Entsiegeln nicht zur Rückgabe geeignet sind — dazu zählt abgegebenes verschreibungspflichtiges Arzneimittel —, sind gesetzlich vom regulären Widerrufsrecht ausgenommen (§ 18 Abs. 1 FAGG). Sobald Ihre Lösung abgegeben und versendet wurde, können wir sie aus Sicherheitsgründen und weil sie nicht sicher weiterverkauft werden kann, in der Regel nicht zurücknehmen oder aufgrund eines Widerrufs erstatten.",
-            "Ihre Rechte bleiben unberührt, wenn das Produkt mangelhaft ist, beim Transport beschädigt wurde oder nicht Ihrer Bestellung entspricht — siehe dazu unten."
+            "Das Rücktrittsrecht unterliegt gesetzlichen Ausnahmen.",
+            "Insbesondere können die gesetzlichen Rücktrittsregeln Ausnahmen für versiegelte Waren enthalten, die aus Gründen des Gesundheitsschutzes oder der Hygiene nach dem Entfernen der Versiegelung nicht zur Rückgabe geeignet sind.",
+            "Sofern ein bestimmtes Produkt unter eine solche gesetzliche Ausnahme fällt, gilt das jeweilige Rücktrittsrecht nicht mehr, sobald die betreffenden Voraussetzungen erfüllt sind.",
+            "Arzneimittel und von einer Apotheke abgegebene Produkte können zudem besonderen rechtlichen Anforderungen hinsichtlich Rückgabe, Handhabung und Weiterverkauf unterliegen.",
+            "Aus diesem Grund sollten Kund:innen Arzneimittel oder von einer Apotheke abgegebene Produkte nicht zurücksenden, ohne zuvor WeCare oder die verantwortliche Apotheke zu kontaktieren.",
+            "Nichts in diesem Abschnitt schränkt gesetzliche Rechte in Bezug auf mangelhafte, beschädigte, falsch gelieferte oder anderweitig nicht vertragsgemäße Produkte ein."
           ]
         },
         {
-          "id": "review-fee",
+          "id": "medical-review-fee",
           "heading": "3. Gebühr für die ärztliche Prüfung",
           "body": [
-            "Wurde die ärztliche Prüfung auf Ihren ausdrücklichen Wunsch bereits vor Ablauf der Widerrufsfrist begonnen, kann gemäß § 16 FAGG ein anteiliger Betrag für die bereits erbrachte Leistung anfallen. Wir weisen Sie darauf immer deutlich hin, bevor die Prüfung beginnt."
+            "Sofern WeCare Zugang zu einem Dienst der ärztlichen Prüfung bietet, ist dieser Dienst vom Kauf eines physischen Produkts getrennt.",
+            "Wenn Sie ausdrücklich verlangen, dass der Dienst der ärztlichen Prüfung vor Ablauf einer geltenden Rücktrittsfrist beginnt, können die gesetzlichen Regeln für bereits begonnene Dienstleistungen gelten.",
+            "Bevor die ärztliche Prüfung beginnt, stellt WeCare die nach geltendem Recht erforderlichen Informationen bereit über:"
+          ],
+          "list": [
+            "die Dienstleistung;",
+            "die geltende Gebühr;",
+            "den Beginn der Dienstleistung; und",
+            "die Folgen eines Verlangens, dass die Dienstleistung vor Ablauf der Rücktrittsfrist beginnt."
+          ],
+          "bodyAfter": [
+            "Die medizinische Entscheidung selbst wird von der verantwortlichen medizinischen Fachperson eigenständig getroffen.",
+            "Eine ärztliche Prüfung gewährleistet nicht, dass ein Rezept ausgestellt wird."
           ]
         },
         {
-          "id": "damaged-or-wrong",
-          "heading": "4. Beschädigte, mangelhafte oder falsche Artikel",
+          "id": "damaged-or-incorrect",
+          "heading": "4. Beschädigte, mangelhafte oder falsche Produkte",
           "body": [
-            "Kommt Ihre Lieferung beschädigt oder mangelhaft an oder entspricht nicht Ihrer Bestellung, kontaktieren Sie uns innerhalb von [X] Tagen nach Zustellung. Wir organisieren kostenlos einen Ersatz oder eine Erstattung — dies ist unabhängig von der oben genannten Ausnahme stets gewährleistet."
+            "Wenn ein Produkt wie folgt ankommt:"
+          ],
+          "list": [
+            "beschädigt;",
+            "mangelhaft;",
+            "falsch; oder",
+            "anders als bestellt,"
+          ],
+          "bodyAfter": [
+            "kontaktieren Sie WeCare bitte so bald wie vernünftigerweise möglich nach Erhalt der Lieferung.",
+            "Geben Sie Ihre Bestellnummer, eine Beschreibung des Problems und, sofern relevant, Fotos an.",
+            "WeCare prüft das Problem und teilt die geeigneten nächsten Schritte mit.",
+            "Sofern der Kundin bzw. dem Kunden gesetzliche Rechte in Bezug auf mangelhafte, beschädigte oder falsch gelieferte Waren zustehen, werden diese Rechte durch diese Rückerstattungsrichtlinie nicht ausgeschlossen oder eingeschränkt.",
+            "Kund:innen sollten ein Produkt nicht entsorgen oder zurücksenden, wenn WeCare oder die verantwortliche Apotheke die Kundin bzw. den Kunden gebeten hat, es zur Prüfung aufzubewahren."
           ]
         },
         {
           "id": "how-to-request",
-          "heading": "5. So beantragen Sie eine Erstattung",
+          "heading": "5. So beantragen Sie eine Rückerstattung",
           "body": [
-            "Kontaktieren Sie uns über unsere Kontaktseite mit Ihrer Bestellnummer und einer kurzen Beschreibung des Problems. Wir bestätigen die nächsten Schritte per E-Mail."
+            "Um eine Rückerstattung zu beantragen oder ein geltendes Rücktrittsrecht auszuüben, kontaktieren Sie WeCare über die auf der Website angegebenen Kontaktdaten.",
+            "Bitte geben Sie an:"
+          ],
+          "list": [
+            "Ihren Namen;",
+            "Ihre Bestellnummer, sofern zutreffend;",
+            "das betreffende Produkt oder die betreffende Dienstleistung;",
+            "den Grund für Ihre Anfrage, sofern relevant; und",
+            "alle Informationen, die für uns erforderlich sind, um die Transaktion zu identifizieren."
+          ],
+          "bodyAfter": [
+            "Wenn Sie ein gesetzliches Rücktrittsrecht ausüben, müssen Sie keinen Grund angeben, sofern das geltende Recht nichts anderes verlangt.",
+            "WeCare bestätigt die nächsten Schritte nach Erhalt Ihrer Anfrage."
           ]
         },
         {
-          "id": "refund-timing",
-          "heading": "6. Zeitpunkt der Erstattung",
+          "id": "refunds",
+          "heading": "6. Rückerstattungen",
           "body": [
-            "Genehmigte Erstattungen erfolgen auf Ihre ursprüngliche Zahlungsmethode, in der Regel innerhalb von 14 Tagen nach Genehmigung."
+            "Sofern eine Rückerstattung gesetzlich geschuldet und genehmigt ist, wickelt WeCare die Rückerstattung im Einklang mit den geltenden gesetzlichen Anforderungen und den Umständen der Transaktion ab.",
+            "Sofern nicht anders vereinbart oder gesetzlich vorgeschrieben, erfolgen Rückerstattungen über dasselbe Zahlungsmittel, das für die ursprüngliche Transaktion verwendet wurde.",
+            "Sofern zutreffend, gelten die gesetzlichen Regeln zum Zeitpunkt von Rückerstattungen, zur Rücksendung von Waren, zu Lieferkosten oder zu sonstigen Gebühren.",
+            "Wenn ein Produkt von einer Apotheke oder einem anderen unabhängigen Abwicklungsdienstleister geliefert wurde, können die geltenden Regelungen für Rücksendungen oder Rückerstattungen auch von den rechtlichen und fachlichen Pflichten dieses Dienstleisters abhängen."
           ]
         },
         {
           "id": "withdrawal-form",
           "heading": "7. Muster-Widerrufsformular",
           "body": [
-            "Sofern das Widerrufsrecht anwendbar ist, können Sie das EU-weit einheitliche Muster-Widerrufsformular über unsere Kontaktseite bei uns anfordern."
+            "Sofern das gesetzliche Rücktrittsrecht gilt, können Verbraucher:innen dieses Recht durch eine eindeutige Erklärung gegenüber WeCare ausüben.",
+            "Verbraucher:innen können, sofern zutreffend, auch das gesetzliche EU-Muster-Widerrufsformular verwenden.",
+            "Das Formular muss nicht in einem bestimmten Format übermittelt werden, sofern die Verbraucherin bzw. der Verbraucher anderweitig eine eindeutige Erklärung zur Ausübung des Rücktrittsrechts abgibt.",
+            "WeCare stellt die nach geltendem Recht erforderlichen Rücktrittsinformationen bereit, bevor der betreffende Fernabsatzvertrag geschlossen wird."
           ]
         }
       ]
