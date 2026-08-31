@@ -1,0 +1,434 @@
+{
+  "effectiveDateLabel": "Effective from {{date}}",
+  "tocLabel": "On this page",
+  "draftNotice": "Draft — this page is a placeholder for legal review. Bracketed fields (company details, register numbers, contact addresses) will be filled in with WeCare's real registered details before launch, and the text itself is reviewed by counsel before it takes effect.",
+  "docs": {
+    "terms": {
+      "effectiveDate": "[TBD — date of legal review]",
+      "intro": "These terms explain what WeCare is, what to expect from the assessment and medical-review process, and the rules that apply once a solution is recommended and, where medically appropriate, dispensed.",
+      "sections": [
+        {
+          "id": "scope",
+          "heading": "1. Scope",
+          "body": [
+            "These terms apply whenever you use the WeCare website, complete the assessment, or place an order for a recommended solution. By using WeCare you accept them. If you don't agree, please don't use the service.",
+            "WeCare is available to consumers in Austria. Business (B2B) use is not covered by these consumer-facing terms."
+          ]
+        },
+        {
+          "id": "definitions",
+          "heading": "2. A few terms, defined",
+          "list": [
+            "Assessment — the short set of questions you answer about your problem (sleep, pain, stress & anxiety, or migraine).",
+            "Recommended solution — the wellness solution WeCare's assessment logic matches to your answers. It is a recommendation, not a prescription.",
+            "Medical review — the review of your assessment by a licensed doctor, who decides whether a prescription is medically appropriate for you.",
+            "Solution — one of WeCare's named solutions, dispensed as medical cannabis by a partner pharmacy once prescribed."
+          ]
+        },
+        {
+          "id": "what-we-provide",
+          "heading": "3. What WeCare provides",
+          "body": [
+            "WeCare is a guided digital health platform, not an online pharmacy and not a doctor's practice. We help you identify a suitable solution through a short assessment, then route your assessment to a licensed doctor for medical review.",
+            "The doctor — not WeCare — decides whether a prescription is issued and what it covers. If a prescription is issued, dispensing and delivery are handled by a licensed partner pharmacy, not by WeCare directly."
+          ]
+        },
+        {
+          "id": "eligibility",
+          "heading": "4. Eligibility and your information",
+          "body": [
+            "You must be at least 18 years old and resident in Austria to use WeCare. You're responsible for the accuracy of the information you give us during the assessment — the medical review depends on it being truthful and complete."
+          ]
+        },
+        {
+          "id": "no-guarantee",
+          "heading": "5. The assessment result is not a guarantee",
+          "body": [
+            "Completing the assessment does not guarantee a prescription. Every assessment goes through an individual medical review, and the reviewing doctor may decline to prescribe, prescribe something different from the initial recommendation, or ask for more information before deciding.",
+            "Nothing on this site is individual medical advice. It doesn't replace an in-person examination where your doctor considers one necessary."
+          ]
+        },
+        {
+          "id": "orders",
+          "heading": "6. Ordering a recommended solution",
+          "body": [
+            "You can only order a solution after a prescription has been issued for it. Placing an order is an offer to purchase, which we (or our partner pursuit pharmacy) may accept or decline — for example, if the prescription has expired or a required check is still outstanding.",
+            "Order details, quantities and prices are shown at checkout before you confirm."
+          ]
+        },
+        {
+          "id": "prices-payment",
+          "heading": "7. Prices and payment",
+          "body": [
+            "Prices are shown in euro and include statutory VAT unless stated otherwise. Accepted payment methods are shown at checkout. A separate medical-review fee may apply, shown before it's charged — see our Costs page for how that works qualitatively; we don't publish fixed figures here since they depend on the review."
+          ]
+        },
+        {
+          "id": "delivery-and-withdrawal",
+          "heading": "8. Delivery and your right of withdrawal",
+          "body": [
+            "Delivery terms are set out in our Shipping Policy. Your statutory right of withdrawal, and the exceptions that apply to dispensed medicine, are set out in our Refund Policy — please read that before ordering."
+          ]
+        },
+        {
+          "id": "liability",
+          "heading": "9. Liability",
+          "body": [
+            "We're liable for intent and gross negligence without limit. For ordinary negligence, we're liable only for breach of a material contractual duty, and limited to the loss that was foreseeable at the time the contract was formed. This doesn't affect any liability that can't be limited by law, including for injury to life, body or health.",
+            "WeCare isn't liable for the independent medical judgement of a reviewing doctor, or for a partner pharmacy's dispensing decisions — those are made by the respective licensed professional, not by WeCare."
+          ]
+        },
+        {
+          "id": "changes",
+          "heading": "10. Changes to these terms",
+          "body": [
+            "We may update these terms from time to time — for example if our services or the law change. We'll post the updated version here with a new effective date; continued use after that date means you accept the update."
+          ]
+        },
+        {
+          "id": "governing-law",
+          "heading": "11. Governing law and jurisdiction",
+          "body": [
+            "Austrian law applies, without prejudice to any mandatory consumer-protection provisions of the country you live in. If you're a consumer, you can bring proceedings in the courts of your place of residence or ours; if we bring proceedings against you, we'll do so in the courts of your place of residence."
+          ]
+        },
+        {
+          "id": "contact",
+          "heading": "12. Contact",
+          "body": [
+            "Questions about these terms? Reach us through our Contact page, or see our Imprint for full company details."
+          ]
+        }
+      ]
+    },
+    "privacy": {
+      "effectiveDate": "[TBD — date of legal review]",
+      "intro": "This policy explains what personal data WeCare collects, why, and what rights you have over it — including the health-related information you share during the assessment and medical review.",
+      "sections": [
+        {
+          "id": "controller",
+          "heading": "1. Who is responsible for your data",
+          "fields": [
+            { "label": "Controller", "value": "[WeCare legal entity name], [registered address], Austria" },
+            { "label": "Data protection officer", "value": "[DPO name / contact email — appointed where required by law]" },
+            { "label": "Contact", "value": "See our Contact page" }
+          ]
+        },
+        {
+          "id": "what-we-collect",
+          "heading": "2. What we collect",
+          "list": [
+            "Account data — name, email, and the login details you create.",
+            "Assessment answers — your problem area, severity, frequency and prior experience with cannabis or CBD. This is health-related data under Art. 9 GDPR.",
+            "Medical-review data — anything the reviewing doctor records as part of assessing your case.",
+            "Order and delivery data — shipping address, order contents, payment confirmation (we don't store full card numbers ourselves; that's handled by our payment provider).",
+            "Technical data — device, browser, general usage of the site, collected to keep it working and secure."
+          ]
+        },
+        {
+          "id": "legal-basis",
+          "heading": "3. Our legal basis for processing",
+          "body": [
+            "We process your account and order data to perform our contract with you (Art. 6(1)(b) GDPR). We process assessment answers and other health-related data only with your explicit consent (Art. 9(2)(a) GDPR), which you give when you start the assessment and can withdraw at any time by contacting us — though withdrawing it may mean we can no longer complete a review already in progress.",
+            "We process limited technical data under legitimate interest (Art. 6(1)(f) GDPR) to keep the site secure and working, and comply with legal retention obligations (Art. 6(1)(c) GDPR) where the law requires it, e.g. for pharmacy and tax records."
+          ]
+        },
+        {
+          "id": "sharing",
+          "heading": "4. Who we share it with",
+          "body": [
+            "We share what's needed to deliver the service, and nothing beyond that:"
+          ],
+          "list": [
+            "The licensed doctor performing your medical review.",
+            "The licensed partner pharmacy that dispenses and ships a prescribed solution.",
+            "Payment and shipping providers, to process your order and delivery.",
+            "Hosting and IT providers who process data on our behalf under a data-processing agreement.",
+            "Authorities, only where we're legally required to."
+          ],
+          "bodyAfter": [
+            "We never sell your personal data, and we don't share assessment or health data for marketing purposes."
+          ]
+        },
+        {
+          "id": "international-transfers",
+          "heading": "5. International transfers",
+          "body": [
+            "Where a provider we use processes data outside the EU/EEA, we rely on an adequacy decision or EU Standard Contractual Clauses to keep your data protected to the same standard."
+          ]
+        },
+        {
+          "id": "retention",
+          "heading": "6. How long we keep it",
+          "body": [
+            "We keep account and assessment data for as long as your account is active, plus a limited period after (to handle any follow-up or dispute). Order and prescription-related records are kept for the periods pharmacy and tax law require, even after that — typically several years. You can ask us for the specific period that applies to your data."
+          ]
+        },
+        {
+          "id": "security",
+          "heading": "7. Security",
+          "body": [
+            "We use encryption in transit (TLS) and access controls so that only the people involved in your care and order can see your data. No system is perfectly secure, but we design and review ours to current good practice."
+          ]
+        },
+        {
+          "id": "cookies",
+          "heading": "8. Cookies",
+          "body": [
+            "We use a small number of cookies to run the site and, where you allow it, to understand how it's used. See our Cookie Policy for the details and how to control them."
+          ]
+        },
+        {
+          "id": "your-rights",
+          "heading": "9. Your rights",
+          "body": [
+            "Under the GDPR you can:"
+          ],
+          "list": [
+            "Ask what data we hold about you, and get a copy (right of access).",
+            "Ask us to correct inaccurate data (right to rectification).",
+            "Ask us to delete data we no longer need to keep (right to erasure).",
+            "Ask us to restrict or object to certain processing.",
+            "Ask for your data in a portable format (right to data portability).",
+            "Withdraw consent at any time, for processing that relies on it.",
+            "Complain to your national data-protection authority — in Austria, the Datenschutzbehörde (dsb.gv.at)."
+          ]
+        },
+        {
+          "id": "children",
+          "heading": "10. Children",
+          "body": [
+            "WeCare is for adults (18+). We don't knowingly collect data from anyone under that age."
+          ]
+        },
+        {
+          "id": "changes",
+          "heading": "11. Changes to this policy",
+          "body": [
+            "We'll update this page if what or how we process changes, and post a new effective date when we do."
+          ]
+        }
+      ]
+    },
+    "cookies": {
+      "effectiveDate": "[TBD — date of legal review]",
+      "intro": "Cookies are small files a site stores on your device. Here's what WeCare uses them for.",
+      "sections": [
+        {
+          "id": "essential",
+          "heading": "1. Essential cookies",
+          "body": [
+            "These keep the site working — remembering your login session, your language choice, and items in your cart. The site can't function properly without them, so they're always on."
+          ]
+        },
+        {
+          "id": "preference",
+          "heading": "2. Preference cookies",
+          "body": [
+            "These remember choices like your language (German/English) so you don't have to reset them on every visit."
+          ]
+        },
+        {
+          "id": "analytics",
+          "heading": "3. Analytics cookies",
+          "body": [
+            "Where enabled, these help us understand how the site is used in aggregate — which pages are visited, and whether the assessment flow is working smoothly — so we can improve it. They're only set with your consent, and never combined with your assessment or health data."
+          ]
+        },
+        {
+          "id": "managing",
+          "heading": "4. Managing cookies",
+          "body": [
+            "You can accept or decline non-essential cookies through our cookie banner when you first visit, and change your choice at any time in your browser settings. Blocking essential cookies may stop parts of the site — like staying logged in — from working."
+          ]
+        },
+        {
+          "id": "third-party",
+          "heading": "5. Third-party cookies",
+          "body": [
+            "Some embedded content (e.g. payment or shipping widgets at checkout) may set its own cookies, governed by that provider's own policy."
+          ]
+        },
+        {
+          "id": "changes",
+          "heading": "6. Changes",
+          "body": [
+            "We'll update this page if the cookies we use change."
+          ]
+        }
+      ]
+    },
+    "imprint": {
+      "effectiveDate": "[TBD — date of legal review]",
+      "intro": "Information required under the Austrian E-Commerce Act (§ 5 ECG) and Media Act (§ 25 MedienG).",
+      "sections": [
+        {
+          "id": "provider",
+          "heading": "1. Service provider",
+          "fields": [
+            { "label": "Company", "value": "[WeCare legal entity name]" },
+            { "label": "Legal form", "value": "[e.g. GmbH]" },
+            { "label": "Registered address", "value": "[Street, postcode, city], Austria" },
+            { "label": "Represented by", "value": "[Managing director(s)]" },
+            { "label": "Company register", "value": "Firmenbuchnummer [FN xxxxx x], Firmenbuchgericht [court]" },
+            { "label": "VAT ID", "value": "UID-Nummer [ATU xxxxxxxx]" }
+          ]
+        },
+        {
+          "id": "contact",
+          "heading": "2. Contact",
+          "fields": [
+            { "label": "Email", "value": "[contact email]" },
+            { "label": "Phone", "value": "[contact phone]" }
+          ]
+        },
+        {
+          "id": "regulatory",
+          "heading": "3. Regulatory information",
+          "body": [
+            "Medical review is carried out by independently licensed doctors; dispensing is carried out by an independently licensed partner pharmacy. Neither is an employee of WeCare, and each is bound by their own professional regulatory body."
+          ]
+        },
+        {
+          "id": "dispute-resolution",
+          "heading": "4. Online dispute resolution",
+          "body": [
+            "The European Commission provides a platform for online dispute resolution (ODR): ec.europa.eu/consumers/odr. We're not obliged and not currently willing to take part in dispute resolution proceedings before a consumer arbitration board."
+          ]
+        },
+        {
+          "id": "liability-content",
+          "heading": "5. Liability for content",
+          "body": [
+            "We take reasonable care to keep this site's content accurate and current, but we don't guarantee its completeness or that it applies to your individual situation. Content here is general information, not individual medical advice."
+          ]
+        },
+        {
+          "id": "liability-links",
+          "heading": "6. Liability for links",
+          "body": [
+            "Our site may link to external sites we don't control. We're not responsible for their content, and a link doesn't mean we endorse it."
+          ]
+        },
+        {
+          "id": "copyright",
+          "heading": "7. Copyright",
+          "body": [
+            "Content and design on this site are protected by copyright. Reproduction outside what copyright law allows requires our written consent."
+          ]
+        }
+      ]
+    },
+    "shipping": {
+      "effectiveDate": "[TBD — date of legal review]",
+      "intro": "How a prescribed solution reaches you, once a doctor has approved it.",
+      "sections": [
+        {
+          "id": "scope",
+          "heading": "1. What this covers",
+          "body": [
+            "This policy covers delivery of a prescribed solution, dispensed and shipped by our licensed partner pharmacy. The assessment and medical review themselves don't involve a physical shipment."
+          ]
+        },
+        {
+          "id": "where-we-ship",
+          "heading": "2. Where we deliver",
+          "body": [
+            "We currently deliver within Austria only, to the address you confirm at checkout."
+          ]
+        },
+        {
+          "id": "processing-time",
+          "heading": "3. Processing time",
+          "body": [
+            "Once a prescription is issued, our partner pharmacy typically dispatches your order within [X] business days, subject to stock availability of the prescribed solution's strains."
+          ]
+        },
+        {
+          "id": "delivery-time",
+          "heading": "4. Delivery time",
+          "body": [
+            "Standard delivery typically takes [X–Y] business days from dispatch. You'll get a shipping confirmation with tracking once your order is on its way."
+          ]
+        },
+        {
+          "id": "packaging",
+          "heading": "5. Discreet, neutral packaging",
+          "body": [
+            "Every delivery ships in plain, unbranded packaging with no indication of contents on the outside. As with any prescription medicine, a signature is required on delivery."
+          ]
+        },
+        {
+          "id": "fees",
+          "heading": "6. Delivery fees",
+          "body": [
+            "Delivery is currently included at no extra charge. See our Costs page for the full picture of what to expect, including the separate medical-review fee."
+          ]
+        },
+        {
+          "id": "missed-delivery",
+          "heading": "7. If delivery doesn't succeed",
+          "body": [
+            "If nobody's available to sign for the package, the courier will leave a card with instructions for redelivery or pickup. Contact us if you need help arranging either."
+          ]
+        }
+      ]
+    },
+    "refunds": {
+      "effectiveDate": "[TBD — date of legal review]",
+      "intro": "Your right of withdrawal, and the exceptions that apply to prescribed medicine.",
+      "sections": [
+        {
+          "id": "right-of-withdrawal",
+          "heading": "1. Your right of withdrawal",
+          "body": [
+            "As a consumer in Austria, you generally have the right to withdraw from a distance contract within 14 days without giving a reason, under the Fern- und Auswärtsgeschäfte-Gesetz (FAGG). To exercise it, tell us clearly (via our Contact page) that you wish to withdraw, before the deadline."
+          ]
+        },
+        {
+          "id": "exclusion-medicine",
+          "heading": "2. Why prescribed solutions can't usually be returned",
+          "body": [
+            "By law, sealed goods that aren't suitable for return for health or hygiene reasons once unsealed — which includes dispensed prescription medicine — are excluded from the standard right of withdrawal (§ 18(1) FAGG). Once your solution has been dispensed and shipped, we generally can't accept it back or issue a refund on withdrawal grounds, for your safety and because it can't be safely resold.",
+            "This doesn't affect your rights if the product is faulty, damaged in transit, or not what you ordered — see below."
+          ]
+        },
+        {
+          "id": "review-fee",
+          "heading": "3. Medical-review fee",
+          "body": [
+            "If your medical review has already started at your request before the withdrawal period ends, you may owe a proportionate amount for the service already provided, in line with FAGG § 16. We'll always tell you this clearly before the review starts."
+          ]
+        },
+        {
+          "id": "damaged-or-wrong",
+          "heading": "4. Damaged, faulty, or incorrect items",
+          "body": [
+            "If your delivery arrives damaged, faulty, or doesn't match your order, contact us within [X] days of delivery. We'll arrange a replacement or refund at no cost to you — this is always covered, regardless of the exclusion above."
+          ]
+        },
+        {
+          "id": "how-to-request",
+          "heading": "5. How to request a refund",
+          "body": [
+            "Reach us through our Contact page with your order number and a short description of the issue. We'll confirm next steps by email."
+          ]
+        },
+        {
+          "id": "refund-timing",
+          "heading": "6. Refund timing",
+          "body": [
+            "Approved refunds are issued to your original payment method, usually within 14 days of approval."
+          ]
+        },
+        {
+          "id": "withdrawal-form",
+          "heading": "7. Model withdrawal form",
+          "body": [
+            "Where the right of withdrawal applies, you can request the standard EU model withdrawal form from us via our Contact page."
+          ]
+        }
+      ]
+    }
+  }
+}

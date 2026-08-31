@@ -1,7 +1,7 @@
 {
   "brand": {
     "name": "WeCare",
-    "tagline": "Start with your problem. WeCare will guide you to the right solution."
+    "tagline": "We care how you feel — so you start with your problem, and we guide you from there."
   },
   "nav": {
     "home": "Home",
@@ -13,6 +13,7 @@
     "faq": "FAQ",
     "costs": "Costs",
     "login": "Login",
+    "myArea": "My area",
     "startAssessment": "Start assessment",
     "primary": "Primary navigation",
     "openMenu": "Open menu",
@@ -38,6 +39,12 @@
     },
     "switchTo": "Switch to {{language}}"
   },
+  "theme": {
+    "label": "Appearance",
+    "light": "Light",
+    "dark": "Dark",
+    "switchTo": "Use {{theme}} appearance"
+  },
   "assessmentRing": {
     "progress": "{{answered}} of {{total}} questions answered",
     "complete": "All questions answered"
@@ -46,28 +53,20 @@
     "disclaimer": "WeCare provides a medical review and, where medically appropriate, a prescription. Not everyone receives a prescription.",
     "copyright": "© {{year}} WeCare. All rights reserved.",
     "emergencyDisclaimer": "WeCare does not replace emergency care.",
-    "social": "Social media",
     "shipping": "Shipping",
     "payment": "Payment methods",
-    "appStores": "Download the app",
     "headings": {
       "concerns": "Concerns",
       "wecare": "WeCare",
       "legal": "Legal"
     },
     "links": {
-      "about": "About us",
-      "careers": "Careers",
-      "providers": "For providers",
       "contact": "Contact",
-      "knowledgeHub": "Knowledge hub",
       "imprint": "Imprint",
       "privacy": "Privacy",
       "terms": "Terms",
-      "dashboard": "My area",
       "shop": "Shop",
       "cookies": "Cookie policy",
-      "productDisclaimer": "Product disclaimer",
       "shipping": "Shipping policy",
       "refunds": "Refund policy",
       "labTests": "Lab tests / COA"
@@ -137,25 +136,9 @@
       "title": "Login",
       "description": "Sign in to see your assessment, recommendation and orders."
     },
-    "about": {
-      "title": "About us",
-      "description": "Who is behind WeCare and why we work problem-first."
-    },
-    "careers": {
-      "title": "Careers",
-      "description": "Open roles and what it's like to work at WeCare."
-    },
-    "providers": {
-      "title": "For providers",
-      "description": "How doctors work with WeCare."
-    },
     "contact": {
       "title": "Contact",
       "description": "How to reach our team."
-    },
-    "knowledgeHub": {
-      "title": "Knowledge hub",
-      "description": "Well-founded articles on sleep, pain, stress and migraine."
     },
     "legal": {
       "imprint": {
@@ -173,10 +156,6 @@
       "cookies": {
         "title": "Cookie Policy",
         "description": "Which cookies WeCare uses and how you can control them."
-      },
-      "productDisclaimer": {
-        "title": "Product Disclaimer",
-        "description": "These products are not intended to diagnose, treat, cure or prevent any disease."
       },
       "shipping": {
         "title": "Shipping Policy",
@@ -197,18 +176,6 @@
       "title": "Lab Tests / COA",
       "description": "Certificate-of-analysis values for every WeCare solution — cannabinoids, batch, test date and safety testing."
     }
-  },
-  "foundation": {
-    "title": "WeCare — foundation",
-    "intro": "Design tokens, fonts and the DE-default / EN-toggle localisation layer are in place. Internal reference page, not linked from navigation.",
-    "paletteHeading": "Colour",
-    "typographyHeading": "Typography",
-    "typographyDisplay": "TT Hoves — headings (fallback: Inter), with clean ä, ö, ü and ß",
-    "typographyBody": "Inter — body and UI text",
-    "typographyAccent": "Batangas — accents (fallback: Inter)",
-    "typographyData": "Monospace — verified lab values only (CBD 12.4% · batch A-2214 · 2026-03-14)",
-    "ringHeading": "Assessment ring",
-    "ringCaption": "The recurring visual device: “answer a few questions, get a result.”"
   },
   "journey": {
     "label": "Your path",

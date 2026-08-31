@@ -7,6 +7,7 @@ import { paths } from "@/app/paths";
 import { usePageTitle } from "@/app/usePageTitle";
 import { AssessmentRing } from "@/components/brand/AssessmentRing";
 import { JourneyStepper } from "@/components/marketing/JourneyStepper";
+import { Reveal } from "@/components/marketing/Reveal";
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 import {
   SOLUTION_BY_ID,
@@ -86,36 +87,43 @@ export function ResultPage() {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6">
-      <JourneyStepper current="solution" className="mb-8" />
-      <div className="flex items-start gap-5">
-        <AssessmentRing variant="complete" tone="deep" size={72} animate />
-        <div>
-          <h1>{t("result.title")}</h1>
-          <p className="mt-2 text-lg text-ink-muted">{t("result.intro")}</p>
+      <Reveal>
+        <JourneyStepper current="solution" className="mb-8" />
+        <div className="flex items-start gap-5">
+          <AssessmentRing variant="complete" tone="deep" size={72} animate />
+          <div>
+            <h1>{t("result.title")}</h1>
+            <p className="mt-1 text-sm font-medium text-petrol-700">
+              {t("result.reassure")}
+            </p>
+            <p className="mt-2 text-lg text-ink-muted">{t("result.intro")}</p>
+          </div>
         </div>
-      </div>
+      </Reveal>
 
-      <h2 className="mt-10 text-lg">{t("result.summaryHeading")}</h2>
-      <dl className="mt-3 grid gap-3 sm:grid-cols-3">
-        <SummaryItem
-          label={t("result.labels.problem")}
-          value={t(`questions.q1.options.${result.problem}`)}
-        />
-        {answers.q2 ? (
+      <Reveal>
+        <h2 className="mt-10 text-lg">{t("result.summaryHeading")}</h2>
+        <dl className="mt-3 grid gap-3 sm:grid-cols-3">
           <SummaryItem
-            label={t("result.labels.frequency")}
-            value={t(`questions.q2.options.${answers.q2}`)}
+            label={t("result.labels.problem")}
+            value={t(`questions.q1.options.${result.problem}`)}
           />
-        ) : null}
-        {answers.q3 ? (
-          <SummaryItem
-            label={t("result.labels.strength")}
-            value={t(`questions.q3.options.${answers.q3}`)}
-          />
-        ) : null}
-      </dl>
+          {answers.q2 ? (
+            <SummaryItem
+              label={t("result.labels.frequency")}
+              value={t(`questions.q2.options.${answers.q2}`)}
+            />
+          ) : null}
+          {answers.q3 ? (
+            <SummaryItem
+              label={t("result.labels.strength")}
+              value={t(`questions.q3.options.${answers.q3}`)}
+            />
+          ) : null}
+        </dl>
+      </Reveal>
 
-      <div className="mt-8 grid gap-4 sm:grid-cols-2">
+      <Reveal className="mt-8 grid gap-4 sm:grid-cols-2">
         <RecommendationCard
           heading={t("result.primaryHeading")}
           solution={primary}
@@ -128,37 +136,41 @@ export function ResultPage() {
           }
           solution={secondary}
         />
-      </div>
+      </Reveal>
 
-      <h2 className="mt-10 text-lg">{t("result.explanationHeading")}</h2>
-      <p className="mt-2 text-ink-muted">{t(result.explanationKey)}</p>
+      <Reveal>
+        <h2 className="mt-10 text-lg">{t("result.explanationHeading")}</h2>
+        <p className="mt-2 text-ink-muted">{t(result.explanationKey)}</p>
 
-      {result.gentleFirst ? (
-        <p className="mt-4 flex items-start gap-2 rounded-xl bg-sage-50 p-4 text-sm text-petrol-700">
-          <Info className="mt-0.5 size-4 shrink-0" aria-hidden />
-          {t("result.gentleNudge")}
+        {result.gentleFirst ? (
+          <p className="mt-4 flex items-start gap-2 rounded-xl bg-sage-50 p-4 text-sm text-petrol-700">
+            <Info className="mt-0.5 size-4 shrink-0" aria-hidden />
+            {t("result.gentleNudge")}
+          </p>
+        ) : null}
+
+        <p className="mt-4 text-sm text-ink-muted">
+          {t("result.reviewRequiredNote")}
         </p>
-      ) : null}
 
-      <p className="mt-4 text-sm text-ink-muted">{t("result.reviewRequiredNote")}</p>
+        <p className="mt-6 border-t border-border pt-4 text-xs leading-relaxed text-ink-muted">
+          {t("result.disclaimer")}
+        </p>
 
-      <p className="mt-6 border-t border-border pt-4 text-xs leading-relaxed text-ink-muted">
-        {t("result.disclaimer")}
-      </p>
-
-      <div className="mt-8 flex flex-wrap items-center gap-3">
-        <Button asChild variant="cta" size="lg">
-          <Link to={paths.shopProduct(result.primarySolutionId)}>
-            {t("result.viewSolution")}
-          </Link>
-        </Button>
-        <Button asChild variant="outline" size="lg">
-          <Link to={paths.assessment.start}>{t("result.changeAnswers")}</Link>
-        </Button>
-      </div>
+        <div className="mt-8 flex flex-wrap items-center gap-3">
+          <Button asChild variant="cta" size="lg">
+            <Link to={paths.shopProduct(result.primarySolutionId)}>
+              {t("result.viewSolution")}
+            </Link>
+          </Button>
+          <Button asChild variant="outline" size="lg">
+            <Link to={paths.assessment.start}>{t("result.changeAnswers")}</Link>
+          </Button>
+        </div>
+      </Reveal>
 
       {/* What's still ahead — review and delivery come after you pick the solution. */}
-      <div className="mt-10 rounded-3xl glass p-6">
+      <Reveal className="mt-10 rounded-3xl glass p-6">
         <h2 className="text-base">{t("result.nextHeading")}</h2>
         <ol className="mt-4 grid gap-4 sm:grid-cols-3">
           {(["view", "review", "delivery"] as const).map((k, i) => (
@@ -177,7 +189,7 @@ export function ResultPage() {
             </li>
           ))}
         </ol>
-      </div>
+      </Reveal>
     </div>
   );
 }

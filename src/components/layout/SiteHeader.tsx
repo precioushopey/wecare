@@ -14,6 +14,7 @@ import {
 } from "@/app/components/ui/sheet";
 import { PRIMARY_NAV, paths } from "@/app/paths";
 import { Logo } from "@/components/brand/Logo";
+import { useAuth } from "@/features/auth/AuthContext";
 import { useCart } from "@/features/cart/CartContext";
 
 import { LanguageToggle } from "./LanguageToggle";
@@ -50,11 +51,17 @@ function CartLink() {
 
 export function SiteHeader() {
   const { t } = useTranslation();
+  const { isAuthenticated } = useAuth();
   const [open, setOpen] = useState(false);
 
+  // Signed in → "My area" (→ dashboard); signed out → "Login".
+  const account = isAuthenticated
+    ? { to: paths.dashboard, label: t("nav.myArea") }
+    : { to: paths.login, label: t("nav.login") };
+
   return (
-    <header className="sticky top-0 z-40 border-b border-white/40 bg-white/60 shadow-[0_1px_0_0_rgba(255,255,255,0.6),0_10px_30px_-24px_rgba(13,68,75,0.35)] backdrop-blur-xl backdrop-saturate-150">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
+    <header className="sticky top-0 z-40 border-b border-white/40 bg-white/60 px-4 shadow-[0_1px_0_0_rgba(255,255,255,0.6),0_10px_30px_-24px_rgba(13,68,75,0.35)] backdrop-blur-xl backdrop-saturate-150 sm:px-6 dark:border-white/10 dark:bg-petrol-950/70 dark:shadow-[0_1px_0_0_rgba(255,255,255,0.05),0_10px_30px_-24px_rgba(0,0,0,0.6)]">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4">
         <div className="flex min-w-0 items-center gap-5">
           <Wordmark />
           <nav
@@ -76,8 +83,8 @@ export function SiteHeader() {
         <div className="hidden shrink-0 items-center gap-4 xl:flex">
           <LanguageToggle />
           <CartLink />
-          <NavLink to={paths.login} className={navLink}>
-            {t("nav.login")}
+          <NavLink to={account.to} className={navLink}>
+            {account.label}
           </NavLink>
           <Button asChild variant="cta" size="sm">
             <Link to={paths.assessment.start}>{t("nav.startAssessment")}</Link>
@@ -120,7 +127,7 @@ export function SiteHeader() {
               <div className="mt-auto flex flex-col gap-2 border-t border-border p-4">
                 <SheetClose asChild>
                   <Button asChild variant="outline" size="sm">
-                    <Link to={paths.login}>{t("nav.login")}</Link>
+                    <Link to={account.to}>{account.label}</Link>
                   </Button>
                 </SheetClose>
                 <SheetClose asChild>

@@ -33,7 +33,7 @@ const GRAM_OPTIONS = [5, 10, 15, 30];
 function StrainCard({ strain }: { strain: Product }) {
   const { t } = useTranslation("shop");
   return (
-    <li className="flex items-center gap-3 rounded-2xl border border-white/50 bg-white/40 p-3">
+    <li className="flex items-center gap-3 rounded-2xl border border-white/50 bg-white/40 p-3 dark:border-white/10 dark:bg-white/[0.04]">
       <ImageWithFallback
         src={getProductImage(strain)}
         alt=""
@@ -132,7 +132,7 @@ export function ProductPage() {
             <span className="rounded-full bg-sage-100 px-3 py-1 text-xs font-medium text-petrol-700">
               {t(`solutions.${solution.id}.category`)}
             </span>
-            <span className="rounded-full bg-petrol-50 px-3 py-1 text-xs font-medium text-petrol-700">
+            <span className="rounded-full bg-petrol-50 px-3 py-1 text-xs font-medium text-petrol-700 dark:bg-petrol-900/60">
               {t("solution.prescriptionBadge")}
             </span>
           </div>
@@ -168,7 +168,7 @@ export function ProductPage() {
                   className={cn(
                     "rounded-full border px-3.5 py-1.5 text-sm transition-colors",
                     grams === o
-                      ? "border-petrol-600 bg-petrol-600 text-white"
+                      ? "border-primary bg-primary text-primary-foreground"
                       : "border-border text-ink-muted hover:text-ink",
                   )}
                 >
@@ -239,7 +239,7 @@ export function ProductPage() {
           {formulationRows.map(({ label, value }) => (
             <div
               key={label}
-              className="rounded-2xl border border-white/50 bg-white/40 p-3"
+              className="rounded-2xl border border-white/50 bg-white/40 p-3 dark:border-white/10 dark:bg-white/[0.04]"
             >
               <dt className="text-xs uppercase tracking-wide text-ink-muted">
                 {label}
@@ -278,7 +278,7 @@ export function ProductPage() {
           {coaValues.map(({ key, value }) => (
             <div
               key={key}
-              className="rounded-2xl border border-white/50 bg-white/40 p-3"
+              className="rounded-2xl border border-white/50 bg-white/40 p-3 dark:border-white/10 dark:bg-white/[0.04]"
             >
               <dt className="text-xs uppercase tracking-wide text-ink-muted">
                 {t(`coaLabels.${key}`)}

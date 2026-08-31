@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
 import {
   ArrowRight,
+  BadgeCheck,
   BookOpen,
   Check,
   Clock,
@@ -14,10 +15,17 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/app/components/ui/accordion";
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 import { Button } from "@/app/components/ui/button";
 import { paths } from "@/app/paths";
 import { AssessmentRing } from "@/components/brand/AssessmentRing";
+import { ComboCarousel } from "@/components/marketing/ComboCarousel";
 import { FloatingChip } from "@/components/marketing/FloatingChip";
 import { Reveal } from "@/components/marketing/Reveal";
 import { Section, SectionHeading } from "@/components/marketing/Section";
@@ -40,12 +48,20 @@ export function HeroSection() {
 
   return (
     <>
-    <section className="relative overflow-hidden">
-      <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 py-12 sm:px-6 lg:flex-row lg:items-end lg:gap-12">
+    <section className="relative overflow-hidden px-4 sm:px-6">
+      <div className="mx-auto flex max-w-6xl flex-col gap-6 py-12 lg:flex-row lg:items-start lg:gap-12 lg:pt-28">
         <div className="max-w-xl space-y-6 lg:flex-1">
-          <h1>{t("hero.title")}</h1>
+          <div className="space-y-3">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-petrol-600">
+              {t("hero.kicker")}
+            </p>
+            <h1>{t("hero.title")}</h1>
+          </div>
           <p className="text-lg text-ink-muted">{t("hero.subtitle")}</p>
-          <div className="flex flex-wrap items-center gap-3 pt-1">
+          {/* Desktop keeps the CTA + "How It Works" pair here. On mobile both
+              move out: "How It Works" is dropped and the primary CTA is
+              rendered full-width, flush under the photo (see below). */}
+          <div className="hidden flex-wrap items-center gap-3 pt-1 lg:flex">
             <Button asChild variant="cta" size="xl">
               <Link to={assessmentLink()}>{t("hero.primaryCta")}</Link>
             </Button>
@@ -55,19 +71,35 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Layered hero: the cut-out photo sits against a quiet Assessment Ring
-            arc, with two chips naming the effort and the payoff. The photo is
-            static (no drift) and bleeds flush to the section's bottom edge. */}
-        <div className="relative -mb-12 self-end lg:flex-1">
+        {/* Layered hero: the cut-out photo rests on a soft radial glow
+            (`.image-glow`) at every width, with two chips naming the effort
+            and the payoff, and a 3/4 Assessment Ring arc behind it that
+            signals the quiz. The photo and chips are static (no drift); the
+            one motion here is the ring's arc sweeping in once on load — the
+            AssessmentRing's own sanctioned animation, reduced-motion aware —
+            with the trail dots + "7/10" label fading in as it finishes. */}
+        <div className="relative isolate lg:-mb-12 lg:flex-1 lg:self-end">
+          {/* The ring + trail dots + "7/10" label ride behind the photo
+              (`-z-10`) at every width — scaled down on mobile, full size from
+              `lg`. From `lg` it's pulled in over the subject so her (opaque)
+              form masks the ring's body and only the arc peeks past her,
+              rather than the arc crossing the cut-out's transparent zone. */}
           <div
             aria-hidden
-            className="pointer-events-none absolute -right-8 -top-6 hidden opacity-70 lg:block"
+            className="pointer-events-none absolute right-0 -top-3 -z-10 block origin-top-right scale-[0.52] opacity-90 lg:right-16 lg:-top-4 lg:scale-100 lg:opacity-80"
           >
             <AssessmentRing
               variant="decoration"
               tone="brand"
-              size={460}
-              strokeWidth={3}
+              value={3}
+              total={4}
+              size={430}
+              strokeWidth={16}
+              animate
+              drawDurationMs={1400}
+              drawDelayMs={250}
+              trail
+              startLabel="7/10"
             />
           </div>
 
@@ -75,21 +107,27 @@ export function HeroSection() {
             <ImageWithFallback
               src={siteImage(IMG.homeHero)}
               alt={t("hero.ariaImage")}
-              width={1034}
-              height={952}
-              className="relative block w-full drop-shadow-[0_45px_70px_-35px_rgba(13,68,75,0.5)]"
+              width={1648}
+              height={1080}
+              className="hero-photo-mask relative block w-full drop-shadow-[0_45px_70px_-35px_rgba(13,68,75,0.5)]"
             />
           </div>
 
+          {/* Mobile-only CTA — full-width and flush to the bottom of the photo
+              (no gap) so the image reads as standing on the button. */}
+          <Button asChild variant="cta" size="xl" className="flex w-full lg:hidden">
+            <Link to={assessmentLink()}>{t("hero.primaryCta")}</Link>
+          </Button>
+
           <FloatingChip
-            icon={<Clock className="size-4" />}
-            className="absolute left-1 top-8 hidden sm:inline-flex"
+            icon={<Clock className="size-3.5 sm:size-4" />}
+            className="wc-float-a absolute left-1 top-4 gap-1.5 px-2.5 py-1 text-[11px] sm:top-8 sm:gap-2 sm:px-3.5 sm:py-2 sm:text-sm"
           >
             {t("hero.chipTime")}
           </FloatingChip>
           <FloatingChip
-            icon={<Sparkles className="size-4" />}
-            className="absolute bottom-24 right-0 hidden sm:inline-flex"
+            icon={<Sparkles className="size-3.5 sm:size-4" />}
+            className="wc-float-b absolute bottom-32 right-1 gap-1.5 px-2.5 py-1 text-[11px] sm:bottom-24 sm:right-0 sm:gap-2 sm:px-3.5 sm:py-2 sm:text-sm"
           >
             {t("hero.chipMatch")}
           </FloatingChip>
@@ -97,21 +135,36 @@ export function HeroSection() {
       </div>
     </section>
 
-    {/* Trust strip — the hero assurance points as a single non-wrapping row
-        directly under the hero; scrolls horizontally on narrow screens. */}
-    <div className="border-y border-white/50 bg-white/40 backdrop-blur-md">
-      <div className="overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        <ul className="mx-auto flex w-max items-center gap-x-6 px-4 py-3 text-xs text-ink-muted sm:px-6">
-          {trustPoints.map((point) => (
-            <li
-              key={point}
-              className="inline-flex items-center gap-1.5 whitespace-nowrap"
+    {/* Trust strip — the hero assurance points in a glass pill capped at the
+        section width (no longer a full-bleed band). Below `lg` the row is
+        wider than the pill and auto-scrolls as a gentle marquee (list
+        rendered twice for a seamless loop); from `lg` up it fits and sits
+        static, centred. */}
+    <div className="px-4 sm:px-6">
+      <div className="mx-auto max-w-6xl overflow-hidden rounded-full border border-white/50 bg-white/40 px-6 py-3 backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
+        <div className="trust-marquee">
+          {[0, 1].map((copy) => (
+            <ul
+              key={copy}
+              data-marquee-clone={copy === 1 ? "" : undefined}
+              aria-hidden={copy === 1 || undefined}
+              className="flex shrink-0 items-center gap-x-6 pr-6 text-xs text-ink-muted"
             >
-              <Check className="size-3.5 shrink-0 text-sage-500" aria-hidden />
-              {point}
-            </li>
+              {trustPoints.map((point) => (
+                <li
+                  key={point}
+                  className="inline-flex items-center gap-1.5 whitespace-nowrap"
+                >
+                  <Check
+                    className="size-3.5 shrink-0 text-sage-500"
+                    aria-hidden
+                  />
+                  {point}
+                </li>
+              ))}
+            </ul>
           ))}
-        </ul>
+        </div>
       </div>
     </div>
     </>
@@ -124,7 +177,7 @@ export function ChooseProblemSection() {
   const { t } = useTranslation("home");
 
   return (
-    <Section tone="raised" id="anliegen">
+    <Section tone="surface" id="anliegen" reveal={false}>
       <Reveal>
         <SectionHeading
           eyebrow={t("chooseProblem.eyebrow")}
@@ -132,36 +185,43 @@ export function ChooseProblemSection() {
           intro={t("chooseProblem.intro")}
         />
       </Reveal>
-      <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {CONDITIONS.map((c, i) => {
           const Icon = c.icon;
           return (
             <Reveal key={c.key} delayMs={i * 60}>
               <Link
                 to={assessmentLink(c.assessmentProblem)}
-                className="group flex h-full flex-col overflow-hidden rounded-3xl glass glass-hover"
+                className="group relative flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-3xl glass glass-hover"
               >
-                <div className="image-glow relative aspect-[4/3] overflow-hidden">
+                {/* Own clip layer: `overflow-hidden` + `rounded` on the card
+                    alone doesn't reliably clip a transformed child (the hover
+                    zoom) at the rounded corners in Chrome, so the photo leaks a
+                    hairline past the radius. translateZ(0) bakes the rounded
+                    clip into a composited layer. */}
+                <div className="absolute inset-0 overflow-hidden rounded-[inherit] [transform:translateZ(0)]">
                   <ImageWithFallback
                     src={siteImage(IMG.problem[c.key])}
                     alt=""
                     loading="lazy"
                     decoding="async"
-                    className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div
-                    aria-hidden
-                    className="absolute inset-0 bg-gradient-to-t from-ink/30 via-transparent to-transparent"
+                    className="size-full object-cover transition-transform duration-500 group-hover:scale-105 dark:brightness-90 dark:contrast-[1.03]"
                   />
                 </div>
-                <div className="flex flex-1 flex-col p-5">
-                  <span className="-mt-11 mb-1 inline-flex size-11 items-center justify-center rounded-2xl glass-strong text-petrol-700 shadow-[0_10px_24px_-12px_rgba(13,68,75,0.4)]">
-                    <Icon className="size-5" strokeWidth={1.75} aria-hidden />
-                  </span>
-                  <h3 className="mt-3 text-lg">
-                    {t(`chooseProblem.cards.${c.key}.title`)}
-                  </h3>
-                  <p className="mt-2 flex-1 text-sm text-ink-muted">
+                {/* The text panel's own background is the fade: opaque white at
+                    the bottom edge → fully transparent at the top, so the photo
+                    reads through the whole text area, strongest behind the
+                    title. */}
+                <div className="relative flex flex-col bg-gradient-to-t from-white from-30% via-white/90 via-50% to-transparent px-5 pb-5 pt-28 dark:from-[var(--color-surface-raised)] dark:via-[color-mix(in_srgb,var(--color-surface-raised)_92%,transparent)]">
+                  <div className="mb-2 flex items-center gap-3">
+                    <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-2xl glass-strong text-petrol-700 shadow-[0_10px_24px_-12px_rgba(13,68,75,0.4)]">
+                      <Icon className="size-5" strokeWidth={1.75} aria-hidden />
+                    </span>
+                    <h3 className="text-lg leading-tight text-petrol-700">
+                      {t(`chooseProblem.cards.${c.key}.title`)}
+                    </h3>
+                  </div>
+                  <p className="mt-2 text-sm text-ink-muted">
                     {t(`chooseProblem.cards.${c.key}.description`)}
                   </p>
                   <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-petrol-700">
@@ -190,7 +250,12 @@ export function HowItWorksSection() {
 
   return (
     // `#how-it-works` is the redirect target for the retired /how-it-works page.
-    <Section tone="surface" id="how-it-works" className="scroll-mt-24">
+    <Section
+      tone="surface"
+      id="how-it-works"
+      className="scroll-mt-24"
+      reveal={false}
+    >
       <Reveal>
         <SectionHeading
           eyebrow={t("howItWorks.eyebrow")}
@@ -199,47 +264,36 @@ export function HowItWorksSection() {
         />
       </Reveal>
 
-      <div className="mt-10 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch lg:gap-14">
-        <Reveal className="order-last h-full lg:order-first">
-          <div className="image-glow flex h-full items-center justify-center">
-            <ImageWithFallback
-              src={siteImage(IMG.homeProcess)}
-              alt=""
-              width={1920}
-              height={1080}
-              loading="lazy"
-              decoding="async"
-              className="image-fade-b w-full max-w-md drop-shadow-[0_40px_65px_-32px_rgba(13,68,75,0.45)]"
-            />
-          </div>
-        </Reveal>
-
-        <Reveal className="h-full">
-          <ol className="flex h-full flex-col justify-center gap-6 glass-strong rounded-3xl p-6 sm:p-8">
-            {HOW_STEPS.map((step, i) => (
-              <li key={step} className="relative flex gap-4">
-                {i < HOW_STEPS.length - 1 ? (
-                  <span
-                    aria-hidden
-                    className="absolute left-[1.375rem] top-12 h-[calc(100%+1.75rem)] w-px bg-gradient-to-b from-petrol-300 to-petrol-300/0"
-                  />
-                ) : null}
-                <span className="relative z-10 flex size-11 shrink-0 items-center justify-center rounded-2xl bg-white/70 font-display text-lg text-petrol-700 ring-1 ring-white/70">
-                  {i + 1}
-                </span>
-                <div className="pt-1.5">
-                  <h3 className="text-base">
+      <ol className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {HOW_STEPS.map((step, i) => (
+          <Reveal key={step} delayMs={i * 60}>
+            <li className="group relative flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-3xl glass glass-hover">
+              <div className="absolute inset-0 overflow-hidden rounded-[inherit] [transform:translateZ(0)]">
+                <ImageWithFallback
+                  src={siteImage(IMG.process[step])}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  className="size-full object-cover transition-transform duration-500 group-hover:scale-105 dark:brightness-90 dark:contrast-[1.03]"
+                />
+              </div>
+              <div className="relative flex flex-col bg-gradient-to-t from-white from-30% via-white/90 via-50% to-transparent px-5 pb-5 pt-28 dark:from-[var(--color-surface-raised)] dark:via-[color-mix(in_srgb,var(--color-surface-raised)_92%,transparent)]">
+                <div className="mb-2 flex items-center gap-3">
+                  <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-2xl font-display text-lg text-white shadow-[0_10px_24px_-10px_rgba(42,167,176,0.55)] [background-image:var(--cta-gradient)]">
+                    {i + 1}
+                  </span>
+                  <h3 className="text-lg leading-tight text-petrol-700">
                     {t(`howItWorks.steps.${step}.title`)}
                   </h3>
-                  <p className="mt-1.5 text-sm text-ink-muted">
-                    {t(`howItWorks.steps.${step}.description`)}
-                  </p>
                 </div>
-              </li>
-            ))}
-          </ol>
-        </Reveal>
-      </div>
+                <p className="mt-2 text-sm text-ink-muted">
+                  {t(`howItWorks.steps.${step}.description`)}
+                </p>
+              </div>
+            </li>
+          </Reveal>
+        ))}
+      </ol>
     </Section>
   );
 }
@@ -257,37 +311,16 @@ export function SolutionsPreviewSection() {
   const { t } = useTranslation("home");
 
   return (
-    <Section tone="mint">
-      <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-16">
+    <Section tone="brand" reveal={false}>
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-stretch lg:gap-16">
         <div>
           <Reveal>
             <SectionHeading
               eyebrow={t("solutionsPreview.eyebrow")}
               title={t("solutionsPreview.title")}
               intro={t("solutionsPreview.intro")}
+              invert
             />
-          </Reveal>
-
-          <Reveal>
-            <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-ink-muted">
-              <span className="flex max-w-[8.5rem] flex-wrap gap-1" aria-hidden>
-                {Array.from({ length: 21 }).map((_, k) => (
-                  <span
-                    key={k}
-                    className="size-1.5 rounded-full bg-petrol-400/40"
-                  />
-                ))}
-              </span>
-              <ArrowRight
-                className="size-4 shrink-0 text-petrol-500"
-                aria-hidden
-              />
-              <span className="flex shrink-0 gap-1" aria-hidden>
-                <span className="size-2.5 rounded-full bg-petrol-600" />
-                <span className="size-2.5 rounded-full bg-sage-500" />
-              </span>
-              <span>{t("solutionsPreview.narrowNote")}</span>
-            </div>
           </Reveal>
 
           <div className="mt-8 grid gap-5 sm:grid-cols-2">
@@ -297,7 +330,7 @@ export function SolutionsPreviewSection() {
                 <Reveal key={key} delayMs={i * 60}>
                   <Link
                     to={assessmentLink(key)}
-                    className="flex h-full flex-col glass glass-hover rounded-3xl p-6"
+                    className="flex h-full flex-col glass-strong glass-hover rounded-3xl p-6"
                   >
                     <span className="mb-3 inline-flex size-11 items-center justify-center rounded-2xl [background-image:var(--cta-gradient)] text-white shadow-[0_10px_24px_-10px_rgba(42,167,176,0.55)]">
                       <Icon className="size-5" strokeWidth={1.75} aria-hidden />
@@ -314,24 +347,22 @@ export function SolutionsPreviewSection() {
             })}
           </div>
 
-          <div className="mt-8">
-            <Button asChild variant="cta">
-              <Link to={assessmentLink()}>{t("solutionsPreview.cta")}</Link>
-            </Button>
-          </div>
         </div>
 
-        <Reveal className="hidden lg:block">
-          <div className="image-glow">
-            <ImageWithFallback
-              src={siteImage(IMG.homeGuidance)}
-              alt=""
-              width={1920}
-              height={1080}
-              loading="lazy"
-              decoding="async"
-              className="image-fade-b w-full drop-shadow-[0_40px_65px_-32px_rgba(13,68,75,0.4)]"
-            />
+        {/* A carousel of the recommended solution pairs — one per problem —
+            in place of a single photo. The section CTA sits below it. The
+            column stretches to the height of the cards on the left. */}
+        <Reveal className="lg:h-full">
+          <div className="mx-auto flex w-full max-w-sm flex-col lg:max-w-none lg:h-full">
+            <ComboCarousel className="lg:min-h-0 lg:flex-1" />
+            <Button
+              asChild
+              variant="cta"
+              size="xl"
+              className="mt-6 flex w-full"
+            >
+              <Link to={assessmentLink()}>{t("solutionsPreview.cta")}</Link>
+            </Button>
           </div>
         </Reveal>
       </div>
@@ -347,14 +378,15 @@ const TRUST_ITEMS: { key: string; icon: LucideIcon }[] = [
   { key: "guidance", icon: BookOpen },
   { key: "support", icon: LifeBuoy },
   { key: "austria", icon: MapPin },
+  { key: "noObligation", icon: BadgeCheck },
 ];
 
 export function TrustSection() {
   const { t } = useTranslation("home");
 
   return (
-    <Section tone="surface">
-      <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-16">
+    <Section tone="surface" reveal={false}>
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-16">
         <Reveal>
           <SectionHeading
             eyebrow={t("trust.eyebrow")}
@@ -371,17 +403,17 @@ export function TrustSection() {
               height={1080}
               loading="lazy"
               decoding="async"
-              className="image-fade-b w-full drop-shadow-[0_40px_65px_-32px_rgba(13,68,75,0.4)]"
+              className="image-fade-rb w-full drop-shadow-[0_40px_65px_-32px_rgba(13,68,75,0.4)]"
             />
           </div>
         </Reveal>
       </div>
 
-      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {TRUST_ITEMS.map(({ key, icon: Icon }, i) => (
           <Reveal key={key} delayMs={i * 60}>
             <div className="flex h-full gap-3.5 glass rounded-3xl p-5">
-              <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-petrol-600/10 text-petrol-700">
+              <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-petrol-600/10 text-petrol-700 dark:bg-petrol-400/15">
                 <Icon className="size-5" strokeWidth={1.75} aria-hidden />
               </span>
               <div>
@@ -406,7 +438,9 @@ export function ComparisonSection() {
   const { t } = useTranslation("home");
 
   return (
-    <Section tone="raised">
+    // No bottom border — this frosted band runs straight into FaqSection
+    // (also `raised`) so the two share one continuous surface.
+    <Section tone="raised" className="border-b-0" reveal={false}>
       <Reveal>
         <SectionHeading
           eyebrow={t("comparison.eyebrow")}
@@ -416,15 +450,15 @@ export function ComparisonSection() {
       </Reveal>
       <Reveal>
         <div className="mt-10 overflow-hidden rounded-3xl glass-strong">
-          <div className="grid grid-cols-2 border-b border-white/50 text-sm font-semibold">
+          <div className="grid grid-cols-2 border-b border-white/50 text-sm font-semibold dark:border-white/10">
             <div className="p-4 text-ink-muted sm:p-5">
               {t("comparison.themLabel")}
             </div>
-            <div className="bg-petrol-600/5 p-4 text-petrol-800 sm:p-5">
+            <div className="bg-petrol-600/5 p-4 text-petrol-800 sm:p-5 dark:bg-petrol-400/10">
               {t("comparison.usLabel")}
             </div>
           </div>
-          <dl className="divide-y divide-white/40">
+          <dl className="divide-y divide-white/40 dark:divide-white/10">
             {COMPARISON_ROWS.map((row) => (
               <div key={row} className="grid grid-cols-2 text-sm">
                 <dt className="flex items-start gap-2 p-4 text-ink-muted sm:p-5">
@@ -434,7 +468,7 @@ export function ComparisonSection() {
                   />
                   {t(`comparison.rows.${row}.them`)}
                 </dt>
-                <dd className="flex items-start gap-2 bg-petrol-600/5 p-4 text-ink sm:p-5">
+                <dd className="flex items-start gap-2 bg-petrol-600/5 p-4 text-ink sm:p-5 dark:bg-petrol-400/10">
                   <Check
                     className="mt-0.5 size-4 shrink-0 text-sage-500"
                     aria-hidden
@@ -456,33 +490,30 @@ export function FinalCtaSection() {
   const { t } = useTranslation("home");
 
   return (
-    <section className="relative overflow-hidden bg-[linear-gradient(135deg,#0b2f45_0%,#0d444b_55%,#12586c_100%)] px-4 py-16 text-white sm:px-6 sm:py-24">
-      <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[1.3fr_1fr]">
-        <div className="flex flex-col items-start gap-6">
+    <section className="relative overflow-hidden rounded-2xl md:rounded-4xl mx-4 sm:mx-6 xl:mx-12 [background-image:var(--brand-band-gradient)] px-4 py-16 text-white sm:px-6 sm:py-24">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 lg:grid-cols-[1fr_1fr]">
+        {/* Text group is centred on mobile, left-aligned from `lg`. The CTA
+            here is desktop-only — on mobile it renders full-width flush under
+            the photo (below), so the image reads as standing on the button. */}
+        <div className="flex flex-col items-center gap-6 text-center lg:items-start lg:text-left">
           <h2 className="max-w-2xl text-white">{t("finalCta.title")}</h2>
-          <p className="max-w-xl text-sage-100">{t("finalCta.subtitle")}</p>
-          <div className="flex flex-wrap items-center gap-4">
-            <Button asChild variant="cta" size="xl">
-              <Link to={assessmentLink()}>{t("finalCta.cta")}</Link>
-            </Button>
-            <FloatingChip tone="dark" icon={<Check className="size-4" />}>
-              {t("finalCta.chip")}
-            </FloatingChip>
-          </div>
+          <p className="max-w-xl text-white/80">{t("finalCta.subtitle")}</p>
+          <Button
+            asChild
+            variant="cta"
+            size="xl"
+            className="hidden lg:inline-flex"
+          >
+            <Link to={assessmentLink()}>{t("finalCta.cta")}</Link>
+          </Button>
         </div>
 
-        <div className="relative mx-auto w-full max-w-xs lg:max-w-sm">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 opacity-40 sm:block"
-          >
-            <AssessmentRing
-              variant="decoration"
-              tone="mint"
-              size={360}
-              strokeWidth={3}
-            />
-          </div>
+        {/* Mobile: photo above a full-width CTA, no gap (the image reads as
+            standing on the button). From `lg` it's the original — the column
+            stretches to the row's full height and the bottom-anchored photo
+            bleeds off the section edge; the CTA here is hidden (it's in the
+            text column on desktop). */}
+        <div className="relative mx-auto flex w-full max-w-md flex-col items-center lg:-mb-24 lg:max-w-xl lg:flex-row lg:items-end lg:justify-center lg:self-stretch">
           <ImageWithFallback
             src={siteImage(IMG.homeDoctor)}
             alt=""
@@ -490,10 +521,66 @@ export function FinalCtaSection() {
             height={943}
             loading="lazy"
             decoding="async"
-            className="image-fade-b relative z-[1] w-full object-contain drop-shadow-[0_30px_50px_-20px_rgba(0,0,0,0.45)]"
+            className="image-fade-b relative z-[1] h-auto max-h-full w-auto max-w-full -scale-x-100 object-contain drop-shadow-[0_30px_50px_-20px_rgba(0,0,0,0.45)] lg:h-full"
           />
+          <Button
+            asChild
+            variant="cta"
+            size="xl"
+            className="flex w-full lg:hidden"
+          >
+            <Link to={assessmentLink()}>{t("finalCta.cta")}</Link>
+          </Button>
         </div>
       </div>
     </section>
+  );
+}
+
+/* ── 8. FAQ ─────────────────────────────────────────────────────────────── */
+
+const FAQ_KEYS = [
+  "how",
+  "prescription",
+  "time",
+  "appointment",
+  "privacy",
+] as const;
+
+export function FaqSection() {
+  const { t } = useTranslation("home");
+
+  return (
+    // No top border — continues the ComparisonSection frosted band above it.
+    <Section tone="raised" className="border-t-0" reveal={false}>
+      <Reveal className="mx-auto max-w-3xl">
+        <SectionHeading
+          eyebrow={t("faq.eyebrow")}
+          title={t("faq.title")}
+          intro={t("faq.intro")}
+        />
+
+        <Accordion type="single" collapsible className="mt-8">
+          {FAQ_KEYS.map((key) => (
+            <AccordionItem key={key} value={key}>
+              <AccordionTrigger>{t(`faq.items.${key}.q`)}</AccordionTrigger>
+              <AccordionContent className="text-ink-muted">
+                {t(`faq.items.${key}.a`)}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+
+        <p className="mt-8 text-sm text-ink-muted">
+          {t("faq.more")}{" "}
+          <Link
+            to={paths.faq}
+            className="font-medium text-petrol-700 underline-offset-4 hover:underline"
+          >
+            {t("faq.moreLink")}
+          </Link>
+        </p>
+      </Reveal>
+    </Section>
   );
 }

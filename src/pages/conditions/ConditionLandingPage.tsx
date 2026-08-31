@@ -1,17 +1,16 @@
 import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
-import { ArrowRight, Check } from "lucide-react";
+import { Check } from "lucide-react";
 
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 import { Button } from "@/app/components/ui/button";
 import { paths } from "@/app/paths";
 import { usePageTitle } from "@/app/usePageTitle";
+import { ComboCard } from "@/components/marketing/ComboCard";
 import { MedicalNotice } from "@/components/marketing/MedicalNotice";
 import { Reveal } from "@/components/marketing/Reveal";
 import { Section, SectionHeading } from "@/components/marketing/Section";
 import { IMG, siteImage } from "@/data/siteImages";
-import { SOLUTION_BY_ID, solutionImage } from "@/data/solutions";
-import { matchedSolutionIds } from "@/features/assessment/recommendation";
 import {
   isConditionKey,
   type ConditionKey,
@@ -37,8 +36,6 @@ export function ConditionLandingPage({
   conditionKey: LandingKey;
 }) {
   const { t } = useTranslation("conditions");
-  const { t: tc } = useTranslation("common");
-  const { t: ts } = useTranslation("shop");
   usePageTitle(t(`${conditionKey}.hero.title`));
 
   const situations = Object.values(
@@ -54,55 +51,67 @@ export function ConditionLandingPage({
     >,
   );
   const ctaLabel = t(`${conditionKey}.assessmentCta`);
-  const matched = isConditionKey(conditionKey)
-    ? matchedSolutionIds(conditionKey).map((id) => SOLUTION_BY_ID[id])
-    : [];
 
   return (
     <>
-      <Section tone="surface" className="pt-14 sm:pt-20">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.35fr_1fr]">
-          <div className="space-y-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-petrol-600">
+      {/* Hero — from `lg` up the condition photo is a full-bleed background
+          anchored to the right as a band, with the brand blue gradient
+          filling the left and feathering over it. On tighter screens the
+          photo becomes a full-width band beneath the copy and the gradient
+          rotates to run top→bottom, so the copy sits on solid blue and
+          feathers into the photo below. */}
+      <section className="relative isolate overflow-hidden rounded-b-4xl px-4 pt-14 [background-image:linear-gradient(120deg,#0a2c42_0%,#0d444b_50%,#123f52_100%)] sm:px-6 sm:pt-20 lg:min-h-[30rem] lg:pb-28">
+        <div className="relative z-10 mx-auto w-full max-w-6xl">
+          <div className="max-w-lg space-y-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-sage-300">
               {t(`${conditionKey}.shortTitle`)}
             </p>
-            <h1 className="max-w-2xl">{t(`${conditionKey}.hero.title`)}</h1>
-            <p className="max-w-xl text-lg text-ink-muted">
+            <h1 className="text-white">{t(`${conditionKey}.hero.title`)}</h1>
+            <p className="text-lg text-white/80">
               {t(`${conditionKey}.hero.subtitle`)}
             </p>
-            <div className="flex flex-wrap items-center gap-3 pt-1">
-              <Button asChild variant="cta" size="xl">
+            <div className="pt-1">
+              <Button
+                asChild
+                variant="cta"
+                size="xl"
+                className="w-full sm:w-auto"
+              >
                 <Link to={assessmentLink(conditionKey)}>{ctaLabel}</Link>
-              </Button>
-              <Button asChild variant="outline" size="xl">
-                <Link to={paths.howItWorks}>{tc("cta.howItWorks")}</Link>
               </Button>
             </div>
           </div>
-          <div className="hidden lg:block">
-            <ImageWithFallback
-              src={siteImage(IMG.conditionHero[conditionKey])}
-              alt=""
-              className="ml-auto aspect-square w-full max-w-sm rounded-3xl object-cover shadow-[0_30px_60px_-24px_rgba(13,68,75,0.3)]"
-            />
-          </div>
         </div>
-      </Section>
 
-      <Section tone="raised">
+        <div
+          aria-hidden
+          className="relative z-0 -mx-4 mt-6 [mask-image:linear-gradient(to_bottom,transparent_0%,#000_26%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,#000_26%)] sm:-mx-6 lg:absolute lg:inset-y-0 lg:right-0 lg:mx-0 lg:mt-0 lg:w-[64%] lg:[mask-image:none] lg:[-webkit-mask-image:none]"
+        >
+          <ImageWithFallback
+            src={siteImage(IMG.conditionHero[conditionKey])}
+            alt=""
+            className="block h-auto w-full object-cover object-center lg:size-full"
+          />
+        </div>
+
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 [background-image:linear-gradient(to_bottom,#0a2c42_0%,#0a2c42_34%,rgba(13,68,75,0.62)_54%,rgba(18,88,108,0.22)_76%,rgba(18,88,108,0)_100%)] lg:[background-image:linear-gradient(100deg,#0a2c42_0%,#0a2c42_36%,rgba(13,68,75,0.82)_54%,rgba(18,88,108,0.34)_74%,rgba(18,88,108,0)_92%)]"
+        />
+      </section>
+
+      <Section tone="surface" reveal={false}>
         <Reveal className="max-w-3xl">
           <SectionHeading title={t("shared.explanationHeading")} />
           <p className="mt-4 text-lg text-ink-muted">
             {t(`${conditionKey}.explanation`)}
           </p>
         </Reveal>
-      </Section>
 
-      <Section tone="surface">
-        <Reveal>
-          <SectionHeading title={t("shared.situationsHeading")} />
+        <Reveal className="mt-12">
+          <h3 className="text-lg">{t("shared.situationsHeading")}</h3>
         </Reveal>
-        <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+        <ul className="mt-6 grid gap-4 sm:grid-cols-2">
           {situations.map((s, i) => (
             <Reveal key={i} delayMs={i * 50}>
               <li className="flex items-start gap-3 glass p-4">
@@ -118,15 +127,15 @@ export function ConditionLandingPage({
         </ul>
       </Section>
 
-      <Section tone="mint">
+      <Section tone="brand" reveal={false}>
         <Reveal>
-          <SectionHeading title={t("shared.howWeHelpHeading")} />
+          <SectionHeading title={t("shared.howWeHelpHeading")} invert />
         </Reveal>
         <ol className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {helpSteps.map((step, i) => (
             <Reveal key={i} delayMs={i * 60}>
-              <li className="flex h-full flex-col glass rounded-3xl p-5">
-                <span className="text-sm font-semibold text-petrol-600">
+              <li className="flex h-full flex-col glass-strong rounded-3xl p-5">
+                <span className="font-mono text-sm font-semibold text-petrol-700">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <p className="mt-2 text-sm text-ink">{step}</p>
@@ -136,71 +145,51 @@ export function ConditionLandingPage({
         </ol>
       </Section>
 
-      {matched.length > 0 ? (
-        <Section tone="surface">
-          <Reveal>
-            <SectionHeading
-              title={t("shared.matchedHeading")}
-              intro={t("shared.matchedNote")}
-            />
-          </Reveal>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2">
-            {matched.map((s, i) => (
-              <Reveal key={s.id} delayMs={i * 60}>
-                <div className="flex items-center gap-4 glass rounded-3xl p-4">
-                  <div className="image-glow size-14 shrink-0 rounded-lg">
-                    <ImageWithFallback
-                      src={solutionImage(s)}
-                      alt=""
-                      className="size-full object-contain p-1"
-                    />
-                  </div>
-                  <div className="min-w-0">
-                    <p className="font-display text-base text-ink">{s.name}</p>
-                    <p className="text-xs font-medium text-petrol-600">
-                      {ts(`solutions.${s.id}.category`)}
-                    </p>
-                    <p className="mt-0.5 font-mono text-sm text-ink-muted">
-                      THC {s.thcRange}
-                    </p>
-                  </div>
-                </div>
+      {isConditionKey(conditionKey) ? (
+        <Section tone="surface" reveal={false}>
+          {/* Two panels: the section heading + the standing medical-safety
+              notice on the left; the matched pair (+ assessment CTA) on the
+              right. */}
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-start lg:gap-16">
+            <div>
+              <Reveal>
+                <SectionHeading
+                  title={t("shared.matchedHeading")}
+                  intro={t("shared.matchedNote")}
+                />
               </Reveal>
-            ))}
-          </div>
-          <div className="mt-8">
-            <Button asChild variant="cta" size="lg">
-              <Link to={assessmentLink(conditionKey)}>{ctaLabel}</Link>
-            </Button>
+              <Reveal className="mt-8">
+                <MedicalNotice />
+              </Reveal>
+            </div>
+
+            <div>
+              <Reveal>
+                <ComboCard problem={conditionKey} showHeader={false} />
+              </Reveal>
+              <div className="mt-8">
+                {/* Full-width while the two panels are stacked (< lg), so the
+                    CTA doesn't float mid-row on mobile; natural width once
+                    the columns split. */}
+                <Button
+                  asChild
+                  variant="cta"
+                  size="lg"
+                  className="w-full lg:w-auto"
+                >
+                  <Link to={assessmentLink(conditionKey)}>{ctaLabel}</Link>
+                </Button>
+              </div>
+            </div>
           </div>
         </Section>
-      ) : null}
-
-      <Section tone="surface">
-        <Reveal className="mx-auto max-w-3xl">
-          <MedicalNotice />
-        </Reveal>
-      </Section>
-
-      <Section tone="brand">
-        <div className="flex flex-col items-start gap-6">
-          <h2 className="max-w-2xl text-white">
-            {t(`${conditionKey}.hero.title`)}
-          </h2>
-          <Button asChild variant="cta" size="xl">
-            <Link to={assessmentLink(conditionKey)}>{ctaLabel}</Link>
-          </Button>
-          {conditionKey !== "generalWellness" ? (
-            <Link
-              to={paths.conditions.generalWellness}
-              className="inline-flex items-center gap-1.5 text-sm text-sage-100 underline-offset-4 hover:underline"
-            >
-              {t("shared.notSurePrompt")}
-              <ArrowRight className="size-4" aria-hidden />
-            </Link>
-          ) : null}
-        </div>
-      </Section>
+      ) : (
+        <Section tone="surface" reveal={false}>
+          <Reveal className="mx-auto max-w-3xl">
+            <MedicalNotice />
+          </Reveal>
+        </Section>
+      )}
     </>
   );
 }

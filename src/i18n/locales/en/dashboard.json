@@ -94,7 +94,8 @@
     "password": "Password",
     "signIn": "Sign in",
     "demoNote": "Demo login: no real credentials are checked. A backend will be connected later.",
-    "requiredNote": "Please sign in to see this area."
+    "requiredNote": "Please sign in to see this area.",
+    "checkoutNote": "Please sign in to complete your order — we'll take you back to checkout."
   },
   "greeting": {
     "morning": "Good morning, {{name}}",

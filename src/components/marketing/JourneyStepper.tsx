@@ -49,8 +49,9 @@ export function JourneyStepper({
                 className={cn(
                   "flex size-6 shrink-0 items-center justify-center rounded-full text-xs font-semibold",
                   done && "bg-sage-500 text-white",
-                  active && "bg-petrol-600 text-white",
-                  !done && !active && "bg-white/60 text-ink-muted",
+                  active && "bg-primary text-primary-foreground",
+                  !done && !active &&
+                    "bg-white/60 text-ink-muted dark:bg-white/10",
                 )}
               >
                 {done ? <Check className="size-3.5" aria-hidden /> : i + 1}

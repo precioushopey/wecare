@@ -72,6 +72,7 @@
   },
   "result": {
     "title": "Your recommended solution is ready.",
+    "reassure": "We care about getting this right for you.",
     "intro": "Based on your answers, WeCare matched you with the most suitable support option.",
     "summaryHeading": "Your answers",
     "labels": {

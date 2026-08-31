@@ -1,10 +1,11 @@
 {
   "hero": {
+    "kicker": "Because we care",
     "title": "Find the right support for sleep, pain, stress and migraine.",
     "subtitle": "Answer a short assessment and get matched with a suitable solution based on your needs.",
     "primaryCta": "Start Free Assessment",
     "secondaryCta": "How It Works",
-    "ariaImage": "Woman in an online video consultation with a doctor",
+    "ariaImage": "Woman sitting comfortably at home, reading on a tablet",
     "chipTime": "About 60–90 seconds",
     "chipMatch": "1–2 matched solutions",
     "trustPoints": [
@@ -69,7 +70,6 @@
     "eyebrow": "Solutions",
     "title": "Simple recommendations. No confusing catalog.",
     "intro": "WeCare does not show hundreds of products. We guide you to 1–2 suitable solutions based on your answers.",
-    "narrowNote": "From hundreds of products down to what fits you.",
     "cards": {
       "sleep": {
         "title": "Sleep Support",
@@ -86,6 +86,19 @@
       "migraine": {
         "title": "Head Tension Support",
         "description": "For recurring migraine and tension headaches."
+      }
+    },
+    "combo": {
+      "subtitle": "The pair the assessment usually matches",
+      "startHere": "start here",
+      "thc": "THC across the pair · {{range}}",
+      "prev": "Previous combo",
+      "next": "Next combo",
+      "problems": {
+        "sleep": "For sleep",
+        "pain": "For chronic pain",
+        "stressAnxiety": "For stress & anxiety",
+        "migraine": "For migraine"
       }
     },
     "cta": "Start Assessment"
@@ -114,14 +127,17 @@
       "austria": {
         "title": "Austria-focused experience",
         "description": "Built for how care and access work in Austria."
+      },
+      "noObligation": {
+        "title": "No obligation",
+        "description": "Start the assessment for free; nothing is ordered until you decide."
       }
     }
   },
   "finalCta": {
-    "title": "Start with your problem. WeCare will guide you to the right solution.",
-    "subtitle": "The assessment is free and takes about a minute.",
-    "cta": "Start Free Assessment",
-    "chip": "Free · about 1 minute"
+    "title": "We care — so you're not sorting this out on your own.",
+    "subtitle": "Start with your problem. The assessment is free and takes about a minute.",
+    "cta": "Start Free Assessment"
   },
   "comparison": {
     "eyebrow": "Why WeCare",
@@ -151,5 +167,34 @@
         "us": "Built for how care works in Austria"
       }
     }
+  },
+  "faq": {
+    "eyebrow": "Good to know",
+    "title": "Questions people ask before starting",
+    "intro": "A few of the most common ones. The full list is on our FAQ page.",
+    "items": {
+      "how": {
+        "q": "How does WeCare work?",
+        "a": "You choose the area you want help with and answer a short assessment — about a minute. Based on your answers you're matched with one or two suitable solutions, and your assessment goes to a medical review. A prescription is issued only if it is considered appropriate for you."
+      },
+      "prescription": {
+        "q": "Does everyone get a prescription?",
+        "a": "No. The assessment result is a recommendation, not a guarantee of treatment. A prescription is issued only when a doctor decides it is medically appropriate."
+      },
+      "time": {
+        "q": "How long does it take?",
+        "a": "The assessment itself takes about 60 to 90 seconds. The medical review is handled separately, and you're notified when there's an update."
+      },
+      "appointment": {
+        "q": "Do I need an appointment?",
+        "a": "No. Everything is completed online at your own pace — no waiting rooms, no fixed appointment times."
+      },
+      "privacy": {
+        "q": "Is my information private?",
+        "a": "Yes. Your personal and health data is encrypted and handled in line with the GDPR. Only the people involved in your medical review can see it."
+      }
+    },
+    "more": "Looking for more detail?",
+    "moreLink": "Read the full FAQ"
   }
 }

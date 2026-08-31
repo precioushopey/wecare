@@ -51,6 +51,21 @@ export interface AssessmentRingProps {
   label?: string;
   /** Animate the arc on mount / value change. Ignored under reduced-motion. */
   animate?: boolean;
+  /** Arc-sweep duration in ms (default 700). Larger reads as an intro flourish. */
+  drawDurationMs?: number;
+  /** Beat before the arc-sweep starts, in ms (default 0). */
+  drawDelayMs?: number;
+  /**
+   * Render a trailing three-dot ellipsis continuing along the ring's empty
+   * path from the end of the drawn arc — reads as "progress + still going".
+   * Coloured with the gradient's end stop. Only shown while the arc is partial.
+   */
+  trail?: boolean;
+  /**
+   * Small frosted readout pill (e.g. "6/10") pinned at the arc's start point,
+   * framing the ring as quiz progress. Decorative — hidden from assistive tech.
+   */
+  startLabel?: string;
   /** Custom centre content. Overrides the default count. */
   children?: ReactNode;
   className?: string;
@@ -65,6 +80,10 @@ export function AssessmentRing({
   tone = "brand",
   label,
   animate = true,
+  drawDurationMs = 700,
+  drawDelayMs = 0,
+  trail = false,
+  startLabel,
   children,
   className,
 }: AssessmentRingProps) {
@@ -96,14 +115,28 @@ export function AssessmentRing({
   const shouldAnimate = animate && !reduced;
 
   const [drawnPct, setDrawnPct] = useState(shouldAnimate ? 0 : displayTarget);
+  /** false only while the intro sweep is in flight — gates the trail + label
+   *  so they don't sit alone before the arc has caught up. */
+  const [drawnIn, setDrawnIn] = useState(!shouldAnimate);
   useEffect(() => {
     if (!shouldAnimate) {
       setDrawnPct(displayTarget);
+      setDrawnIn(true);
       return;
     }
-    const frame = requestAnimationFrame(() => setDrawnPct(displayTarget));
-    return () => cancelAnimationFrame(frame);
-  }, [displayTarget, shouldAnimate]);
+    setDrawnIn(false);
+    const start = window.setTimeout(() => {
+      requestAnimationFrame(() => setDrawnPct(displayTarget));
+    }, drawDelayMs);
+    const done = window.setTimeout(
+      () => setDrawnIn(true),
+      drawDelayMs + drawDurationMs,
+    );
+    return () => {
+      window.clearTimeout(start);
+      window.clearTimeout(done);
+    };
+  }, [displayTarget, shouldAnimate, drawDelayMs, drawDurationMs]);
 
   const dashOffset = circumference * (1 - drawnPct);
 
@@ -117,11 +150,21 @@ export function AssessmentRing({
 
   const arcStyle: CSSProperties = {
     transition: shouldAnimate
-      ? "stroke-dashoffset 700ms cubic-bezier(0.22, 1, 0.36, 1)"
+      ? `stroke-dashoffset ${drawDurationMs}ms cubic-bezier(0.22, 1, 0.36, 1) ${drawDelayMs}ms`
       : undefined,
     filter: isDecoration
       ? undefined
       : "drop-shadow(0 0 7px rgba(42, 167, 176, 0.45))",
+  };
+
+  /** Fade + slight rise for the trail dots and start label so they arrive
+   *  with the finished arc rather than before it. */
+  const introRevealStyle: CSSProperties = {
+    opacity: drawnIn ? 1 : 0,
+    transform: drawnIn ? "none" : "translateY(4px)",
+    transition: shouldAnimate
+      ? "opacity 320ms ease-out, transform 320ms ease-out"
+      : undefined,
   };
 
   return (
@@ -164,7 +207,60 @@ export function AssessmentRing({
           style={arcStyle}
           transform={`rotate(-90 ${size / 2} ${size / 2})`}
         />
+
+        {trail && drawnPct > 0.001 && drawnPct < 0.999 && (
+          <g style={introRevealStyle}>
+            {[0, 1, 2].map((i) => {
+              const stepFrac = (stroke * 1.4) / circumference;
+              const tf = drawnPct + stepFrac * (1.25 + i);
+              if (tf >= 1) return null;
+              const angle = tf * 2 * Math.PI;
+              return (
+                <circle
+                  key={i}
+                  cx={size / 2 + radius * Math.sin(angle)}
+                  cy={size / 2 - radius * Math.cos(angle)}
+                  r={(stroke / 2) * (1 - i * 0.08)}
+                  fill={toStop}
+                  opacity={0.9 - i * 0.15}
+                />
+              );
+            })}
+          </g>
+        )}
       </svg>
+
+      {startLabel != null && (
+        <span
+          aria-hidden
+          style={{
+            position: "absolute",
+            left: `${((size / 2 + radius * Math.sin(-0.05 * 2 * Math.PI)) / size) * 100}%`,
+            top: `${((size / 2 - radius * Math.cos(-0.05 * 2 * Math.PI)) / size) * 100}%`,
+            transform: `translate(-50%, calc(-50% + ${drawnIn ? "0px" : "5px"}))`,
+            opacity: drawnIn ? 1 : 0,
+            transition: shouldAnimate
+              ? "opacity 320ms ease-out, transform 320ms ease-out"
+              : undefined,
+            display: "inline-flex",
+            alignItems: "center",
+            fontFamily: "var(--wc-font-accent)",
+            fontSize: Math.max(11, size * 0.045),
+            lineHeight: 1,
+            color: toStop,
+            background: "rgba(255, 255, 255, 0.85)",
+            border: "1px solid rgba(255, 255, 255, 0.7)",
+            borderRadius: 999,
+            padding: `${Math.max(3, size * 0.012)}px ${Math.max(8, size * 0.028)}px`,
+            whiteSpace: "nowrap",
+            boxShadow: "0 8px 20px -10px rgba(13, 68, 75, 0.4)",
+            backdropFilter: "blur(6px)",
+            WebkitBackdropFilter: "blur(6px)",
+          }}
+        >
+          {startLabel}
+        </span>
+      )}
 
       {(children != null || showCount) && (
         <div

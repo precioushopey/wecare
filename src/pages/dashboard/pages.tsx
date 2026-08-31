@@ -273,10 +273,10 @@ export function DashboardRecommendationPage() {
 /* ── My orders ───────────────────────────────────────────────────────────── */
 
 const STATUS_TONE: Record<OrderStatus, string> = {
-  processing: "bg-petrol-50 text-petrol-700",
-  inReview: "bg-petrol-100 text-petrol-800",
-  shipped: "bg-sage-100 text-sage-800",
-  delivered: "bg-sage-200 text-sage-900",
+  processing: "bg-petrol-50 text-petrol-700 dark:bg-petrol-900/60 dark:text-petrol-100",
+  inReview: "bg-petrol-100 text-petrol-800 dark:bg-petrol-900/60 dark:text-petrol-100",
+  shipped: "bg-sage-100 text-sage-800 dark:bg-sage-800/40 dark:text-sage-200",
+  delivered: "bg-sage-200 text-sage-900 dark:bg-sage-700/45 dark:text-sage-200",
 };
 
 export function DashboardOrdersPage() {

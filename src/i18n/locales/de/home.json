@@ -1,10 +1,11 @@
 {
   "hero": {
+    "kicker": "Weil du uns wichtig bist",
     "title": "Finde die richtige Unterstützung bei Schlaf, Schmerzen, Stress und Migräne.",
     "subtitle": "Beantworte ein kurzes Assessment – wir finden die passende Lösung für deine Bedürfnisse.",
     "primaryCta": "Kostenloses Assessment starten",
     "secondaryCta": "So funktioniert's",
-    "ariaImage": "Frau in einer Online-Videosprechstunde mit einer Ärztin",
+    "ariaImage": "Frau sitzt entspannt zu Hause und liest auf einem Tablet",
     "chipTime": "Etwa 60–90 Sekunden",
     "chipMatch": "1–2 passende Lösungen",
     "trustPoints": [
@@ -69,7 +70,6 @@
     "eyebrow": "Lösungen",
     "title": "Einfache Empfehlungen. Kein verwirrender Katalog.",
     "intro": "WeCare zeigt nicht Hunderte Produkte. Wir führen dich anhand deiner Antworten zu 1–2 passenden Lösungen.",
-    "narrowNote": "Von Hunderten Produkten zu dem, was zu dir passt.",
     "cards": {
       "sleep": {
         "title": "Schlaf-Unterstützung",
@@ -86,6 +86,19 @@
       "migraine": {
         "title": "Kopf & Spannung",
         "description": "Bei wiederkehrender Migräne und Spannungskopfschmerzen."
+      }
+    },
+    "combo": {
+      "subtitle": "Das Paar, das der Fragebogen meist zuordnet",
+      "startHere": "Start hier",
+      "thc": "THC über das Paar · {{range}}",
+      "prev": "Vorherige Kombination",
+      "next": "Nächste Kombination",
+      "problems": {
+        "sleep": "Bei Schlafproblemen",
+        "pain": "Bei chronischen Schmerzen",
+        "stressAnxiety": "Bei Stress & Angst",
+        "migraine": "Bei Migräne"
       }
     },
     "cta": "Assessment starten"
@@ -114,14 +127,17 @@
       "austria": {
         "title": "Auf Österreich ausgerichtet",
         "description": "Gestaltet für den Zugang und die Versorgung in Österreich."
+      },
+      "noObligation": {
+        "title": "Unverbindlich",
+        "description": "Starte das Assessment kostenlos – bestellt wird nichts, bis du dich entscheidest."
       }
     }
   },
   "finalCta": {
-    "title": "Starte mit deinem Anliegen. WeCare führt dich zur passenden Lösung.",
-    "subtitle": "Das Assessment ist kostenlos und dauert etwa eine Minute.",
-    "cta": "Kostenloses Assessment starten",
-    "chip": "Kostenlos · etwa 1 Minute"
+    "title": "Damit du das nicht allein herausfinden musst.",
+    "subtitle": "Starte mit deinem Anliegen. Das Assessment ist kostenlos und dauert etwa eine Minute.",
+    "cta": "Kostenloses Assessment starten"
   },
   "comparison": {
     "eyebrow": "Warum WeCare",
@@ -151,5 +167,34 @@
         "us": "Für die Versorgung in Österreich gemacht"
       }
     }
+  },
+  "faq": {
+    "eyebrow": "Gut zu wissen",
+    "title": "Fragen, die viele vor dem Start haben",
+    "intro": "Einige der häufigsten. Die vollständige Liste findest du auf unserer FAQ-Seite.",
+    "items": {
+      "how": {
+        "q": "Wie funktioniert WeCare?",
+        "a": "Du wählst den Bereich, bei dem du Unterstützung möchtest, und beantwortest ein kurzes Assessment – etwa eine Minute. Anhand deiner Antworten wirst du mit ein bis zwei passenden Lösungen abgeglichen, und dein Assessment geht in eine ärztliche Prüfung. Ein Rezept wird nur ausgestellt, wenn es als geeignet für dich eingeschätzt wird."
+      },
+      "prescription": {
+        "q": "Bekommt jede Person ein Rezept?",
+        "a": "Nein. Das Assessment-Ergebnis ist eine Empfehlung, keine Behandlungsgarantie. Ein Rezept wird nur ausgestellt, wenn eine Ärztin oder ein Arzt es für medizinisch sinnvoll hält."
+      },
+      "time": {
+        "q": "Wie lange dauert es?",
+        "a": "Das Assessment selbst dauert etwa 60 bis 90 Sekunden. Die ärztliche Prüfung erfolgt separat, und du wirst benachrichtigt, sobald es ein Update gibt."
+      },
+      "appointment": {
+        "q": "Brauche ich einen Termin?",
+        "a": "Nein. Alles wird online in deinem eigenen Tempo erledigt – keine Wartezimmer, keine festen Termine."
+      },
+      "privacy": {
+        "q": "Sind meine Angaben vertraulich?",
+        "a": "Ja. Deine persönlichen und gesundheitsbezogenen Daten werden verschlüsselt und gemäß DSGVO verarbeitet. Nur die an deiner ärztlichen Prüfung beteiligten Personen können sie einsehen."
+      }
+    },
+    "more": "Mehr Details?",
+    "moreLink": "Zur vollständigen FAQ"
   }
 }

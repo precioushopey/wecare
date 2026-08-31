@@ -5,9 +5,9 @@ import { cn } from "@/app/components/ui/utils";
 
 /**
  * Standing medical-safety notice for pages that discuss medical cannabis
- * (condition landing pages, knowledge articles). Names common side effects,
- * states it doesn't replace a necessary standard therapy, and that site
- * content isn't individual medical advice.
+ * (the 4 condition landing pages). Names common side effects, states it
+ * doesn't replace a necessary standard therapy, and that site content isn't
+ * individual medical advice.
  */
 export function MedicalNotice({ className }: { className?: string }) {
   const { t } = useTranslation("common");

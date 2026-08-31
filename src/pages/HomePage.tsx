@@ -2,6 +2,7 @@ import { usePageTitle } from "@/app/usePageTitle";
 import {
   ChooseProblemSection,
   ComparisonSection,
+  FaqSection,
   FinalCtaSection,
   HeroSection,
   HowItWorksSection,
@@ -20,11 +21,16 @@ export function HomePage() {
       <ChooseProblemSection />
       <SolutionsPreviewSection />
       <TrustSection />
-      <ComparisonSection />
-      <FinalCtaSection />
-      {/* Explainer moved below the final CTA; "How It Works" is no longer in
-          the primary nav (see PRIMARY_NAV in app/paths.ts). */}
+      {/* Process explainer sits just before the final CTA; "How It Works" is
+          still absent from the primary nav (see PRIMARY_NAV in app/paths.ts),
+          and /how-it-works redirects to this section's #how-it-works anchor. */}
       <HowItWorksSection />
+      <FinalCtaSection />
+      {/* Guided-vs-catalog comparison sits after the final CTA (owner
+          decision) — a reinforcing "why WeCare" beat between the CTA and the
+          FAQ, not a gate in front of it. */}
+      <ComparisonSection />
+      <FaqSection />
     </>
   );
 }

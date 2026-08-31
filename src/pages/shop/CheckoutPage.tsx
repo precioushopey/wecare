@@ -10,6 +10,7 @@ import { paths } from "@/app/paths";
 import { usePageTitle } from "@/app/usePageTitle";
 import { JourneyStepper } from "@/components/marketing/JourneyStepper";
 import { SOLUTION_BY_ID } from "@/data/solutions";
+import { useAuth } from "@/features/auth/AuthContext";
 import { useCart } from "@/features/cart/CartContext";
 import { addOrder } from "@/features/orders/orders";
 import { useLanguage } from "@/i18n/useLanguage";
@@ -35,6 +36,7 @@ export function CheckoutPage() {
   const { t } = useTranslation("shop");
   const { language } = useLanguage();
   const { items, subtotalEur, hasPrescriptionItem, clear } = useCart();
+  const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
   usePageTitle(t("checkout.title"));
 
@@ -47,6 +49,17 @@ export function CheckoutPage() {
 
   if (items.length === 0) {
     return <Navigate to={paths.cart} replace />;
+  }
+
+  // Checkout is for signed-in users — send guests to log in first, then back.
+  if (!isAuthenticated) {
+    return (
+      <Navigate
+        to={paths.login}
+        replace
+        state={{ from: paths.checkout, reason: "checkout" }}
+      />
+    );
   }
 
   const totalEur = subtotalEur + DELIVERY_FEE_EUR;

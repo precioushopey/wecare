@@ -97,6 +97,8 @@
    ────────────────────────────────────────────────────────────────────────── */
 
 :root {
+  color-scheme: light;
+
   --font-size: 16px;
   --font-weight-normal: 400;
   --font-weight-medium: 500;
@@ -155,6 +157,21 @@
     #0d444b 52%,
     #12586c 100%
   );
+  /* The deep blue-teal band used by `Section tone="brand"`, the final CTA and
+     the condition-page hero. A token so dark mode can brighten it in one place. */
+  --brand-band-gradient: linear-gradient(
+    135deg,
+    #0b2f45 0%,
+    #0d444b 55%,
+    #12586c 100%
+  );
+  /* Radial "held" glow behind a floating product / hero image (`.image-glow`). */
+  --image-glow: radial-gradient(
+    60% 60% at 50% 45%,
+    rgba(42, 167, 176, 0.16) 0%,
+    rgba(126, 169, 221, 0.1) 45%,
+    transparent 78%
+  );
 
   --glass-bg: rgba(255, 255, 255, 0.66);
   --glass-bg-strong: rgba(255, 255, 255, 0.82);
@@ -182,44 +199,126 @@
   --sidebar-ring: var(--color-azure);
 }
 
-/* Dark theme is SCAFFOLD ONLY — not a brand-book deliverable, not reviewed.
-   Present so shadcn `dark:` variants don't render broken if `.dark` is set. */
+/* ──────────────────────────────────────────────────────────────────────────
+   Dark appearance — a brand-consistent "night" re-skin, NOT a neutral dark
+   theme. The ground is a deep desaturated teal-navy from the Azure family
+   (same DNA as the footer and the deep "brand" bands); the Azure accent
+   brightens to petrol-400 so it stays legible on dark; the deep brand bands
+   are *brightened* so they still read as a distinct, richer section against
+   the dark page. Toggled via `.dark` on <html> (see src/theme/). Light is the
+   default and the reference design; this layer only remaps colour tokens —
+   layout, type and motion are shared. */
 .dark {
-  --background: var(--color-petrol-950);
-  --foreground: var(--color-light-azure);
-  --card: var(--color-petrol-900);
-  --card-foreground: var(--color-light-azure);
-  --popover: var(--color-petrol-900);
-  --popover-foreground: var(--color-light-azure);
-  --primary: var(--color-petrol-300);
-  --primary-foreground: var(--color-petrol-950);
-  --secondary: var(--color-petrol-800);
-  --secondary-foreground: var(--color-light-azure);
-  --muted: var(--color-petrol-900);
-  --muted-foreground: var(--color-petrol-300);
-  --accent: var(--color-petrol-800);
-  --accent-foreground: var(--color-light-azure);
+  color-scheme: dark;
+
+  /* Flat brand primitives — overriding these flips every `text-ink`,
+     `text-ink-muted`, `bg-surface`, `bg-surface-raised`, `border-border`
+     usage across the app with no per-component churn. */
+  --color-ink: #e8f4f2; /* primary text — soft near-white with a teal cast */
+  --color-ink-muted: #8fb3b6; /* secondary text */
+  --color-surface: #0a2a31; /* page ground — deep teal-navy */
+  --color-surface-raised: #0e3a41; /* cards / panels */
+  --color-border: #21525b; /* hairlines, dividers */
+
+  /* On dark, the Azure ramp's mid stops are used almost only as *foreground*
+     (accent text, eyebrows, icons) and as very-low-opacity tints — lift them
+     so they stay legible. The strong solid `bg-petrol-600` active states were
+     moved to `bg-primary` so this remap is safe. `petrol-50..500` and
+     `petrol-900/950` are left as-is (still used as deep surfaces / on the
+     always-dark footer). */
+  --color-petrol-600: #54acb6;
+  --color-petrol-700: #8bccd3;
+  --color-petrol-800: #b9e2e6;
+
+  /* The pale "sage" info surfaces become dim teal panels. `sage-500` (the
+     progress / done tone) and `sage-200..900` text stops are left alone. */
+  --color-sage-50: #123c44;
+  --color-sage-100: #17454d;
+
+  /* Semantic layer (shadcn tokens) */
+  --background: var(--color-surface);
+  --foreground: var(--color-ink);
+  --card: var(--color-surface-raised);
+  --card-foreground: var(--color-ink);
+  --popover: var(--color-surface-raised);
+  --popover-foreground: var(--color-ink);
+
+  --primary: var(--color-petrol-400); /* #54acb6 — brand accent on dark */
+  --primary-foreground: #04232b;
+
+  --secondary: #12454e;
+  --secondary-foreground: #d3ece0;
+
+  --muted: #0d363d;
+  --muted-foreground: var(--color-ink-muted);
+
+  --accent: #12454e;
+  --accent-foreground: #d3ece0;
+
   --destructive: var(--color-danger-400);
-  --destructive-foreground: var(--color-petrol-950);
-  --border: color-mix(in srgb, var(--color-light-azure) 14%, transparent);
-  --input: color-mix(in srgb, var(--color-light-azure) 14%, transparent);
-  --input-background: var(--color-petrol-900);
-  --ring: var(--color-petrol-300);
-  --progress: var(--color-petrol-300);
-  --progress-track: color-mix(in srgb, var(--color-light-azure) 14%, transparent);
-  --cta: var(--color-petrol-300);
-  --cta-hover: var(--color-petrol-200);
-  --cta-foreground: var(--color-petrol-950);
-  --page-gradient: linear-gradient(177deg, #0a2733 0%, #0b2f38 50%, #0a2a30 100%);
-  --glass-bg: rgba(13, 68, 75, 0.5);
-  --glass-bg-strong: rgba(13, 68, 75, 0.72);
-  --glass-border: rgba(255, 255, 255, 0.14);
-  --glass-highlight: rgba(255, 255, 255, 0.08);
-  --sidebar: var(--color-petrol-900);
-  --sidebar-foreground: var(--color-light-azure);
-  --sidebar-accent: var(--color-petrol-800);
-  --sidebar-accent-foreground: var(--color-light-azure);
-  --sidebar-border: color-mix(in srgb, var(--color-light-azure) 14%, transparent);
+  --destructive-foreground: #1b0f0c;
+
+  --border: var(--color-border);
+  --input: var(--color-border);
+  --input-background: #0c343b;
+  --switch-background: #2d4e43;
+  --ring: var(--color-petrol-400);
+
+  /* CTA stays the brand gradient, brightened, with dark ink on top so the
+     lighter teal still passes contrast. */
+  --cta: #2aa7b0;
+  --cta-hover: #38c5cd;
+  --cta-foreground: #04232b;
+  --cta-gradient: linear-gradient(118deg, #2aa7b0 0%, #38c5cd 100%);
+
+  --progress: var(--color-petrol-400);
+  --progress-track: #21525b;
+
+  /* Gradients */
+  --page-gradient: linear-gradient(
+    177deg,
+    #0a2a31 0%,
+    #0b3038 46%,
+    #08262d 100%
+  );
+  --footer-gradient: linear-gradient(
+    162deg,
+    #0c3a45 0%,
+    #12586c 55%,
+    #1a7684 100%
+  );
+  --brand-band-gradient: linear-gradient(
+    135deg,
+    #0c3945 0%,
+    #114c5b 52%,
+    #0e5566 100%
+  );
+  --image-glow: radial-gradient(
+    60% 60% at 50% 45%,
+    rgba(42, 167, 176, 0.24) 0%,
+    rgba(84, 172, 182, 0.13) 45%,
+    transparent 78%
+  );
+
+  /* Glass — teal-tinted translucency instead of white */
+  --glass-bg: rgba(14, 58, 65, 0.55);
+  --glass-bg-strong: rgba(14, 58, 65, 0.8);
+  --glass-border: rgba(232, 244, 242, 0.14);
+  --glass-highlight: rgba(232, 244, 242, 0.06);
+
+  /* Shadows read as ambient depth on dark, not drop shadows */
+  --shadow-soft: 0 4px 20px -8px rgba(0, 0, 0, 0.5);
+  --shadow-float: 0 24px 55px -24px rgba(0, 0, 0, 0.62);
+  --shadow-glow: 0 0 50px -12px rgba(42, 167, 176, 0.32);
+
+  --sidebar: var(--color-surface-raised);
+  --sidebar-foreground: var(--color-ink);
+  --sidebar-primary: var(--color-petrol-400);
+  --sidebar-primary-foreground: #04232b;
+  --sidebar-accent: #12454e;
+  --sidebar-accent-foreground: #d3ece0;
+  --sidebar-border: var(--color-border);
+  --sidebar-ring: var(--color-petrol-400);
 }
 
 @theme inline {
@@ -260,6 +359,7 @@
   --radius-xl: calc(var(--radius) + 4px);
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 20px);
+  --radius-4xl: calc(var(--radius) + 32px);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -291,7 +391,8 @@
     text-rendering: optimizeLegibility;
   }
 
-  /* Headings — TT Hoves (→ Inter). Modern, precise, medium-weight. */
+  /* Headings — Schibsted Grotesk (→ Figtree). Modern, precise; display tier
+     (h1–h3) runs bold (700) to echo the Bloomwell headline weight. */
   h1,
   h2,
   h3,
@@ -307,18 +408,18 @@
 
   h1 {
     font-size: var(--text-4xl);
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.1;
   }
 
   h2 {
     font-size: var(--text-3xl);
-    font-weight: 600;
+    font-weight: 700;
   }
 
   h3 {
     font-size: var(--text-2xl);
-    font-weight: 600;
+    font-weight: 700;
   }
 
   h4 {
@@ -363,6 +464,10 @@
 
   ::selection {
     background: var(--color-sage-200);
+    color: #0d2e33;
+  }
+  :is(.dark *)::selection {
+    background: var(--color-petrol-700);
     color: var(--color-ink);
   }
 
@@ -380,6 +485,17 @@
   }
   .brand-scrollbar::-webkit-scrollbar-thumb:hover {
     background: var(--color-ink-muted);
+  }
+
+  /* Dark appearance: take the edge off bright marketing photography so it
+     doesn't glare against the dark UI (the cut-out product shots on their
+     radial glow, plus the edge-masked hero / section photos). */
+  :is(.dark *) .image-glow img,
+  :is(.dark *) .hero-photo-mask,
+  :is(.dark *) .image-fade-b,
+  :is(.dark *) .image-fade-r,
+  :is(.dark *) .image-fade-rb {
+    filter: brightness(0.9) contrast(1.03);
   }
 }
 
@@ -423,14 +539,10 @@
       inset 0 1px 0 0 var(--glass-highlight);
   }
 
-  /* Soft radial "held" glow behind a floating product / hero image. */
+  /* Soft radial "held" glow behind a floating product / hero image.
+     Value is a token so dark mode can strengthen it (see `--image-glow`). */
   .image-glow {
-    background: radial-gradient(
-      60% 60% at 50% 45%,
-      rgba(42, 167, 176, 0.16) 0%,
-      rgba(126, 169, 221, 0.1) 45%,
-      transparent 78%
-    );
+    background: var(--image-glow);
   }
 }
 
@@ -455,5 +567,214 @@
 .image-fade-b {
   -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
   mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
+}
+
+/* Same treatment on the right edge. */
+.image-fade-r {
+  -webkit-mask-image: linear-gradient(to left, transparent 0%, #000 28%);
+  mask-image: linear-gradient(to left, transparent 0%, #000 28%);
+}
+
+/* Right + bottom together (e.g. the "Why WeCare" section photo). */
+.image-fade-rb {
+  -webkit-mask-image: linear-gradient(to left, transparent 0%, #000 26%),
+    linear-gradient(to bottom, #000 72%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to left, transparent 0%, #000 26%),
+    linear-gradient(to bottom, #000 72%, transparent 100%);
+  mask-composite: intersect;
+}
+
+/* Homepage hero photo edge treatment.
+   Below `lg` the photo sits in one column with a full-width CTA flush
+   beneath it, so every exposed edge — left, right and bottom — dissolves
+   into the page and the button. From `lg` up the photo sits beside the
+   copy and bleeds off-layout on the right, so the left and bottom edges
+   are masked (the bottom so its lower edge dissolves into the page rather
+   than reading as a hard crop). */
+.hero-photo-mask {
+  -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      #000 26%,
+      #000 74%,
+      transparent 100%
+    ),
+    linear-gradient(to bottom, #000 72%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      #000 26%,
+      #000 74%,
+      transparent 100%
+    ),
+    linear-gradient(to bottom, #000 72%, transparent 100%);
+  mask-composite: intersect;
+}
+
+@media (min-width: 64rem) {
+  .hero-photo-mask {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 28%),
+      linear-gradient(to bottom, #000 68%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(to right, transparent 0%, #000 28%),
+      linear-gradient(to bottom, #000 68%, transparent 100%);
+    mask-composite: intersect;
+  }
+}
+
+/* Hero trust strip. Below `lg` the row is wider than the screen, so it
+   scrolls as one gentle, continuous marquee (the point list is rendered
+   twice for a seamless loop). From `lg` up the whole row fits, so it sits
+   static and centred. Reduced-motion drops the animation and lets the row
+   wrap onto centred lines instead. */
+@keyframes trust-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.trust-marquee {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: trust-marquee 24s linear infinite;
+}
+
+.trust-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Static, centred row once it fits (or whenever motion is reduced). The
+   point list wraps onto centred lines rather than overflowing if a
+   translation is still a touch too wide. */
+@media (min-width: 64rem) {
+  .trust-marquee {
+    width: 100%;
+    justify-content: center;
+    animation: none;
+  }
+  .trust-marquee > [data-marquee-clone] {
+    display: none;
+  }
+  .trust-marquee > ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 0.375rem;
+    padding-right: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trust-marquee {
+    width: 100%;
+    justify-content: center;
+    animation: none;
+  }
+  .trust-marquee > [data-marquee-clone] {
+    display: none;
+  }
+  .trust-marquee > ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 0.375rem;
+    padding-right: 0;
+  }
+}
+
+/* GradientBackdrop orbs — a very slow, small parallax drift so the blurred
+   colour blooms behind the glass surfaces feel alive without ever reading as
+   motion. Each orb gets its own path + tempo so they never move in lockstep.
+   `alternate` reverses at each end (no seam); the translate range is tiny
+   next to the ~130px blur, so the browser just shifts one composited layer. */
+@keyframes orb-drift-a {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(-2.4rem, 1.8rem, 0) scale(1.06);
+  }
+}
+@keyframes orb-drift-b {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(2.8rem, -1.4rem, 0) scale(0.95);
+  }
+}
+@keyframes orb-drift-c {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(-1.8rem, -2.2rem, 0) scale(1.05);
+  }
+}
+
+.orb-drift-a,
+.orb-drift-b,
+.orb-drift-c {
+  will-change: transform;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+.orb-drift-a {
+  animation-name: orb-drift-a;
+  animation-duration: 26s;
+}
+.orb-drift-b {
+  animation-name: orb-drift-b;
+  animation-duration: 34s;
+}
+.orb-drift-c {
+  animation-name: orb-drift-c;
+  animation-duration: 30s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orb-drift-a,
+  .orb-drift-b,
+  .orb-drift-c {
+    animation: none;
+  }
+}
+
+/* Gentle vertical bob for the two hero info chips ("About 60–90 seconds" /
+   "1–2 matched solutions") — owner request, Aug 2026. This reverses the
+   earlier "hero photo/chips must be static" decision, and applies to the
+   chips only (the photo and ring stay put). Two tempos + an offset so the
+   chips never move in lockstep; off entirely under `prefers-reduced-motion`. */
+@keyframes wc-float {
+  from {
+    transform: translateY(-4px);
+  }
+  to {
+    transform: translateY(4px);
+  }
+}
+.wc-float-a,
+.wc-float-b {
+  will-change: transform;
+  animation-name: wc-float;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+.wc-float-a {
+  animation-duration: 4.5s;
+}
+.wc-float-b {
+  animation-duration: 5.5s;
+  animation-delay: -1.6s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wc-float-a,
+  .wc-float-b {
+    animation: none;
+  }
 }
 

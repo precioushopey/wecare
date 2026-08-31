@@ -94,7 +94,8 @@
     "password": "Passwort",
     "signIn": "Anmelden",
     "demoNote": "Demo-Anmeldung: Es werden keine echten Zugangsdaten geprüft. Ein Backend wird später angebunden.",
-    "requiredNote": "Bitte melde dich an, um diesen Bereich zu sehen."
+    "requiredNote": "Bitte melde dich an, um diesen Bereich zu sehen.",
+    "checkoutNote": "Bitte melde dich an, um deine Bestellung abzuschließen – danach geht es zurück zur Kasse."
   },
   "greeting": {
     "morning": "Guten Morgen, {{name}}",

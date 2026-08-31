@@ -72,6 +72,7 @@
   },
   "result": {
     "title": "Deine empfohlene Lösung ist bereit.",
+    "reassure": "Uns ist wichtig, dass das für dich passt.",
     "intro": "Auf Basis deiner Antworten hat WeCare dich mit der am besten geeigneten Unterstützungs-Option gematcht.",
     "summaryHeading": "Deine Angaben",
     "labels": {

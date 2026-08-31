@@ -57,8 +57,8 @@ export function DashboardLayout() {
                       cn(
                         "block rounded-2xl px-3.5 py-2.5 text-sm font-medium transition-colors",
                         isActive
-                          ? "bg-white/70 text-petrol-700 shadow-[0_4px_14px_-8px_rgba(13,68,75,0.3)]"
-                          : "text-ink-muted hover:bg-white/40 hover:text-ink",
+                          ? "bg-white/70 text-petrol-700 shadow-[0_4px_14px_-8px_rgba(13,68,75,0.3)] dark:bg-white/10"
+                          : "text-ink-muted hover:bg-white/40 hover:text-ink dark:hover:bg-white/[0.06]",
                       )
                     }
                   >

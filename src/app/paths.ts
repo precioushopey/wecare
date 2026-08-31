@@ -48,28 +48,19 @@ export const paths = {
 
   login: "/login",
 
-  about: "/about",
-  careers: "/careers",
-  providers: "/providers",
   contact: "/contact",
-  knowledgeHub: "/knowledge-hub",
-  knowledgeArticle: (slug: string) => `/knowledge-hub/${slug}`,
 
   legal: {
     imprint: "/legal/imprint",
     privacy: "/legal/privacy",
     terms: "/legal/terms",
     cookies: "/legal/cookie-policy",
-    productDisclaimer: "/legal/product-disclaimer",
     shipping: "/legal/shipping-policy",
     refunds: "/legal/refund-policy",
   },
 
   /** Lab tests / certificates of analysis (doc section 15). */
   labTests: "/lab-tests",
-
-  /** Internal design-token reference. Not linked from nav or footer. */
-  devTokens: "/dev/tokens",
 } as const;
 
 /**

@@ -86,7 +86,7 @@ export function AssessmentEnginePage() {
       </div>
 
       <div
-        className="mt-4 h-1.5 overflow-hidden rounded-full bg-white/60"
+        className="mt-4 h-1.5 overflow-hidden rounded-full bg-white/60 dark:bg-white/10"
         role="progressbar"
         aria-valuemin={0}
         aria-valuemax={TOTAL_QUESTIONS}
@@ -114,10 +114,14 @@ export function AssessmentEnginePage() {
       ) : null}
 
       <fieldset className="glass-strong mt-8 rounded-3xl p-6 sm:p-8">
-        <legend className="mb-1 font-display text-2xl text-ink">
+        {/* `float-left w-full` pulls the <legend> into the fieldset's content
+            box — without it the browser renders it straddling/above the top
+            border, so it appears to break out of the rounded card. The next
+            block `clear-both`s so it drops below rather than sitting beside. */}
+        <legend className="float-left mb-1 w-full font-display text-2xl text-ink">
           {t(`questions.${question.id}.title`)}
         </legend>
-        <div className="mt-5 grid gap-3">
+        <div className="mt-5 grid gap-3 clear-both">
           {question.options.map((opt) => {
             const id = `${question.id}-${opt}`;
             return (

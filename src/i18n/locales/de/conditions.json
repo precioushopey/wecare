@@ -6,7 +6,8 @@
     "matchedHeading": "Womit du gematcht werden könntest",
     "matchedNote": "Dein persönliches Match siehst du nach dem Assessment – nicht vorher.",
     "notSurePrompt": "Nicht sicher, ob das dein Anliegen ist?",
-    "notSureCta": "Allgemeines Assessment starten"
+    "notSureCta": "Allgemeines Assessment starten",
+    "finalCtaHeading": "Uns ist wichtig, wie es dir geht. Starte, wenn du bereit bist."
   },
   "sleep": {
     "shortTitle": "Schlaf",
@@ -21,7 +22,8 @@
       "b": "Nachts aufwachen",
       "c": "Unruhige Abende",
       "d": "Schlechte Schlafqualität",
-      "e": "Am nächsten Tag müde"
+      "e": "Am nächsten Tag müde",
+      "f": "Kreisende Gedanken vor dem Einschlafen"
     },
     "helpSteps": {
       "a": "Du beantwortest ein kurzes Assessment",

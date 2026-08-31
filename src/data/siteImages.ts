@@ -19,17 +19,22 @@ export function siteImage(key: string): string | undefined {
 
 /** Named references so components don't hard-code fragile path strings. */
 export const IMG = {
-  homeHero: "Condition Page",
+  homeHero: "Knowledge Hub/Hero",
   homeDoctor: "How it works Page",
-  /** Homepage section anchors (each cut-out photo used once across the page). */
-  homeProcess: "Homepage/Hero",
-  homeGuidance: "Knowledge Hub/Hero",
-  homeTrust: "Homepage/8",
+  homeGuidance: "Condition Page",
+  homeTrust: "Homepage/Hero",
   problem: {
     sleep: "Homepage/9",
     pain: "Homepage/10",
     stressAnxiety: "Homepage/11",
     migraine: "Homepage/12",
+  },
+  /** "How WeCare works" step cards (keys match `HOW_STEPS`). */
+  process: {
+    choose: "Knowledge Hub/60",
+    assessment: "Knowledge Hub/61",
+    match: "Homepage/8",
+    continue: "Knowledge Hub/64",
   },
   conditionHero: {
     sleep: "C1 - Sleep Problem/Hero",

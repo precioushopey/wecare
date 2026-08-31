@@ -30,7 +30,7 @@ export function LanguageToggle({ className }: { className?: string }) {
             className={cn(
               "rounded-full px-2.5 py-1 text-xs font-medium transition-colors",
               active
-                ? "bg-petrol-600 text-white"
+                ? "bg-primary text-primary-foreground"
                 : "text-ink-muted hover:text-ink",
             )}
           >

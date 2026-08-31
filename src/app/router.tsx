@@ -16,17 +16,10 @@ import {
   SleepPage,
   StressAnxietyPage,
 } from "@/pages/conditions";
-import {
-  AboutPage,
-  CareersPage,
-  ContactPage,
-  LegalPage,
-  ProvidersPage,
-} from "@/pages/content";
+import { ContactPage } from "@/pages/content";
+import { LegalPage } from "@/pages/legal/LegalPage";
 import { CostsPage } from "@/pages/CostsPage";
 import { FaqPage } from "@/pages/FaqPage";
-import { KnowledgeArticlePage } from "@/pages/KnowledgeArticlePage";
-import { KnowledgeHubPage } from "@/pages/KnowledgeHubPage";
 import { LabTestsPage } from "@/pages/LabTestsPage";
 import { DashboardLayout } from "@/pages/dashboard/DashboardLayout";
 import {
@@ -38,7 +31,6 @@ import {
   DashboardRecommendationPage,
   DashboardSupportPage,
 } from "@/pages/dashboard/pages";
-import { FoundationPreviewPage } from "@/pages/dev/FoundationPreviewPage";
 import { CartPage } from "@/pages/shop/CartPage";
 import { CheckoutPage } from "@/pages/shop/CheckoutPage";
 import { OrderConfirmationPage } from "@/pages/shop/OrderConfirmationPage";
@@ -118,26 +110,15 @@ export const router = createBrowserRouter([
 
       { path: paths.login, element: <LoginPage /> },
 
-      { path: paths.about, element: <AboutPage /> },
-      { path: paths.careers, element: <CareersPage /> },
-      { path: paths.providers, element: <ProvidersPage /> },
       { path: paths.contact, element: <ContactPage /> },
-      { path: paths.knowledgeHub, element: <KnowledgeHubPage /> },
-      { path: "/knowledge-hub/:slug", element: <KnowledgeArticlePage /> },
 
       { path: paths.legal.imprint, element: <LegalPage doc="imprint" /> },
       { path: paths.legal.privacy, element: <LegalPage doc="privacy" /> },
       { path: paths.legal.terms, element: <LegalPage doc="terms" /> },
       { path: paths.legal.cookies, element: <LegalPage doc="cookies" /> },
-      {
-        path: paths.legal.productDisclaimer,
-        element: <LegalPage doc="productDisclaimer" />,
-      },
       { path: paths.legal.shipping, element: <LegalPage doc="shipping" /> },
       { path: paths.legal.refunds, element: <LegalPage doc="refunds" /> },
       { path: paths.labTests, element: <LabTestsPage /> },
-
-      { path: paths.devTokens, element: <FoundationPreviewPage /> },
 
       { path: "*", element: <NotFoundPage /> },
     ],

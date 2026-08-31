@@ -1,7 +1,7 @@
 {
   "brand": {
     "name": "WeCare",
-    "tagline": "Starte mit deinem Anliegen. WeCare führt dich zur passenden Lösung."
+    "tagline": "Uns ist wichtig, wie es dir geht – du startest mit deinem Anliegen, wir führen dich weiter."
   },
   "nav": {
     "home": "Startseite",
@@ -13,6 +13,7 @@
     "faq": "Häufige Fragen",
     "costs": "Kosten",
     "login": "Anmelden",
+    "myArea": "Mein Bereich",
     "startAssessment": "Assessment starten",
     "primary": "Hauptnavigation",
     "openMenu": "Menü öffnen",
@@ -38,6 +39,12 @@
     },
     "switchTo": "Zu {{language}} wechseln"
   },
+  "theme": {
+    "label": "Darstellung",
+    "light": "Hell",
+    "dark": "Dunkel",
+    "switchTo": "Darstellung {{theme}} verwenden"
+  },
   "assessmentRing": {
     "progress": "{{answered}} von {{total}} Fragen beantwortet",
     "complete": "Alle Fragen beantwortet"
@@ -46,28 +53,20 @@
     "disclaimer": "WeCare bietet eine ärztliche Prüfung und – sofern medizinisch sinnvoll – ein Rezept. Nicht jede Person erhält ein Rezept.",
     "copyright": "© {{year}} WeCare. Alle Rechte vorbehalten.",
     "emergencyDisclaimer": "WeCare ersetzt keine Notfallversorgung.",
-    "social": "Soziale Medien",
     "shipping": "Versand",
     "payment": "Zahlungsarten",
-    "appStores": "App herunterladen",
     "headings": {
       "concerns": "Anliegen",
       "wecare": "WeCare",
       "legal": "Rechtliches"
     },
     "links": {
-      "about": "Über uns",
-      "careers": "Karriere",
-      "providers": "Für Ärzt:innen",
       "contact": "Kontakt",
-      "knowledgeHub": "Wissens-Hub",
       "imprint": "Impressum",
       "privacy": "Datenschutz",
       "terms": "AGB",
-      "dashboard": "Mein Bereich",
       "shop": "Shop",
       "cookies": "Cookie-Richtlinie",
-      "productDisclaimer": "Produkt-Haftungsausschluss",
       "shipping": "Versandrichtlinie",
       "refunds": "Rückerstattung",
       "labTests": "Labortests / COA"
@@ -137,25 +136,9 @@
       "title": "Anmelden",
       "description": "Melde dich an, um dein Assessment, deine Empfehlung und deine Bestellungen zu sehen."
     },
-    "about": {
-      "title": "Über uns",
-      "description": "Wer hinter WeCare steht und warum wir problem-orientiert arbeiten."
-    },
-    "careers": {
-      "title": "Karriere",
-      "description": "Offene Stellen und wie es ist, bei WeCare zu arbeiten."
-    },
-    "providers": {
-      "title": "Für Ärzt:innen",
-      "description": "Wie Ärzt:innen mit WeCare zusammenarbeiten."
-    },
     "contact": {
       "title": "Kontakt",
       "description": "So erreichst du unser Team."
-    },
-    "knowledgeHub": {
-      "title": "Wissens-Hub",
-      "description": "Fundierte Artikel zu Schlaf, Schmerzen, Stress und Migräne."
     },
     "legal": {
       "imprint": {
@@ -173,10 +156,6 @@
       "cookies": {
         "title": "Cookie-Richtlinie",
         "description": "Welche Cookies WeCare verwendet und wie du sie steuern kannst."
-      },
-      "productDisclaimer": {
-        "title": "Produkt-Haftungsausschluss",
-        "description": "Diese Produkte sind nicht zur Diagnose, Behandlung, Heilung oder Vorbeugung von Krankheiten bestimmt."
       },
       "shipping": {
         "title": "Versandrichtlinie",
@@ -197,18 +176,6 @@
       "title": "Labortests / COA",
       "description": "Analysezertifikat-Werte für jede WeCare-Lösung – Cannabinoide, Charge, Testdatum und Sicherheitsprüfung."
     }
-  },
-  "foundation": {
-    "title": "WeCare — Fundament",
-    "intro": "Design-Tokens, Schriftarten und die Zweisprachigkeit (DE Standard / EN umschaltbar) sind eingerichtet. Interne Referenzseite, nicht in der Navigation verlinkt.",
-    "paletteHeading": "Farben",
-    "typographyHeading": "Typografie",
-    "typographyDisplay": "TT Hoves — Überschriften (Fallback: Inter), mit ä, ö, ü und ß",
-    "typographyBody": "Inter — Fließtext und Bedienoberfläche",
-    "typographyAccent": "Batangas — Akzente (Fallback: Inter)",
-    "typographyData": "Monospace — ausschließlich für geprüfte Laborwerte (CBD 12,4 % · Charge A-2214 · 14.03.2026)",
-    "ringHeading": "Assessment-Ring",
-    "ringCaption": "Wiederkehrendes visuelles Element: „Ein paar Fragen beantworten, ein Ergebnis erhalten.“"
   },
   "journey": {
     "label": "Dein Weg",

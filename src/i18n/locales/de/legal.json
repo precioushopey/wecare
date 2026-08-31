@@ -1,0 +1,434 @@
+{
+  "effectiveDateLabel": "Gültig ab {{date}}",
+  "tocLabel": "Auf dieser Seite",
+  "draftNotice": "Entwurf — diese Seite ist ein Platzhalter zur rechtlichen Prüfung. Eckige Klammern (Firmendaten, Registernummern, Kontaktadressen) werden vor dem Launch mit den echten, eingetragenen Daten von WeCare ausgefüllt, und der Text selbst wird vor Inkrafttreten von einer Rechtsberatung geprüft.",
+  "docs": {
+    "terms": {
+      "effectiveDate": "[noch offen — Datum der rechtlichen Prüfung]",
+      "intro": "Diese Bedingungen erklären, was WeCare ist, was Sie vom Assessment und der ärztlichen Prüfung erwarten können, und welche Regeln gelten, sobald eine Lösung empfohlen und – falls medizinisch angemessen – abgegeben wird.",
+      "sections": [
+        {
+          "id": "scope",
+          "heading": "1. Geltungsbereich",
+          "body": [
+            "Diese Bedingungen gelten, sobald Sie die Website von WeCare nutzen, das Assessment ausfüllen oder eine empfohlene Lösung bestellen. Mit der Nutzung von WeCare akzeptieren Sie diese Bedingungen. Wenn Sie nicht einverstanden sind, nutzen Sie WeCare bitte nicht.",
+            "WeCare steht Verbraucher:innen in Österreich zur Verfügung. Die gewerbliche Nutzung (B2B) ist von diesen verbraucherbezogenen Bedingungen nicht erfasst."
+          ]
+        },
+        {
+          "id": "definitions",
+          "heading": "2. Ein paar Begriffe",
+          "list": [
+            "Assessment — die kurze Reihe von Fragen zu Ihrem Anliegen (Schlaf, Schmerzen, Stress & Angst oder Migräne).",
+            "Empfohlene Lösung — die Wellness-Lösung, die die Assessment-Logik von WeCare anhand Ihrer Antworten zuordnet. Es handelt sich um eine Empfehlung, kein Rezept.",
+            "Ärztliche Prüfung — die Prüfung Ihres Assessments durch eine approbierte Ärztin oder einen approbierten Arzt, die/der entscheidet, ob ein Rezept für Sie medizinisch angemessen ist.",
+            "Lösung — eine der namentlich benannten Lösungen von WeCare, die nach Verschreibung durch eine Partnerapotheke als medizinisches Cannabis abgegeben wird."
+          ]
+        },
+        {
+          "id": "what-we-provide",
+          "heading": "3. Was WeCare bietet",
+          "body": [
+            "WeCare ist eine geführte digitale Gesundheitsplattform – keine Online-Apotheke und keine Arztpraxis. Wir helfen Ihnen, über ein kurzes Assessment eine passende Lösung zu identifizieren, und leiten Ihr Assessment anschließend an eine approbierte Ärztin oder einen approbierten Arzt zur ärztlichen Prüfung weiter.",
+            "Die Ärztin oder der Arzt – nicht WeCare – entscheidet, ob ein Rezept ausgestellt wird und was es umfasst. Wird ein Rezept ausgestellt, erfolgen Abgabe und Versand durch eine unabhängig lizenzierte Partnerapotheke, nicht durch WeCare selbst."
+          ]
+        },
+        {
+          "id": "eligibility",
+          "heading": "4. Voraussetzungen und Ihre Angaben",
+          "body": [
+            "Sie müssen mindestens 18 Jahre alt sein und Ihren Wohnsitz in Österreich haben, um WeCare zu nutzen. Sie sind für die Richtigkeit der Angaben verantwortlich, die Sie im Assessment machen – die ärztliche Prüfung setzt voraus, dass diese wahrheitsgemäß und vollständig sind."
+          ]
+        },
+        {
+          "id": "no-guarantee",
+          "heading": "5. Das Assessment-Ergebnis ist keine Garantie",
+          "body": [
+            "Das Ausfüllen des Assessments garantiert kein Rezept. Jedes Assessment durchläuft eine individuelle ärztliche Prüfung, und die prüfende Ärztin oder der prüfende Arzt kann die Verschreibung ablehnen, etwas anderes als die anfängliche Empfehlung verschreiben oder vor der Entscheidung weitere Informationen anfordern.",
+            "Nichts auf dieser Website stellt eine individuelle medizinische Beratung dar. Sie ersetzt keine persönliche Untersuchung, die Ihre Ärztin oder Ihr Arzt für erforderlich hält."
+          ]
+        },
+        {
+          "id": "orders",
+          "heading": "6. Bestellung einer empfohlenen Lösung",
+          "body": [
+            "Sie können eine Lösung erst bestellen, nachdem dafür ein Rezept ausgestellt wurde. Eine Bestellung ist ein Kaufangebot, das wir (bzw. unsere Partnerapotheke) annehmen oder ablehnen können – etwa wenn das Rezept abgelaufen ist oder eine erforderliche Prüfung noch aussteht.",
+            "Bestelldetails, Mengen und Preise werden vor der Bestätigung im Checkout angezeigt."
+          ]
+        },
+        {
+          "id": "prices-payment",
+          "heading": "7. Preise und Zahlung",
+          "body": [
+            "Preise werden in Euro inklusive der gesetzlichen Umsatzsteuer angezeigt, sofern nicht anders angegeben. Akzeptierte Zahlungsarten werden im Checkout angezeigt. Zusätzlich kann eine Gebühr für die ärztliche Prüfung anfallen, die vor der Berechnung angezeigt wird – siehe unsere Seite „Kosten“ für den qualitativen Ablauf; feste Beträge veröffentlichen wir hier nicht, da sie von der Prüfung abhängen."
+          ]
+        },
+        {
+          "id": "delivery-and-withdrawal",
+          "heading": "8. Lieferung und Widerrufsrecht",
+          "body": [
+            "Die Lieferbedingungen sind in unserer Versandrichtlinie geregelt. Ihr gesetzliches Widerrufsrecht sowie die Ausnahmen, die für abgegebene Arzneimittel gelten, sind in unserer Rückerstattungsrichtlinie geregelt – bitte lesen Sie diese vor einer Bestellung."
+          ]
+        },
+        {
+          "id": "liability",
+          "heading": "9. Haftung",
+          "body": [
+            "Für Vorsatz und grobe Fahrlässigkeit haften wir unbeschränkt. Bei leichter Fahrlässigkeit haften wir nur für die Verletzung wesentlicher Vertragspflichten, begrenzt auf den bei Vertragsschluss vorhersehbaren Schaden. Gesetzlich zwingende Haftung – etwa für Schäden an Leben, Körper oder Gesundheit – bleibt hiervon unberührt.",
+            "WeCare haftet nicht für die eigenständige medizinische Einschätzung einer prüfenden Ärztin oder eines prüfenden Arztes oder für Abgabeentscheidungen einer Partnerapotheke – diese werden von der jeweils zuständigen, unabhängig lizenzierten Fachperson getroffen, nicht von WeCare."
+          ]
+        },
+        {
+          "id": "changes",
+          "heading": "10. Änderungen dieser Bedingungen",
+          "body": [
+            "Wir können diese Bedingungen von Zeit zu Zeit aktualisieren – etwa wenn sich unsere Leistungen oder die Rechtslage ändern. Die aktualisierte Fassung wird hier mit einem neuen Gültigkeitsdatum veröffentlicht; die weitere Nutzung nach diesem Datum gilt als Zustimmung zur Aktualisierung."
+          ]
+        },
+        {
+          "id": "governing-law",
+          "heading": "11. Anwendbares Recht und Gerichtsstand",
+          "body": [
+            "Es gilt österreichisches Recht, unbeschadet zwingender verbraucherschutzrechtlicher Bestimmungen Ihres Wohnsitzstaates. Als Verbraucher:in können Sie Klage am Gericht Ihres Wohnsitzes oder unseres Sitzes erheben; erheben wir Klage gegen Sie, tun wir dies am Gericht Ihres Wohnsitzes."
+          ]
+        },
+        {
+          "id": "contact",
+          "heading": "12. Kontakt",
+          "body": [
+            "Fragen zu diesen Bedingungen? Sie erreichen uns über unsere Kontaktseite; vollständige Firmendaten finden Sie in unserem Impressum."
+          ]
+        }
+      ]
+    },
+    "privacy": {
+      "effectiveDate": "[noch offen — Datum der rechtlichen Prüfung]",
+      "intro": "Diese Erklärung beschreibt, welche personenbezogenen Daten WeCare erhebt, warum, und welche Rechte Sie darüber haben – einschließlich der gesundheitsbezogenen Angaben, die Sie im Assessment und bei der ärztlichen Prüfung teilen.",
+      "sections": [
+        {
+          "id": "controller",
+          "heading": "1. Verantwortliche Stelle",
+          "fields": [
+            { "label": "Verantwortlicher", "value": "[Firmenname von WeCare], [eingetragene Adresse], Österreich" },
+            { "label": "Datenschutzbeauftragte:r", "value": "[Name / Kontakt-E-Mail — sofern gesetzlich erforderlich bestellt]" },
+            { "label": "Kontakt", "value": "Siehe unsere Kontaktseite" }
+          ]
+        },
+        {
+          "id": "what-we-collect",
+          "heading": "2. Welche Daten wir erheben",
+          "list": [
+            "Kontodaten — Name, E-Mail-Adresse und die von Ihnen erstellten Login-Daten.",
+            "Assessment-Antworten — Ihr Anliegen, Schweregrad, Häufigkeit und bisherige Erfahrung mit Cannabis oder CBD. Dies sind gesundheitsbezogene Daten im Sinne von Art. 9 DSGVO.",
+            "Daten aus der ärztlichen Prüfung — alles, was die prüfende Ärztin oder der prüfende Arzt im Rahmen der Beurteilung Ihres Falls festhält.",
+            "Bestell- und Lieferdaten — Lieferadresse, Bestellinhalt, Zahlungsbestätigung (vollständige Kartendaten speichern wir nicht selbst; das übernimmt unser Zahlungsdienstleister).",
+            "Technische Daten — Gerät, Browser und allgemeine Nutzung der Website, erhoben, um sie funktionsfähig und sicher zu halten."
+          ]
+        },
+        {
+          "id": "legal-basis",
+          "heading": "3. Rechtsgrundlage der Verarbeitung",
+          "body": [
+            "Konto- und Bestelldaten verarbeiten wir zur Vertragserfüllung (Art. 6 Abs. 1 lit. b DSGVO). Assessment-Antworten und andere gesundheitsbezogene Daten verarbeiten wir nur mit Ihrer ausdrücklichen Einwilligung (Art. 9 Abs. 2 lit. a DSGVO), die Sie mit dem Start des Assessments erteilen und jederzeit über unsere Kontaktseite widerrufen können – ein Widerruf kann allerdings bedeuten, dass eine bereits laufende Prüfung nicht abgeschlossen werden kann.",
+            "Begrenzte technische Daten verarbeiten wir auf Basis berechtigten Interesses (Art. 6 Abs. 1 lit. f DSGVO), um die Website sicher und funktionsfähig zu halten, sowie zur Erfüllung gesetzlicher Aufbewahrungspflichten (Art. 6 Abs. 1 lit. c DSGVO), etwa für apotheken- und steuerrechtliche Aufzeichnungen."
+          ]
+        },
+        {
+          "id": "sharing",
+          "heading": "4. An wen wir Daten weitergeben",
+          "body": [
+            "Wir geben nur weiter, was für die Erbringung der Leistung nötig ist, und nicht mehr:"
+          ],
+          "list": [
+            "Die approbierte Ärztin oder der approbierte Arzt, die/der Ihre ärztliche Prüfung durchführt.",
+            "Die lizenzierte Partnerapotheke, die eine verschriebene Lösung abgibt und versendet.",
+            "Zahlungs- und Versanddienstleister zur Abwicklung von Bestellung und Lieferung.",
+            "Hosting- und IT-Dienstleister, die Daten in unserem Auftrag auf Grundlage eines Auftragsverarbeitungsvertrags verarbeiten.",
+            "Behörden, ausschließlich soweit gesetzlich vorgeschrieben."
+          ],
+          "bodyAfter": [
+            "Wir verkaufen Ihre personenbezogenen Daten niemals und geben Assessment- oder Gesundheitsdaten nicht zu Marketingzwecken weiter."
+          ]
+        },
+        {
+          "id": "international-transfers",
+          "heading": "5. Übermittlung in Drittländer",
+          "body": [
+            "Verarbeitet ein von uns eingesetzter Dienstleister Daten außerhalb der EU/des EWR, stützen wir uns auf einen Angemessenheitsbeschluss oder die EU-Standardvertragsklauseln, um denselben Schutzstandard sicherzustellen."
+          ]
+        },
+        {
+          "id": "retention",
+          "heading": "6. Speicherdauer",
+          "body": [
+            "Konto- und Assessment-Daten speichern wir, solange Ihr Konto aktiv ist, zuzüglich eines begrenzten Zeitraums danach (für eventuelle Rückfragen oder Streitfälle). Bestell- und rezeptbezogene Aufzeichnungen bewahren wir darüber hinaus für die apotheken- und steuerrechtlich vorgeschriebenen Fristen auf – in der Regel mehrere Jahre. Die für Ihre Daten konkret geltende Frist teilen wir Ihnen auf Anfrage mit."
+          ]
+        },
+        {
+          "id": "security",
+          "heading": "7. Sicherheit",
+          "body": [
+            "Wir setzen Verschlüsselung bei der Übertragung (TLS) sowie Zugriffskontrollen ein, damit nur die an Ihrer Behandlung und Bestellung beteiligten Personen Ihre Daten einsehen können. Kein System ist absolut sicher, aber wir entwickeln und überprüfen unseres nach aktuellem Stand der Technik."
+          ]
+        },
+        {
+          "id": "cookies",
+          "heading": "8. Cookies",
+          "body": [
+            "Wir verwenden eine kleine Anzahl an Cookies, um die Website zu betreiben und, sofern Sie zustimmen, um deren Nutzung zu verstehen. Details und Kontrollmöglichkeiten finden Sie in unserer Cookie-Richtlinie."
+          ]
+        },
+        {
+          "id": "your-rights",
+          "heading": "9. Ihre Rechte",
+          "body": [
+            "Nach der DSGVO können Sie:"
+          ],
+          "list": [
+            "Auskunft verlangen, welche Daten wir über Sie gespeichert haben, und eine Kopie erhalten (Auskunftsrecht).",
+            "Die Berichtigung unrichtiger Daten verlangen (Recht auf Berichtigung).",
+            "Die Löschung von Daten verlangen, die wir nicht mehr aufbewahren müssen (Recht auf Löschung).",
+            "Die Einschränkung bestimmter Verarbeitungen verlangen oder ihr widersprechen.",
+            "Ihre Daten in einem übertragbaren Format anfordern (Recht auf Datenübertragbarkeit).",
+            "Eine erteilte Einwilligung jederzeit widerrufen.",
+            "Sich bei Ihrer nationalen Datenschutzbehörde beschweren — in Österreich der Datenschutzbehörde (dsb.gv.at)."
+          ]
+        },
+        {
+          "id": "children",
+          "heading": "10. Minderjährige",
+          "body": [
+            "WeCare richtet sich an Erwachsene (18+). Wir erheben wissentlich keine Daten von Personen unter diesem Alter."
+          ]
+        },
+        {
+          "id": "changes",
+          "heading": "11. Änderungen dieser Erklärung",
+          "body": [
+            "Wir aktualisieren diese Seite, wenn sich Umfang oder Art unserer Datenverarbeitung ändert, und veröffentlichen dabei ein neues Gültigkeitsdatum."
+          ]
+        }
+      ]
+    },
+    "cookies": {
+      "effectiveDate": "[noch offen — Datum der rechtlichen Prüfung]",
+      "intro": "Cookies sind kleine Dateien, die eine Website auf Ihrem Gerät speichert. Hier erfahren Sie, wofür WeCare sie einsetzt.",
+      "sections": [
+        {
+          "id": "essential",
+          "heading": "1. Notwendige Cookies",
+          "body": [
+            "Diese sorgen dafür, dass die Website funktioniert — sie merken sich Ihre Anmeldesitzung, Ihre Sprachwahl und die Inhalte Ihres Warenkorbs. Ohne sie kann die Website nicht ordnungsgemäß funktionieren, daher sind sie immer aktiv."
+          ]
+        },
+        {
+          "id": "preference",
+          "heading": "2. Präferenz-Cookies",
+          "body": [
+            "Diese merken sich Einstellungen wie Ihre Sprache (Deutsch/Englisch), damit Sie diese nicht bei jedem Besuch neu festlegen müssen."
+          ]
+        },
+        {
+          "id": "analytics",
+          "heading": "3. Analyse-Cookies",
+          "body": [
+            "Sofern aktiviert, helfen uns diese zu verstehen, wie die Website insgesamt genutzt wird — welche Seiten besucht werden und ob der Assessment-Ablauf reibungslos funktioniert —, damit wir sie verbessern können. Sie werden nur mit Ihrer Einwilligung gesetzt und niemals mit Ihren Assessment- oder Gesundheitsdaten verknüpft."
+          ]
+        },
+        {
+          "id": "managing",
+          "heading": "4. Cookies verwalten",
+          "body": [
+            "Sie können nicht notwendige Cookies über unseren Cookie-Banner beim ersten Besuch zulassen oder ablehnen und Ihre Auswahl jederzeit in Ihren Browsereinstellungen ändern. Das Blockieren notwendiger Cookies kann dazu führen, dass Teile der Website — etwa das Angemeldet-Bleiben — nicht funktionieren."
+          ]
+        },
+        {
+          "id": "third-party",
+          "heading": "5. Cookies Dritter",
+          "body": [
+            "Manche eingebundenen Inhalte (z. B. Zahlungs- oder Versand-Widgets im Checkout) können eigene Cookies setzen, die der jeweiligen Richtlinie des Anbieters unterliegen."
+          ]
+        },
+        {
+          "id": "changes",
+          "heading": "6. Änderungen",
+          "body": [
+            "Wir aktualisieren diese Seite, wenn sich die von uns eingesetzten Cookies ändern."
+          ]
+        }
+      ]
+    },
+    "imprint": {
+      "effectiveDate": "[noch offen — Datum der rechtlichen Prüfung]",
+      "intro": "Angaben gemäß § 5 ECG (E-Commerce-Gesetz) und § 25 Mediengesetz.",
+      "sections": [
+        {
+          "id": "provider",
+          "heading": "1. Diensteanbieter",
+          "fields": [
+            { "label": "Unternehmen", "value": "[Firmenname von WeCare]" },
+            { "label": "Rechtsform", "value": "[z. B. GmbH]" },
+            { "label": "Sitz", "value": "[Straße, PLZ, Ort], Österreich" },
+            { "label": "Vertreten durch", "value": "[Geschäftsführung]" },
+            { "label": "Firmenbuch", "value": "Firmenbuchnummer [FN xxxxx x], Firmenbuchgericht [Gericht]" },
+            { "label": "UID-Nummer", "value": "[ATU xxxxxxxx]" }
+          ]
+        },
+        {
+          "id": "contact",
+          "heading": "2. Kontakt",
+          "fields": [
+            { "label": "E-Mail", "value": "[Kontakt-E-Mail]" },
+            { "label": "Telefon", "value": "[Kontakt-Telefon]" }
+          ]
+        },
+        {
+          "id": "regulatory",
+          "heading": "3. Regulatorische Hinweise",
+          "body": [
+            "Die ärztliche Prüfung erfolgt durch unabhängig approbierte Ärzt:innen, die Abgabe durch eine unabhängig lizenzierte Partnerapotheke. Beide sind nicht bei WeCare angestellt und unterliegen jeweils ihrer eigenen berufsrechtlichen Aufsicht."
+          ]
+        },
+        {
+          "id": "dispute-resolution",
+          "heading": "4. Online-Streitbeilegung",
+          "body": [
+            "Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: ec.europa.eu/consumers/odr. Wir sind zur Teilnahme an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle weder verpflichtet noch derzeit bereit."
+          ]
+        },
+        {
+          "id": "liability-content",
+          "heading": "5. Haftung für Inhalte",
+          "body": [
+            "Wir achten mit angemessener Sorgfalt auf die Richtigkeit und Aktualität der Inhalte dieser Website, übernehmen jedoch keine Gewähr für deren Vollständigkeit oder Anwendbarkeit auf Ihre individuelle Situation. Die Inhalte sind allgemeine Informationen und keine individuelle medizinische Beratung."
+          ]
+        },
+        {
+          "id": "liability-links",
+          "heading": "6. Haftung für Links",
+          "body": [
+            "Unsere Website kann auf externe Websites verlinken, auf die wir keinen Einfluss haben. Für deren Inhalte übernehmen wir keine Verantwortung; ein Link stellt keine Billigung dar."
+          ]
+        },
+        {
+          "id": "copyright",
+          "heading": "7. Urheberrecht",
+          "body": [
+            "Inhalte und Gestaltung dieser Website sind urheberrechtlich geschützt. Eine Verwertung, die über das urheberrechtlich Zulässige hinausgeht, bedarf unserer schriftlichen Zustimmung."
+          ]
+        }
+      ]
+    },
+    "shipping": {
+      "effectiveDate": "[noch offen — Datum der rechtlichen Prüfung]",
+      "intro": "Wie eine verschriebene Lösung zu Ihnen gelangt, sobald eine Ärztin oder ein Arzt sie freigegeben hat.",
+      "sections": [
+        {
+          "id": "scope",
+          "heading": "1. Was diese Richtlinie umfasst",
+          "body": [
+            "Diese Richtlinie betrifft die Lieferung einer verschriebenen Lösung, die von unserer lizenzierten Partnerapotheke abgegeben und versendet wird. Das Assessment und die ärztliche Prüfung selbst beinhalten keinen physischen Versand."
+          ]
+        },
+        {
+          "id": "where-we-ship",
+          "heading": "2. Liefergebiet",
+          "body": [
+            "Wir liefern derzeit ausschließlich innerhalb Österreichs, an die im Checkout bestätigte Adresse."
+          ]
+        },
+        {
+          "id": "processing-time",
+          "heading": "3. Bearbeitungszeit",
+          "body": [
+            "Sobald ein Rezept ausgestellt ist, versendet unsere Partnerapotheke Ihre Bestellung in der Regel innerhalb von [X] Werktagen, vorbehaltlich der Verfügbarkeit der verschriebenen Sorten."
+          ]
+        },
+        {
+          "id": "delivery-time",
+          "heading": "4. Lieferzeit",
+          "body": [
+            "Die Standardlieferung dauert ab Versand in der Regel [X–Y] Werktage. Sobald Ihre Bestellung unterwegs ist, erhalten Sie eine Versandbestätigung mit Sendungsverfolgung."
+          ]
+        },
+        {
+          "id": "packaging",
+          "heading": "5. Diskrete, neutrale Verpackung",
+          "body": [
+            "Jede Lieferung erfolgt in neutraler, unbeschrifteter Verpackung ohne äußerlich erkennbaren Hinweis auf den Inhalt. Wie bei jedem verschreibungspflichtigen Arzneimittel ist bei der Zustellung eine Unterschrift erforderlich."
+          ]
+        },
+        {
+          "id": "fees",
+          "heading": "6. Versandkosten",
+          "body": [
+            "Der Versand ist derzeit ohne Aufpreis inkludiert. Den vollständigen Überblick, was Sie erwartet, einschließlich der separaten Gebühr für die ärztliche Prüfung, finden Sie auf unserer Seite „Kosten“."
+          ]
+        },
+        {
+          "id": "missed-delivery",
+          "heading": "7. Wenn die Zustellung nicht gelingt",
+          "body": [
+            "Ist niemand zur Übernahme der Sendung anwesend, hinterlässt der Zusteller eine Benachrichtigung mit Hinweisen zur erneuten Zustellung oder Abholung. Kontaktieren Sie uns, wenn Sie dabei Unterstützung benötigen."
+          ]
+        }
+      ]
+    },
+    "refunds": {
+      "effectiveDate": "[noch offen — Datum der rechtlichen Prüfung]",
+      "intro": "Ihr Widerrufsrecht und die Ausnahmen, die für verschriebene Arzneimittel gelten.",
+      "sections": [
+        {
+          "id": "right-of-withdrawal",
+          "heading": "1. Ihr Widerrufsrecht",
+          "body": [
+            "Als Verbraucher:in in Österreich haben Sie grundsätzlich das Recht, einen Fernabsatzvertrag innerhalb von 14 Tagen ohne Angabe von Gründen zu widerrufen (Fern- und Auswärtsgeschäfte-Gesetz, FAGG). Um dieses Recht auszuüben, teilen Sie uns vor Ablauf der Frist über unsere Kontaktseite eindeutig mit, dass Sie widerrufen möchten."
+          ]
+        },
+        {
+          "id": "exclusion-medicine",
+          "heading": "2. Warum verschriebene Lösungen in der Regel nicht zurückgenommen werden können",
+          "body": [
+            "Versiegelte Waren, die aus Gründen des Gesundheitsschutzes oder der Hygiene nach dem Entsiegeln nicht zur Rückgabe geeignet sind — dazu zählt abgegebenes verschreibungspflichtiges Arzneimittel —, sind gesetzlich vom regulären Widerrufsrecht ausgenommen (§ 18 Abs. 1 FAGG). Sobald Ihre Lösung abgegeben und versendet wurde, können wir sie aus Sicherheitsgründen und weil sie nicht sicher weiterverkauft werden kann, in der Regel nicht zurücknehmen oder aufgrund eines Widerrufs erstatten.",
+            "Ihre Rechte bleiben unberührt, wenn das Produkt mangelhaft ist, beim Transport beschädigt wurde oder nicht Ihrer Bestellung entspricht — siehe dazu unten."
+          ]
+        },
+        {
+          "id": "review-fee",
+          "heading": "3. Gebühr für die ärztliche Prüfung",
+          "body": [
+            "Wurde die ärztliche Prüfung auf Ihren ausdrücklichen Wunsch bereits vor Ablauf der Widerrufsfrist begonnen, kann gemäß § 16 FAGG ein anteiliger Betrag für die bereits erbrachte Leistung anfallen. Wir weisen Sie darauf immer deutlich hin, bevor die Prüfung beginnt."
+          ]
+        },
+        {
+          "id": "damaged-or-wrong",
+          "heading": "4. Beschädigte, mangelhafte oder falsche Artikel",
+          "body": [
+            "Kommt Ihre Lieferung beschädigt oder mangelhaft an oder entspricht nicht Ihrer Bestellung, kontaktieren Sie uns innerhalb von [X] Tagen nach Zustellung. Wir organisieren kostenlos einen Ersatz oder eine Erstattung — dies ist unabhängig von der oben genannten Ausnahme stets gewährleistet."
+          ]
+        },
+        {
+          "id": "how-to-request",
+          "heading": "5. So beantragen Sie eine Erstattung",
+          "body": [
+            "Kontaktieren Sie uns über unsere Kontaktseite mit Ihrer Bestellnummer und einer kurzen Beschreibung des Problems. Wir bestätigen die nächsten Schritte per E-Mail."
+          ]
+        },
+        {
+          "id": "refund-timing",
+          "heading": "6. Zeitpunkt der Erstattung",
+          "body": [
+            "Genehmigte Erstattungen erfolgen auf Ihre ursprüngliche Zahlungsmethode, in der Regel innerhalb von 14 Tagen nach Genehmigung."
+          ]
+        },
+        {
+          "id": "withdrawal-form",
+          "heading": "7. Muster-Widerrufsformular",
+          "body": [
+            "Sofern das Widerrufsrecht anwendbar ist, können Sie das EU-weit einheitliche Muster-Widerrufsformular über unsere Kontaktseite bei uns anfordern."
+          ]
+        }
+      ]
+    }
+  }
+}

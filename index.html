@@ -3,7 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
     <title>WeCare</title>
+
+    <!-- Apply the stored appearance before first paint (no light flash).
+         Kept in sync by src/theme/ at runtime. Light is the default. -->
+    <script>
+      try {
+        if (localStorage.getItem("wecare.theme") === "dark") {
+          document.documentElement.classList.add("dark");
+          document.documentElement.style.colorScheme = "dark";
+        }
+      } catch (e) {}
+    </script>
     <meta
       name="description"
       content="WeCare — finde die richtige Unterstützung bei Schlafproblemen, Schmerzen, Stress und Migräne. Ärztlich geführt, in Österreich verfügbar."
@@ -14,12 +26,14 @@
     <link rel="icon" href="/favicon.png" type="image/png" sizes="512x512" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-    <!-- WeCare brand primary typeface (WECARE BRAND BOOK 2026). TT Hoves /
-         Batangas are commercial and stack-loaded in src/styles/fonts.css. -->
+    <!-- WeCare brand typefaces (WECARE BRAND BOOK 2026):
+         Schibsted Grotesk = display / headings · Figtree = body / UI.
+         Both OFL, served by Google Fonts. Batangas (accent) stays commercial
+         and stack-loaded in src/styles/fonts.css. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Schibsted+Grotesk:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
 

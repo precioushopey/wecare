@@ -6,7 +6,8 @@
     "matchedHeading": "What you might be matched with",
     "matchedNote": "You see your personal match after the assessment — not before.",
     "notSurePrompt": "Not sure this is your concern?",
-    "notSureCta": "Start the general assessment"
+    "notSureCta": "Start the general assessment",
+    "finalCtaHeading": "We care about how you're feeling. Start when you're ready."
   },
   "sleep": {
     "shortTitle": "Sleep",
@@ -21,7 +22,8 @@
       "b": "Waking up during the night",
       "c": "Restless evenings",
       "d": "Poor sleep quality",
-      "e": "Feeling tired the next day"
+      "e": "Feeling tired the next day",
+      "f": "Racing thoughts at bedtime"
     },
     "helpSteps": {
       "a": "You answer a short assessment",
