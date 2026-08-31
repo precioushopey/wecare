@@ -28,12 +28,21 @@ import { useLanguage } from "@/i18n/useLanguage";
 import { formatDate, formatPriceEur } from "@/lib/format";
 
 const FAQ_KEYS = ["dosage", "driving", "delivery"] as const;
-const GRAM_OPTIONS = [5, 10, 15, 30];
+/** Each option's badge, if any — guides a beginner instead of leaving four
+ * bare numbers to weigh unaided (owner feedback, Aug 2026). Framed as order
+ * size / common selection, never as a consumption or dosage recommendation —
+ * that stays the prescribing doctor's call. */
+const GRAM_OPTIONS: { value: number; badge?: "starter" | "recommended" | "popular" }[] = [
+  { value: 5, badge: "starter" },
+  { value: 10, badge: "recommended" },
+  { value: 15 },
+  { value: 30, badge: "popular" },
+];
 
 function StrainCard({ strain }: { strain: Product }) {
   const { t } = useTranslation("shop");
   return (
-    <li className="flex items-center gap-3 rounded-2xl border border-white/50 bg-white/40 p-3 dark:border-white/10 dark:bg-white/[0.04]">
+    <li className="flex items-center gap-3 rounded-2xl border border-white/50 bg-white/40 p-3 dark:border-white/20 dark:bg-white/[0.04]">
       <ImageWithFallback
         src={getProductImage(strain)}
         alt=""
@@ -158,24 +167,32 @@ export function ProductPage() {
             <legend className="text-sm font-medium text-ink">
               {t("solution.amountLabel")}
             </legend>
-            <div className="mt-2 flex flex-wrap gap-2">
-              {GRAM_OPTIONS.map((o) => (
+            <div className="mt-3 grid grid-cols-2 gap-2.5 sm:grid-cols-4">
+              {GRAM_OPTIONS.map(({ value: o, badge }) => (
                 <button
                   key={o}
                   type="button"
                   onClick={() => setGrams(o)}
                   aria-pressed={grams === o}
                   className={cn(
-                    "rounded-full border px-3.5 py-1.5 text-sm transition-colors",
+                    "relative flex flex-col items-center gap-1 rounded-2xl border px-3 py-3 text-sm font-medium transition-colors",
                     grams === o
                       ? "border-primary bg-primary text-primary-foreground"
-                      : "border-border text-ink-muted hover:text-ink",
+                      : "border-border text-ink-muted hover:border-petrol-300 hover:text-ink",
                   )}
                 >
+                  {badge ? (
+                    <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-sage-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-petrol-700">
+                      {t(`solution.amountBadges.${badge}`)}
+                    </span>
+                  ) : null}
                   {t("solution.grams", { count: o })}
                 </button>
               ))}
             </div>
+            <p className="mt-3 text-xs text-ink-muted">
+              {t("solution.amountHint")}
+            </p>
           </fieldset>
 
           <div className="mt-5 flex flex-wrap items-center gap-3">
@@ -239,7 +256,7 @@ export function ProductPage() {
           {formulationRows.map(({ label, value }) => (
             <div
               key={label}
-              className="rounded-2xl border border-white/50 bg-white/40 p-3 dark:border-white/10 dark:bg-white/[0.04]"
+              className="rounded-2xl border border-white/50 bg-white/40 p-3 dark:border-white/20 dark:bg-white/[0.04]"
             >
               <dt className="text-xs uppercase tracking-wide text-ink-muted">
                 {label}
@@ -278,7 +295,7 @@ export function ProductPage() {
           {coaValues.map(({ key, value }) => (
             <div
               key={key}
-              className="rounded-2xl border border-white/50 bg-white/40 p-3 dark:border-white/10 dark:bg-white/[0.04]"
+              className="rounded-2xl border border-white/50 bg-white/40 p-3 dark:border-white/20 dark:bg-white/[0.04]"
             >
               <dt className="text-xs uppercase tracking-wide text-ink-muted">
                 {t(`coaLabels.${key}`)}

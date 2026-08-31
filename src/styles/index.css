@@ -157,6 +157,23 @@
     #0d444b 52%,
     #12586c 100%
   );
+  /* `--footer-gradient`, flipped — for the homepage final-CTA band that
+     sits flush above the footer, no gap. Attempt 1 (a flat fill colour-
+     matched to the footer's top stop) read as a flat-vs-sloped "Mach band"
+     edge. Attempt 2 (162°+180°=342°, a pure vertical flip) matched the
+     colour at the seam but not the *lean*: 162° tilts its light end toward
+     the south-east, so 342° tilts its (now-)dark end toward the north-west
+     — the opposite diagonal to the footer's own dark corner — so the two
+     still didn't line up off-centre. Mirroring horizontally too
+     (342°→360-342=18°) keeps the dark stop at this section's bottom edge
+     *and* matches the footer's lean, confirmed side-by-side in isolation:
+     the two stack with no visible seam anywhere across the width. */
+  --footer-gradient-flip: linear-gradient(
+    18deg,
+    #0a2c42 0%,
+    #0d444b 52%,
+    #12586c 100%
+  );
   /* The deep blue-teal band used by `Section tone="brand"`, the final CTA and
      the condition-page hero. A token so dark mode can brighten it in one place. */
   --brand-band-gradient: linear-gradient(
@@ -216,19 +233,49 @@
      usage across the app with no per-component churn. */
   --color-ink: #e8f4f2; /* primary text — soft near-white with a teal cast */
   --color-ink-muted: #8fb3b6; /* secondary text */
-  --color-surface: #0a2a31; /* page ground — deep teal-navy */
-  --color-surface-raised: #0e3a41; /* cards / panels */
-  --color-border: #21525b; /* hairlines, dividers */
+  /* Ground pass (Aug 31 2026, client feedback) — a "calculate the dark
+     version of light-mode white" pass was tried (same hue as `--color-surface`
+     `#f4f5fa`, ~230° blue-violet, lightness inverted) and reverted: it clashed
+     against `--brand-band-gradient` / `--footer-gradient` / the sage panels,
+     which are all built around the brand's Azure/Dark-Azure hue (~191°) and
+     don't move. Reverted to the brand-teal hue, and — per the follow-up
+     request — pushed much darker, toward near-black, instead: same hue/sat
+     as the original `#0a2a31` (190.8°, 66%), lightness dropped from 11.6%/
+     15.5% to 5%/8%. Reads as near-black with a whisper of teal rather than a
+     clearly-teal-navy panel, while staying in the same hue family as every
+     other dark-mode surface (no re-hueing needed elsewhere). */
+  --color-surface: #041215; /* page ground — very dark teal, close to black */
+  --color-surface-raised: #071d22; /* cards / panels */
+  /* Contrast QA pass (Aug 2026, client feedback — "verify dark mode with a
+     QA tool"): the original #21525b measured 1.4:1 against --surface-raised,
+     well under WCAG 1.4.11's 3:1 non-text-contrast minimum for UI component
+     boundaries — form-input outlines (`border-input` uses this token) were
+     effectively invisible in dark mode. Brightened to clear 3:1 against both
+     --surface (4.84:1) and --surface-raised (4.42:1 — re-verified after the
+     ground pass above darkened the surfaces further; margin only grew). */
+  --color-border: #518991; /* hairlines, dividers, form-field outlines */
 
   /* On dark, the Azure ramp's mid stops are used almost only as *foreground*
      (accent text, eyebrows, icons) and as very-low-opacity tints — lift them
      so they stay legible. The strong solid `bg-petrol-600` active states were
      moved to `bg-primary` so this remap is safe. `petrol-50..500` and
      `petrol-900/950` are left as-is (still used as deep surfaces / on the
-     always-dark footer). */
-  --color-petrol-600: #54acb6;
-  --color-petrol-700: #8bccd3;
-  --color-petrol-800: #b9e2e6;
+     always-dark footer).
+     Accent-depth pass (Aug 31 2026, client feedback — "does the accent still
+     match?", asked after the near-black ground pass above): hue was never the
+     issue (every stop here sits within ~6° of the ground's 190.6° — same teal
+     family throughout). But these stops were first tuned for the *old*,
+     lighter ground; against the new near-black ground the same lightness
+     values read far brighter than before (`petrol-700` contrast rose from
+     6.87:1 to 9.67:1 with no colour change) — a pale, almost neon cyan next
+     to a much moodier page. Lowered lightness only (same hue/sat) so accent
+     text/headings/links read as a richer, more grounded teal while staying
+     comfortably clear of the 4.5:1 text minimum: 52.2%→44%, 68.6%→48%,
+     81.4%→58%. Re-verified vs both surfaces: 600 5.41:1/4.94:1, 700
+     6.71:1/6.13:1, 800 8.80:1/8.03:1. */
+  --color-petrol-600: #43949d;
+  --color-petrol-700: #43a7b1;
+  --color-petrol-800: #61bec7;
 
   /* The pale "sage" info surfaces become dim teal panels. `sage-500` (the
      progress / done tone) and `sage-200..900` text stops are left alone. */
@@ -260,7 +307,7 @@
 
   --border: var(--color-border);
   --input: var(--color-border);
-  --input-background: #0c343b;
+  --input-background: #06181c; /* same hue/sat family as the new ground */
   --switch-background: #2d4e43;
   --ring: var(--color-petrol-400);
 
@@ -277,12 +324,18 @@
   /* Gradients */
   --page-gradient: linear-gradient(
     177deg,
-    #0a2a31 0%,
-    #0b3038 46%,
-    #08262d 100%
+    #041215 0%,
+    #05171b 46%,
+    #030f11 100%
   );
   --footer-gradient: linear-gradient(
     162deg,
+    #0c3a45 0%,
+    #12586c 55%,
+    #1a7684 100%
+  );
+  --footer-gradient-flip: linear-gradient(
+    18deg,
     #0c3a45 0%,
     #12586c 55%,
     #1a7684 100%
@@ -301,8 +354,8 @@
   );
 
   /* Glass — teal-tinted translucency instead of white */
-  --glass-bg: rgba(14, 58, 65, 0.55);
-  --glass-bg-strong: rgba(14, 58, 65, 0.8);
+  --glass-bg: rgba(7, 29, 34, 0.55);
+  --glass-bg-strong: rgba(7, 29, 34, 0.8);
   --glass-border: rgba(232, 244, 242, 0.14);
   --glass-highlight: rgba(232, 244, 242, 0.06);
 
@@ -585,42 +638,31 @@
   mask-composite: intersect;
 }
 
-/* Homepage hero photo edge treatment.
-   Below `lg` the photo sits in one column with a full-width CTA flush
-   beneath it, so every exposed edge — left, right and bottom — dissolves
-   into the page and the button. From `lg` up the photo sits beside the
-   copy and bleeds off-layout on the right, so the left and bottom edges
-   are masked (the bottom so its lower edge dissolves into the page rather
-   than reading as a hard crop). */
+/* Homepage hero photo edge treatment — soft-fade the left/right edges so the
+   cut-out never reads as a hard vertical crop. The bottom is handled
+   separately by a gradient-masked blur overlay in `HeroSection` (so it's a
+   single progressive out-of-focus, not a fade + blur double). */
 .hero-photo-mask {
   -webkit-mask-image: linear-gradient(
-      to right,
-      transparent 0%,
-      #000 26%,
-      #000 74%,
-      transparent 100%
-    ),
-    linear-gradient(to bottom, #000 72%, transparent 100%);
-  -webkit-mask-composite: source-in;
+    to right,
+    transparent 0%,
+    #000 26%,
+    #000 74%,
+    transparent 100%
+  );
   mask-image: linear-gradient(
-      to right,
-      transparent 0%,
-      #000 26%,
-      #000 74%,
-      transparent 100%
-    ),
-    linear-gradient(to bottom, #000 72%, transparent 100%);
-  mask-composite: intersect;
+    to right,
+    transparent 0%,
+    #000 26%,
+    #000 74%,
+    transparent 100%
+  );
 }
 
 @media (min-width: 64rem) {
   .hero-photo-mask {
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 28%),
-      linear-gradient(to bottom, #000 68%, transparent 100%);
-    -webkit-mask-composite: source-in;
-    mask-image: linear-gradient(to right, transparent 0%, #000 28%),
-      linear-gradient(to bottom, #000 68%, transparent 100%);
-    mask-composite: intersect;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 28%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 28%);
   }
 }
 

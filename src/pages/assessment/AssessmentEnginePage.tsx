@@ -153,7 +153,10 @@ export function AssessmentEnginePage() {
         ) : null}
       </fieldset>
 
-      <div className="mt-8 flex items-center justify-between gap-3">
+      {/* Wraps on narrow screens: "Back" stays on the first line, the
+          "Start over" + primary CTA group drops to a full-width second row so
+          the long submit label never overflows. */}
+      <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
         <Button
           type="button"
           variant="ghost"
@@ -164,11 +167,11 @@ export function AssessmentEnginePage() {
           {t("start.back")}
         </Button>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 max-sm:w-full max-sm:justify-between">
           <button
             type="button"
             onClick={reset}
-            className="text-sm text-ink-muted underline-offset-4 hover:underline"
+            className="shrink-0 text-sm text-ink-muted underline-offset-4 hover:underline"
           >
             {t("start.restart")}
           </button>
@@ -177,9 +180,14 @@ export function AssessmentEnginePage() {
             variant={isLast ? "cta" : "default"}
             onClick={goNext}
             disabled={!current}
+            className="min-w-0 max-sm:flex-1"
           >
-            {isLast ? t("start.submit") : t("start.next")}
-            {!isLast ? <ArrowRight className="size-4" aria-hidden /> : null}
+            <span className="truncate">
+              {isLast ? t("start.submit") : t("start.next")}
+            </span>
+            {!isLast ? (
+              <ArrowRight className="size-4 shrink-0" aria-hidden />
+            ) : null}
           </Button>
         </div>
       </div>

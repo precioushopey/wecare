@@ -2,7 +2,14 @@
   "hero": {
     "kicker": "Weil du uns wichtig bist",
     "title": "Finde die richtige Unterstützung bei Schlaf, Schmerzen, Stress und Migräne.",
-    "subtitle": "Beantworte ein kurzes Assessment – wir finden die passende Lösung für deine Bedürfnisse.",
+    "titlePrefix": "Finde die richtige Unterstützung bei",
+    "problems": [
+      "Schlaf",
+      "Schmerzen",
+      "Stress & Angst",
+      "Migräne"
+    ],
+    "subtitle": "Beantworte ein kurzes Assessment – wir finden die passende CBD-basierte Lösung für deine Bedürfnisse.",
     "primaryCta": "Kostenloses Assessment starten",
     "secondaryCta": "So funktioniert's",
     "ariaImage": "Frau sitzt entspannt zu Hause und liest auf einem Tablet",
@@ -90,23 +97,19 @@
     },
     "combo": {
       "subtitle": "Das Paar, das der Fragebogen meist zuordnet",
-      "startHere": "Start hier",
       "thc": "THC über das Paar · {{range}}",
-      "prev": "Vorherige Kombination",
-      "next": "Nächste Kombination",
       "problems": {
         "sleep": "Bei Schlafproblemen",
         "pain": "Bei chronischen Schmerzen",
         "stressAnxiety": "Bei Stress & Angst",
         "migraine": "Bei Migräne"
       }
-    },
-    "cta": "Assessment starten"
+    }
   },
   "trust": {
     "eyebrow": "Warum WeCare",
     "title": "Eine geführte und verantwortungsvolle Erfahrung",
-    "intro": "WeCare hilft Nutzer:innen, über einen kurzen geführten Prozess eine passende Lösung zu wählen. Empfehlungen basieren auf den Bedürfnissen, Produktpräferenzen und Wellness-Zielen der Nutzer:innen.",
+    "intro": "WeCare hilft Nutzer/innen, über einen kurzen geführten Prozess eine passende Lösung zu wählen. Empfehlungen basieren auf den Bedürfnissen, Produktpräferenzen und Wellness-Zielen der Nutzer/innen.",
     "items": {
       "discreet": {
         "title": "Diskreter Ablauf",
@@ -125,8 +128,8 @@
         "description": "Fragen unterwegs? Unser Team ist erreichbar, wenn du es brauchst."
       },
       "austria": {
-        "title": "Auf Österreich ausgerichtet",
-        "description": "Gestaltet für den Zugang und die Versorgung in Österreich."
+        "title": "Lieferung in ganz Österreich",
+        "description": "Wien, Graz, Linz, Salzburg, Innsbruck, Klagenfurt, St. Pölten und mehr – Bestellung vor 12:00 Uhr kommt meist am nächsten Tag an."
       },
       "noObligation": {
         "title": "Unverbindlich",
@@ -196,5 +199,19 @@
     },
     "more": "Mehr Details?",
     "moreLink": "Zur vollständigen FAQ"
+  },
+  "deliveryBanner": {
+    "eyebrow": "Lieferung",
+    "headline": "Schnelle Lieferung in ganz Österreich.",
+    "body": "Wien · Graz · Linz · Salzburg · Innsbruck · Klagenfurt · St. Pölten und mehr – bestelle vor 12:00 Uhr für Lieferung am nächsten Tag.",
+    "cities": {
+      "vienna": "Wien",
+      "graz": "Graz",
+      "linz": "Linz",
+      "salzburg": "Salzburg",
+      "innsbruck": "Innsbruck",
+      "klagenfurt": "Klagenfurt",
+      "stPoelten": "St. Pölten"
+    }
   }
 }

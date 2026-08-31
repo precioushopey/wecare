@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
 
 import { paths } from "@/app/paths";
+import { cn } from "@/app/components/ui/utils";
 import { Logo } from "@/components/brand/Logo";
 import { useAuth } from "@/features/auth/AuthContext";
 
@@ -20,7 +21,15 @@ const CONCERNS = [
   { key: "migraine", to: paths.conditions.migraine },
 ] as const;
 
-export function SiteFooter() {
+export function SiteFooter({
+  roundedTop = true,
+}: {
+  /** False when a same-coloured block (the homepage's final CTA) already
+   *  sits flush above the footer — a rounded top there would read as a
+   *  notch cut into one continuous band instead of a seam. Every other
+   *  page keeps the default rounded top. */
+  roundedTop?: boolean;
+}) {
   const { t } = useTranslation();
   const { isAuthenticated } = useAuth();
   const year = new Date().getFullYear();
@@ -29,7 +38,12 @@ export function SiteFooter() {
     : { to: paths.login, label: t("nav.login") };
 
   return (
-    <footer className="rounded-t-4xl [background-image:var(--footer-gradient)] text-white">
+    <footer
+      className={cn(
+        "[background-image:var(--footer-gradient)] text-white",
+        roundedTop && "rounded-t-2xl md:rounded-t-4xl",
+      )}
+    >
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-3">
@@ -134,7 +148,7 @@ export function SiteFooter() {
 
         {/* Shipping · payment on the left; appearance + language toggles
             grouped on the right. */}
-        <div className="mt-10 flex flex-wrap items-center justify-between gap-x-10 gap-y-6 rounded-2xl border border-white/12 bg-white/[0.06] p-5 backdrop-blur-md">
+        <div className="mt-10 flex flex-wrap items-center justify-between gap-x-10 gap-y-6 rounded-2xl border border-white/20 bg-white/[0.06] p-5 backdrop-blur-md">
           <TrustBadges
             shippingLabel={t("footer.shipping")}
             paymentLabel={t("footer.payment")}
@@ -146,7 +160,7 @@ export function SiteFooter() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-8 flex flex-wrap items-center gap-4 border-t border-white/10 pt-6 text-xs text-white/60">
+        <div className="mt-8 flex flex-wrap items-center gap-4 border-t border-white/20 pt-6 text-xs text-white/60">
           <span>{t("footer.copyright", { year })}</span>
           <Link to={account.to} className="transition-colors hover:text-white">
             {account.label}

@@ -60,7 +60,7 @@ export function ConditionLandingPage({
           photo becomes a full-width band beneath the copy and the gradient
           rotates to run top→bottom, so the copy sits on solid blue and
           feathers into the photo below. */}
-      <section className="relative isolate overflow-hidden rounded-b-4xl px-4 pt-14 [background-image:linear-gradient(120deg,#0a2c42_0%,#0d444b_50%,#123f52_100%)] sm:px-6 sm:pt-20 lg:min-h-[30rem] lg:pb-28">
+      <section className="relative isolate overflow-hidden rounded-b-2xl md:rounded-b-4xl px-4 pt-14 [background-image:linear-gradient(120deg,#0a2c42_0%,#0d444b_50%,#123f52_100%)] sm:px-6 sm:pt-20 lg:min-h-[30rem] lg:pb-28">
         <div className="relative z-10 mx-auto w-full max-w-6xl">
           <div className="max-w-lg space-y-6">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-sage-300">
@@ -83,9 +83,15 @@ export function ConditionLandingPage({
           </div>
         </div>
 
+        {/* Mobile fade widened (owner request, Aug 2026 — the gradient-to-
+            photo cut read as a hard edge): the photo's own mask now fades in
+            over its top half instead of just the top quarter, and the
+            overlay below keeps some tint much further down instead of
+            clearing by 76%, so the two overlap generously wherever the photo
+            actually starts instead of depending on exact text length. */}
         <div
           aria-hidden
-          className="relative z-0 -mx-4 mt-6 [mask-image:linear-gradient(to_bottom,transparent_0%,#000_26%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,#000_26%)] sm:-mx-6 lg:absolute lg:inset-y-0 lg:right-0 lg:mx-0 lg:mt-0 lg:w-[64%] lg:[mask-image:none] lg:[-webkit-mask-image:none]"
+          className="relative z-0 -mx-4 mt-6 [mask-image:linear-gradient(to_bottom,transparent_0%,#000_50%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,#000_50%)] sm:-mx-6 lg:absolute lg:inset-y-0 lg:right-0 lg:mx-0 lg:mt-0 lg:w-[64%] lg:[mask-image:none] lg:[-webkit-mask-image:none]"
         >
           <ImageWithFallback
             src={siteImage(IMG.conditionHero[conditionKey])}
@@ -96,7 +102,7 @@ export function ConditionLandingPage({
 
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 [background-image:linear-gradient(to_bottom,#0a2c42_0%,#0a2c42_34%,rgba(13,68,75,0.62)_54%,rgba(18,88,108,0.22)_76%,rgba(18,88,108,0)_100%)] lg:[background-image:linear-gradient(100deg,#0a2c42_0%,#0a2c42_36%,rgba(13,68,75,0.82)_54%,rgba(18,88,108,0.34)_74%,rgba(18,88,108,0)_92%)]"
+          className="pointer-events-none absolute inset-0 [background-image:linear-gradient(to_bottom,#0a2c42_0%,#0a2c42_30%,rgba(13,68,75,0.7)_48%,rgba(18,88,108,0.4)_66%,rgba(18,88,108,0.15)_84%,rgba(18,88,108,0)_100%)] lg:[background-image:linear-gradient(100deg,#0a2c42_0%,#0a2c42_36%,rgba(13,68,75,0.82)_54%,rgba(18,88,108,0.34)_74%,rgba(18,88,108,0)_92%)]"
         />
       </section>
 

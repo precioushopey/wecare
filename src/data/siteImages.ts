@@ -2,14 +2,16 @@
  * Marketing photography in `src/assets/images/`, resolved at build time.
  * Keyed by `<folder>/<basename>` without extension, e.g. "Homepage/Hero".
  */
-const modules = import.meta.glob<string>("../assets/images/**/*.png", {
-  eager: true,
-  import: "default",
-});
+const modules = import.meta.glob<string>(
+  "../assets/images/**/*.{png,jpg,jpeg}",
+  { eager: true, import: "default" },
+);
 
 const byKey: Record<string, string> = {};
 for (const [path, url] of Object.entries(modules)) {
-  const key = path.split("/assets/images/")[1]?.replace(/\.png$/, "");
+  const key = path
+    .split("/assets/images/")[1]
+    ?.replace(/\.(png|jpe?g)$/i, "");
   if (key) byKey[key] = url;
 }
 
@@ -17,12 +19,23 @@ export function siteImage(key: string): string | undefined {
   return byKey[key];
 }
 
-/** Named references so components don't hard-code fragile path strings. */
+/** Named references so components don't hard-code fragile path strings.
+ *  Aug 2026 — the three homepage photos were rotated one section along (owner
+ *  request), then hero and "Simple recommendations" were swapped back (owner
+ *  call — the tablet/mug photo reads as self-care better than the phone
+ *  cut-out for a rotating-problem hero). Net result: hero keeps its original
+ *  landscape photo, "Simple recommendations" now carries the portrait phone
+ *  cut-out, final CTA is unchanged. `How it works Page.png` is unreferenced. */
 export const IMG = {
+  /** Hero — landscape cut-out, `w-full` treatment. */
   homeHero: "Knowledge Hub/Hero",
-  homeDoctor: "How it works Page",
+  /** Final-CTA photo (owner swap, Aug 2026 — was the "Homepage/Hero"
+   *  telehealth cut-out). */
+  homeDoctor: "assessment-2",
   homeGuidance: "Condition Page",
-  homeTrust: "Homepage/Hero",
+  /** Right-hand anchor photo in the "Simple recommendations" section —
+   *  portrait phone cut-out (`hero section.png`, transparent bg). */
+  homeSolutions: "hero section",
   /** Left-hand welcome panel on the login page. */
   login: "Homepage/13",
   problem: {
@@ -31,11 +44,13 @@ export const IMG = {
     stressAnxiety: "Homepage/11",
     migraine: "Homepage/12",
   },
-  /** "How WeCare works" step cards (keys match `HOW_STEPS`). */
+  /** "How WeCare works" step cards (keys match `HOW_STEPS`). Steps 2 & 3
+   *  swapped to the `assessment`/`results` photos (owner request, Aug
+   *  2026); `choose`/`continue` are unchanged. */
   process: {
     choose: "Knowledge Hub/60",
-    assessment: "Knowledge Hub/61",
-    match: "Homepage/8",
+    assessment: "assessment",
+    match: "results",
     continue: "Knowledge Hub/64",
   },
   conditionHero: {

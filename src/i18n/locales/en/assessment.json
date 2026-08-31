@@ -80,10 +80,10 @@
       "frequency": "Frequency",
       "strength": "Strength"
     },
-    "primaryHeading": "Recommended product",
+    "primaryHeading": "Recommended for you",
     "secondaryHeading": "Secondary product",
     "explanationHeading": "Why this recommendation",
-    "gentleNudge": "New to medical cannabis? We keep your first step gentle: a lower-THC solution, and your doctor can start you on an oil for controlled dosing before flower or vape. You can adjust later with medical guidance.",
+    "gentleNudge": "New to medical cannabis? We keep your first step gentle: a lower-THC solution, and your doctor can start you on an oil for controlled dosing before other formats. You can adjust later with medical guidance.",
     "disclaimer": "This recommendation is based on your answers and wellness preferences. It does not replace medical advice.",
     "viewSolution": "View Recommended Solution",
     "changeAnswers": "Change My Answers",
@@ -109,7 +109,11 @@
         "title": "Discreet delivery",
         "body": "Once approved, a licensed pharmacy ships your order discreetly to your door."
       }
-    }
+    },
+    "detailsLabel": "THC & ingredient details",
+    "altHeading": "Prefer something else?",
+    "altLabelDefault": "Also available",
+    "altStrongerHint": "Usually a stronger option, for later."
   },
   "medicalReview": {
     "title": "Your assessment is with a licensed doctor",

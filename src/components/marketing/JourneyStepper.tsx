@@ -39,7 +39,7 @@ export function JourneyStepper({
         <span className="text-ink-muted">· {t(`journey.steps.${current}`)}</span>
       </p>
 
-      <ol className="hidden items-center sm:flex">
+      <ol className="hidden items-center justify-between sm:flex">
         {STEPS.map((s, i) => {
           const done = i < idx;
           const active = i === idx;
@@ -59,21 +59,12 @@ export function JourneyStepper({
               <span
                 aria-current={active ? "step" : undefined}
                 className={cn(
-                  "ml-1.5 text-xs font-medium",
+                  "ml-1.5 whitespace-nowrap text-xs font-medium",
                   active ? "text-petrol-700" : "text-ink-muted",
                 )}
               >
                 {t(`journey.steps.${s}`)}
               </span>
-              {i < STEPS.length - 1 ? (
-                <span
-                  aria-hidden
-                  className={cn(
-                    "mx-2 h-px w-6",
-                    done ? "bg-sage-400" : "bg-border",
-                  )}
-                />
-              ) : null}
             </li>
           );
         })}

@@ -16,9 +16,10 @@ import {
  * after the assessment (owner/compliance decision, Aug 2026 — "grass pics only
  * after the questionnaire"). Low-emphasis, no prices, no buy CTAs.
  *
- * Used per slide inside `ComboCarousel` (homepage, `showHeader`) and standalone
- * in the "What you might be matched with" block on a problem landing page
- * (`showHeader={false}` — that section already has its own heading).
+ * Used in the "What you might be matched with" block on a problem landing page
+ * (`showHeader={false}` — that section already has its own heading). The
+ * `showHeader` path (its own eyebrow + subtitle) is kept for reuse but has no
+ * current caller since the homepage carousel was removed (Aug 2026).
  */
 
 export function comboThcRange(ids: SolutionId[]): string {
@@ -61,11 +62,11 @@ export function ComboCard({
         </>
       ) : null}
 
-      {/* The matched pair — name + category only. No bud / product photos on
-          pre-assessment surfaces. */}
+      {/* The matched pair — name + category + one-line role. No bud / product
+          photos on pre-assessment surfaces. */}
       <div
         className={cn(
-          "flex flex-1 flex-col justify-center gap-2.5",
+          "flex flex-1 flex-col justify-center gap-3",
           showHeader && "mt-4",
         )}
       >
@@ -74,15 +75,18 @@ export function ComboCard({
           return (
             <div
               key={id}
-              className="flex items-center gap-3 rounded-2xl border border-white/50 bg-white/45 p-3 dark:border-white/10 dark:bg-white/[0.05]"
+              className="flex gap-3.5 rounded-2xl border border-white/50 bg-white/45 p-4 dark:border-white/20 dark:bg-white/[0.05]"
             >
-              <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-xl text-white shadow-[0_8px_20px_-10px_rgba(42,167,176,0.55)] [background-image:var(--cta-gradient)]">
+              <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl text-white shadow-[0_8px_20px_-10px_rgba(42,167,176,0.55)] [background-image:var(--cta-gradient)]">
                 <Sparkles className="size-4" strokeWidth={1.75} aria-hidden />
               </span>
               <span className="flex min-w-0 flex-col leading-tight">
-                <span className="truncate font-semibold text-ink">{s.name}</span>
-                <span className="truncate text-xs font-medium text-petrol-600">
+                <span className="font-semibold text-ink">{s.name}</span>
+                <span className="text-xs font-medium text-petrol-600">
                   {t(`shop:solutions.${id}.category`)}
+                </span>
+                <span className="mt-1.5 text-xs text-ink-muted">
+                  {t(`shop:solutions.${id}.blurb`)}
                 </span>
               </span>
             </div>

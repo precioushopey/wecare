@@ -2,7 +2,14 @@
   "hero": {
     "kicker": "Because we care",
     "title": "Find the right support for sleep, pain, stress and migraine.",
-    "subtitle": "Answer a short assessment and get matched with a suitable solution based on your needs.",
+    "titlePrefix": "Find the right support for",
+    "problems": [
+      "Sleep",
+      "Pain",
+      "Stress & Anxiety",
+      "Migraine"
+    ],
+    "subtitle": "Answer a short assessment and get matched with a suitable CBD-based solution for your needs.",
     "primaryCta": "Start Free Assessment",
     "secondaryCta": "How It Works",
     "ariaImage": "Woman sitting comfortably at home, reading on a tablet",
@@ -90,18 +97,14 @@
     },
     "combo": {
       "subtitle": "The pair the assessment usually matches",
-      "startHere": "start here",
       "thc": "THC across the pair · {{range}}",
-      "prev": "Previous combo",
-      "next": "Next combo",
       "problems": {
         "sleep": "For sleep",
         "pain": "For chronic pain",
         "stressAnxiety": "For stress & anxiety",
         "migraine": "For migraine"
       }
-    },
-    "cta": "Start Assessment"
+    }
   },
   "trust": {
     "eyebrow": "Why WeCare",
@@ -125,8 +128,8 @@
         "description": "Questions along the way? Our team is reachable when you need it."
       },
       "austria": {
-        "title": "Austria-focused experience",
-        "description": "Built for how care and access work in Austria."
+        "title": "Delivery across Austria",
+        "description": "Vienna, Graz, Linz, Salzburg, Innsbruck, Klagenfurt, St. Pölten and more — order before 12:00 and it usually arrives the next day."
       },
       "noObligation": {
         "title": "No obligation",
@@ -196,5 +199,19 @@
     },
     "more": "Looking for more detail?",
     "moreLink": "Read the full FAQ"
+  },
+  "deliveryBanner": {
+    "eyebrow": "Delivery",
+    "headline": "Fast delivery, all across Austria.",
+    "body": "Vienna · Graz · Linz · Salzburg · Innsbruck · Klagenfurt · St. Pölten and more — order before 12:00 for next-day delivery.",
+    "cities": {
+      "vienna": "Vienna",
+      "graz": "Graz",
+      "linz": "Linz",
+      "salzburg": "Salzburg",
+      "innsbruck": "Innsbruck",
+      "klagenfurt": "Klagenfurt",
+      "stPoelten": "St. Pölten"
+    }
   }
 }

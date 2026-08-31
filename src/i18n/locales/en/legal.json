@@ -1012,19 +1012,14 @@
           "id": "delivery-times",
           "heading": "4. Delivery times",
           "body": [
-            "The estimated delivery time will be communicated to the customer during the ordering or checkout process where an estimate is available.",
-            "Delivery times may vary depending on:"
+            "Once an order is ready to ship — after any required order processing and, where applicable, medical review and pharmacy dispensing — WeCare aims to deliver within Austria as follows:"
           ],
           "list": [
-            "product availability;",
-            "order processing;",
-            "the delivery provider;",
-            "the delivery address;",
-            "weekends and public holidays; and",
-            "verification or other legally required processes."
+            "Orders ready to ship by 12:00 (noon) typically arrive the next day.",
+            "Orders ready to ship after 12:00 (noon) typically arrive within two days."
           ],
           "bodyAfter": [
-            "A delivery estimate is not a guarantee of delivery by a particular date unless expressly stated otherwise.",
+            "These times apply across Austria and are typical times, not guaranteed delivery dates. Actual delivery times can vary depending on product availability, order processing, the delivery provider, the delivery address, weekends and public holidays, and any verification or other legally required process.",
             "Once an order has been dispatched, WeCare may provide the customer with available shipment information or tracking details."
           ]
         },

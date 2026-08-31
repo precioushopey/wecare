@@ -10,7 +10,7 @@ const TONE: Record<SectionTone, string> = {
   surface: "text-ink",
   // faint frosted band lifting off the gradient
   raised:
-    "text-ink bg-white/45 backdrop-blur-md border-y border-white/50 dark:bg-white/[0.04] dark:border-white/10",
+    "text-ink bg-white/45 backdrop-blur-md border-y border-white/50 dark:bg-white/[0.04] dark:border-white/20",
   // deep blue-teal gradient band, rounded like a full-width card
   brand:
     "text-white [background-image:var(--brand-band-gradient)] overflow-hidden rounded-2xl md:rounded-4xl mx-4 sm:mx-6 xl:mx-12",

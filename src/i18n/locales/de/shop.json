@@ -44,7 +44,13 @@
     "oilMelatoninLabel": "Zugesetzt",
     "oilMelatoninValue": "Melatonin",
     "labTestedBadge": "Laborgeprüft",
-    "continue": "Weiter"
+    "continue": "Weiter",
+    "amountBadges": {
+      "starter": "Einsteiger",
+      "recommended": "Empfohlen",
+      "popular": "Beliebt"
+    },
+    "amountHint": "Empfohlene Startmenge basierend auf der häufigsten Kundenwahl. Deine Ärztin oder dein Arzt kann die genaue Menge an deine Bedürfnisse anpassen."
   },
   "solutions": {
     "night-now": {
@@ -59,7 +65,7 @@
       "blurb": "Eine stärkere Nacht-Option für alle, die tiefere Abend-Unterstützung suchen.",
       "why": "Für stärkere oder häufige Schlafprobleme, wenn eine leichte Lösung nicht ausreicht. Beruhigendes, körperbetontes Profil.",
       "usage": "Am Abend vor dem Schlafengehen. Beginn mit einer niedrigen Dosis, Anpassung in der Nachsorge.",
-      "suitability": "Für Anwender:innen mit etwas Erfahrung. Nach ärztlicher Prüfung."
+      "suitability": "Für Anwender/innen mit etwas Erfahrung. Nach ärztlicher Prüfung."
     },
     "deep-ease": {
       "category": "Körper-Komfort-Unterstützung",
@@ -78,7 +84,7 @@
     "synergy-ultra": {
       "category": "Erweiterte Balance-Unterstützung",
       "blurb": "Eine stärkere ausgewogene Lösung für alle, die fortgeschrittene tägliche Unterstützung suchen.",
-      "why": "Bei stärkerer Anspannung, Angst oder Schmerzen und für erfahrene Anwender:innen. Höherer THC-Bereich.",
+      "why": "Bei stärkerer Anspannung, Angst oder Schmerzen und für erfahrene Anwender/innen. Höherer THC-Bereich.",
       "usage": "Nach ärztlichem Dosierplan. Beginn niedrig, langsame Steigerung.",
       "suitability": "Für stärkere Beschwerden oder wenn eine leichtere Lösung nicht ausreicht. Nach ärztlicher Prüfung."
     }
@@ -125,7 +131,7 @@
     },
     "delivery": {
       "q": "Wie erfolgt die Lieferung?",
-      "a": "Der Versand erfolgt aus der Apotheke – erst nach ärztlicher Freigabe und Ausstellung des Rezepts."
+      "a": "Der Versand erfolgt aus der Apotheke – erst nach ärztlicher Freigabe und Ausstellung des Rezepts. Nach dem Versand dauert die Lieferung innerhalb Österreichs in der Regel einen Tag: am nächsten Tag bei Aufgabe vor 12:00 Uhr, innerhalb von zwei Tagen danach."
     }
   },
   "cart": {

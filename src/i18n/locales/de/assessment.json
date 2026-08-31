@@ -80,10 +80,10 @@
       "frequency": "Häufigkeit",
       "strength": "Stärke"
     },
-    "primaryHeading": "Empfohlenes Produkt",
+    "primaryHeading": "Für dich empfohlen",
     "secondaryHeading": "Zweite Option",
     "explanationHeading": "Warum diese Empfehlung",
-    "gentleNudge": "Neu bei medizinischem Cannabis? Wir halten deinen ersten Schritt sanft: eine Lösung mit niedrigerem THC, und deine Ärztin oder dein Arzt kann mit einem Öl für eine kontrollierte Dosierung beginnen, bevor Blüte oder Vape folgen. Später lässt sich das mit ärztlicher Begleitung anpassen.",
+    "gentleNudge": "Neu bei medizinischem Cannabis? Wir halten deinen ersten Schritt sanft: eine Lösung mit niedrigerem THC, und deine Ärztin oder dein Arzt kann mit einem Öl für eine kontrollierte Dosierung beginnen, bevor weitere Formen folgen. Später lässt sich das mit ärztlicher Begleitung anpassen.",
     "disclaimer": "Diese Empfehlung basiert auf deinen Antworten und Wellness-Präferenzen. Sie ersetzt keine ärztliche Beratung.",
     "viewSolution": "Empfohlene Lösung ansehen",
     "changeAnswers": "Meine Antworten ändern",
@@ -109,7 +109,11 @@
         "title": "Diskrete Lieferung",
         "body": "Nach der Freigabe versendet eine zugelassene Apotheke deine Bestellung diskret zu dir nach Hause."
       }
-    }
+    },
+    "detailsLabel": "THC- und Inhaltsdetails",
+    "altHeading": "Lieber eine andere Option?",
+    "altLabelDefault": "Ebenfalls verfügbar",
+    "altStrongerHint": "In der Regel eine stärkere Option, für später."
   },
   "medicalReview": {
     "title": "Dein Assessment liegt bei einer lizenzierten Ärztin oder einem Arzt",

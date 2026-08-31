@@ -44,7 +44,13 @@
     "oilMelatoninLabel": "Added",
     "oilMelatoninValue": "Melatonin",
     "labTestedBadge": "Lab tested",
-    "continue": "Continue"
+    "continue": "Continue",
+    "amountBadges": {
+      "starter": "Beginner",
+      "recommended": "Recommended",
+      "popular": "Most popular"
+    },
+    "amountHint": "Recommended starting quantity based on common customer selection. Your prescribing doctor may adjust the exact amount to your needs."
   },
   "solutions": {
     "night-now": {
@@ -125,7 +131,7 @@
     },
     "delivery": {
       "q": "How is it delivered?",
-      "a": "Shipping is from the pharmacy — only after medical approval and a prescription is issued."
+      "a": "Shipping is from the pharmacy — only after medical approval and a prescription is issued. Once dispatched, delivery across Austria typically takes a day: next-day if before 12:00, within two days if after."
     }
   },
   "cart": {

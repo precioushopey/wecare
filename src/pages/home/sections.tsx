@@ -11,7 +11,9 @@ import {
   Lock,
   MapPin,
   Minus,
+  Moon,
   Sparkles,
+  Wind,
   type LucideIcon,
 } from "lucide-react";
 
@@ -25,9 +27,11 @@ import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 import { Button } from "@/app/components/ui/button";
 import { paths } from "@/app/paths";
 import { AssessmentRing } from "@/components/brand/AssessmentRing";
-import { ComboCarousel } from "@/components/marketing/ComboCarousel";
+import { AustriaMap } from "@/components/marketing/AustriaMap";
 import { FloatingChip } from "@/components/marketing/FloatingChip";
+import { OrbitRings } from "@/components/marketing/OrbitRings";
 import { Reveal } from "@/components/marketing/Reveal";
+import { RotatingWord } from "@/components/marketing/RotatingWord";
 import { Section, SectionHeading } from "@/components/marketing/Section";
 import { IMG, siteImage } from "@/data/siteImages";
 import { CONDITIONS, type ConditionKey } from "@/features/conditions/conditions";
@@ -55,7 +59,22 @@ export function HeroSection() {
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-petrol-600">
               {t("hero.kicker")}
             </p>
-            <h1>{t("hero.title")}</h1>
+            {/* Headline leads with the problem — the last word cycles through
+                the four problems (quiet crossfade + rise). Static full sentence
+                for screen readers + reduced motion. */}
+            {/* text-3xl (owner request, Aug 2026) — one step down from the
+                base h1 size (4xl); the rotating word below it is sized in
+                em, so it scales down with it automatically. */}
+            <h1 className="text-2xl md:text-4xl">
+              <span aria-hidden>{t("hero.titlePrefix")} </span>
+              <RotatingWord
+                words={
+                  t("hero.problems", { returnObjects: true }) as string[]
+                }
+                className="mt-1 text-[1.4em] font-bold leading-[1.05] text-petrol-600"
+              />
+              <span className="sr-only">{t("hero.title")}</span>
+            </h1>
           </div>
           <p className="text-lg text-ink-muted">{t("hero.subtitle")}</p>
           {/* Desktop keeps the CTA + "How It Works" pair here. On mobile both
@@ -96,7 +115,7 @@ export function HeroSection() {
               size={430}
               strokeWidth={16}
               animate
-              drawDurationMs={1400}
+              drawDurationMs={2400}
               drawDelayMs={250}
               trail
               startLabel="7/10"
@@ -119,18 +138,31 @@ export function HeroSection() {
             <Link to={assessmentLink()}>{t("hero.primaryCta")}</Link>
           </Button>
 
-          <FloatingChip
-            icon={<Clock className="size-3.5 sm:size-4" />}
-            className="wc-float-a absolute left-1 top-4 gap-1.5 px-2.5 py-1 text-[11px] sm:top-8 sm:gap-2 sm:px-3.5 sm:py-2 sm:text-sm"
+          {/* Chips: an intro rise on load (`Reveal`, staggered) on the outer
+              wrapper; the perpetual gentle bob (`.wc-float-*`) stays on the
+              chip itself so the two don't fight over `transform`. */}
+          <Reveal
+            delayMs={450}
+            className="absolute left-1 top-4 sm:top-8"
           >
-            {t("hero.chipTime")}
-          </FloatingChip>
-          <FloatingChip
-            icon={<Sparkles className="size-3.5 sm:size-4" />}
-            className="wc-float-b absolute bottom-32 right-1 gap-1.5 px-2.5 py-1 text-[11px] sm:bottom-24 sm:right-0 sm:gap-2 sm:px-3.5 sm:py-2 sm:text-sm"
+            <FloatingChip
+              icon={<Clock className="size-3.5 sm:size-4" />}
+              className="wc-float-a gap-1.5 px-2.5 py-1 text-[11px] sm:gap-2 sm:px-3.5 sm:py-2 sm:text-sm"
+            >
+              {t("hero.chipTime")}
+            </FloatingChip>
+          </Reveal>
+          <Reveal
+            delayMs={650}
+            className="absolute bottom-32 right-1 sm:bottom-24 sm:right-0"
           >
-            {t("hero.chipMatch")}
-          </FloatingChip>
+            <FloatingChip
+              icon={<Sparkles className="size-3.5 sm:size-4" />}
+              className="wc-float-b gap-1.5 px-2.5 py-1 text-[11px] sm:gap-2 sm:px-3.5 sm:py-2 sm:text-sm"
+            >
+              {t("hero.chipMatch")}
+            </FloatingChip>
+          </Reveal>
         </div>
       </div>
     </section>
@@ -141,7 +173,7 @@ export function HeroSection() {
         rendered twice for a seamless loop); from `lg` up it fits and sits
         static, centred. */}
     <div className="px-4 sm:px-6">
-      <div className="mx-auto max-w-6xl overflow-hidden rounded-full border border-white/50 bg-white/40 px-6 py-3 backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
+      <div className="mx-auto max-w-6xl overflow-hidden rounded-full border border-white/50 bg-white/40 px-6 py-3 backdrop-blur-md dark:border-white/20 dark:bg-white/[0.04]">
         <div className="trust-marquee">
           {[0, 1].map((copy) => (
             <ul
@@ -250,10 +282,13 @@ export function HowItWorksSection() {
 
   return (
     // `#how-it-works` is the redirect target for the retired /how-it-works page.
+    // pt-0 (owner request, Aug 2026) — Section's default py-16/sm:py-24 top
+    // padding stacked with TrustSection's own bottom padding above it into
+    // an oversized gap; bottom padding is untouched.
     <Section
       tone="surface"
       id="how-it-works"
-      className="scroll-mt-24"
+      className="scroll-mt-24 pt-0 sm:pt-0"
       reveal={false}
     >
       <Reveal>
@@ -312,57 +347,92 @@ export function SolutionsPreviewSection() {
 
   return (
     <Section tone="brand" reveal={false}>
-      <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-stretch lg:gap-16">
-        <div>
-          <Reveal>
-            <SectionHeading
-              eyebrow={t("solutionsPreview.eyebrow")}
-              title={t("solutionsPreview.title")}
-              intro={t("solutionsPreview.intro")}
-              invert
-            />
-          </Reveal>
+      {/* Section heading centred across the full width. */}
+      <Reveal>
+        <SectionHeading
+          eyebrow={t("solutionsPreview.eyebrow")}
+          title={t("solutionsPreview.title")}
+          intro={t("solutionsPreview.intro")}
+          align="center"
+          invert
+        />
+      </Reveal>
 
-          <div className="mt-8 grid gap-5 sm:grid-cols-2">
-            {SOLUTION_CARDS.map((key, i) => {
-              const Icon = CONDITIONS.find((c) => c.key === key)!.icon;
-              return (
-                <Reveal key={key} delayMs={i * 60}>
-                  <Link
-                    to={assessmentLink(key)}
-                    className="flex h-full flex-col glass-strong glass-hover rounded-3xl p-6"
-                  >
-                    <span className="mb-3 inline-flex size-11 items-center justify-center rounded-2xl [background-image:var(--cta-gradient)] text-white shadow-[0_10px_24px_-10px_rgba(42,167,176,0.55)]">
-                      <Icon className="size-5" strokeWidth={1.75} aria-hidden />
-                    </span>
-                    <h3 className="text-base">
-                      {t(`solutionsPreview.cards.${key}.title`)}
-                    </h3>
-                    <p className="mt-2 flex-1 text-sm text-ink-muted">
-                      {t(`solutionsPreview.cards.${key}.description`)}
-                    </p>
-                  </Link>
-                </Reveal>
-              );
-            })}
-          </div>
-
+      <div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-center lg:gap-8">
+        {/* Left column: the 4 support cards. */}
+        <div className="grid gap-5 sm:grid-cols-2">
+          {SOLUTION_CARDS.map((key, i) => {
+            const Icon = CONDITIONS.find((c) => c.key === key)!.icon;
+            return (
+              <Reveal key={key} delayMs={i * 60}>
+                <Link
+                  to={assessmentLink(key)}
+                  className="flex h-full flex-col glass-strong glass-hover rounded-3xl p-6"
+                >
+                  <span className="mb-3 inline-flex size-11 items-center justify-center rounded-2xl [background-image:var(--cta-gradient)] text-white shadow-[0_10px_24px_-10px_rgba(42,167,176,0.55)]">
+                    <Icon className="size-5" strokeWidth={1.75} aria-hidden />
+                  </span>
+                  <h3 className="text-base">
+                    {t(`solutionsPreview.cards.${key}.title`)}
+                  </h3>
+                  <p className="mt-2 flex-1 text-sm text-ink-muted">
+                    {t(`solutionsPreview.cards.${key}.description`)}
+                  </p>
+                </Link>
+              </Reveal>
+            );
+          })}
         </div>
 
-        {/* A carousel of the recommended solution pairs — one per problem —
-            in place of a single photo. The section CTA sits below it. The
-            column stretches to the height of the cards on the left. */}
-        <Reveal className="lg:h-full">
-          <div className="mx-auto flex w-full max-w-sm flex-col lg:max-w-none lg:h-full">
-            <ComboCarousel className="lg:min-h-0 lg:flex-1" />
-            <Button
-              asChild
-              variant="cta"
-              size="xl"
-              className="mt-6 flex w-full"
+        {/* Right column: a single anchor photo — a portrait phone cut-out, so
+            it's centered and height-capped rather than the `w-full` bleed
+            treatment a landscape photo would get. `lg`-only. `.image-fade-b`
+            (the same bottom mask-fade used on the hero/final-CTA photos)
+            dissolves the forearm crop to transparent instead of a hard edge.
+            Broken-circle rings behind it + two solution-name chips floating
+            over it (owner reference, Aug 2026) — the same "held" photo, now
+            visibly tied to what it's illustrating. */}
+        <Reveal className="hidden lg:flex lg:justify-center">
+          {/* Shrink-wrapped to the photo's own rendered size (a flex item
+              sizes to its content by default) so the rings/chips below,
+              positioned absolute against *this* wrapper, hug the photo
+              itself rather than the wider grid column around it. */}
+          <div className="relative">
+            {/* A fixed square (not a % of the portrait photo's own box,
+                which isn't 1:1) — keeps the ring pattern a true circle. 26rem
+                matches the photo's own `max-h`, so the rings sit flush with
+                its top/bottom and only overhang the sides. Centered via
+                left/top-50% + counter-translate rather than inset-0 +
+                margin:auto — more robust than relying on all four insets
+                resolving against this flex-item ancestor's shrink-to-fit
+                box, which was landing off-centre in practice. */}
+            <OrbitRings className="pointer-events-none absolute left-1/2 top-1/2 -z-10 size-[26rem] -translate-x-1/2 -translate-y-1/2" />
+            <div className="image-glow relative">
+              <ImageWithFallback
+                src={siteImage(IMG.homeSolutions)}
+                alt=""
+                width={713}
+                height={972}
+                loading="lazy"
+                decoding="async"
+                className="image-fade-b block h-auto max-h-[26rem] w-auto max-w-full drop-shadow-[0_44px_70px_-34px_rgba(0,0,0,0.5)]"
+              />
+            </div>
+
+            <FloatingChip
+              tone="dark"
+              icon={<Moon className="size-3.5" />}
+              className="wc-float-a absolute left-0 top-4"
             >
-              <Link to={assessmentLink()}>{t("solutionsPreview.cta")}</Link>
-            </Button>
+              {t("solutionsPreview.cards.sleep.title")}
+            </FloatingChip>
+            <FloatingChip
+              tone="dark"
+              icon={<Wind className="size-3.5" />}
+              className="wc-float-b absolute bottom-10 right-0"
+            >
+              {t("solutionsPreview.cards.stressAnxiety.title")}
+            </FloatingChip>
           </div>
         </Reveal>
       </div>
@@ -386,28 +456,15 @@ export function TrustSection() {
 
   return (
     <Section tone="surface" reveal={false}>
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-16">
-        <Reveal>
-          <SectionHeading
-            eyebrow={t("trust.eyebrow")}
-            title={t("trust.title")}
-            intro={t("trust.intro")}
-          />
-        </Reveal>
-        <Reveal className="hidden lg:block">
-          <div className="image-glow">
-            <ImageWithFallback
-              src={siteImage(IMG.homeTrust)}
-              alt=""
-              width={1920}
-              height={1080}
-              loading="lazy"
-              decoding="async"
-              className="image-fade-rb w-full drop-shadow-[0_40px_65px_-32px_rgba(13,68,75,0.4)]"
-            />
-          </div>
-        </Reveal>
-      </div>
+      {/* max-w-3xl (was max-w-2xl) — the intro paragraph's last word
+          ("goals.") was wrapping onto its own line at the narrower width. */}
+      <Reveal className="max-w-3xl">
+        <SectionHeading
+          eyebrow={t("trust.eyebrow")}
+          title={t("trust.title")}
+          intro={t("trust.intro")}
+        />
+      </Reveal>
 
       <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {TRUST_ITEMS.map(({ key, icon: Icon }, i) => (
@@ -438,9 +495,9 @@ export function ComparisonSection() {
   const { t } = useTranslation("home");
 
   return (
-    // No bottom border — this frosted band runs straight into FaqSection
-    // (also `raised`) so the two share one continuous surface.
-    <Section tone="raised" className="border-b-0" reveal={false}>
+    // `surface` (not a frosted band): the page gradient flows unbroken from
+    // the delivery-map card down through here into FaqSection.
+    <Section tone="surface" reveal={false}>
       <Reveal>
         <SectionHeading
           eyebrow={t("comparison.eyebrow")}
@@ -450,7 +507,7 @@ export function ComparisonSection() {
       </Reveal>
       <Reveal>
         <div className="mt-10 overflow-hidden rounded-3xl glass-strong">
-          <div className="grid grid-cols-2 border-b border-white/50 text-sm font-semibold dark:border-white/10">
+          <div className="grid grid-cols-2 border-b border-white/50 text-sm font-semibold dark:border-white/20">
             <div className="p-4 text-ink-muted sm:p-5">
               {t("comparison.themLabel")}
             </div>
@@ -458,7 +515,7 @@ export function ComparisonSection() {
               {t("comparison.usLabel")}
             </div>
           </div>
-          <dl className="divide-y divide-white/40 dark:divide-white/10">
+          <dl className="divide-y divide-white/40 dark:divide-white/20">
             {COMPARISON_ROWS.map((row) => (
               <div key={row} className="grid grid-cols-2 text-sm">
                 <dt className="flex items-start gap-2 p-4 text-ink-muted sm:p-5">
@@ -484,13 +541,72 @@ export function ComparisonSection() {
   );
 }
 
+/* ── Delivery banner — sits right before the final CTA (owner request, Aug
+   2026: "so customers see WeCare's reach" ahead of the big ask). Deliberately
+   problem-first-safe copy — no "cannabis"/"treatment" as the hook, matching
+   every other homepage surface — and no map graphic (no such asset exists
+   yet; text + icon carries the same "we deliver across Austria, fast"
+   message). ─────────────────────────────────────────────────────────────── */
+
+export function DeliveryBannerSection() {
+  const { t } = useTranslation("home");
+
+  return (
+    // Not the shared `Section tone="brand"` here (unlike every other
+    // tone="brand" band) — the dot-grid texture below needs to paint across
+    // the *entire* card, edge to edge, not just the max-w-6xl content
+    // column `Section` would constrain it to, so this reproduces that
+    // tone's classes by hand with `relative` added for the overlay.
+    <section className="relative mx-4 overflow-hidden rounded-2xl px-4 py-16 text-white [background-image:var(--brand-band-gradient)] sm:mx-6 sm:px-6 sm:py-24 md:rounded-4xl xl:mx-12">
+      {/* Full-bleed dot-grid (owner follow-up, Aug 2026 — "make it cover the
+          whole gradient container", not just the map's own inner panel).
+          Same 22px density as the map's texture so the two read as one
+          continuous atlas surface. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 [background-image:radial-gradient(circle,rgba(255,255,255,0.16)_1px,transparent_1.6px)] [background-size:22px_22px]"
+      />
+
+      <div className="relative mx-auto max-w-6xl">
+        {/* Same treatment as SolutionsPreviewSection: centred heading on the
+            deep brand band, existing banner copy promoted to a real title +
+            intro (owner request, Aug 2026) instead of a slim icon-and-line
+            pill. */}
+        <Reveal>
+          <SectionHeading
+            eyebrow={t("deliveryBanner.eyebrow")}
+            title={t("deliveryBanner.headline")}
+            intro={t("deliveryBanner.body")}
+            align="center"
+            invert
+          />
+        </Reveal>
+
+        <Reveal delayMs={80} className="mx-auto mt-12 max-w-2xl">
+          <AustriaMap />
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
 /* ── 6. Final CTA ────────────────────────────────────────────────────────── */
 
 export function FinalCtaSection() {
   const { t } = useTranslation("home");
 
   return (
-    <section className="relative overflow-hidden rounded-2xl md:rounded-4xl mx-4 sm:mx-6 xl:mx-12 [background-image:var(--brand-band-gradient)] px-4 py-16 text-white sm:px-6 sm:py-24">
+    // Full-bleed `--footer-gradient-flip` — the footer's own gradient,
+    // reversed (no `mx-*`/bottom rounding) — so this sits flush against
+    // SiteFooter with a seamless transition (owner request, Aug 2026 —
+    // "put the CTA inside the footer, above [the link] group"; two follow-
+    // ups after the first two attempts, a flat colour-match and a near-flat
+    // approximation, still read as a seam — see the token's own comment in
+    // index.css for why the flip is the exact fix). `RootLayout` squares
+    // off the footer's own top rounding on the homepage so the rounded
+    // corner here reads as the top of one continuous band, not a notch.
+    // Homepage-only — every other page keeps the plain footer.
+    <section className="relative overflow-hidden rounded-t-2xl md:rounded-t-4xl [background-image:var(--footer-gradient-flip)] px-4 py-16 text-white sm:px-6 sm:py-24">
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 lg:grid-cols-[1fr_1fr]">
         {/* Text group is centred on mobile, left-aligned from `lg`. The CTA
             here is desktop-only — on mobile it renders full-width flush under
@@ -508,20 +624,24 @@ export function FinalCtaSection() {
           </Button>
         </div>
 
-        {/* Mobile: photo above a full-width CTA, no gap (the image reads as
-            standing on the button). From `lg` it's the original — the column
-            stretches to the row's full height and the bottom-anchored photo
-            bleeds off the section edge; the CTA here is hidden (it's in the
-            text column on desktop). */}
-        <div className="relative mx-auto flex w-full max-w-md flex-col items-center lg:-mb-24 lg:max-w-xl lg:flex-row lg:items-end lg:justify-center lg:self-stretch">
+        {/* Mobile: photo above a full-width CTA, with breathing room between
+            them (owner request, Aug 2026 — was flush, "the image reads as
+            standing on the button", but that read as cramped once the photo
+            stopped bleeding past the section edge). From `lg` it's the
+            original layout, but (undoing the stretch-to-row-height +
+            bleed-off-edge treatment) shown at its natural size: no
+            `lg:h-full` scale-up, no negative margin bleeding it past the
+            section, no horizontal flip, no bottom fade/blur. The CTA here is
+            hidden (it's in the text column on desktop). */}
+        <div className="relative mx-auto flex w-full max-w-md flex-col items-center gap-6 lg:max-w-xl lg:flex-row lg:items-center lg:justify-center lg:gap-0">
           <ImageWithFallback
             src={siteImage(IMG.homeDoctor)}
             alt=""
-            width={1613}
-            height={943}
+            width={1401}
+            height={1019}
             loading="lazy"
             decoding="async"
-            className="image-fade-b relative z-[1] h-auto max-h-full w-auto max-w-full -scale-x-100 object-contain drop-shadow-[0_30px_50px_-20px_rgba(0,0,0,0.45)] lg:h-full"
+            className="relative z-[1] h-auto max-h-full w-auto max-w-full object-contain drop-shadow-[0_30px_50px_-20px_rgba(0,0,0,0.45)]"
           />
           <Button
             asChild
@@ -551,8 +671,11 @@ export function FaqSection() {
   const { t } = useTranslation("home");
 
   return (
-    // No top border — continues the ComparisonSection frosted band above it.
-    <Section tone="raised" className="border-t-0" reveal={false}>
+    // `surface` — the page gradient continues unbroken from ComparisonSection.
+    // pt-0 (owner request, Aug 2026, same fix as HowItWorksSection) — default
+    // top padding stacked with ComparisonSection's own bottom padding into an
+    // oversized gap; bottom padding is untouched.
+    <Section tone="surface" reveal={false} className="pt-0 sm:pt-0">
       <Reveal className="mx-auto max-w-3xl">
         <SectionHeading
           eyebrow={t("faq.eyebrow")}
