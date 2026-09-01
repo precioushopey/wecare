@@ -26,6 +26,8 @@
     "primary": "Für dich empfohlen",
     "secondary": "Ebenfalls verfügbar",
     "view": "Empfohlene Lösung ansehen",
+    "reviewLabel": "Ärztliche Prüfung",
+    "notSubmitted": "Noch nicht zur Prüfung eingereicht.",
     "inReview": "Diese Empfehlung ist in ärztlicher Prüfung."
   },
   "orders": {
@@ -116,6 +118,8 @@
     "problemLabel": "Zuletzt gewähltes Anliegen",
     "recommendationLabel": "Empfohlenes Produkt",
     "orderStatusLabel": "Bestellstatus",
+    "reviewLabel": "Ärztliche Prüfung",
+    "viewReview": "Prüfungsstatus ansehen",
     "noOrders": "Noch keine Bestellungen",
     "followUpLabel": "Nachsorge",
     "followUpReminder": "Wir melden uns 14–21 Tage nach dem Start deiner Lösung.",

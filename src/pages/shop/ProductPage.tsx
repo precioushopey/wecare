@@ -15,6 +15,7 @@ import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 import { JourneyStepper } from "@/components/marketing/JourneyStepper";
 import { paths } from "@/app/paths";
 import { usePageTitle } from "@/app/usePageTitle";
+import { PRICES_CONFIRMED } from "@/config";
 import { getProductImage, type Product } from "@/data/products";
 import {
   isSolutionId,
@@ -173,6 +174,11 @@ export function ProductPage() {
               price: formatPriceEur(solution.priceEur, language),
             })}
           </p>
+          {!PRICES_CONFIRMED ? (
+            <p className="mt-1 text-xs text-ink-muted">
+              {t("pricesIndicative")}
+            </p>
+          ) : null}
 
           <fieldset className="mt-5">
             <legend className="text-sm font-medium text-ink">
@@ -220,6 +226,9 @@ export function ProductPage() {
               {t("solution.checkAvailability")}
             </Button>
           </div>
+          <p className="mt-2 text-xs text-ink-muted">
+            {t("solution.afterApprovalNote")}
+          </p>
         </div>
       </div>
 

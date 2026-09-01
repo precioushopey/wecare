@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-import { Link, Navigate } from "react-router";
+import type { ReactNode } from "react";
+import { Link, Navigate, useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
 import { ArrowRight, Info } from "lucide-react";
 
@@ -22,6 +23,10 @@ import {
   type Solution,
 } from "@/data/solutions";
 import { useAssessment } from "@/features/assessment/AssessmentContext";
+import {
+  getMedicalReview,
+  submitMedicalReview,
+} from "@/features/review/review";
 import { useLanguage } from "@/i18n/useLanguage";
 import { AnalyticsEvent, track } from "@/lib/analytics";
 import { formatPriceEur } from "@/lib/format";
@@ -59,14 +64,16 @@ function PrimaryRecommendationCard({
   heading,
   solution,
   explanation,
+  notes,
   detailsLabel,
-  cta,
+  footer,
 }: {
   heading: string;
   solution: Solution;
   explanation: string;
+  notes?: ReactNode;
   detailsLabel: string;
-  cta: string;
+  footer: ReactNode;
 }) {
   const { t } = useTranslation("shop");
   const { language } = useLanguage();
@@ -93,6 +100,7 @@ function PrimaryRecommendationCard({
       </div>
 
       <p className="mt-4 text-sm text-ink-muted">{explanation}</p>
+      {notes}
 
       <Accordion type="single" collapsible className="mt-3">
         <AccordionItem value="details">
@@ -124,19 +132,7 @@ function PrimaryRecommendationCard({
         </AccordionItem>
       </Accordion>
 
-      <Button asChild variant="cta" size="lg" className="mt-5 w-full sm:w-auto">
-        <Link
-          to={paths.shopProduct(solution.id)}
-          onClick={() =>
-            track(AnalyticsEvent.recommendationCtaClicked, {
-              target: "view_solution",
-              solution: solution.id,
-            })
-          }
-        >
-          {cta}
-        </Link>
-      </Button>
+      <div className="mt-5">{footer}</div>
     </div>
   );
 }
@@ -166,6 +162,12 @@ function AlternativeSolutionLink({
       </p>
       <Link
         to={paths.shopProduct(solution.id)}
+        onClick={() =>
+          track(AnalyticsEvent.recommendationCtaClicked, {
+            target: "alternative",
+            solution: solution.id,
+          })
+        }
         className="group mt-2 flex items-center gap-3 rounded-2xl glass glass-hover p-3"
       >
         <span className="image-glow size-11 shrink-0 rounded-lg">
@@ -199,6 +201,7 @@ export function ResultPage() {
   const { t } = useTranslation("assessment");
   const { t: tCommon } = useTranslation();
   const { result, answers } = useAssessment();
+  const navigate = useNavigate();
   usePageTitle(t("result.title"), tCommon("pages.result.description"));
 
   const problem = result?.problem;
@@ -213,6 +216,74 @@ export function ResultPage() {
 
   const primary = SOLUTION_BY_ID[result.primarySolutionId];
   const secondary = SOLUTION_BY_ID[result.secondarySolutionId];
+  const existingReview = getMedicalReview();
+
+  function submitForReview() {
+    if (!result) return;
+    submitMedicalReview({ problem: result.problem, answers });
+    track(AnalyticsEvent.medicalReviewSubmitted, { problem: result.problem });
+    navigate(paths.assessment.review);
+  }
+
+  // Owner decision D1 — frequency and format preference personalise the
+  // recommendation copy and are noted for the medical review; they never
+  // change the match or push a stronger / higher-THC option.
+  const q2 = answers.q2;
+  const q6 = answers.q6;
+  const personalisation = (
+    <>
+      {q2 ? (
+        <p className="mt-2 text-sm text-ink-muted">
+          {/* frequency reads as an adverb here ("… affects you daily") — lower-
+              cased in both languages; German q2 labels are adverbial too. */}
+          {t("result.frequencyNote", {
+            frequency: t(`questions.q2.options.${q2}`).toLowerCase(),
+          })}
+        </p>
+      ) : null}
+      {q6 === "flower" || q6 === "vape" ? (
+        <p className="mt-2 text-sm text-ink-muted">
+          {/* format is a noun — keep the label's own casing so German stays
+              correct ("… dass du Blüte bevorzugst", not "blüte"). */}
+          {t("result.formatPreferenceNote", {
+            format: t(`questions.q6.options.${q6}`),
+          })}
+        </p>
+      ) : null}
+    </>
+  );
+
+  const primaryCta = (
+    <div className="flex flex-col items-start gap-2">
+      {existingReview ? (
+        <Button asChild variant="cta" size="lg" className="w-full sm:w-auto">
+          <Link to={paths.assessment.review}>{t("result.viewReviewCta")}</Link>
+        </Button>
+      ) : (
+        <Button
+          type="button"
+          variant="cta"
+          size="lg"
+          className="w-full sm:w-auto"
+          onClick={submitForReview}
+        >
+          {t("result.submitReviewCta")}
+        </Button>
+      )}
+      <Link
+        to={paths.shopProduct(primary.id)}
+        onClick={() =>
+          track(AnalyticsEvent.recommendationCtaClicked, {
+            target: "view_solution",
+            solution: primary.id,
+          })
+        }
+        className="text-sm text-petrol-700 underline-offset-4 hover:underline"
+      >
+        {t("result.orViewSolution")}
+      </Link>
+    </div>
+  );
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6">
@@ -260,8 +331,9 @@ export function ResultPage() {
           heading={t("result.primaryHeading")}
           solution={primary}
           explanation={t(result.explanationKey)}
+          notes={personalisation}
           detailsLabel={t("result.detailsLabel")}
-          cta={t("result.viewSolution")}
+          footer={primaryCta}
         />
 
         <AlternativeSolutionLink

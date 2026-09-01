@@ -21,6 +21,7 @@ import {
   type FollowUpEntry,
 } from "@/features/followup/followup";
 import { getOrders, type OrderStatus } from "@/features/orders/orders";
+import { getMedicalReview } from "@/features/review/review";
 import { useLanguage } from "@/i18n/useLanguage";
 import { AnalyticsEvent, track } from "@/lib/analytics";
 import { formatDate, formatPriceEur } from "@/lib/format";
@@ -60,6 +61,7 @@ export function DashboardHomePage() {
   const [followUp] = useState(() => getFollowUp());
   const orders = getOrders();
   const latestOrder = orders[0];
+  const review = getMedicalReview();
 
   if (!result) {
     return (
@@ -110,19 +112,29 @@ export function DashboardHomePage() {
         </Link>
 
         <Link
-          to={paths.dashboardOrders}
+          to={
+            latestOrder
+              ? paths.dashboardOrders
+              : review
+                ? paths.assessment.review
+                : paths.dashboardRecommendation
+          }
           className="glass glass-hover rounded-3xl p-5"
         >
           <p className="text-xs uppercase tracking-wide text-ink-muted">
-            {t("home.orderStatusLabel")}
+            {latestOrder
+              ? t("home.orderStatusLabel")
+              : t("home.reviewLabel")}
           </p>
           <p className="mt-1 text-lg text-ink">
             {latestOrder
               ? t(`orders.statuses.${latestOrder.status}`)
-              : t("home.noOrders")}
+              : review
+                ? ta(`review.statuses.${review.status}.label`)
+                : t("recommendation.notSubmitted")}
           </p>
           <p className="mt-0.5 text-sm text-petrol-700">
-            {t("home.viewOrders")}
+            {latestOrder ? t("home.viewOrders") : t("home.viewReview")}
           </p>
         </Link>
 
@@ -212,7 +224,9 @@ export function DashboardAssessmentPage() {
 export function DashboardRecommendationPage() {
   const { t } = useTranslation("dashboard");
   const { t: ts } = useTranslation("shop");
+  const { t: ta } = useTranslation("assessment");
   const { result } = useAssessment();
+  const review = getMedicalReview();
 
   if (!result) {
     return (
@@ -262,16 +276,38 @@ export function DashboardRecommendationPage() {
           </Link>
         ))}
       </div>
-      {result.requiresMedicalReview ? (
-        <p className="mt-4 rounded-xl bg-sage-50 p-4 text-sm text-petrol-700">
-          {t("recommendation.inReview")}
+      <div className="mt-4 rounded-xl bg-sage-50 p-4 text-sm text-petrol-700">
+        <p className="text-xs font-semibold uppercase tracking-[0.16em]">
+          {t("recommendation.reviewLabel")}
         </p>
-      ) : null}
-      <Button asChild variant="cta" className="mt-5">
-        <Link to={paths.shopProduct(result.primarySolutionId)}>
+        <p className="mt-1">
+          {review
+            ? ta(`review.statuses.${review.status}.label`)
+            : t("recommendation.notSubmitted")}
+        </p>
+      </div>
+
+      <div className="mt-5 flex flex-wrap items-center gap-3">
+        {review ? (
+          <Button asChild variant="cta">
+            <Link to={paths.assessment.review}>
+              {ta("result.viewReviewCta")}
+            </Link>
+          </Button>
+        ) : (
+          <Button asChild variant="cta">
+            <Link to={paths.assessment.result}>
+              {ta("result.submitReviewCta")}
+            </Link>
+          </Button>
+        )}
+        <Link
+          to={paths.shopProduct(result.primarySolutionId)}
+          className="text-sm text-petrol-700 underline-offset-4 hover:underline"
+        >
           {t("recommendation.view")}
         </Link>
-      </Button>
+      </div>
     </Panel>
   );
 }

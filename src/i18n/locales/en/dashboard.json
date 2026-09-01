@@ -26,6 +26,8 @@
     "primary": "Recommended for you",
     "secondary": "Also available",
     "view": "View recommended solution",
+    "reviewLabel": "Medical review",
+    "notSubmitted": "Not submitted for review yet.",
     "inReview": "This recommendation is in medical review."
   },
   "orders": {
@@ -116,6 +118,8 @@
     "problemLabel": "Last selected problem",
     "recommendationLabel": "Recommended product",
     "orderStatusLabel": "Order status",
+    "reviewLabel": "Medical review",
+    "viewReview": "View review status",
     "noOrders": "No orders yet",
     "followUpLabel": "Follow-up",
     "followUpReminder": "We check in 14–21 days after you start your solution.",

@@ -154,6 +154,7 @@ export function SiteFooter({
           <TrustBadges
             shippingLabel={t("footer.shipping")}
             paymentLabel={t("footer.payment")}
+            paymentMethods={t("footer.paymentMethods")}
           />
           <div className="flex items-center gap-3">
             <ThemeToggle />

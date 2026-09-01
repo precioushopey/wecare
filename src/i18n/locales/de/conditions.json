@@ -33,11 +33,11 @@
     }
   },
   "pain": {
-    "shortTitle": "Körper-Komfort",
+    "shortTitle": "Schmerzen & Körperkomfort",
     "assessmentCta": "Schmerz-Assessment starten",
     "hero": {
-      "title": "Lebst du mit täglichen Körperbeschwerden?",
-      "subtitle": "Mach ein kurzes Assessment und werde mit einer passenden Körper-Komfort-Lösung gematcht."
+      "title": "Lebst du mit täglichen Schmerzen oder Körperbeschwerden?",
+      "subtitle": "Mach ein kurzes Assessment und finde eine passende Körper-Komfort-Lösung."
     },
     "explanation": "Körperbeschwerden können Bewegung, Alltag, Arbeit und Erholung beeinflussen. Ein kurzes Assessment hilft, Stärke und Häufigkeit einzuordnen.",
     "situations": {

@@ -1,4 +1,12 @@
 {
+  "ageGate": {
+    "title": "Zuerst eine kurze Bestätigung",
+    "body": "Die Empfehlungen von WeCare und eine mögliche ärztliche Prüfung beziehen sich auf ein verschreibungspflichtiges Arzneimittel, das nur für Erwachsene verfügbar ist.",
+    "checkbox": "Ich bestätige, dass ich 18 Jahre oder älter bin.",
+    "continue": "Weiter zum Assessment",
+    "under": "Wenn du unter 18 bist, sprich bitte mit einem Elternteil, einer erziehungsberechtigten Person oder deiner Ärztin bzw. deinem Arzt.",
+    "back": "Zur Startseite"
+  },
   "start": {
     "title": "Dein Assessment",
     "intro": "Sechs kurze Fragen dazu, wie es dir geht – etwa 60 bis 90 Sekunden. Das ist kein medizinisches Formular.",
@@ -113,21 +121,75 @@
     "nextHeading": "Wie es weitergeht",
     "next": {
       "view": {
-        "title": "Lösung ansehen",
-        "body": "Öffne deine empfohlene Lösung, wähle eine Menge und lege sie in den Warenkorb."
+        "title": "Zur Prüfung einreichen",
+        "body": "Sende dein Assessment an eine Ärztin oder einen Arzt. Das ist kostenlos und es wird noch nichts bestellt."
       },
       "review": {
         "title": "Ärztliche Prüfung",
         "body": "Eine Ärztin oder ein Arzt prüft, ob sie für dich geeignet ist. Eine Verschreibung erfolgt nur, wenn es sinnvoll ist."
       },
       "delivery": {
-        "title": "Diskrete Lieferung",
-        "body": "Nach der Freigabe versendet eine zugelassene Apotheke deine Bestellung diskret zu dir nach Hause."
+        "title": "Bestellung & Lieferung",
+        "body": "Nach der Freigabe wählst du deine Menge und eine zugelassene Apotheke liefert sie diskret zu dir."
       }
     },
     "detailsLabel": "THC, Preis & Inhaltsstoffe",
     "altHeading": "Lieber eine andere Option?",
     "altLabelDefault": "Ebenfalls verfügbar",
-    "altStrongerHint": "In der Regel eine stärkere Option, für später."
+    "altStrongerHint": "In der Regel eine stärkere Option, für später.",
+    "frequencyNote": "Du hast angegeben, dass dich das {{frequency}} betrifft – das wird für deine ärztliche Prüfung vermerkt.",
+    "formatPreferenceNote": "Du hast angegeben, dass du {{format}} bevorzugst. Die passende Form bestätigt deine Ärztin oder dein Arzt – für die meisten am Anfang ist das ein Öl.",
+    "submitReviewCta": "Mein Assessment zur ärztlichen Prüfung einreichen",
+    "viewReviewCta": "Status deiner Prüfung ansehen",
+    "orViewSolution": "Oder sieh dir die empfohlene Lösung an, während du wartest"
+  },
+  "review": {
+    "pageTitle": "Deine ärztliche Prüfung",
+    "heading": "Deine ärztliche Prüfung",
+    "idLabel": "Prüfung {{id}}",
+    "reassure": "Du musst nicht auf dieser Seite bleiben – wir schicken dir eine E-Mail, sobald sich der Status ändert.",
+    "notGuaranteed": "Ein Rezept wird nur ausgestellt, wenn es medizinisch sinnvoll ist. Es ist nicht garantiert.",
+    "toDashboard": "In „Mein Bereich“ verfolgen",
+    "toSolution": "Empfohlene Lösung ansehen",
+    "toSupport": "Support kontaktieren",
+    "stepsHeading": "So läuft die Prüfung ab",
+    "steps": {
+      "a": "Dein Assessment wird an eine lizenzierte medizinische Fachperson gesendet.",
+      "b": "Die Ärztin oder der Arzt prüft es und fragt bei Bedarf weitere Informationen nach.",
+      "c": "Über das Ergebnis wirst du per E-Mail informiert.",
+      "d": "Bei Freigabe bereitet eine zugelassene Apotheke deine Bestellung vor und versendet sie."
+    },
+    "statuses": {
+      "submitted": {
+        "label": "Eingereicht",
+        "title": "Assessment eingereicht",
+        "body": "Dein Assessment wurde zur ärztlichen Prüfung gesendet."
+      },
+      "inReview": {
+        "label": "In ärztlicher Prüfung",
+        "title": "Eine Ärztin oder ein Arzt prüft dein Assessment",
+        "body": "Eine lizenzierte medizinische Fachperson prüft deine Antworten."
+      },
+      "infoRequired": {
+        "label": "Angaben erforderlich",
+        "title": "Die Ärztin oder der Arzt braucht noch ein paar Angaben",
+        "body": "Bitte sieh in deine E-Mails – die prüfende Ärztin oder der prüfende Arzt hat zusätzliche Angaben angefordert."
+      },
+      "approved": {
+        "label": "Freigegeben",
+        "title": "Deine Prüfung ist abgeschlossen",
+        "body": "Sofern medizinisch sinnvoll, wurde ein Rezept ausgestellt. Du kannst mit deiner empfohlenen Lösung fortfahren."
+      },
+      "notApproved": {
+        "label": "Nicht freigegeben",
+        "title": "Medizinisches Cannabis wurde als nicht geeignet eingestuft",
+        "body": "Auf Basis der Prüfung wurde kein Rezept ausgestellt. Das kann verschiedene Gründe haben – unser Team bespricht die Alternativen mit dir."
+      },
+      "consultation": {
+        "label": "Beratung erforderlich",
+        "title": "Ein kurzes Gespräch wird empfohlen",
+        "body": "Die prüfende Ärztin oder der prüfende Arzt möchte vor der Entscheidung ein kurzes Gespräch. Die nächsten Schritte findest du in deiner E-Mail."
+      }
+    }
   }
 }

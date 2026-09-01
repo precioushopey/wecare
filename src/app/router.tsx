@@ -4,7 +4,11 @@ import { RootLayout } from "@/components/layout/RootLayout";
 import { HomePage } from "@/pages/HomePage";
 import { LoginPage } from "@/pages/LoginPage";
 import { NotFoundPage } from "@/pages/NotFoundPage";
-import { AssessmentStartPage, ResultPage } from "@/pages/assessment";
+import {
+  AssessmentStartPage,
+  ResultPage,
+  ReviewStatusPage,
+} from "@/pages/assessment";
 import {
   ChronicPainPage,
   GeneralWellnessPage,
@@ -80,6 +84,7 @@ export const router = createBrowserRouter([
 
       { path: paths.assessment.start, element: <AssessmentStartPage /> },
       { path: paths.assessment.result, element: <ResultPage /> },
+      { path: paths.assessment.review, element: <ReviewStatusPage /> },
 
       { path: paths.solution, element: <SolutionRedirect /> },
 

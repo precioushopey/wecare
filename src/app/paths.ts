@@ -24,6 +24,8 @@ export const paths = {
   assessment: {
     start: "/assessment/start",
     result: "/assessment/result",
+    /** Medical-review status page (owner decision D3). */
+    review: "/assessment/review",
   },
 
   /** Recommended Solution redirect — resolves to the recommended product page. */

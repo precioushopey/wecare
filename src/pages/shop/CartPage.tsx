@@ -6,6 +6,7 @@ import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 import { Button } from "@/app/components/ui/button";
 import { paths } from "@/app/paths";
 import { usePageTitle } from "@/app/usePageTitle";
+import { PRICES_CONFIRMED } from "@/config";
 import { JourneyStepper } from "@/components/marketing/JourneyStepper";
 import { SOLUTION_BY_ID, solutionImage } from "@/data/solutions";
 import { useCart } from "@/features/cart/CartContext";
@@ -123,6 +124,10 @@ export function CartPage() {
           </dd>
         </div>
       </dl>
+
+      {!PRICES_CONFIRMED ? (
+        <p className="mt-4 text-xs text-ink-muted">{t("pricesIndicative")}</p>
+      ) : null}
 
       {hasPrescriptionItem ? (
         <p className="mt-4 rounded-xl bg-sage-50 p-4 text-sm text-petrol-700">

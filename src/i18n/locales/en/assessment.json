@@ -1,4 +1,12 @@
 {
+  "ageGate": {
+    "title": "First, a quick confirmation",
+    "body": "WeCare's guidance and any medical review relate to prescription medicine, which is only available to adults.",
+    "checkbox": "I confirm that I am 18 years or older.",
+    "continue": "Continue to the assessment",
+    "under": "If you are under 18, please speak with a parent, guardian or your doctor.",
+    "back": "Back to home"
+  },
   "start": {
     "title": "Your assessment",
     "intro": "Six short questions about how you feel — about 60 to 90 seconds. This is not a medical form.",
@@ -113,21 +121,75 @@
     "nextHeading": "What happens next",
     "next": {
       "view": {
-        "title": "View your solution",
-        "body": "Open your recommended solution, choose an amount and add it to your cart."
+        "title": "Submit for review",
+        "body": "Send your assessment to a doctor. It's free, and nothing is ordered yet."
       },
       "review": {
         "title": "Medical review",
         "body": "A doctor checks that it is suitable for you. A prescription is issued only if appropriate."
       },
       "delivery": {
-        "title": "Discreet delivery",
-        "body": "Once approved, a licensed pharmacy ships your order discreetly to your door."
+        "title": "Order & delivery",
+        "body": "Once approved, choose your amount and a licensed pharmacy ships it discreetly to your door."
       }
     },
     "detailsLabel": "THC, price & ingredients",
     "altHeading": "Prefer something else?",
     "altLabelDefault": "Also available",
-    "altStrongerHint": "Usually a stronger option, for later."
+    "altStrongerHint": "Usually a stronger option, for later.",
+    "frequencyNote": "You told us this affects you {{frequency}} — that's noted for your medical review.",
+    "formatPreferenceNote": "You mentioned you'd prefer {{format}}. Your doctor confirms the right format for you — for most people starting out, that's an oil.",
+    "submitReviewCta": "Submit my assessment for medical review",
+    "viewReviewCta": "View your review status",
+    "orViewSolution": "Or view the recommended solution while you wait"
+  },
+  "review": {
+    "pageTitle": "Your medical review",
+    "heading": "Your medical review",
+    "idLabel": "Review {{id}}",
+    "reassure": "You don't need to stay on this page — we'll email you as soon as the status changes.",
+    "notGuaranteed": "A prescription is issued only if it is medically appropriate. It is not guaranteed.",
+    "toDashboard": "Track this in My area",
+    "toSolution": "View the recommended solution",
+    "toSupport": "Contact support",
+    "stepsHeading": "How the review works",
+    "steps": {
+      "a": "Your assessment is sent to a licensed medical professional.",
+      "b": "The doctor reviews it and may ask for more information.",
+      "c": "You're notified of the outcome by email.",
+      "d": "If approved, a licensed pharmacy prepares and ships your order."
+    },
+    "statuses": {
+      "submitted": {
+        "label": "Submitted",
+        "title": "Assessment submitted",
+        "body": "Your assessment has been sent for medical review."
+      },
+      "inReview": {
+        "label": "In medical review",
+        "title": "A doctor is reviewing your assessment",
+        "body": "A licensed medical professional is reviewing your answers."
+      },
+      "infoRequired": {
+        "label": "Information needed",
+        "title": "The doctor needs a bit more information",
+        "body": "Please check your email — the reviewing doctor has asked for additional details before they can continue."
+      },
+      "approved": {
+        "label": "Approved",
+        "title": "Your review is complete",
+        "body": "A prescription has been issued where medically appropriate. You can continue to your recommended solution."
+      },
+      "notApproved": {
+        "label": "Not approved",
+        "title": "Medical cannabis wasn't found suitable",
+        "body": "Based on the review, a prescription was not issued. This can happen for several reasons — our team can talk you through the alternatives."
+      },
+      "consultation": {
+        "label": "Consultation needed",
+        "title": "A short consultation is recommended",
+        "body": "The reviewing doctor would like a brief consultation before deciding. Check your email for the next step."
+      }
+    }
   }
 }

@@ -8,6 +8,7 @@ import { Input } from "@/app/components/ui/input";
 import { Label } from "@/app/components/ui/label";
 import { paths } from "@/app/paths";
 import { usePageTitle } from "@/app/usePageTitle";
+import { PRICES_CONFIRMED } from "@/config";
 import { JourneyStepper } from "@/components/marketing/JourneyStepper";
 import { SOLUTION_BY_ID } from "@/data/solutions";
 import { useAuth } from "@/features/auth/AuthContext";
@@ -274,6 +275,11 @@ export function CheckoutPage() {
               {t("checkout.reviewFeeLink")}
             </Link>
           </p>
+          {!PRICES_CONFIRMED ? (
+            <p className="mt-2 text-xs text-ink-muted">
+              {t("pricesIndicative")}
+            </p>
+          ) : null}
           <Button
             type="submit"
             variant="cta"

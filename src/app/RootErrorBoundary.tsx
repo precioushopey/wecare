@@ -47,7 +47,9 @@ export class RootErrorBoundary extends Component<
   }
 
   componentDidCatch(error: Error, info: ErrorInfo): void {
-    // Left for a real error-reporting hook (Sentry etc.) at launch.
+    // Owner decision D19 — wire GlitchTip (EU-hosted / Sentry-compatible) here
+    // via VITE_ERROR_DSN. Scrub PII, health data and tokens before sending;
+    // never include assessment answers or breadcrumb form values.
     console.error("[RootErrorBoundary]", error, info.componentStack);
   }
 

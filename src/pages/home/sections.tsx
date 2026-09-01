@@ -35,12 +35,19 @@ import { RotatingWord } from "@/components/marketing/RotatingWord";
 import { Section, SectionHeading } from "@/components/marketing/Section";
 import { IMG, siteImage } from "@/data/siteImages";
 import { CONDITIONS, type ConditionKey } from "@/features/conditions/conditions";
+import { AnalyticsEvent, track } from "@/lib/analytics";
 
 function assessmentLink(problem?: string) {
   return problem
     ? `${paths.assessment.start}?problem=${problem}`
     : paths.assessment.start;
 }
+
+const trackHomeCta = (location: string) => () =>
+  track(AnalyticsEvent.homepageCtaClicked, { location });
+
+const trackHomeProblem = (source: string) => (problem: string) => () =>
+  track(AnalyticsEvent.problemSelected, { problem, source });
 
 /* ── 1. Hero ──────────────────────────────────────────────────────────────── */
 
@@ -82,7 +89,9 @@ export function HeroSection() {
               rendered full-width, flush under the photo (see below). */}
           <div className="hidden flex-wrap items-center gap-3 pt-1 lg:flex">
             <Button asChild variant="cta" size="xl">
-              <Link to={assessmentLink()}>{t("hero.primaryCta")}</Link>
+              <Link to={assessmentLink()} onClick={trackHomeCta("hero")}>
+                {t("hero.primaryCta")}
+              </Link>
             </Button>
             <Button asChild variant="outline" size="xl">
               <Link to={paths.howItWorks}>{t("hero.secondaryCta")}</Link>
@@ -224,6 +233,7 @@ export function ChooseProblemSection() {
             <Reveal key={c.key} delayMs={i * 60}>
               <Link
                 to={assessmentLink(c.assessmentProblem)}
+                onClick={trackHomeProblem("homepage_card")(c.assessmentProblem)}
                 className="group relative flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-3xl glass glass-hover"
               >
                 {/* Own clip layer: `overflow-hidden` + `rounded` on the card
@@ -367,6 +377,7 @@ export function SolutionsPreviewSection() {
               <Reveal key={key} delayMs={i * 60}>
                 <Link
                   to={assessmentLink(key)}
+                  onClick={trackHomeProblem("homepage_support_card")(key)}
                   className="flex h-full flex-col glass-strong glass-hover rounded-3xl p-6"
                 >
                   <span className="mb-3 inline-flex size-11 items-center justify-center rounded-2xl [background-image:var(--cta-gradient)] text-white shadow-[0_10px_24px_-10px_rgba(42,167,176,0.55)]">
@@ -620,7 +631,9 @@ export function FinalCtaSection() {
             size="xl"
             className="hidden lg:inline-flex"
           >
-            <Link to={assessmentLink()}>{t("finalCta.cta")}</Link>
+            <Link to={assessmentLink()} onClick={trackHomeCta("final")}>
+              {t("finalCta.cta")}
+            </Link>
           </Button>
         </div>
 
@@ -649,7 +662,9 @@ export function FinalCtaSection() {
             size="xl"
             className="flex w-full lg:hidden"
           >
-            <Link to={assessmentLink()}>{t("finalCta.cta")}</Link>
+            <Link to={assessmentLink()} onClick={trackHomeCta("final")}>
+              {t("finalCta.cta")}
+            </Link>
           </Button>
         </div>
       </div>

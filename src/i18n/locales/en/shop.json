@@ -13,6 +13,7 @@
     "forProblems": "For: {{problems}}",
     "learnMore": "Learn more"
   },
+  "pricesIndicative": "Prices shown are indicative — your final price is confirmed after your medical review.",
   "solution": {
     "backToShop": "Back to solutions",
     "forProblems": "For: {{problems}}",
@@ -25,6 +26,7 @@
     "grams": "{{count}} g",
     "addToCart": "Add to cart",
     "checkAvailability": "Check availability",
+    "afterApprovalNote": "You can order once your medical review is approved.",
     "whyHeading": "Why it's recommended",
     "usageHeading": "How it's used",
     "suitabilityHeading": "What it suits",

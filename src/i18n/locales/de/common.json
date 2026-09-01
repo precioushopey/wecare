@@ -6,7 +6,7 @@
   "nav": {
     "home": "Startseite",
     "sleep": "Schlaf",
-    "pain": "Schmerzen",
+    "pain": "Schmerzen & Körperkomfort",
     "stressAnxiety": "Stress & Angst",
     "migraine": "Migräne",
     "howItWorks": "So funktioniert's",
@@ -67,6 +67,7 @@
     "emergencyDisclaimer": "WeCare ersetzt keine Notfallversorgung.",
     "shipping": "Versand",
     "payment": "Zahlungsarten",
+    "paymentMethods": "Rechnung · Überweisung",
     "headings": {
       "concerns": "Anliegen",
       "wecare": "WeCare",

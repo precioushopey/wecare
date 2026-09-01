@@ -15,6 +15,7 @@ import {
   isConditionKey,
   type ConditionKey,
 } from "@/features/conditions/conditions";
+import { AnalyticsEvent, track } from "@/lib/analytics";
 
 type LandingKey = ConditionKey | "generalWellness";
 
@@ -55,6 +56,8 @@ export function ConditionLandingPage({
     >,
   );
   const ctaLabel = t(`${conditionKey}.assessmentCta`);
+  const onCtaClick = () =>
+    track(AnalyticsEvent.problemPageCtaClicked, { problem: conditionKey });
 
   return (
     <>
@@ -81,7 +84,9 @@ export function ConditionLandingPage({
                 size="xl"
                 className="w-full sm:w-auto"
               >
-                <Link to={assessmentLink(conditionKey)}>{ctaLabel}</Link>
+                <Link to={assessmentLink(conditionKey)} onClick={onCtaClick}>
+                  {ctaLabel}
+                </Link>
               </Button>
             </div>
           </div>
@@ -183,7 +188,9 @@ export function ConditionLandingPage({
                   size="lg"
                   className="w-full lg:w-auto"
                 >
-                  <Link to={assessmentLink(conditionKey)}>{ctaLabel}</Link>
+                  <Link to={assessmentLink(conditionKey)} onClick={onCtaClick}>
+                  {ctaLabel}
+                </Link>
                 </Button>
               </div>
             </div>

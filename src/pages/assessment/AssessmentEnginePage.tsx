@@ -16,7 +16,10 @@ import {
   type QuestionId,
 } from "@/features/assessment/questions";
 import { isConditionKey } from "@/features/conditions/conditions";
+import { confirmAge, isAgeConfirmed } from "@/features/age/age";
 import { AnalyticsEvent, track } from "@/lib/analytics";
+
+import { AgeGate } from "./AgeGate";
 
 /** Single reusable, state-based assessment engine — no route changes between
  *  questions (spec Section 7). */
@@ -28,6 +31,9 @@ export function AssessmentEnginePage() {
   const [params] = useSearchParams();
   usePageTitle(t("start.title"), tCommon("pages.assessmentStart.description"));
 
+  // 18+ self-declaration before the assessment (owner decision D14).
+  const [ageOk, setAgeOk] = useState(isAgeConfirmed);
+
   const problemParam = params.get("problem");
 
   useEffect(() => {
@@ -38,22 +44,24 @@ export function AssessmentEnginePage() {
 
   const startedTracked = useRef(false);
   useEffect(() => {
-    if (startedTracked.current) return;
+    if (!ageOk || startedTracked.current) return;
     startedTracked.current = true;
     track(AnalyticsEvent.assessmentStarted, {
       problem: problemParam && isConditionKey(problemParam) ? problemParam : null,
       resumed: answeredCount(answers) > 0,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [ageOk]);
 
   function recordAnswer(id: QuestionId, value: string) {
     setAnswer(id, value);
+    // Question id + position only — the answer value is health data (D16).
     track(AnalyticsEvent.assessmentQuestionAnswered, {
       question: id,
-      answer: value,
+      questionIndex: step,
     });
     if (id === "q1") {
+      // The problem category is an allowed coarse dimension.
       track(AnalyticsEvent.problemSelected, { problem: value, source: "assessment" });
     }
   }
@@ -74,6 +82,7 @@ export function AssessmentEnginePage() {
   );
 
   function goBack() {
+    track(AnalyticsEvent.assessmentBackClicked, { question: question.id });
     setStep((s) => Math.max(0, s - 1));
   }
 
@@ -88,6 +97,17 @@ export function AssessmentEnginePage() {
       return;
     }
     setStep((s) => Math.min(TOTAL_QUESTIONS - 1, s + 1));
+  }
+
+  if (!ageOk) {
+    return (
+      <AgeGate
+        onConfirm={() => {
+          confirmAge();
+          setAgeOk(true);
+        }}
+      />
+    );
   }
 
   return (

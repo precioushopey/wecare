@@ -28,6 +28,7 @@ const SESSION_SCOPED_KEYS = [
   "wecare.cart",
   "wecare.orders",
   "wecare.followup",
+  "wecare.review",
 ] as const;
 
 function clearSessionScopedStores() {

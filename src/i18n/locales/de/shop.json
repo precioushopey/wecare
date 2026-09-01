@@ -13,6 +13,7 @@
     "forProblems": "Bei: {{problems}}",
     "learnMore": "Mehr erfahren"
   },
+  "pricesIndicative": "Die angezeigten Preise sind Richtwerte – dein endgültiger Preis wird nach deiner ärztlichen Prüfung bestätigt.",
   "solution": {
     "backToShop": "Zurück zu den Lösungen",
     "forProblems": "Bei: {{problems}}",
@@ -25,6 +26,7 @@
     "grams": "{{count}} g",
     "addToCart": "In den Warenkorb",
     "checkAvailability": "Verfügbarkeit prüfen",
+    "afterApprovalNote": "Bestellen kannst du, sobald deine ärztliche Prüfung freigegeben ist.",
     "whyHeading": "Warum empfohlen",
     "usageHeading": "Anwendung",
     "suitabilityHeading": "Wofür geeignet",
