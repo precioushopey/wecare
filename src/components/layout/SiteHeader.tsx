@@ -13,6 +13,7 @@ import {
   SheetTrigger,
 } from "@/app/components/ui/sheet";
 import { PRIMARY_NAV, paths } from "@/app/paths";
+import { cn } from "@/app/components/ui/utils";
 import { Logo } from "@/components/brand/Logo";
 import { useAuth } from "@/features/auth/AuthContext";
 import { useCart } from "@/features/cart/CartContext";
@@ -49,7 +50,7 @@ function CartLink() {
   );
 }
 
-export function SiteHeader() {
+export function SiteHeader({ hideOnMobile = false }: { hideOnMobile?: boolean }) {
   const { t } = useTranslation();
   const { isAuthenticated } = useAuth();
   const [open, setOpen] = useState(false);
@@ -60,7 +61,14 @@ export function SiteHeader() {
     : { to: paths.login, label: t("nav.login") };
 
   return (
-    <header className="sticky top-0 z-40 border-b border-white/40 bg-white/60 px-4 shadow-[0_1px_0_0_rgba(255,255,255,0.6),0_10px_30px_-24px_rgba(13,68,75,0.35)] backdrop-blur-xl backdrop-saturate-150 sm:px-6 dark:border-white/20 dark:bg-petrol-950/70 dark:shadow-[0_1px_0_0_rgba(255,255,255,0.05),0_10px_30px_-24px_rgba(0,0,0,0.6)]">
+    <header
+      className={cn(
+        "sticky top-0 z-40 border-b border-white/40 bg-white/60 px-4 shadow-[0_1px_0_0_rgba(255,255,255,0.6),0_10px_30px_-24px_rgba(13,68,75,0.35)] backdrop-blur-xl backdrop-saturate-150 sm:px-6 dark:border-white/20 dark:bg-petrol-950/70 dark:shadow-[0_1px_0_0_rgba(255,255,255,0.05),0_10px_30px_-24px_rgba(0,0,0,0.6)]",
+        // On the signed-in area the dashboard supplies its own app-bar on
+        // mobile; the site header returns from `lg` up.
+        hideOnMobile && "max-lg:hidden",
+      )}
+    >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4">
         <div className="flex min-w-0 items-center gap-5">
           <Wordmark />

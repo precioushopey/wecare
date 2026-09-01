@@ -1,5 +1,6 @@
 {
   "title": "Mein Bereich",
+  "tabsAria": "Navigation Mein Bereich",
   "nav": {
     "home": "Übersicht",
     "assessment": "Mein Assessment",
@@ -7,6 +8,13 @@
     "orders": "Meine Bestellungen",
     "followUp": "Nachsorge",
     "support": "Support",
+    "profile": "Profil"
+  },
+  "tabs": {
+    "home": "Übersicht",
+    "assessment": "Assessment",
+    "recommendation": "Lösung",
+    "orders": "Bestellung",
     "profile": "Profil"
   },
   "assessment": {
@@ -17,7 +25,8 @@
     "problem": "Anliegen",
     "frequency": "Häufigkeit",
     "strength": "Stärke",
-    "retake": "Erneut durchführen"
+    "retake": "Erneut durchführen",
+    "reviewNote": "zur ärztlichen Prüfung eingereicht"
   },
   "recommendation": {
     "title": "Meine Empfehlung",
@@ -95,7 +104,12 @@
     "save": "Änderungen speichern",
     "cancel": "Abbrechen",
     "saved": "Deine Angaben sind gespeichert.",
-    "signOut": "Abmelden"
+    "signOut": "Abmelden",
+    "detailsLabel": "Angaben",
+    "appearance": "Darstellung",
+    "theme": "Design",
+    "more": "Mehr",
+    "exploreSite": "WeCare entdecken"
   },
   "auth": {
     "signInTitle": "Anmelden",
@@ -115,6 +129,10 @@
   },
   "home": {
     "title": "Übersicht",
+    "nextStep": "Dein nächster Schritt",
+    "nextReviewPending": "Reiche dein Assessment ein, damit eine Ärztin oder ein Arzt es prüfen kann.",
+    "orderInFlight": "Wir halten dich zu deiner Lieferung auf dem Laufenden.",
+    "assessmentSnapshot": "Dein Assessment",
     "problemLabel": "Zuletzt gewähltes Anliegen",
     "recommendationLabel": "Empfohlenes Produkt",
     "orderStatusLabel": "Bestellstatus",

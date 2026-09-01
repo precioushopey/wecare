@@ -5,6 +5,7 @@ import { paths } from "@/app/paths";
 import { Providers } from "@/app/Providers";
 import { GradientBackdrop } from "@/components/marketing/GradientBackdrop";
 import { PageReveal } from "@/components/marketing/PageReveal";
+import { DashboardTabBar } from "@/pages/dashboard/DashboardTabBar";
 
 import { ConsentBanner } from "./ConsentBanner";
 import { ScrollToHash } from "./ScrollToHash";
@@ -19,6 +20,13 @@ export function RootLayout() {
   // rounded top edge, so the footer's own rounding is squared off there.
   const { pathname } = useLocation();
   const isHome = pathname === paths.home;
+  // The signed-in area is a mobile-first "app" surface (owner request,
+  // Sept 2026): no marketing footer at all, and on mobile the site header
+  // gives way to the dashboard's own app-bar + bottom tab bar. The site
+  // header stays on desktop so the brand nav / "start assessment" remain
+  // one click away.
+  const isDashboard =
+    pathname === paths.dashboard || pathname.startsWith(`${paths.dashboard}/`);
 
   return (
     <Providers>
@@ -30,16 +38,19 @@ export function RootLayout() {
       </a>
       <GradientBackdrop />
       <div className="flex min-h-screen flex-col">
-        <SiteHeader />
+        <SiteHeader hideOnMobile={isDashboard} />
         <main id="main-content" className="flex-1">
           <PageReveal>
             <Outlet />
           </PageReveal>
         </main>
-        <SiteFooter roundedTop={!isHome} />
+        {!isDashboard && <SiteFooter roundedTop={!isHome} />}
         <ScrollRestoration />
         <ScrollToHash />
       </div>
+      {/* Fixed chrome lives outside the scroll column and outside PageReveal
+          (whose transform would trap `position: fixed`). */}
+      {isDashboard && <DashboardTabBar />}
       <ConsentBanner />
     </Providers>
   );

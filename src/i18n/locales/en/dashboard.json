@@ -1,5 +1,6 @@
 {
   "title": "My area",
+  "tabsAria": "Dashboard sections",
   "nav": {
     "home": "Overview",
     "assessment": "My Assessment",
@@ -7,6 +8,13 @@
     "orders": "My Orders",
     "followUp": "Follow-up",
     "support": "Support",
+    "profile": "Profile"
+  },
+  "tabs": {
+    "home": "Overview",
+    "assessment": "Assessment",
+    "recommendation": "Solution",
+    "orders": "Orders",
     "profile": "Profile"
   },
   "assessment": {
@@ -17,7 +25,8 @@
     "problem": "Concern",
     "frequency": "Frequency",
     "strength": "Strength",
-    "retake": "Retake"
+    "retake": "Retake",
+    "reviewNote": "submitted for medical review"
   },
   "recommendation": {
     "title": "My recommendation",
@@ -95,7 +104,12 @@
     "save": "Save changes",
     "cancel": "Cancel",
     "saved": "Your details are saved.",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "detailsLabel": "Details",
+    "appearance": "Appearance",
+    "theme": "Theme",
+    "more": "More",
+    "exploreSite": "Explore WeCare"
   },
   "auth": {
     "signInTitle": "Login",
@@ -115,6 +129,10 @@
   },
   "home": {
     "title": "Overview",
+    "nextStep": "Your next step",
+    "nextReviewPending": "Submit your assessment so a doctor can review it.",
+    "orderInFlight": "We'll keep you posted on your delivery.",
+    "assessmentSnapshot": "Your assessment",
     "problemLabel": "Last selected problem",
     "recommendationLabel": "Recommended product",
     "orderStatusLabel": "Order status",

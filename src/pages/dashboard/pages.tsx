@@ -2,6 +2,18 @@ import { useState } from "react";
 import type { FormEvent, ReactNode } from "react";
 import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
+import {
+  ArrowUpRight,
+  CalendarCheck,
+  ChevronRight,
+  ClipboardList,
+  LifeBuoy,
+  LogOut,
+  Package,
+  RotateCcw,
+  ShieldCheck,
+  Sparkles,
+} from "lucide-react";
 
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 import { Button } from "@/app/components/ui/button";
@@ -9,6 +21,7 @@ import { Input } from "@/app/components/ui/input";
 import { Label } from "@/app/components/ui/label";
 import { paths } from "@/app/paths";
 import { LanguageToggle } from "@/components/layout/LanguageToggle";
+import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { SOLUTION_BY_ID, solutionImage } from "@/data/solutions";
 import { useAssessment } from "@/features/assessment/AssessmentContext";
 import { pairCounterpart } from "@/features/assessment/recommendation";
@@ -20,206 +33,247 @@ import {
   setFollowUp,
   type FollowUpEntry,
 } from "@/features/followup/followup";
-import { getOrders, type OrderStatus } from "@/features/orders/orders";
+import { getOrders } from "@/features/orders/orders";
 import { getMedicalReview } from "@/features/review/review";
 import { useLanguage } from "@/i18n/useLanguage";
 import { AnalyticsEvent, track } from "@/lib/analytics";
 import { formatDate, formatPriceEur } from "@/lib/format";
 
-function Panel({
-  title,
-  children,
-}: {
-  title: string;
-  children: ReactNode;
-}) {
+import {
+  Avatar,
+  EmptyState,
+  MedallionIcon,
+  orderPillTone,
+  reviewPillTone,
+  RowLink,
+  StatTile,
+  StatusPill,
+} from "./ui";
+
+/** Small uppercase section label used to group content within a page. */
+function GroupLabel({ children }: { children: ReactNode }) {
   return (
-    <section>
-      <h2 className="text-xl">{title}</h2>
-      <div className="mt-4">{children}</div>
-    </section>
+    <p className="mb-2.5 text-sm font-semibold uppercase tracking-[0.08em] text-ink-muted">
+      {children}
+    </p>
   );
 }
 
-function EmptyState({ text, ctaLabel, to }: { text: string; ctaLabel: string; to: string }) {
-  return (
-    <div className="glass rounded-3xl p-6">
-      <p className="text-ink-muted">{text}</p>
-      <Button asChild variant="cta" className="mt-4">
-        <Link to={to}>{ctaLabel}</Link>
-      </Button>
-    </div>
-  );
-}
-
-/* ── Dashboard home / overview ───────────────────────────────────────────── */
+/* ── Overview ────────────────────────────────────────────────────────────── */
 
 export function DashboardHomePage() {
   const { t } = useTranslation("dashboard");
   const { t: ta } = useTranslation("assessment");
-  const { result } = useAssessment();
+  const { t: ts } = useTranslation("shop");
+  const { result, answers } = useAssessment();
   const [followUp] = useState(() => getFollowUp());
-  const orders = getOrders();
-  const latestOrder = orders[0];
+  const latestOrder = getOrders()[0];
   const review = getMedicalReview();
 
   if (!result) {
     return (
-      <Panel title={t("home.title")}>
-        <EmptyState
-          text={t("home.empty")}
-          ctaLabel={t("home.emptyCta")}
-          to={paths.assessment.start}
-        />
-      </Panel>
+      <EmptyState
+        icon={ClipboardList}
+        text={t("home.empty")}
+        ctaLabel={t("home.emptyCta")}
+        to={paths.assessment.start}
+      />
     );
   }
 
   const primary = SOLUTION_BY_ID[result.primarySolutionId];
 
+  // The single most useful "what now?" — order in flight beats review status
+  // beats "submit for review".
+  let hero: { pill?: ReactNode; text: string; cta: string; to: string };
+  if (latestOrder) {
+    hero = {
+      pill: (
+        <StatusPill
+          label={t(`orders.statuses.${latestOrder.status}`)}
+          tone={orderPillTone(latestOrder.status)}
+        />
+      ),
+      text: t("home.orderInFlight"),
+      cta: t("home.viewOrders"),
+      to: paths.dashboardOrders,
+    };
+  } else if (review) {
+    hero = {
+      pill: (
+        <StatusPill
+          label={ta(`review.statuses.${review.status}.label`)}
+          tone={reviewPillTone(review.status)}
+        />
+      ),
+      text: ta(`review.statuses.${review.status}.body`),
+      cta:
+        review.status === "approved"
+          ? t("recommendation.view")
+          : ta("result.viewReviewCta"),
+      to:
+        review.status === "approved"
+          ? paths.shopProduct(result.primarySolutionId)
+          : paths.assessment.review,
+    };
+  } else {
+    hero = {
+      text: t("home.nextReviewPending"),
+      cta: ta("result.submitReviewCta"),
+      to: paths.assessment.result,
+    };
+  }
+
+  const problemLabel = ta(`questions.q1.options.${result.problem}`);
+  const frequencyLabel = answers.q2
+    ? ta(`questions.q2.options.${answers.q2}`)
+    : null;
+  const strengthLabel = answers.q3
+    ? ta(`questions.q3.options.${answers.q3}`)
+    : null;
+
   return (
-    <Panel title={t("home.title")}>
-      <div className="grid gap-4 sm:grid-cols-2">
-        <div className="glass rounded-3xl p-5">
-          <p className="text-xs uppercase tracking-wide text-ink-muted">
-            {t("home.problemLabel")}
-          </p>
-          <p className="mt-1 text-lg text-ink">
-            {ta(`questions.q1.options.${result.problem}`)}
-          </p>
-        </div>
-
-        <Link
-          to={paths.dashboardRecommendation}
-          className="glass glass-hover flex items-center gap-4 rounded-3xl p-5"
-        >
-          <div className="image-glow size-14 shrink-0 rounded-lg">
-            <ImageWithFallback
-              src={solutionImage(primary)}
-              alt=""
-              className="size-full object-contain p-1"
-            />
-          </div>
-          <div className="min-w-0">
-            <p className="text-xs uppercase tracking-wide text-ink-muted">
-              {t("home.recommendationLabel")}
+    <div className="space-y-4">
+      {/* Next step */}
+      <div className="glass-strong rounded-3xl p-5 sm:p-6">
+        <div className="flex items-start gap-4">
+          <MedallionIcon icon={ShieldCheck} />
+          <div className="min-w-0 flex-1">
+            <p className="text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-ink-muted">
+              {t("home.nextStep")}
             </p>
-            <p className="mt-1 font-display text-lg text-ink">{primary.name}</p>
-            <p className="mt-0.5 text-sm text-petrol-700">
-              {t("home.viewRecommendation")}
-            </p>
+            {hero.pill ? <div className="mt-1.5">{hero.pill}</div> : null}
+            <p className="mt-2 text-sm text-ink">{hero.text}</p>
           </div>
-        </Link>
-
-        <Link
-          to={
-            latestOrder
-              ? paths.dashboardOrders
-              : review
-                ? paths.assessment.review
-                : paths.dashboardRecommendation
-          }
-          className="glass glass-hover rounded-3xl p-5"
-        >
-          <p className="text-xs uppercase tracking-wide text-ink-muted">
-            {latestOrder
-              ? t("home.orderStatusLabel")
-              : t("home.reviewLabel")}
-          </p>
-          <p className="mt-1 text-lg text-ink">
-            {latestOrder
-              ? t(`orders.statuses.${latestOrder.status}`)
-              : review
-                ? ta(`review.statuses.${review.status}.label`)
-                : t("recommendation.notSubmitted")}
-          </p>
-          <p className="mt-0.5 text-sm text-petrol-700">
-            {latestOrder ? t("home.viewOrders") : t("home.viewReview")}
-          </p>
-        </Link>
-
-        <div className="glass rounded-3xl p-5">
-          <p className="text-xs uppercase tracking-wide text-ink-muted">
-            {t("home.followUpLabel")}
-          </p>
-          <p className="mt-1 text-sm text-ink">
-            {followUp ? t("home.followUpDone") : t("home.followUpReminder")}
-          </p>
-          <Button asChild variant="outline" size="sm" className="mt-3">
-            <Link to={paths.dashboardFollowUp}>{t("home.followUpCta")}</Link>
-          </Button>
         </div>
+        <Button asChild variant="cta" className="mt-4 w-full sm:w-auto">
+          <Link to={hero.to}>
+            {hero.cta}
+            <ChevronRight className="size-4" aria-hidden />
+          </Link>
+        </Button>
       </div>
 
-      <Button asChild variant="cta" className="mt-5">
-        <Link to={paths.dashboardSupport}>{t("home.supportCta")}</Link>
-      </Button>
-    </Panel>
+      {/* Assessment snapshot */}
+      <Link
+        to={paths.dashboardAssessment}
+        className="glass glass-hover block rounded-3xl p-5"
+      >
+        <div className="flex items-center justify-between gap-3">
+          <GroupLabel>{t("home.assessmentSnapshot")}</GroupLabel>
+          <ChevronRight
+            className="size-4 shrink-0 text-ink-muted"
+            aria-hidden
+            strokeWidth={1.75}
+          />
+        </div>
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+          <StatTile
+            label={t("assessment.problem")}
+            value={problemLabel}
+            className="col-span-2 sm:col-span-1"
+          />
+          {frequencyLabel ? (
+            <StatTile
+              label={t("assessment.frequency")}
+              value={frequencyLabel}
+            />
+          ) : null}
+          {strengthLabel ? (
+            <StatTile label={t("assessment.strength")} value={strengthLabel} />
+          ) : null}
+        </div>
+      </Link>
+
+      {/* Everything else */}
+      <div className="space-y-3">
+        <RowLink
+          icon={Sparkles}
+          title={t("nav.recommendation")}
+          subtitle={`${primary.name} · ${ts(`solutions.${primary.id}.category`)}`}
+          to={paths.dashboardRecommendation}
+        />
+        <RowLink
+          icon={CalendarCheck}
+          tone="sage"
+          title={t("nav.followUp")}
+          subtitle={
+            followUp ? t("home.followUpDone") : t("home.followUpReminder")
+          }
+          to={paths.dashboardFollowUp}
+        />
+        <RowLink
+          icon={LifeBuoy}
+          tone="sage"
+          title={t("nav.support")}
+          subtitle={t("support.body")}
+          to={paths.dashboardSupport}
+        />
+      </div>
+    </div>
   );
 }
 
-/* ── My assessment ───────────────────────────────────────────────────────── */
+/* ── My assessment ──────────────────────────────────────────────────────── */
 
 export function DashboardAssessmentPage() {
   const { t } = useTranslation("dashboard");
   const { t: ta } = useTranslation("assessment");
   const { answers, completedAt, result } = useAssessment();
+  const review = getMedicalReview();
 
   if (!completedAt || !result) {
     return (
-      <Panel title={t("assessment.title")}>
-        <EmptyState
-          text={t("assessment.empty")}
-          ctaLabel={t("assessment.emptyCta")}
-          to={paths.assessment.start}
-        />
-      </Panel>
+      <EmptyState
+        icon={ClipboardList}
+        text={t("assessment.empty")}
+        ctaLabel={t("assessment.emptyCta")}
+        to={paths.assessment.start}
+      />
     );
   }
 
   return (
-    <Panel title={t("assessment.title")}>
-      <div className="glass rounded-3xl p-6">
+    <div className="space-y-4">
+      {review ? (
+        <StatusPill
+          label={ta(`review.statuses.${review.status}.label`)}
+          tone={reviewPillTone(review.status)}
+        />
+      ) : null}
+
+      <div className="glass-strong rounded-3xl p-5 sm:p-6">
         <p className="text-sm text-ink-muted">{t("assessment.completedNote")}</p>
-        <dl className="mt-4 grid gap-3 sm:grid-cols-3">
-          <div>
-            <dt className="text-xs uppercase tracking-wide text-ink-muted">
-              {t("assessment.problem")}
-            </dt>
-            <dd className="mt-1 text-ink">
-              {ta(`questions.q1.options.${result.problem}`)}
-            </dd>
-          </div>
+        <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-3">
+          <StatTile
+            label={t("assessment.problem")}
+            value={ta(`questions.q1.options.${result.problem}`)}
+          />
           {answers.q2 ? (
-            <div>
-              <dt className="text-xs uppercase tracking-wide text-ink-muted">
-                {t("assessment.frequency")}
-              </dt>
-              <dd className="mt-1 text-ink">
-                {ta(`questions.q2.options.${answers.q2}`)}
-              </dd>
-            </div>
+            <StatTile
+              label={t("assessment.frequency")}
+              value={ta(`questions.q2.options.${answers.q2}`)}
+            />
           ) : null}
           {answers.q3 ? (
-            <div>
-              <dt className="text-xs uppercase tracking-wide text-ink-muted">
-                {t("assessment.strength")}
-              </dt>
-              <dd className="mt-1 text-ink">
-                {ta(`questions.q3.options.${answers.q3}`)}
-              </dd>
-            </div>
+            <StatTile
+              label={t("assessment.strength")}
+              value={ta(`questions.q3.options.${answers.q3}`)}
+            />
           ) : null}
-        </dl>
-        <Button asChild variant="outline" className="mt-5">
-          <Link to={paths.assessment.start}>{t("assessment.retake")}</Link>
+        </div>
+        <Button asChild variant="outline" className="mt-5 w-full sm:w-auto">
+          <Link to={paths.assessment.start}>
+            <RotateCcw className="size-4" aria-hidden />
+            {t("assessment.retake")}
+          </Link>
         </Button>
       </div>
-    </Panel>
+    </div>
   );
 }
 
-/* ── My recommendation ───────────────────────────────────────────────────── */
+/* ── My recommendation ──────────────────────────────────────────────────── */
 
 export function DashboardRecommendationPage() {
   const { t } = useTranslation("dashboard");
@@ -230,13 +284,12 @@ export function DashboardRecommendationPage() {
 
   if (!result) {
     return (
-      <Panel title={t("recommendation.title")}>
-        <EmptyState
-          text={t("recommendation.empty")}
-          ctaLabel={t("recommendation.emptyCta")}
-          to={paths.assessment.start}
-        />
-      </Panel>
+      <EmptyState
+        icon={Sparkles}
+        text={t("recommendation.empty")}
+        ctaLabel={t("recommendation.emptyCta")}
+        to={paths.assessment.start}
+      />
     );
   }
 
@@ -244,7 +297,27 @@ export function DashboardRecommendationPage() {
   const secondary = SOLUTION_BY_ID[result.secondarySolutionId];
 
   return (
-    <Panel title={t("recommendation.title")}>
+    <div className="space-y-4">
+      <div className="glass rounded-3xl p-5">
+        <div className="flex items-center gap-3.5">
+          <MedallionIcon icon={ShieldCheck} />
+          <p className="min-w-0 flex-1 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-ink-muted">
+            {t("recommendation.reviewLabel")}
+          </p>
+          {review ? (
+            <StatusPill
+              label={ta(`review.statuses.${review.status}.label`)}
+              tone={reviewPillTone(review.status)}
+            />
+          ) : null}
+        </div>
+        <p className="mt-2.5 text-sm text-ink-muted">
+          {review
+            ? ta(`review.statuses.${review.status}.body`)
+            : t("recommendation.notSubmitted")}
+        </p>
+      </div>
+
       <div className="grid gap-4 sm:grid-cols-2">
         {[
           { label: t("recommendation.primary"), s: primary },
@@ -263,7 +336,7 @@ export function DashboardRecommendationPage() {
               />
             </div>
             <div className="min-w-0">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-petrol-600">
+              <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-petrol-600">
                 {label}
               </p>
               <p className="mt-1 font-display text-lg text-ink">{s.name}</p>
@@ -276,26 +349,16 @@ export function DashboardRecommendationPage() {
           </Link>
         ))}
       </div>
-      <div className="mt-4 rounded-xl bg-sage-50 p-4 text-sm text-petrol-700">
-        <p className="text-xs font-semibold uppercase tracking-[0.16em]">
-          {t("recommendation.reviewLabel")}
-        </p>
-        <p className="mt-1">
-          {review
-            ? ta(`review.statuses.${review.status}.label`)
-            : t("recommendation.notSubmitted")}
-        </p>
-      </div>
 
-      <div className="mt-5 flex flex-wrap items-center gap-3">
+      <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
         {review ? (
-          <Button asChild variant="cta">
+          <Button asChild variant="cta" className="w-full sm:w-auto">
             <Link to={paths.assessment.review}>
               {ta("result.viewReviewCta")}
             </Link>
           </Button>
         ) : (
-          <Button asChild variant="cta">
+          <Button asChild variant="cta" className="w-full sm:w-auto">
             <Link to={paths.assessment.result}>
               {ta("result.submitReviewCta")}
             </Link>
@@ -308,18 +371,11 @@ export function DashboardRecommendationPage() {
           {t("recommendation.view")}
         </Link>
       </div>
-    </Panel>
+    </div>
   );
 }
 
-/* ── My orders ───────────────────────────────────────────────────────────── */
-
-const STATUS_TONE: Record<OrderStatus, string> = {
-  processing: "bg-petrol-50 text-petrol-700 dark:bg-petrol-900/60 dark:text-petrol-100",
-  inReview: "bg-petrol-100 text-petrol-800 dark:bg-petrol-900/60 dark:text-petrol-100",
-  shipped: "bg-sage-100 text-sage-800 dark:bg-sage-800/40 dark:text-sage-200",
-  delivered: "bg-sage-200 text-sage-900 dark:bg-sage-700/45 dark:text-sage-200",
-};
+/* ── My orders ──────────────────────────────────────────────────────────── */
 
 export function DashboardOrdersPage() {
   const { t } = useTranslation("dashboard");
@@ -328,62 +384,62 @@ export function DashboardOrdersPage() {
 
   if (orders.length === 0) {
     return (
-      <Panel title={t("orders.title")}>
-        <EmptyState
-          text={t("orders.empty")}
-          ctaLabel={t("orders.emptyCta")}
-          to={paths.shop}
-        />
-      </Panel>
+      <EmptyState
+        icon={Package}
+        text={t("orders.empty")}
+        ctaLabel={t("orders.emptyCta")}
+        to={paths.shop}
+      />
     );
   }
 
   return (
-    <Panel title={t("orders.title")}>
-      <ul className="space-y-4">
-        {orders.map((order) => (
-          <li
-            key={order.id}
-            className="glass rounded-3xl p-5"
-          >
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <div>
-                <p className="font-mono text-sm text-ink">
-                  {t("orders.orderLabel", { id: order.id })}
-                </p>
-                <p className="text-xs text-ink-muted">
-                  {t("orders.placedOn", {
-                    date: formatDate(order.placedAt, language),
-                  })}
-                </p>
-              </div>
-              <span
-                className={`rounded-full px-3 py-1 text-xs font-medium ${STATUS_TONE[order.status]}`}
-              >
-                {t(`orders.statuses.${order.status}`)}
-              </span>
+    <ul className="space-y-4">
+      {orders.map((order) => (
+        <li key={order.id} className="glass rounded-3xl p-5">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <p className="font-mono text-sm text-ink">
+                {t("orders.orderLabel", { id: order.id })}
+              </p>
+              <p className="text-xs text-ink-muted">
+                {t("orders.placedOn", {
+                  date: formatDate(order.placedAt, language),
+                })}
+              </p>
             </div>
-            <ul className="mt-3 space-y-1 text-sm text-ink-muted">
-              {order.lines.map((l) => {
-                const s = SOLUTION_BY_ID[l.productId];
-                return (
-                  <li key={l.productId}>
-                    {s.name} · {t("orders.grams", { count: l.quantity })}
-                  </li>
-                );
-              })}
-            </ul>
-            <p className="mt-2 font-mono text-sm text-ink">
-              {formatPriceEur(order.totalEur, language)}
-            </p>
-          </li>
-        ))}
-      </ul>
-    </Panel>
+            <StatusPill
+              label={t(`orders.statuses.${order.status}`)}
+              tone={orderPillTone(order.status)}
+            />
+          </div>
+          <ul className="mt-3 space-y-1 text-sm text-ink-muted">
+            {order.lines.map((l) => {
+              const s = SOLUTION_BY_ID[l.productId];
+              return (
+                <li key={l.productId}>
+                  {s.name} · {t("orders.grams", { count: l.quantity })}
+                </li>
+              );
+            })}
+          </ul>
+          <p className="mt-2 font-mono text-sm text-ink">
+            {formatPriceEur(order.totalEur, language)}
+          </p>
+        </li>
+      ))}
+    </ul>
   );
 }
 
-/* ── Follow-up ───────────────────────────────────────────────────────────── */
+/* ── Follow-up ──────────────────────────────────────────────────────────── */
+
+const FOLLOW_UP_ACTION_ICON = {
+  reorder: RotateCcw,
+  trySecondary: Sparkles,
+  retake: ClipboardList,
+  contact: LifeBuoy,
+} as const;
 
 export function DashboardFollowUpPage() {
   const { t } = useTranslation("dashboard");
@@ -392,43 +448,37 @@ export function DashboardFollowUpPage() {
 
   if (!result) {
     return (
-      <Panel title={t("followUp.title")}>
-        <div className="glass rounded-3xl p-6">
-          <p className="text-ink-muted">{t("followUp.empty")}</p>
-          <Button asChild variant="cta" className="mt-4">
-            <Link to={paths.assessment.start}>{t("followUp.emptyCta")}</Link>
-          </Button>
-        </div>
-      </Panel>
+      <EmptyState
+        icon={CalendarCheck}
+        text={t("followUp.empty")}
+        ctaLabel={t("followUp.emptyCta")}
+        to={paths.assessment.start}
+      />
     );
   }
 
   if (!entry) {
     return (
-      <Panel title={t("followUp.title")}>
-        <div className="glass-strong rounded-3xl p-6 sm:p-8">
-          <p className="font-display text-xl text-ink">{t("followUp.prompt")}</p>
-          <p className="mt-2 text-sm text-ink-muted">
-            {t("followUp.promptHint")}
-          </p>
-          <div className="mt-5 grid gap-3">
-            {FOLLOW_UP_CHOICES.map((choice) => (
-              <button
-                key={choice}
-                type="button"
-                onClick={() => {
-                  setEntry(setFollowUp(choice));
-                  track(AnalyticsEvent.followupSubmitted, { answer: choice });
-                }}
-                className="rounded-xl border-2 border-border bg-surface-raised p-4 text-left text-ink transition-colors hover:border-petrol-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-petrol-600"
-              >
-                {t(`followUp.options.${choice}`)}
-              </button>
-            ))}
-          </div>
-          <p className="mt-4 text-xs text-ink-muted">{t("followUp.windowNote")}</p>
+      <div className="glass-strong rounded-3xl p-5 sm:p-8">
+        <p className="font-display text-xl text-ink">{t("followUp.prompt")}</p>
+        <p className="mt-2 text-sm text-ink-muted">{t("followUp.promptHint")}</p>
+        <div className="mt-5 grid gap-2.5">
+          {FOLLOW_UP_CHOICES.map((choice) => (
+            <button
+              key={choice}
+              type="button"
+              onClick={() => {
+                setEntry(setFollowUp(choice));
+                track(AnalyticsEvent.followupSubmitted, { answer: choice });
+              }}
+              className="rounded-2xl border-2 border-border bg-surface-raised p-4 text-left text-ink transition-colors hover:border-petrol-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-petrol-600"
+            >
+              {t(`followUp.options.${choice}`)}
+            </button>
+          ))}
         </div>
-      </Panel>
+        <p className="mt-4 text-xs text-ink-muted">{t("followUp.windowNote")}</p>
+      </div>
     );
   }
 
@@ -443,76 +493,71 @@ export function DashboardFollowUpPage() {
           ? paths.dashboardSupport
           : paths.dashboardRecommendation;
 
-  const actions: { key: string; to: string }[] = [
+  const actions = [
     { key: "reorder", to: paths.shopProduct(result.primarySolutionId) },
     { key: "trySecondary", to: paths.shopProduct(secondary.id) },
     { key: "retake", to: paths.assessment.start },
     { key: "contact", to: paths.dashboardSupport },
-  ];
+  ] as const;
 
   return (
-    <Panel title={t("followUp.title")}>
-      <div className="glass-strong rounded-3xl p-6 sm:p-8">
-        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-petrol-600">
-          {t("followUp.yourAnswer")}
-        </p>
-        <p className="mt-1 font-display text-lg text-ink">
-          {t(`followUp.options.${entry.choice}`)}
-        </p>
-        <p className="mt-3 text-sm text-ink-muted">
-          {t(`followUp.responses.${entry.choice}`)}
-        </p>
+    <div className="glass-strong rounded-3xl p-5 sm:p-8">
+      <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-petrol-600">
+        {t("followUp.yourAnswer")}
+      </p>
+      <p className="mt-1 font-display text-lg text-ink">
+        {t(`followUp.options.${entry.choice}`)}
+      </p>
+      <p className="mt-3 text-sm text-ink-muted">
+        {t(`followUp.responses.${entry.choice}`)}
+      </p>
 
-        <ul className="mt-5 grid gap-2 sm:grid-cols-2">
-          {actions.map((a) => (
-            <li key={a.key}>
-              <Link
-                to={a.to}
-                className="block rounded-xl glass glass-hover p-3 text-sm font-medium text-ink"
-              >
-                {t(`followUp.actions.${a.key}`)}
-              </Link>
-            </li>
-          ))}
-        </ul>
-
-        <div className="mt-6 flex flex-wrap items-center gap-4">
-          <Button asChild variant="cta">
-            <Link to={updateTarget}>{t("followUp.updateCta")}</Link>
-          </Button>
-          <button
-            type="button"
-            onClick={() => {
-              clearFollowUp();
-              setEntry(null);
-            }}
-            className="text-sm text-ink-muted underline-offset-4 hover:underline"
-          >
-            {t("followUp.change")}
-          </button>
-        </div>
+      <div className="mt-5 space-y-3">
+        {actions.map((a) => (
+          <RowLink
+            key={a.key}
+            icon={FOLLOW_UP_ACTION_ICON[a.key]}
+            title={t(`followUp.actions.${a.key}`)}
+            to={a.to}
+          />
+        ))}
       </div>
-    </Panel>
+
+      <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+        <Button asChild variant="cta" className="w-full sm:w-auto">
+          <Link to={updateTarget}>{t("followUp.updateCta")}</Link>
+        </Button>
+        <button
+          type="button"
+          onClick={() => {
+            clearFollowUp();
+            setEntry(null);
+          }}
+          className="text-sm text-ink-muted underline-offset-4 hover:underline"
+        >
+          {t("followUp.change")}
+        </button>
+      </div>
+    </div>
   );
 }
 
-/* ── Support ─────────────────────────────────────────────────────────────── */
+/* ── Support ────────────────────────────────────────────────────────────── */
 
 export function DashboardSupportPage() {
   const { t } = useTranslation("dashboard");
   return (
-    <Panel title={t("support.title")}>
-      <div className="glass rounded-3xl p-6">
-        <p className="text-ink-muted">{t("support.body")}</p>
-        <Button asChild variant="cta" className="mt-4">
-          <Link to={paths.contact}>{t("support.contactCta")}</Link>
-        </Button>
-      </div>
-    </Panel>
+    <div className="glass-strong flex flex-col items-start rounded-3xl p-5 sm:p-8">
+      <MedallionIcon icon={LifeBuoy} className="size-14" />
+      <p className="mt-4 text-ink-muted">{t("support.body")}</p>
+      <Button asChild variant="cta" className="mt-5 w-full sm:w-auto">
+        <Link to={paths.contact}>{t("support.contactCta")}</Link>
+      </Button>
+    </div>
   );
 }
 
-/* ── Profile ─────────────────────────────────────────────────────────────── */
+/* ── Profile ────────────────────────────────────────────────────────────── */
 
 export function DashboardProfilePage() {
   const { t } = useTranslation("dashboard");
@@ -538,8 +583,19 @@ export function DashboardProfilePage() {
   }
 
   return (
-    <Panel title={t("profile.title")}>
-      <div className="space-y-4 glass rounded-3xl p-6">
+    <div className="space-y-4">
+      {/* Identity */}
+      <div className="glass-strong flex items-center gap-4 rounded-3xl p-5">
+        <Avatar name={user?.name ?? ""} className="size-14 text-base" />
+        <div className="min-w-0">
+          <p className="truncate font-display text-lg text-ink">{user?.name}</p>
+          <p className="truncate text-sm text-ink-muted">{user?.email}</p>
+        </div>
+      </div>
+
+      {/* Details */}
+      <div className="glass rounded-3xl p-5">
+        <GroupLabel>{t("profile.detailsLabel")}</GroupLabel>
         {editing ? (
           <form onSubmit={onSave} className="space-y-4">
             <div className="space-y-1.5">
@@ -575,8 +631,8 @@ export function DashboardProfilePage() {
                 {t("profile.emailNote")}
               </p>
             </div>
-            <div className="flex flex-wrap items-center gap-3">
-              <Button type="submit" variant="cta">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+              <Button type="submit" variant="cta" className="w-full sm:w-auto">
                 {t("profile.save")}
               </Button>
               <button
@@ -589,18 +645,12 @@ export function DashboardProfilePage() {
             </div>
           </form>
         ) : (
-          <>
+          <div className="space-y-4">
             <div>
               <p className="text-xs uppercase tracking-wide text-ink-muted">
                 {t("profile.name")}
               </p>
               <p className="mt-1 text-ink">{user?.name}</p>
-            </div>
-            <div>
-              <p className="text-xs uppercase tracking-wide text-ink-muted">
-                {t("profile.email")}
-              </p>
-              <p className="mt-1 text-ink">{user?.email}</p>
             </div>
             <div>
               <p className="text-xs uppercase tracking-wide text-ink-muted">
@@ -615,24 +665,61 @@ export function DashboardProfilePage() {
                 {t("profile.saved")}
               </p>
             ) : null}
-            <Button variant="outline" size="sm" onClick={startEdit}>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={startEdit}
+              className="w-full sm:w-auto"
+            >
               {t("profile.edit")}
             </Button>
-          </>
-        )}
-
-        <div className="border-t border-border pt-4">
-          <p className="text-xs uppercase tracking-wide text-ink-muted">
-            {t("profile.language")}
-          </p>
-          <div className="mt-2">
-            <LanguageToggle />
           </div>
-        </div>
-        <Button variant="outline" onClick={signOut}>
-          {t("profile.signOut")}
-        </Button>
+        )}
       </div>
-    </Panel>
+
+      {/* Appearance */}
+      <div className="glass rounded-3xl p-5">
+        <GroupLabel>{t("profile.appearance")}</GroupLabel>
+        <div className="flex items-center justify-between gap-4 py-1.5">
+          <span className="text-sm text-ink">{t("profile.language")}</span>
+          <LanguageToggle />
+        </div>
+        <div className="mt-1 flex items-center justify-between gap-4 py-1.5">
+          <span className="text-sm text-ink">{t("profile.theme")}</span>
+          <ThemeToggle />
+        </div>
+      </div>
+
+      {/* More */}
+      <div className="space-y-3">
+        <GroupLabel>{t("profile.more")}</GroupLabel>
+        <RowLink
+          icon={CalendarCheck}
+          tone="sage"
+          title={t("nav.followUp")}
+          to={paths.dashboardFollowUp}
+        />
+        <RowLink
+          icon={LifeBuoy}
+          tone="sage"
+          title={t("nav.support")}
+          to={paths.dashboardSupport}
+        />
+        <RowLink
+          icon={ArrowUpRight}
+          title={t("profile.exploreSite")}
+          to={paths.home}
+        />
+      </div>
+
+      <Button
+        variant="outline"
+        onClick={signOut}
+        className="w-full text-danger-700 dark:text-danger-200"
+      >
+        <LogOut className="size-4" aria-hidden />
+        {t("profile.signOut")}
+      </Button>
+    </div>
   );
 }
