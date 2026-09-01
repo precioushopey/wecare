@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
-import { Navigate, useLocation, useNavigate } from "react-router";
+import { Link, Navigate, useLocation, useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
 
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
@@ -36,20 +36,16 @@ export function LoginPage() {
 
   return (
     <div className="mx-auto grid max-w-5xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-16">
-      {/* Welcome image — lg and up only; on smaller screens the form stands
-          alone (centred, as before). */}
-      <div className="hidden lg:block">
-        <div className="relative overflow-hidden rounded-4xl shadow-[var(--shadow-float)]">
+      {/* Welcome image — a portrait cut-out held in a soft glow (`lg` and up
+          only; on smaller screens the form stands alone, centred). */}
+      <div className="hidden lg:flex lg:justify-center">
+        <div className="image-glow relative">
           <ImageWithFallback
             src={siteImage(IMG.login)}
             alt=""
-            width={1000}
-            height={1080}
-            className="h-full max-h-[34rem] w-full object-cover object-center dark:brightness-90 dark:contrast-[1.03]"
-          />
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#0a2c42]/40 to-transparent"
+            width={713}
+            height={972}
+            className="image-fade-b block h-auto max-h-[34rem] w-auto max-w-full object-contain drop-shadow-[0_40px_64px_-32px_rgba(13,68,75,0.45)] dark:brightness-90 dark:contrast-[1.03]"
           />
         </div>
       </div>
@@ -62,6 +58,10 @@ export function LoginPage() {
           <p className="mt-4 rounded-xl bg-sage-50 p-4 text-sm text-petrol-700 dark:bg-petrol-900/50">
             {t("auth.checkoutNote")}
           </p>
+        ) : state?.from ? (
+          <p className="mt-4 rounded-xl bg-sage-50 p-4 text-sm text-petrol-700 dark:bg-petrol-900/50">
+            {t("auth.requiredNote")}
+          </p>
         ) : null}
 
         <form onSubmit={onSubmit} className="mt-8 space-y-4">
@@ -72,6 +72,7 @@ export function LoginPage() {
               name="email"
               type="email"
               autoComplete="email"
+              autoFocus
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -93,7 +94,16 @@ export function LoginPage() {
           </Button>
         </form>
 
-        <p className="mt-4 text-xs text-ink-muted">{t("auth.demoNote")}</p>
+        {/* First-timers don't "sign up" — the assessment is the way in. */}
+        <p className="mt-6 border-t border-border pt-5 text-sm text-ink-muted">
+          {t("auth.newHere")}{" "}
+          <Link
+            to={paths.assessment.start}
+            className="font-medium text-petrol-700 underline-offset-4 hover:underline"
+          >
+            {t("auth.newHereCta")}
+          </Link>
+        </p>
       </div>
     </div>
   );

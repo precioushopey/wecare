@@ -46,7 +46,8 @@
     "switchTo": "Darstellung {{theme}} verwenden"
   },
   "a11y": {
-    "skipToContent": "Zum Hauptinhalt springen"
+    "skipToContent": "Zum Hauptinhalt springen",
+    "moreInfo": "Mehr Informationen"
   },
   "consent": {
     "title": "Cookies & Datenschutz",

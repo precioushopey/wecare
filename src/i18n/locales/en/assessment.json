@@ -95,7 +95,6 @@
   },
   "result": {
     "title": "Your recommended solution is ready.",
-    "reassure": "We care about getting this right for you.",
     "intro": "Based on your answers, WeCare matched you with the most suitable support option.",
     "summaryHeading": "Your answers",
     "labels": {
@@ -106,7 +105,7 @@
     "primaryHeading": "Recommended for you",
     "secondaryHeading": "Secondary product",
     "explanationHeading": "Why this recommendation",
-    "gentleNudge": "We keep your first step gentle: a lower-THC solution, and your doctor can start you on an oil for controlled dosing before other formats. You can adjust later with medical guidance.",
+    "gentleNudge": "We start gentle — a lower-THC solution, usually an oil for controlled dosing. You can adjust it later with your doctor.",
     "disclaimer": "This recommendation is based on your answers and wellness preferences. It does not replace medical advice.",
     "viewSolution": "View Recommended Solution",
     "changeAnswers": "Change My Answers",

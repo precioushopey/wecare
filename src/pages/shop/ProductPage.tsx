@@ -12,6 +12,7 @@ import {
 import { Button } from "@/app/components/ui/button";
 import { cn } from "@/app/components/ui/utils";
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
+import { InfoHint } from "@/components/marketing/InfoHint";
 import { JourneyStepper } from "@/components/marketing/JourneyStepper";
 import { paths } from "@/app/paths";
 import { usePageTitle } from "@/app/usePageTitle";
@@ -173,16 +174,17 @@ export function ProductPage() {
             {t("solution.pricePerGram", {
               price: formatPriceEur(solution.priceEur, language),
             })}
+            {!PRICES_CONFIRMED ? (
+              <InfoHint className="ml-1.5">{t("pricesIndicative")}</InfoHint>
+            ) : null}
           </p>
-          {!PRICES_CONFIRMED ? (
-            <p className="mt-1 text-xs text-ink-muted">
-              {t("pricesIndicative")}
-            </p>
-          ) : null}
 
           <fieldset className="mt-5">
             <legend className="text-sm font-medium text-ink">
-              {t("solution.amountLabel")}
+              {t("solution.amountLabel")}{" "}
+              <InfoHint className="ml-0.5">
+                {t("solution.amountHint")}
+              </InfoHint>
             </legend>
             <div className="mt-3 grid grid-cols-2 gap-2.5 sm:grid-cols-4">
               {GRAM_OPTIONS.map(({ value: o, badge }) => (
@@ -207,97 +209,131 @@ export function ProductPage() {
                 </button>
               ))}
             </div>
-            <p className="mt-3 text-xs text-ink-muted">
-              {t("solution.amountHint")}
-            </p>
           </fieldset>
 
-          <div className="mt-5 flex flex-wrap items-center gap-3">
-            <Button type="button" variant="cta" size="lg" onClick={onAdd}>
+          <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+            <Button
+              type="button"
+              variant="cta"
+              size="lg"
+              onClick={onAdd}
+              className="w-full sm:w-auto"
+            >
               {added ? <Check className="size-4" aria-hidden /> : null}
               {t("solution.addToCart")}
             </Button>
-            <Button
-              type="button"
-              variant="outline"
-              size="lg"
-              onClick={() => navigate(paths.cart)}
-            >
-              {t("solution.checkAvailability")}
-            </Button>
+            {/* "Check availability" + its hint stay on one row — full-width
+                pair below `sm`, natural width from `sm` up. */}
+            <div className="flex items-center gap-2">
+              <Button
+                type="button"
+                variant="outline"
+                size="lg"
+                onClick={() => navigate(paths.cart)}
+                className="flex-1 sm:w-auto sm:flex-none"
+              >
+                {t("solution.checkAvailability")}
+              </Button>
+              <InfoHint align="right">
+                {t("solution.afterApprovalNote")}
+              </InfoHint>
+            </div>
           </div>
-          <p className="mt-2 text-xs text-ink-muted">
-            {t("solution.afterApprovalNote")}
-          </p>
         </div>
       </div>
 
-      <div className="mt-12 grid gap-8 sm:grid-cols-3">
-        <section>
-          <h2 className="text-lg">{t("solution.whyHeading")}</h2>
-          <p className="mt-2 text-sm text-ink-muted">
-            {t(`solutions.${solution.id}.why`)}
-          </p>
-        </section>
-        <section>
-          <h2 className="text-lg">{t("solution.usageHeading")}</h2>
-          <p className="mt-2 text-sm text-ink-muted">
-            {t(`solutions.${solution.id}.usage`)}
-          </p>
-        </section>
-        <section>
-          <h2 className="text-lg">{t("solution.suitabilityHeading")}</h2>
-          <p className="mt-2 text-sm text-ink-muted">
-            {t(`solutions.${solution.id}.suitability`)}
-          </p>
-        </section>
-        <section>
-          <h2 className="text-lg">{t("solution.formatHeading")}</h2>
-          <p className="mt-2 text-sm text-ink-muted">
-            {t("solution.formatValue")}
-          </p>
-        </section>
-        <section>
-          <h2 className="text-lg">{t("solution.ingredientsHeading")}</h2>
-          <p className="mt-2 text-sm text-ink-muted">
-            {t("solution.ingredientsValue", { thc: solution.thcRange })}
-          </p>
-        </section>
-      </div>
-
-      {/* Oil formulation — the controlled starting format (founder spec).
-          Kept distinct from the dispensed flower and its batch COA below. */}
+      {/* Detail sections as a collapsed accordion, matching the FAQ below
+          (owner request, Sept 2026) — keeps the post-review product page
+          scannable instead of a long always-open wall of copy. */}
       <section className="mt-12">
-        <h2 className="text-lg">{t("solution.oilFormulationHeading")}</h2>
-        <p className="mt-1 max-w-2xl text-sm text-ink-muted">
-          {t("solution.oilFormulationNote")}
-        </p>
-        <dl className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          {formulationRows.map(({ label, value }) => (
-            <div
-              key={label}
-              className="rounded-2xl border border-white/50 bg-white/40 p-3 dark:border-white/20 dark:bg-white/[0.04]"
-            >
-              <dt className="text-xs uppercase tracking-wide text-ink-muted">
-                {label}
-              </dt>
-              <dd className="mt-1 font-mono text-base text-ink">{value}</dd>
-            </div>
+        <h2 className="text-lg">{t("solution.detailsHeading")}</h2>
+        <Accordion type="single" collapsible className="mt-2">
+          <AccordionItem value="why">
+            <AccordionTrigger>{t("solution.whyHeading")}</AccordionTrigger>
+            <AccordionContent className="text-ink-muted">
+              {t(`solutions.${solution.id}.why`)}
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="usage">
+            <AccordionTrigger>{t("solution.usageHeading")}</AccordionTrigger>
+            <AccordionContent className="text-ink-muted">
+              {t(`solutions.${solution.id}.usage`)}
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="suitability">
+            <AccordionTrigger>
+              {t("solution.suitabilityHeading")}
+            </AccordionTrigger>
+            <AccordionContent className="text-ink-muted">
+              {t(`solutions.${solution.id}.suitability`)}
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="format">
+            <AccordionTrigger>{t("solution.formatHeading")}</AccordionTrigger>
+            <AccordionContent className="text-ink-muted">
+              {t("solution.formatValue")}
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="ingredients">
+            <AccordionTrigger>
+              {t("solution.ingredientsHeading")}
+            </AccordionTrigger>
+            <AccordionContent className="text-ink-muted">
+              {t("solution.ingredientsValue", { thc: solution.thcRange })}
+            </AccordionContent>
+          </AccordionItem>
+          {/* Oil formulation — the controlled starting format (founder spec).
+              Kept distinct from the dispensed flower and its batch COA. */}
+          <AccordionItem value="oil">
+            <AccordionTrigger>
+              {t("solution.oilFormulationHeading")}
+            </AccordionTrigger>
+            <AccordionContent>
+              <p className="text-sm text-ink-muted">
+                {t("solution.oilFormulationNote")}
+              </p>
+              <dl className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
+                {formulationRows.map(({ label, value }) => (
+                  <div
+                    key={label}
+                    className="rounded-2xl border border-white/50 bg-white/40 p-3 dark:border-white/20 dark:bg-white/[0.04]"
+                  >
+                    <dt className="text-xs uppercase tracking-wide text-ink-muted">
+                      {label}
+                    </dt>
+                    <dd className="mt-1 font-mono text-base text-ink">
+                      {value}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </AccordionContent>
+          </AccordionItem>
+          {/* Dispensed as — the real strains behind this solution */}
+          <AccordionItem value="dispensed">
+            <AccordionTrigger>{t("solution.dispensedHeading")}</AccordionTrigger>
+            <AccordionContent>
+              <p className="text-sm text-ink-muted">
+                {t("solution.dispensedIntro", { name: solution.name })}
+              </p>
+              <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+                {strains.map((strain) => (
+                  <StrainCard key={strain.id} strain={strain} />
+                ))}
+              </ul>
+            </AccordionContent>
+          </AccordionItem>
+          {/* Common questions folded into the same accordion (owner request,
+              Sept 2026) — no separate FAQ block. */}
+          {FAQ_KEYS.map((k) => (
+            <AccordionItem key={k} value={k}>
+              <AccordionTrigger>{t(`faq.${k}.q`)}</AccordionTrigger>
+              <AccordionContent className="text-ink-muted">
+                {t(`faq.${k}.a`)}
+              </AccordionContent>
+            </AccordionItem>
           ))}
-        </dl>
-      </section>
-
-      {/* Dispensed as — the real strains behind this solution */}
-      <section className="mt-12">
-        <h2 className="text-lg">{t("solution.dispensedHeading")}</h2>
-        <p className="mt-1 max-w-2xl text-sm text-ink-muted">
-          {t("solution.dispensedIntro", { name: solution.name })}
-        </p>
-        <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-          {strains.map((strain) => (
-            <StrainCard key={strain.id} strain={strain} />
-          ))}
-        </ul>
+        </Accordion>
       </section>
 
       {/* Example COA — verified data, monospace */}
@@ -341,20 +377,6 @@ export function ProductPage() {
             <dd className="text-right text-ink">{t("coaSafetyValue")}</dd>
           </div>
         </dl>
-      </section>
-
-      <section className="mt-10">
-        <h2 className="text-lg">{t("faq.faqHeading")}</h2>
-        <Accordion type="single" collapsible className="mt-2">
-          {FAQ_KEYS.map((k) => (
-            <AccordionItem key={k} value={k}>
-              <AccordionTrigger>{t(`faq.${k}.q`)}</AccordionTrigger>
-              <AccordionContent className="text-ink-muted">
-                {t(`faq.${k}.a`)}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
       </section>
 
       {/* Guide back to the assessment — the solution isn't where you start. */}

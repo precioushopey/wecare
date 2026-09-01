@@ -95,7 +95,6 @@
   },
   "result": {
     "title": "Deine empfohlene Lösung ist bereit.",
-    "reassure": "Uns ist wichtig, dass das für dich passt.",
     "intro": "Auf Basis deiner Antworten hat WeCare die am besten geeignete Unterstützungs-Option für dich ausgewählt.",
     "summaryHeading": "Deine Angaben",
     "labels": {
@@ -106,7 +105,7 @@
     "primaryHeading": "Für dich empfohlen",
     "secondaryHeading": "Zweite Option",
     "explanationHeading": "Warum diese Empfehlung",
-    "gentleNudge": "Wir halten deinen ersten Schritt sanft: eine Lösung mit niedrigerem THC, und deine Ärztin oder dein Arzt kann mit einem Öl für eine kontrollierte Dosierung beginnen, bevor weitere Formen folgen. Später lässt sich das mit ärztlicher Begleitung anpassen.",
+    "gentleNudge": "Wir starten sanft – eine Lösung mit niedrigerem THC, meist als Öl für eine kontrollierte Dosierung. Später lässt sich das mit ärztlicher Begleitung anpassen.",
     "disclaimer": "Diese Empfehlung basiert auf deinen Antworten und Wellness-Präferenzen. Sie ersetzt keine ärztliche Beratung.",
     "viewSolution": "Empfohlene Lösung ansehen",
     "changeAnswers": "Meine Antworten ändern",

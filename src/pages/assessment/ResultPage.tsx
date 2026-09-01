@@ -80,14 +80,20 @@ function PrimaryRecommendationCard({
 
   return (
     <div className="glass-strong rounded-3xl p-6">
-      <div className="flex flex-col gap-4 sm:flex-row">
-        <div className="image-glow size-24 shrink-0 rounded-xl">
-          <ImageWithFallback
-            src={solutionImage(solution)}
-            alt=""
-            className="size-full object-contain p-1 drop-shadow-[0_10px_18px_rgba(13,68,75,0.22)]"
-          />
+      {/* Left image panel + right content panel — the same split the
+          Recommended Solution page uses (owner request, Sept 2026). Stacks
+          image-over-content below `md`. */}
+      <div className="grid gap-6 md:grid-cols-[13rem_1fr] md:items-start md:gap-8">
+        <div className="mx-auto aspect-square w-full max-w-[13rem] overflow-hidden rounded-2xl border border-white/50 bg-white/40 md:mx-0 md:max-w-none dark:border-white/15 dark:bg-white/[0.04]">
+          <div className="image-glow flex size-full items-center justify-center p-5">
+            <ImageWithFallback
+              src={solutionImage(solution)}
+              alt=""
+              className="size-full object-contain drop-shadow-[0_18px_32px_rgba(13,68,75,0.24)]"
+            />
+          </div>
         </div>
+
         <div className="min-w-0">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-petrol-600">
             {heading}
@@ -96,43 +102,49 @@ function PrimaryRecommendationCard({
           <p className="text-xs font-medium text-petrol-600">
             {t(`solutions.${solution.id}.category`)}
           </p>
+
+          <p className="mt-4 text-sm text-ink-muted">{explanation}</p>
+          {notes}
+
+          <Accordion type="single" collapsible className="mt-3">
+            <AccordionItem value="details">
+              <AccordionTrigger className="text-sm">
+                {detailsLabel}
+              </AccordionTrigger>
+              <AccordionContent>
+                <dl className="grid gap-2 text-sm">
+                  <div className="flex items-center justify-between gap-4">
+                    <dt className="text-ink-muted">
+                      {t("solution.thcRangeLabel")}
+                    </dt>
+                    <dd className="font-mono text-ink">{solution.thcRange}</dd>
+                  </div>
+                  <div className="flex items-center justify-between gap-4">
+                    <dt className="text-ink-muted">
+                      {t("solution.priceLabel")}
+                    </dt>
+                    <dd className="font-mono text-ink">
+                      {t("solution.pricePerGram", {
+                        price: formatPriceEur(solution.priceEur, language),
+                      })}
+                    </dd>
+                  </div>
+                  <div className="flex items-start justify-between gap-4">
+                    <dt className="text-ink-muted">
+                      {t("solution.oilProfileLabel")}
+                    </dt>
+                    <dd className="text-right font-mono text-ink">
+                      {oilProfileSummary(solution)}
+                    </dd>
+                  </div>
+                </dl>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+
+          <div className="mt-5">{footer}</div>
         </div>
       </div>
-
-      <p className="mt-4 text-sm text-ink-muted">{explanation}</p>
-      {notes}
-
-      <Accordion type="single" collapsible className="mt-3">
-        <AccordionItem value="details">
-          <AccordionTrigger className="text-sm">{detailsLabel}</AccordionTrigger>
-          <AccordionContent>
-            <dl className="grid gap-2 text-sm sm:grid-cols-2">
-              <div className="flex items-center justify-between gap-4">
-                <dt className="text-ink-muted">{t("solution.thcRangeLabel")}</dt>
-                <dd className="font-mono text-ink">{solution.thcRange}</dd>
-              </div>
-              <div className="flex items-center justify-between gap-4">
-                <dt className="text-ink-muted">{t("solution.priceLabel")}</dt>
-                <dd className="font-mono text-ink">
-                  {t("solution.pricePerGram", {
-                    price: formatPriceEur(solution.priceEur, language),
-                  })}
-                </dd>
-              </div>
-              <div className="flex items-start justify-between gap-4 sm:col-span-2">
-                <dt className="text-ink-muted">
-                  {t("solution.oilProfileLabel")}
-                </dt>
-                <dd className="text-right font-mono text-ink">
-                  {oilProfileSummary(solution)}
-                </dd>
-              </div>
-            </dl>
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
-
-      <div className="mt-5">{footer}</div>
     </div>
   );
 }
@@ -296,9 +308,6 @@ export function ResultPage() {
           <AssessmentRing variant="complete" tone="deep" size={72} animate />
           <div>
             <h1>{t("result.title")}</h1>
-            <p className="mt-1 text-sm font-medium text-petrol-700">
-              {t("result.reassure")}
-            </p>
             <p className="mt-2 text-lg text-ink-muted">{t("result.intro")}</p>
           </div>
         </div>
@@ -351,25 +360,33 @@ export function ResultPage() {
           solution={secondary}
         />
 
-        {result.gentleFirst ? (
-          <p className="mt-6 flex items-start gap-2 rounded-xl bg-sage-50 p-4 text-sm text-petrol-700">
-            <Info className="mt-0.5 size-4 shrink-0" aria-hidden />
-            {t("result.gentleNudge")}
-          </p>
-        ) : null}
-
-        <p className="mt-4 text-sm text-ink-muted">
-          {t("result.reviewRequiredNote")}
-        </p>
-
-        <p className="mt-6 border-t border-border pt-4 text-xs leading-relaxed text-ink-muted">
-          {t("result.disclaimer")}
-        </p>
+        {/* The trailing notes — review-required, the gentle-start nudge when it
+            applies, and the "not medical advice" line — consolidated into one
+            info panel instead of three separate blocks (owner request, Sept
+            2026). Kept visible, not behind a disclosure: the "prescription-
+            only / reviewed by a doctor / only if appropriate" line is
+            compliance copy the spec wants on this page. */}
+        <div className="mt-8 flex items-start gap-2.5 rounded-2xl bg-sage-50 p-4 text-sm leading-relaxed text-ink-muted">
+          <Info
+            className="mt-0.5 size-4 shrink-0 text-petrol-600"
+            aria-hidden
+          />
+          <div className="space-y-2">
+            <p>{t("result.reviewRequiredNote")}</p>
+            {result.gentleFirst ? <p>{t("result.gentleNudge")}</p> : null}
+            <p>{t("result.disclaimer")}</p>
+          </div>
+        </div>
 
         {/* The primary CTA now lives on the recommendation card above;
             "Change My Answers" is the one action left for this row. */}
         <div className="mt-6">
-          <Button asChild variant="outline" size="lg">
+          <Button
+            asChild
+            variant="outline"
+            size="lg"
+            className="w-full sm:w-auto"
+          >
             <Link
               to={paths.assessment.start}
               onClick={() =>

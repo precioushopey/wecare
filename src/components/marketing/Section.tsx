@@ -57,7 +57,8 @@ export function SectionHeading({
   eyebrow?: string;
   title: string;
   intro?: string;
-  align?: "left" | "center";
+  /** `center-mobile` = centred below `sm`, left-aligned from `sm` up. */
+  align?: "left" | "center" | "center-mobile";
   invert?: boolean;
 }) {
   return (
@@ -65,6 +66,7 @@ export function SectionHeading({
       className={cn(
         "space-y-3",
         align === "center" && "mx-auto max-w-2xl text-center",
+        align === "center-mobile" && "text-center sm:text-left",
       )}
     >
       {eyebrow ? (

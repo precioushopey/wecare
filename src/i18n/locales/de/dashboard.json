@@ -117,7 +117,8 @@
     "email": "E-Mail",
     "password": "Passwort",
     "signIn": "Anmelden",
-    "demoNote": "In dieser Vorschau meldest du dich mit einer beliebigen E-Mail-Adresse an – ein Konto ist nicht nötig.",
+    "newHere": "Neu bei WeCare?",
+    "newHereCta": "Zum Assessment",
     "requiredNote": "Bitte melde dich an, um diesen Bereich zu sehen.",
     "checkoutNote": "Bitte melde dich an, um deine Bestellung abzuschließen – danach geht es zurück zur Kasse."
   },

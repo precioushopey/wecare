@@ -144,16 +144,22 @@ export function ConditionLandingPage({
 
       <Section tone="brand" reveal={false}>
         <Reveal>
-          <SectionHeading title={t("shared.howWeHelpHeading")} invert />
+          <SectionHeading
+            title={t("shared.howWeHelpHeading")}
+            invert
+            align="center-mobile"
+          />
         </Reveal>
         <ol className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {helpSteps.map((step, i) => (
             <Reveal key={i} delayMs={i * 60}>
-              <li className="flex h-full flex-col glass-strong rounded-3xl p-5">
-                <span className="font-mono text-sm font-semibold text-petrol-700">
+              {/* number + sentence sit in a row on mobile (full-width cards),
+                  back to a stack from `sm` where the grid narrows them. */}
+              <li className="flex h-full flex-row items-baseline gap-3 glass-strong rounded-3xl p-5 sm:flex-col sm:items-stretch sm:gap-0">
+                <span className="shrink-0 font-mono text-sm font-semibold text-petrol-700">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <p className="mt-2 text-sm text-ink">{step}</p>
+                <p className="text-sm text-ink sm:mt-2">{step}</p>
               </li>
             </Reveal>
           ))}

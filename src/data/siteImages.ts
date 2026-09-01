@@ -38,8 +38,10 @@ export const IMG = {
   /** Right-hand anchor photo in the "Simple recommendations" section —
    *  portrait phone cut-out (`hero section.png`, transparent bg). */
   homeSolutions: "hero section",
-  /** Left-hand welcome panel on the login page. */
-  login: "Homepage/13",
+  /** Left-hand welcome panel on the login page — the portrait phone cut-out
+   *  (`hero section.png`, transparent bg), given the `image-glow` +
+   *  `object-contain` treatment rather than a full-bleed photo card. */
+  login: "hero section",
   problem: {
     sleep: "Homepage/9",
     pain: "Homepage/10",

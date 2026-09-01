@@ -166,7 +166,7 @@ export function AssessmentEnginePage() {
             box — without it the browser renders it straddling/above the top
             border, so it appears to break out of the rounded card. The next
             block `clear-both`s so it drops below rather than sitting beside. */}
-        <legend className="float-left mb-1 w-full font-display text-2xl text-ink">
+        <legend className="float-left mb-1 w-full font-display text-xl md:text-2xl text-ink">
           {t(`questions.${question.id}.title`)}
         </legend>
         {(() => {
@@ -177,7 +177,7 @@ export function AssessmentEnginePage() {
             <p className="clear-both text-sm text-ink-muted">{note}</p>
           ) : null;
         })()}
-        <div className="mt-5 grid gap-3 clear-both">
+        <div className="grid gap-4 clear-both mt-16">
           {question.options.map((opt) => {
             const id = `${question.id}-${opt}`;
             // Short gloss for cannabis-format words so a beginner isn't asked

@@ -113,7 +113,7 @@ export function ContactPage() {
             className="flex w-full rounded-md border border-input bg-input-background px-3 py-2 text-base outline-none transition-[color,box-shadow] focus-visible:ring-2 focus-visible:ring-petrol-600 md:text-sm"
           />
         </div>
-        <Button type="submit" variant="cta">
+        <Button type="submit" variant="cta" className="w-full sm:w-auto">
           {t("pages.contact.send")}
         </Button>
       </form>

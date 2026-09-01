@@ -62,7 +62,12 @@ export function CostsPage() {
           {t("disclaimer")}
         </p>
 
-        <Button asChild variant="cta" size="lg" className="mt-6">
+        <Button
+          asChild
+          variant="cta"
+          size="lg"
+          className="mt-6 w-full sm:w-auto"
+        >
           <Link to={paths.assessment.start}>{t("cta")}</Link>
         </Button>
       </Reveal>

@@ -117,7 +117,8 @@
     "email": "Email",
     "password": "Password",
     "signIn": "Sign in",
-    "demoNote": "This preview signs you in with any email address — no account needed.",
+    "newHere": "New to WeCare?",
+    "newHereCta": "Start the assessment",
     "requiredNote": "Please sign in to see this area.",
     "checkoutNote": "Please sign in to complete your order — we'll take you back to checkout."
   },

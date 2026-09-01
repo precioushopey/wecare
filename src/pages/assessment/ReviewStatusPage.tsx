@@ -52,11 +52,11 @@ export function ReviewStatusPage() {
         </span>
       </div>
 
-      <p className="mt-4 text-lg text-ink-muted">
-        {t(`review.statuses.${s}.body`)}
-      </p>
-      <p className="mt-3 text-sm text-ink-muted">{t("review.reassure")}</p>
-      <p className="mt-4 border-t border-border pt-4 text-xs leading-relaxed text-ink-muted">
+      {/* Status body + "we'll email you" + "not guaranteed" as one paragraph
+          rather than three size-stepped blocks with a divider (owner request,
+          Sept 2026). */}
+      <p className="mt-4 text-sm leading-relaxed text-ink-muted">
+        {t(`review.statuses.${s}.body`)} {t("review.reassure")}{" "}
         {t("review.notGuaranteed")}
       </p>
 

@@ -46,7 +46,8 @@
     "switchTo": "Use {{theme}} appearance"
   },
   "a11y": {
-    "skipToContent": "Skip to main content"
+    "skipToContent": "Skip to main content",
+    "moreInfo": "More information"
   },
   "consent": {
     "title": "Cookies & privacy",
