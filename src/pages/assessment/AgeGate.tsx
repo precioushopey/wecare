@@ -76,17 +76,18 @@ export function AgeGate({ onConfirm }: { onConfirm: (dobIso: string) => void }) 
           ) : null}
         </div>
 
-        <div className="mt-6 flex flex-wrap items-center gap-3">
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
           <Button
             type="button"
             variant="cta"
             size="lg"
             disabled={!canSubmit}
             onClick={handleSubmit}
+            className="w-full sm:w-auto"
           >
             {t("ageGate.continue")}
           </Button>
-          <Button asChild variant="ghost" size="sm">
+          <Button asChild variant="ghost" size="sm" className="w-full sm:w-auto">
             <Link to={paths.home}>{t("ageGate.back")}</Link>
           </Button>
         </div>

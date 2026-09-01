@@ -530,7 +530,7 @@ export function ProductPage() {
             {t("solution.notSureBody")}
           </p>
         </div>
-        <Button asChild variant="cta" className="shrink-0">
+        <Button asChild variant="cta" className="w-full sm:w-auto sm:shrink-0">
           <Link to={paths.assessment.start}>{t("solution.notSureCta")}</Link>
         </Button>
       </div>

@@ -77,7 +77,7 @@ export function ShopIndexPage() {
           <p className="font-display text-lg text-ink">{t("index.guideTitle")}</p>
           <p className="mt-1 text-sm text-ink-muted">{t("index.guideBody")}</p>
         </div>
-        <Button asChild variant="cta" size="lg" className="shrink-0">
+        <Button asChild variant="cta" size="lg" className="w-full sm:w-auto sm:shrink-0">
           <Link to={paths.assessment.start}>{t("index.startAssessment")}</Link>
         </Button>
       </div>

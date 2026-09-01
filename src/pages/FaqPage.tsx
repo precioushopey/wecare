@@ -69,7 +69,7 @@ export function FaqPage() {
           </p>
           <p className="mt-1 text-sm text-ink-muted">{t("contact.body")}</p>
         </div>
-        <Button asChild variant="cta" className="shrink-0">
+        <Button asChild variant="cta" className="w-full sm:w-auto sm:shrink-0">
           <Link to={paths.contact}>{t("contact.cta")}</Link>
         </Button>
       </Reveal>

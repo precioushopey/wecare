@@ -168,19 +168,19 @@ export function ConditionLandingPage({
 
       {isConditionKey(conditionKey) ? (
         <Section tone="surface" reveal={false}>
-          {/* Mobile order: heading, then the matched pair + CTA, then the
-              safety notice. On lg it resolves to two columns — heading above
-              the notice on the left, the matched pair + CTA spanning the
-              right (grid auto-placement + `lg:row-span-2` on the pair). */}
-          <div className="flex flex-col gap-10 lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-16 lg:gap-y-0">
-            <Reveal>
-              <SectionHeading
-                title={t("shared.matchedHeading")}
-                intro={t("shared.matchedNote")}
-              />
-            </Reveal>
+          <Reveal>
+            <SectionHeading
+              title={t("shared.matchedHeading")}
+              intro={t("shared.matchedNote")}
+              align="center"
+            />
+          </Reveal>
 
-            <div className="lg:row-span-2">
+          {/* Mobile order: the matched pair + CTA, then the safety notice. On
+              lg it's two columns — the matched pair + CTA on the left, the
+              safety notice on the right. */}
+          <div className="mt-10 flex flex-col gap-10 lg:mt-14 lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-16">
+            <div>
               <Reveal>
                 <ComboCard problem={conditionKey} showHeader={false} />
               </Reveal>
@@ -195,13 +195,13 @@ export function ConditionLandingPage({
                   className="w-full lg:w-auto"
                 >
                   <Link to={assessmentLink(conditionKey)} onClick={onCtaClick}>
-                  {ctaLabel}
-                </Link>
+                    {ctaLabel}
+                  </Link>
                 </Button>
               </div>
             </div>
 
-            <Reveal className="lg:mt-8">
+            <Reveal>
               <MedicalNotice />
             </Reveal>
           </div>

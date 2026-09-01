@@ -378,17 +378,23 @@ export function SolutionsPreviewSection() {
                 <Link
                   to={assessmentLink(key)}
                   onClick={trackHomeProblem("homepage_support_card")(key)}
-                  className="flex h-full flex-col glass-strong glass-hover rounded-2xl md:rounded-3xl p-6"
+                  className="flex h-full flex-row items-start gap-4 glass-strong glass-hover rounded-2xl md:rounded-3xl p-6 sm:flex-col sm:gap-0"
                 >
-                  <span className="mb-3 inline-flex size-11 items-center justify-center rounded-2xl [background-image:var(--cta-gradient)] text-white shadow-[0_10px_24px_-10px_rgba(42,167,176,0.55)]">
+                  <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-2xl [background-image:var(--cta-gradient)] text-white shadow-[0_10px_24px_-10px_rgba(42,167,176,0.55)] sm:mb-3">
                     <Icon className="size-5" strokeWidth={1.75} aria-hidden />
                   </span>
-                  <h3 className="text-base">
-                    {t(`solutionsPreview.cards.${key}.title`)}
-                  </h3>
-                  <p className="mt-2 flex-1 text-sm text-ink-muted">
-                    {t(`solutionsPreview.cards.${key}.description`)}
-                  </p>
+                  {/* Wrapper so the icon sits beside the text on mobile;
+                      `sm:contents` dissolves it once the cards go 2-up, so the
+                      heading/description are direct flex-col children again and
+                      the description's `flex-1` still equalises card heights. */}
+                  <div className="min-w-0 sm:contents">
+                    <h3 className="text-base">
+                      {t(`solutionsPreview.cards.${key}.title`)}
+                    </h3>
+                    <p className="mt-2 flex-1 text-sm text-ink-muted">
+                      {t(`solutionsPreview.cards.${key}.description`)}
+                    </p>
+                  </div>
                 </Link>
               </Reveal>
             );
@@ -649,8 +655,14 @@ export function FinalCtaSection() {
             original layout, but (undoing the stretch-to-row-height +
             bleed-off-edge treatment) shown at its natural size: no
             `lg:h-full` scale-up, no negative margin bleeding it past the
-            section, no horizontal flip, no bottom fade/blur. The CTA here is
-            hidden (it's in the text column on desktop). */}
+            section. Mirrored (`-scale-x-100`, owner request Sept 2026) so the
+            subject faces into the page; its bottom and left edges are
+            feathered so the raw rectangular edges dissolve into the band /
+            the CTA below it instead of ending on a hard line — same masking
+            treatment as the hero photo. `.image-fade-rb` fades the element's
+            *right* edge, and the flip mirrors the mask too, so the feather
+            lands on the visual left. The CTA here is hidden (it's in the text
+            column on desktop). */}
         <div className="relative mx-auto flex w-full max-w-md flex-col items-center gap-6 lg:max-w-xl lg:flex-row lg:items-center lg:justify-center lg:gap-0">
           <ImageWithFallback
             src={siteImage(IMG.homeDoctor)}
@@ -659,7 +671,7 @@ export function FinalCtaSection() {
             height={1019}
             loading="lazy"
             decoding="async"
-            className="relative z-[1] h-auto max-h-full w-auto max-w-full object-contain drop-shadow-[0_30px_50px_-20px_rgba(0,0,0,0.45)]"
+            className="image-fade-rb -scale-x-100 relative z-[1] h-auto max-h-full w-auto max-w-full object-contain drop-shadow-[0_30px_50px_-20px_rgba(0,0,0,0.45)]"
           />
           <Button
             asChild

@@ -23,7 +23,7 @@ export function MedicalNotice({ className }: { className?: string }) {
       </div>
       <p className="mt-3">{t("medicalNotice.body")}</p>
       <p className="mt-2">{t("medicalNotice.body2")}</p>
-      <p className="mt-3 text-xs">{t("medicalNotice.disclaimer")}</p>
+      <p className="mt-3">{t("medicalNotice.disclaimer")}</p>
     </aside>
   );
 }

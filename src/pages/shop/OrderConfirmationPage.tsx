@@ -34,11 +34,11 @@ export function OrderConfirmationPage() {
         {t("confirmation.orderLabel", { id: orderId })}
       </p>
 
-      <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-        <Button asChild variant="cta">
+      <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
+        <Button asChild variant="cta" className="w-full sm:w-auto">
           <Link to={paths.dashboardOrders}>{t("confirmation.toOrders")}</Link>
         </Button>
-        <Button asChild variant="outline">
+        <Button asChild variant="outline" className="w-full sm:w-auto">
           <Link to={paths.home}>{t("confirmation.toHome")}</Link>
         </Button>
       </div>

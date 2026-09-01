@@ -19,8 +19,8 @@ export function NotFoundPage() {
         {t("pages.notFound.description")}
       </p>
 
-      <div className="mt-8 flex flex-wrap items-center gap-3">
-        <Button asChild variant="cta">
+      <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+        <Button asChild variant="cta" className="w-full sm:w-auto">
           <Link to={paths.home}>{t("pages.notFound.backHome")}</Link>
         </Button>
         {/* General Wellness is reachable only from dead ends like this one. */}

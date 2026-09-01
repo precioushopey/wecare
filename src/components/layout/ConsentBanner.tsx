@@ -35,8 +35,14 @@ export function ConsentBanner() {
             {t("consent.policyLink")}
           </Link>
         </p>
-        <div className="mt-4 flex flex-wrap gap-3">
-          <Button type="button" variant="cta" size="sm" onClick={acceptAll}>
+        <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <Button
+            type="button"
+            variant="cta"
+            size="sm"
+            onClick={acceptAll}
+            className="w-full sm:w-auto"
+          >
             {t("consent.acceptAll")}
           </Button>
           <Button
@@ -44,6 +50,7 @@ export function ConsentBanner() {
             variant="outline"
             size="sm"
             onClick={essentialOnly}
+            className="w-full sm:w-auto"
           >
             {t("consent.essentialOnly")}
           </Button>

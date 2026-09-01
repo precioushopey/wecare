@@ -72,19 +72,19 @@ export function ReviewStatusPage() {
         ))}
       </ol>
 
-      <div className="mt-8 flex flex-wrap items-center gap-3">
-        <Button asChild variant="cta">
+      <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+        <Button asChild variant="cta" className="w-full sm:w-auto">
           <Link to={paths.dashboard}>{t("review.toDashboard")}</Link>
         </Button>
         {showSolution && result ? (
-          <Button asChild variant="outline">
+          <Button asChild variant="outline" className="w-full sm:w-auto">
             <Link to={paths.shopProduct(result.primarySolutionId)}>
               {t("review.toSolution")}
             </Link>
           </Button>
         ) : null}
         {showSupport ? (
-          <Button asChild variant="outline">
+          <Button asChild variant="outline" className="w-full sm:w-auto">
             <Link to={paths.contact}>{t("review.toSupport")}</Link>
           </Button>
         ) : null}

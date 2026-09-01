@@ -25,7 +25,7 @@ export function CartPage() {
       <div className="mx-auto max-w-2xl px-4 py-16 text-center sm:px-6">
         <h1>{t("cart.title")}</h1>
         <p className="mt-3 text-ink-muted">{t("cart.empty")}</p>
-        <Button asChild variant="cta" className="mt-6">
+        <Button asChild variant="cta" className="mt-6 w-full sm:w-auto">
           <Link to={paths.shop}>{t("cart.emptyCta")}</Link>
         </Button>
       </div>
@@ -129,11 +129,11 @@ export function CartPage() {
         </p>
       ) : null}
 
-      <div className="mt-6 flex flex-wrap items-center gap-3">
-        <Button asChild variant="cta" size="lg">
+      <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+        <Button asChild variant="cta" size="lg" className="w-full sm:w-auto">
           <Link to={paths.checkout}>{t("cart.checkout")}</Link>
         </Button>
-        <Button asChild variant="outline" size="lg">
+        <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
           <Link to={paths.shop}>{t("cart.continueShopping")}</Link>
         </Button>
       </div>
