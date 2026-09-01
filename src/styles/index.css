@@ -639,30 +639,39 @@
 }
 
 /* Homepage hero photo edge treatment — soft-fade the left/right edges so the
-   cut-out never reads as a hard vertical crop. The bottom is handled
-   separately by a gradient-masked blur overlay in `HeroSection` (so it's a
-   single progressive out-of-focus, not a fade + blur double). */
+   cut-out never reads as a hard vertical crop, and feather the bottom so the
+   raw rectangular base of the photo dissolves into the page (mobile) / into
+   the CTA below it, rather than ending on a hard horizontal line. Two mask
+   gradients composited together (same technique as `.image-fade-rb`). */
 .hero-photo-mask {
   -webkit-mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    #000 26%,
-    #000 74%,
-    transparent 100%
-  );
+      to right,
+      transparent 0%,
+      #000 26%,
+      #000 74%,
+      transparent 100%
+    ),
+    linear-gradient(to bottom, #000 78%, transparent 100%);
+  -webkit-mask-composite: source-in;
   mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    #000 26%,
-    #000 74%,
-    transparent 100%
-  );
+      to right,
+      transparent 0%,
+      #000 26%,
+      #000 74%,
+      transparent 100%
+    ),
+    linear-gradient(to bottom, #000 78%, transparent 100%);
+  mask-composite: intersect;
 }
 
 @media (min-width: 64rem) {
   .hero-photo-mask {
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 28%);
-    mask-image: linear-gradient(to right, transparent 0%, #000 28%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 28%),
+      linear-gradient(to bottom, #000 82%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(to right, transparent 0%, #000 28%),
+      linear-gradient(to bottom, #000 82%, transparent 100%);
+    mask-composite: intersect;
   }
 }
 
