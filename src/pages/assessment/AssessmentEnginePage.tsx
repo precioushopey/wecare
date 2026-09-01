@@ -102,8 +102,8 @@ export function AssessmentEnginePage() {
   if (!ageOk) {
     return (
       <AgeGate
-        onConfirm={() => {
-          confirmAge();
+        onConfirm={(dobIso) => {
+          confirmAge(dobIso);
           setAgeOk(true);
         }}
       />
@@ -161,7 +161,7 @@ export function AssessmentEnginePage() {
         </p>
       ) : null}
 
-      <fieldset className="glass-strong mt-8 rounded-3xl p-6 sm:p-8">
+      <fieldset className="glass-strong mt-8 rounded-2xl md:rounded-3xl p-6 sm:p-8">
         {/* `float-left w-full` pulls the <legend> into the fieldset's content
             box — without it the browser renders it straddling/above the top
             border, so it appears to break out of the rounded card. The next

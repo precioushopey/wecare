@@ -229,7 +229,7 @@ export function CheckoutPage() {
           </fieldset>
         </div>
 
-        <aside className="h-fit rounded-3xl glass-strong p-6">
+        <aside className="h-fit rounded-2xl md:rounded-3xl glass-strong p-6">
           <h2 className="text-base">{t("checkout.summaryHeading")}</h2>
           <ul className="mt-4 space-y-2 text-sm">
             {items.map((i) => {

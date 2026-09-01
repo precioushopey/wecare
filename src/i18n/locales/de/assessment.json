@@ -3,6 +3,9 @@
     "title": "Zuerst eine kurze Bestätigung",
     "body": "Die Empfehlungen von WeCare und eine mögliche ärztliche Prüfung beziehen sich auf ein verschreibungspflichtiges Arzneimittel, das nur für Erwachsene verfügbar ist.",
     "checkbox": "Ich bestätige, dass ich 18 Jahre oder älter bin.",
+    "dobLabel": "Geburtsdatum",
+    "dobNote": "Wird nur verwendet, um dein Alter zu bestätigen – bleibt auf diesem Gerät und wird nicht mit deinem Namen verknüpft.",
+    "dobTooYoung": "Das eingegebene Geburtsdatum zeigt, dass du unter 18 bist. Das Assessment und die ärztliche Prüfung von WeCare stehen nur Erwachsenen zur Verfügung.",
     "continue": "Weiter zum Assessment",
     "under": "Wenn du unter 18 bist, sprich bitte mit einem Elternteil, einer erziehungsberechtigten Person oder deiner Ärztin bzw. deinem Arzt.",
     "back": "Zur Startseite"

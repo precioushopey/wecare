@@ -15,14 +15,14 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
 import { Label } from "@/app/components/ui/label";
 import { paths } from "@/app/paths";
 import { LanguageToggle } from "@/components/layout/LanguageToggle";
+import { SolutionMark } from "@/components/brand/SolutionMark";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
-import { SOLUTION_BY_ID, solutionImage } from "@/data/solutions";
+import { SOLUTION_BY_ID } from "@/data/solutions";
 import { useAssessment } from "@/features/assessment/AssessmentContext";
 import { pairCounterpart } from "@/features/assessment/recommendation";
 import { useAuth } from "@/features/auth/AuthContext";
@@ -135,7 +135,7 @@ export function DashboardHomePage() {
   return (
     <div className="space-y-4">
       {/* Next step */}
-      <div className="glass-strong rounded-3xl p-5 sm:p-6">
+      <div className="glass-strong rounded-2xl md:rounded-3xl p-5 sm:p-6">
         <div className="flex items-start gap-4">
           <MedallionIcon icon={ShieldCheck} />
           <div className="min-w-0 flex-1">
@@ -157,7 +157,7 @@ export function DashboardHomePage() {
       {/* Assessment snapshot */}
       <Link
         to={paths.dashboardAssessment}
-        className="glass glass-hover block rounded-3xl p-5"
+        className="glass glass-hover block rounded-2xl md:rounded-3xl p-5"
       >
         <div className="flex items-center justify-between gap-3">
           <GroupLabel>{t("home.assessmentSnapshot")}</GroupLabel>
@@ -242,7 +242,7 @@ export function DashboardAssessmentPage() {
         />
       ) : null}
 
-      <div className="glass-strong rounded-3xl p-5 sm:p-6">
+      <div className="glass-strong rounded-2xl md:rounded-3xl p-5 sm:p-6">
         <p className="text-sm text-ink-muted">{t("assessment.completedNote")}</p>
         <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-3">
           <StatTile
@@ -298,7 +298,7 @@ export function DashboardRecommendationPage() {
 
   return (
     <div className="space-y-4">
-      <div className="glass rounded-3xl p-5">
+      <div className="glass rounded-2xl md:rounded-3xl p-5">
         <div className="flex items-center gap-3.5">
           <MedallionIcon icon={ShieldCheck} />
           <p className="min-w-0 flex-1 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-ink-muted">
@@ -326,15 +326,9 @@ export function DashboardRecommendationPage() {
           <Link
             key={s.id}
             to={paths.shopProduct(s.id)}
-            className="glass glass-hover flex gap-4 rounded-3xl p-5"
+            className="glass glass-hover flex gap-4 rounded-2xl md:rounded-3xl p-5"
           >
-            <div className="image-glow size-16 shrink-0 rounded-lg">
-              <ImageWithFallback
-                src={solutionImage(s)}
-                alt=""
-                className="size-full object-contain p-1"
-              />
-            </div>
+            <SolutionMark solution={s} className="size-16 shrink-0 rounded-lg" />
             <div className="min-w-0">
               <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-petrol-600">
                 {label}
@@ -396,7 +390,7 @@ export function DashboardOrdersPage() {
   return (
     <ul className="space-y-4">
       {orders.map((order) => (
-        <li key={order.id} className="glass rounded-3xl p-5">
+        <li key={order.id} className="glass rounded-2xl md:rounded-3xl p-5">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
               <p className="font-mono text-sm text-ink">
@@ -459,7 +453,7 @@ export function DashboardFollowUpPage() {
 
   if (!entry) {
     return (
-      <div className="glass-strong rounded-3xl p-5 sm:p-8">
+      <div className="glass-strong rounded-2xl md:rounded-3xl p-5 sm:p-8">
         <p className="font-display text-xl text-ink">{t("followUp.prompt")}</p>
         <p className="mt-2 text-sm text-ink-muted">{t("followUp.promptHint")}</p>
         <div className="mt-5 grid gap-2.5">
@@ -501,7 +495,7 @@ export function DashboardFollowUpPage() {
   ] as const;
 
   return (
-    <div className="glass-strong rounded-3xl p-5 sm:p-8">
+    <div className="glass-strong rounded-2xl md:rounded-3xl p-5 sm:p-8">
       <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-petrol-600">
         {t("followUp.yourAnswer")}
       </p>
@@ -547,7 +541,7 @@ export function DashboardFollowUpPage() {
 export function DashboardSupportPage() {
   const { t } = useTranslation("dashboard");
   return (
-    <div className="glass-strong flex flex-col items-start rounded-3xl p-5 sm:p-8">
+    <div className="glass-strong flex flex-col items-start rounded-2xl md:rounded-3xl p-5 sm:p-8">
       <MedallionIcon icon={LifeBuoy} className="size-14" />
       <p className="mt-4 text-ink-muted">{t("support.body")}</p>
       <Button asChild variant="cta" className="mt-5 w-full sm:w-auto">
@@ -585,7 +579,7 @@ export function DashboardProfilePage() {
   return (
     <div className="space-y-4">
       {/* Identity */}
-      <div className="glass-strong flex items-center gap-4 rounded-3xl p-5">
+      <div className="glass-strong flex items-center gap-4 rounded-2xl md:rounded-3xl p-5">
         <Avatar name={user?.name ?? ""} className="size-14 text-base" />
         <div className="min-w-0">
           <p className="truncate font-display text-lg text-ink">{user?.name}</p>
@@ -594,7 +588,7 @@ export function DashboardProfilePage() {
       </div>
 
       {/* Details */}
-      <div className="glass rounded-3xl p-5">
+      <div className="glass rounded-2xl md:rounded-3xl p-5">
         <GroupLabel>{t("profile.detailsLabel")}</GroupLabel>
         {editing ? (
           <form onSubmit={onSave} className="space-y-4">
@@ -678,7 +672,7 @@ export function DashboardProfilePage() {
       </div>
 
       {/* Appearance */}
-      <div className="glass rounded-3xl p-5">
+      <div className="glass rounded-2xl md:rounded-3xl p-5">
         <GroupLabel>{t("profile.appearance")}</GroupLabel>
         <div className="flex items-center justify-between gap-4 py-1.5">
           <span className="text-sm text-ink">{t("profile.language")}</span>

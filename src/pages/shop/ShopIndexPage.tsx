@@ -1,11 +1,12 @@
 import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
 
-import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 import { Button } from "@/app/components/ui/button";
+import { SolutionMark } from "@/components/brand/SolutionMark";
 import { paths } from "@/app/paths";
 import { usePageTitle } from "@/app/usePageTitle";
-import { SOLUTIONS, solutionImage, type Solution } from "@/data/solutions";
+import { COA_CONFIRMED } from "@/config";
+import { SOLUTIONS, type Solution } from "@/data/solutions";
 import { useLanguage } from "@/i18n/useLanguage";
 import { formatPriceEur } from "@/lib/format";
 
@@ -20,13 +21,12 @@ function SolutionCard({ s }: { s: Solution }) {
   return (
     <Link
       to={paths.shopProduct(s.id)}
-      className="group glass glass-hover flex flex-col rounded-3xl p-4"
+      className="group glass glass-hover flex flex-col rounded-2xl md:rounded-3xl p-4"
     >
-      <div className="image-glow aspect-[4/3] overflow-hidden rounded-2xl">
-        <ImageWithFallback
-          src={solutionImage(s)}
-          alt=""
-          className="size-full object-contain p-4 drop-shadow-[0_18px_30px_rgba(13,68,75,0.22)] transition-transform group-hover:scale-105"
+      <div className="flex aspect-[4/3] items-center justify-center rounded-2xl">
+        <SolutionMark
+          solution={s}
+          className="size-24 transition-transform group-hover:scale-105"
         />
       </div>
       <div className="mt-3 flex flex-wrap gap-1.5">
@@ -36,9 +36,11 @@ function SolutionCard({ s }: { s: Solution }) {
         <span className="w-fit rounded-full bg-petrol-50 px-2.5 py-0.5 text-xs font-medium text-petrol-700 dark:bg-petrol-900/60">
           {t("solution.prescriptionBadge")}
         </span>
-        <span className="w-fit rounded-full bg-white/70 px-2.5 py-0.5 text-xs font-medium text-petrol-700 dark:bg-white/10">
-          {t("solution.labTestedBadge")}
-        </span>
+        {COA_CONFIRMED ? (
+          <span className="w-fit rounded-full bg-white/70 px-2.5 py-0.5 text-xs font-medium text-petrol-700 dark:bg-white/10">
+            {t("solution.labTestedBadge")}
+          </span>
+        ) : null}
       </div>
       <p className="mt-2 font-display text-lg text-ink">{s.name}</p>
       <p className="mt-1 text-sm text-ink-muted">{t(`solutions.${s.id}.blurb`)}</p>
@@ -70,7 +72,7 @@ export function ShopIndexPage() {
       <p className="mt-3 max-w-2xl text-lg text-ink-muted">{t("index.intro")}</p>
 
       {/* The guided path is the assessment — this grid is reference only. */}
-      <div className="glass-strong mt-8 flex flex-col gap-4 rounded-3xl p-6 sm:flex-row sm:items-center sm:justify-between">
+      <div className="glass-strong mt-8 flex flex-col gap-4 rounded-2xl md:rounded-3xl p-6 sm:flex-row sm:items-center sm:justify-between">
         <div className="max-w-xl">
           <p className="font-display text-lg text-ink">{t("index.guideTitle")}</p>
           <p className="mt-1 text-sm text-ink-muted">{t("index.guideBody")}</p>

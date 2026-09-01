@@ -234,7 +234,7 @@ export function ChooseProblemSection() {
               <Link
                 to={assessmentLink(c.assessmentProblem)}
                 onClick={trackHomeProblem("homepage_card")(c.assessmentProblem)}
-                className="group relative flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-3xl glass glass-hover"
+                className="group relative flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-2xl md:rounded-3xl glass glass-hover"
               >
                 {/* Own clip layer: `overflow-hidden` + `rounded` on the card
                     alone doesn't reliably clip a transformed child (the hover
@@ -312,7 +312,7 @@ export function HowItWorksSection() {
       <ol className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {HOW_STEPS.map((step, i) => (
           <Reveal key={step} delayMs={i * 60}>
-            <li className="group relative flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-3xl glass glass-hover">
+            <li className="group relative flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-2xl md:rounded-3xl glass glass-hover">
               <div className="absolute inset-0 overflow-hidden rounded-[inherit] [transform:translateZ(0)]">
                 <ImageWithFallback
                   src={siteImage(IMG.process[step])}
@@ -378,7 +378,7 @@ export function SolutionsPreviewSection() {
                 <Link
                   to={assessmentLink(key)}
                   onClick={trackHomeProblem("homepage_support_card")(key)}
-                  className="flex h-full flex-col glass-strong glass-hover rounded-3xl p-6"
+                  className="flex h-full flex-col glass-strong glass-hover rounded-2xl md:rounded-3xl p-6"
                 >
                   <span className="mb-3 inline-flex size-11 items-center justify-center rounded-2xl [background-image:var(--cta-gradient)] text-white shadow-[0_10px_24px_-10px_rgba(42,167,176,0.55)]">
                     <Icon className="size-5" strokeWidth={1.75} aria-hidden />
@@ -485,7 +485,7 @@ export function TrustSection() {
       <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {TRUST_ITEMS.map(({ key, icon: Icon }, i) => (
           <Reveal key={key} delayMs={i * 60}>
-            <div className="flex h-full gap-3.5 glass rounded-3xl p-5">
+            <div className="flex h-full gap-3.5 glass rounded-2xl md:rounded-3xl p-5">
               <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-petrol-600/10 text-petrol-700 dark:bg-petrol-400/15">
                 <Icon className="size-5" strokeWidth={1.75} aria-hidden />
               </span>
@@ -522,7 +522,7 @@ export function ComparisonSection() {
         />
       </Reveal>
       <Reveal>
-        <div className="mt-10 overflow-hidden rounded-3xl glass-strong">
+        <div className="mt-10 overflow-hidden rounded-2xl md:rounded-3xl glass-strong">
           <div className="grid grid-cols-2 border-b border-white/50 text-sm font-semibold dark:border-white/20">
             <div className="p-4 text-ink-muted sm:p-5">
               {t("comparison.themLabel")}

@@ -47,9 +47,16 @@ export class RootErrorBoundary extends Component<
   }
 
   componentDidCatch(error: Error, info: ErrorInfo): void {
-    // Owner decision D19 — wire GlitchTip (EU-hosted / Sentry-compatible) here
-    // via VITE_ERROR_DSN. Scrub PII, health data and tokens before sending;
-    // never include assessment answers or breadcrumb form values.
+    // Owner decision D19 (confirmed + scoped, PO decision set 3, Sept 2026) —
+    // wire GlitchTip here via VITE_ERROR_DSN, EU-hosted / self-hosted
+    // preferred over the default US SaaS region. Only send technical data:
+    // route, error type, stack trace, browser, device, app version, an
+    // anonymised session id if needed. Must NEVER receive: medical
+    // questionnaire contents, uploaded documents, email addresses, patient
+    // names, addresses, prescription details, payment details, or auth
+    // tokens — scrub all of it from the payload (and from any breadcrumb /
+    // form-value capture the SDK adds automatically) before it leaves the
+    // browser.
     console.error("[RootErrorBoundary]", error, info.componentStack);
   }
 

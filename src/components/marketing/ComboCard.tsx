@@ -46,7 +46,7 @@ export function ComboCard({
   return (
     <div
       className={cn(
-        "glass-strong flex flex-1 flex-col rounded-3xl p-5 sm:p-6",
+        "glass-strong flex flex-1 flex-col rounded-2xl md:rounded-3xl p-5 sm:p-6",
         className,
       )}
     >

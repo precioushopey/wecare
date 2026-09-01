@@ -91,7 +91,7 @@ export function DashboardLayout() {
         <aside className="hidden lg:block">
           <nav
             aria-label={t("tabsAria")}
-            className="glass sticky top-24 rounded-3xl p-2"
+            className="glass sticky top-24 rounded-2xl md:rounded-3xl p-2"
           >
             <ul className="flex flex-col gap-1">
               {DASHBOARD_NAV.map((item) => (

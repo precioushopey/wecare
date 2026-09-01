@@ -43,12 +43,12 @@ requested · approved · not approved · consultation required.
 
 | Concern | MVP approach | Notes |
 |---|---|---|
-| **Auth** | EU-region managed auth (e.g. Supabase Auth EU or equivalent) | verified email, password reset, sessions, RBAC, secure logout. Collect real **date of birth** at registration (D14) — the current 18+ gate is a self-declaration only. |
+| **Auth** | EU-region managed auth (e.g. Supabase Auth EU or equivalent) | verified email, password reset, sessions, RBAC, secure logout. Collect real **date of birth** at registration (D14, revised PO decision set 4) — the frontend gate now collects a DOB client-side (`src/features/age/age.ts`, device-local, self-reported); this is the real backend-side capture + validation it still needs. |
 | **Database** | PostgreSQL, EU region | entities below |
 | **Health data** | logically separated from commerce data; strict authorization | assessment answers, recommendations, medical reviews |
-| **Product / pricing** | pharmacy-driven / configurable | product id, pharmacy, €/g or pack price, pack size, availability, last-updated |
+| **Product / pricing** | **priced at the `DispensingOption`, not the `Solution`** (owner decision #1, PO decision set 4) — a Solution has no single real price; each dispensing option under it can carry its own pharmacy price. Pharmacy-driven / configurable: product id, pharmacy, €/g or per-unit price, pack size, availability, last-updated. See `src/data/dispensing.ts` for the target shape. |
 | **Medical-partner integration** | API / webhook preferred; fallback = a secure staff portal to move review status | no patient data over plain email / spreadsheets |
-| **Pharmacy integration** | API preferred; fallback = secure order handoff + status updates | |
+| **Pharmacy integration** | API/feed preferred (stock, batch, price, cannabinoid profile, COA, availability) (owner decision #4); MVP fallback = an authenticated pharmacy/admin interface, not manual code edits | **every update must be audited** — timestamp, operator/admin id, source, and previous-value history (`AuditEvents`) |
 | **Email** | EU-compatible transactional provider | account verification, review submitted, review update, payment request, order update, follow-up |
 | **Payments** | abstraction only for MVP (invoice / bank transfer after approval) | Stripe / SEPA later |
 | **File storage** | EU-region encrypted object storage | only if document upload is required |

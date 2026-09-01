@@ -14,14 +14,10 @@ import { Button } from "@/app/components/ui/button";
 import { paths } from "@/app/paths";
 import { usePageTitle } from "@/app/usePageTitle";
 import { AssessmentRing } from "@/components/brand/AssessmentRing";
+import { SolutionMark } from "@/components/brand/SolutionMark";
 import { JourneyStepper } from "@/components/marketing/JourneyStepper";
 import { Reveal } from "@/components/marketing/Reveal";
-import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
-import {
-  SOLUTION_BY_ID,
-  solutionImage,
-  type Solution,
-} from "@/data/solutions";
+import { SOLUTION_BY_ID, type Solution } from "@/data/solutions";
 import { useAssessment } from "@/features/assessment/AssessmentContext";
 import {
   getMedicalReview,
@@ -79,20 +75,16 @@ function PrimaryRecommendationCard({
   const { language } = useLanguage();
 
   return (
-    <div className="glass-strong rounded-3xl p-6">
+    <div className="glass-strong rounded-2xl md:rounded-3xl p-6">
       {/* Left image panel + right content panel — the same split the
           Recommended Solution page uses (owner request, Sept 2026). Stacks
           image-over-content below `md`. */}
       <div className="grid gap-6 md:grid-cols-[13rem_1fr] md:items-start md:gap-8">
-        <div className="mx-auto aspect-square w-full max-w-[13rem] overflow-hidden rounded-2xl border border-white/50 bg-white/40 md:mx-0 md:max-w-none dark:border-white/15 dark:bg-white/[0.04]">
-          <div className="image-glow flex size-full items-center justify-center p-5">
-            <ImageWithFallback
-              src={solutionImage(solution)}
-              alt=""
-              className="size-full object-contain drop-shadow-[0_18px_32px_rgba(13,68,75,0.24)]"
-            />
-          </div>
-        </div>
+        <SolutionMark
+          solution={solution}
+          className="mx-auto aspect-square w-full max-w-[13rem] md:mx-0 md:max-w-none"
+          iconClassName="drop-shadow-[0_12px_20px_rgba(13,68,75,0.18)]"
+        />
 
         <div className="min-w-0">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-petrol-600">
@@ -106,7 +98,20 @@ function PrimaryRecommendationCard({
           <p className="mt-4 text-sm text-ink-muted">{explanation}</p>
           {notes}
 
-          <Accordion type="single" collapsible className="mt-3">
+          <Accordion
+            type="single"
+            collapsible
+            className="mt-3"
+            onValueChange={(value) => {
+              // Learn-more disclosure open, not close — the mobile-vs-desktop
+              // recommendation funnel PostHog decision (Sept 2026).
+              if (value) {
+                track(AnalyticsEvent.recommendationLearnMoreOpened, {
+                  solution: solution.id,
+                });
+              }
+            }}
+          >
             <AccordionItem value="details">
               <AccordionTrigger className="text-sm">
                 {detailsLabel}
@@ -175,20 +180,13 @@ function AlternativeSolutionLink({
       <Link
         to={paths.shopProduct(solution.id)}
         onClick={() =>
-          track(AnalyticsEvent.recommendationCtaClicked, {
-            target: "alternative",
+          track(AnalyticsEvent.recommendationAlternativeSelected, {
             solution: solution.id,
           })
         }
         className="group mt-2 flex items-center gap-3 rounded-2xl glass glass-hover p-3"
       >
-        <span className="image-glow size-11 shrink-0 rounded-lg">
-          <ImageWithFallback
-            src={solutionImage(solution)}
-            alt=""
-            className="size-full object-contain p-0.5"
-          />
-        </span>
+        <SolutionMark solution={solution} className="size-11 shrink-0 rounded-lg" />
         <span className="min-w-0 flex-1">
           <span className="block text-sm font-medium text-ink group-hover:underline">
             {solution.name}
@@ -234,6 +232,10 @@ export function ResultPage() {
     if (!result) return;
     submitMedicalReview({ problem: result.problem, answers });
     track(AnalyticsEvent.medicalReviewSubmitted, { problem: result.problem });
+    track(AnalyticsEvent.recommendationContinueClicked, {
+      problem: result.problem,
+      path: "submit_review",
+    });
     navigate(paths.assessment.review);
   }
 
@@ -269,7 +271,16 @@ export function ResultPage() {
     <div className="flex flex-col items-start gap-2">
       {existingReview ? (
         <Button asChild variant="cta" size="lg" className="w-full sm:w-auto">
-          <Link to={paths.assessment.review}>{t("result.viewReviewCta")}</Link>
+          <Link
+            to={paths.assessment.review}
+            onClick={() =>
+              track(AnalyticsEvent.recommendationContinueClicked, {
+                path: "existing_review",
+              })
+            }
+          >
+            {t("result.viewReviewCta")}
+          </Link>
         </Button>
       ) : (
         <Button
@@ -285,8 +296,7 @@ export function ResultPage() {
       <Link
         to={paths.shopProduct(primary.id)}
         onClick={() =>
-          track(AnalyticsEvent.recommendationCtaClicked, {
-            target: "view_solution",
+          track(AnalyticsEvent.recommendationPrimarySelected, {
             solution: primary.id,
           })
         }
@@ -389,11 +399,7 @@ export function ResultPage() {
           >
             <Link
               to={paths.assessment.start}
-              onClick={() =>
-                track(AnalyticsEvent.recommendationCtaClicked, {
-                  target: "change_answers",
-                })
-              }
+              onClick={() => track(AnalyticsEvent.recommendationChangeAnswers)}
             >
               {t("result.changeAnswers")}
             </Link>
@@ -402,7 +408,7 @@ export function ResultPage() {
       </Reveal>
 
       {/* What's still ahead — review and delivery come after you pick the solution. */}
-      <Reveal className="mt-10 rounded-3xl glass p-6">
+      <Reveal className="mt-10 rounded-2xl md:rounded-3xl glass p-6">
         <h2 className="text-base">{t("result.nextHeading")}</h2>
         <ol className="mt-4 grid gap-4 sm:grid-cols-3">
           {(["view", "review", "delivery"] as const).map((k, i) => (

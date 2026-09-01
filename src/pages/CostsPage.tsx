@@ -29,7 +29,7 @@ export function CostsPage() {
       <Reveal className="mt-10">
         <ol className="space-y-4">
           {STEPS.map((s, i) => (
-            <li key={s} className="flex gap-4 glass rounded-3xl p-5">
+            <li key={s} className="flex gap-4 glass rounded-2xl md:rounded-3xl p-5">
               <span className="flex size-8 shrink-0 items-center justify-center rounded-xl bg-sage-100 font-display text-sm text-petrol-700">
                 {i + 1}
               </span>
@@ -45,13 +45,13 @@ export function CostsPage() {
       </Reveal>
 
       <Reveal className="mt-8 grid gap-4 sm:grid-cols-2">
-        <section className="glass rounded-3xl p-5">
+        <section className="glass rounded-2xl md:rounded-3xl p-5">
           <h2 className="text-base">{t("reimbursement.heading")}</h2>
           <p className="mt-1 text-sm text-ink-muted">
             {t("reimbursement.body")}
           </p>
         </section>
-        <section className="glass rounded-3xl p-5">
+        <section className="glass rounded-2xl md:rounded-3xl p-5">
           <h2 className="text-base">{t("paying.heading")}</h2>
           <p className="mt-1 text-sm text-ink-muted">{t("paying.body")}</p>
         </section>

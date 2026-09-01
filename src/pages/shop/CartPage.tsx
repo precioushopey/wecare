@@ -2,13 +2,13 @@ import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
 import { Minus, Plus, Trash2 } from "lucide-react";
 
-import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 import { Button } from "@/app/components/ui/button";
 import { paths } from "@/app/paths";
 import { usePageTitle } from "@/app/usePageTitle";
 import { PRICES_CONFIRMED } from "@/config";
+import { SolutionMark } from "@/components/brand/SolutionMark";
 import { JourneyStepper } from "@/components/marketing/JourneyStepper";
-import { SOLUTION_BY_ID, solutionImage } from "@/data/solutions";
+import { SOLUTION_BY_ID } from "@/data/solutions";
 import { useCart } from "@/features/cart/CartContext";
 import { useLanguage } from "@/i18n/useLanguage";
 import { formatPriceEur } from "@/lib/format";
@@ -37,7 +37,7 @@ export function CartPage() {
       <JourneyStepper current="product" className="mb-8" />
       <h1>{t("cart.title")}</h1>
 
-      <ul className="mt-8 divide-y divide-white/40 rounded-3xl glass-strong dark:divide-white/20">
+      <ul className="mt-8 divide-y divide-white/40 rounded-2xl md:rounded-3xl glass-strong dark:divide-white/20">
         {items.map((item) => {
           const s = SOLUTION_BY_ID[item.productId];
           const step = 5;
@@ -46,13 +46,7 @@ export function CartPage() {
               key={item.productId}
               className="flex flex-wrap items-center gap-4 p-4"
             >
-              <div className="image-glow size-14 shrink-0 rounded-lg">
-                <ImageWithFallback
-                  src={solutionImage(s)}
-                  alt=""
-                  className="size-full object-contain p-1"
-                />
-              </div>
+              <SolutionMark solution={s} className="size-14 shrink-0 rounded-lg" />
               <div className="min-w-0 flex-1">
                 <p className="font-display text-lg text-ink">{s.name}</p>
                 <p className="text-sm text-ink-muted">

@@ -3,6 +3,9 @@
     "title": "First, a quick confirmation",
     "body": "WeCare's guidance and any medical review relate to prescription medicine, which is only available to adults.",
     "checkbox": "I confirm that I am 18 years or older.",
+    "dobLabel": "Date of birth",
+    "dobNote": "Used only to confirm you're old enough to continue — it stays on this device and isn't attached to your name.",
+    "dobTooYoung": "The date of birth you entered shows you're under 18. WeCare's assessment and medical review are only available to adults.",
     "continue": "Continue to the assessment",
     "under": "If you are under 18, please speak with a parent, guardian or your doctor.",
     "back": "Back to home"

@@ -87,7 +87,7 @@ export function RowLink({
   return (
     <Link
       to={to}
-      className="glass glass-hover flex items-center gap-4 rounded-3xl p-4"
+      className="glass glass-hover flex items-center gap-4 rounded-2xl md:rounded-3xl p-4"
     >
       <MedallionIcon icon={icon} tone={tone} />
       <span className="min-w-0 flex-1">
@@ -208,7 +208,7 @@ export function EmptyState({
   to: string;
 }) {
   return (
-    <div className="glass-strong flex flex-col items-center rounded-3xl p-8 text-center">
+    <div className="glass-strong flex flex-col items-center rounded-2xl md:rounded-3xl p-8 text-center">
       <MedallionIcon icon={icon} className="size-14" />
       <p className="mt-4 max-w-xs text-ink-muted">{text}</p>
       <Link

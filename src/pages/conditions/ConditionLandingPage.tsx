@@ -155,7 +155,7 @@ export function ConditionLandingPage({
             <Reveal key={i} delayMs={i * 60}>
               {/* number + sentence sit in a row on mobile (full-width cards),
                   back to a stack from `sm` where the grid narrows them. */}
-              <li className="flex h-full flex-row items-baseline gap-3 glass-strong rounded-3xl p-5 sm:flex-col sm:items-stretch sm:gap-0">
+              <li className="flex h-full flex-row items-baseline gap-3 glass-strong rounded-2xl md:rounded-3xl p-5 sm:flex-col sm:items-stretch sm:gap-0">
                 <span className="shrink-0 font-mono text-sm font-semibold text-petrol-700">
                   {String(i + 1).padStart(2, "0")}
                 </span>

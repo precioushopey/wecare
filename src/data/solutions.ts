@@ -2,7 +2,6 @@ import type { ConditionKey } from "@/features/conditions/conditions";
 
 import {
   getProductCoa,
-  getProductImage,
   PRODUCT_BY_ID,
   type Product,
   type ProductCoa,
@@ -32,7 +31,15 @@ export interface Solution {
   conditionKeys: ConditionKey[];
   /** relative position within a problem's pair */
   tier: "lighter" | "stronger";
-  /** display range, e.g. "20–24 %" */
+  /**
+   * Display range, e.g. "20–24 %" — shown to the user as "Typical THC range"
+   * (`shop:solution.thcRangeLabel`). Owner decision #7, Sept 2026:
+   * **descriptive metadata only, not the eligibility rule.** A Solution is
+   * defined by the medical/pharmacy partner approving a dispensing option as
+   * fitting its profile — not by whether a strain's THC % falls inside this
+   * band. Don't gate `strainIds` membership, or reject/move a strain, on this
+   * field alone; see docs/STRAIN-SOLUTION-MAPPING.md §7.
+   */
   thcRange: string;
   /**
    * Intended CBD-oil "starting format" profile, from the founder spec (the
@@ -41,6 +48,13 @@ export interface Solution {
    * describes the controlled oil format the Result page frames as the place to
    * start (the gentle-first nudge). Percentages are of the full-spectrum
    * extract; `null` = not a lead cannabinoid for this solution.
+   *
+   * PROVISIONAL — owner decision #10, PO decision set 4 (Sept 2026): these
+   * are founder-spec targets, not verified manufacturer/pharmacy
+   * documentation (product name, carrier/base, full ingredient list,
+   * batch/COA, regulatory classification). `shop:solution.oilFormulationProvisional`
+   * carries this caveat in the UI — don't remove it or present these values
+   * as a lab-confirmed formulation until real documentation exists.
    */
   oilFormulation: {
     /** headline strength of the full-spectrum extract, e.g. 13 → "13 %" */
@@ -51,9 +65,21 @@ export interface Solution {
     /** Night Now adds melatonin */
     melatonin?: boolean;
   };
-  /** EUR per gram (the WeCare solution price) */
+  /**
+   * EUR per gram — a placeholder, gated by `PRICES_CONFIRMED` (`src/config.ts`)
+   * everywhere it's shown, and kept only so cart/checkout math still works in
+   * this backend-less build. NOT the target architecture: owner decision #1,
+   * PO decision set 4 (Sept 2026) — price belongs on the `DispensingOption`
+   * (`src/data/dispensing.ts`), since different products under the same
+   * Solution can carry different real pharmacy prices. Don't treat this
+   * per-Solution figure as more than a working stand-in; migrate pricing to
+   * the dispensing layer once real pharmacy prices exist.
+   */
   priceEur: number;
-  /** strain that represents the solution (photo, example COA) */
+  /** strain used for the example COA on `/lab-tests` and the product page.
+   *  NOT used for the Solution's visual identity — see `SolutionMark`
+   *  (owner decision #4, Sept 2026: the Solution's hero must not be a
+   *  specific strain). */
   heroStrainId: string;
   /** all strains that may be dispensed for this solution */
   strainIds: string[];
@@ -75,11 +101,16 @@ export const SOLUTIONS: readonly Solution[] = [
     },
     priceEur: 7.9,
     heroStrainId: "slouu-berry-arctic-gelato",
-    strainIds: [
-      "slouu-berry-arctic-gelato",
-      "zoiks-tangrini",
-      "curaleaf-inhaler",
-    ],
+    // `zoiks-tangrini` removed — owner decision #8, PO decision set 4 (Sept
+    // 2026): not on a simplistic sativa=daytime rule, but because there
+    // isn't currently enough validated evidence to present it as a Night Now
+    // option. `curaleaf-inhaler` kept but rendered as an "alternative
+    // dispensing format" (device, per-unit) — its dual mapping across Night
+    // Now and Synergy Forte is architecturally fine (one DispensingOption can
+    // map to multiple Solutions), but its actual suitability under either is
+    // UNCONFIRMED pending the medical/pharmacy partner (owner decision #5).
+    // See docs/STRAIN-SOLUTION-MAPPING.md.
+    strainIds: ["slouu-berry-arctic-gelato", "curaleaf-inhaler"],
   },
   {
     id: "calm-night",
@@ -137,13 +168,25 @@ export const SOLUTIONS: readonly Solution[] = [
     },
     priceEur: 8.9,
     heroStrainId: "iuvo-temptation",
+    // `tannenbusch-tubitti-frubitti` (31 % THC) removed — marked UNMAPPED,
+    // pending the medical/pharmacy partner approving it as fitting this
+    // Solution's profile. Its 31 % sitting above the *displayed* 22–28 % band
+    // is why it was first flagged, but per owner decision #7 (Sept 2026) THC %
+    // is descriptive only and is not itself the reason to exclude or move it —
+    // this stays UNMAPPED until there's an actual profile-fit decision from the
+    // medical partner, not because "31 % doesn't fit the box". `curaleaf-inhaler`
+    // kept as an alternative dispensing format (device). `zoiks-tangrini`
+    // stays listed here but is PROVISIONAL ONLY, pending the same
+    // medical-partner approval (owner decision #8, PO decision set 4, Sept
+    // 2026) — it's excluded from Night Now (see that Solution's comment)
+    // and not yet a confirmed Synergy Forte fit either. See
+    // docs/STRAIN-SOLUTION-MAPPING.md.
     strainIds: [
       "iuvo-temptation",
       "iuvo-ice-burn",
       "zoiks-tangrini",
       "siggis-waldmeister",
       "siggis-pfefferminze",
-      "tannenbusch-tubitti-frubitti",
       "curaleaf-inhaler",
     ],
   },
@@ -183,10 +226,6 @@ export function isSolutionId(value: unknown): value is SolutionId {
 
 export function solutionHeroStrain(s: Solution): Product {
   return PRODUCT_BY_ID[s.heroStrainId];
-}
-
-export function solutionImage(s: Solution): string | undefined {
-  return getProductImage(solutionHeroStrain(s));
 }
 
 /** Example COA — the hero strain's. Each delivery carries its own batch cert. */

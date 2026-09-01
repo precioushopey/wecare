@@ -15,6 +15,15 @@
  *   carries the question id + index only, for drop-off analysis.
  *   Also to scrub before this reaches a vendor: name, email, DOB, uploaded
  *   documents, medication names, any diagnosis.
+ *
+ * PostHog EU decision (Sept 2026): consent-gated init stays as `track()`
+ * already no-ops until `analyticsAllowed()`; session replay must start OFF,
+ * and if it's ever enabled, mask all form fields. `device_class` in
+ * `baseProps()` below is the "device type / viewport class" signal — a
+ * width bucket, not real device/UA sniffing. `traffic_source` (first-touch,
+ * same session as the UTM capture) is the desktop-vs-mobile /
+ * acquisition-source dimension the recommendation-page events below are
+ * meant to be sliced by.
  */
 
 import { analyticsAllowed } from "@/features/consent/consent";
@@ -28,7 +37,14 @@ export const AnalyticsEvent = {
   assessmentBackClicked: "assessment_back_clicked",
   assessmentCompleted: "assessment_completed",
   recommendationViewed: "recommendation_viewed",
-  recommendationCtaClicked: "recommendation_cta_clicked",
+  /** Owner decision, Sept 2026 — the Result page's own funnel, named so
+   *  desktop-vs-mobile continue rate can be compared directly in PostHog
+   *  (the recommendation page is flagged as the main conversion-risk page). */
+  recommendationPrimarySelected: "recommendation_primary_selected",
+  recommendationAlternativeSelected: "recommendation_alternative_selected",
+  recommendationLearnMoreOpened: "recommendation_learn_more_opened",
+  recommendationChangeAnswers: "recommendation_change_answers",
+  recommendationContinueClicked: "recommendation_continue_clicked",
   medicalReviewStarted: "medical_review_started",
   medicalReviewSubmitted: "medical_review_submitted",
   medicalReviewOutcome: "medical_review_outcome",
@@ -61,6 +77,23 @@ const UTM_KEYS = [
 ] as const;
 const UTM_STORE = "wecare.utm";
 
+/** Coarse acquisition bucket — a UTM source if present, else "referral" for a
+ *  cross-site referrer, else "direct". Deliberately not more granular than
+ *  that (no referrer URL, no query string) — see the data-minimisation rule
+ *  above. */
+function classifyTrafficSource(utmSource: string | undefined): string {
+  if (utmSource) return utmSource;
+  try {
+    if (document.referrer) {
+      const refHost = new URL(document.referrer).hostname;
+      if (refHost && refHost !== window.location.hostname) return "referral";
+    }
+  } catch {
+    /* ignore */
+  }
+  return "direct";
+}
+
 /** Capture acquisition params once per session (first landing wins). */
 function captureUtmOnce(): void {
   if (typeof window === "undefined") return;
@@ -72,9 +105,8 @@ function captureUtmOnce(): void {
       const v = q.get(k);
       if (v) found[k] = v.slice(0, 120);
     }
-    if (Object.keys(found).length) {
-      window.sessionStorage.setItem(UTM_STORE, JSON.stringify(found));
-    }
+    found.traffic_source = classifyTrafficSource(found.utm_source);
+    window.sessionStorage.setItem(UTM_STORE, JSON.stringify(found));
   } catch {
     /* ignore */
   }

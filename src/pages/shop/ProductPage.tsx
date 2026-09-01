@@ -14,16 +14,17 @@ import { cn } from "@/app/components/ui/utils";
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 import { InfoHint } from "@/components/marketing/InfoHint";
 import { JourneyStepper } from "@/components/marketing/JourneyStepper";
+import { SolutionMark } from "@/components/brand/SolutionMark";
 import { paths } from "@/app/paths";
 import { usePageTitle } from "@/app/usePageTitle";
-import { PRICES_CONFIRMED } from "@/config";
+import { COA_CONFIRMED, PRICES_CONFIRMED } from "@/config";
 import { getProductImage, type Product } from "@/data/products";
 import {
   isSolutionId,
   SOLUTION_BY_ID,
   solutionExampleCoa,
-  solutionImage,
   solutionStrains,
+  type Solution,
 } from "@/data/solutions";
 import { useCart } from "@/features/cart/CartContext";
 import { useLanguage } from "@/i18n/useLanguage";
@@ -42,27 +43,110 @@ const GRAM_OPTIONS: { value: number; badge?: "starter" | "recommended" | "popula
   { value: 30, badge: "popular" },
 ];
 
-function StrainCard({ strain }: { strain: Product }) {
+/**
+ * One fulfilment option under a Solution. Simple by default — name, format,
+ * the real THC value, and which Solution it's matched to; the rest sits behind
+ * "View details". No plain-language "strength" descriptor (that needs the
+ * medical partner to define and clear it), no terpene / CBG-CBN / cultivation
+ * copy, no invented availability or "lab tested" claims (owner decision, Sept
+ * 2026 — see docs/STRAIN-SOLUTION-MAPPING.md).
+ */
+function DispensingOption({
+  strain,
+  solution,
+  thcRank,
+}: {
+  strain: Product;
+  solution: Solution;
+  /** Set only when it's factually the min / max THC among the flower options
+   *  of this Solution — a neutral comparison, never a "stronger effect" claim. */
+  thcRank?: "low" | "high";
+}) {
   const { t } = useTranslation("shop");
+  const { language } = useLanguage();
+  const isDevice = strain.format !== "flower";
+  const cbd = strain.cbdPercent < 1 ? "< 1 %" : `${strain.cbdPercent} %`;
+
+  const rows: { label: string; value: string }[] = [
+    ...(strain.genetics
+      ? [
+          {
+            label: t("strain.specs.genetics"),
+            value: t(`strain.types.${strain.genetics}`),
+          },
+        ]
+      : []),
+    { label: t("strain.specs.cbd"), value: cbd },
+    { label: t("strain.specs.producer"), value: strain.brand },
+    { label: t("strain.specs.origin"), value: strain.originCountry },
+  ];
+
   return (
-    <li className="flex items-center gap-3 rounded-2xl border border-white/50 bg-white/40 p-3 dark:border-white/20 dark:bg-white/[0.04]">
-      <ImageWithFallback
-        src={getProductImage(strain)}
-        alt=""
-        className="size-14 shrink-0 rounded-xl bg-sage-50/70 object-contain p-1"
-      />
-      <div className="min-w-0">
-        <p className="text-sm font-medium text-ink">
-          {strain.brand} · {strain.name}
-        </p>
-        <p className="font-mono text-xs text-ink-muted">
-          {strain.genetics
-            ? `${t(`strain.types.${strain.genetics}`)} · THC ${strain.thcPercent} %`
-            : t("strain.forms.inhaler")}
-          {" · "}
-          {strain.originCountry}
-        </p>
+    <li className="rounded-2xl border border-white/50 bg-white/40 p-3 dark:border-white/20 dark:bg-white/[0.04]">
+      <div className="flex items-start gap-3">
+        <ImageWithFallback
+          src={getProductImage(strain)}
+          alt=""
+          className="size-14 shrink-0 rounded-xl bg-sage-50/70 object-contain p-1"
+        />
+        <div className="min-w-0 flex-1">
+          <p className="text-sm font-medium text-ink">
+            {isDevice ? strain.name : `${strain.brand} · ${strain.name}`}
+          </p>
+          <p className="mt-0.5 text-xs text-ink-muted">
+            {t(`strain.forms.${strain.format}`)} · {t("strain.specs.thc")}{" "}
+            {strain.thcPercent} %
+            {isDevice ? ` · ${t("strain.specs.cbd")} ${cbd}` : null}
+          </p>
+          {isDevice ? (
+            <p className="mt-0.5 text-xs text-ink-muted">
+              {t("solution.perDevice", {
+                price: formatPriceEur(strain.priceEur, language),
+              })}
+              {!PRICES_CONFIRMED ? (
+                <InfoHint className="ml-1" align="right">
+                  {t("pricesIndicative")}
+                </InfoHint>
+              ) : null}
+            </p>
+          ) : null}
+          <p className="mt-0.5 text-xs text-ink-muted">
+            {t("solution.optMatchedTo", { name: solution.name })}
+          </p>
+          {thcRank ? (
+            <p className="mt-0.5 text-xs text-ink-muted">
+              {t(
+                thcRank === "low"
+                  ? "solution.optThcLower"
+                  : "solution.optThcHigher",
+              )}
+            </p>
+          ) : null}
+        </div>
       </div>
+
+      <details className="group mt-2">
+        <summary className="inline-flex cursor-pointer list-none items-center gap-1 text-xs font-medium text-petrol-700 marker:content-none [&::-webkit-details-marker]:hidden">
+          <span className="group-open:hidden">
+            {t("solution.optViewDetails")}
+          </span>
+          <span className="hidden group-open:inline">
+            {t("solution.optHideDetails")}
+          </span>
+        </summary>
+        <dl className="mt-2 grid gap-1 text-xs">
+          {rows.map(({ label, value }) => (
+            <div key={label} className="flex justify-between gap-4">
+              <dt className="text-ink-muted">{label}</dt>
+              <dd className="text-right text-ink">{value}</dd>
+            </div>
+          ))}
+        </dl>
+        <p className="mt-2 text-xs text-ink-muted">
+          {t("solution.optThcMeaning")}
+        </p>
+        <p className="mt-1 text-xs text-ink-muted">{t("solution.optCoaNote")}</p>
+      </details>
     </li>
   );
 }
@@ -92,6 +176,11 @@ export function ProductPage() {
 
   const coa = solutionExampleCoa(solution);
   const strains = solutionStrains(solution);
+  const flowerOptions = strains.filter((s) => s.format === "flower");
+  const deviceOptions = strains.filter((s) => s.format !== "flower");
+  const flowerThc = flowerOptions.map((s) => s.thcPercent);
+  const flowerThcMin = flowerThc.length ? Math.min(...flowerThc) : 0;
+  const flowerThcMax = flowerThc.length ? Math.max(...flowerThc) : 0;
   const problems = solution.conditionKeys
     .map((k) => tc(`${k}.shortTitle`))
     .join(" · ");
@@ -139,14 +228,12 @@ export function ProductPage() {
       </Link>
 
       <div className="mt-6 grid gap-8 md:grid-cols-2">
-        <div className="glass aspect-square overflow-hidden rounded-3xl">
-          <div className="image-glow flex size-full items-center justify-center p-6">
-            <ImageWithFallback
-              src={solutionImage(solution)}
-              alt=""
-              className="size-full object-contain drop-shadow-[0_24px_40px_rgba(13,68,75,0.28)]"
-            />
-          </div>
+        <div className="glass flex aspect-square items-center justify-center overflow-hidden rounded-2xl p-8 md:rounded-3xl">
+          <SolutionMark
+            solution={solution}
+            className="size-full"
+            iconClassName="size-2/5 drop-shadow-[0_16px_28px_rgba(13,68,75,0.22)]"
+          />
         </div>
 
         <div>
@@ -307,20 +394,61 @@ export function ProductPage() {
                   </div>
                 ))}
               </dl>
+              <p className="mt-3 text-xs text-ink-muted">
+                {t("solution.oilFormulationProvisional")}
+              </p>
             </AccordionContent>
           </AccordionItem>
-          {/* Dispensed as — the real strains behind this solution */}
+          {/* Available dispensing options — the fulfilment layer beneath this
+              Solution, grouped by format (flower · device). Low-emphasis by
+              design; the customer never picks (owner decision, Sept 2026). */}
           <AccordionItem value="dispensed">
             <AccordionTrigger>{t("solution.dispensedHeading")}</AccordionTrigger>
             <AccordionContent>
               <p className="text-sm text-ink-muted">
                 {t("solution.dispensedIntro", { name: solution.name })}
               </p>
-              <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-                {strains.map((strain) => (
-                  <StrainCard key={strain.id} strain={strain} />
-                ))}
-              </ul>
+
+              {flowerOptions.length > 0 ? (
+                <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+                  {flowerOptions.map((strain) => (
+                    <DispensingOption
+                      key={strain.id}
+                      strain={strain}
+                      solution={solution}
+                      thcRank={
+                        flowerThcMin === flowerThcMax
+                          ? undefined
+                          : strain.thcPercent === flowerThcMin
+                            ? "low"
+                            : strain.thcPercent === flowerThcMax
+                              ? "high"
+                              : undefined
+                      }
+                    />
+                  ))}
+                </ul>
+              ) : null}
+
+              {deviceOptions.length > 0 ? (
+                <>
+                  <p className="mt-5 text-xs font-semibold uppercase tracking-wide text-ink-muted">
+                    {t("solution.altFormatHeading")}
+                  </p>
+                  <ul className="mt-2 grid gap-3 sm:grid-cols-2">
+                    {deviceOptions.map((strain) => (
+                      <DispensingOption
+                        key={strain.id}
+                        strain={strain}
+                        solution={solution}
+                      />
+                    ))}
+                  </ul>
+                  <p className="mt-2 text-xs text-ink-muted">
+                    {t("solution.altFormatNote")}
+                  </p>
+                </>
+              ) : null}
             </AccordionContent>
           </AccordionItem>
           {/* Common questions folded into the same accordion (owner request,
@@ -336,51 +464,64 @@ export function ProductPage() {
         </Accordion>
       </section>
 
-      {/* Example COA — verified data, monospace */}
-      <section className="glass-strong mt-10 rounded-3xl p-6">
+      {/* COA. Until real lab data exists (owner decision D11 / COA_CONFIRMED)
+          this is a plain "you'll get a real certificate" note — no fabricated
+          batch numbers, cannabinoid values or "Lab tested" badge. */}
+      <section className="glass-strong mt-10 rounded-2xl md:rounded-3xl p-6">
         <div className="flex flex-wrap items-center gap-2">
           <ShieldCheck className="size-5 text-petrol-600" aria-hidden />
           <h2 className="text-lg">{t("solution.coaHeading")}</h2>
-          <span className="rounded-full bg-sage-100 px-2.5 py-0.5 text-xs font-medium text-petrol-700">
-            {t("solution.labTestedBadge")}
-          </span>
+          {COA_CONFIRMED ? (
+            <span className="rounded-full bg-sage-100 px-2.5 py-0.5 text-xs font-medium text-petrol-700">
+              {t("solution.labTestedBadge")}
+            </span>
+          ) : null}
         </div>
-        <p className="mt-2 text-sm text-ink-muted">{t("solution.coaIntro")}</p>
 
-        <dl className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          {coaValues.map(({ key, value }) => (
-            <div
-              key={key}
-              className="rounded-2xl border border-white/50 bg-white/40 p-3 dark:border-white/20 dark:bg-white/[0.04]"
-            >
-              <dt className="text-xs uppercase tracking-wide text-ink-muted">
-                {t(`coaLabels.${key}`)}
-              </dt>
-              <dd className="mt-1 font-mono text-base text-ink">{value}</dd>
-            </div>
-          ))}
-        </dl>
-
-        <dl className="mt-3 grid gap-2 text-sm">
-          <div className="flex justify-between gap-4 border-t border-border pt-2">
-            <dt className="text-ink-muted">{t("coaLabels.batch")}</dt>
-            <dd className="font-mono text-ink">{coa.batch}</dd>
-          </div>
-          <div className="flex justify-between gap-4">
-            <dt className="text-ink-muted">{t("coaLabels.testedOn")}</dt>
-            <dd className="font-mono text-ink">
-              {formatDate(coa.testedOn, language)}
-            </dd>
-          </div>
-          <div className="flex justify-between gap-4">
-            <dt className="text-ink-muted">{t("coaLabels.safety")}</dt>
-            <dd className="text-right text-ink">{t("coaSafetyValue")}</dd>
-          </div>
-        </dl>
+        {COA_CONFIRMED ? (
+          <>
+            <p className="mt-2 text-sm text-ink-muted">
+              {t("solution.coaIntro")}
+            </p>
+            <dl className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
+              {coaValues.map(({ key, value }) => (
+                <div
+                  key={key}
+                  className="rounded-2xl border border-white/50 bg-white/40 p-3 dark:border-white/20 dark:bg-white/[0.04]"
+                >
+                  <dt className="text-xs uppercase tracking-wide text-ink-muted">
+                    {t(`coaLabels.${key}`)}
+                  </dt>
+                  <dd className="mt-1 font-mono text-base text-ink">{value}</dd>
+                </div>
+              ))}
+            </dl>
+            <dl className="mt-3 grid gap-2 text-sm">
+              <div className="flex justify-between gap-4 border-t border-border pt-2">
+                <dt className="text-ink-muted">{t("coaLabels.batch")}</dt>
+                <dd className="font-mono text-ink">{coa.batch}</dd>
+              </div>
+              <div className="flex justify-between gap-4">
+                <dt className="text-ink-muted">{t("coaLabels.testedOn")}</dt>
+                <dd className="font-mono text-ink">
+                  {formatDate(coa.testedOn, language)}
+                </dd>
+              </div>
+              <div className="flex justify-between gap-4">
+                <dt className="text-ink-muted">{t("coaLabels.safety")}</dt>
+                <dd className="text-right text-ink">{t("coaSafetyValue")}</dd>
+              </div>
+            </dl>
+          </>
+        ) : (
+          <p className="mt-2 text-sm text-ink-muted">
+            {t("solution.coaPlaceholder")}
+          </p>
+        )}
       </section>
 
       {/* Guide back to the assessment — the solution isn't where you start. */}
-      <div className="glass mt-10 flex flex-col gap-4 rounded-3xl p-6 sm:flex-row sm:items-center sm:justify-between">
+      <div className="glass mt-10 flex flex-col gap-4 rounded-2xl md:rounded-3xl p-6 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="font-display text-base text-ink">
             {t("solution.notSureTitle")}

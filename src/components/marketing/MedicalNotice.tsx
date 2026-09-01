@@ -15,7 +15,7 @@ export function MedicalNotice({ className }: { className?: string }) {
   return (
     <aside
       role="note"
-      className={cn("glass rounded-3xl p-6 text-sm text-ink-muted", className)}
+      className={cn("glass rounded-2xl md:rounded-3xl p-6 text-sm text-ink-muted", className)}
     >
       <div className="flex items-center gap-2 text-ink">
         <Info className="size-5 shrink-0 text-petrol-600" aria-hidden />

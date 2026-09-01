@@ -120,7 +120,7 @@ Only **one** real authorization boundary exists in code: authenticated vs. not, 
 | FR-009 | Solution detail page per Solution id: name, category, blurb, THC range, price/g, gram selector, add-to-cart, why/usage/suitability/format/ingredients, oil-formulation block, "dispensed as" strain list, example COA, FAQ, guide-back-to-assessment. | Anonymous | Must | IMPLEMENTED | FR-011, FR-012 | `ProductPage` at `/shop/:productId` where `productId` is a `SolutionId`. |
 | FR-010 | Shop index: guide panel + 5 Solution cards, no filters, not in nav. | Anonymous | Should | IMPLEMENTED | FR-011 | `ShopIndexPage`. |
 | FR-011 | Solution data layer: 5 named Solutions with tier, THC range, oil formulation, price/g, hero strain, strain list, condition mapping. | System | Must | IMPLEMENTED (data is **partly placeholder**) | — | `src/data/solutions.ts`. `category`/`blurb`/`why`/`usage`/`suitability` are i18n, not on the type. |
-| FR-012 | Strain (fulfilment) data layer: 19 real products (18 flower + 1 inhaler) with brand, genetics, THC/CBD %, price, origin, irradiation, image; deterministic placeholder COA generator. | System | Must | IMPLEMENTED (**COA + prices + genetics are placeholders**) | — | `src/data/products.ts`. |
+| FR-012 | Strain (fulfilment) data layer: 19 real products (18 flower + 1 device) with brand, genetics, THC/CBD %, price, origin, irradiation, image; deterministic placeholder COA generator. | System | Must | IMPLEMENTED (**COA + prices + genetics are placeholders**) | — | `src/data/products.ts`. |
 | FR-013 | Cart: line items keyed by `SolutionId`, quantity in **grams**; add / set-quantity / remove / clear; subtotal from Solution `priceEur`; persists. | Anonymous | Must | IMPLEMENTED | FR-011 | `CartContext`, `localStorage:wecare.cart`. Cart page stepper step = 5 g, min 5 g. |
 | FR-014 | Checkout: customer email + Austrian shipping address + payment method (invoice / bank transfer) + **Terms checkbox** + **required "not intended to diagnose, treat, cure or prevent disease" checkbox**; "Place order" disabled until both ticked; delivery fee = €0; review-fee note links `/costs`. | Anonymous | Must | IMPLEMENTED (**no real payment**) | FR-013 | `CheckoutPage`. `country` field is read-only. |
 | FR-015 | Placing an order records a local mock order (`WC-<base36 timestamp>`, lines, total, status) and clears the cart; status = `inReview` when the cart has a prescription item (always true), else `processing`. | System | Must | PLACEHOLDER/MOCK | FR-014 | `orders/orders.ts`, `localStorage:wecare.orders`. |
@@ -717,22 +717,22 @@ All data is **static in the repo** or **browser-local**. No schema/DB. Types bel
 | `thcRange` | `string` | ✅ | Display range, e.g. `"20–24 %"`. |
 | `oilFormulation` | `{ strengthPercent: number; cbd: string; cbg: string\|null; cbn: string\|null; melatonin?: boolean }` | ✅ | Founder-spec CBD-oil "starting format" profile (distinct from the dispensed flower COA). |
 | `priceEur` | `number` | ✅ | **€ per gram — placeholder.** |
-| `heroStrainId` | `string` (a `Product.id`) | ✅ | Represents the Solution (photo, example COA). |
+| `heroStrainId` | `string` (a `Product.id`) | ✅ | Feeds the example COA only (`solutionExampleCoa`) — **not** the Solution's visual identity, see `SolutionMark` below. |
 | `strainIds` | `string[]` | ✅ | All strains the Solution may be dispensed as post-prescription. |
 | `category`, `blurb`, `why`, `usage`, `suitability` | — | ✅ (content) | **Live in i18n** `shop:solutions.<id>.*`, **not on the type**. DE/EN parity required. |
 
-Helpers: `SOLUTION_BY_ID`, `isSolutionId`, `solutionHeroStrain`, `solutionImage`, `solutionExampleCoa`, `solutionStrains`, `solutionsForCondition`.
+Helpers: `SOLUTION_BY_ID`, `isSolutionId`, `solutionHeroStrain`, `solutionExampleCoa`, `solutionStrains`, `solutionsForCondition`. The Solution's visual identity is `<SolutionMark>` (`src/components/brand/SolutionMark.tsx`) — the primary problem's icon in a medallion, not a strain photo (`solutionImage()` was removed, owner decision #4, Sept 2026).
 
 ### 16.2 `Product` — `src/data/products.ts` (fulfilment / strain layer, 19 items)
 
 | Field | Type | Notes |
 |---|---|---|
 | `id` | `string` (slug) | — |
-| `brand`, `strain`, `name` | `string` | `strain` is `""` for the inhaler. |
-| `format` | `"flower" \| "inhaler"` | 18 flower + 1 Curaleaf inhaler. |
-| `genetics` | `"indica" \| "sativa" \| "hybrid" \| null` | **Placeholder.** `null` for the inhaler. |
+| `brand`, `strain`, `name` | `string` | `strain` is `""` for the device. |
+| `format` | `"flower" \| "device"` | 18 flower + 1 Curaleaf device (renamed from `"inhaler"`, Sept 2026). |
+| `genetics` | `"indica" \| "sativa" \| "hybrid" \| null` | **Placeholder.** `null` for the device. |
 | `thcPercent`, `cbdPercent` | `number` | **Placeholder.** `cbdPercent < 1` renders as "< 1 %". |
-| `priceEur` | `number` | **Placeholder.** Per gram (flower) / per unit (inhaler). |
+| `priceEur` | `number` | **Placeholder.** Per gram (flower) / per unit (device). |
 | `unit` | `"g" \| "unit"` | — |
 | `originCountry` | `string` | **Placeholder** (Deutschland / Kanada / Portugal). |
 | `irradiated` | `boolean` | **Placeholder.** |

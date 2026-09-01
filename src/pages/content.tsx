@@ -45,7 +45,7 @@ export function ContactPage() {
       <p className="mt-4 text-lg text-ink-muted">{t("pages.contact.intro")}</p>
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2">
-        <div className="glass rounded-3xl p-5">
+        <div className="glass rounded-2xl md:rounded-3xl p-5">
           <h2 className="text-base">{t("pages.contact.emailHeading")}</h2>
           <a
             href={`mailto:${SUPPORT_EMAIL}`}
@@ -58,7 +58,7 @@ export function ContactPage() {
             {t("pages.contact.emailNote")}
           </p>
         </div>
-        <div className="glass rounded-3xl p-5">
+        <div className="glass rounded-2xl md:rounded-3xl p-5">
           <h2 className="text-base">{t("pages.contact.hoursHeading")}</h2>
           <p className="mt-1 text-sm text-ink">{t("pages.contact.hoursValue")}</p>
         </div>
@@ -66,7 +66,7 @@ export function ContactPage() {
 
       <form
         onSubmit={onSubmit}
-        className="mt-8 space-y-4 glass-strong rounded-3xl p-6"
+        className="mt-8 space-y-4 glass-strong rounded-2xl md:rounded-3xl p-6"
       >
         <div>
           <h2 className="text-base">{t("pages.contact.formHeading")}</h2>

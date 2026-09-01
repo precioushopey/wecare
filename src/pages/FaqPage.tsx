@@ -62,7 +62,7 @@ export function FaqPage() {
         })}
       </div>
 
-      <Reveal className="glass mt-12 flex flex-col gap-3 rounded-3xl p-6 sm:flex-row sm:items-center sm:justify-between">
+      <Reveal className="glass mt-12 flex flex-col gap-3 rounded-2xl md:rounded-3xl p-6 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="font-display text-base text-ink">
             {t("contact.heading")}

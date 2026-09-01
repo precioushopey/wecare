@@ -12,7 +12,10 @@ import { productImage } from "./productImages";
 
 /** Product ids are plain slugs now (real catalogue). */
 export type ProductId = string;
-export type ProductFormat = "flower" | "inhaler";
+/** Fulfilment format. Owner decision (Sept 2026): a Solution is not "a set of
+ *  flower strains" — it groups dispensing options by format (flower · device ·
+ *  oil later). Priced/sold per gram for flower, per unit for a device. */
+export type ProductFormat = "flower" | "device";
 export type Genetics = "indica" | "sativa" | "hybrid";
 
 export interface Product {
@@ -26,7 +29,7 @@ export interface Product {
   genetics: Genetics | null;
   thcPercent: number;
   cbdPercent: number; // < 1 rendered as "< 1 %"
-  /** EUR — per gram for flower, per unit for inhaler */
+  /** EUR — per gram for flower, per unit for a device */
   priceEur: number;
   /** "g" | "Stk." resolved via i18n; kept structural here */
   unit: "g" | "unit";
@@ -43,7 +46,7 @@ const RAW: Omit<Product, "requiresPrescription">[] = [
     brand: "Curaleaf",
     strain: "",
     name: "Medical Grade Inhaler",
-    format: "inhaler",
+    format: "device",
     genetics: null,
     thcPercent: 5,
     cbdPercent: 5,
@@ -365,7 +368,7 @@ export function getProductImage(p: Product): string | undefined {
 
 /** Full display name, e.g. "enua · G13 Ultra 27/1". */
 export function productFullName(p: Product): string {
-  if (p.format === "inhaler") return `${p.brand} ${p.name}`;
+  if (p.format === "device") return `${p.brand} ${p.name}`;
   return `${p.brand} · ${p.name} ${p.thcPercent}/${Math.max(1, Math.round(p.cbdPercent))}`;
 }
 
