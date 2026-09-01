@@ -397,27 +397,32 @@ export function SolutionsPreviewSection() {
 
         {/* Right column: a single anchor photo — a portrait phone cut-out, so
             it's centered and height-capped rather than the `w-full` bleed
-            treatment a landscape photo would get. `lg`-only. `.image-fade-b`
-            (the same bottom mask-fade used on the hero/final-CTA photos)
-            dissolves the forearm crop to transparent instead of a hard edge.
-            Broken-circle rings behind it + two solution-name chips floating
-            over it (owner reference, Aug 2026) — the same "held" photo, now
-            visibly tied to what it's illustrating. */}
-        <Reveal className="hidden lg:flex lg:justify-center">
-          {/* Shrink-wrapped to the photo's own rendered size (a flex item
-              sizes to its content by default) so the rings/chips below,
-              positioned absolute against *this* wrapper, hug the photo
-              itself rather than the wider grid column around it. */}
-          <div className="relative">
+            treatment a landscape photo would get. Persistent at every width
+            (owner request, Sept 2026 — it drops below the card grid once the
+            2-col layout collapses). `.image-fade-b` (the same bottom mask-fade
+            used on the hero/final-CTA photos) dissolves the forearm crop to
+            transparent instead of a hard edge. Broken-circle rings behind it +
+            two solution-name chips floating over it (owner reference, Aug
+            2026) — the same "held" photo, now visibly tied to what it's
+            illustrating. */}
+        <Reveal className="flex justify-center">
+          {/* From `lg` this shrink-wraps to the photo's own rendered size (a
+              flex item sizes to its content) so the rings/chips positioned
+              absolute against it hug the photo, not the column. Below `lg` the
+              column is narrow and that shrink-to-fit collapses against the
+              image's own `max-w-full` (a sizing loop), so give the wrapper an
+              explicit width there. */}
+          <div className="relative w-full max-w-[19rem] sm:max-w-[21rem] lg:w-auto lg:max-w-none">
             {/* A fixed square (not a % of the portrait photo's own box,
                 which isn't 1:1) — keeps the ring pattern a true circle. 26rem
-                matches the photo's own `max-h`, so the rings sit flush with
-                its top/bottom and only overhang the sides. Centered via
-                left/top-50% + counter-translate rather than inset-0 +
-                margin:auto — more robust than relying on all four insets
-                resolving against this flex-item ancestor's shrink-to-fit
-                box, which was landing off-centre in practice. */}
-            <OrbitRings className="pointer-events-none absolute left-1/2 top-1/2 -z-10 size-[26rem] -translate-x-1/2 -translate-y-1/2" />
+                matches the photo's own `max-h` from `lg` so the rings sit
+                flush with its top/bottom and only overhang the sides; a size
+                down below `lg` so they don't dominate the narrower column.
+                Centered via left/top-50% + counter-translate rather than
+                inset-0 + margin:auto — more robust than relying on all four
+                insets resolving against this flex-item ancestor's
+                shrink-to-fit box, which was landing off-centre in practice. */}
+            <OrbitRings className="pointer-events-none absolute left-1/2 top-1/2 -z-10 size-[22rem] -translate-x-1/2 -translate-y-1/2 lg:size-[26rem]" />
             <div className="image-glow relative">
               <ImageWithFallback
                 src={siteImage(IMG.homeSolutions)}
