@@ -50,13 +50,22 @@
 
     <!-- WeCare brand typefaces (WECARE BRAND BOOK 2026):
          Schibsted Grotesk = display / headings · Figtree = body / UI.
-         Both OFL, served by Google Fonts. Batangas (accent) stays commercial
-         and stack-loaded in src/styles/fonts.css. -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+         Both OFL, self-hosted from public/fonts/ (@font-face in
+         src/styles/fonts.css) — no request to Google. Batangas (accent) stays
+         commercial and stack-loaded. -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Schibsted+Grotesk:wght@500;600;700&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      href="/fonts/figtree-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/schibsted-grotesk-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
 
     <style>

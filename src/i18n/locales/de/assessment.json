@@ -129,30 +129,5 @@
     "altHeading": "Lieber eine andere Option?",
     "altLabelDefault": "Ebenfalls verfügbar",
     "altStrongerHint": "In der Regel eine stärkere Option, für später."
-  },
-  "medicalReview": {
-    "title": "Dein Assessment liegt bei einer lizenzierten Ärztin oder einem Arzt",
-    "intro": "Das ist ein Zwischenschritt – du musst gerade nichts tun.",
-    "turnaround": "Die Prüfung dauert in der Regel 24–48 Stunden.",
-    "notGuaranteed": "Ein Rezept wird nur ausgestellt, wenn es medizinisch sinnvoll ist. Es ist nicht garantiert.",
-    "stepsHeading": "Was als Nächstes passiert",
-    "steps": {
-      "review": {
-        "title": "Ärztliche Prüfung",
-        "description": "Deine Angaben aus dem Assessment werden geprüft."
-      },
-      "outcome": {
-        "title": "Ergebnis",
-        "description": "Du erhältst eine Nachricht, sobald die Prüfung abgeschlossen ist."
-      },
-      "next": {
-        "title": "Weiter geht's",
-        "description": "Bei einem Rezept folgt die Belieferung durch die Apotheke; andernfalls erhältst du eine Wellness-Empfehlung."
-      }
-    },
-    "statusLabel": "Status",
-    "statusValue": "In ärztlicher Prüfung",
-    "toDashboard": "Status in meinem Bereich ansehen",
-    "toSolution": "Empfehlung schon jetzt ansehen"
   }
 }

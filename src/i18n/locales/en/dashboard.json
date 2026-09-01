@@ -101,7 +101,7 @@
     "email": "Email",
     "password": "Password",
     "signIn": "Sign in",
-    "demoNote": "Demo login: no real credentials are checked. A backend will be connected later.",
+    "demoNote": "This preview signs you in with any email address — no account needed.",
     "requiredNote": "Please sign in to see this area.",
     "checkoutNote": "Please sign in to complete your order — we'll take you back to checkout."
   },

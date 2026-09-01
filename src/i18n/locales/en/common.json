@@ -133,10 +133,6 @@
       "title": "Your recommended solution is ready",
       "description": "Based on your answers and preferences. It does not replace medical advice."
     },
-    "medicalReview": {
-      "title": "Your assessment is with a licensed doctor",
-      "description": "Review usually takes 24–48 hours. A prescription is issued only if it is medically appropriate."
-    },
     "solution": {
       "title": "Recommended solution",
       "description": "Why it's recommended, what it suits, ingredients and verified lab values."

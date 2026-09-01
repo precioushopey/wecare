@@ -29,9 +29,11 @@ export function siteImage(key: string): string | undefined {
 export const IMG = {
   /** Hero — landscape cut-out, `w-full` treatment. */
   homeHero: "Knowledge Hub/Hero",
-  /** Final-CTA photo (owner swap, Aug 2026 — was the "Homepage/Hero"
-   *  telehealth cut-out). */
-  homeDoctor: "assessment-2",
+  /** Final-CTA photo — the telehealth cut-out (a person on a video call with
+   *  a doctor). Language-free: it replaced `assessment-2.png`, which was a
+   *  laptop mock-up of the EN assessment UI showing on the DE homepage
+   *  (audit WC-19). */
+  homeDoctor: "Homepage/Hero",
   homeGuidance: "Condition Page",
   /** Right-hand anchor photo in the "Simple recommendations" section —
    *  portrait phone cut-out (`hero section.png`, transparent bg). */
@@ -51,7 +53,10 @@ export const IMG = {
     choose: "Knowledge Hub/60",
     assessment: "assessment",
     match: "results",
-    continue: "Knowledge Hub/64",
+    /** "Continue to product, support or follow-up" — a courier handing over a
+     *  parcel. Was `64.png` (a spread of prescription pill bottles), which
+     *  read product-forward for a next-steps step (audit WC-25). */
+    continue: "Knowledge Hub/63",
   },
   conditionHero: {
     sleep: "C1 - Sleep Problem/Hero",

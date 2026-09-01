@@ -133,10 +133,6 @@
       "title": "Deine empfohlene Lösung ist bereit",
       "description": "Basierend auf deinen Antworten und Präferenzen. Ersetzt keine ärztliche Beratung."
     },
-    "medicalReview": {
-      "title": "Dein Assessment liegt bei einer Ärztin oder einem Arzt",
-      "description": "Die Prüfung dauert in der Regel 24–48 Stunden. Ein Rezept wird nur ausgestellt, wenn es medizinisch sinnvoll ist."
-    },
     "solution": {
       "title": "Empfohlene Lösung",
       "description": "Warum sie empfohlen wird, wofür sie geeignet ist, Inhaltsstoffe und geprüfte Laborwerte."

@@ -24,8 +24,6 @@ export const paths = {
   assessment: {
     start: "/assessment/start",
     result: "/assessment/result",
-    /** "Your assessment is with a doctor" waiting state (spec Section 9). */
-    medicalReview: "/assessment/medical-review",
   },
 
   /** Recommended Solution redirect — resolves to the recommended product page. */

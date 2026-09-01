@@ -168,7 +168,7 @@
     "countryValue": "Österreich",
     "summaryHeading": "Bestellübersicht",
     "placeOrder": "Bestellung abschließen",
-    "paymentNote": "Dies ist ein Demo-Checkout – es wird keine Zahlung ausgeführt und es werden keine Kartendaten erfasst.",
+    "paymentNote": "Hier werden keine Kartendaten erfasst – die Zahlung erfolgt per Rechnung oder Überweisung, sobald eine Ärztin oder ein Arzt dein Rezept freigegeben hat.",
     "backToCart": "Zurück zum Warenkorb",
     "required": "Pflichtfeld",
     "paymentHeading": "Zahlungsart",

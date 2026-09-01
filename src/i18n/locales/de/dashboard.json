@@ -101,7 +101,7 @@
     "email": "E-Mail",
     "password": "Passwort",
     "signIn": "Anmelden",
-    "demoNote": "Demo-Anmeldung: Es werden keine echten Zugangsdaten geprüft. Ein Backend wird später angebunden.",
+    "demoNote": "In dieser Vorschau meldest du dich mit einer beliebigen E-Mail-Adresse an – ein Konto ist nicht nötig.",
     "requiredNote": "Bitte melde dich an, um diesen Bereich zu sehen.",
     "checkoutNote": "Bitte melde dich an, um deine Bestellung abzuschließen – danach geht es zurück zur Kasse."
   },

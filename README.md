@@ -63,7 +63,7 @@ referenced by `CLAUDE.md` but are **not in this repo** — they should be added 
 | 6‑question assessment engine (single page, resumable, `?problem=` pre‑fill) | Implemented |
 | Deterministic recommendation (fixed primary/secondary per problem, "Advanced option" & "start gentle" flags, always requires medical review) | Implemented |
 | Result page (summary + primary/secondary Solution + explanation + disclaimer + "what's next") | Implemented |
-| Medical‑review waiting page | Implemented but **orphaned** (URL‑only; not linked from Result) |
+| Medical‑review waiting page | **Removed** (was orphaned dead code; the medical layer is copy + order‑status only) |
 | 5 Solution detail pages (why/usage/suitability/format/ingredients + oil formulation + "dispensed as" strains + example COA + FAQ) | Implemented (data partly placeholder) |
 | Shop index (5 cards, no filters, not in nav) | Implemented |
 | Cart (grams, `SolutionId`‑keyed, persistent) | Implemented |
@@ -175,7 +175,7 @@ src/
 ├── pages/                   # one folder/file per route or route group
 │   ├── HomePage.tsx + home/sections.tsx
 │   ├── conditions/ConditionLandingPage.tsx (shared template ×5)
-│   ├── assessment/ (AssessmentEnginePage, ResultPage, MedicalReviewPage)
+│   ├── assessment/ (AssessmentEnginePage, ResultPage)
 │   ├── shop/ (ShopIndex, Product, Cart, Checkout, OrderConfirmation, SolutionRedirect)
 │   ├── dashboard/ (DashboardLayout, pages.tsx)
 │   ├── legal/LegalPage.tsx
@@ -195,7 +195,7 @@ src/
 
 - **Single source of truth:** `src/styles/index.css` (Tailwind v4, `@theme` + `:root` + `.dark` + `@layer` + utility classes). No `tailwind.config.js`.
 - **Colour:** `petrol-*` = the Azure teal ramp (`#218390` primary, `#0d444b` dark) for brand/trust/medical UI + CTA; `sage-*` = Light Green for secondary/progress/"answered"; `danger-*` = functional error red only; `sky-*` = a soft blue companion for gradients/orbs. No warm/amber accent.
-- **Type:** Figtree (body/UI), Schibsted Grotesk → Figtree (headings), Batangas → Figtree (accents, **not loaded**), system monospace (verified data only).
+- **Type:** Figtree (body/UI), Schibsted Grotesk → Figtree (headings) — both OFL, **self‑hosted** from `public/fonts/` (no Google Fonts request); Batangas → Figtree (accents, **not loaded**); system monospace (verified data only).
 - **Language:** liquid‑glass surfaces (`.glass` / `.glass-strong`), a fixed blue page gradient + drifting colour orbs, full‑pill buttons, a soft Azure→cyan `cta` gradient, `--radius: 20px`.
 - **Motion is quiet:** fade‑and‑rise section reveals, a 250 ms glass hover‑lift, a slow orb drift, and the Assessment Ring's one sanctioned arc‑sweep on load. Everything respects `prefers-reduced-motion`.
 - **Light / Dark:** Light is the default and the reference design. Dark is a brand‑consistent "night" re‑skin — **colour tokens only** (layout/type/motion shared): deep teal‑navy ground, brightened brand bands, dimmed photography. Toggle sits in the footer; the choice persists to `localStorage:wecare.theme` and is applied before first paint (`src/theme/`, `index.html`). It is a single explicit choice — there is no "follow the OS" mode.
@@ -249,8 +249,8 @@ in `public/`.
 
 - **No backend.** Auth (any email, password required but ignored), the medical review, payments, order fulfilment and COA data are mock/placeholder; state is browser‑local (`localStorage`), now cleared on sign‑out / account switch so it doesn't leak between users on a shared browser.
 - Product genetics, prices, origin, irradiation and **all COA/batch/test‑date values are placeholders** (`getProductCoa` synthesises them).
-- `MedicalReviewPage` is reachable only by direct URL (the Result page no longer links it) — there is no real medical‑review touchpoint in the walked flow.
-- The 6 legal documents are **unreviewed draft text** with obviously‑provisional entity facts; there is a lightweight consent banner (`src/features/consent/`) but **not** a real consent‑management platform, and fonts still load from Google's CDN.
+- There is no real medical‑review touchpoint in the walked flow — the "your assessment is with a doctor" page was removed (unreachable dead code); the medical layer is copy + an order‑status label only.
+- The 6 legal documents are **unreviewed draft text** with obviously‑provisional entity facts; there is a lightweight consent banner (`src/features/consent/`) but **not** a real consent‑management platform. Fonts are self‑hosted from `public/fonts/` (no third‑party request).
 - Analytics: a `track()` seam (`src/lib/analytics.ts`) is wired at every funnel event and gated on consent, but **no vendor is connected** — `dispatch()` is empty.
 - `/contact` is now a real page (support email + hours + `mailto:` form) using the placeholder `SUPPORT_EMAIL` in `src/config.ts`; footer social & app‑store links are `#`.
 - Order `status` values `shipped` / `delivered` are never set by the app.

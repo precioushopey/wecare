@@ -168,7 +168,7 @@
     "countryValue": "Austria",
     "summaryHeading": "Order summary",
     "placeOrder": "Place order",
-    "paymentNote": "This is a demo checkout — no payment is taken and no card details are collected.",
+    "paymentNote": "No card details are collected here — you pay by invoice or bank transfer once a doctor has approved your prescription.",
     "backToCart": "Back to cart",
     "required": "Required",
     "paymentHeading": "Payment method",
