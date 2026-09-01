@@ -31,8 +31,10 @@ function arcPath(cx: number, cy: number, r: number, startDeg: number, endDeg: nu
 const CX = 120;
 const CY = 120;
 
-const RINGS: { r: number; start: number; end: number }[] = [
-  { r: 118, start: 20, end: 300 },
+const RINGS: { r: number; start: number; end: number; className?: string }[] = [
+  // Widest ring — it runs past the photo frame; dropped below `lg` where the
+  // narrower column makes it read as clutter (owner request, Sept 2026).
+  { r: 118, start: 20, end: 300, className: "max-lg:hidden" },
   { r: 95, start: -70, end: 190 },
   { r: 72, start: 60, end: 330 },
 ];
@@ -47,7 +49,11 @@ export function OrbitRings({ className }: { className?: string }) {
     >
       <g stroke="#ffffff" strokeOpacity={0.85} strokeWidth={1.5} fill="none">
         {RINGS.map((ring, i) => (
-          <path key={i} d={arcPath(CX, CY, ring.r, ring.start, ring.end)} />
+          <path
+            key={i}
+            d={arcPath(CX, CY, ring.r, ring.start, ring.end)}
+            className={ring.className}
+          />
         ))}
       </g>
     </svg>
