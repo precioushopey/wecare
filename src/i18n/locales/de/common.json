@@ -45,6 +45,18 @@
     "dark": "Dunkel",
     "switchTo": "Darstellung {{theme}} verwenden"
   },
+  "a11y": {
+    "skipToContent": "Zum Hauptinhalt springen"
+  },
+  "consent": {
+    "title": "Cookies & Datenschutz",
+    "body": "WeCare nutzt notwendige Speicherung, um die Seite zu betreiben. Mit deiner Einwilligung messen wir außerdem, wie Assessment und Kasse genutzt werden, um sie zu verbessern. Es werden keine Daten verkauft.",
+    "acceptAll": "Alle akzeptieren",
+    "essentialOnly": "Nur notwendige",
+    "manage": "Cookie-Einstellungen",
+    "policyLink": "Cookie-Richtlinie",
+    "saved": "Auswahl gespeichert. Du kannst sie jederzeit über die Cookie-Einstellungen im Footer ändern."
+  },
   "assessmentRing": {
     "progress": "{{answered}} von {{total}} Fragen beantwortet",
     "complete": "Alle Fragen beantwortet"
@@ -67,6 +79,7 @@
       "terms": "AGB",
       "shop": "Shop",
       "cookies": "Cookie-Richtlinie",
+      "cookieSettings": "Cookie-Einstellungen",
       "shipping": "Versandrichtlinie",
       "refunds": "Rückerstattung",
       "labTests": "Labortests / COA"
@@ -108,6 +121,10 @@
       "title": "Häufige Fragen",
       "description": "Antworten zu Assessment, ärztlicher Prüfung, Rezept und Lieferung."
     },
+    "costs": {
+      "title": "Was dich erwartet – und was es kostet",
+      "description": "Wie die Kostenseite funktioniert: Das Assessment ist kostenlos, eine mögliche Prüfgebühr wird vorab bestätigt, und die Lösung zahlst du erst, wenn ein Rezept ausgestellt ist."
+    },
     "assessmentStart": {
       "title": "Dein Assessment",
       "description": "Sechs kurze Fragen zu deinem Anliegen. Am Ende erhältst du deine empfohlene Lösung."
@@ -138,7 +155,19 @@
     },
     "contact": {
       "title": "Kontakt",
-      "description": "So erreichst du unser Team."
+      "description": "So erreichst du unser Team.",
+      "intro": "Fragen zum Assessment, zur ärztlichen Prüfung, zu einer Bestellung oder Lieferung – unser Team hilft dir weiter.",
+      "emailHeading": "Schreib uns",
+      "emailNote": "Wir antworten innerhalb eines Werktags.",
+      "hoursHeading": "Support-Zeiten",
+      "hoursValue": "Montag bis Freitag, 9:00–17:00 Uhr (MEZ)",
+      "formHeading": "Nachricht senden",
+      "formNote": "Das öffnet deine E-Mail-App mit vorausgefüllten Angaben – hier werden keine Daten gespeichert.",
+      "nameLabel": "Dein Name",
+      "emailLabel": "Deine E-Mail",
+      "messageLabel": "Nachricht",
+      "send": "E-Mail öffnen",
+      "emergency": "Dies ist kein Notfalldienst. Wähle im medizinischen Notfall 144 (Österreich) oder 112 oder wende dich an deine Ärztin oder deinen Arzt."
     },
     "legal": {
       "imprint": {

@@ -23,8 +23,8 @@
     "title": "Meine Empfehlung",
     "empty": "Noch keine Empfehlung vorhanden.",
     "emptyCta": "Assessment starten",
-    "primary": "Primär",
-    "secondary": "Alternative",
+    "primary": "Für dich empfohlen",
+    "secondary": "Ebenfalls verfügbar",
     "view": "Empfohlene Lösung ansehen",
     "inReview": "Diese Empfehlung ist in ärztlicher Prüfung."
   },
@@ -84,7 +84,15 @@
     "title": "Profil",
     "name": "Name",
     "email": "E-Mail",
+    "emailNote": "Melde dich mit einer anderen E-Mail an, um das Konto zu wechseln.",
+    "phone": "Telefon",
+    "phoneNone": "Nicht hinterlegt",
+    "phonePlaceholder": "+43 …",
     "language": "Sprache",
+    "edit": "Angaben bearbeiten",
+    "save": "Änderungen speichern",
+    "cancel": "Abbrechen",
+    "saved": "Deine Angaben sind gespeichert.",
     "signOut": "Abmelden"
   },
   "auth": {

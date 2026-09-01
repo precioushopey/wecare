@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, Navigate, useNavigate, useParams } from "react-router";
 import { useTranslation } from "react-i18next";
 import { ArrowLeft, Check, ShieldCheck } from "lucide-react";
@@ -25,6 +25,7 @@ import {
 } from "@/data/solutions";
 import { useCart } from "@/features/cart/CartContext";
 import { useLanguage } from "@/i18n/useLanguage";
+import { AnalyticsEvent, track } from "@/lib/analytics";
 import { formatDate, formatPriceEur } from "@/lib/format";
 
 const FAQ_KEYS = ["dosage", "driving", "delivery"] as const;
@@ -78,6 +79,11 @@ export function ProductPage() {
   const [grams, setGrams] = useState(10);
   const [added, setAdded] = useState(false);
 
+  const viewedId = solution?.id;
+  useEffect(() => {
+    if (viewedId) track(AnalyticsEvent.productViewed, { solution: viewedId });
+  }, [viewedId]);
+
   if (!solution) {
     return <Navigate to={paths.shop} replace />;
   }
@@ -112,6 +118,11 @@ export function ProductPage() {
   const onAdd = () => {
     add(solution.id, grams);
     setAdded(true);
+    track(AnalyticsEvent.addToCart, {
+      solution: solution.id,
+      grams,
+      value: solution.priceEur * grams,
+    });
   };
 
   return (

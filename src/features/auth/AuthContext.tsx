@@ -8,6 +8,8 @@ import {
 } from "react";
 import type { ReactNode } from "react";
 
+import { AnalyticsEvent, track } from "@/lib/analytics";
+
 /**
  * MOCK auth — no backend. `signIn` accepts any email and stores a local
  * session so the dashboard flow is demonstrable. Replace with a real
@@ -16,16 +18,42 @@ import type { ReactNode } from "react";
 
 const STORAGE_KEY = "wecare.auth";
 
+/**
+ * User-scoped local stores that must NOT leak between accounts on a shared
+ * browser. Cleared on sign-out and when a different email signs in. Language
+ * and theme are deliberately excluded — they are device preferences.
+ */
+const SESSION_SCOPED_KEYS = [
+  "wecare.assessment",
+  "wecare.cart",
+  "wecare.orders",
+  "wecare.followup",
+] as const;
+
+function clearSessionScopedStores() {
+  try {
+    for (const key of SESSION_SCOPED_KEYS) {
+      window.localStorage.removeItem(key);
+    }
+  } catch {
+    /* ignore */
+  }
+}
+
 export interface AuthUser {
   name: string;
   email: string;
+  phone?: string;
 }
 
 interface AuthContextValue {
   user: AuthUser | null;
   isAuthenticated: boolean;
+  /** Changes for every distinct account; used to remount user-scoped state. */
+  sessionKey: string;
   signIn: (email: string, name?: string) => void;
   signOut: () => void;
+  updateProfile: (patch: Partial<Pick<AuthUser, "name" | "phone">>) => void;
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null);
@@ -37,7 +65,11 @@ function load(): AuthUser | null {
     if (!raw) return null;
     const parsed = JSON.parse(raw) as Partial<AuthUser>;
     if (parsed && typeof parsed.email === "string") {
-      return { email: parsed.email, name: parsed.name ?? parsed.email };
+      return {
+        email: parsed.email,
+        name: parsed.name ?? parsed.email,
+        phone: typeof parsed.phone === "string" ? parsed.phone : undefined,
+      };
     }
   } catch {
     /* ignore */
@@ -71,14 +103,49 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signIn = useCallback((email: string, name?: string) => {
     const trimmed = email.trim();
-    setUser({ email: trimmed, name: name?.trim() || nameFromEmail(trimmed) });
+    setUser((prev) => {
+      // A different account signing in on the same browser must not inherit
+      // the previous user's assessment / cart / orders / follow-up.
+      if (prev && prev.email.toLowerCase() !== trimmed.toLowerCase()) {
+        clearSessionScopedStores();
+      }
+      return { email: trimmed, name: name?.trim() || nameFromEmail(trimmed) };
+    });
+    track(AnalyticsEvent.login);
   }, []);
 
-  const signOut = useCallback(() => setUser(null), []);
+  const signOut = useCallback(() => {
+    clearSessionScopedStores();
+    setUser(null);
+    track(AnalyticsEvent.logout);
+  }, []);
+
+  const updateProfile = useCallback(
+    (patch: Partial<Pick<AuthUser, "name" | "phone">>) => {
+      setUser((prev) => {
+        if (!prev) return prev;
+        const next = { ...prev, ...patch };
+        if (typeof next.name === "string") next.name = next.name.trim();
+        if (typeof next.phone === "string") {
+          const p = next.phone.trim();
+          next.phone = p === "" ? undefined : p;
+        }
+        return next;
+      });
+    },
+    [],
+  );
 
   const value = useMemo<AuthContextValue>(
-    () => ({ user, isAuthenticated: user !== null, signIn, signOut }),
-    [user, signIn, signOut],
+    () => ({
+      user,
+      isAuthenticated: user !== null,
+      sessionKey: user?.email.toLowerCase() ?? "anon",
+      signIn,
+      signOut,
+      updateProfile,
+    }),
+    [user, signIn, signOut, updateProfile],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

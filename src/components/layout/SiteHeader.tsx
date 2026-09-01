@@ -33,17 +33,17 @@ function Wordmark() {
 
 function CartLink() {
   const { t } = useTranslation();
-  const { count } = useCart();
-  if (count === 0) return null;
+  const { lineCount } = useCart();
+  if (lineCount === 0) return null;
   return (
     <Link
       to={paths.cart}
-      aria-label={`${t("footer.links.shop")} (${count})`}
+      aria-label={`${t("footer.links.shop")} (${lineCount})`}
       className="relative inline-flex size-9 items-center justify-center rounded-md text-ink-muted transition-colors hover:text-ink"
     >
       <ShoppingBag className="size-5" aria-hidden />
       <span className="absolute -right-0.5 -top-0.5 min-w-4 rounded-full bg-cta px-1 text-center font-mono text-[10px] leading-4 text-cta-foreground">
-        {count}
+        {lineCount}
       </span>
     </Link>
   );
@@ -66,7 +66,7 @@ export function SiteHeader() {
           <Wordmark />
           <nav
             aria-label={t("nav.primary")}
-            className="hidden min-w-0 overflow-x-auto [scrollbar-width:thin] xl:block"
+            className="hidden min-w-0 overflow-x-auto [scrollbar-width:thin] lg:block"
           >
             <ul className="flex w-max items-center gap-5">
               {PRIMARY_NAV.map((item) => (
@@ -80,7 +80,7 @@ export function SiteHeader() {
           </nav>
         </div>
 
-        <div className="hidden shrink-0 items-center gap-4 xl:flex">
+        <div className="hidden shrink-0 items-center gap-4 lg:flex">
           <LanguageToggle />
           <CartLink />
           <NavLink to={account.to} className={navLink}>
@@ -91,7 +91,7 @@ export function SiteHeader() {
           </Button>
         </div>
 
-        <div className="flex items-center gap-2 xl:hidden">
+        <div className="flex items-center gap-2 lg:hidden">
           <CartLink />
           <LanguageToggle />
           <Sheet open={open} onOpenChange={setOpen}>

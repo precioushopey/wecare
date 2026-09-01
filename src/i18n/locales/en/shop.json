@@ -19,6 +19,8 @@
     "prescriptionBadge": "Only after medical approval",
     "thcRangeLabel": "THC range",
     "pricePerGram": "from {{price}} / 1 g",
+    "priceLabel": "Price per gram",
+    "oilProfileLabel": "Starting-oil profile",
     "amountLabel": "Amount",
     "grams": "{{count}} g",
     "addToCart": "Add to cart",
@@ -179,7 +181,8 @@
     "reviewFeeNote": "This covers your solution and delivery. Any medical-review fee is shown and confirmed separately before it applies.",
     "reviewFeeLink": "What to expect",
     "termsHeading": "Confirmation",
-    "termsLabel": "I accept the Terms & Conditions and the Privacy Policy.",
+    "termsLabel": "I accept the <terms>Terms & Conditions</terms> and the <privacy>Privacy Policy</privacy>.",
+    "termsLabelPlain": "I accept the Terms & Conditions and the Privacy Policy.",
     "disclaimerLabel": "I understand this product is not intended to diagnose, treat, cure or prevent disease.",
     "customerHeading": "Customer details"
   },

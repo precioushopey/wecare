@@ -48,6 +48,9 @@
         "cbd": "Yes, CBD products",
         "prescription": "Yes, prescription medication",
         "notSure": "I am not sure"
+      },
+      "hints": {
+        "cbd": "Over-the-counter CBD, e.g. drops or capsules"
       }
     },
     "q5": {
@@ -58,15 +61,27 @@
         "flowers": "Yes, CBD flowers",
         "vape": "Yes, CBD vape",
         "other": "Yes, other"
+      },
+      "hints": {
+        "oil": "Drops taken by mouth",
+        "flowers": "Dried plant material, inhaled",
+        "vape": "Inhaled as vapour from a pen or device"
       }
     },
     "q6": {
       "title": "What type of support do you prefer?",
+      "note": "New to this? Choose “Not sure” — your doctor confirms the right format either way.",
       "options": {
         "oil": "Oil",
         "flower": "Flower",
         "vape": "Vape",
         "guidance": "Not sure, I need guidance"
+      },
+      "hints": {
+        "oil": "Drops taken by mouth — the usual gentle starting format",
+        "flower": "Dried plant material, inhaled",
+        "vape": "Inhaled as vapour from a pen or device",
+        "guidance": "We’ll recommend a format for you"
       }
     }
   },
@@ -83,7 +98,7 @@
     "primaryHeading": "Recommended for you",
     "secondaryHeading": "Secondary product",
     "explanationHeading": "Why this recommendation",
-    "gentleNudge": "New to medical cannabis? We keep your first step gentle: a lower-THC solution, and your doctor can start you on an oil for controlled dosing before other formats. You can adjust later with medical guidance.",
+    "gentleNudge": "We keep your first step gentle: a lower-THC solution, and your doctor can start you on an oil for controlled dosing before other formats. You can adjust later with medical guidance.",
     "disclaimer": "This recommendation is based on your answers and wellness preferences. It does not replace medical advice.",
     "viewSolution": "View Recommended Solution",
     "changeAnswers": "Change My Answers",
@@ -110,7 +125,7 @@
         "body": "Once approved, a licensed pharmacy ships your order discreetly to your door."
       }
     },
-    "detailsLabel": "THC & ingredient details",
+    "detailsLabel": "THC, price & ingredients",
     "altHeading": "Prefer something else?",
     "altLabelDefault": "Also available",
     "altStrongerHint": "Usually a stronger option, for later."

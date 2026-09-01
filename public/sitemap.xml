@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Public, indexable routes. Update the origin (wecare.example) and the
+  <lastmod> dates at launch, when robots.txt / <meta robots> are flipped to
+  allow indexing. Gated / commerce / dashboard routes are intentionally omitted.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://wecare.example/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://wecare.example/sleep-problems</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://wecare.example/pain-body-discomfort</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://wecare.example/stress-anxiety</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://wecare.example/migraine-head-tension</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://wecare.example/faq</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://wecare.example/costs</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://wecare.example/lab-tests</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://wecare.example/contact</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://wecare.example/legal/imprint</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://wecare.example/legal/privacy</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://wecare.example/legal/terms</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://wecare.example/legal/cookie-policy</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://wecare.example/legal/shipping-policy</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://wecare.example/legal/refund-policy</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+</urlset>

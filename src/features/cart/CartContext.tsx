@@ -20,7 +20,10 @@ export interface CartItem {
 
 interface CartContextValue {
   items: CartItem[];
+  /** total grams across the cart */
   count: number;
+  /** number of distinct solutions in the cart — for the header badge */
+  lineCount: number;
   subtotalEur: number;
   /** every solution is prescription-only */
   hasPrescriptionItem: boolean;
@@ -102,6 +105,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     return {
       items,
       count,
+      lineCount: items.length,
       subtotalEur,
       hasPrescriptionItem: items.length > 0,
       add,

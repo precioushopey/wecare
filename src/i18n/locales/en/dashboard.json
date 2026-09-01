@@ -23,8 +23,8 @@
     "title": "My recommendation",
     "empty": "No recommendation yet.",
     "emptyCta": "Start assessment",
-    "primary": "Primary",
-    "secondary": "Alternative",
+    "primary": "Recommended for you",
+    "secondary": "Also available",
     "view": "View recommended solution",
     "inReview": "This recommendation is in medical review."
   },
@@ -84,7 +84,15 @@
     "title": "Profile",
     "name": "Name",
     "email": "Email",
+    "emailNote": "Sign in with a different email to switch accounts.",
+    "phone": "Phone",
+    "phoneNone": "Not added",
+    "phonePlaceholder": "+43 …",
     "language": "Language",
+    "edit": "Edit details",
+    "save": "Save changes",
+    "cancel": "Cancel",
+    "saved": "Your details are saved.",
     "signOut": "Sign out"
   },
   "auth": {

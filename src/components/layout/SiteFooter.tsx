@@ -5,6 +5,7 @@ import { paths } from "@/app/paths";
 import { cn } from "@/app/components/ui/utils";
 import { Logo } from "@/components/brand/Logo";
 import { useAuth } from "@/features/auth/AuthContext";
+import { useConsent } from "@/features/consent/useConsent";
 
 import { TrustBadges } from "./FooterIcons";
 import { LanguageToggle } from "./LanguageToggle";
@@ -32,6 +33,7 @@ export function SiteFooter({
 }) {
   const { t } = useTranslation();
   const { isAuthenticated } = useAuth();
+  const { reopen: reopenConsent } = useConsent();
   const year = new Date().getFullYear();
   const account = isAuthenticated
     ? { to: paths.dashboard, label: t("nav.myArea") }
@@ -165,6 +167,13 @@ export function SiteFooter({
           <Link to={account.to} className="transition-colors hover:text-white">
             {account.label}
           </Link>
+          <button
+            type="button"
+            onClick={reopenConsent}
+            className="transition-colors hover:text-white"
+          >
+            {t("footer.links.cookieSettings")}
+          </button>
         </div>
       </div>
     </footer>

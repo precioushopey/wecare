@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 import { usePageTitle } from "@/app/usePageTitle";
 import {
   ChooseProblemSection,
@@ -14,7 +16,8 @@ import {
 /** Homepage (spec Section 5). Problem-first throughout; medical layer appears
  *  only inside "How WeCare Works", framed as conditional. */
 export function HomePage() {
-  usePageTitle();
+  const { t } = useTranslation();
+  usePageTitle(undefined, t("pages.home.subtitle"));
 
   return (
     <>

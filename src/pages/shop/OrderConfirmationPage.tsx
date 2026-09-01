@@ -5,14 +5,17 @@ import { CheckCircle2 } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import { paths } from "@/app/paths";
 import { usePageTitle } from "@/app/usePageTitle";
+import { getOrders } from "@/features/orders/orders";
 
 export function OrderConfirmationPage() {
   const { t } = useTranslation("shop");
   const location = useLocation();
   usePageTitle(t("confirmation.title"));
 
+  // Prefer the id handed over by checkout; fall back to the most recent stored
+  // order so a refresh or a direct visit still resolves instead of bouncing.
   const state = location.state as { orderId?: string } | null;
-  const orderId = state?.orderId;
+  const orderId = state?.orderId ?? getOrders()[0]?.id;
 
   if (!orderId) {
     return <Navigate to={paths.home} replace />;

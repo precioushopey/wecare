@@ -247,16 +247,17 @@ in `public/`.
 
 ## Known Limitations
 
-- **No backend.** Auth (any email), the medical review, payments, order fulfilment and COA data are mock/placeholder; all state is browser‑local (`localStorage`).
+- **No backend.** Auth (any email, password required but ignored), the medical review, payments, order fulfilment and COA data are mock/placeholder; state is browser‑local (`localStorage`), now cleared on sign‑out / account switch so it doesn't leak between users on a shared browser.
 - Product genetics, prices, origin, irradiation and **all COA/batch/test‑date values are placeholders** (`getProductCoa` synthesises them).
-- `MedicalReviewPage` is reachable only by direct URL (the Result page no longer links it).
-- The 6 legal documents are **unreviewed draft text** with bracketed placeholders for real‑entity facts.
-- `/contact` is a title‑only placeholder; footer social & app‑store links are `#`.
+- `MedicalReviewPage` is reachable only by direct URL (the Result page no longer links it) — there is no real medical‑review touchpoint in the walked flow.
+- The 6 legal documents are **unreviewed draft text** with obviously‑provisional entity facts; there is a lightweight consent banner (`src/features/consent/`) but **not** a real consent‑management platform, and fonts still load from Google's CDN.
+- Analytics: a `track()` seam (`src/lib/analytics.ts`) is wired at every funnel event and gated on consent, but **no vendor is connected** — `dispatch()` is empty.
+- `/contact` is now a real page (support email + hours + `mailto:` form) using the placeholder `SUPPORT_EMAIL` in `src/config.ts`; footer social & app‑store links are `#`.
 - Order `status` values `shipped` / `delivered` are never set by the app.
-- Checkout form input is **not** persisted (leaving the page loses the entered address).
+- Checkout form input is **not** persisted (leaving the page loses the entered address); editable profile persists name + phone only.
 - Native‑only form validation (no custom error copy / summary / focus‑to‑error).
 - No React error boundary — a render error anywhere unmounts the whole app.
-- Large unoptimised PNG photography (no WebP/AVIF, no `srcset`).
+- Large unoptimised PNG photography (no WebP/AVIF, no `srcset`); `public/robots.txt` is Disallow‑all and `index.html` carries `noindex` — flip both at launch.
 - **Dark appearance** is implemented and wired, but the dark palette has **not had a formal WCAG contrast audit**; a few polish items remain (native unchecked radios read slightly rusty under `color-scheme: dark`; the Assessment Ring `startLabel` pill and a couple of gradient‑medallion glyphs keep near‑white on the brightened teal; `tone="raised"` bands are very faint in dark; the condition‑page hero gradient stays literal). See `CLAUDE.md`.
 - **Repo state:** current work is on branch `faq-page-and-howitworks-redirect` with a **large uncommitted working tree**; `master` holds only the initial commit. Committing a baseline and confirming the trunk is a prerequisite for handoff.
 

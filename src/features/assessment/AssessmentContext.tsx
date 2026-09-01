@@ -4,6 +4,7 @@ import {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 import type { ReactNode } from "react";
@@ -66,6 +67,11 @@ export function AssessmentProvider({ children }: { children: ReactNode }) {
     initial.completedAt,
   );
 
+  // Always-current snapshot for callbacks that must read the latest answers
+  // without re-creating themselves (and without stale closures).
+  const answersRef = useRef(answers);
+  answersRef.current = answers;
+
   useEffect(() => {
     save({ answers, completedAt });
   }, [answers, completedAt]);
@@ -75,9 +81,18 @@ export function AssessmentProvider({ children }: { children: ReactNode }) {
     setCompletedAt(null); // editing an answer invalidates a prior completion
   }, []);
 
+  /**
+   * Apply a `?problem=` deep link. Unlike a manual answer this may run against
+   * an assessment that is already in progress (or completed) — e.g. a returning
+   * user clicking "Start Pain Assessment". If the linked problem differs from
+   * the stored one we switch to it and invalidate the previous completion so
+   * the user gets a fresh result; if it matches we leave everything untouched.
+   */
   const prefillProblem = useCallback((problem: string) => {
     if (!isConditionKey(problem)) return;
-    setAnswers((prev) => (prev.q1 ? prev : { ...prev, q1: problem }));
+    if (answersRef.current.q1 === problem) return;
+    setAnswers((prev) => ({ ...prev, q1: problem }));
+    setCompletedAt(null);
   }, []);
 
   const submit = useCallback(() => {

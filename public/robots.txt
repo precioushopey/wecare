@@ -1,0 +1,7 @@
+# Pre-launch: the whole site is noindex (see <meta name="robots"> in index.html).
+# At launch, replace the block below with the crawl rules you want and keep the
+# Sitemap line.
+User-agent: *
+Disallow: /
+
+Sitemap: https://wecare.example/sitemap.xml

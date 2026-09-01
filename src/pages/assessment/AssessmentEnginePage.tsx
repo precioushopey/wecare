@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router";
 import { useTranslation } from "react-i18next";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -13,17 +13,20 @@ import {
   answeredCount,
   QUESTIONS,
   TOTAL_QUESTIONS,
+  type QuestionId,
 } from "@/features/assessment/questions";
 import { isConditionKey } from "@/features/conditions/conditions";
+import { AnalyticsEvent, track } from "@/lib/analytics";
 
 /** Single reusable, state-based assessment engine — no route changes between
  *  questions (spec Section 7). */
 export function AssessmentEnginePage() {
   const { t } = useTranslation("assessment");
+  const { t: tCommon } = useTranslation();
   const { answers, setAnswer, submit, prefillProblem, reset } = useAssessment();
   const navigate = useNavigate();
   const [params] = useSearchParams();
-  usePageTitle(t("start.title"));
+  usePageTitle(t("start.title"), tCommon("pages.assessmentStart.description"));
 
   const problemParam = params.get("problem");
 
@@ -32,6 +35,28 @@ export function AssessmentEnginePage() {
       prefillProblem(problemParam);
     }
   }, [problemParam, prefillProblem]);
+
+  const startedTracked = useRef(false);
+  useEffect(() => {
+    if (startedTracked.current) return;
+    startedTracked.current = true;
+    track(AnalyticsEvent.assessmentStarted, {
+      problem: problemParam && isConditionKey(problemParam) ? problemParam : null,
+      resumed: answeredCount(answers) > 0,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  function recordAnswer(id: QuestionId, value: string) {
+    setAnswer(id, value);
+    track(AnalyticsEvent.assessmentQuestionAnswered, {
+      question: id,
+      answer: value,
+    });
+    if (id === "q1") {
+      track(AnalyticsEvent.problemSelected, { problem: value, source: "assessment" });
+    }
+  }
 
   const [step, setStep] = useState(() => {
     const firstUnanswered = QUESTIONS.findIndex((q) => !answers[q.id]);
@@ -56,7 +81,10 @@ export function AssessmentEnginePage() {
     if (!current) return;
     if (isLast) {
       const rec = submit();
-      if (rec) navigate(paths.assessment.result);
+      if (rec) {
+        track(AnalyticsEvent.assessmentCompleted, { problem: rec.problem });
+        navigate(paths.assessment.result);
+      }
       return;
     }
     setStep((s) => Math.min(TOTAL_QUESTIONS - 1, s + 1));
@@ -121,14 +149,27 @@ export function AssessmentEnginePage() {
         <legend className="float-left mb-1 w-full font-display text-2xl text-ink">
           {t(`questions.${question.id}.title`)}
         </legend>
+        {(() => {
+          // Optional plain-language note under the question (e.g. q6 tells a
+          // beginner they can safely pick "Not sure").
+          const note = t(`questions.${question.id}.note`, { defaultValue: "" });
+          return note ? (
+            <p className="clear-both text-sm text-ink-muted">{note}</p>
+          ) : null;
+        })()}
         <div className="mt-5 grid gap-3 clear-both">
           {question.options.map((opt) => {
             const id = `${question.id}-${opt}`;
+            // Short gloss for cannabis-format words so a beginner isn't asked
+            // to choose between undefined terms (audit WC-05).
+            const hint = t(`questions.${question.id}.hints.${opt}`, {
+              defaultValue: "",
+            });
             return (
               <label
                 key={opt}
                 htmlFor={id}
-                className="flex cursor-pointer items-center gap-3 rounded-xl border-2 border-border bg-surface-raised p-4 transition-colors hover:border-petrol-300 has-[:checked]:border-petrol-600 has-[:checked]:bg-sage-50 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-petrol-600"
+                className="flex cursor-pointer items-start gap-3 rounded-xl border-2 border-border bg-surface-raised p-4 transition-colors hover:border-petrol-300 has-[:checked]:border-petrol-600 has-[:checked]:bg-sage-50 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-petrol-600"
               >
                 <input
                   type="radio"
@@ -136,11 +177,18 @@ export function AssessmentEnginePage() {
                   name={question.id}
                   value={opt}
                   checked={current === opt}
-                  onChange={() => setAnswer(question.id, opt)}
-                  className="size-4 accent-petrol-600"
+                  onChange={() => recordAnswer(question.id, opt)}
+                  className="mt-0.5 size-4 shrink-0 accent-petrol-600"
                 />
-                <span className="text-ink">
-                  {t(`questions.${question.id}.options.${opt}`)}
+                <span className="min-w-0">
+                  <span className="block text-ink">
+                    {t(`questions.${question.id}.options.${opt}`)}
+                  </span>
+                  {hint ? (
+                    <span className="mt-0.5 block text-xs text-ink-muted">
+                      {hint}
+                    </span>
+                  ) : null}
                 </span>
               </label>
             );

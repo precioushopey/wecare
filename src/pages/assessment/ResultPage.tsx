@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link, Navigate } from "react-router";
 import { useTranslation } from "react-i18next";
 import { ArrowRight, Info } from "lucide-react";
@@ -22,6 +23,7 @@ import {
 } from "@/data/solutions";
 import { useAssessment } from "@/features/assessment/AssessmentContext";
 import { useLanguage } from "@/i18n/useLanguage";
+import { AnalyticsEvent, track } from "@/lib/analytics";
 import { formatPriceEur } from "@/lib/format";
 
 function SummaryItem({ label, value }: { label: string; value: string }) {
@@ -31,6 +33,20 @@ function SummaryItem({ label, value }: { label: string; value: string }) {
       <dd className="mt-1 text-ink">{value}</dd>
     </div>
   );
+}
+
+/** Compact cannabinoid line for the starting oil — makes the disclosure's
+ *  "& ingredient details" label honest (audit WC-18). CBD/CBG/CBN are
+ *  universal symbols and stay untranslated. */
+function oilProfileSummary(solution: Solution): string {
+  const f = solution.oilFormulation;
+  const parts = [
+    `CBD ${f.cbd}`,
+    f.cbg ? `CBG ${f.cbg}` : null,
+    f.cbn ? `CBN ${f.cbn}` : null,
+    f.melatonin ? "+ Melatonin" : null,
+  ].filter(Boolean) as string[];
+  return parts.join(" · ");
 }
 
 /**
@@ -88,11 +104,19 @@ function PrimaryRecommendationCard({
                 <dd className="font-mono text-ink">{solution.thcRange}</dd>
               </div>
               <div className="flex items-center justify-between gap-4">
-                <dt className="text-ink-muted">{t("solution.amountLabel")}</dt>
+                <dt className="text-ink-muted">{t("solution.priceLabel")}</dt>
                 <dd className="font-mono text-ink">
                   {t("solution.pricePerGram", {
                     price: formatPriceEur(solution.priceEur, language),
                   })}
+                </dd>
+              </div>
+              <div className="flex items-start justify-between gap-4 sm:col-span-2">
+                <dt className="text-ink-muted">
+                  {t("solution.oilProfileLabel")}
+                </dt>
+                <dd className="text-right font-mono text-ink">
+                  {oilProfileSummary(solution)}
                 </dd>
               </div>
             </dl>
@@ -101,7 +125,17 @@ function PrimaryRecommendationCard({
       </Accordion>
 
       <Button asChild variant="cta" size="lg" className="mt-5 w-full sm:w-auto">
-        <Link to={paths.shopProduct(solution.id)}>{cta}</Link>
+        <Link
+          to={paths.shopProduct(solution.id)}
+          onClick={() =>
+            track(AnalyticsEvent.recommendationCtaClicked, {
+              target: "view_solution",
+              solution: solution.id,
+            })
+          }
+        >
+          {cta}
+        </Link>
       </Button>
     </div>
   );
@@ -163,8 +197,15 @@ function AlternativeSolutionLink({
 
 export function ResultPage() {
   const { t } = useTranslation("assessment");
+  const { t: tCommon } = useTranslation();
   const { result, answers } = useAssessment();
-  usePageTitle(t("result.title"));
+  usePageTitle(t("result.title"), tCommon("pages.result.description"));
+
+  const problem = result?.problem;
+  useEffect(() => {
+    if (!problem) return;
+    track(AnalyticsEvent.recommendationViewed, { problem });
+  }, [problem]);
 
   if (!result) {
     return <Navigate to={paths.assessment.start} replace />;
@@ -257,7 +298,16 @@ export function ResultPage() {
             "Change My Answers" is the one action left for this row. */}
         <div className="mt-6">
           <Button asChild variant="outline" size="lg">
-            <Link to={paths.assessment.start}>{t("result.changeAnswers")}</Link>
+            <Link
+              to={paths.assessment.start}
+              onClick={() =>
+                track(AnalyticsEvent.recommendationCtaClicked, {
+                  target: "change_answers",
+                })
+              }
+            >
+              {t("result.changeAnswers")}
+            </Link>
           </Button>
         </div>
       </Reveal>

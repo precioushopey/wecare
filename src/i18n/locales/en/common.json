@@ -45,6 +45,18 @@
     "dark": "Dark",
     "switchTo": "Use {{theme}} appearance"
   },
+  "a11y": {
+    "skipToContent": "Skip to main content"
+  },
+  "consent": {
+    "title": "Cookies & privacy",
+    "body": "WeCare uses essential storage to run the site. With your consent we also measure how the assessment and checkout are used, so we can improve them. No data is sold.",
+    "acceptAll": "Accept all",
+    "essentialOnly": "Essential only",
+    "manage": "Cookie settings",
+    "policyLink": "Cookie Policy",
+    "saved": "Preference saved. You can change it anytime under Cookie settings in the footer."
+  },
   "assessmentRing": {
     "progress": "{{answered}} of {{total}} questions answered",
     "complete": "All questions answered"
@@ -67,6 +79,7 @@
       "terms": "Terms",
       "shop": "Shop",
       "cookies": "Cookie policy",
+      "cookieSettings": "Cookie settings",
       "shipping": "Shipping policy",
       "refunds": "Refund policy",
       "labTests": "Lab tests / COA"
@@ -108,6 +121,10 @@
       "title": "Frequently asked questions",
       "description": "Answers about the assessment, medical review, prescriptions and delivery."
     },
+    "costs": {
+      "title": "What to expect — and what it costs",
+      "description": "How the money side works: the assessment is free, any review fee is confirmed first, and you pay for the solution only once a prescription is issued."
+    },
     "assessmentStart": {
       "title": "Your assessment",
       "description": "Six short questions about your concern. At the end you get your recommended solution."
@@ -138,7 +155,19 @@
     },
     "contact": {
       "title": "Contact",
-      "description": "How to reach our team."
+      "description": "How to reach our team.",
+      "intro": "Questions about the assessment, a medical review, an order or delivery — our team is here to help.",
+      "emailHeading": "Email us",
+      "emailNote": "We reply within one working day.",
+      "hoursHeading": "Support hours",
+      "hoursValue": "Monday to Friday, 9:00–17:00 (CET)",
+      "formHeading": "Send a message",
+      "formNote": "This opens your email app with the details filled in — no data is stored here.",
+      "nameLabel": "Your name",
+      "emailLabel": "Your email",
+      "messageLabel": "Message",
+      "send": "Open email",
+      "emergency": "This is not an emergency service. In a medical emergency call 144 (Austria) or 112, or contact your doctor."
     },
     "legal": {
       "imprint": {

@@ -41,7 +41,10 @@ interface LegalSection {
  */
 export function LegalPage({ doc }: { doc: LegalDoc }) {
   const { t } = useTranslation(["legal", "common"]);
-  usePageTitle(t(`common:pages.legal.${doc}.title`));
+  usePageTitle(
+    t(`common:pages.legal.${doc}.title`),
+    t(`common:pages.legal.${doc}.description`),
+  );
 
   const effectiveDate = t(`legal:docs.${doc}.effectiveDate`);
   const intro = t(`legal:docs.${doc}.intro`);

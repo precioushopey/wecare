@@ -94,14 +94,14 @@ export function ComboCard({
         })}
       </div>
 
-      <p
-        className={cn(
-          "font-mono text-xs text-ink-muted",
-          showHeader ? "mt-6" : "mt-4",
-        )}
-      >
-        {t("solutionsPreview.combo.thc", { range: comboThcRange(ids) })}
-      </p>
+      {/* THC range is a product technical — kept off pre-assessment surfaces
+          (problem-first rule / audit WC-23). Only the standalone reuse path
+          (`showHeader`, currently no caller) still shows it. */}
+      {showHeader ? (
+        <p className="mt-6 font-mono text-xs text-ink-muted">
+          {t("solutionsPreview.combo.thc", { range: comboThcRange(ids) })}
+        </p>
+      ) : null}
     </div>
   );
 }

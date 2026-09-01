@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import { Link, Navigate, useNavigate } from "react-router";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
@@ -14,6 +14,7 @@ import { useAuth } from "@/features/auth/AuthContext";
 import { useCart } from "@/features/cart/CartContext";
 import { addOrder } from "@/features/orders/orders";
 import { useLanguage } from "@/i18n/useLanguage";
+import { AnalyticsEvent, track } from "@/lib/analytics";
 import { formatPriceEur } from "@/lib/format";
 
 const CONTACT_FIELDS = ["email"] as const;
@@ -41,13 +42,28 @@ export function CheckoutPage() {
   usePageTitle(t("checkout.title"));
 
   const [submitting, setSubmitting] = useState(false);
+  const [placed, setPlaced] = useState(false);
   const [payment, setPayment] = useState<(typeof PAYMENT_METHODS)[number]>(
     "invoice",
   );
   const [termsOk, setTermsOk] = useState(false);
   const [disclaimerOk, setDisclaimerOk] = useState(false);
 
-  if (items.length === 0) {
+  const checkoutTracked = useRef(false);
+  useEffect(() => {
+    if (checkoutTracked.current || !isAuthenticated || items.length === 0)
+      return;
+    checkoutTracked.current = true;
+    track(AnalyticsEvent.checkoutStarted, {
+      itemCount: items.length,
+      value: subtotalEur,
+    });
+  }, [isAuthenticated, items.length, subtotalEur]);
+
+  // Once the order is placed we clear the cart, which empties `items`. Without
+  // the `placed` guard the empty-cart redirect below would fire on that same
+  // render and pre-empt the navigation to the confirmation page.
+  if (items.length === 0 && !placed) {
     return <Navigate to={paths.cart} replace />;
   }
 
@@ -67,8 +83,9 @@ export function CheckoutPage() {
 
   function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (!termsOk || !disclaimerOk) return;
+    if (!termsOk || !disclaimerOk || submitting) return;
     setSubmitting(true);
+    setPlaced(true);
     const order = addOrder({
       lines: items.map((i) => ({
         productId: i.productId,
@@ -78,7 +95,15 @@ export function CheckoutPage() {
       status: hasPrescriptionItem ? "inReview" : "processing",
     });
     clear();
-    navigate(paths.orderConfirmation, { state: { orderId: order.id } });
+    track(AnalyticsEvent.orderPlaced, {
+      orderId: order.id,
+      value: totalEur,
+      paymentMethod: payment,
+    });
+    navigate(paths.orderConfirmation, {
+      state: { orderId: order.id },
+      replace: true,
+    });
   }
 
   return (
@@ -165,7 +190,30 @@ export function CheckoutPage() {
                 required
                 className="mt-0.5 size-4 accent-petrol-600"
               />
-              <span>{t("checkout.termsLabel")}</span>
+              <span>
+                <Trans
+                  t={t}
+                  i18nKey="checkout.termsLabel"
+                  components={{
+                    terms: (
+                      <Link
+                        to={paths.legal.terms}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="underline underline-offset-2 hover:text-ink"
+                      />
+                    ),
+                    privacy: (
+                      <Link
+                        to={paths.legal.privacy}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="underline underline-offset-2 hover:text-ink"
+                      />
+                    ),
+                  }}
+                />
+              </span>
             </label>
             <label className="flex cursor-pointer items-start gap-3 text-sm text-ink">
               <input

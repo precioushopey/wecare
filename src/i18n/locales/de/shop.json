@@ -19,6 +19,8 @@
     "prescriptionBadge": "Nur nach ärztlicher Freigabe",
     "thcRangeLabel": "THC-Bereich",
     "pricePerGram": "ab {{price}} / 1 g",
+    "priceLabel": "Preis pro Gramm",
+    "oilProfileLabel": "Profil des Einstiegs-Öls",
     "amountLabel": "Menge",
     "grams": "{{count}} g",
     "addToCart": "In den Warenkorb",
@@ -179,7 +181,8 @@
     "reviewFeeNote": "Das deckt deine Lösung und die Lieferung ab. Eine eventuelle Gebühr für die ärztliche Prüfung wird separat angezeigt und bestätigt, bevor sie anfällt.",
     "reviewFeeLink": "Was dich erwartet",
     "termsHeading": "Bestätigung",
-    "termsLabel": "Ich akzeptiere die AGB und die Datenschutzerklärung.",
+    "termsLabel": "Ich akzeptiere die <terms>AGB</terms> und die <privacy>Datenschutzerklärung</privacy>.",
+    "termsLabelPlain": "Ich akzeptiere die AGB und die Datenschutzerklärung.",
     "disclaimerLabel": "Mir ist bewusst, dass dieses Produkt nicht zur Diagnose, Behandlung, Heilung oder Vorbeugung von Krankheiten bestimmt ist.",
     "customerHeading": "Kundendaten"
   },

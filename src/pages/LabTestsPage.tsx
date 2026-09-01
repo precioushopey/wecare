@@ -17,7 +17,7 @@ export function LabTestsPage() {
   const { t } = useTranslation("common");
   const { t: ts } = useTranslation("shop");
   const { language } = useLanguage();
-  usePageTitle(t("pages.labTests.title"));
+  usePageTitle(t("pages.labTests.title"), t("pages.labTests.description"));
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6">

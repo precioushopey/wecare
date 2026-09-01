@@ -1,10 +1,12 @@
 import { useState } from "react";
-import type { ReactNode } from "react";
+import type { FormEvent, ReactNode } from "react";
 import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
 
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 import { Button } from "@/app/components/ui/button";
+import { Input } from "@/app/components/ui/input";
+import { Label } from "@/app/components/ui/label";
 import { paths } from "@/app/paths";
 import { LanguageToggle } from "@/components/layout/LanguageToggle";
 import { SOLUTION_BY_ID, solutionImage } from "@/data/solutions";
@@ -20,6 +22,7 @@ import {
 } from "@/features/followup/followup";
 import { getOrders, type OrderStatus } from "@/features/orders/orders";
 import { useLanguage } from "@/i18n/useLanguage";
+import { AnalyticsEvent, track } from "@/lib/analytics";
 import { formatDate, formatPriceEur } from "@/lib/format";
 
 function Panel({
@@ -208,6 +211,7 @@ export function DashboardAssessmentPage() {
 
 export function DashboardRecommendationPage() {
   const { t } = useTranslation("dashboard");
+  const { t: ts } = useTranslation("shop");
   const { result } = useAssessment();
 
   if (!result) {
@@ -249,8 +253,10 @@ export function DashboardRecommendationPage() {
                 {label}
               </p>
               <p className="mt-1 font-display text-lg text-ink">{s.name}</p>
-              <p className="mt-1 font-mono text-sm text-ink-muted">
-                THC {s.thcRange}
+              {/* Category, not a bare THC number — the beginner-safe framing
+                  the result page settled on (audit WC-10). */}
+              <p className="mt-1 text-sm text-ink-muted">
+                {ts(`solutions.${s.id}.category`)}
               </p>
             </div>
           </Link>
@@ -374,7 +380,10 @@ export function DashboardFollowUpPage() {
               <button
                 key={choice}
                 type="button"
-                onClick={() => setEntry(setFollowUp(choice))}
+                onClick={() => {
+                  setEntry(setFollowUp(choice));
+                  track(AnalyticsEvent.followupSubmitted, { answer: choice });
+                }}
                 className="rounded-xl border-2 border-border bg-surface-raised p-4 text-left text-ink transition-colors hover:border-petrol-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-petrol-600"
               >
                 {t(`followUp.options.${choice}`)}
@@ -471,24 +480,112 @@ export function DashboardSupportPage() {
 
 export function DashboardProfilePage() {
   const { t } = useTranslation("dashboard");
-  const { user, signOut } = useAuth();
+  const { user, signOut, updateProfile } = useAuth();
+
+  const [editing, setEditing] = useState(false);
+  const [savedAt, setSavedAt] = useState<number | null>(null);
+  const [name, setName] = useState(user?.name ?? "");
+  const [phone, setPhone] = useState(user?.phone ?? "");
+
+  function startEdit() {
+    setName(user?.name ?? "");
+    setPhone(user?.phone ?? "");
+    setSavedAt(null);
+    setEditing(true);
+  }
+
+  function onSave(e: FormEvent) {
+    e.preventDefault();
+    updateProfile({ name: name.trim() || user?.name, phone });
+    setEditing(false);
+    setSavedAt(Date.now());
+  }
 
   return (
     <Panel title={t("profile.title")}>
       <div className="space-y-4 glass rounded-3xl p-6">
-        <div>
-          <p className="text-xs uppercase tracking-wide text-ink-muted">
-            {t("profile.name")}
-          </p>
-          <p className="mt-1 text-ink">{user?.name}</p>
-        </div>
-        <div>
-          <p className="text-xs uppercase tracking-wide text-ink-muted">
-            {t("profile.email")}
-          </p>
-          <p className="mt-1 text-ink">{user?.email}</p>
-        </div>
-        <div>
+        {editing ? (
+          <form onSubmit={onSave} className="space-y-4">
+            <div className="space-y-1.5">
+              <Label htmlFor="profile-name">{t("profile.name")}</Label>
+              <Input
+                id="profile-name"
+                name="name"
+                autoComplete="name"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <div className="space-y-1.5">
+              <Label htmlFor="profile-phone">{t("profile.phone")}</Label>
+              <Input
+                id="profile-phone"
+                name="phone"
+                type="tel"
+                autoComplete="tel"
+                inputMode="tel"
+                placeholder={t("profile.phonePlaceholder")}
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              />
+            </div>
+            <div>
+              <p className="text-xs uppercase tracking-wide text-ink-muted">
+                {t("profile.email")}
+              </p>
+              <p className="mt-1 text-ink">{user?.email}</p>
+              <p className="mt-1 text-xs text-ink-muted">
+                {t("profile.emailNote")}
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center gap-3">
+              <Button type="submit" variant="cta">
+                {t("profile.save")}
+              </Button>
+              <button
+                type="button"
+                onClick={() => setEditing(false)}
+                className="text-sm text-ink-muted underline-offset-4 hover:underline"
+              >
+                {t("profile.cancel")}
+              </button>
+            </div>
+          </form>
+        ) : (
+          <>
+            <div>
+              <p className="text-xs uppercase tracking-wide text-ink-muted">
+                {t("profile.name")}
+              </p>
+              <p className="mt-1 text-ink">{user?.name}</p>
+            </div>
+            <div>
+              <p className="text-xs uppercase tracking-wide text-ink-muted">
+                {t("profile.email")}
+              </p>
+              <p className="mt-1 text-ink">{user?.email}</p>
+            </div>
+            <div>
+              <p className="text-xs uppercase tracking-wide text-ink-muted">
+                {t("profile.phone")}
+              </p>
+              <p className="mt-1 text-ink">
+                {user?.phone || t("profile.phoneNone")}
+              </p>
+            </div>
+            {savedAt ? (
+              <p className="text-sm text-sage-700 dark:text-sage-300">
+                {t("profile.saved")}
+              </p>
+            ) : null}
+            <Button variant="outline" size="sm" onClick={startEdit}>
+              {t("profile.edit")}
+            </Button>
+          </>
+        )}
+
+        <div className="border-t border-border pt-4">
           <p className="text-xs uppercase tracking-wide text-ink-muted">
             {t("profile.language")}
           </p>

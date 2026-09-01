@@ -22,7 +22,8 @@ const CATEGORIES = ["start", "review", "orders", "privacy"] as const;
 
 export function FaqPage() {
   const { t } = useTranslation("faq");
-  usePageTitle(t("title"));
+  const { t: tCommon } = useTranslation();
+  usePageTitle(t("title"), tCommon("pages.faq.description"));
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6">

@@ -36,7 +36,11 @@ export function ConditionLandingPage({
   conditionKey: LandingKey;
 }) {
   const { t } = useTranslation("conditions");
-  usePageTitle(t(`${conditionKey}.hero.title`));
+  const { t: tCommon } = useTranslation();
+  usePageTitle(
+    t(`${conditionKey}.hero.title`),
+    tCommon(`pages.conditions.${conditionKey}.description`),
+  );
 
   const situations = Object.values(
     t(`${conditionKey}.situations`, { returnObjects: true }) as Record<

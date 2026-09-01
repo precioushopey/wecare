@@ -16,7 +16,8 @@ const STEPS = ["assessment", "review", "solution", "delivery"] as const;
 
 export function CostsPage() {
   const { t } = useTranslation("costs");
-  usePageTitle(t("title"));
+  const { t: tCommon } = useTranslation();
+  usePageTitle(t("title"), tCommon("pages.costs.description"));
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6">

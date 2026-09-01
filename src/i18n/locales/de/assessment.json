@@ -48,6 +48,9 @@
         "cbd": "Ja, CBD-Produkte",
         "prescription": "Ja, verschreibungspflichtige Medikamente",
         "notSure": "Ich bin nicht sicher"
+      },
+      "hints": {
+        "cbd": "Frei verkäufliches CBD, z. B. Tropfen oder Kapseln"
       }
     },
     "q5": {
@@ -58,22 +61,34 @@
         "flowers": "Ja, CBD-Blüten",
         "vape": "Ja, CBD-Vape",
         "other": "Ja, andere"
+      },
+      "hints": {
+        "oil": "Tropfen zum Einnehmen",
+        "flowers": "Getrocknetes Pflanzenmaterial, wird inhaliert",
+        "vape": "Wird als Dampf über einen Pen oder ein Gerät inhaliert"
       }
     },
     "q6": {
       "title": "Welche Form der Unterstützung bevorzugst du?",
+      "note": "Neu für dich? Wähle „Nicht sicher“ – die passende Form bestätigt ohnehin deine Ärztin oder dein Arzt.",
       "options": {
         "oil": "Öl",
         "flower": "Blüte",
         "vape": "Vape",
         "guidance": "Nicht sicher, ich brauche Beratung"
+      },
+      "hints": {
+        "oil": "Tropfen zum Einnehmen – die übliche sanfte Einstiegsform",
+        "flower": "Getrocknetes Pflanzenmaterial, wird inhaliert",
+        "vape": "Wird als Dampf über einen Pen oder ein Gerät inhaliert",
+        "guidance": "Wir empfehlen dir eine passende Form"
       }
     }
   },
   "result": {
     "title": "Deine empfohlene Lösung ist bereit.",
     "reassure": "Uns ist wichtig, dass das für dich passt.",
-    "intro": "Auf Basis deiner Antworten hat WeCare dich mit der am besten geeigneten Unterstützungs-Option gematcht.",
+    "intro": "Auf Basis deiner Antworten hat WeCare die am besten geeignete Unterstützungs-Option für dich ausgewählt.",
     "summaryHeading": "Deine Angaben",
     "labels": {
       "problem": "Ausgewähltes Anliegen",
@@ -83,15 +98,15 @@
     "primaryHeading": "Für dich empfohlen",
     "secondaryHeading": "Zweite Option",
     "explanationHeading": "Warum diese Empfehlung",
-    "gentleNudge": "Neu bei medizinischem Cannabis? Wir halten deinen ersten Schritt sanft: eine Lösung mit niedrigerem THC, und deine Ärztin oder dein Arzt kann mit einem Öl für eine kontrollierte Dosierung beginnen, bevor weitere Formen folgen. Später lässt sich das mit ärztlicher Begleitung anpassen.",
+    "gentleNudge": "Wir halten deinen ersten Schritt sanft: eine Lösung mit niedrigerem THC, und deine Ärztin oder dein Arzt kann mit einem Öl für eine kontrollierte Dosierung beginnen, bevor weitere Formen folgen. Später lässt sich das mit ärztlicher Begleitung anpassen.",
     "disclaimer": "Diese Empfehlung basiert auf deinen Antworten und Wellness-Präferenzen. Sie ersetzt keine ärztliche Beratung.",
     "viewSolution": "Empfohlene Lösung ansehen",
     "changeAnswers": "Meine Antworten ändern",
     "reviewRequiredNote": "Medizinisches Cannabis ist rezeptpflichtig. Dein Assessment wird von einer Ärztin oder einem Arzt geprüft; ein Rezept wird nur ausgestellt, wenn es medizinisch sinnvoll ist.",
     "explanations": {
-      "sleep": "Auf Basis deiner Schlaf-Antworten starten wir mit einer Abend-Unterstützung, die eher beruhigend wirkt. Eine stärkere Option ist verfügbar, wenn du hochdosieren musst.",
+      "sleep": "Auf Basis deiner Schlaf-Antworten starten wir mit einer Abend-Unterstützung, die eher beruhigend wirkt. Eine stärkere Option ist verfügbar, falls du mehr brauchst.",
       "pain": "Auf Basis deiner Antworten starten wir mit einer Körper-Komfort-Lösung für die tägliche Unterstützung. Eine stärkere Option ist als fortgeschrittener Schritt verfügbar.",
-      "stressAnxiety": "Auf Basis deiner Antworten starten wir mit einer Alltags-Balance-Lösung für eine ruhigere Routine. Eine stärkere Option ist verfügbar, wenn du hochdosieren musst.",
+      "stressAnxiety": "Auf Basis deiner Antworten starten wir mit einer Alltags-Balance-Lösung für eine ruhigere Routine. Eine stärkere Option ist verfügbar, falls du mehr brauchst.",
       "migraine": "Auf Basis deiner Antworten starten wir mit einer Kopfspannungs-Unterstützung rund um die Alltags-Balance. Eine zweite Option ist je nach Empfinden verfügbar."
     },
     "advancedHeading": "Fortgeschrittene Option",
@@ -110,7 +125,7 @@
         "body": "Nach der Freigabe versendet eine zugelassene Apotheke deine Bestellung diskret zu dir nach Hause."
       }
     },
-    "detailsLabel": "THC- und Inhaltsdetails",
+    "detailsLabel": "THC, Preis & Inhaltsstoffe",
     "altHeading": "Lieber eine andere Option?",
     "altLabelDefault": "Ebenfalls verfügbar",
     "altStrongerHint": "In der Regel eine stärkere Option, für später."

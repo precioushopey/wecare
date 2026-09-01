@@ -84,6 +84,8 @@ export function LoginPage() {
               name="password"
               type="password"
               autoComplete="current-password"
+              required
+              minLength={8}
             />
           </div>
           <Button type="submit" variant="cta" size="lg" className="w-full">
