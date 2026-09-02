@@ -26,7 +26,10 @@ export function AgeGate({ onConfirm }: { onConfirm: (dobIso: string) => void }) 
 
   function handleSubmit() {
     if (!canSubmit) return;
-    if (calculateAge(dob) < 18) {
+    const age = calculateAge(dob);
+    // `min`/`max` on the input guard the picker; this also catches a
+    // hand-typed date outside a plausible range.
+    if (age < 18 || age > 120) {
       setTooYoung(true);
       return;
     }
@@ -60,6 +63,7 @@ export function AgeGate({ onConfirm }: { onConfirm: (dobIso: string) => void }) 
             id="age-gate-dob"
             type="date"
             required
+            min="1926-01-01"
             max={todayIso()}
             value={dob}
             onChange={(e) => {

@@ -4,8 +4,6 @@
 
 @source "../**/*.{js,ts,jsx,tsx}";
 
-@custom-variant dark (&:is(.dark *));
-
 /* ══════════════════════════════════════════════════════════════════════════
    WeCare brand primitives — WECARE BRAND BOOK 2026
 
@@ -175,7 +173,7 @@
     #12586c 100%
   );
   /* The deep blue-teal band used by `Section tone="brand"`, the final CTA and
-     the condition-page hero. A token so dark mode can brighten it in one place. */
+     the condition-page hero. */
   --brand-band-gradient: linear-gradient(
     135deg,
     #0b2f45 0%,
@@ -214,164 +212,6 @@
   --sidebar-accent-foreground: var(--color-petrol-800);
   --sidebar-border: var(--color-border);
   --sidebar-ring: var(--color-azure);
-}
-
-/* ──────────────────────────────────────────────────────────────────────────
-   Dark appearance — a brand-consistent "night" re-skin, NOT a neutral dark
-   theme. The ground is a deep desaturated teal-navy from the Azure family
-   (same DNA as the footer and the deep "brand" bands); the Azure accent
-   brightens to petrol-400 so it stays legible on dark; the deep brand bands
-   are *brightened* so they still read as a distinct, richer section against
-   the dark page. Toggled via `.dark` on <html> (see src/theme/). Light is the
-   default and the reference design; this layer only remaps colour tokens —
-   layout, type and motion are shared. */
-.dark {
-  color-scheme: dark;
-
-  /* Flat brand primitives — overriding these flips every `text-ink`,
-     `text-ink-muted`, `bg-surface`, `bg-surface-raised`, `border-border`
-     usage across the app with no per-component churn. */
-  --color-ink: #e8f4f2; /* primary text — soft near-white with a teal cast */
-  --color-ink-muted: #8fb3b6; /* secondary text */
-  /* Ground pass (Aug 31 2026, client feedback) — a "calculate the dark
-     version of light-mode white" pass was tried (same hue as `--color-surface`
-     `#f4f5fa`, ~230° blue-violet, lightness inverted) and reverted: it clashed
-     against `--brand-band-gradient` / `--footer-gradient` / the sage panels,
-     which are all built around the brand's Azure/Dark-Azure hue (~191°) and
-     don't move. Reverted to the brand-teal hue, and — per the follow-up
-     request — pushed much darker, toward near-black, instead: same hue/sat
-     as the original `#0a2a31` (190.8°, 66%), lightness dropped from 11.6%/
-     15.5% to 5%/8%. Reads as near-black with a whisper of teal rather than a
-     clearly-teal-navy panel, while staying in the same hue family as every
-     other dark-mode surface (no re-hueing needed elsewhere). */
-  --color-surface: #041215; /* page ground — very dark teal, close to black */
-  --color-surface-raised: #071d22; /* cards / panels */
-  /* Contrast QA pass (Aug 2026, client feedback — "verify dark mode with a
-     QA tool"): the original #21525b measured 1.4:1 against --surface-raised,
-     well under WCAG 1.4.11's 3:1 non-text-contrast minimum for UI component
-     boundaries — form-input outlines (`border-input` uses this token) were
-     effectively invisible in dark mode. Brightened to clear 3:1 against both
-     --surface (4.84:1) and --surface-raised (4.42:1 — re-verified after the
-     ground pass above darkened the surfaces further; margin only grew). */
-  --color-border: #518991; /* hairlines, dividers, form-field outlines */
-
-  /* On dark, the Azure ramp's mid stops are used almost only as *foreground*
-     (accent text, eyebrows, icons) and as very-low-opacity tints — lift them
-     so they stay legible. The strong solid `bg-petrol-600` active states were
-     moved to `bg-primary` so this remap is safe. `petrol-50..500` and
-     `petrol-900/950` are left as-is (still used as deep surfaces / on the
-     always-dark footer).
-     Accent-depth pass (Aug 31 2026, client feedback — "does the accent still
-     match?", asked after the near-black ground pass above): hue was never the
-     issue (every stop here sits within ~6° of the ground's 190.6° — same teal
-     family throughout). But these stops were first tuned for the *old*,
-     lighter ground; against the new near-black ground the same lightness
-     values read far brighter than before (`petrol-700` contrast rose from
-     6.87:1 to 9.67:1 with no colour change) — a pale, almost neon cyan next
-     to a much moodier page. Lowered lightness only (same hue/sat) so accent
-     text/headings/links read as a richer, more grounded teal while staying
-     comfortably clear of the 4.5:1 text minimum: 52.2%→44%, 68.6%→48%,
-     81.4%→58%. Re-verified vs both surfaces: 600 5.41:1/4.94:1, 700
-     6.71:1/6.13:1, 800 8.80:1/8.03:1. */
-  --color-petrol-600: #43949d;
-  --color-petrol-700: #43a7b1;
-  --color-petrol-800: #61bec7;
-
-  /* The pale "sage" info surfaces become dim teal panels. `sage-500` (the
-     progress / done tone) and `sage-200..900` text stops are left alone. */
-  --color-sage-50: #123c44;
-  --color-sage-100: #17454d;
-
-  /* Semantic layer (shadcn tokens) */
-  --background: var(--color-surface);
-  --foreground: var(--color-ink);
-  --card: var(--color-surface-raised);
-  --card-foreground: var(--color-ink);
-  --popover: var(--color-surface-raised);
-  --popover-foreground: var(--color-ink);
-
-  --primary: var(--color-petrol-400); /* #54acb6 — brand accent on dark */
-  --primary-foreground: #04232b;
-
-  --secondary: #12454e;
-  --secondary-foreground: #d3ece0;
-
-  --muted: #0d363d;
-  --muted-foreground: var(--color-ink-muted);
-
-  --accent: #12454e;
-  --accent-foreground: #d3ece0;
-
-  --destructive: var(--color-danger-400);
-  --destructive-foreground: #1b0f0c;
-
-  --border: var(--color-border);
-  --input: var(--color-border);
-  --input-background: #06181c; /* same hue/sat family as the new ground */
-  --switch-background: #2d4e43;
-  --ring: var(--color-petrol-400);
-
-  /* CTA stays the brand gradient, brightened, with dark ink on top so the
-     lighter teal still passes contrast. */
-  --cta: #2aa7b0;
-  --cta-hover: #38c5cd;
-  --cta-foreground: #04232b;
-  --cta-gradient: linear-gradient(118deg, #2aa7b0 0%, #38c5cd 100%);
-
-  --progress: var(--color-petrol-400);
-  --progress-track: #21525b;
-
-  /* Gradients */
-  --page-gradient: linear-gradient(
-    177deg,
-    #041215 0%,
-    #05171b 46%,
-    #030f11 100%
-  );
-  --footer-gradient: linear-gradient(
-    162deg,
-    #0c3a45 0%,
-    #12586c 55%,
-    #1a7684 100%
-  );
-  --footer-gradient-flip: linear-gradient(
-    18deg,
-    #0c3a45 0%,
-    #12586c 55%,
-    #1a7684 100%
-  );
-  --brand-band-gradient: linear-gradient(
-    135deg,
-    #0c3945 0%,
-    #114c5b 52%,
-    #0e5566 100%
-  );
-  --image-glow: radial-gradient(
-    60% 60% at 50% 45%,
-    rgba(42, 167, 176, 0.24) 0%,
-    rgba(84, 172, 182, 0.13) 45%,
-    transparent 78%
-  );
-
-  /* Glass — teal-tinted translucency instead of white */
-  --glass-bg: rgba(7, 29, 34, 0.55);
-  --glass-bg-strong: rgba(7, 29, 34, 0.8);
-  --glass-border: rgba(232, 244, 242, 0.14);
-  --glass-highlight: rgba(232, 244, 242, 0.06);
-
-  /* Shadows read as ambient depth on dark, not drop shadows */
-  --shadow-soft: 0 4px 20px -8px rgba(0, 0, 0, 0.5);
-  --shadow-float: 0 24px 55px -24px rgba(0, 0, 0, 0.62);
-  --shadow-glow: 0 0 50px -12px rgba(42, 167, 176, 0.32);
-
-  --sidebar: var(--color-surface-raised);
-  --sidebar-foreground: var(--color-ink);
-  --sidebar-primary: var(--color-petrol-400);
-  --sidebar-primary-foreground: #04232b;
-  --sidebar-accent: #12454e;
-  --sidebar-accent-foreground: #d3ece0;
-  --sidebar-border: var(--color-border);
-  --sidebar-ring: var(--color-petrol-400);
 }
 
 @theme inline {
@@ -519,10 +359,6 @@
     background: var(--color-sage-200);
     color: #0d2e33;
   }
-  :is(.dark *)::selection {
-    background: var(--color-petrol-700);
-    color: var(--color-ink);
-  }
 
   .brand-scrollbar::-webkit-scrollbar {
     height: 8px;
@@ -538,17 +374,6 @@
   }
   .brand-scrollbar::-webkit-scrollbar-thumb:hover {
     background: var(--color-ink-muted);
-  }
-
-  /* Dark appearance: take the edge off bright marketing photography so it
-     doesn't glare against the dark UI (the cut-out product shots on their
-     radial glow, plus the edge-masked hero / section photos). */
-  :is(.dark *) .image-glow img,
-  :is(.dark *) .hero-photo-mask,
-  :is(.dark *) .image-fade-b,
-  :is(.dark *) .image-fade-r,
-  :is(.dark *) .image-fade-rb {
-    filter: brightness(0.9) contrast(1.03);
   }
 }
 
@@ -592,8 +417,7 @@
       inset 0 1px 0 0 var(--glass-highlight);
   }
 
-  /* Soft radial "held" glow behind a floating product / hero image.
-     Value is a token so dark mode can strengthen it (see `--image-glow`). */
+  /* Soft radial "held" glow behind a floating product / hero image. */
   .image-glow {
     background: var(--image-glow);
   }

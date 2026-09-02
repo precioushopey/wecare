@@ -134,7 +134,7 @@ export function AssessmentEnginePage() {
       </div>
 
       <div
-        className="mt-4 h-1.5 overflow-hidden rounded-full bg-white/60 dark:bg-white/10"
+        className="mt-4 h-1.5 overflow-hidden rounded-full bg-white/60"
         role="progressbar"
         aria-valuemin={0}
         aria-valuemax={TOTAL_QUESTIONS}

@@ -9,7 +9,6 @@ import { useConsent } from "@/features/consent/useConsent";
 
 import { TrustBadges } from "./FooterIcons";
 import { LanguageToggle } from "./LanguageToggle";
-import { ThemeToggle } from "./ThemeToggle";
 
 const footerLink = "text-sm text-white/70 transition-colors hover:text-white";
 const heading =
@@ -148,18 +147,14 @@ export function SiteFooter({
           {t("footer.emergencyDisclaimer")}
         </p>
 
-        {/* Shipping · payment on the left; appearance + language toggles
-            grouped on the right. */}
+        {/* Shipping · payment on the left; the language toggle on the right. */}
         <div className="mt-10 flex flex-wrap items-center justify-between gap-x-10 gap-y-6 rounded-2xl border border-white/20 bg-white/[0.06] p-5 backdrop-blur-md">
           <TrustBadges
             shippingLabel={t("footer.shipping")}
             paymentLabel={t("footer.payment")}
             paymentMethods={t("footer.paymentMethods")}
           />
-          <div className="flex items-center gap-3">
-            <ThemeToggle />
-            <LanguageToggle />
-          </div>
+          <LanguageToggle />
         </div>
 
         {/* Bottom bar */}

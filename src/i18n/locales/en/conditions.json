@@ -6,12 +6,12 @@
     "matchedHeading": "What you might be matched with",
     "matchedNote": "You see your personal match after the assessment — not before.",
     "notSurePrompt": "Not sure this is your concern?",
-    "notSureCta": "Start the general assessment",
+    "notSureCta": "Start Free Assessment",
     "finalCtaHeading": "We care about how you're feeling. Start when you're ready."
   },
   "sleep": {
     "shortTitle": "Sleep",
-    "assessmentCta": "Start Sleep Assessment",
+    "assessmentCta": "Start Free Assessment",
     "hero": {
       "title": "Struggling to fall asleep or stay asleep?",
       "subtitle": "Answer a short assessment and discover a suitable evening support solution."
@@ -34,7 +34,7 @@
   },
   "pain": {
     "shortTitle": "Pain & body comfort",
-    "assessmentCta": "Start Pain Assessment",
+    "assessmentCta": "Start Free Assessment",
     "hero": {
       "title": "Living with daily pain or body discomfort?",
       "subtitle": "Complete a short assessment and get matched with a suitable body comfort solution."
@@ -57,7 +57,7 @@
   },
   "stressAnxiety": {
     "shortTitle": "Daily balance",
-    "assessmentCta": "Start Stress Assessment",
+    "assessmentCta": "Start Free Assessment",
     "hero": {
       "title": "Feeling stressed, tense or unable to relax?",
       "subtitle": "Answer a short assessment and find a suitable daily balance solution."
@@ -80,7 +80,7 @@
   },
   "migraine": {
     "shortTitle": "Head tension",
-    "assessmentCta": "Start Migraine Assessment",
+    "assessmentCta": "Start Free Assessment",
     "hero": {
       "title": "Recurring head tension or migraine-related discomfort?",
       "subtitle": "Start a short assessment and discover a suitable support path."
@@ -103,7 +103,7 @@
   },
   "generalWellness": {
     "shortTitle": "General wellbeing",
-    "assessmentCta": "Start the general assessment",
+    "assessmentCta": "Start Free Assessment",
     "hero": {
       "title": "Not sure what it's about?",
       "subtitle": "This assessment helps you place your concern."

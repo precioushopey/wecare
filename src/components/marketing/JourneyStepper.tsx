@@ -50,8 +50,7 @@ export function JourneyStepper({
                   "flex size-6 shrink-0 items-center justify-center rounded-full text-xs font-semibold",
                   done && "bg-sage-500 text-white",
                   active && "bg-primary text-primary-foreground",
-                  !done && !active &&
-                    "bg-white/60 text-ink-muted dark:bg-white/10",
+                  !done && !active && "bg-white/60 text-ink-muted",
                 )}
               >
                 {done ? <Check className="size-3.5" aria-hidden /> : i + 1}

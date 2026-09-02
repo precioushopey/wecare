@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
 
@@ -6,16 +7,30 @@ import { paths } from "@/app/paths";
 import { useConsent } from "@/features/consent/useConsent";
 
 /**
- * Prototype consent notice. Shown until the visitor makes a choice (or reopens
- * it from the footer). Gates non-essential analytics only — essential storage
- * always runs. A real deployment replaces this with a consent-management
- * platform (see DESIGN-SPECIFICATION.md).
+ * Prototype consent notice. Two categories the site actually has:
+ * **Essential** (locked on — language, cart, questionnaire progress, sign-in,
+ * this choice) and **Analytics** (optional — the PostHog EU measurement seam).
+ * "Accept all" / "Essential only" are one-click paths; the Analytics toggle +
+ * "Save choices" lets a visitor pick. Gates non-essential analytics only —
+ * essential storage always runs.
+ *
+ * A real deployment replaces this with a consent-management platform
+ * (Usercentrics — see CLAUDE.md / DESIGN-SPECIFICATION.md): that adds vendor
+ * scanning, consent logging/proof and pre-consent script blocking this
+ * prototype does not do.
  */
 export function ConsentBanner() {
-  const { t } = useTranslation();
-  const { needsChoice, acceptAll, essentialOnly } = useConsent();
-
+  const { needsChoice } = useConsent();
+  // Remount the body each time the banner (re)opens so the toggle re-seeds
+  // from the stored choice.
   if (!needsChoice) return null;
+  return <ConsentBannerBody />;
+}
+
+function ConsentBannerBody() {
+  const { t } = useTranslation();
+  const { analyticsAllowed, acceptAll, essentialOnly, setChoice } = useConsent();
+  const [analytics, setAnalytics] = useState(analyticsAllowed);
 
   return (
     <div
@@ -35,6 +50,48 @@ export function ConsentBanner() {
             {t("consent.policyLink")}
           </Link>
         </p>
+
+        <ul className="mt-4 space-y-2.5">
+          <li className="flex items-start gap-3 rounded-xl border border-border bg-surface-raised/60 p-3">
+            <input
+              type="checkbox"
+              checked
+              disabled
+              aria-label={t("consent.categories.essential.label")}
+              className="mt-0.5 size-4 shrink-0 accent-petrol-600"
+            />
+            <span className="min-w-0">
+              <span className="flex flex-wrap items-center gap-2 text-sm font-medium text-ink">
+                {t("consent.categories.essential.label")}
+                <span className="rounded-full bg-sage-100 px-2 py-0.5 text-[0.65rem] font-semibold uppercase tracking-wide text-petrol-700">
+                  {t("consent.alwaysOn")}
+                </span>
+              </span>
+              <span className="mt-0.5 block text-xs text-ink-muted">
+                {t("consent.categories.essential.desc")}
+              </span>
+            </span>
+          </li>
+          <li className="rounded-xl border border-border bg-surface-raised/60 p-3">
+            <label className="flex cursor-pointer items-start gap-3">
+              <input
+                type="checkbox"
+                checked={analytics}
+                onChange={(e) => setAnalytics(e.target.checked)}
+                className="mt-0.5 size-4 shrink-0 accent-petrol-600"
+              />
+              <span className="min-w-0">
+                <span className="block text-sm font-medium text-ink">
+                  {t("consent.categories.analytics.label")}
+                </span>
+                <span className="mt-0.5 block text-xs text-ink-muted">
+                  {t("consent.categories.analytics.desc")}
+                </span>
+              </span>
+            </label>
+          </li>
+        </ul>
+
         <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <Button
             type="button"
@@ -48,6 +105,15 @@ export function ConsentBanner() {
           <Button
             type="button"
             variant="outline"
+            size="sm"
+            onClick={() => setChoice(analytics ? "all" : "essential")}
+            className="w-full sm:w-auto"
+          >
+            {t("consent.save")}
+          </Button>
+          <Button
+            type="button"
+            variant="ghost"
             size="sm"
             onClick={essentialOnly}
             className="w-full sm:w-auto"

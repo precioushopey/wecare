@@ -29,7 +29,7 @@ export function DashboardTabBar() {
                 cn(
                   "flex h-14 flex-col items-center justify-center gap-1 rounded-full px-1 text-center transition-colors",
                   isActive
-                    ? "bg-white/80 text-petrol-700 shadow-[0_4px_14px_-8px_rgba(13,68,75,0.35)] dark:bg-white/[0.12] dark:text-petrol-100"
+                    ? "bg-white/80 text-petrol-700 shadow-[0_4px_14px_-8px_rgba(13,68,75,0.35)]"
                     : "text-ink-muted hover:text-ink",
                 )
               }

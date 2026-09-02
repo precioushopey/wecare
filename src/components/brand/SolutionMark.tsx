@@ -25,7 +25,7 @@ export function SolutionMark({
   return (
     <span
       className={cn(
-        "image-glow flex items-center justify-center rounded-2xl bg-gradient-to-br from-sage-100 to-petrol-50 text-petrol-700 ring-1 ring-white/60 dark:from-petrol-900/50 dark:to-petrol-800/30 dark:text-petrol-300 dark:ring-white/15",
+        "image-glow flex items-center justify-center rounded-2xl bg-gradient-to-br from-sage-100 to-petrol-50 text-petrol-700 ring-1 ring-white/60",
         className,
       )}
     >

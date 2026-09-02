@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router";
-import { ChevronRight, type LucideIcon } from "lucide-react";
+import { Check, ChevronRight, type LucideIcon } from "lucide-react";
 
 import { cn } from "@/app/components/ui/utils";
 import type { OrderStatus } from "@/features/orders/orders";
@@ -59,8 +59,8 @@ export function MedallionIcon({
       className={cn(
         "inline-flex size-11 shrink-0 items-center justify-center rounded-2xl",
         tone === "petrol"
-          ? "bg-petrol-50 text-petrol-700 dark:bg-petrol-900/50 dark:text-petrol-100"
-          : "bg-sage-100 text-sage-800 dark:bg-sage-800/40 dark:text-sage-200",
+          ? "bg-petrol-50 text-petrol-700"
+          : "bg-sage-100 text-sage-800",
         className,
       )}
     >
@@ -107,6 +107,176 @@ export function RowLink({
   );
 }
 
+/* ── Titled glass panel ────────────────────────────────────────────────── */
+
+/**
+ * A card with an uppercase eyebrow title and an optional "see all" link in the
+ * corner — the building block the Overview and detail pages compose their
+ * widgets from.
+ */
+export function SectionCard({
+  title,
+  action,
+  className,
+  children,
+}: {
+  title: string;
+  action?: { label: string; to: string };
+  className?: string;
+  children: ReactNode;
+}) {
+  return (
+    <section
+      className={cn(
+        "glass flex flex-col rounded-2xl md:rounded-3xl p-5",
+        className,
+      )}
+    >
+      <div className="mb-3 flex items-center justify-between gap-3">
+        <p className="text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-ink-muted">
+          {title}
+        </p>
+        {action ? (
+          <Link
+            to={action.to}
+            className="inline-flex shrink-0 items-center gap-1 text-xs font-medium text-petrol-700 underline-offset-4 hover:underline"
+          >
+            {action.label}
+            <ChevronRight className="size-3.5" aria-hidden strokeWidth={2} />
+          </Link>
+        ) : null}
+      </div>
+      {children}
+    </section>
+  );
+}
+
+/* ── Medical-journey stepper ───────────────────────────────────────────── */
+
+function StepDot({
+  done,
+  active,
+  index,
+}: {
+  done: boolean;
+  active: boolean;
+  index: number;
+}) {
+  return (
+    <span
+      className={cn(
+        "flex size-8 shrink-0 items-center justify-center rounded-full text-sm font-semibold",
+        done
+          ? "bg-petrol-600 text-white"
+          : active
+            ? "bg-white text-petrol-700 ring-2 ring-petrol-600"
+            : "bg-white/60 text-ink-muted",
+      )}
+    >
+      {done ? <Check className="size-4" aria-hidden /> : index + 1}
+    </span>
+  );
+}
+
+/**
+ * The four-stage patient journey — Assessment → Medical review → Prescription
+ * → Order & delivery — with the current stage lit. State is derived by the
+ * caller from real records (assessment completion · `review.status` · latest
+ * order), never fabricated.
+ */
+export function DashboardJourney({
+  steps,
+  current,
+  complete = false,
+  bare = false,
+  className,
+}: {
+  steps: string[];
+  /** index of the active step */
+  current: number;
+  /** whole journey finished */
+  complete?: boolean;
+  /** render just the stepper, no glass card wrapper (for nesting) */
+  bare?: boolean;
+  className?: string;
+}) {
+  return (
+    <nav
+      aria-label={steps.join(" · ")}
+      className={cn(!bare && "glass rounded-2xl md:rounded-3xl p-5", className)}
+    >
+      {/* Mobile — a compact vertical list. */}
+      <ol className="space-y-3 sm:hidden">
+        {steps.map((label, i) => {
+          const done = complete || i < current;
+          const active = !complete && i === current;
+          return (
+            <li key={label} className="flex items-center gap-3">
+              <StepDot done={done} active={active} index={i} />
+              <span
+                className={cn(
+                  "text-sm font-medium",
+                  active || done ? "text-ink" : "text-ink-muted",
+                )}
+              >
+                {label}
+              </span>
+            </li>
+          );
+        })}
+      </ol>
+
+      {/* Desktop — a horizontal track with connectors. */}
+      <ol className="hidden sm:flex sm:items-start">
+        {steps.map((label, i) => {
+          const done = complete || i < current;
+          const active = !complete && i === current;
+          return (
+            <li key={label} className="flex flex-1 flex-col items-center">
+              <div className="flex w-full items-center">
+                <span
+                  className={cn(
+                    "h-0.5 flex-1 rounded-full",
+                    i === 0
+                      ? "bg-transparent"
+                      : done || active
+                        ? "bg-petrol-500"
+                        : "bg-white/70",
+                  )}
+                />
+                <StepDot done={done} active={active} index={i} />
+                <span
+                  className={cn(
+                    "h-0.5 flex-1 rounded-full",
+                    i === steps.length - 1
+                      ? "bg-transparent"
+                      : done
+                        ? "bg-petrol-500"
+                        : "bg-white/70",
+                  )}
+                />
+              </div>
+              <span
+                aria-current={active ? "step" : undefined}
+                className={cn(
+                  "mt-2 text-center text-xs font-medium",
+                  active
+                    ? "text-petrol-700"
+                    : done
+                      ? "text-ink"
+                      : "text-ink-muted",
+                )}
+              >
+                {label}
+              </span>
+            </li>
+          );
+        })}
+      </ol>
+    </nav>
+  );
+}
+
 /* ── Labelled value tile ───────────────────────────────────────────────── */
 
 export function StatTile({
@@ -139,12 +309,10 @@ export function StatTile({
 type PillTone = "petrol" | "sage" | "neutral" | "danger";
 
 const PILL_TONE: Record<PillTone, string> = {
-  petrol:
-    "bg-petrol-50 text-petrol-700 dark:bg-petrol-900/60 dark:text-petrol-100",
-  sage: "bg-sage-100 text-sage-800 dark:bg-sage-800/40 dark:text-sage-200",
+  petrol: "bg-petrol-50 text-petrol-700",
+  sage: "bg-sage-100 text-sage-800",
   neutral: "bg-surface-raised text-ink-muted border border-border",
-  danger:
-    "bg-danger-50 text-danger-700 dark:bg-danger-500/15 dark:text-danger-200",
+  danger: "bg-danger-50 text-danger-700",
 };
 
 const ORDER_TONE: Record<OrderStatus, PillTone> = {

@@ -3,8 +3,8 @@
   "intro": "Keine Überraschungen. So läuft die Kostenseite ab, Schritt für Schritt.",
   "steps": {
     "assessment": {
-      "heading": "Das Assessment ist kostenlos",
-      "body": "Das Assessment auszufüllen und deine empfohlene Lösung zu sehen, kostet nichts. Du brauchst dafür weder ein Konto noch eine Zahlungsmethode."
+      "heading": "Der Fragebogen ist kostenlos",
+      "body": "Den Fragebogen auszufüllen und deine empfohlene Lösung zu sehen, kostet nichts. Du brauchst dafür weder ein Konto noch eine Zahlungsmethode."
     },
     "review": {
       "heading": "Die ärztliche Prüfung",
@@ -28,5 +28,5 @@
     "body": "Du kannst per Rechnung oder Überweisung bezahlen. Eine Zahlung wird erst fällig, nachdem eine Ärztin oder ein Arzt deine Verschreibung freigegeben hat."
   },
   "disclaimer": "Die genauen Gebühren hängen von der ärztlichen Prüfung ab und werden immer vorab angezeigt. Diese Seite erklärt den Ablauf, keinen festen Preis.",
-  "cta": "Zum kostenlosen Assessment"
+  "cta": "Zum kostenlosen Fragebogen"
 }

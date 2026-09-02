@@ -17,6 +17,28 @@
     "orders": "Orders",
     "profile": "Profile"
   },
+  "journey": {
+    "heading": "Your journey",
+    "steps": {
+      "assessment": "Assessment",
+      "review": "Medical review",
+      "prescription": "Prescription",
+      "delivery": "Order & delivery"
+    }
+  },
+  "delivery": {
+    "coverage": "Where we deliver",
+    "track": {
+      "heading": "Your delivery",
+      "steps": {
+        "ordered": "Ordered",
+        "preparing": "Preparing",
+        "onTheWay": "On the way",
+        "delivered": "Delivered"
+      },
+      "noVan": "Live courier tracking — the van's position and ETA — appears here once the delivery partner's tracking is connected."
+    }
+  },
   "assessment": {
     "title": "My assessment",
     "empty": "You haven't completed an assessment yet.",
@@ -25,6 +47,9 @@
     "problem": "Concern",
     "frequency": "Frequency",
     "strength": "Strength",
+    "tried": "Tried before",
+    "experience": "CBD experience",
+    "formatPref": "Preferred format",
     "retake": "Retake",
     "reviewNote": "submitted for medical review"
   },
@@ -46,6 +71,13 @@
     "orderLabel": "Order {{id}}",
     "placedOn": "Placed on {{date}}",
     "status": "Status",
+    "col": {
+      "id": "Order",
+      "date": "Date",
+      "items": "Items",
+      "total": "Total",
+      "status": "Status"
+    },
     "statuses": {
       "processing": "Processing",
       "inReview": "In medical review",
@@ -106,8 +138,6 @@
     "saved": "Your details are saved.",
     "signOut": "Sign out",
     "detailsLabel": "Details",
-    "appearance": "Appearance",
-    "theme": "Theme",
     "more": "More",
     "exploreSite": "Explore WeCare"
   },
@@ -145,6 +175,10 @@
     "followUpDone": "Thanks — your check-in is recorded.",
     "followUpCta": "Open follow-up",
     "viewRecommendation": "View recommendation",
+    "recommendationHeading": "Your recommendation",
+    "recommendationPrice": "Indicative price",
+    "supportHeading": "Need a hand?",
+    "goodToKnowHeading": "Good to know",
     "viewOrders": "View orders",
     "supportCta": "Contact support",
     "empty": "Complete the assessment to set up your area.",

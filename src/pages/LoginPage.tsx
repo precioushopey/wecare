@@ -45,7 +45,7 @@ export function LoginPage() {
             alt=""
             width={713}
             height={972}
-            className="image-fade-b block h-auto max-h-[34rem] w-auto max-w-full object-contain drop-shadow-[0_40px_64px_-32px_rgba(13,68,75,0.45)] dark:brightness-90 dark:contrast-[1.03]"
+            className="image-fade-b block h-auto max-h-[34rem] w-auto max-w-full object-contain drop-shadow-[0_40px_64px_-32px_rgba(13,68,75,0.45)]"
           />
         </div>
       </div>
@@ -55,11 +55,11 @@ export function LoginPage() {
         <p className="mt-3 text-ink-muted">{t("auth.signInIntro")}</p>
 
         {state?.reason === "checkout" ? (
-          <p className="mt-4 rounded-xl bg-sage-50 p-4 text-sm text-petrol-700 dark:bg-petrol-900/50">
+          <p className="mt-4 rounded-xl bg-sage-50 p-4 text-sm text-petrol-700">
             {t("auth.checkoutNote")}
           </p>
         ) : state?.from ? (
-          <p className="mt-4 rounded-xl bg-sage-50 p-4 text-sm text-petrol-700 dark:bg-petrol-900/50">
+          <p className="mt-4 rounded-xl bg-sage-50 p-4 text-sm text-petrol-700">
             {t("auth.requiredNote")}
           </p>
         ) : null}

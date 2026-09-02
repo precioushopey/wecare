@@ -1,11 +1,11 @@
 {
   "index": {
     "title": "Unsere Lösungen",
-    "intro": "Fünf abgestimmte Lösungen für Schlaf, Schmerzen, Stress und Migräne. Welche zu dir passt, ergibt sich aus dem Assessment.",
-    "startAssessment": "Assessment starten",
+    "intro": "Fünf abgestimmte Lösungen für Schlaf, Schmerzen, Stress und Migräne. Welche zu dir passt, ergibt sich aus dem Fragebogen.",
+    "startAssessment": "Fragebogen starten",
     "resultCount": "{{count}} Lösungen",
-    "guideTitle": "Der beste Weg zu deiner Lösung ist das Assessment",
-    "guideBody": "Diese Übersicht zeigt alle Lösungen als Referenz. Deine persönliche Empfehlung – und die Belieferung – ergeben sich aus dem Assessment und der ärztlichen Prüfung.",
+    "guideTitle": "Der beste Weg zu deiner Lösung ist der Fragebogen",
+    "guideBody": "Diese Übersicht zeigt alle Lösungen als Referenz. Deine persönliche Empfehlung – und die Belieferung – ergeben sich aus dem Fragebogen und der ärztlichen Prüfung.",
     "fullRange": "Alle Lösungen"
   },
   "card": {
@@ -47,8 +47,8 @@
     "coaPlaceholder": "Jeder Lieferung liegt ein eigenes chargenspezifisches Analysezertifikat bei. Echte Laborwerte erscheinen hier, sobald die Apotheke sie bereitstellt.",
     "coaIntro": "Laborwerte einer repräsentativen Charge. Jede Lieferung enthält ein chargenspezifisches Zertifikat.",
     "notSureTitle": "Nicht sicher, ob das zu dir passt?",
-    "notSureBody": "Das Assessment führt dich in wenigen Minuten zur passenden Empfehlung.",
-    "notSureCta": "Assessment starten",
+    "notSureBody": "Der Fragebogen führt dich in wenigen Minuten zur passenden Empfehlung.",
+    "notSureCta": "Fragebogen starten",
     "formatHeading": "Produktform",
     "formatValue": "Erhältlich als Öl oder getrocknete Blüte. Öl ist die übliche Einstiegsform; die passende Form bestätigt die verschreibende Ärztin oder der Arzt.",
     "ingredientsHeading": "Wichtigste Inhaltsstoffe",

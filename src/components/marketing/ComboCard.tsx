@@ -75,7 +75,7 @@ export function ComboCard({
           return (
             <div
               key={id}
-              className="flex gap-3.5 rounded-2xl border border-white/50 bg-white/45 p-4 dark:border-white/20 dark:bg-white/[0.05]"
+              className="flex gap-3.5 rounded-2xl border border-white/50 bg-white/45 p-4"
             >
               <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl text-white shadow-[0_8px_20px_-10px_rgba(42,167,176,0.55)] [background-image:var(--cta-gradient)]">
                 <Sparkles className="size-4" strokeWidth={1.75} aria-hidden />

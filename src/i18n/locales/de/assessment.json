@@ -5,13 +5,13 @@
     "checkbox": "Ich bestätige, dass ich 18 Jahre oder älter bin.",
     "dobLabel": "Geburtsdatum",
     "dobNote": "Wird nur verwendet, um dein Alter zu bestätigen – bleibt auf diesem Gerät und wird nicht mit deinem Namen verknüpft.",
-    "dobTooYoung": "Das eingegebene Geburtsdatum zeigt, dass du unter 18 bist. Das Assessment und die ärztliche Prüfung von WeCare stehen nur Erwachsenen zur Verfügung.",
-    "continue": "Weiter zum Assessment",
+    "dobTooYoung": "Das eingegebene Geburtsdatum zeigt, dass du unter 18 bist. Der Fragebogen und die ärztliche Prüfung von WeCare stehen nur Erwachsenen zur Verfügung.",
+    "continue": "Weiter zum Fragebogen",
     "under": "Wenn du unter 18 bist, sprich bitte mit einem Elternteil, einer erziehungsberechtigten Person oder deiner Ärztin bzw. deinem Arzt.",
     "back": "Zur Startseite"
   },
   "start": {
-    "title": "Dein Assessment",
+    "title": "Dein Fragebogen",
     "intro": "Sechs kurze Fragen dazu, wie es dir geht – etwa 60 bis 90 Sekunden. Das ist kein medizinisches Formular.",
     "prefilledNote": "Vorausgewählt: {{condition}}",
     "progress": "Frage {{current}} von {{total}}",
@@ -112,7 +112,7 @@
     "disclaimer": "Diese Empfehlung basiert auf deinen Antworten und Wellness-Präferenzen. Sie ersetzt keine ärztliche Beratung.",
     "viewSolution": "Empfohlene Lösung ansehen",
     "changeAnswers": "Meine Antworten ändern",
-    "reviewRequiredNote": "Medizinisches Cannabis ist rezeptpflichtig. Dein Assessment wird von einer Ärztin oder einem Arzt geprüft; ein Rezept wird nur ausgestellt, wenn es medizinisch sinnvoll ist.",
+    "reviewRequiredNote": "Medizinisches Cannabis ist rezeptpflichtig. Dein Fragebogen wird von einer Ärztin oder einem Arzt geprüft; ein Rezept wird nur ausgestellt, wenn es medizinisch sinnvoll ist.",
     "explanations": {
       "sleep": "Auf Basis deiner Schlaf-Antworten starten wir mit einer Abend-Unterstützung, die eher beruhigend wirkt. Eine stärkere Option ist verfügbar, falls du mehr brauchst.",
       "pain": "Auf Basis deiner Antworten starten wir mit einer Körper-Komfort-Lösung für die tägliche Unterstützung. Eine stärkere Option ist als fortgeschrittener Schritt verfügbar.",
@@ -124,7 +124,7 @@
     "next": {
       "view": {
         "title": "Zur Prüfung einreichen",
-        "body": "Sende dein Assessment an eine Ärztin oder einen Arzt. Das ist kostenlos und es wird noch nichts bestellt."
+        "body": "Sende deinen Fragebogen an eine Ärztin oder einen Arzt. Das ist kostenlos und es wird noch nichts bestellt."
       },
       "review": {
         "title": "Ärztliche Prüfung",
@@ -141,7 +141,7 @@
     "altStrongerHint": "In der Regel eine stärkere Option, für später.",
     "frequencyNote": "Du hast angegeben, dass dich das {{frequency}} betrifft – das wird für deine ärztliche Prüfung vermerkt.",
     "formatPreferenceNote": "Du hast angegeben, dass du {{format}} bevorzugst. Die passende Form bestätigt deine Ärztin oder dein Arzt – für die meisten am Anfang ist das ein Öl.",
-    "submitReviewCta": "Mein Assessment zur ärztlichen Prüfung einreichen",
+    "submitReviewCta": "Meinen Fragebogen zur ärztlichen Prüfung einreichen",
     "viewReviewCta": "Status deiner Prüfung ansehen",
     "orViewSolution": "Oder sieh dir die empfohlene Lösung an, während du wartest"
   },
@@ -156,7 +156,7 @@
     "toSupport": "Support kontaktieren",
     "stepsHeading": "So läuft die Prüfung ab",
     "steps": {
-      "a": "Dein Assessment wird an eine lizenzierte medizinische Fachperson gesendet.",
+      "a": "Dein Fragebogen wird an eine lizenzierte medizinische Fachperson gesendet.",
       "b": "Die Ärztin oder der Arzt prüft es und fragt bei Bedarf weitere Informationen nach.",
       "c": "Über das Ergebnis wirst du per E-Mail informiert.",
       "d": "Bei Freigabe bereitet eine zugelassene Apotheke deine Bestellung vor und versendet sie."
@@ -164,12 +164,12 @@
     "statuses": {
       "submitted": {
         "label": "Eingereicht",
-        "title": "Assessment eingereicht",
-        "body": "Dein Assessment wurde zur ärztlichen Prüfung gesendet."
+        "title": "Fragebogen eingereicht",
+        "body": "Dein Fragebogen wurde zur ärztlichen Prüfung gesendet."
       },
       "inReview": {
         "label": "In ärztlicher Prüfung",
-        "title": "Eine Ärztin oder ein Arzt prüft dein Assessment",
+        "title": "Eine Ärztin oder ein Arzt prüft deinen Fragebogen",
         "body": "Eine lizenzierte medizinische Fachperson prüft deine Antworten."
       },
       "infoRequired": {

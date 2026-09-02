@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, Navigate, useNavigate, useParams } from "react-router";
 import { useTranslation } from "react-i18next";
-import { ArrowLeft, Check, ShieldCheck } from "lucide-react";
+import { ArrowLeft, ShieldCheck } from "lucide-react";
 
 import {
   Accordion,
@@ -82,7 +82,7 @@ function DispensingOption({
   ];
 
   return (
-    <li className="rounded-2xl border border-white/50 bg-white/40 p-3 dark:border-white/20 dark:bg-white/[0.04]">
+    <li className="rounded-2xl border border-white/50 bg-white/40 p-3">
       <div className="flex items-start gap-3">
         <ImageWithFallback
           src={getProductImage(strain)}
@@ -163,7 +163,6 @@ export function ProductPage() {
   usePageTitle(solution?.name);
 
   const [grams, setGrams] = useState(10);
-  const [added, setAdded] = useState(false);
 
   const viewedId = solution?.id;
   useEffect(() => {
@@ -208,12 +207,15 @@ export function ProductPage() {
 
   const onAdd = () => {
     add(solution.id, grams);
-    setAdded(true);
     track(AnalyticsEvent.addToCart, {
       solution: solution.id,
       grams,
       value: solution.priceEur * grams,
     });
+    // Single CTA now — adding takes you straight to the cart summary
+    // (owner request, Sept 2026 — the separate "check availability" button
+    // was removed as redundant).
+    navigate(paths.cart);
   };
 
   return (
@@ -241,7 +243,7 @@ export function ProductPage() {
             <span className="rounded-full bg-sage-100 px-3 py-1 text-xs font-medium text-petrol-700">
               {t(`solutions.${solution.id}.category`)}
             </span>
-            <span className="rounded-full bg-petrol-50 px-3 py-1 text-xs font-medium text-petrol-700 dark:bg-petrol-900/60">
+            <span className="rounded-full bg-petrol-50 px-3 py-1 text-xs font-medium text-petrol-700">
               {t("solution.prescriptionBadge")}
             </span>
           </div>
@@ -306,25 +308,11 @@ export function ProductPage() {
               onClick={onAdd}
               className="w-full sm:w-auto"
             >
-              {added ? <Check className="size-4" aria-hidden /> : null}
               {t("solution.addToCart")}
             </Button>
-            {/* "Check availability" + its hint stay on one row — full-width
-                pair below `sm`, natural width from `sm` up. */}
-            <div className="flex items-center gap-2">
-              <Button
-                type="button"
-                variant="outline"
-                size="lg"
-                onClick={() => navigate(paths.cart)}
-                className="flex-1 sm:w-auto sm:flex-none"
-              >
-                {t("solution.checkAvailability")}
-              </Button>
-              <InfoHint align="right">
-                {t("solution.afterApprovalNote")}
-              </InfoHint>
-            </div>
+            <InfoHint align="right">
+              {t("solution.afterApprovalNote")}
+            </InfoHint>
           </div>
         </div>
       </div>
@@ -383,7 +371,7 @@ export function ProductPage() {
                 {formulationRows.map(({ label, value }) => (
                   <div
                     key={label}
-                    className="rounded-2xl border border-white/50 bg-white/40 p-3 dark:border-white/20 dark:bg-white/[0.04]"
+                    className="rounded-2xl border border-white/50 bg-white/40 p-3"
                   >
                     <dt className="text-xs uppercase tracking-wide text-ink-muted">
                       {label}
@@ -487,7 +475,7 @@ export function ProductPage() {
               {coaValues.map(({ key, value }) => (
                 <div
                   key={key}
-                  className="rounded-2xl border border-white/50 bg-white/40 p-3 dark:border-white/20 dark:bg-white/[0.04]"
+                  className="rounded-2xl border border-white/50 bg-white/40 p-3"
                 >
                   <dt className="text-xs uppercase tracking-wide text-ink-muted">
                     {t(`coaLabels.${key}`)}

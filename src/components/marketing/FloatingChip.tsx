@@ -24,7 +24,7 @@ export function FloatingChip({
         "inline-flex items-center gap-2 rounded-full px-3.5 py-2 text-sm font-medium backdrop-blur-md",
         "shadow-[0_12px_32px_-14px_rgba(13,68,75,0.4)]",
         tone === "light"
-          ? "bg-white/70 text-ink ring-1 ring-white/70 dark:bg-petrol-900/70 dark:ring-white/12"
+          ? "bg-white/70 text-ink ring-1 ring-white/70"
           : "bg-white/10 text-white ring-1 ring-white/25",
         className,
       )}

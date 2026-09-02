@@ -37,7 +37,7 @@ export function CartPage() {
       <JourneyStepper current="product" className="mb-8" />
       <h1>{t("cart.title")}</h1>
 
-      <ul className="mt-8 divide-y divide-white/40 rounded-2xl md:rounded-3xl glass-strong dark:divide-white/20">
+      <ul className="mt-8 divide-y divide-white/40 rounded-2xl md:rounded-3xl glass-strong">
         {items.map((item) => {
           const s = SOLUTION_BY_ID[item.productId];
           const step = 5;

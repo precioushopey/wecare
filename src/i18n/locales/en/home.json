@@ -31,22 +31,22 @@
       "sleep": {
         "title": "Sleep Problems",
         "description": "Difficulty falling asleep, waking up at night or poor sleep quality.",
-        "cta": "Start Sleep Assessment"
+        "cta": "Start Free Assessment"
       },
       "pain": {
         "title": "Pain",
         "description": "Persistent pain or physical discomfort that shapes your day.",
-        "cta": "Start Pain Assessment"
+        "cta": "Start Free Assessment"
       },
       "stressAnxiety": {
         "title": "Stress & Anxiety",
         "description": "Restlessness, racing thoughts or constant inner tension.",
-        "cta": "Start Stress Assessment"
+        "cta": "Start Free Assessment"
       },
       "migraine": {
         "title": "Migraine",
         "description": "Recurring migraine attacks or frequent tension headaches.",
-        "cta": "Start Migraine Assessment"
+        "cta": "Start Free Assessment"
       }
     }
   },

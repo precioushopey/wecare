@@ -14,13 +14,13 @@
     "costs": "Kosten",
     "login": "Anmelden",
     "myArea": "Mein Bereich",
-    "startAssessment": "Assessment starten",
+    "startAssessment": "Fragebogen starten",
     "primary": "Hauptnavigation",
     "openMenu": "Menü öffnen",
     "closeMenu": "Menü schließen"
   },
   "cta": {
-    "startFreeAssessment": "Kostenloses Assessment starten",
+    "startFreeAssessment": "Kostenlosen Fragebogen starten",
     "howItWorks": "So funktioniert's",
     "showRecommendation": "Meine empfohlene Lösung anzeigen",
     "viewRecommendedSolution": "Empfohlene Lösung ansehen",
@@ -39,21 +39,27 @@
     },
     "switchTo": "Zu {{language}} wechseln"
   },
-  "theme": {
-    "label": "Darstellung",
-    "light": "Hell",
-    "dark": "Dunkel",
-    "switchTo": "Darstellung {{theme}} verwenden"
-  },
   "a11y": {
     "skipToContent": "Zum Hauptinhalt springen",
     "moreInfo": "Mehr Informationen"
   },
   "consent": {
     "title": "Cookies & Datenschutz",
-    "body": "WeCare nutzt notwendige Speicherung, um die Seite zu betreiben. Mit deiner Einwilligung messen wir außerdem, wie Assessment und Kasse genutzt werden, um sie zu verbessern. Es werden keine Daten verkauft.",
+    "body": "WeCare nutzt notwendige Speicherung, um die Seite zu betreiben. Mit deiner Einwilligung messen wir außerdem, wie der Fragebogen und die Kasse genutzt werden, um sie zu verbessern. Es werden keine Daten verkauft.",
+    "alwaysOn": "Immer aktiv",
+    "categories": {
+      "essential": {
+        "label": "Notwendig",
+        "desc": "Für den Betrieb der Seite erforderlich – Sprache, Warenkorb, Fortschritt im Fragebogen, Anmeldung und diese Auswahl. Kann nicht deaktiviert werden."
+      },
+      "analytics": {
+        "label": "Analyse",
+        "desc": "Anonyme Nutzungsmessung, damit wir sehen, wo sich der geführte Ablauf verbessern lässt. Keine Gesundheitsdaten, Namen oder Kontaktdaten."
+      }
+    },
     "acceptAll": "Alle akzeptieren",
     "essentialOnly": "Nur notwendige",
+    "save": "Auswahl speichern",
     "manage": "Cookie-Einstellungen",
     "policyLink": "Cookie-Richtlinie",
     "saved": "Auswahl gespeichert. Du kannst sie jederzeit über die Cookie-Einstellungen im Footer ändern."
@@ -112,7 +118,7 @@
       },
       "generalWellness": {
         "title": "Allgemeines Wohlbefinden",
-        "description": "Nicht sicher, worum es genau geht? Dieses Assessment hilft dir, dein Anliegen einzuordnen."
+        "description": "Nicht sicher, worum es genau geht? Dieser Fragebogen hilft dir, dein Anliegen einzuordnen."
       }
     },
     "howItWorks": {
@@ -121,14 +127,14 @@
     },
     "faq": {
       "title": "Häufige Fragen",
-      "description": "Antworten zu Assessment, ärztlicher Prüfung, Rezept und Lieferung."
+      "description": "Antworten zum Fragebogen, zur ärztlichen Prüfung, zu Rezept und Lieferung."
     },
     "costs": {
       "title": "Was dich erwartet – und was es kostet",
-      "description": "Wie die Kostenseite funktioniert: Das Assessment ist kostenlos, eine mögliche Prüfgebühr wird vorab bestätigt, und die Lösung zahlst du erst, wenn ein Rezept ausgestellt ist."
+      "description": "Wie die Kostenseite funktioniert: Der Fragebogen ist kostenlos, eine mögliche Prüfgebühr wird vorab bestätigt, und die Lösung zahlst du erst, wenn ein Rezept ausgestellt ist."
     },
     "assessmentStart": {
-      "title": "Dein Assessment",
+      "title": "Dein Fragebogen",
       "description": "Sechs kurze Fragen zu deinem Anliegen. Am Ende erhältst du deine empfohlene Lösung."
     },
     "result": {
@@ -145,16 +151,16 @@
     },
     "dashboard": {
       "title": "Mein Bereich",
-      "description": "Assessment, Empfehlung, Bestellungen, Nachsorge, Support und Profil."
+      "description": "Fragebogen, Empfehlung, Bestellungen, Nachsorge, Support und Profil."
     },
     "login": {
       "title": "Anmelden",
-      "description": "Melde dich an, um dein Assessment, deine Empfehlung und deine Bestellungen zu sehen."
+      "description": "Melde dich an, um deinen Fragebogen, deine Empfehlung und deine Bestellungen zu sehen."
     },
     "contact": {
       "title": "Kontakt",
       "description": "So erreichst du unser Team.",
-      "intro": "Fragen zum Assessment, zur ärztlichen Prüfung, zu einer Bestellung oder Lieferung – unser Team hilft dir weiter.",
+      "intro": "Fragen zum Fragebogen, zur ärztlichen Prüfung, zu einer Bestellung oder Lieferung – unser Team hilft dir weiter.",
       "emailHeading": "Schreib uns",
       "emailNote": "Wir antworten innerhalb eines Werktags.",
       "hoursHeading": "Support-Zeiten",
@@ -209,7 +215,7 @@
     "stepOf": "Schritt {{current}} von {{total}}",
     "steps": {
       "problem": "Anliegen",
-      "assessment": "Assessment",
+      "assessment": "Fragebogen",
       "solution": "Empfehlung",
       "product": "Produkt",
       "followUp": "Nachsorge"

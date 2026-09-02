@@ -20,11 +20,10 @@ export function RootLayout() {
   // rounded top edge, so the footer's own rounding is squared off there.
   const { pathname } = useLocation();
   const isHome = pathname === paths.home;
-  // The signed-in area is a mobile-first "app" surface (owner request,
-  // Sept 2026): no marketing footer at all, and on mobile the site header
-  // gives way to the dashboard's own app-bar + bottom tab bar. The site
-  // header stays on desktop so the brand nav / "start assessment" remain
-  // one click away.
+  // The signed-in area is a self-contained "app" surface (owner request,
+  // Sept 2026): no marketing footer and no marketing header at all — the
+  // dashboard supplies its own chrome (a left sidebar on desktop, an app-bar
+  // + floating bottom tab bar on mobile).
   const isDashboard =
     pathname === paths.dashboard || pathname.startsWith(`${paths.dashboard}/`);
 
@@ -38,7 +37,7 @@ export function RootLayout() {
       </a>
       <GradientBackdrop />
       <div className="flex min-h-screen flex-col">
-        <SiteHeader hideOnMobile={isDashboard} />
+        {!isDashboard && <SiteHeader />}
         <main id="main-content" className="flex-1">
           <PageReveal>
             <Outlet />

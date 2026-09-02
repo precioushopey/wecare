@@ -2,11 +2,11 @@
  * Lightweight cookie / storage consent. A prototype stand-in for a real
  * consent-management platform (see DESIGN-SPECIFICATION.md open questions):
  * it records a single choice and gates non-essential measurement (analytics)
- * behind it. Essential storage — language, theme, cart, assessment progress,
- * auth session — always runs because the site cannot function without it.
+ * behind it. Essential storage — language, cart, assessment progress, auth
+ * session — always runs because the site cannot function without it.
  *
  * Backed by a module-level `useSyncExternalStore` store, mirroring the
- * `useTheme` / `useLanguage` shape. No provider needed.
+ * `useLanguage` shape. No provider needed.
  */
 
 export type ConsentChoice = "unset" | "essential" | "all";

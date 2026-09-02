@@ -33,11 +33,11 @@ function SolutionCard({ s }: { s: Solution }) {
         <span className="w-fit rounded-full bg-sage-100 px-2.5 py-0.5 text-xs font-medium text-petrol-700">
           {t(`solutions.${s.id}.category`)}
         </span>
-        <span className="w-fit rounded-full bg-petrol-50 px-2.5 py-0.5 text-xs font-medium text-petrol-700 dark:bg-petrol-900/60">
+        <span className="w-fit rounded-full bg-petrol-50 px-2.5 py-0.5 text-xs font-medium text-petrol-700">
           {t("solution.prescriptionBadge")}
         </span>
         {COA_CONFIRMED ? (
-          <span className="w-fit rounded-full bg-white/70 px-2.5 py-0.5 text-xs font-medium text-petrol-700 dark:bg-white/10">
+          <span className="w-fit rounded-full bg-white/70 px-2.5 py-0.5 text-xs font-medium text-petrol-700">
             {t("solution.labTestedBadge")}
           </span>
         ) : null}

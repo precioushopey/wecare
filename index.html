@@ -6,19 +6,9 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
-    <meta name="color-scheme" content="light dark" />
+    <meta name="color-scheme" content="light" />
     <title>WeCare</title>
 
-    <!-- Apply the stored appearance before first paint (no light flash).
-         Kept in sync by src/theme/ at runtime. Light is the default. -->
-    <script>
-      try {
-        if (localStorage.getItem("wecare.theme") === "dark") {
-          document.documentElement.classList.add("dark");
-          document.documentElement.style.colorScheme = "dark";
-        }
-      } catch (e) {}
-    </script>
     <meta
       name="description"
       content="WeCare — finde die richtige Unterstützung bei Schlafproblemen, Schmerzen, Stress und Migräne. Ärztlich geführt, in Österreich verfügbar."

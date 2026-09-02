@@ -4,19 +4,19 @@
     "situationsHeading": "Häufige Situationen",
     "howWeHelpHeading": "So hilft WeCare",
     "matchedHeading": "Womit du gematcht werden könntest",
-    "matchedNote": "Dein persönliches Match siehst du nach dem Assessment – nicht vorher.",
+    "matchedNote": "Dein persönliches Match siehst du nach dem Fragebogen – nicht vorher.",
     "notSurePrompt": "Nicht sicher, ob das dein Anliegen ist?",
-    "notSureCta": "Allgemeines Assessment starten",
+    "notSureCta": "Jetzt unverbl. Fragebogen starten",
     "finalCtaHeading": "Uns ist wichtig, wie es dir geht. Starte, wenn du bereit bist."
   },
   "sleep": {
     "shortTitle": "Schlaf",
-    "assessmentCta": "Schlaf-Assessment starten",
+    "assessmentCta": "Jetzt unverbl. Fragebogen starten",
     "hero": {
       "title": "Schwierigkeiten beim Ein- oder Durchschlafen?",
-      "subtitle": "Beantworte ein kurzes Assessment und entdecke eine passende Abend-Unterstützung."
+      "subtitle": "Beantworte einen kurzen Fragebogen und entdecke eine passende Abend-Unterstützung."
     },
-    "explanation": "Viele Menschen kennen schlechte Schlafqualität, Schwierigkeiten beim Abschalten am Abend oder müdes Aufwachen. Ein kurzes Assessment ordnet ein, wie oft und wie stark dich das betrifft.",
+    "explanation": "Viele Menschen kennen schlechte Schlafqualität, Schwierigkeiten beim Abschalten am Abend oder müdes Aufwachen. Ein kurzer Fragebogen ordnet ein, wie oft und wie stark dich das betrifft.",
     "situations": {
       "a": "Schwer einschlafen",
       "b": "Nachts aufwachen",
@@ -26,7 +26,7 @@
       "f": "Kreisende Gedanken vor dem Einschlafen"
     },
     "helpSteps": {
-      "a": "Du beantwortest ein kurzes Assessment",
+      "a": "Du beantwortest einen kurzen Fragebogen",
       "b": "Wir verstehen deine schlafbezogenen Bedürfnisse",
       "c": "Wir matchen dich mit einer passenden Lösung",
       "d": "Du kannst weiter zu Produkt oder Support"
@@ -34,12 +34,12 @@
   },
   "pain": {
     "shortTitle": "Schmerzen & Körperkomfort",
-    "assessmentCta": "Schmerz-Assessment starten",
+    "assessmentCta": "Jetzt unverbl. Fragebogen starten",
     "hero": {
       "title": "Lebst du mit täglichen Schmerzen oder Körperbeschwerden?",
-      "subtitle": "Mach ein kurzes Assessment und finde eine passende Körper-Komfort-Lösung."
+      "subtitle": "Fülle einen kurzen Fragebogen aus und finde eine passende Körper-Komfort-Lösung."
     },
-    "explanation": "Körperbeschwerden können Bewegung, Alltag, Arbeit und Erholung beeinflussen. Ein kurzes Assessment hilft, Stärke und Häufigkeit einzuordnen.",
+    "explanation": "Körperbeschwerden können Bewegung, Alltag, Arbeit und Erholung beeinflussen. Ein kurzer Fragebogen hilft, Stärke und Häufigkeit einzuordnen.",
     "situations": {
       "a": "Körperbeschwerden",
       "b": "Muskelverspannung",
@@ -57,12 +57,12 @@
   },
   "stressAnxiety": {
     "shortTitle": "Alltags-Balance",
-    "assessmentCta": "Stress-Assessment starten",
+    "assessmentCta": "Jetzt unverbl. Fragebogen starten",
     "hero": {
       "title": "Gestresst, angespannt oder unfähig abzuschalten?",
-      "subtitle": "Beantworte ein kurzes Assessment und finde eine passende Alltags-Balance-Lösung."
+      "subtitle": "Beantworte einen kurzen Fragebogen und finde eine passende Alltags-Balance-Lösung."
     },
-    "explanation": "Stress und angstbezogene Gefühle können Konzentration, Schlaf, Stimmung und Alltag beeinflussen. Ein kurzes Assessment ordnet ein, wie sich das bei dir zeigt.",
+    "explanation": "Stress und angstbezogene Gefühle können Konzentration, Schlaf, Stimmung und Alltag beeinflussen. Ein kurzer Fragebogen ordnet ein, wie sich das bei dir zeigt.",
     "situations": {
       "a": "Täglicher Druck",
       "b": "Innere Unruhe",
@@ -80,12 +80,12 @@
   },
   "migraine": {
     "shortTitle": "Kopfspannung",
-    "assessmentCta": "Migräne-Assessment starten",
+    "assessmentCta": "Jetzt unverbl. Fragebogen starten",
     "hero": {
       "title": "Wiederkehrende Kopfspannung oder migränebedingte Beschwerden?",
-      "subtitle": "Starte ein kurzes Assessment und entdecke einen passenden Unterstützungsweg."
+      "subtitle": "Starte einen kurzen Fragebogen und entdecke einen passenden Unterstützungsweg."
     },
-    "explanation": "Wiederkehrende Kopfspannung kann Konzentration, Schlaf, Arbeit und Alltag beeinflussen. Ein kurzes Assessment hilft, Häufigkeit und Stärke einzuordnen.",
+    "explanation": "Wiederkehrende Kopfspannung kann Konzentration, Schlaf, Arbeit und Alltag beeinflussen. Ein kurzer Fragebogen hilft, Häufigkeit und Stärke einzuordnen.",
     "situations": {
       "a": "Kopfspannung",
       "b": "Wiederkehrender Druck",
@@ -103,19 +103,19 @@
   },
   "generalWellness": {
     "shortTitle": "Allgemeines Wohlbefinden",
-    "assessmentCta": "Allgemeines Assessment starten",
+    "assessmentCta": "Jetzt unverbl. Fragebogen starten",
     "hero": {
       "title": "Nicht sicher, worum es geht?",
-      "subtitle": "Dieses Assessment hilft dir, dein Anliegen einzuordnen."
+      "subtitle": "Dieser Fragebogen hilft dir, dein Anliegen einzuordnen."
     },
-    "explanation": "Wenn dein Anliegen nicht klar zu einem Thema passt, führt dich dieses Assessment durch dieselben Fragen und ordnet deine Antworten ein.",
+    "explanation": "Wenn dein Anliegen nicht klar zu einem Thema passt, führt dich dieser Fragebogen durch dieselben Fragen und ordnet deine Antworten ein.",
     "situations": {
       "a": "Mehrere Themen treffen gleichzeitig zu",
       "b": "Du weißt nicht, wo du anfangen sollst",
       "c": "Du möchtest dich orientieren, bevor du dich festlegst"
     },
     "helpSteps": {
-      "a": "Du beantwortest ein kurzes Assessment",
+      "a": "Du beantwortest einen kurzen Fragebogen",
       "b": "Wir ordnen deine Antworten den vier Problembereichen zu",
       "c": "Wir matchen dich mit einer passenden Lösung",
       "d": "Du kannst weiter zu Produkt oder Support"

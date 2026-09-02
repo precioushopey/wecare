@@ -3,7 +3,7 @@
   "tabsAria": "Navigation Mein Bereich",
   "nav": {
     "home": "Übersicht",
-    "assessment": "Mein Assessment",
+    "assessment": "Mein Fragebogen",
     "recommendation": "Meine Empfehlung",
     "orders": "Meine Bestellungen",
     "followUp": "Nachsorge",
@@ -12,26 +12,51 @@
   },
   "tabs": {
     "home": "Übersicht",
-    "assessment": "Assessment",
+    "assessment": "Fragebogen",
     "recommendation": "Lösung",
     "orders": "Bestellung",
     "profile": "Profil"
   },
+  "journey": {
+    "heading": "Dein Weg",
+    "steps": {
+      "assessment": "Fragebogen",
+      "review": "Ärztliche Prüfung",
+      "prescription": "Rezept",
+      "delivery": "Bestellung & Lieferung"
+    }
+  },
+  "delivery": {
+    "coverage": "Unser Liefergebiet",
+    "track": {
+      "heading": "Deine Lieferung",
+      "steps": {
+        "ordered": "Bestellt",
+        "preparing": "Wird vorbereitet",
+        "onTheWay": "Unterwegs",
+        "delivered": "Geliefert"
+      },
+      "noVan": "Die Live-Verfolgung – Standort des Lieferwagens und voraussichtliche Ankunft – erscheint hier, sobald die Sendungsverfolgung des Lieferpartners angebunden ist."
+    }
+  },
   "assessment": {
-    "title": "Mein Assessment",
-    "empty": "Du hast noch kein Assessment abgeschlossen.",
-    "emptyCta": "Assessment starten",
+    "title": "Mein Fragebogen",
+    "empty": "Du hast noch keinen Fragebogen abgeschlossen.",
+    "emptyCta": "Fragebogen starten",
     "completedNote": "Zuletzt in diesem Browser abgeschlossen.",
     "problem": "Anliegen",
     "frequency": "Häufigkeit",
     "strength": "Stärke",
+    "tried": "Bereits versucht",
+    "experience": "CBD-Erfahrung",
+    "formatPref": "Bevorzugte Form",
     "retake": "Erneut durchführen",
     "reviewNote": "zur ärztlichen Prüfung eingereicht"
   },
   "recommendation": {
     "title": "Meine Empfehlung",
     "empty": "Noch keine Empfehlung vorhanden.",
-    "emptyCta": "Assessment starten",
+    "emptyCta": "Fragebogen starten",
     "primary": "Für dich empfohlen",
     "secondary": "Ebenfalls verfügbar",
     "view": "Empfohlene Lösung ansehen",
@@ -46,6 +71,13 @@
     "orderLabel": "Bestellung {{id}}",
     "placedOn": "Bestellt am {{date}}",
     "status": "Status",
+    "col": {
+      "id": "Bestellung",
+      "date": "Datum",
+      "items": "Artikel",
+      "total": "Summe",
+      "status": "Status"
+    },
     "statuses": {
       "processing": "In Bearbeitung",
       "inReview": "In ärztlicher Prüfung",
@@ -57,7 +89,7 @@
   "followUp": {
     "title": "Nachsorge",
     "empty": "Dein Check-in erscheint hier, sobald du eine empfohlene Lösung hast.",
-    "emptyCta": "Assessment starten",
+    "emptyCta": "Fragebogen starten",
     "prompt": "Wie war deine Erfahrung mit deiner empfohlenen Lösung?",
     "promptHint": "Es gibt keine falsche Antwort – das hilft uns nur, dich weiter zu begleiten.",
     "options": {
@@ -81,14 +113,14 @@
     "actions": {
       "reorder": "Gleiches Produkt erneut bestellen",
       "trySecondary": "Zweite Empfehlung ausprobieren",
-      "retake": "Assessment wiederholen",
+      "retake": "Fragebogen wiederholen",
       "contact": "Support kontaktieren"
     },
     "updateCta": "Meine Empfehlung aktualisieren"
   },
   "support": {
     "title": "Support",
-    "body": "Fragen zu Assessment, Rezept oder Lieferung? Unser Team hilft weiter.",
+    "body": "Fragen zum Fragebogen, zu Rezept oder Lieferung? Unser Team hilft weiter.",
     "contactCta": "Kontakt aufnehmen"
   },
   "profile": {
@@ -106,19 +138,17 @@
     "saved": "Deine Angaben sind gespeichert.",
     "signOut": "Abmelden",
     "detailsLabel": "Angaben",
-    "appearance": "Darstellung",
-    "theme": "Design",
     "more": "Mehr",
     "exploreSite": "WeCare entdecken"
   },
   "auth": {
     "signInTitle": "Anmelden",
-    "signInIntro": "Melde dich an, um dein Assessment, deine Empfehlung und deine Bestellungen zu sehen.",
+    "signInIntro": "Melde dich an, um deinen Fragebogen, deine Empfehlung und deine Bestellungen zu sehen.",
     "email": "E-Mail",
     "password": "Passwort",
     "signIn": "Anmelden",
     "newHere": "Neu bei WeCare?",
-    "newHereCta": "Zum Assessment",
+    "newHereCta": "Zum Fragebogen",
     "requiredNote": "Bitte melde dich an, um diesen Bereich zu sehen.",
     "checkoutNote": "Bitte melde dich an, um deine Bestellung abzuschließen – danach geht es zurück zur Kasse."
   },
@@ -131,9 +161,9 @@
   "home": {
     "title": "Übersicht",
     "nextStep": "Dein nächster Schritt",
-    "nextReviewPending": "Reiche dein Assessment ein, damit eine Ärztin oder ein Arzt es prüfen kann.",
+    "nextReviewPending": "Reiche deinen Fragebogen ein, damit eine Ärztin oder ein Arzt ihn prüfen kann.",
     "orderInFlight": "Wir halten dich zu deiner Lieferung auf dem Laufenden.",
-    "assessmentSnapshot": "Dein Assessment",
+    "assessmentSnapshot": "Dein Fragebogen",
     "problemLabel": "Zuletzt gewähltes Anliegen",
     "recommendationLabel": "Empfohlenes Produkt",
     "orderStatusLabel": "Bestellstatus",
@@ -145,9 +175,13 @@
     "followUpDone": "Danke – dein Check-in ist erfasst.",
     "followUpCta": "Nachsorge öffnen",
     "viewRecommendation": "Empfehlung ansehen",
+    "recommendationHeading": "Deine Empfehlung",
+    "recommendationPrice": "Richtpreis",
+    "supportHeading": "Brauchst du Hilfe?",
+    "goodToKnowHeading": "Gut zu wissen",
     "viewOrders": "Bestellungen ansehen",
     "supportCta": "Support kontaktieren",
-    "empty": "Schließe das Assessment ab, um deinen Bereich einzurichten.",
-    "emptyCta": "Assessment starten"
+    "empty": "Schließe den Fragebogen ab, um deinen Bereich einzurichten.",
+    "emptyCta": "Fragebogen starten"
   }
 }

@@ -9,14 +9,14 @@
       "Stress & Angst",
       "Migräne"
     ],
-    "subtitle": "Beantworte ein kurzes Assessment – wir finden die passende CBD-basierte Lösung für deine Bedürfnisse.",
-    "primaryCta": "Kostenloses Assessment starten",
+    "subtitle": "Beantworte einen kurzen Fragebogen – wir finden die passende CBD-basierte Lösung für deine Bedürfnisse.",
+    "primaryCta": "Kostenlosen Fragebogen starten",
     "secondaryCta": "So funktioniert's",
     "ariaImage": "Frau sitzt entspannt zu Hause und liest auf einem Tablet",
     "chipTime": "Etwa 60–90 Sekunden",
     "chipMatch": "1–2 passende Lösungen",
     "trustPoints": [
-      "Kurzes, geführtes Assessment",
+      "Kurzer, geführter Fragebogen",
       "Passende Empfehlungen",
       "Diskreter Online-Ablauf",
       "Ausgewählte Wellness-Lösungen",
@@ -26,27 +26,27 @@
   "chooseProblem": {
     "eyebrow": "Wo du startest",
     "title": "Womit können wir dir helfen?",
-    "intro": "Wähle den Bereich, der dich am meisten betrifft. Jedes Assessment ist darauf abgestimmt.",
+    "intro": "Wähle den Bereich, der dich am meisten betrifft. Jeder Fragebogen ist darauf abgestimmt.",
     "cards": {
       "sleep": {
         "title": "Schlafprobleme",
         "description": "Schwer einschlafen, nachts aufwachen oder schlechte Schlafqualität.",
-        "cta": "Schlaf-Assessment starten"
+        "cta": "Jetzt unverbl. Fragebogen starten"
       },
       "pain": {
         "title": "Schmerzen",
         "description": "Anhaltende Schmerzen oder körperliche Beschwerden, die den Alltag bestimmen.",
-        "cta": "Schmerz-Assessment starten"
+        "cta": "Jetzt unverbl. Fragebogen starten"
       },
       "stressAnxiety": {
         "title": "Stress & Angst",
         "description": "Innere Unruhe, kreisende Gedanken oder dauerhafte Anspannung.",
-        "cta": "Stress-Assessment starten"
+        "cta": "Jetzt unverbl. Fragebogen starten"
       },
       "migraine": {
         "title": "Migräne",
         "description": "Wiederkehrende Migräne-Attacken oder häufige Spannungskopfschmerzen.",
-        "cta": "Migräne-Assessment starten"
+        "cta": "Jetzt unverbl. Fragebogen starten"
       }
     }
   },
@@ -60,7 +60,7 @@
         "description": "Starte mit dem Bereich, der dich betrifft – Schlaf, Schmerzen, Stress oder Migräne."
       },
       "assessment": {
-        "title": "Beantworte ein kurzes Assessment",
+        "title": "Beantworte einen kurzen Fragebogen",
         "description": "Ein paar kurze Fragen dazu, wie es dir geht. Dauert etwa eine Minute."
       },
       "match": {
@@ -133,14 +133,14 @@
       },
       "noObligation": {
         "title": "Unverbindlich",
-        "description": "Starte das Assessment kostenlos – bestellt wird nichts, bis du dich entscheidest."
+        "description": "Starte den Fragebogen kostenlos – bestellt wird nichts, bis du dich entscheidest."
       }
     }
   },
   "finalCta": {
     "title": "Damit du das nicht allein herausfinden musst.",
-    "subtitle": "Starte mit deinem Anliegen. Das Assessment ist kostenlos und dauert etwa eine Minute.",
-    "cta": "Kostenloses Assessment starten"
+    "subtitle": "Starte mit deinem Anliegen. Der Fragebogen ist kostenlos und dauert etwa eine Minute.",
+    "cta": "Kostenlosen Fragebogen starten"
   },
   "comparison": {
     "eyebrow": "Warum WeCare",
@@ -151,7 +151,7 @@
     "rows": {
       "start": {
         "them": "Hunderte Produkte durchscrollen",
-        "us": "Ein kurzes, geführtes Assessment beantworten"
+        "us": "Einen kurzen, geführten Fragebogen beantworten"
       },
       "result": {
         "them": "Eine lange Liste, die du selbst vergleichst",
@@ -178,15 +178,15 @@
     "items": {
       "how": {
         "q": "Wie funktioniert WeCare?",
-        "a": "Du wählst den Bereich, bei dem du Unterstützung möchtest, und beantwortest ein kurzes Assessment – etwa eine Minute. Anhand deiner Antworten wirst du mit ein bis zwei passenden Lösungen abgeglichen, und dein Assessment geht in eine ärztliche Prüfung. Ein Rezept wird nur ausgestellt, wenn es als geeignet für dich eingeschätzt wird."
+        "a": "Du wählst den Bereich, bei dem du Unterstützung möchtest, und beantwortest einen kurzen Fragebogen – etwa eine Minute. Anhand deiner Antworten wirst du mit ein bis zwei passenden Lösungen abgeglichen, und dein Fragebogen geht in eine ärztliche Prüfung. Ein Rezept wird nur ausgestellt, wenn es als geeignet für dich eingeschätzt wird."
       },
       "prescription": {
         "q": "Bekommt jede Person ein Rezept?",
-        "a": "Nein. Das Assessment-Ergebnis ist eine Empfehlung, keine Behandlungsgarantie. Ein Rezept wird nur ausgestellt, wenn eine Ärztin oder ein Arzt es für medizinisch sinnvoll hält."
+        "a": "Nein. Das Ergebnis des Fragebogens ist eine Empfehlung, keine Behandlungsgarantie. Ein Rezept wird nur ausgestellt, wenn eine Ärztin oder ein Arzt es für medizinisch sinnvoll hält."
       },
       "time": {
         "q": "Wie lange dauert es?",
-        "a": "Das Assessment selbst dauert etwa 60 bis 90 Sekunden. Die ärztliche Prüfung erfolgt separat, und du wirst benachrichtigt, sobald es ein Update gibt."
+        "a": "Der Fragebogen selbst dauert etwa 60 bis 90 Sekunden. Die ärztliche Prüfung erfolgt separat, und du wirst benachrichtigt, sobald es ein Update gibt."
       },
       "appointment": {
         "q": "Brauche ich einen Termin?",

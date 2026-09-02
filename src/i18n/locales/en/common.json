@@ -39,12 +39,6 @@
     },
     "switchTo": "Switch to {{language}}"
   },
-  "theme": {
-    "label": "Appearance",
-    "light": "Light",
-    "dark": "Dark",
-    "switchTo": "Use {{theme}} appearance"
-  },
   "a11y": {
     "skipToContent": "Skip to main content",
     "moreInfo": "More information"
@@ -52,8 +46,20 @@
   "consent": {
     "title": "Cookies & privacy",
     "body": "WeCare uses essential storage to run the site. With your consent we also measure how the assessment and checkout are used, so we can improve them. No data is sold.",
+    "alwaysOn": "Always active",
+    "categories": {
+      "essential": {
+        "label": "Essential",
+        "desc": "Needed for the site to work — your language, cart, questionnaire progress, sign-in and this choice. Cannot be turned off."
+      },
+      "analytics": {
+        "label": "Analytics",
+        "desc": "Anonymous usage measurement so we can see where the guided flow can be improved. No health details, names or contact data."
+      }
+    },
     "acceptAll": "Accept all",
     "essentialOnly": "Essential only",
+    "save": "Save choices",
     "manage": "Cookie settings",
     "policyLink": "Cookie Policy",
     "saved": "Preference saved. You can change it anytime under Cookie settings in the footer."

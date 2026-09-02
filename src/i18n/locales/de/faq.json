@@ -7,7 +7,7 @@
       "items": {
         "how": {
           "q": "Wie funktioniert WeCare?",
-          "a": "Du wählst den Bereich, bei dem du Unterstützung möchtest, und beantwortest ein kurzes Assessment – etwa eine Minute. Anhand deiner Antworten wirst du einer oder zwei passenden Lösungen zugeordnet. Anschließend prüft eine zugelassene Ärztin oder ein zugelassener Arzt dein Assessment; eine Verschreibung erfolgt nur, wenn sie medizinisch als sinnvoll erachtet wird."
+          "a": "Du wählst den Bereich, bei dem du Unterstützung möchtest, und beantwortest einen kurzen Fragebogen – etwa eine Minute. Anhand deiner Antworten wirst du einer oder zwei passenden Lösungen zugeordnet. Anschließend prüft eine zugelassene Ärztin oder ein zugelassener Arzt deinen Fragebogen; eine Verschreibung erfolgt nur, wenn sie medizinisch als sinnvoll erachtet wird."
         },
         "appointment": {
           "q": "Brauche ich einen Termin?",
@@ -15,7 +15,7 @@
         },
         "time": {
           "q": "Wie lange dauert das?",
-          "a": "Das Assessment selbst dauert etwa 60 bis 90 Sekunden. Die ärztliche Prüfung erfolgt separat, und du wirst benachrichtigt, sobald es Neues gibt."
+          "a": "Der Fragebogen selbst dauert etwa 60 bis 90 Sekunden. Die ärztliche Prüfung erfolgt separat, und du wirst benachrichtigt, sobald es Neues gibt."
         }
       }
     },
@@ -23,12 +23,12 @@
       "heading": "Ärztliche Prüfung",
       "items": {
         "who": {
-          "q": "Wer prüft mein Assessment?",
+          "q": "Wer prüft meinen Fragebogen?",
           "a": "Eine zugelassene Ärztin oder ein zugelassener Arzt. Behandlungsentscheidungen trifft immer eine medizinische Fachperson – nichts wird automatisch freigegeben."
         },
         "everyone": {
           "q": "Erhält jede Person eine Verschreibung?",
-          "a": "Nein. Eine Verschreibung erfolgt nur, wenn eine Ärztin oder ein Arzt sie als medizinisch sinnvoll erachtet. Das Ergebnis des Assessments ist eine Empfehlung, keine Garantie für eine Behandlung."
+          "a": "Nein. Eine Verschreibung erfolgt nur, wenn eine Ärztin oder ein Arzt sie als medizinisch sinnvoll erachtet. Das Ergebnis des Fragebogens ist eine Empfehlung, keine Garantie für eine Behandlung."
         },
         "pharmacy": {
           "q": "Ist WeCare eine Online-Apotheke?",
@@ -49,7 +49,7 @@
         },
         "reorder": {
           "q": "Kann ich nachbestellen oder meine Empfehlung ändern?",
-          "a": "Ja. Nach etwa zwei bis drei Wochen meldet sich WeCare, um zu erfahren, wie die Lösung für dich funktioniert. In deinem Dashboard kannst du nachbestellen, die Zweitoption ausprobieren, das Assessment wiederholen oder den Support kontaktieren."
+          "a": "Ja. Nach etwa zwei bis drei Wochen meldet sich WeCare, um zu erfahren, wie die Lösung für dich funktioniert. In deinem Dashboard kannst du nachbestellen, die Zweitoption ausprobieren, den Fragebogen wiederholen oder den Support kontaktieren."
         }
       }
     },
@@ -62,14 +62,14 @@
         },
         "suitable": {
           "q": "Woher weiß ich, ob eine Lösung für mich geeignet ist?",
-          "a": "Genau dafür sind das Assessment und die ärztliche Prüfung da. Braucht eine Ärztin oder ein Arzt mehr Details zu Vorerkrankungen, Allergien oder aktuellen Medikamenten, wird vor einer Entscheidung nachgefragt."
+          "a": "Genau dafür sind der Fragebogen und die ärztliche Prüfung da. Braucht eine Ärztin oder ein Arzt mehr Details zu Vorerkrankungen, Allergien oder aktuellen Medikamenten, wird vor einer Entscheidung nachgefragt."
         }
       }
     }
   },
   "contact": {
     "heading": "Noch eine Frage?",
-    "body": "Unser Team hilft bei allem, was das Assessment nicht abdeckt.",
+    "body": "Unser Team hilft bei allem, was der Fragebogen nicht abdeckt.",
     "cta": "Kontakt aufnehmen"
   }
 }

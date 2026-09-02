@@ -182,7 +182,7 @@ export function HeroSection() {
         rendered twice for a seamless loop); from `lg` up it fits and sits
         static, centred. */}
     <div className="px-4 sm:px-6">
-      <div className="mx-auto max-w-6xl overflow-hidden rounded-full border border-white/50 bg-white/40 px-6 py-3 backdrop-blur-md dark:border-white/20 dark:bg-white/[0.04]">
+      <div className="mx-auto max-w-6xl overflow-hidden rounded-full border border-white/50 bg-white/40 px-6 py-3 backdrop-blur-md">
         <div className="trust-marquee">
           {[0, 1].map((copy) => (
             <ul
@@ -247,14 +247,14 @@ export function ChooseProblemSection() {
                     alt=""
                     loading="lazy"
                     decoding="async"
-                    className="size-full object-cover transition-transform duration-500 group-hover:scale-105 dark:brightness-90 dark:contrast-[1.03]"
+                    className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 {/* The text panel's own background is the fade: opaque white at
                     the bottom edge → fully transparent at the top, so the photo
                     reads through the whole text area, strongest behind the
                     title. */}
-                <div className="relative flex flex-col bg-gradient-to-t from-white from-30% via-white/90 via-50% to-transparent px-5 pb-5 pt-28 dark:from-[var(--color-surface-raised)] dark:via-[color-mix(in_srgb,var(--color-surface-raised)_92%,transparent)]">
+                <div className="relative flex flex-col bg-gradient-to-t from-white from-30% via-white/90 via-50% to-transparent px-5 pb-5 pt-28">
                   <div className="mb-2 flex items-center gap-3">
                     <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-2xl glass-strong text-petrol-700 shadow-[0_10px_24px_-12px_rgba(13,68,75,0.4)]">
                       <Icon className="size-5" strokeWidth={1.75} aria-hidden />
@@ -266,7 +266,11 @@ export function ChooseProblemSection() {
                   <p className="mt-2 text-sm text-ink-muted">
                     {t(`chooseProblem.cards.${c.key}.description`)}
                   </p>
-                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-petrol-700">
+                  {/* Solid Azure pill, white label — reads unmistakably as
+                      the card's action rather than a line of teal body text
+                      (client feedback, Sept 2026: "the link to the
+                      questionnaire should be clearly visible, maybe white"). */}
+                  <span className="mt-4 inline-flex w-fit items-center gap-1.5 rounded-full bg-petrol-600 px-3.5 py-1.5 text-sm font-semibold text-white shadow-[0_10px_24px_-12px_rgba(33,131,144,0.65)] transition-colors group-hover:bg-petrol-700">
                     {t(`chooseProblem.cards.${c.key}.cta`)}
                     <ArrowRight
                       className="size-4 transition-transform group-hover:translate-x-1"
@@ -319,10 +323,10 @@ export function HowItWorksSection() {
                   alt=""
                   loading="lazy"
                   decoding="async"
-                  className="size-full object-cover transition-transform duration-500 group-hover:scale-105 dark:brightness-90 dark:contrast-[1.03]"
+                  className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
-              <div className="relative flex flex-col bg-gradient-to-t from-white from-30% via-white/90 via-50% to-transparent px-5 pb-5 pt-28 dark:from-[var(--color-surface-raised)] dark:via-[color-mix(in_srgb,var(--color-surface-raised)_92%,transparent)]">
+              <div className="relative flex flex-col bg-gradient-to-t from-white from-30% via-white/90 via-50% to-transparent px-5 pb-5 pt-28">
                 <div className="mb-2 flex items-center gap-3">
                   <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-2xl font-display text-lg text-white shadow-[0_10px_24px_-10px_rgba(42,167,176,0.55)] [background-image:var(--cta-gradient)]">
                     {i + 1}
@@ -492,7 +496,7 @@ export function TrustSection() {
         {TRUST_ITEMS.map(({ key, icon: Icon }, i) => (
           <Reveal key={key} delayMs={i * 60}>
             <div className="flex h-full gap-3.5 glass rounded-2xl md:rounded-3xl p-5">
-              <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-petrol-600/10 text-petrol-700 dark:bg-petrol-400/15">
+              <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-petrol-600/10 text-petrol-700">
                 <Icon className="size-5" strokeWidth={1.75} aria-hidden />
               </span>
               <div>
@@ -529,15 +533,15 @@ export function ComparisonSection() {
       </Reveal>
       <Reveal>
         <div className="mt-10 overflow-hidden rounded-2xl md:rounded-3xl glass-strong">
-          <div className="grid grid-cols-2 border-b border-white/50 text-sm font-semibold dark:border-white/20">
+          <div className="grid grid-cols-2 border-b border-white/50 text-sm font-semibold">
             <div className="p-4 text-ink-muted sm:p-5">
               {t("comparison.themLabel")}
             </div>
-            <div className="bg-petrol-600/5 p-4 text-petrol-800 sm:p-5 dark:bg-petrol-400/10">
+            <div className="bg-petrol-600/5 p-4 text-petrol-800 sm:p-5">
               {t("comparison.usLabel")}
             </div>
           </div>
-          <dl className="divide-y divide-white/40 dark:divide-white/20">
+          <dl className="divide-y divide-white/40">
             {COMPARISON_ROWS.map((row) => (
               <div key={row} className="grid grid-cols-2 text-sm">
                 <dt className="flex items-start gap-2 p-4 text-ink-muted sm:p-5">
@@ -547,7 +551,7 @@ export function ComparisonSection() {
                   />
                   {t(`comparison.rows.${row}.them`)}
                 </dt>
-                <dd className="flex items-start gap-2 bg-petrol-600/5 p-4 text-ink sm:p-5 dark:bg-petrol-400/10">
+                <dd className="flex items-start gap-2 bg-petrol-600/5 p-4 text-ink sm:p-5">
                   <Check
                     className="mt-0.5 size-4 shrink-0 text-sage-500"
                     aria-hidden

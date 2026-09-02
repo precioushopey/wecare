@@ -46,7 +46,7 @@ export function InfoHint({
         id={id}
         role="tooltip"
         className={cn(
-          "pointer-events-none absolute top-full z-20 mt-2 w-56 rounded-xl bg-petrol-900 px-3 py-2 text-xs font-normal normal-case leading-relaxed tracking-normal text-white opacity-0 shadow-[var(--shadow-float)] transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100 motion-reduce:transition-none dark:bg-surface-raised dark:text-ink dark:ring-1 dark:ring-border",
+          "pointer-events-none absolute top-full z-20 mt-2 w-56 rounded-xl bg-petrol-900 px-3 py-2 text-xs font-normal normal-case leading-relaxed tracking-normal text-white opacity-0 shadow-[var(--shadow-float)] transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100 motion-reduce:transition-none",
           align === "right" ? "right-0" : "left-0",
         )}
       >
