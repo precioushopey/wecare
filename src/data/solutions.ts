@@ -69,11 +69,13 @@ export interface Solution {
    * EUR per gram — a placeholder, gated by `PRICES_CONFIRMED` (`src/config.ts`)
    * everywhere it's shown, and kept only so cart/checkout math still works in
    * this backend-less build. NOT the target architecture: owner decision #1,
-   * PO decision set 4 (Sept 2026) — price belongs on the `DispensingOption`
-   * (`src/data/dispensing.ts`), since different products under the same
-   * Solution can carry different real pharmacy prices. Don't treat this
-   * per-Solution figure as more than a working stand-in; migrate pricing to
-   * the dispensing layer once real pharmacy prices exist.
+   * PO decision set 4 (Sept 2026) — price belongs on a per-dispensing-option
+   * entity, not the Solution, since different products under the same Solution
+   * can carry different real pharmacy prices. Don't treat this per-Solution
+   * figure as more than a working stand-in; migrate pricing to the dispensing
+   * layer once real pharmacy prices exist. (A `src/data/dispensing.ts` type
+   * sketch existed briefly; removed in the 2026-09-02 repo cleanup — re-create
+   * it when the real pharmacy data model is built.)
    */
   priceEur: number;
   /** strain used for the example COA on `/lab-tests` and the product page.

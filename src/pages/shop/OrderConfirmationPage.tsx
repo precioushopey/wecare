@@ -34,7 +34,30 @@ export function OrderConfirmationPage() {
         {t("confirmation.orderLabel", { id: orderId })}
       </p>
 
-      <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
+      {/* Forward-looking status, not an "IF it's approved" sentence
+          (stakeholder feedback, Sept 2026). */}
+      <p className="mt-10 text-xs font-semibold uppercase tracking-[0.16em] text-ink-muted">
+        {t("confirmation.stepsHeading")}
+      </p>
+      <ol className="mx-auto mt-4 grid max-w-md gap-4 text-left">
+        {(["received", "review", "dispatch"] as const).map((k, i) => (
+          <li key={k} className="flex gap-3">
+            <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-sage-100 font-display text-sm text-petrol-700">
+              {i + 1}
+            </span>
+            <div>
+              <p className="text-sm font-medium text-ink">
+                {t(`confirmation.steps.${k}.title`)}
+              </p>
+              <p className="mt-0.5 text-xs text-ink-muted">
+                {t(`confirmation.steps.${k}.body`)}
+              </p>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
         <Button asChild variant="cta" className="w-full sm:w-auto">
           <Link to={paths.dashboardOrders}>{t("confirmation.toOrders")}</Link>
         </Button>

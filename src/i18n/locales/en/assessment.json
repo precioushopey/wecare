@@ -4,7 +4,7 @@
     "body": "WeCare's guidance and any medical review relate to prescription medicine, which is only available to adults.",
     "checkbox": "I confirm that I am 18 years or older.",
     "dobLabel": "Date of birth",
-    "dobNote": "Used only to confirm you're old enough to continue — it stays on this device and isn't attached to your name.",
+    "dobNote": "Used only to confirm you're old enough to continue. It stays on this device and isn't attached to your name.",
     "dobTooYoung": "The date of birth you entered shows you're under 18. WeCare's assessment and medical review are only available to adults.",
     "continue": "Continue to the assessment",
     "under": "If you are under 18, please speak with a parent, guardian or your doctor.",
@@ -12,7 +12,7 @@
   },
   "start": {
     "title": "Your assessment",
-    "intro": "Six short questions about how you feel — about 60 to 90 seconds. This is not a medical form.",
+    "intro": "Six short questions about how you feel (about 60 to 90 seconds). This is not a medical form.",
     "prefilledNote": "Pre-selected: {{condition}}",
     "progress": "Question {{current}} of {{total}}",
     "back": "Back",
@@ -81,7 +81,7 @@
     },
     "q6": {
       "title": "What type of support do you prefer?",
-      "note": "New to this? Choose “Not sure” — your doctor confirms the right format either way.",
+      "note": "New to this? Choose “Not sure” and your doctor confirms the right format either way.",
       "options": {
         "oil": "Oil",
         "flower": "Flower",
@@ -89,7 +89,7 @@
         "guidance": "Not sure, I need guidance"
       },
       "hints": {
-        "oil": "Drops taken by mouth — the usual gentle starting format",
+        "oil": "Drops taken by mouth, the usual gentle starting format",
         "flower": "Dried plant material, inhaled",
         "vape": "Inhaled as vapour from a pen or device",
         "guidance": "We’ll recommend a format for you"
@@ -108,7 +108,7 @@
     "primaryHeading": "Recommended for you",
     "secondaryHeading": "Secondary product",
     "explanationHeading": "Why this recommendation",
-    "gentleNudge": "We start gentle — a lower-THC solution, usually an oil for controlled dosing. You can adjust it later with your doctor.",
+    "gentleNudge": "We start gentle with a lower-THC solution, usually an oil for controlled dosing. You can adjust it later with your doctor.",
     "disclaimer": "This recommendation is based on your answers and wellness preferences. It does not replace medical advice.",
     "viewSolution": "View Recommended Solution",
     "changeAnswers": "Change My Answers",
@@ -139,17 +139,16 @@
     "altHeading": "Prefer something else?",
     "altLabelDefault": "Also available",
     "altStrongerHint": "Usually a stronger option, for later.",
-    "frequencyNote": "You told us this affects you {{frequency}} — that's noted for your medical review.",
-    "formatPreferenceNote": "You mentioned you'd prefer {{format}}. Your doctor confirms the right format for you — for most people starting out, that's an oil.",
+    "frequencyNote": "You told us this affects you {{frequency}}. That's noted for your medical review.",
+    "formatPreferenceNote": "You mentioned you'd prefer {{format}}. Your doctor confirms the right format for you. For most people starting out, that's an oil.",
     "submitReviewCta": "Submit my assessment for medical review",
-    "viewReviewCta": "View your review status",
-    "orViewSolution": "Or view the recommended solution while you wait"
+    "viewReviewCta": "View your review status"
   },
   "review": {
     "pageTitle": "Your medical review",
     "heading": "Your medical review",
     "idLabel": "Review {{id}}",
-    "reassure": "You don't need to stay on this page — we'll email you as soon as the status changes.",
+    "reassure": "You don't need to stay on this page. We'll email you as soon as the status changes.",
     "notGuaranteed": "A prescription is issued only if it is medically appropriate. It is not guaranteed.",
     "toDashboard": "Track this in My area",
     "toSolution": "View the recommended solution",
@@ -175,7 +174,7 @@
       "infoRequired": {
         "label": "Information needed",
         "title": "The doctor needs a bit more information",
-        "body": "Please check your email — the reviewing doctor has asked for additional details before they can continue."
+        "body": "Please check your email. The reviewing doctor has asked for additional details before they can continue."
       },
       "approved": {
         "label": "Approved",
@@ -185,7 +184,7 @@
       "notApproved": {
         "label": "Not approved",
         "title": "Medical cannabis wasn't found suitable",
-        "body": "Based on the review, a prescription was not issued. This can happen for several reasons — our team can talk you through the alternatives."
+        "body": "Based on the review, a prescription was not issued. This can happen for several reasons. Our team can talk you through the alternatives."
       },
       "consultation": {
         "label": "Consultation needed",

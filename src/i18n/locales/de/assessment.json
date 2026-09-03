@@ -142,8 +142,7 @@
     "frequencyNote": "Du hast angegeben, dass dich das {{frequency}} betrifft – das wird für deine ärztliche Prüfung vermerkt.",
     "formatPreferenceNote": "Du hast angegeben, dass du {{format}} bevorzugst. Die passende Form bestätigt deine Ärztin oder dein Arzt – für die meisten am Anfang ist das ein Öl.",
     "submitReviewCta": "Meinen Fragebogen zur ärztlichen Prüfung einreichen",
-    "viewReviewCta": "Status deiner Prüfung ansehen",
-    "orViewSolution": "Oder sieh dir die empfohlene Lösung an, während du wartest"
+    "viewReviewCta": "Status deiner Prüfung ansehen"
   },
   "review": {
     "pageTitle": "Deine ärztliche Prüfung",

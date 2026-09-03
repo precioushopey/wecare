@@ -5,7 +5,7 @@
     "startAssessment": "Start assessment",
     "resultCount": "{{count}} solutions",
     "guideTitle": "The best way to your solution is the assessment",
-    "guideBody": "This overview shows all solutions for reference. Your personal recommendation — and delivery — come from the assessment and the medical review.",
+    "guideBody": "This overview shows all solutions for reference. Your personal recommendation and delivery both come from the assessment and the medical review.",
     "fullRange": "All solutions"
   },
   "card": {
@@ -13,7 +13,7 @@
     "forProblems": "For: {{problems}}",
     "learnMore": "Learn more"
   },
-  "pricesIndicative": "Prices shown are indicative — your final price is confirmed after your medical review.",
+  "pricesIndicative": "Prices shown are indicative. Your final price is confirmed after your medical review.",
   "solution": {
     "backToShop": "Back to solutions",
     "forProblems": "For: {{problems}}",
@@ -38,7 +38,7 @@
     "optHideDetails": "Hide details",
     "optThcLower": "Lower THC among this Solution's options",
     "optThcHigher": "Higher THC among this Solution's options",
-    "optThcMeaning": "THC % is the share of the main active compound. A higher number isn't \"better\" — your doctor sets the dose.",
+    "optThcMeaning": "THC % is the share of the main active compound. A higher number isn't \"better\"; your doctor sets the dose.",
     "optCoaNote": "A batch-specific certificate of analysis is included with every delivery.",
     "perDevice": "{{price}} per device",
     "altFormatHeading": "Alternative dispensing format",
@@ -52,10 +52,10 @@
     "formatHeading": "Product format",
     "formatValue": "Available as oil or dried flower. Oil is the usual starting format; your prescribing doctor confirms what suits you.",
     "ingredientsHeading": "Key ingredients",
-    "ingredientsValue": "Full-spectrum medical cannabis — THC {{thc}}, with CBD and minor cannabinoids (CBG, CBN). No additives.",
-    "oilFormulationHeading": "Oil formulation — starting format",
-    "oilFormulationNote": "The full-spectrum CBD oil this solution is based on — the format usually suggested to start with. The certificate below covers the dried-flower batch dispensed once a prescription is issued.",
-    "oilFormulationProvisional": "These are WeCare's intended formulation targets, not a lab-verified certificate — confirmed once the pharmacy partner supplies the oil.",
+    "ingredientsValue": "Full-spectrum medical cannabis: THC {{thc}}, with CBD and minor cannabinoids (CBG, CBN). No additives.",
+    "oilFormulationHeading": "Oil formulation: starting format",
+    "oilFormulationNote": "The full-spectrum CBD oil this solution is based on, the format usually suggested to start with. The certificate below covers the dried-flower batch dispensed once a prescription is issued.",
+    "oilFormulationProvisional": "These are WeCare's intended formulation targets, not a lab-verified certificate. They are confirmed once the pharmacy partner supplies the oil.",
     "oilStrengthLabel": "Full spectrum",
     "oilStrengthValue": "{{pct}} %",
     "oilMelatoninLabel": "Added",
@@ -148,7 +148,7 @@
     },
     "delivery": {
       "q": "How is it delivered?",
-      "a": "Shipping is from the pharmacy — only after medical approval and a prescription is issued. Once dispatched, delivery across Austria typically takes a day: next-day if before 12:00, within two days if after."
+      "a": "Shipping is from the pharmacy, only after medical approval and a prescription is issued. Once dispatched, delivery across Austria typically takes a day: next-day if before 12:00, within two days if after."
     }
   },
   "cart": {
@@ -183,7 +183,7 @@
     "countryValue": "Austria",
     "summaryHeading": "Order summary",
     "placeOrder": "Place order",
-    "paymentNote": "No card details are collected here — you pay by invoice or bank transfer once a doctor has approved your prescription.",
+    "paymentNote": "No card details are collected here. You pay by invoice or bank transfer once a doctor has approved your prescription.",
     "backToCart": "Back to cart",
     "required": "Required",
     "paymentHeading": "Payment method",
@@ -199,12 +199,28 @@
     "termsLabel": "I accept the <terms>Terms & Conditions</terms> and the <privacy>Privacy Policy</privacy>.",
     "termsLabelPlain": "I accept the Terms & Conditions and the Privacy Policy.",
     "disclaimerLabel": "I understand this product is not intended to diagnose, treat, cure or prevent disease.",
-    "customerHeading": "Customer details"
+    "customerHeading": "Customer details",
+    "signedInAs": "Signed in as"
   },
   "confirmation": {
     "title": "Thank you for your order",
-    "body": "We've received your order. It ships from the pharmacy once medical approval is in place.",
+    "body": "Your order is in. Here's what happens next, with an email at each step.",
     "orderLabel": "Order number: {{id}}",
+    "stepsHeading": "Where your order is",
+    "steps": {
+      "received": {
+        "title": "Order received",
+        "body": "We've got your order and your details."
+      },
+      "review": {
+        "title": "Medical review",
+        "body": "A doctor reviews your assessment. This is part of every order."
+      },
+      "dispatch": {
+        "title": "Pharmacy dispatch",
+        "body": "As soon as it's cleared, a licensed pharmacy ships your parcel discreetly to your door."
+      }
+    },
     "toOrders": "Go to my orders",
     "toHome": "Back to home"
   }

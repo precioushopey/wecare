@@ -44,14 +44,14 @@
             "Für diese Bedingungen gilt:"
           ],
           "list": [
-            "WeCare, wir, uns oder unser — der WeCare-Dienst, der diese Website betreibt.",
-            "Sie oder Ihr — die Verbraucherin oder der Verbraucher, die/der die WeCare-Website oder -Dienste nutzt.",
-            "Fragebogen — der Online-Fragebogen, mit dem WeCare die von Ihnen angegebenen Informationen und Präferenzen erfasst und Sie zu einem relevanten nächsten Schritt führt.",
-            "Empfehlung — das Ergebnis, das aus den von Ihnen im WeCare-Ablauf angegebenen Informationen erzeugt wird. Eine Empfehlung ist keine medizinische Diagnose und keine Zusicherung, dass ein bestimmtes Produkt, eine bestimmte Behandlung, ein Rezept oder eine Dienstleistung für Sie geeignet ist.",
-            "Ärztliche Prüfung — eine Prüfung durch die verantwortliche approbierte medizinische Fachperson, sofern ein solches Verfahren verfügbar und erforderlich ist.",
-            "Rezept — eine von der verantwortlichen medizinischen Fachperson ausgestellte Verschreibung, sofern medizinisch angemessen und rechtlich zulässig.",
-            "Apotheke — die Apotheke oder eine andere rechtlich zur Abgabe befugte Stelle, die für die Abgabe eines Arzneimittels verantwortlich ist, sofern zutreffend.",
-            "Lösung — ein Produkt, eine Dienstleistung, ein Weg der ärztlichen Prüfung oder ein anderer nächster Schritt, der im WeCare-Ablauf dargestellt wird."
+            "WeCare, wir, uns oder unser: der WeCare-Dienst, der diese Website betreibt.",
+            "Sie oder Ihr: die Verbraucherin oder der Verbraucher, die/der die WeCare-Website oder -Dienste nutzt.",
+            "Fragebogen: der Online-Fragebogen, mit dem WeCare die von Ihnen angegebenen Informationen und Präferenzen erfasst und Sie zu einem relevanten nächsten Schritt führt.",
+            "Empfehlung: das Ergebnis, das aus den von Ihnen im WeCare-Ablauf angegebenen Informationen erzeugt wird. Eine Empfehlung ist keine medizinische Diagnose und keine Zusicherung, dass ein bestimmtes Produkt, eine bestimmte Behandlung, ein Rezept oder eine Dienstleistung für Sie geeignet ist.",
+            "Ärztliche Prüfung: eine Prüfung durch die verantwortliche approbierte medizinische Fachperson, sofern ein solches Verfahren verfügbar und erforderlich ist.",
+            "Rezept: eine von der verantwortlichen medizinischen Fachperson ausgestellte Verschreibung, sofern medizinisch angemessen und rechtlich zulässig.",
+            "Apotheke: die Apotheke oder eine andere rechtlich zur Abgabe befugte Stelle, die für die Abgabe eines Arzneimittels verantwortlich ist, sofern zutreffend.",
+            "Lösung: ein Produkt, eine Dienstleistung, ein Weg der ärztlichen Prüfung oder ein anderer nächster Schritt, der im WeCare-Ablauf dargestellt wird."
           ]
         },
         {
@@ -344,9 +344,9 @@
             "WeCare ist kein gewöhnlicher Online-Shop, und diese Erklärung ist keine gewöhnliche E-Commerce-Datenschutzerklärung. Der WeCare-Dienst hat drei Ebenen, für die jeweils unterschiedliche datenschutzrechtliche Erwägungen gelten:"
           ],
           "list": [
-            "Wellness-Plattform — Sie wählen einen Bereich, in dem Sie Unterstützung möchten (Schlaf, Schmerzen oder Körperbeschwerden, Stress und Angst oder Migräne oder Kopfspannung), und lesen allgemeine Informationen;",
-            "Fragebogen — Sie beantworten eine kurze Reihe von Fragen, damit WeCare aus Ihren Antworten und Präferenzen eine Empfehlung erstellen kann;",
-            "Medizinischer Weg — sofern dieser Dienst verfügbar ist, können Informationen an eine unabhängige approbierte Ärztin oder einen unabhängigen approbierten Arzt zur ärztlichen Prüfung und – sofern medizinisch angemessen – zur Verschreibung weitergegeben werden."
+            "Wellness-Plattform: Sie wählen einen Bereich, in dem Sie Unterstützung möchten (Schlaf, Schmerzen oder Körperbeschwerden, Stress und Angst oder Migräne oder Kopfspannung), und lesen allgemeine Informationen;",
+            "Fragebogen: Sie beantworten eine kurze Reihe von Fragen, damit WeCare aus Ihren Antworten und Präferenzen eine Empfehlung erstellen kann;",
+            "Medizinischer Weg: sofern dieser Dienst verfügbar ist, können Informationen an eine unabhängige approbierte Ärztin oder einen unabhängigen approbierten Arzt zur ärztlichen Prüfung und – sofern medizinisch angemessen – zur Verschreibung weitergegeben werden."
           ],
           "bodyAfter": [
             "Ein Teil der Informationen, die beim Fragebogen und auf dem medizinischen Weg anfallen, kann Gesundheitsdaten darstellen. Diese sind eine besondere Kategorie personenbezogener Daten nach Art. 9 DSGVO und werden mit zusätzlicher Sorgfalt behandelt (siehe den Abschnitt zu Gesundheitsdaten unten)."

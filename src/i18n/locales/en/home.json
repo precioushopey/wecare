@@ -57,7 +57,7 @@
     "steps": {
       "choose": {
         "title": "Choose your main problem",
-        "description": "Start with the area that affects you — sleep, pain, stress or migraine."
+        "description": "Start with the area that affects you: sleep, pain, stress or migraine."
       },
       "assessment": {
         "title": "Answer a short assessment",
@@ -138,7 +138,7 @@
     }
   },
   "finalCta": {
-    "title": "We care — so you're not sorting this out on your own.",
+    "title": "We care, so you're not sorting this out on your own.",
     "subtitle": "Start with your problem. The assessment is free and takes about a minute.",
     "cta": "Start Free Assessment"
   },
@@ -178,7 +178,7 @@
     "items": {
       "how": {
         "q": "How does WeCare work?",
-        "a": "You choose the area you want help with and answer a short assessment — about a minute. Based on your answers you're matched with one or two suitable solutions, and your assessment goes to a medical review. A prescription is issued only if it is considered appropriate for you."
+        "a": "You choose the area you want help with and answer a short assessment (about a minute). Based on your answers you're matched with one or two suitable solutions, and your assessment goes to a medical review. A prescription is issued only if it is considered appropriate for you."
       },
       "prescription": {
         "q": "Does everyone get a prescription?",
@@ -190,7 +190,7 @@
       },
       "appointment": {
         "q": "Do I need an appointment?",
-        "a": "No. Everything is completed online at your own pace — no waiting rooms, no fixed appointment times."
+        "a": "No. Everything is completed online at your own pace: no waiting rooms, no fixed appointment times."
       },
       "privacy": {
         "q": "Is my information private?",
@@ -203,7 +203,7 @@
   "deliveryBanner": {
     "eyebrow": "Delivery",
     "headline": "Fast delivery, all across Austria.",
-    "body": "Vienna · Graz · Linz · Salzburg · Innsbruck · Klagenfurt · St. Pölten and more — order before 12:00 for next-day delivery.",
+    "body": "Vienna · Graz · Linz · Salzburg · Innsbruck · Klagenfurt · St. Pölten and more. Order before 12:00 for next-day delivery.",
     "cities": {
       "vienna": "Vienna",
       "graz": "Graz",

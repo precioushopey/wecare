@@ -4,37 +4,32 @@ Calm medical-wellness stock photos for the public pages. Resolved by
 `src/data/siteImages.ts` (`import.meta.glob`, keyed `<folder>/<basename>`),
 referenced through the `IMG` map. Rendered with `ImageWithFallback`.
 
+Every file in this folder is now wired in — the unreferenced spares (the
+per-condition section shots, the pre-swap step photos, the removed-testimonial
+avatars, the Knowledge-Hub leftovers) were deleted in a 2026-09-02 repo
+cleanup. Restore any from git history if a slot needs a different photo.
+
 ## Wired in
 
 | File | Used on |
 |------|---------|
-| `Knowledge Hub/Hero.png` | homepage hero |
-| `Condition Page.png` | homepage "Simple recommendations" section anchor (doctor photo) |
-| `assessment-2.png` | homepage final-CTA image (owner swap, Aug 2026 — was `Homepage/Hero.png`) |
-| `Homepage/Hero.png` | homepage "A guided and responsible experience" section anchor; General Wellness fallback hero |
+| `Knowledge Hub/Hero.png` | homepage hero (`IMG.homeHero`) |
+| `hero section.png` | homepage "Simple recommendations" anchor + login welcome panel (`IMG.homeSolutions`, `IMG.login`) |
+| `Condition Page.png` | homepage "A guided and responsible experience" section (`IMG.homeGuidance`) |
+| `Homepage/Hero.png` | homepage final-CTA image + General Wellness fallback hero (`IMG.homeDoctor`, `IMG.conditionHero.generalWellness`) |
 | `Homepage/9–12.png` | "Choose your concern" card banners (sleep / pain / stress / migraine) |
-| `assessment.jpg` · `results.jpg` | "How WeCare works" step 2 (assessment) / step 3 (get matched) cards (owner swap, Aug 2026 — were `Knowledge Hub/61.png` / `Homepage/8.png`) |
-| `Knowledge Hub/60, 64.png` | "How WeCare works" step cards (choose / continue) |
-| `C1 - Sleep Problem/Hero.png` · `C2/26.png` · `C3/35.png` · `C4/44.png` | condition landing-page heroes |
+| `assessment.jpg` · `results.jpg` | "How WeCare works" step 2 / step 3 cards (`IMG.process.assessment`, `IMG.process.match`) |
+| `Knowledge Hub/60.png` · `Knowledge Hub/63.png` | "How WeCare works" step 1 (choose) / step 4 (continue) cards |
+| `C1 - Sleep Problem/Hero.png` · `C2 - Chronic Pain/26.png` · `C3 - Stress & Anxiety/35.png` · `C4 - Migraine/44.png` | condition landing-page heroes |
 
-`assessment.jpg` / `assessment-2.png` / `results.jpg` are JPG/PNG at the
-photography root, not in a dated subfolder — `siteImages.ts`'s glob now
-matches `.jpg`/`.jpeg` alongside `.png` to pick them up.
+`assessment.jpg` / `results.jpg` are JPGs at the photography root, not in a
+dated subfolder — `siteImages.ts`'s glob matches `.jpg`/`.jpeg` alongside `.png`
+to pick them up.
 
 Homepage section anchors are floated cut-outs with a soft bottom fade
 (`.image-fade-b`) and explicit `width`/`height` to hold layout before load.
 
-## Available, not yet wired
-
-- `Homepage/8.png` — the "How WeCare works" step 3 photo before the Aug 2026
-  swap to `results.jpg`. Unused now.
-- `Knowledge Hub/61.png` — the step 2 photo before the same swap (to
-  `assessment.jpg`). Unused now.
-- `C1–C4/<numbers>.png` (the remaining per-condition photos) — for the
-  "Common situations" / "How WeCare helps" sections of the condition template.
-- `Knowledge Hub/59, 63, 65, 66.png` — leftover from the set (`66` has cannabis-leaf imagery — do not use; `63`, the courier-delivery shot, was the step-4 card until swapped for `64`). The "Knowledge Hub" folder name is just where these stock photos originated — the Knowledge Hub *page* itself was removed (owner decision, Aug 2026); these files are generic marketing photography now.
-- `Homepage/13–15.png` — former testimonial avatars; the testimonials
-  section was removed (fabricated content). Unused.
-- `Women_s Pain/` — empty.
+The "Knowledge Hub" folder name is a leftover from the removed Knowledge Hub
+page — the photos in it are just generic marketing stock now.
 
 Photos are 1000–1920 px PNGs. Compress / convert to WebP before production.

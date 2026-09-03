@@ -1,7 +1,7 @@
 {
   "brand": {
     "name": "WeCare",
-    "tagline": "We care how you feel — so you start with your problem, and we guide you from there."
+    "tagline": "We care how you feel, so you start with your problem, and we guide you from there."
   },
   "nav": {
     "home": "Home",
@@ -50,7 +50,7 @@
     "categories": {
       "essential": {
         "label": "Essential",
-        "desc": "Needed for the site to work — your language, cart, questionnaire progress, sign-in and this choice. Cannot be turned off."
+        "desc": "Needed for the site to work: your language, cart, questionnaire progress, sign-in and this choice. Cannot be turned off."
       },
       "analytics": {
         "label": "Analytics",
@@ -97,24 +97,24 @@
     "placeholderNote": "This page is built in a later phase of the rebuild.",
     "home": {
       "title": "Find the right support for sleep, pain, stress and migraine",
-      "subtitle": "Answer a few questions and get a personal recommendation — with a medical review when it is medically appropriate."
+      "subtitle": "Answer a few questions and get a personal recommendation, with a medical review when it is medically appropriate."
     },
     "conditions": {
       "sleep": {
         "title": "Sleep problems",
-        "description": "Trouble falling asleep, waking in the night or not feeling rested — find out what could help."
+        "description": "Trouble falling asleep, waking in the night or not feeling rested. Find out what could help."
       },
       "pain": {
         "title": "Chronic pain",
-        "description": "Persistent pain or body discomfort shaping your day — find an approach that fits you."
+        "description": "Persistent pain or body discomfort shaping your day. Find an approach that fits you."
       },
       "stressAnxiety": {
         "title": "Stress & anxiety",
-        "description": "Restlessness, racing thoughts or constant tension — see what might help you feel more settled."
+        "description": "Restlessness, racing thoughts or constant tension. See what might help you feel more settled."
       },
       "migraine": {
         "title": "Migraine & head tension",
-        "description": "Recurring migraine or tension headaches — find support matched to your situation."
+        "description": "Recurring migraine or tension headaches. Find support matched to your situation."
       },
       "generalWellness": {
         "title": "General wellbeing",
@@ -123,14 +123,14 @@
     },
     "howItWorks": {
       "title": "How WeCare works",
-      "description": "From your problem to a recommendation — and, where medically appropriate, to a medical review and prescription."
+      "description": "From your problem to a recommendation and, where medically appropriate, to a medical review and prescription."
     },
     "faq": {
       "title": "Frequently asked questions",
       "description": "Answers about the assessment, medical review, prescriptions and delivery."
     },
     "costs": {
-      "title": "What to expect — and what it costs",
+      "title": "What to expect, and what it costs",
       "description": "How the money side works: the assessment is free, any review fee is confirmed first, and you pay for the solution only once a prescription is issued."
     },
     "assessmentStart": {
@@ -160,13 +160,13 @@
     "contact": {
       "title": "Contact",
       "description": "How to reach our team.",
-      "intro": "Questions about the assessment, a medical review, an order or delivery — our team is here to help.",
+      "intro": "Questions about the assessment, a medical review, an order or delivery. Our team is here to help.",
       "emailHeading": "Email us",
       "emailNote": "We reply within one working day.",
       "hoursHeading": "Support hours",
       "hoursValue": "Monday to Friday, 9:00–17:00 (CET)",
       "formHeading": "Send a message",
-      "formNote": "This opens your email app with the details filled in — no data is stored here.",
+      "formNote": "This opens your email app with the details filled in. No data is stored here.",
       "nameLabel": "Your name",
       "emailLabel": "Your email",
       "messageLabel": "Message",
@@ -207,7 +207,7 @@
     },
     "labTests": {
       "title": "Lab Tests / COA",
-      "description": "Certificate-of-analysis values for every WeCare solution — cannabinoids, batch, test date and safety testing."
+      "description": "Certificate-of-analysis values for every WeCare solution: cannabinoids, batch, test date and safety testing."
     }
   },
   "journey": {
@@ -223,7 +223,7 @@
   },
   "medicalNotice": {
     "heading": "Important information about medical cannabis",
-    "body": "Medical cannabis is a prescription medicine. Like any medicine it can have side effects — commonly tiredness, dizziness, reduced concentration, or interactions with other medicines. How it affects you is individual.",
+    "body": "Medical cannabis is a prescription medicine. Like any medicine it can have side effects: commonly tiredness, dizziness, reduced concentration, or interactions with other medicines. How it affects you is individual.",
     "body2": "It is used only after a medical review and under medical guidance, and it does not replace a standard therapy your doctor considers necessary. Never start, stop or change a medicine on your own.",
     "disclaimer": "The information on this site is general and does not replace individual medical advice, diagnosis or treatment. For health concerns, speak with your doctor."
   }

@@ -267,8 +267,13 @@ export function ResultPage() {
     </>
   );
 
+  // Two clear actions on the recommended card: submit for review (the lead
+  // CTA — medical review stays part of the flow) AND a real button to the
+  // recommended solution's page so it's as reachable as the alternative
+  // below (stakeholder feedback, Sept 2026: the recommended solution only had
+  // a small text link while the alternative was a full tap target).
   const primaryCta = (
-    <div className="flex flex-col items-start gap-2">
+    <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
       {existingReview ? (
         <Button asChild variant="cta" size="lg" className="w-full sm:w-auto">
           <Link
@@ -293,17 +298,18 @@ export function ResultPage() {
           {t("result.submitReviewCta")}
         </Button>
       )}
-      <Link
-        to={paths.shopProduct(primary.id)}
-        onClick={() =>
-          track(AnalyticsEvent.recommendationPrimarySelected, {
-            solution: primary.id,
-          })
-        }
-        className="text-sm text-petrol-700 underline-offset-4 hover:underline"
-      >
-        {t("result.orViewSolution")}
-      </Link>
+      <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
+        <Link
+          to={paths.shopProduct(primary.id)}
+          onClick={() =>
+            track(AnalyticsEvent.recommendationPrimarySelected, {
+              solution: primary.id,
+            })
+          }
+        >
+          {t("result.viewSolution")}
+        </Link>
+      </Button>
     </div>
   );
 

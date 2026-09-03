@@ -146,6 +146,8 @@
     "signInIntro": "Melde dich an, um deinen Fragebogen, deine Empfehlung und deine Bestellungen zu sehen.",
     "email": "E-Mail",
     "password": "Passwort",
+    "passwordConfirm": "Passwort bestätigen",
+    "passwordMismatch": "Die Passwörter stimmen nicht überein.",
     "signIn": "Anmelden",
     "newHere": "Neu bei WeCare?",
     "newHereCta": "Zum Fragebogen",

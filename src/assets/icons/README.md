@@ -1,22 +1,18 @@
 # Third-party icons
 
-Brand marks for the site footer badge strip. Wired in
+One brand mark, for the site footer shipping badge. Wired in
 `src/components/layout/FooterIcons.tsx` (`TrustBadges`) → rendered by `SiteFooter`.
 
-| Group | Files used |
-|-------|-----------|
+| Group | File |
+|-------|------|
 | Shipping | `dhl-worldwide-express-png-logo-1.png` |
-| Payment | `visa-…jpg`, `amex-inverted_82041.jpg`, `Mastercard_logo.webp`, `6124998.png` (Google Pay), `apple-pay.svg`, `Klarna-Emblem.png` |
 
-**Removed (Aug 2026, owner decision):** the footer social links (Facebook /
-LinkedIn / WhatsApp / YouTube) and the Google Play / App Store badges — they
-only pointed at `#` and there is no native app. Their image files are still in
-this folder but no longer imported: `Facebook_f_logo_(2021).svg.webp`,
-`linkedin-…webp`, `WhatsApp_Logo_green.svg.webp`, `YouTube_…webp`,
-`png-clipart-google-play-…png`, `app-store-download-…jpg`.
+Used under nominative/fair use for delivery identification; keep it unmodified.
 
-Other unused files: `images.png` (dup Google Pay), `Google.png`, `Apple.png`
-(for social sign-in later), `Klarna-Logo.jpg`, `Apple_Pay-Logo.wine.png`.
-
-Third-party logos are used under nominative/fair use for payment & delivery
-identification; keep them unmodified.
+**History:** this folder also held payment-method marks (Visa / Mastercard /
+Amex / Google Pay / Apple Pay / Klarna) and footer social + app-store badges.
+The payment badges were dropped with owner decision D7 (invoice / bank transfer
+only, shown as text); the social links + app-store badges were removed Aug 2026
+(they only pointed at `#`, and there is no native app). All of those unused
+image files were deleted in a 2026-09-02 repo cleanup — restore from git history
+if a payment badge or social mark is ever needed again.

@@ -1,13 +1,13 @@
 {
   "title": "Frequently asked questions",
-  "intro": "How the WeCare process works — from your first question, through the medical review, to follow-up.",
+  "intro": "How the WeCare process works, from your first question, through the medical review, to follow-up.",
   "categories": {
     "start": {
       "heading": "Getting started",
       "items": {
         "how": {
           "q": "How does WeCare work?",
-          "a": "You choose the area you want help with and answer a short assessment — about a minute. Based on your answers you're matched with one or two suitable solutions. A licensed doctor then reviews your assessment; a prescription is issued only if they consider it appropriate for you."
+          "a": "You choose the area you want help with and answer a short assessment (about a minute). Based on your answers you're matched with one or two suitable solutions. A licensed doctor then reviews your assessment; a prescription is issued only if they consider it appropriate for you."
         },
         "appointment": {
           "q": "Do I need an appointment?",
@@ -24,7 +24,7 @@
       "items": {
         "who": {
           "q": "Who reviews my assessment?",
-          "a": "A licensed doctor. Treatment decisions are always made by a medical professional — nothing is approved automatically."
+          "a": "A licensed doctor. Treatment decisions are always made by a medical professional. Nothing is approved automatically."
         },
         "everyone": {
           "q": "Does everyone receive a prescription?",

@@ -44,14 +44,14 @@
             "For these Terms:"
           ],
           "list": [
-            "WeCare, we, us or our — the WeCare service operating this website.",
-            "You or your — the consumer using the WeCare website or services.",
-            "Assessment — the online questionnaire used by WeCare to understand the information and preferences you provide and to guide you toward a relevant next step.",
-            "Recommendation — the result generated from the information you provide through the WeCare journey. A recommendation is not a medical diagnosis or a guarantee that a particular product, treatment, prescription, or service is appropriate for you.",
-            "Medical review — a review performed by the responsible licensed medical professional where such a process is available and required.",
-            "Prescription — a prescription issued by the responsible medical professional when medically appropriate and legally permitted.",
-            "Pharmacy — the pharmacy or other legally authorized dispensing entity responsible for dispensing a medicine where applicable.",
-            "Solution — a product, service, medical-review pathway, or other next step presented through the WeCare journey."
+            "WeCare, we, us or our: the WeCare service operating this website.",
+            "You or your: the consumer using the WeCare website or services.",
+            "Assessment: the online questionnaire used by WeCare to understand the information and preferences you provide and to guide you toward a relevant next step.",
+            "Recommendation: the result generated from the information you provide through the WeCare journey. A recommendation is not a medical diagnosis or a guarantee that a particular product, treatment, prescription, or service is appropriate for you.",
+            "Medical review: a review performed by the responsible licensed medical professional where such a process is available and required.",
+            "Prescription: a prescription issued by the responsible medical professional when medically appropriate and legally permitted.",
+            "Pharmacy: the pharmacy or other legally authorized dispensing entity responsible for dispensing a medicine where applicable.",
+            "Solution: a product, service, medical-review pathway, or other next step presented through the WeCare journey."
           ]
         },
         {
@@ -344,9 +344,9 @@
             "WeCare is not a standard online shop, and this policy is not a standard e-commerce privacy policy. The WeCare service has three layers, and different data-protection considerations apply to each:"
           ],
           "list": [
-            "Wellness platform — you choose an area you want help with (sleep, pain or body discomfort, stress and anxiety, or migraine or head tension) and read general information;",
-            "Assessment — you answer a short set of questions so WeCare can generate a recommendation from your answers and preferences;",
-            "Medical path — where this service is available, information may be passed to an independent licensed doctor for a medical review and, where medically appropriate, a prescription."
+            "Wellness platform: you choose an area you want help with (sleep, pain or body discomfort, stress and anxiety, or migraine or head tension) and read general information;",
+            "Assessment: you answer a short set of questions so WeCare can generate a recommendation from your answers and preferences;",
+            "Medical path: where this service is available, information may be passed to an independent licensed doctor for a medical review and, where medically appropriate, a prescription."
           ],
           "bodyAfter": [
             "Some of the information involved in the assessment and the medical path can be health data, which is a special category of personal data under Article 9 GDPR and is treated with additional care (see the section on health data below)."
@@ -452,8 +452,8 @@
           "id": "health-data",
           "heading": "8. Health data",
           "body": [
-            "Some of the information you provide through the assessment, and any information provided for a medical review, can be health data — a special category of personal data under Article 9 GDPR.",
-            "WeCare processes health data only where an Article 9 GDPR condition applies — for example, your explicit consent, or the provision of health care by or under the responsibility of a health professional — and only to the extent needed for the purpose concerned."
+            "Some of the information you provide through the assessment, and any information provided for a medical review, can be health data, a special category of personal data under Article 9 GDPR.",
+            "WeCare processes health data only where an Article 9 GDPR condition applies (for example, your explicit consent, or the provision of health care by or under the responsibility of a health professional) and only to the extent needed for the purpose concerned."
           ],
           "bodyAfter": [
             "Access to health data within WeCare is limited to people who need it for the service.",
@@ -486,10 +486,10 @@
             "WeCare relies on the following legal bases under Article 6 GDPR and, for health data, an additional condition under Article 9 GDPR:"
           ],
           "list": [
-            "performance of a contract, or steps taken at your request before entering a contract — for creating an account, running the assessment, and processing and delivering orders;",
-            "legitimate interests — for keeping the service secure, preventing misuse, and improving the service, where those interests are not overridden by your rights;",
-            "consent — for optional analytics and advertising technologies, and for marketing communications where consent is required; you can withdraw consent at any time;",
-            "legal obligation — for accounting, tax and other statutory record-keeping; and",
+            "performance of a contract, or steps taken at your request before entering a contract: for creating an account, running the assessment, and processing and delivering orders;",
+            "legitimate interests: for keeping the service secure, preventing misuse, and improving the service, where those interests are not overridden by your rights;",
+            "consent: for optional analytics and advertising technologies, and for marketing communications where consent is required; you can withdraw consent at any time;",
+            "legal obligation: for accounting, tax and other statutory record-keeping; and",
             "for health data, an Article 9 GDPR condition, such as your explicit consent or the provision of health care by or under the responsibility of a health professional."
           ],
           "bodyAfter": [
@@ -502,7 +502,7 @@
           "body": [
             "The WeCare assessment uses fixed logic to match your answers and stated preferences to one of WeCare's named solutions. This is a wellness and product recommendation.",
             "The recommendation does not diagnose a medical condition, does not decide whether you receive a prescription, and does not produce a legal effect concerning you. WeCare does not describe this process as an AI diagnosis.",
-            "Where a medical review is part of the service, the medical decision — including whether a prescription is appropriate — is made by the responsible medical professional, not by the WeCare system."
+            "Where a medical review is part of the service, the medical decision, including whether a prescription is appropriate, is made by the responsible medical professional, not by the WeCare system."
           ],
           "bodyAfter": [
             "If, in a given configuration, the process were to involve a decision producing legal or similarly significant effects based solely on automated processing, WeCare would provide the additional information and safeguards required under Article 22 GDPR."
@@ -546,8 +546,8 @@
             "WeCare distinguishes between:"
           ],
           "list": [
-            "necessary service communications — such as order confirmations, account and security messages, and service notices, which WeCare sends as part of providing the service; and",
-            "marketing communications — such as promotional emails, and, where used, advertising audiences, retargeting, and campaign measurement, which WeCare sends or runs only where you have agreed and where the applicable consent requirements are met."
+            "necessary service communications: such as order confirmations, account and security messages, and service notices, which WeCare sends as part of providing the service; and",
+            "marketing communications: such as promotional emails, and, where used, advertising audiences, retargeting, and campaign measurement, which WeCare sends or runs only where you have agreed and where the applicable consent requirements are met."
           ],
           "bodyAfter": [
             "You can withdraw marketing consent at any time, including through the unsubscribe link in a marketing email or by contacting WeCare.",
@@ -600,12 +600,12 @@
             "WeCare keeps personal data only for as long as needed for the purpose it was collected for, and then deletes or anonymises it. Retention depends on the category of data, for example:"
           ],
           "list": [
-            "account information — for as long as you have an account;",
-            "order and transaction information — for the period required by accounting and tax law;",
-            "assessment and any medical information — for the period appropriate to the service and any applicable medical record-keeping rules;",
-            "customer-support communications — for as long as needed to handle the matter and any follow-up;",
-            "marketing consent records — for as long as needed to evidence consent and honour your choices; and",
-            "records WeCare must keep to comply with a legal obligation — for the period required by that obligation."
+            "account information: for as long as you have an account;",
+            "order and transaction information: for the period required by accounting and tax law;",
+            "assessment and any medical information: for the period appropriate to the service and any applicable medical record-keeping rules;",
+            "customer-support communications: for as long as needed to handle the matter and any follow-up;",
+            "marketing consent records: for as long as needed to evidence consent and honour your choices; and",
+            "records WeCare must keep to comply with a legal obligation: for the period required by that obligation."
           ],
           "bodyAfter": [
             "Specific retention periods are set from the actual legal and business requirements and are stated here once confirmed."
@@ -1012,7 +1012,7 @@
           "id": "delivery-times",
           "heading": "4. Delivery times",
           "body": [
-            "Once an order is ready to ship — after any required order processing and, where applicable, medical review and pharmacy dispensing — WeCare aims to deliver within Austria as follows:"
+            "Once an order is ready to ship (after any required order processing and, where applicable, medical review and pharmacy dispensing), WeCare aims to deliver within Austria as follows:"
           ],
           "list": [
             "Orders ready to ship by 12:00 (noon) typically arrive the next day.",

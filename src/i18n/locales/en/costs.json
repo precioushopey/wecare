@@ -1,5 +1,5 @@
 {
-  "title": "What to expect — and what it costs",
+  "title": "What to expect, and what it costs",
   "intro": "No surprises. Here is how the money side works, step by step.",
   "steps": {
     "assessment": {
@@ -8,7 +8,7 @@
     },
     "review": {
       "heading": "The medical review",
-      "body": "If your result goes to a doctor for review, any fee for that review is shown to you first. You confirm it before anything is charged — never automatically."
+      "body": "If your result goes to a doctor for review, any fee for that review is shown to you first. You confirm it before anything is charged, never automatically."
     },
     "solution": {
       "heading": "Your solution",
@@ -16,7 +16,7 @@
     },
     "delivery": {
       "heading": "Delivery",
-      "body": "Delivery from the pharmacy is included — no separate shipping fee. Once dispatched, orders placed before 12:00 typically arrive the next day; after 12:00, within two days."
+      "body": "Delivery from the pharmacy is included. There is no separate shipping fee. Once dispatched, orders placed before 12:00 typically arrive the next day; after 12:00, within two days."
     }
   },
   "reimbursement": {

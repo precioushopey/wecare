@@ -53,7 +53,7 @@
     "formatValue": "Erhältlich als Öl oder getrocknete Blüte. Öl ist die übliche Einstiegsform; die passende Form bestätigt die verschreibende Ärztin oder der Arzt.",
     "ingredientsHeading": "Wichtigste Inhaltsstoffe",
     "ingredientsValue": "Vollspektrum-Medizinalcannabis – THC {{thc}}, mit CBD und Neben-Cannabinoiden (CBG, CBN). Ohne Zusätze.",
-    "oilFormulationHeading": "Öl-Rezeptur — Einstiegsformat",
+    "oilFormulationHeading": "Öl-Rezeptur: Einstiegsformat",
     "oilFormulationNote": "Das Vollspektrum-CBD-Öl, auf dem diese Lösung basiert – das Format, das üblicherweise für den Start vorgeschlagen wird. Das Zertifikat unten bezieht sich auf die getrocknete Blüte, die nach Ausstellung einer Verschreibung beliefert wird.",
     "oilFormulationProvisional": "Dies sind die von WeCare vorgesehenen Ziel-Werte der Rezeptur, kein laborgeprüftes Zertifikat – sie werden bestätigt, sobald der Apotheken-Partner das Öl liefert.",
     "oilStrengthLabel": "Vollspektrum",
@@ -199,12 +199,28 @@
     "termsLabel": "Ich akzeptiere die <terms>AGB</terms> und die <privacy>Datenschutzerklärung</privacy>.",
     "termsLabelPlain": "Ich akzeptiere die AGB und die Datenschutzerklärung.",
     "disclaimerLabel": "Mir ist bewusst, dass dieses Produkt nicht zur Diagnose, Behandlung, Heilung oder Vorbeugung von Krankheiten bestimmt ist.",
-    "customerHeading": "Kundendaten"
+    "customerHeading": "Kundendaten",
+    "signedInAs": "Angemeldet als"
   },
   "confirmation": {
     "title": "Danke für deine Bestellung",
-    "body": "Wir haben deine Bestellung erhalten. Der Versand erfolgt aus der Apotheke, sobald die ärztliche Freigabe vorliegt.",
+    "body": "Deine Bestellung ist eingegangen. So geht es weiter – bei jedem Schritt bekommst du eine E-Mail.",
     "orderLabel": "Bestellnummer: {{id}}",
+    "stepsHeading": "Wo deine Bestellung steht",
+    "steps": {
+      "received": {
+        "title": "Bestellung eingegangen",
+        "body": "Deine Bestellung und deine Angaben sind bei uns."
+      },
+      "review": {
+        "title": "Ärztliche Prüfung",
+        "body": "Eine Ärztin oder ein Arzt prüft deinen Fragebogen – das gehört zu jeder Bestellung."
+      },
+      "dispatch": {
+        "title": "Versand aus der Apotheke",
+        "body": "Sobald die Freigabe da ist, verschickt eine zugelassene Apotheke dein Paket diskret zu dir nach Hause."
+      }
+    },
     "toOrders": "Zu meinen Bestellungen",
     "toHome": "Zur Startseite"
   }

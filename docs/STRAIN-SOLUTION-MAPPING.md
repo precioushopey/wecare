@@ -94,11 +94,14 @@ format" block separately.
    not** build a complex inventory UI before real pharmacy data (D10/D11)
    lands — the launch UI stays the current simple accordion. Design the types
    now so the later migration isn't a rewrite; populate/wire once real data
-   exists. **The types now exist** — `src/data/dispensing.ts`
-   (`FulfillmentFormat`, `DispensingOption`) — but are deliberately not wired
-   into any component; the app still runs on the simpler `Product` /
-   `ProductFormat` model. Next engineering step is mapping real pharmacy data
-   onto this shape and wiring it into `ProductPage`.
+   exists. A `src/data/dispensing.ts` type sketch (`FulfillmentFormat`,
+   `DispensingOption`) was written and then **removed in the 2026-09-02 repo
+   cleanup** — it was never wired into any component, and this section's field
+   list (plus `mappingStatus` ∈ `pending_medical_validation | approved |
+   rejected`, per Solution, and `active`) is the spec to re-create it from.
+   The app runs on the simpler `Product` / `ProductFormat` model. Next
+   engineering step: re-create the types, map real pharmacy data onto them,
+   and wire them into `ProductPage`.
 4. **DECIDED — Returning-patient preference flow (Option D) is Phase 2, not
    launch.** Priority **P2 / Early Phase 2**, after legal/compliance, real
    backend, auth/profile, medical-review integration, pharmacy integration,

@@ -25,14 +25,13 @@ export function siteImage(key: string): string | undefined {
  *  call — the tablet/mug photo reads as self-care better than the phone
  *  cut-out for a rotating-problem hero). Net result: hero keeps its original
  *  landscape photo, "Simple recommendations" now carries the portrait phone
- *  cut-out, final CTA is unchanged. `How it works Page.png` is unreferenced. */
+ *  cut-out, final CTA is unchanged. */
 export const IMG = {
   /** Hero — landscape cut-out, `w-full` treatment. */
   homeHero: "Knowledge Hub/Hero",
   /** Final-CTA photo — the telehealth cut-out (a person on a video call with
-   *  a doctor). Language-free: it replaced `assessment-2.png`, which was a
-   *  laptop mock-up of the EN assessment UI showing on the DE homepage
-   *  (audit WC-19). */
+   *  a doctor). Language-free (audit WC-19 — the previous image was a laptop
+   *  mock-up of the EN assessment UI showing on the DE homepage). */
   homeDoctor: "Homepage/Hero",
   homeGuidance: "Condition Page",
   /** Right-hand anchor photo in the "Simple recommendations" section —
@@ -56,8 +55,8 @@ export const IMG = {
     assessment: "assessment",
     match: "results",
     /** "Continue to product, support or follow-up" — a courier handing over a
-     *  parcel. Was `64.png` (a spread of prescription pill bottles), which
-     *  read product-forward for a next-steps step (audit WC-25). */
+     *  parcel (audit WC-25 — the previous image was a spread of prescription
+     *  pill bottles, too product-forward for a next-steps step). */
     continue: "Knowledge Hub/63",
   },
   conditionHero: {

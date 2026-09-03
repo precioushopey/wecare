@@ -20,6 +20,9 @@ export function LoginPage() {
   usePageTitle(t("auth.signInTitle"));
 
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [mismatch, setMismatch] = useState(false);
   const state = location.state as { from?: string; reason?: string } | null;
   const from = state?.from ?? paths.dashboard;
 
@@ -30,6 +33,12 @@ export function LoginPage() {
   function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!email.trim()) return;
+    // Any email signs in (mock auth) — but if a password was entered, its
+    // confirmation must match (stakeholder feedback, Sept 2026).
+    if (password !== passwordConfirm) {
+      setMismatch(true);
+      return;
+    }
     signIn(email);
     navigate(from, { replace: true });
   }
@@ -84,10 +93,37 @@ export function LoginPage() {
               id="password"
               name="password"
               type="password"
-              autoComplete="current-password"
+              autoComplete="new-password"
               required
               minLength={8}
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setMismatch(false);
+              }}
             />
+          </div>
+          <div className="space-y-1.5">
+            <Label htmlFor="passwordConfirm">{t("auth.passwordConfirm")}</Label>
+            <Input
+              id="passwordConfirm"
+              name="passwordConfirm"
+              type="password"
+              autoComplete="new-password"
+              required
+              minLength={8}
+              value={passwordConfirm}
+              onChange={(e) => {
+                setPasswordConfirm(e.target.value);
+                setMismatch(false);
+              }}
+              aria-invalid={mismatch || undefined}
+            />
+            {mismatch ? (
+              <p className="text-sm text-danger-600">
+                {t("auth.passwordMismatch")}
+              </p>
+            ) : null}
           </div>
           <Button type="submit" variant="cta" size="lg" className="w-full">
             {t("auth.signIn")}

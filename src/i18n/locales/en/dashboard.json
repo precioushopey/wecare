@@ -36,7 +36,7 @@
         "onTheWay": "On the way",
         "delivered": "Delivered"
       },
-      "noVan": "Live courier tracking — the van's position and ETA — appears here once the delivery partner's tracking is connected."
+      "noVan": "Live courier tracking (the van's position and ETA) appears here once the delivery partner's tracking is connected."
     }
   },
   "assessment": {
@@ -91,7 +91,7 @@
     "empty": "Your check-in appears here once you have a recommended solution.",
     "emptyCta": "Start the assessment",
     "prompt": "How was your experience with your recommended solution?",
-    "promptHint": "There are no wrong answers — this just helps us guide you.",
+    "promptHint": "There are no wrong answers. This just helps us guide you.",
     "options": {
       "good": "Good",
       "stronger": "I want something stronger",
@@ -100,7 +100,7 @@
       "support": "I need support"
     },
     "responses": {
-      "good": "Great to hear. We'll check in again later — nothing to change for now.",
+      "good": "Great to hear. We'll check in again later. Nothing to change for now.",
       "stronger": "Understood. Here is a stronger option matched to your problem. Any prescription change is reviewed by the doctor.",
       "lighter": "Understood. Here is a gentler option matched to your problem. Any prescription change is reviewed by the doctor.",
       "format": "You can be dispensed a different format (flower or a device). Our team can set that up for your next order.",
@@ -146,11 +146,13 @@
     "signInIntro": "Sign in to see your assessment, recommendation and orders.",
     "email": "Email",
     "password": "Password",
+    "passwordConfirm": "Confirm password",
+    "passwordMismatch": "Passwords don't match.",
     "signIn": "Sign in",
     "newHere": "New to WeCare?",
     "newHereCta": "Start the assessment",
     "requiredNote": "Please sign in to see this area.",
-    "checkoutNote": "Please sign in to complete your order — we'll take you back to checkout."
+    "checkoutNote": "Please sign in to complete your order. We'll take you back to checkout."
   },
   "greeting": {
     "morning": "Good morning, {{name}}",
@@ -172,7 +174,7 @@
     "noOrders": "No orders yet",
     "followUpLabel": "Follow-up",
     "followUpReminder": "We check in 14–21 days after you start your solution.",
-    "followUpDone": "Thanks — your check-in is recorded.",
+    "followUpDone": "Thanks, your check-in is recorded.",
     "followUpCta": "Open follow-up",
     "viewRecommendation": "View recommendation",
     "recommendationHeading": "Your recommendation",

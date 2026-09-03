@@ -18,7 +18,6 @@ import { useLanguage } from "@/i18n/useLanguage";
 import { AnalyticsEvent, track } from "@/lib/analytics";
 import { formatPriceEur } from "@/lib/format";
 
-const CONTACT_FIELDS = ["email"] as const;
 const ADDRESS_FIELDS = [
   "firstName",
   "lastName",
@@ -38,7 +37,7 @@ export function CheckoutPage() {
   const { t } = useTranslation("shop");
   const { language } = useLanguage();
   const { items, subtotalEur, hasPrescriptionItem, clear } = useCart();
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
   const navigate = useNavigate();
   usePageTitle(t("checkout.title"));
 
@@ -114,16 +113,18 @@ export function CheckoutPage() {
 
       <form onSubmit={onSubmit} className="mt-8 grid gap-8 lg:grid-cols-[1fr_20rem]">
         <div className="space-y-8">
-          <fieldset className="space-y-4">
+          {/* The customer is already signed in to reach checkout — show the
+              account email as a confirmation instead of asking for it again
+              (stakeholder feedback, Sept 2026: re-entering the email here was a
+              redundant step). */}
+          <fieldset className="space-y-3">
             <legend className="text-lg font-medium text-ink">
               {t("checkout.customerHeading")}
             </legend>
-            {CONTACT_FIELDS.map((f) => (
-              <div key={f} className="space-y-1.5">
-                <Label htmlFor={f}>{t(`checkout.fields.${f}`)}</Label>
-                <Input id={f} name={f} type="email" required autoComplete="email" />
-              </div>
-            ))}
+            <p className="rounded-xl border border-border bg-surface-raised p-3 text-sm text-ink-muted">
+              {t("checkout.signedInAs")}{" "}
+              <span className="font-medium text-ink">{user?.email}</span>
+            </p>
           </fieldset>
 
           <fieldset className="space-y-4">
