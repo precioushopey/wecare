@@ -144,32 +144,7 @@ export function LoginPage({ mode = "signIn" }: { mode?: Mode }) {
           </p>
         ) : null}
 
-        <div className="mt-8 space-y-3">
-          <button
-            type="button"
-            onClick={() => continueWith("google")}
-            className="flex w-full items-center justify-center gap-3 rounded-full border border-border bg-white px-5 py-2.5 text-sm font-medium text-ink shadow-[var(--shadow-soft)] transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-petrol-600 focus-visible:ring-offset-2"
-          >
-            <GoogleIcon className="size-5 shrink-0" />
-            {t("auth.continueWithGoogle")}
-          </button>
-          <button
-            type="button"
-            onClick={() => continueWith("apple")}
-            className="flex w-full items-center justify-center gap-3 rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-white shadow-[var(--shadow-soft)] transition-colors hover:bg-ink/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-petrol-600 focus-visible:ring-offset-2"
-          >
-            <AppleIcon className="size-5 shrink-0" />
-            {t("auth.continueWithApple")}
-          </button>
-        </div>
-
-        <div className="my-6 flex items-center gap-3 text-xs font-medium uppercase tracking-wide text-ink-muted">
-          <span className="h-px flex-1 bg-border" />
-          {t("auth.orDivider")}
-          <span className="h-px flex-1 bg-border" />
-        </div>
-
-        <form onSubmit={onSubmit} className="space-y-4">
+        <form onSubmit={onSubmit} className="mt-8 space-y-4">
           {isSignUp ? (
             <div className="space-y-1.5">
               <Label htmlFor="name">{t("auth.name")}</Label>
@@ -243,6 +218,32 @@ export function LoginPage({ mode = "signIn" }: { mode?: Mode }) {
             {isSignUp ? t("auth.createAccount") : t("auth.signIn")}
           </Button>
         </form>
+
+        {/* Social sign-in below the manual form (owner request, Sept 2026). */}
+        <div className="my-6 flex items-center gap-3 text-xs font-medium uppercase tracking-wide text-ink-muted">
+          <span className="h-px flex-1 bg-border" />
+          {t("auth.orDivider")}
+          <span className="h-px flex-1 bg-border" />
+        </div>
+
+        <div className="space-y-3">
+          <button
+            type="button"
+            onClick={() => continueWith("google")}
+            className="flex w-full items-center justify-center gap-3 rounded-full border border-border bg-white px-5 py-2.5 text-sm font-medium text-ink shadow-[var(--shadow-soft)] transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-petrol-600 focus-visible:ring-offset-2"
+          >
+            <GoogleIcon className="size-5 shrink-0" />
+            {t("auth.continueWithGoogle")}
+          </button>
+          <button
+            type="button"
+            onClick={() => continueWith("apple")}
+            className="flex w-full items-center justify-center gap-3 rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-white shadow-[var(--shadow-soft)] transition-colors hover:bg-ink/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-petrol-600 focus-visible:ring-offset-2"
+          >
+            <AppleIcon className="size-5 shrink-0" />
+            {t("auth.continueWithApple")}
+          </button>
+        </div>
 
         {/* The assessment is still the main way in for first-timers. */}
         <p className="mt-6 border-t border-border pt-5 text-sm text-ink-muted">

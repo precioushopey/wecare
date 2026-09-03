@@ -523,7 +523,7 @@ export function DashboardAssessmentPage() {
           </div>
           <div className="relative flex w-full flex-col sm:w-1/2 sm:self-end lg:w-[22rem]">
             {review ? (
-              <div className="absolute right-0 top-0 z-10 hidden sm:block">
+              <div className="absolute left-0 top-0 z-10 hidden sm:block">
                 <StatusPill
                   label={ta(`review.statuses.${review.status}.label`)}
                   tone={reviewPillTone(review.status)}
