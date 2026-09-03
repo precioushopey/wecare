@@ -45,6 +45,9 @@ export interface AuthUser {
   name: string;
   email: string;
   phone?: string;
+  /** Data URL of a self-chosen profile photo, resized client-side before it
+   *  is stored (mock auth — lives only in this browser's `wecare.auth`). */
+  avatarUrl?: string;
 }
 
 interface AuthContextValue {
@@ -54,7 +57,9 @@ interface AuthContextValue {
   sessionKey: string;
   signIn: (email: string, name?: string) => void;
   signOut: () => void;
-  updateProfile: (patch: Partial<Pick<AuthUser, "name" | "phone">>) => void;
+  updateProfile: (
+    patch: Partial<Pick<AuthUser, "name" | "phone" | "avatarUrl">>,
+  ) => void;
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null);
@@ -70,6 +75,10 @@ function load(): AuthUser | null {
         email: parsed.email,
         name: parsed.name ?? parsed.email,
         phone: typeof parsed.phone === "string" ? parsed.phone : undefined,
+        avatarUrl:
+          typeof parsed.avatarUrl === "string" && parsed.avatarUrl
+            ? parsed.avatarUrl
+            : undefined,
       };
     }
   } catch {
@@ -122,7 +131,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const updateProfile = useCallback(
-    (patch: Partial<Pick<AuthUser, "name" | "phone">>) => {
+    (patch: Partial<Pick<AuthUser, "name" | "phone" | "avatarUrl">>) => {
       setUser((prev) => {
         if (!prev) return prev;
         const next = { ...prev, ...patch };
@@ -130,6 +139,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         if (typeof next.phone === "string") {
           const p = next.phone.trim();
           next.phone = p === "" ? undefined : p;
+        }
+        if (typeof next.avatarUrl === "string" && next.avatarUrl === "") {
+          next.avatarUrl = undefined;
         }
         return next;
       });

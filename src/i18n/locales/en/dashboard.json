@@ -36,14 +36,15 @@
         "onTheWay": "On the way",
         "delivered": "Delivered"
       },
-      "noVan": "Live courier tracking (the van's position and ETA) appears here once the delivery partner's tracking is connected."
+      "noVan": "Step-by-step courier tracking from the carrier is available as soon as your order ships."
     }
   },
   "assessment": {
     "title": "My assessment",
     "empty": "You haven't completed an assessment yet.",
     "emptyCta": "Start assessment",
-    "completedNote": "Last completed in this browser.",
+    "completedNote": "Your answers are saved.",
+    "completedLabel": "Completed",
     "problem": "Concern",
     "frequency": "Frequency",
     "strength": "Strength",
@@ -67,7 +68,14 @@
   "orders": {
     "title": "My orders",
     "empty": "You have no orders yet.",
-    "emptyCta": "Go to shop",
+    "emptyCta": "View your recommendation",
+    "pending": {
+      "heading": "Order in progress",
+      "note": "You've added a solution but haven't checked out yet. It becomes an order once you complete checkout and confirm.",
+      "total": "Total",
+      "cta": "Complete your order"
+    },
+    "latestHeading": "Latest order",
     "orderLabel": "Order {{id}}",
     "placedOn": "Placed on {{date}}",
     "status": "Status",
@@ -93,20 +101,21 @@
     "prompt": "How was your experience with your recommended solution?",
     "promptHint": "There are no wrong answers. This just helps us guide you.",
     "options": {
-      "good": "Good",
-      "stronger": "I want something stronger",
-      "lighter": "I want something lighter",
-      "format": "I want to try another format",
-      "support": "I need support"
+      "good": "It worked well for me",
+      "stronger": "I need more guidance",
+      "lighter": "I would like a different option",
+      "format": "I would like to try another format",
+      "support": "I want to speak with support"
     },
     "responses": {
       "good": "Great to hear. We'll check in again later. Nothing to change for now.",
-      "stronger": "Understood. Here is a stronger option matched to your problem. Any prescription change is reviewed by the doctor.",
-      "lighter": "Understood. Here is a gentler option matched to your problem. Any prescription change is reviewed by the doctor.",
+      "stronger": "Understood. Let's look at your options together. Any change to a prescription is reviewed by the doctor.",
+      "lighter": "Understood. We can walk through the other matched option with you. Any change to a prescription is reviewed by the doctor.",
       "format": "You can be dispensed a different format (flower or a device). Our team can set that up for your next order.",
       "support": "No problem. Our team can help with dosage, delivery or anything else."
     },
     "yourAnswer": "Your answer",
+    "actionsHeading": "What would you like to do?",
     "toSupport": "Contact support",
     "change": "Change my answer",
     "windowNote": "We check in 14–21 days after you start your solution.",
@@ -131,6 +140,10 @@
     "phone": "Phone",
     "phoneNone": "Not added",
     "phonePlaceholder": "+43 …",
+    "changePhoto": "Change photo",
+    "removePhoto": "Remove photo",
+    "photoHint": "A square image works best.",
+    "photoError": "That image could not be loaded. Try a different file.",
     "language": "Language",
     "edit": "Edit details",
     "save": "Save changes",
@@ -144,11 +157,18 @@
   "auth": {
     "signInTitle": "Login",
     "signInIntro": "Sign in to see your assessment, recommendation and orders.",
+    "signUpTitle": "Create account",
+    "signUpIntro": "Set up an account to follow your assessment, recommendation and orders.",
+    "name": "Full name",
     "email": "Email",
     "password": "Password",
     "passwordConfirm": "Confirm password",
     "passwordMismatch": "Passwords don't match.",
     "signIn": "Sign in",
+    "createAccount": "Create account",
+    "continueWithGoogle": "Continue with Google",
+    "continueWithApple": "Continue with Apple",
+    "orDivider": "or",
     "newHere": "New to WeCare?",
     "newHereCta": "Start the assessment",
     "requiredNote": "Please sign in to see this area.",
@@ -158,12 +178,12 @@
     "morning": "Good morning, {{name}}",
     "afternoon": "Good afternoon, {{name}}",
     "evening": "Good evening, {{name}}",
-    "subtitle": "Good to see you again."
+    "subtitle": "Your assessment and orders in one place."
   },
   "home": {
     "title": "Overview",
     "nextStep": "Your next step",
-    "nextReviewPending": "Submit your assessment so a doctor can review it.",
+    "nextReviewPending": "Review your recommended Solution, then continue to medical review.",
     "orderInFlight": "We'll keep you posted on your delivery.",
     "assessmentSnapshot": "Your assessment",
     "problemLabel": "Last selected problem",
@@ -176,7 +196,7 @@
     "followUpReminder": "We check in 14–21 days after you start your solution.",
     "followUpDone": "Thanks, your check-in is recorded.",
     "followUpCta": "Open follow-up",
-    "viewRecommendation": "View recommendation",
+    "viewRecommendation": "View",
     "recommendationHeading": "Your recommendation",
     "recommendationPrice": "Indicative price",
     "supportHeading": "Need a hand?",

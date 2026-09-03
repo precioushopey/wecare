@@ -1,14 +1,31 @@
 import { Link, Navigate } from "react-router";
 import { useTranslation } from "react-i18next";
+import { Check } from "lucide-react";
 
 import { Button } from "@/app/components/ui/button";
+import { cn } from "@/app/components/ui/utils";
 import { paths } from "@/app/paths";
 import { usePageTitle } from "@/app/usePageTitle";
 import { AssessmentRing } from "@/components/brand/AssessmentRing";
 import { useAssessment } from "@/features/assessment/AssessmentContext";
-import { getMedicalReview } from "@/features/review/review";
+import { useAuth } from "@/features/auth/AuthContext";
+import { getMedicalReview, type ReviewStatus } from "@/features/review/review";
 
-const STEP_KEYS = ["a", "b", "c", "d"] as const;
+/** The four stages the status page visualises (spec: "Submitted → In review →
+ *  More info needed → Approved"). Each real `ReviewStatus` maps to how far the
+ *  bar has filled: `done` stages show a check, `current` is highlighted, the
+ *  rest are dim. `notApproved` stops before "Approved"; the status copy above
+ *  carries that outcome. */
+const REVIEW_STAGES = ["submitted", "inReview", "infoRequired", "approved"] as const;
+
+const STAGE_PROGRESS: Record<ReviewStatus, { done: number; current: number }> = {
+  submitted: { done: 0, current: 0 },
+  inReview: { done: 1, current: 1 },
+  infoRequired: { done: 1, current: 2 },
+  consultation: { done: 1, current: 2 },
+  approved: { done: 4, current: -1 },
+  notApproved: { done: 2, current: -1 },
+};
 
 /**
  * Medical-review status page (owner decision D3). Reads the mock review
@@ -19,7 +36,8 @@ const STEP_KEYS = ["a", "b", "c", "d"] as const;
 export function ReviewStatusPage() {
   const { t } = useTranslation("assessment");
   const { result } = useAssessment();
-  usePageTitle(t("review.pageTitle"));
+  const { isAuthenticated } = useAuth();
+  usePageTitle(t("review.pageTitle"), undefined, { noindex: true });
 
   const review = getMedicalReview();
   if (!review) {
@@ -27,12 +45,13 @@ export function ReviewStatusPage() {
   }
 
   const s = review.status;
+  const { done, current } = STAGE_PROGRESS[s];
   const showSolution = s === "approved";
   const showSupport =
     s === "infoRequired" || s === "notApproved" || s === "consultation";
 
   return (
-    <div className="mx-auto max-w-2xl px-4 py-14 sm:px-6">
+    <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6">
       <div className="flex flex-col items-start gap-5 sm:flex-row">
         <AssessmentRing variant="complete" tone="deep" size={72} />
         <div>
@@ -60,21 +79,56 @@ export function ReviewStatusPage() {
         {t("review.notGuaranteed")}
       </p>
 
-      <h2 className="mt-10 text-lg">{t("review.stepsHeading")}</h2>
-      <ol className="mt-4 space-y-3">
-        {STEP_KEYS.map((k, i) => (
-          <li key={k} className="flex gap-3">
-            <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-sage-100 font-display text-sm text-petrol-700">
-              {i + 1}
-            </span>
-            <p className="text-sm text-ink">{t(`review.steps.${k}`)}</p>
-          </li>
-        ))}
+      {/* Status-aware progress: which stage the review is at, not a generic
+          explainer. */}
+      <h2 className="mt-10 text-lg">{t("review.progressHeading")}</h2>
+      <ol className="mt-4 space-y-4">
+        {REVIEW_STAGES.map((stage, i) => {
+          const isDone = i < done;
+          const isCurrent = i === current;
+          return (
+            <li
+              key={stage}
+              className="flex gap-3"
+              aria-current={isCurrent ? "step" : undefined}
+            >
+              <span
+                className={cn(
+                  "flex size-7 shrink-0 items-center justify-center rounded-lg font-display text-sm",
+                  isDone && "bg-sage-100 text-petrol-700",
+                  isCurrent && "bg-petrol-600 text-white",
+                  !isDone && !isCurrent &&
+                    "border border-border text-ink-muted",
+                )}
+              >
+                {isDone ? <Check className="size-4" aria-hidden /> : i + 1}
+              </span>
+              <div>
+                <p
+                  className={cn(
+                    "text-sm font-medium",
+                    isCurrent ? "text-ink" : "text-ink-muted",
+                    isDone && "text-ink",
+                  )}
+                >
+                  {t(`review.stages.${stage}.label`)}
+                </p>
+                <p className="mt-0.5 text-xs text-ink-muted">
+                  {t(`review.stages.${stage}.body`)}
+                </p>
+              </div>
+            </li>
+          );
+        })}
       </ol>
 
       <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
         <Button asChild variant="cta" className="w-full sm:w-auto">
-          <Link to={paths.dashboard}>{t("review.toDashboard")}</Link>
+          {/* A new user has no account yet — send them to sign up (they land
+              on the dashboard after). A signed-in user goes straight there. */}
+          <Link to={isAuthenticated ? paths.dashboard : paths.signup}>
+            {t("review.toDashboard")}
+          </Link>
         </Button>
         {showSolution && result ? (
           <Button asChild variant="outline" className="w-full sm:w-auto">

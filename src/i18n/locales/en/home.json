@@ -71,7 +71,8 @@
         "title": "Continue to product, support or follow-up",
         "description": "Move on to your solution, ask for support, or check in later."
       }
-    }
+    },
+    "moreLink": "See the full process"
   },
   "solutionsPreview": {
     "eyebrow": "Solutions",
@@ -213,5 +214,38 @@
       "klagenfurt": "Klagenfurt",
       "stPoelten": "St. Pölten"
     }
+  },
+  "howItWorksPage": {
+    "eyebrow": "The process",
+    "title": "How WeCare works",
+    "intro": "From your problem to a suitable Solution, with a medical review where it is needed, and follow-up afterwards.",
+    "steps": {
+      "problem": {
+        "title": "Choose your problem",
+        "body": "Start with the area that affects you: sleep, pain, stress and anxiety, or migraine and head tension."
+      },
+      "assessment": {
+        "title": "Complete the short assessment",
+        "body": "A few quick questions about how you feel. About a minute, no documents needed."
+      },
+      "recommendation": {
+        "title": "Receive your recommended Solution",
+        "body": "Based on your answers, WeCare matches you with a suitable Solution and explains why."
+      },
+      "review": {
+        "title": "Continue to medical review where needed",
+        "body": "Medical cannabis is prescription-only. A licensed doctor reviews your information; a prescription is issued only if it is medically appropriate."
+      },
+      "fulfilment": {
+        "title": "Fulfilment and next steps",
+        "body": "Once a prescription is issued, a licensed pharmacy prepares your order and ships it discreetly across Austria."
+      },
+      "followUp": {
+        "title": "Follow-up in My Area",
+        "body": "Check in on how your Solution is working, reorder, or ask for support at any time."
+      }
+    },
+    "ctaHeading": "Ready to start?",
+    "cta": "Start free assessment"
   }
 }

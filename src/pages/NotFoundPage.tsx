@@ -7,7 +7,7 @@ import { usePageTitle } from "@/app/usePageTitle";
 
 export function NotFoundPage() {
   const { t } = useTranslation();
-  usePageTitle(t("pages.notFound.title"));
+  usePageTitle(t("pages.notFound.title"), undefined, { noindex: true });
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-24 sm:px-6">

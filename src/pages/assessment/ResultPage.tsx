@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import type { ReactNode } from "react";
-import { Link, Navigate, useNavigate } from "react-router";
+import { Link, Navigate } from "react-router";
 import { useTranslation } from "react-i18next";
 import { ArrowRight, Info } from "lucide-react";
 
@@ -15,14 +15,14 @@ import { paths } from "@/app/paths";
 import { usePageTitle } from "@/app/usePageTitle";
 import { AssessmentRing } from "@/components/brand/AssessmentRing";
 import { SolutionMark } from "@/components/brand/SolutionMark";
+import { DeliveryConfirmation } from "@/components/marketing/DeliveryConfirmation";
 import { JourneyStepper } from "@/components/marketing/JourneyStepper";
+import { NextSteps } from "@/components/marketing/NextSteps";
 import { Reveal } from "@/components/marketing/Reveal";
 import { SOLUTION_BY_ID, type Solution } from "@/data/solutions";
 import { useAssessment } from "@/features/assessment/AssessmentContext";
-import {
-  getMedicalReview,
-  submitMedicalReview,
-} from "@/features/review/review";
+import { hasAnyFlag } from "@/features/assessment/exclusions";
+import { getMedicalReview } from "@/features/review/review";
 import { useLanguage } from "@/i18n/useLanguage";
 import { AnalyticsEvent, track } from "@/lib/analytics";
 import { formatPriceEur } from "@/lib/format";
@@ -75,28 +75,38 @@ function PrimaryRecommendationCard({
   const { language } = useLanguage();
 
   return (
-    <div className="glass-strong rounded-2xl md:rounded-3xl p-6">
-      {/* Left image panel + right content panel — the same split the
-          Recommended Solution page uses (owner request, Sept 2026). Stacks
-          image-over-content below `md`. */}
-      <div className="grid gap-6 md:grid-cols-[13rem_1fr] md:items-start md:gap-8">
-        <SolutionMark
-          solution={solution}
-          className="mx-auto aspect-square w-full max-w-[13rem] md:mx-0 md:max-w-none"
-          iconClassName="drop-shadow-[0_12px_20px_rgba(13,68,75,0.18)]"
-        />
+    <div className="relative overflow-hidden rounded-2xl md:rounded-3xl [background-image:var(--brand-band-gradient)] p-6 text-white shadow-[var(--shadow-float)] sm:p-8">
+      <span
+        aria-hidden
+        className="pointer-events-none absolute -right-20 -top-24 size-64 rounded-full bg-white/10 blur-3xl"
+      />
+      <span
+        aria-hidden
+        className="pointer-events-none absolute -bottom-24 left-1/4 size-56 rounded-full bg-sky-400/15 blur-3xl"
+      />
 
-        <div className="min-w-0">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-petrol-600">
-            {heading}
-          </p>
-          <p className="mt-1 font-display text-xl text-ink">{solution.name}</p>
-          <p className="text-xs font-medium text-petrol-600">
-            {t(`solutions.${solution.id}.category`)}
-          </p>
+      <div className="relative min-w-0">
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/60">
+          {heading}
+        </p>
+        <div className="mt-3 flex items-center gap-4">
+          <SolutionMark
+            solution={solution}
+            variant="badge"
+            className="size-14"
+          />
+          <div className="min-w-0">
+            <p className="font-display text-xl leading-tight text-white">
+              {solution.name}
+            </p>
+            <p className="text-xs font-medium text-sky-200">
+              {t(`solutions.${solution.id}.category`)}
+            </p>
+          </div>
+        </div>
 
-          <p className="mt-4 text-sm text-ink-muted">{explanation}</p>
-          {notes}
+        <p className="mt-4 text-sm text-white/85">{explanation}</p>
+        {notes}
 
           <Accordion
             type="single"
@@ -112,33 +122,31 @@ function PrimaryRecommendationCard({
               }
             }}
           >
-            <AccordionItem value="details">
-              <AccordionTrigger className="text-sm">
+            <AccordionItem value="details" className="border-white/15">
+              <AccordionTrigger className="text-sm text-white hover:no-underline [&>svg]:text-white/70">
                 {detailsLabel}
               </AccordionTrigger>
               <AccordionContent>
                 <dl className="grid gap-2 text-sm">
                   <div className="flex items-center justify-between gap-4">
-                    <dt className="text-ink-muted">
+                    <dt className="text-white/60">
                       {t("solution.thcRangeLabel")}
                     </dt>
-                    <dd className="font-mono text-ink">{solution.thcRange}</dd>
+                    <dd className="font-mono text-white">{solution.thcRange}</dd>
                   </div>
                   <div className="flex items-center justify-between gap-4">
-                    <dt className="text-ink-muted">
-                      {t("solution.priceLabel")}
-                    </dt>
-                    <dd className="font-mono text-ink">
+                    <dt className="text-white/60">{t("solution.priceLabel")}</dt>
+                    <dd className="font-mono text-white">
                       {t("solution.pricePerGram", {
                         price: formatPriceEur(solution.priceEur, language),
                       })}
                     </dd>
                   </div>
                   <div className="flex items-start justify-between gap-4">
-                    <dt className="text-ink-muted">
+                    <dt className="text-white/60">
                       {t("solution.oilProfileLabel")}
                     </dt>
-                    <dd className="text-right font-mono text-ink">
+                    <dd className="text-right font-mono text-white">
                       {oilProfileSummary(solution)}
                     </dd>
                   </div>
@@ -147,8 +155,7 @@ function PrimaryRecommendationCard({
             </AccordionItem>
           </Accordion>
 
-          <div className="mt-5">{footer}</div>
-        </div>
+        <div className="mt-5">{footer}</div>
       </div>
     </div>
   );
@@ -210,9 +217,11 @@ function AlternativeSolutionLink({
 export function ResultPage() {
   const { t } = useTranslation("assessment");
   const { t: tCommon } = useTranslation();
-  const { result, answers } = useAssessment();
-  const navigate = useNavigate();
-  usePageTitle(t("result.title"), tCommon("pages.result.description"));
+  const { result, answers, postcode, deliveryRegion, exclusions } =
+    useAssessment();
+  usePageTitle(t("result.title"), tCommon("pages.result.description"), {
+    noindex: true,
+  });
 
   const problem = result?.problem;
   useEffect(() => {
@@ -228,17 +237,6 @@ export function ResultPage() {
   const secondary = SOLUTION_BY_ID[result.secondarySolutionId];
   const existingReview = getMedicalReview();
 
-  function submitForReview() {
-    if (!result) return;
-    submitMedicalReview({ problem: result.problem, answers });
-    track(AnalyticsEvent.medicalReviewSubmitted, { problem: result.problem });
-    track(AnalyticsEvent.recommendationContinueClicked, {
-      problem: result.problem,
-      path: "submit_review",
-    });
-    navigate(paths.assessment.review);
-  }
-
   // Owner decision D1 — frequency and format preference personalise the
   // recommendation copy and are noted for the medical review; they never
   // change the match or push a stronger / higher-THC option.
@@ -247,7 +245,7 @@ export function ResultPage() {
   const personalisation = (
     <>
       {q2 ? (
-        <p className="mt-2 text-sm text-ink-muted">
+        <p className="mt-2 text-sm text-white/80">
           {/* frequency reads as an adverb here ("… affects you daily") — lower-
               cased in both languages; German q2 labels are adverbial too. */}
           {t("result.frequencyNote", {
@@ -256,7 +254,7 @@ export function ResultPage() {
         </p>
       ) : null}
       {q6 === "flower" || q6 === "vape" ? (
-        <p className="mt-2 text-sm text-ink-muted">
+        <p className="mt-2 text-sm text-white/80">
           {/* format is a noun — keep the label's own casing so German stays
               correct ("… dass du Blüte bevorzugst", not "blüte"). */}
           {t("result.formatPreferenceNote", {
@@ -267,50 +265,40 @@ export function ResultPage() {
     </>
   );
 
-  // Two clear actions on the recommended card: submit for review (the lead
-  // CTA — medical review stays part of the flow) AND a real button to the
-  // recommended solution's page so it's as reachable as the alternative
-  // below (stakeholder feedback, Sept 2026: the recommended solution only had
-  // a small text link while the alternative was a full tap target).
-  const primaryCta = (
-    <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-      {existingReview ? (
-        <Button asChild variant="cta" size="lg" className="w-full sm:w-auto">
-          <Link
-            to={paths.assessment.review}
-            onClick={() =>
-              track(AnalyticsEvent.recommendationContinueClicked, {
-                path: "existing_review",
-              })
-            }
-          >
-            {t("result.viewReviewCta")}
-          </Link>
-        </Button>
-      ) : (
-        <Button
-          type="button"
-          variant="cta"
-          size="lg"
-          className="w-full sm:w-auto"
-          onClick={submitForReview}
-        >
-          {t("result.submitReviewCta")}
-        </Button>
-      )}
-      <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
-        <Link
-          to={paths.shopProduct(primary.id)}
-          onClick={() =>
-            track(AnalyticsEvent.recommendationPrimarySelected, {
-              solution: primary.id,
-            })
-          }
-        >
-          {t("result.viewSolution")}
-        </Link>
-      </Button>
-    </div>
+  // PO decision B1 — the Result page introduces the Solution, it does not ask
+  // the user to submit medical data. Primary CTA opens the Solution page,
+  // where "Continue to medical review" lives. A returning user with a review
+  // already in flight is sent straight to its status instead.
+  // On the branded gradient card a solid-white pill is the highest-contrast
+  // primary action (same as the dashboard gradient heroes).
+  const ctaClass =
+    "inline-flex h-11 w-full items-center justify-center gap-1.5 rounded-full bg-white px-6 text-sm font-semibold text-petrol-800 shadow-[0_12px_30px_-14px_rgba(0,0,0,0.55)] transition-colors hover:bg-white/90 sm:w-auto";
+  const primaryCta = existingReview ? (
+    <Link
+      to={paths.assessment.review}
+      onClick={() =>
+        track(AnalyticsEvent.recommendationContinueClicked, {
+          path: "existing_review",
+        })
+      }
+      className={ctaClass}
+    >
+      {t("result.viewReviewCta")}
+      <ArrowRight className="size-4" aria-hidden />
+    </Link>
+  ) : (
+    <Link
+      to={paths.shopProduct(primary.id)}
+      onClick={() =>
+        track(AnalyticsEvent.recommendationPrimarySelected, {
+          solution: primary.id,
+        })
+      }
+      className={ctaClass}
+    >
+      {t("result.viewSolution")}
+      <ArrowRight className="size-4" aria-hidden />
+    </Link>
   );
 
   return (
@@ -325,6 +313,13 @@ export function ResultPage() {
           <div>
             <h1>{t("result.title")}</h1>
             <p className="mt-2 text-lg text-ink-muted">{t("result.intro")}</p>
+            {postcode ? (
+              <DeliveryConfirmation
+                postcode={postcode}
+                region={deliveryRegion}
+                className="mt-3"
+              />
+            ) : null}
           </div>
         </div>
       </Reveal>
@@ -391,6 +386,9 @@ export function ResultPage() {
             <p>{t("result.reviewRequiredNote")}</p>
             {result.gentleFirst ? <p>{t("result.gentleNudge")}</p> : null}
             <p>{t("result.disclaimer")}</p>
+            {hasAnyFlag(exclusions ?? undefined) ? (
+              <p>{t("result.exclusionNote")}</p>
+            ) : null}
           </div>
         </div>
 
@@ -416,23 +414,14 @@ export function ResultPage() {
       {/* What's still ahead — review and delivery come after you pick the solution. */}
       <Reveal className="mt-10 rounded-2xl md:rounded-3xl glass p-6">
         <h2 className="text-base">{t("result.nextHeading")}</h2>
-        <ol className="mt-4 grid gap-4 sm:grid-cols-3">
-          {(["view", "review", "delivery"] as const).map((k, i) => (
-            <li key={k} className="flex gap-3">
-              <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-sage-100 font-display text-sm text-petrol-700">
-                {i + 1}
-              </span>
-              <div>
-                <p className="text-sm font-medium text-ink">
-                  {t(`result.next.${k}.title`)}
-                </p>
-                <p className="mt-0.5 text-xs text-ink-muted">
-                  {t(`result.next.${k}.body`)}
-                </p>
-              </div>
-            </li>
-          ))}
-        </ol>
+        <div className="mt-4">
+          <NextSteps
+            steps={(["view", "review", "delivery"] as const).map((k) => ({
+              title: t(`result.next.${k}.title`),
+              body: t(`result.next.${k}.body`),
+            }))}
+          />
+        </div>
       </Reveal>
     </div>
   );

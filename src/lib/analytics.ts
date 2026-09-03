@@ -35,6 +35,8 @@ export const AnalyticsEvent = {
   assessmentStarted: "assessment_started",
   assessmentQuestionAnswered: "assessment_question_answered",
   assessmentBackClicked: "assessment_back_clicked",
+  assessmentPostcodeSubmitted: "assessment_postcode_submitted",
+  assessmentExclusionCompleted: "assessment_exclusion_completed",
   assessmentCompleted: "assessment_completed",
   recommendationViewed: "recommendation_viewed",
   /** Owner decision, Sept 2026 — the Result page's own funnel, named so

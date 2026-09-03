@@ -12,16 +12,61 @@
   },
   "start": {
     "title": "Dein Fragebogen",
-    "intro": "Sechs kurze Fragen dazu, wie es dir geht – etwa 60 bis 90 Sekunden. Das ist kein medizinisches Formular.",
+    "intro": "Sechs kurze Fragen dazu, wie es dir geht – etwa 60 bis 90 Sekunden. Das ist kein medizinisches Formular, du brauchst keine Unterlagen und kannst jede Antwort vor dem Abschluss ändern.",
     "prefilledNote": "Vorausgewählt: {{condition}}",
     "progress": "Frage {{current}} von {{total}}",
     "back": "Zurück",
     "next": "Weiter",
     "submit": "Meine empfohlene Lösung anzeigen",
-    "selectPrompt": "Wähle eine Option, um fortzufahren.",
     "resumeNote": "Wir haben deine bisherigen Antworten gespeichert.",
     "restart": "Neu beginnen",
-    "reassurance": "Keine Unterlagen nötig. Du kannst jede Antwort vor dem Abschluss ändern."
+    "privacyNote": "Deine Antworten sind privat und sicher.",
+    "selectAndPrivacy": "Wähle eine Option, um fortzufahren. Deine Antworten sind privat und sicher."
+  },
+  "phase": {
+    "delivery": "Lieferung",
+    "finalChecks": "Letzte Fragen"
+  },
+  "postcode": {
+    "heading": "Wohin sollen wir liefern?",
+    "sub": "Wir prüfen kurz, ob wir dein Gebiet abdecken. Dauert nur einen Moment.",
+    "placeholder": "z. B. 1010",
+    "continue": "Weiter",
+    "error": "Bitte gib eine 4-stellige österreichische Postleitzahl ein."
+  },
+  "regions": {
+    "wien": "Wien",
+    "niederoesterreich": "Niederösterreich",
+    "oberoesterreich": "Oberösterreich",
+    "salzburg": "Salzburg",
+    "tirolVorarlberg": "Tirol / Vorarlberg",
+    "burgenland": "Burgenland",
+    "steiermark": "Steiermark",
+    "kaernten": "Kärnten"
+  },
+  "exclusion": {
+    "heading": "Ein paar Dinge, die deine ärztliche Prüfung braucht",
+    "sub": "Bitte beantworte die ersten beiden Fragen. Sie gehen an deine prüfende Ärztin oder deinen prüfenden Arzt.",
+    "yes": "Ja",
+    "no": "Nein",
+    "pregnancy": {
+      "q": "Bist du schwanger, stillst du oder planst du eine Schwangerschaft?"
+    },
+    "recentSupply": {
+      "q": "Hast du in den letzten 30 Tagen 100 g Cannabis oder mehr auf Rezept erhalten?"
+    },
+    "conditions": {
+      "q": "Trifft eines davon auf dich zu?",
+      "heart": "Herzerkrankung",
+      "liverKidney": "Leber- oder Nierenerkrankung",
+      "psychosis": "Psychose oder Schizophrenie in der Vorgeschichte",
+      "dependence": "Aktuelle oder frühere Abhängigkeit",
+      "allergy": "Bekannte Allergie gegen Cannabis, THC oder CBD",
+      "none": "Nichts davon"
+    },
+    "flaggedNote": "Danke. Deine prüfende Ärztin oder dein prüfender Arzt geht das mit dir durch, bevor etwas verschrieben wird.",
+    "continue": "Zur ärztlichen Prüfung einreichen",
+    "requiredPrompt": "Beantworte die ersten beiden Fragen, um fortzufahren."
   },
   "questions": {
     "q1": {
@@ -123,8 +168,8 @@
     "nextHeading": "Wie es weitergeht",
     "next": {
       "view": {
-        "title": "Zur Prüfung einreichen",
-        "body": "Sende deinen Fragebogen an eine Ärztin oder einen Arzt. Das ist kostenlos und es wird noch nichts bestellt."
+        "title": "Empfohlene Lösung ansehen",
+        "body": "Sieh, was ausgewählt wurde und warum, und geh dann weiter zur ärztlichen Prüfung."
       },
       "review": {
         "title": "Ärztliche Prüfung",
@@ -136,13 +181,14 @@
       }
     },
     "detailsLabel": "THC, Preis & Inhaltsstoffe",
-    "altHeading": "Lieber eine andere Option?",
-    "altLabelDefault": "Ebenfalls verfügbar",
-    "altStrongerHint": "In der Regel eine stärkere Option, für später.",
+    "altHeading": "Alternative Option",
+    "altLabelDefault": "Weitere passende Option",
+    "altStrongerHint": "Eine weitere passende Option, die du ansehen kannst.",
     "frequencyNote": "Du hast angegeben, dass dich das {{frequency}} betrifft – das wird für deine ärztliche Prüfung vermerkt.",
     "formatPreferenceNote": "Du hast angegeben, dass du {{format}} bevorzugst. Die passende Form bestätigt deine Ärztin oder dein Arzt – für die meisten am Anfang ist das ein Öl.",
     "submitReviewCta": "Meinen Fragebogen zur ärztlichen Prüfung einreichen",
-    "viewReviewCta": "Status deiner Prüfung ansehen"
+    "viewReviewCta": "Status deiner Prüfung ansehen",
+    "exclusionNote": "Deine prüfende Ärztin oder dein prüfender Arzt geht auch die Gesundheitsfragen mit dir durch, die du beantwortet hast."
   },
   "review": {
     "pageTitle": "Deine ärztliche Prüfung",
@@ -159,6 +205,25 @@
       "b": "Die Ärztin oder der Arzt prüft es und fragt bei Bedarf weitere Informationen nach.",
       "c": "Über das Ergebnis wirst du per E-Mail informiert.",
       "d": "Bei Freigabe bereitet eine zugelassene Apotheke deine Bestellung vor und versendet sie."
+    },
+    "progressHeading": "Wo deine Prüfung steht",
+    "stages": {
+      "submitted": {
+        "label": "Eingereicht",
+        "body": "Deine Angaben sind eingegangen."
+      },
+      "inReview": {
+        "label": "In Prüfung",
+        "body": "Eine Ärztin oder ein Arzt prüft deinen Fall."
+      },
+      "infoRequired": {
+        "label": "Angaben erforderlich",
+        "body": "Wir melden uns eventuell für weitere Details."
+      },
+      "approved": {
+        "label": "Freigegeben",
+        "body": "Du wirst nach der Freigabe benachrichtigt, dann bereitet eine zugelassene Apotheke deine Bestellung vor."
+      }
     },
     "statuses": {
       "submitted": {
@@ -192,5 +257,11 @@
         "body": "Die prüfende Ärztin oder der prüfende Arzt möchte vor der Entscheidung ein kurzes Gespräch. Die nächsten Schritte findest du in deiner E-Mail."
       }
     }
+  },
+  "medicalReview": {
+    "pageTitle": "Weiter zur ärztlichen Prüfung",
+    "eyebrow": "Ärztliche Prüfung",
+    "heading": "Ein paar Dinge, die deine prüfende Person wissen muss",
+    "intro": "Medizinisches Cannabis ist rezeptpflichtig. Eine lizenzierte Ärztin oder ein lizenzierter Arzt prüft deine Angaben, bevor etwas verschrieben wird."
   }
 }

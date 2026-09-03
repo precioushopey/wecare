@@ -4,12 +4,7 @@ import { usePageTitle } from "@/app/usePageTitle";
 import { Reveal } from "@/components/marketing/Reveal";
 
 export type LegalDoc =
-  | "imprint"
-  | "privacy"
-  | "terms"
-  | "cookies"
-  | "shipping"
-  | "refunds";
+  "imprint" | "privacy" | "terms" | "cookies" | "shipping" | "refunds";
 
 interface LegalField {
   label: string;
@@ -32,12 +27,14 @@ interface LegalSection {
  * content"), following the project's Austria language rules (never
  * "treats/cures", never a guaranteed prescription). Entity facts (`WeCare
  * GmbH`, `Musterstraße 1, 1010 Wien`, `FN 000000a`, `ATU00000000`, `Max
- * Mustermann`, `*@wecare.example`, effective date `31 August 2026`) are
+ * Mustermann`, phone `+43 1 0000000`, effective date `31 August 2026`) are
  * **temporary placeholder values** — obviously-provisional, to be replaced
- * with WeCare's real registered details before launch. The visible "draft"
- * banner was removed (owner request, Aug 31 2026). Content lives in
- * `legal.json` (`legal:docs.<doc>`); title/one-line description stay in
- * `common:pages.legal.*`.
+ * with WeCare's real registered details before launch. The one confirmed
+ * detail is the contact email `support@wecare360.de` (owner, Sept 2026 —
+ * the only address they gave), now used for every contact/DPO email in the
+ * Impressum + Privacy Policy. The visible "draft" banner was removed (owner
+ * request, Aug 31 2026). Content lives in `legal.json` (`legal:docs.<doc>`);
+ * title/one-line description stay in `common:pages.legal.*`.
  */
 export function LegalPage({ doc }: { doc: LegalDoc }) {
   const { t } = useTranslation(["legal", "common"]);
@@ -67,8 +64,13 @@ export function LegalPage({ doc }: { doc: LegalDoc }) {
 
       {sections.length > 4 ? (
         <Reveal className="mt-10">
-          <nav aria-label={t("legal:tocLabel")} className="glass rounded-2xl p-5">
-            <p className="text-sm font-medium text-ink">{t("legal:tocLabel")}</p>
+          <nav
+            aria-label={t("legal:tocLabel")}
+            className="glass rounded-2xl p-5"
+          >
+            <p className="text-sm font-medium text-ink">
+              {t("legal:tocLabel")}
+            </p>
             <ol className="mt-2 grid gap-1.5 text-sm sm:grid-cols-2">
               {sections.map((s) => (
                 <li key={s.id}>

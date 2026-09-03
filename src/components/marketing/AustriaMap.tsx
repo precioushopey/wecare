@@ -10,15 +10,21 @@ import { useTranslation } from "react-i18next";
  *
  * Visual pass (owner request, Aug 2026 — "more visual, not just a graphic",
  * then "still too plain" with a reference to a textured/illustrated travel
- * map): a denser dot texture clipped inside the landmass, a richer 3-stop
- * terrain gradient instead of a flat tint, and a soft outer glow halo
- * behind the crisp outline stroke. A `.image-glow` "held" treatment (same
- * as every other homepage photo) sits behind the shape. (An earlier pass
- * framed the country in its own rounded "instrument panel" rect — owner
- * follow-up asked for that container gone so the shape floats free directly
- * on `DeliveryBannerSection`'s full-card dot-grid instead of a boxed-in
+ * map): a richer 3-stop terrain gradient instead of a flat tint, and a soft
+ * outer glow halo behind the crisp outline stroke. A `.image-glow` "held"
+ * treatment (same as every other homepage photo) sits behind the shape. (An
+ * earlier pass framed the country in its own rounded "instrument panel"
+ * rect — owner follow-up asked for that container gone so the shape floats
+ * free directly on the caller's full-card dot-grid instead of a boxed-in
  * inset.) Decorative (`aria-hidden`) — the city list is already spelled out
  * in the visible banner copy above it.
+ *
+ * The dot-grid texture is NOT drawn here (owner request, Sept 2026 — "put
+ * that on the gradient container instead of just inside the map"). Both
+ * callers — `DeliveryBannerSection` and the dashboard delivery `SectionCard`
+ * — paint a `radial-gradient` dot pattern across their whole panel behind
+ * this SVG, so the texture reads as one continuous atlas surface rather
+ * than stopping at the coastline.
  *
  * Pin pass (owner follow-up): markers are real map-pin teardrops (the same
  * silhouette as lucide's `MapPin`, hand-inlined so it composes as SVG path
@@ -53,13 +59,62 @@ const CITIES: {
   // Vienna & St. Pölten sit ~55px apart at nearly the same latitude — Vienna
   // labels to the right, St. Pölten below (pins stand ~13px tall above their
   // point, so "above" would run the label into St. Pölten's own pin).
-  { key: "vienna", x: 530.33, y: 108.5, labelDx: 10, labelDy: 3, anchor: "start" },
-  { key: "stPoelten", x: 475.51, y: 108.89, labelDx: 0, labelDy: 16, anchor: "middle" },
-  { key: "graz", x: 461.88, y: 232.41, labelDx: 10, labelDy: 4, anchor: "start" },
-  { key: "linz", x: 377.36, y: 97.75, labelDx: 10, labelDy: -7, anchor: "start" },
-  { key: "salzburg", x: 287.19, y: 151.93, labelDx: 10, labelDy: 3, anchor: "start" },
-  { key: "innsbruck", x: 166.25, y: 210.79, labelDx: 10, labelDy: 3, anchor: "start" },
-  { key: "klagenfurt", x: 378.77, y: 280.99, labelDx: 10, labelDy: 4, anchor: "start" },
+  {
+    key: "vienna",
+    x: 530.33,
+    y: 108.5,
+    labelDx: 10,
+    labelDy: 3,
+    anchor: "start",
+  },
+  {
+    key: "stPoelten",
+    x: 475.51,
+    y: 108.89,
+    labelDx: 0,
+    labelDy: 16,
+    anchor: "middle",
+  },
+  {
+    key: "graz",
+    x: 461.88,
+    y: 232.41,
+    labelDx: 10,
+    labelDy: 4,
+    anchor: "start",
+  },
+  {
+    key: "linz",
+    x: 377.36,
+    y: 97.75,
+    labelDx: 10,
+    labelDy: -7,
+    anchor: "start",
+  },
+  {
+    key: "salzburg",
+    x: 287.19,
+    y: 151.93,
+    labelDx: 10,
+    labelDy: 3,
+    anchor: "start",
+  },
+  {
+    key: "innsbruck",
+    x: 166.25,
+    y: 210.79,
+    labelDx: 10,
+    labelDy: 3,
+    anchor: "start",
+  },
+  {
+    key: "klagenfurt",
+    x: 378.77,
+    y: 280.99,
+    labelDx: 10,
+    labelDy: 4,
+    anchor: "start",
+  },
 ];
 
 /** lucide `MapPin` geometry (24×24, tip at ~12,21.7), inlined as raw path
@@ -91,15 +146,6 @@ export function AustriaMap() {
             <stop offset="0%" stopColor="#eafeff" />
             <stop offset="100%" stopColor="#38c5cd" />
           </radialGradient>
-          {/* Denser dot-grid for the land — the section behind this panel
-              carries the same texture at ocean density, so together they
-              read as one continuous atlas surface. */}
-          <pattern id="dotsLand" width="11" height="11" patternUnits="userSpaceOnUse">
-            <circle cx="1.6" cy="1.6" r="1" fill="#ffffff" fillOpacity="0.22" />
-          </pattern>
-          <clipPath id="austriaClip">
-            <path d={OUTLINE} />
-          </clipPath>
         </defs>
 
         {/* Soft glow halo behind the crisp outline. */}
@@ -120,7 +166,6 @@ export function AustriaMap() {
           strokeWidth={1.5}
           strokeLinejoin="round"
         />
-        <path d={OUTLINE} fill="url(#dotsLand)" clipPath="url(#austriaClip)" />
 
         {CITIES.map((c, i) => {
           const scale = 0.56;
@@ -136,10 +181,18 @@ export function AustriaMap() {
                 className="origin-center fill-white/50 [transform-box:fill-box] animate-ping motion-reduce:animate-none"
                 style={{ animationDelay: `${i * 260}ms` }}
               />
-              <circle cx={c.x} cy={c.y} r={pingR * 0.55} fill="#ffffff" fillOpacity={0.35} />
+              <circle
+                cx={c.x}
+                cy={c.y}
+                r={pingR * 0.55}
+                fill="#ffffff"
+                fillOpacity={0.35}
+              />
 
               {/* The pin itself, tip anchored exactly on the city's point. */}
-              <g transform={`translate(${c.x},${c.y}) scale(${scale}) translate(-12,-21.7)`}>
+              <g
+                transform={`translate(${c.x},${c.y}) scale(${scale}) translate(-12,-21.7)`}
+              >
                 <path
                   d={PIN_OUTLINE}
                   fill="#ffffff"

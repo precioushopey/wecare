@@ -12,7 +12,8 @@
     "howItWorks": "How it works",
     "faq": "FAQ",
     "costs": "Costs",
-    "login": "Login",
+    "login": "Log in",
+    "signup": "Sign up",
     "myArea": "My area",
     "startAssessment": "Start assessment",
     "primary": "Primary navigation",
@@ -94,10 +95,10 @@
     }
   },
   "pages": {
-    "placeholderNote": "This page is built in a later phase of the rebuild.",
     "home": {
       "title": "Find the right support for sleep, pain, stress and migraine",
-      "subtitle": "Answer a few questions and get a personal recommendation, with a medical review when it is medically appropriate."
+      "subtitle": "Answer a few questions and get a personal recommendation, with a medical review when it is medically appropriate.",
+      "metaTitle": "Support for sleep, pain, stress & migraine"
     },
     "conditions": {
       "sleep": {
@@ -226,5 +227,9 @@
     "body": "Medical cannabis is a prescription medicine. Like any medicine it can have side effects: commonly tiredness, dizziness, reduced concentration, or interactions with other medicines. How it affects you is individual.",
     "body2": "It is used only after a medical review and under medical guidance, and it does not replace a standard therapy your doctor considers necessary. Never start, stop or change a medicine on your own.",
     "disclaimer": "The information on this site is general and does not replace individual medical advice, diagnosis or treatment. For health concerns, speak with your doctor."
+  },
+  "delivery": {
+    "confirmLine": "We deliver to {{postcode}} ({{region}}). Usually next day once your prescription is approved.",
+    "regionUnknown": "your area"
   }
 }

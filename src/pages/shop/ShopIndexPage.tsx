@@ -64,7 +64,7 @@ function SolutionCard({ s }: { s: Solution }) {
 
 export function ShopIndexPage() {
   const { t } = useTranslation("shop");
-  usePageTitle(t("index.title"));
+  usePageTitle(t("index.title"), undefined, { noindex: true });
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">

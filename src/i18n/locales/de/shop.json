@@ -44,7 +44,7 @@
     "altFormatHeading": "Alternative Abgabeform",
     "altFormatNote": "Die Verfügbarkeit im Rahmen dieser Lösung wird von der ärztlichen Partnerseite bestätigt.",
     "coaHeading": "Analysezertifikat (COA)",
-    "coaPlaceholder": "Jeder Lieferung liegt ein eigenes chargenspezifisches Analysezertifikat bei. Echte Laborwerte erscheinen hier, sobald die Apotheke sie bereitstellt.",
+    "coaPlaceholder": "Jeder Lieferung liegt ein eigenes chargenspezifisches Analysezertifikat für genau die Charge bei, die du erhältst.",
     "coaIntro": "Laborwerte einer repräsentativen Charge. Jede Lieferung enthält ein chargenspezifisches Zertifikat.",
     "notSureTitle": "Nicht sicher, ob das zu dir passt?",
     "notSureBody": "Der Fragebogen führt dich in wenigen Minuten zur passenden Empfehlung.",
@@ -67,7 +67,8 @@
       "recommended": "Empfohlen",
       "popular": "Beliebt"
     },
-    "amountHint": "Empfohlene Startmenge basierend auf der häufigsten Kundenwahl. Deine Ärztin oder dein Arzt kann die genaue Menge an deine Bedürfnisse anpassen."
+    "amountHint": "Empfohlene Startmenge basierend auf der häufigsten Kundenwahl. Deine Ärztin oder dein Arzt kann die genaue Menge an deine Bedürfnisse anpassen.",
+    "continueToReview": "Weiter zur ärztlichen Prüfung"
   },
   "solutions": {
     "night-now": {
@@ -154,7 +155,7 @@
   "cart": {
     "title": "Warenkorb",
     "empty": "Dein Warenkorb ist leer.",
-    "emptyCta": "Zu den Lösungen",
+    "emptyCta": "Deine Empfehlung ansehen",
     "grams": "{{count}} g",
     "increase": "Menge erhöhen",
     "decrease": "Menge verringern",
@@ -164,8 +165,9 @@
     "shippingFree": "Kostenlos",
     "total": "Gesamt",
     "checkout": "Zur Kasse",
-    "continueShopping": "Weiter stöbern",
-    "prescriptionNotice": "Alle Artikel sind rezeptpflichtig und werden erst nach ärztlicher Freigabe versendet."
+    "continueShopping": "Deine Empfehlung ansehen",
+    "prescriptionNotice": "Alle Artikel sind rezeptpflichtig und werden erst nach ärztlicher Freigabe versendet.",
+    "priceAndPrescriptionNotice": "Die angezeigten Preise sind Richtwerte – dein endgültiger Preis wird nach deiner ärztlichen Prüfung bestätigt. Alle Artikel sind rezeptpflichtig und werden erst nach ärztlicher Freigabe versendet."
   },
   "checkout": {
     "title": "Kasse",
@@ -195,6 +197,9 @@
     "deliveryFree": "Kostenlos",
     "reviewFeeNote": "Das deckt deine Lösung und die Lieferung ab. Eine eventuelle Gebühr für die ärztliche Prüfung wird separat angezeigt und bestätigt, bevor sie anfällt.",
     "reviewFeeLink": "Was dich erwartet",
+    "reviewLine": "Ärztliche Prüfung",
+    "reviewLineValue": "Gebühr wird nach der Prüfung bestätigt",
+    "nextHeading": "Nachdem du bestellt hast",
     "termsHeading": "Bestätigung",
     "termsLabel": "Ich akzeptiere die <terms>AGB</terms> und die <privacy>Datenschutzerklärung</privacy>.",
     "termsLabelPlain": "Ich akzeptiere die AGB und die Datenschutzerklärung.",
@@ -222,6 +227,6 @@
       }
     },
     "toOrders": "Zu meinen Bestellungen",
-    "toHome": "Zur Startseite"
+    "toHome": "Zur Übersicht"
   }
 }

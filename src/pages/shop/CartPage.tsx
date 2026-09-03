@@ -4,10 +4,8 @@ import { Minus, Plus, Trash2 } from "lucide-react";
 
 import { Button } from "@/app/components/ui/button";
 import { paths } from "@/app/paths";
-import { usePageTitle } from "@/app/usePageTitle";
 import { PRICES_CONFIRMED } from "@/config";
 import { SolutionMark } from "@/components/brand/SolutionMark";
-import { JourneyStepper } from "@/components/marketing/JourneyStepper";
 import { SOLUTION_BY_ID } from "@/data/solutions";
 import { useCart } from "@/features/cart/CartContext";
 import { useLanguage } from "@/i18n/useLanguage";
@@ -18,26 +16,21 @@ export function CartPage() {
   const { language } = useLanguage();
   const { items, setQuantity, remove, subtotalEur, hasPrescriptionItem } =
     useCart();
-  usePageTitle(t("cart.title"));
 
   if (items.length === 0) {
     return (
-      <div className="mx-auto max-w-2xl px-4 py-16 text-center sm:px-6">
-        <h1>{t("cart.title")}</h1>
-        <p className="mt-3 text-ink-muted">{t("cart.empty")}</p>
+      <div className="mx-auto max-w-2xl py-10 text-center">
+        <p className="text-ink-muted">{t("cart.empty")}</p>
         <Button asChild variant="cta" className="mt-6 w-full sm:w-auto">
-          <Link to={paths.shop}>{t("cart.emptyCta")}</Link>
+          <Link to={paths.dashboardRecommendation}>{t("cart.emptyCta")}</Link>
         </Button>
       </div>
     );
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6">
-      <JourneyStepper current="product" className="mb-8" />
-      <h1>{t("cart.title")}</h1>
-
-      <ul className="mt-8 divide-y divide-white/40 rounded-2xl md:rounded-3xl glass-strong">
+    <div className="mx-auto max-w-3xl">
+      <ul className="divide-y divide-white/40 rounded-2xl md:rounded-3xl glass-strong">
         {items.map((item) => {
           const s = SOLUTION_BY_ID[item.productId];
           const step = 5;
@@ -119,14 +112,16 @@ export function CartPage() {
         </div>
       </dl>
 
-      {!PRICES_CONFIRMED ? (
-        <p className="mt-4 text-xs text-ink-muted">{t("pricesIndicative")}</p>
-      ) : null}
-
       {hasPrescriptionItem ? (
         <p className="mt-4 rounded-xl bg-sage-50 p-4 text-sm text-petrol-700">
-          {t("cart.prescriptionNotice")}
+          {t(
+            PRICES_CONFIRMED
+              ? "cart.prescriptionNotice"
+              : "cart.priceAndPrescriptionNotice",
+          )}
         </p>
+      ) : !PRICES_CONFIRMED ? (
+        <p className="mt-4 text-xs text-ink-muted">{t("pricesIndicative")}</p>
       ) : null}
 
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
@@ -134,7 +129,9 @@ export function CartPage() {
           <Link to={paths.checkout}>{t("cart.checkout")}</Link>
         </Button>
         <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
-          <Link to={paths.shop}>{t("cart.continueShopping")}</Link>
+          <Link to={paths.dashboardRecommendation}>
+            {t("cart.continueShopping")}
+          </Link>
         </Button>
       </div>
     </div>

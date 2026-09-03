@@ -30,7 +30,8 @@
       "b": "We understand your sleep-related needs",
       "c": "We match you with a suitable solution",
       "d": "You can continue to product or support"
-    }
+    },
+    "metaTitle": "Understanding sleep problems & next steps"
   },
   "pain": {
     "shortTitle": "Pain & body comfort",
@@ -53,7 +54,8 @@
       "b": "We understand the level and frequency",
       "c": "We match you with a suitable body comfort solution",
       "d": "You continue with the recommended option"
-    }
+    },
+    "metaTitle": "Understanding pain & body discomfort"
   },
   "stressAnxiety": {
     "shortTitle": "Daily balance",
@@ -76,7 +78,8 @@
       "b": "We understand your daily routine needs",
       "c": "We recommend a suitable balance solution",
       "d": "You continue with the option that fits you"
-    }
+    },
+    "metaTitle": "Understanding stress & inner restlessness"
   },
   "migraine": {
     "shortTitle": "Head tension",
@@ -99,7 +102,8 @@
       "b": "We understand the frequency and strength",
       "c": "We match you with a suitable support option",
       "d": "You continue with the recommended solution"
-    }
+    },
+    "metaTitle": "Understanding migraine & head pressure"
   },
   "generalWellness": {
     "shortTitle": "General wellbeing",

@@ -343,6 +343,15 @@ export function HowItWorksSection() {
           </Reveal>
         ))}
       </ol>
+
+      <Reveal className="mt-8">
+        <Link
+          to={paths.howItWorks}
+          className="text-sm font-medium text-petrol-700 underline-offset-4 hover:underline"
+        >
+          {t("howItWorks.moreLink")}
+        </Link>
+      </Reveal>
     </Section>
   );
 }

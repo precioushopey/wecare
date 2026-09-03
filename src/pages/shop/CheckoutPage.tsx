@@ -7,13 +7,15 @@ import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
 import { Label } from "@/app/components/ui/label";
 import { paths } from "@/app/paths";
-import { usePageTitle } from "@/app/usePageTitle";
 import { PRICES_CONFIRMED } from "@/config";
-import { JourneyStepper } from "@/components/marketing/JourneyStepper";
+import { DeliveryConfirmation } from "@/components/marketing/DeliveryConfirmation";
+import { NextSteps } from "@/components/marketing/NextSteps";
 import { SOLUTION_BY_ID } from "@/data/solutions";
+import { useAssessment } from "@/features/assessment/AssessmentContext";
 import { useAuth } from "@/features/auth/AuthContext";
 import { useCart } from "@/features/cart/CartContext";
 import { addOrder } from "@/features/orders/orders";
+import { getMedicalReview } from "@/features/review/review";
 import { useLanguage } from "@/i18n/useLanguage";
 import { AnalyticsEvent, track } from "@/lib/analytics";
 import { formatPriceEur } from "@/lib/format";
@@ -38,8 +40,8 @@ export function CheckoutPage() {
   const { language } = useLanguage();
   const { items, subtotalEur, hasPrescriptionItem, clear } = useCart();
   const { isAuthenticated, user } = useAuth();
+  const { postcode, deliveryRegion } = useAssessment();
   const navigate = useNavigate();
-  usePageTitle(t("checkout.title"));
 
   const [submitting, setSubmitting] = useState(false);
   const [placed, setPlaced] = useState(false);
@@ -67,13 +69,22 @@ export function CheckoutPage() {
     return <Navigate to={paths.cart} replace />;
   }
 
-  // Checkout is for signed-in users — send guests to log in first, then back.
-  if (!isAuthenticated) {
+  // Auth is enforced one level up by `DashboardLayout` (this page is a
+  // `/dashboard/*` route now), which also forwards `reason: "checkout"` to
+  // the login page.
+
+  // No regulated product can be ordered before the medical review is approved
+  // (PO decision B1). Every cart item is prescription-only, so gate the whole
+  // checkout: send the user to their review (or to start it).
+  if (!placed && getMedicalReview()?.status !== "approved") {
     return (
       <Navigate
-        to={paths.login}
+        to={
+          getMedicalReview()
+            ? paths.assessment.review
+            : paths.assessment.medicalReview
+        }
         replace
-        state={{ from: paths.checkout, reason: "checkout" }}
       />
     );
   }
@@ -107,11 +118,8 @@ export function CheckoutPage() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6">
-      <JourneyStepper current="product" className="mb-8" />
-      <h1>{t("checkout.title")}</h1>
-
-      <form onSubmit={onSubmit} className="mt-8 grid gap-8 lg:grid-cols-[1fr_20rem]">
+    <div className="mx-auto max-w-3xl">
+      <form onSubmit={onSubmit} className="grid gap-8 lg:grid-cols-[1fr_20rem]">
         <div className="space-y-8">
           {/* The customer is already signed in to reach checkout — show the
               account email as a confirmation instead of asking for it again
@@ -140,7 +148,14 @@ export function CheckoutPage() {
                   }
                 >
                   <Label htmlFor={f}>{t(`checkout.fields.${f}`)}</Label>
-                  <Input id={f} name={f} required />
+                  <Input
+                    id={f}
+                    name={f}
+                    required
+                    defaultValue={
+                      f === "postalCode" && postcode ? postcode : undefined
+                    }
+                  />
                 </div>
               ))}
               <div className="space-y-1.5">
@@ -153,6 +168,12 @@ export function CheckoutPage() {
                 />
               </div>
             </div>
+            {postcode ? (
+              <DeliveryConfirmation
+                postcode={postcode}
+                region={deliveryRegion}
+              />
+            ) : null}
           </fieldset>
 
           <fieldset className="space-y-3">
@@ -247,19 +268,32 @@ export function CheckoutPage() {
               );
             })}
           </ul>
-          <div className="mt-4 flex justify-between border-t border-border pt-3 text-sm">
-            <span className="text-ink-muted">{t("cart.subtotal")}</span>
-            <span className="font-mono text-ink">
-              {formatPriceEur(subtotalEur, language)}
-            </span>
-          </div>
-          <div className="mt-1 flex justify-between text-sm">
-            <span className="text-ink-muted">{t("checkout.deliveryLabel")}</span>
-            <span className="text-ink">
-              {DELIVERY_FEE_EUR === 0
-                ? t("checkout.deliveryFree")
-                : formatPriceEur(DELIVERY_FEE_EUR, language)}
-            </span>
+          <div className="mt-4 space-y-1 border-t border-border pt-3 text-sm">
+            <div className="flex justify-between">
+              <span className="text-ink-muted">{t("cart.subtotal")}</span>
+              <span className="font-mono text-ink">
+                {formatPriceEur(subtotalEur, language)}
+              </span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-ink-muted">
+                {t("checkout.deliveryLabel")}
+              </span>
+              <span className="text-ink">
+                {DELIVERY_FEE_EUR === 0
+                  ? t("checkout.deliveryFree")
+                  : formatPriceEur(DELIVERY_FEE_EUR, language)}
+              </span>
+            </div>
+            <div className="flex justify-between gap-3">
+              <span className="text-ink-muted">{t("checkout.reviewLine")}</span>
+              <Link
+                to={paths.costs}
+                className="text-right text-ink underline underline-offset-2 hover:text-ink-muted"
+              >
+                {t("checkout.reviewLineValue")}
+              </Link>
+            </div>
           </div>
           <div className="mt-2 flex justify-between border-t border-border pt-3 text-base">
             <span className="font-medium text-ink">{t("cart.total")}</span>
@@ -267,20 +301,26 @@ export function CheckoutPage() {
               {formatPriceEur(totalEur, language)}
             </span>
           </div>
-          <p className="mt-3 text-xs text-ink-muted">
-            {t("checkout.reviewFeeNote")}{" "}
-            <Link
-              to={paths.costs}
-              className="underline underline-offset-2 hover:text-ink"
-            >
-              {t("checkout.reviewFeeLink")}
-            </Link>
-          </p>
           {!PRICES_CONFIRMED ? (
             <p className="mt-2 text-xs text-ink-muted">
               {t("pricesIndicative")}
             </p>
           ) : null}
+
+          <div className="mt-5 border-t border-border pt-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-ink-muted">
+              {t("checkout.nextHeading")}
+            </p>
+            <div className="mt-3">
+              <NextSteps
+                steps={(["received", "review", "dispatch"] as const).map((k) => ({
+                  title: t(`confirmation.steps.${k}.title`),
+                  body: t(`confirmation.steps.${k}.body`),
+                }))}
+              />
+            </div>
+          </div>
+
           <Button
             type="submit"
             variant="cta"

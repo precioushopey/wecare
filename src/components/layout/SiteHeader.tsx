@@ -54,10 +54,14 @@ export function SiteHeader() {
   const { isAuthenticated } = useAuth();
   const [open, setOpen] = useState(false);
 
-  // Signed in → "My area" (→ dashboard); signed out → "Login".
-  const account = isAuthenticated
-    ? { to: paths.dashboard, label: t("nav.myArea") }
-    : { to: paths.login, label: t("nav.login") };
+  // Signed in → "My area" (→ dashboard); signed out → separate "Log in" and
+  // "Sign up" links (`/login` and `/signup`).
+  const accountLinks = isAuthenticated
+    ? [{ to: paths.dashboard, label: t("nav.myArea") }]
+    : [
+        { to: paths.login, label: t("nav.login") },
+        { to: paths.signup, label: t("nav.signup") },
+      ];
 
   return (
     <header className="sticky top-0 z-40 border-b border-white/40 bg-white/60 px-4 shadow-[0_1px_0_0_rgba(255,255,255,0.6),0_10px_30px_-24px_rgba(13,68,75,0.35)] backdrop-blur-xl backdrop-saturate-150 sm:px-6">
@@ -81,14 +85,16 @@ export function SiteHeader() {
         </div>
 
         <div className="hidden shrink-0 items-center gap-4 lg:flex">
-          <LanguageToggle />
           <CartLink />
-          <NavLink to={account.to} className={navLink}>
-            {account.label}
-          </NavLink>
+          {accountLinks.map((a) => (
+            <NavLink key={a.to} to={a.to} className={navLink}>
+              {a.label}
+            </NavLink>
+          ))}
           <Button asChild variant="cta" size="sm">
             <Link to={paths.assessment.start}>{t("nav.startAssessment")}</Link>
           </Button>
+          <LanguageToggle />
         </div>
 
         <div className="flex items-center gap-2 lg:hidden">
@@ -125,11 +131,13 @@ export function SiteHeader() {
               </nav>
 
               <div className="mt-auto flex flex-col gap-2 border-t border-border p-4">
-                <SheetClose asChild>
-                  <Button asChild variant="outline" size="sm">
-                    <Link to={account.to}>{account.label}</Link>
-                  </Button>
-                </SheetClose>
+                {accountLinks.map((a) => (
+                  <SheetClose key={a.to} asChild>
+                    <Button asChild variant="outline" size="sm">
+                      <Link to={a.to}>{a.label}</Link>
+                    </Button>
+                  </SheetClose>
+                ))}
                 <SheetClose asChild>
                   <Button asChild variant="cta" size="sm">
                     <Link to={paths.assessment.start}>

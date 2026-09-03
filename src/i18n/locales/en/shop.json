@@ -44,7 +44,7 @@
     "altFormatHeading": "Alternative dispensing format",
     "altFormatNote": "Availability under this Solution is subject to medical-partner confirmation.",
     "coaHeading": "Certificate of analysis (COA)",
-    "coaPlaceholder": "Every delivery comes with its own batch-specific certificate of analysis. Real lab values will appear here once the pharmacy supplies them.",
+    "coaPlaceholder": "Every delivery comes with its own batch-specific certificate of analysis for the exact batch you receive.",
     "coaIntro": "Lab values for a representative batch. Every delivery carries its own batch certificate.",
     "notSureTitle": "Not sure this is right for you?",
     "notSureBody": "The assessment guides you to the right recommendation in a few minutes.",
@@ -67,7 +67,8 @@
       "recommended": "Recommended",
       "popular": "Most popular"
     },
-    "amountHint": "Recommended starting quantity based on common customer selection. Your prescribing doctor may adjust the exact amount to your needs."
+    "amountHint": "Recommended starting quantity based on common customer selection. Your prescribing doctor may adjust the exact amount to your needs.",
+    "continueToReview": "Continue to medical review"
   },
   "solutions": {
     "night-now": {
@@ -154,7 +155,7 @@
   "cart": {
     "title": "Cart",
     "empty": "Your cart is empty.",
-    "emptyCta": "Go to solutions",
+    "emptyCta": "View your recommendation",
     "grams": "{{count}} g",
     "increase": "Increase amount",
     "decrease": "Decrease amount",
@@ -164,8 +165,9 @@
     "shippingFree": "Free",
     "total": "Total",
     "checkout": "Checkout",
-    "continueShopping": "Keep browsing",
-    "prescriptionNotice": "All items are prescription-only and are shipped only after medical approval."
+    "continueShopping": "View your recommendation",
+    "prescriptionNotice": "All items are prescription-only and are shipped only after medical approval.",
+    "priceAndPrescriptionNotice": "Prices shown are indicative, and your final price is confirmed after your medical review. All items are prescription-only and are shipped only after medical approval."
   },
   "checkout": {
     "title": "Checkout",
@@ -195,6 +197,9 @@
     "deliveryFree": "Free",
     "reviewFeeNote": "This covers your solution and delivery. Any medical-review fee is shown and confirmed separately before it applies.",
     "reviewFeeLink": "What to expect",
+    "reviewLine": "Medical review",
+    "reviewLineValue": "Fee confirmed after review",
+    "nextHeading": "After you place this order",
     "termsHeading": "Confirmation",
     "termsLabel": "I accept the <terms>Terms & Conditions</terms> and the <privacy>Privacy Policy</privacy>.",
     "termsLabelPlain": "I accept the Terms & Conditions and the Privacy Policy.",
@@ -222,6 +227,6 @@
       }
     },
     "toOrders": "Go to my orders",
-    "toHome": "Back to home"
+    "toHome": "Back to overview"
   }
 }

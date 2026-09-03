@@ -10,6 +10,7 @@ import { ComboCard } from "@/components/marketing/ComboCard";
 import { MedicalNotice } from "@/components/marketing/MedicalNotice";
 import { Reveal } from "@/components/marketing/Reveal";
 import { Section, SectionHeading } from "@/components/marketing/Section";
+import { BreadcrumbJsonLd } from "@/seo/StructuredData";
 import { IMG, siteImage } from "@/data/siteImages";
 import {
   isConditionKey,
@@ -38,10 +39,21 @@ export function ConditionLandingPage({
 }) {
   const { t } = useTranslation("conditions");
   const { t: tCommon } = useTranslation();
+  // `general-wellness` is a hidden internal fallback with no search intent —
+  // keep it out of the index even after the site is cleared (§1.1).
+  const isFallback = conditionKey === "generalWellness";
   usePageTitle(
-    t(`${conditionKey}.hero.title`),
+    // PO-approved draft SEO title (A9); falls back to the hero headline for
+    // `general-wellness`, which has no metaTitle and is noindex anyway.
+    t(`${conditionKey}.metaTitle`, {
+      defaultValue: t(`${conditionKey}.hero.title`),
+    }),
     tCommon(`pages.conditions.${conditionKey}.description`),
+    { noindex: isFallback },
   );
+  const landingPath = isConditionKey(conditionKey)
+    ? paths.conditions[conditionKey]
+    : paths.conditions.generalWellness;
 
   const situations = Object.values(
     t(`${conditionKey}.situations`, { returnObjects: true }) as Record<
@@ -61,6 +73,13 @@ export function ConditionLandingPage({
 
   return (
     <>
+      {!isFallback ? (
+        <BreadcrumbJsonLd
+          trail={[
+            { name: t(`${conditionKey}.shortTitle`), path: landingPath },
+          ]}
+        />
+      ) : null}
       {/* Hero — from `lg` up the condition photo is a full-bleed background
           anchored to the right as a band, with the brand blue gradient
           filling the left and feathering over it. On tighter screens the

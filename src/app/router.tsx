@@ -6,6 +6,7 @@ import { LoginPage } from "@/pages/LoginPage";
 import { NotFoundPage } from "@/pages/NotFoundPage";
 import {
   AssessmentStartPage,
+  MedicalReviewFormPage,
   ResultPage,
   ReviewStatusPage,
 } from "@/pages/assessment";
@@ -17,6 +18,7 @@ import {
   StressAnxietyPage,
 } from "@/pages/conditions";
 import { ContactPage } from "@/pages/content";
+import { HowItWorksPage } from "@/pages/HowItWorksPage";
 import { LegalPage } from "@/pages/legal/LegalPage";
 import { CostsPage } from "@/pages/CostsPage";
 import { FaqPage } from "@/pages/FaqPage";
@@ -38,7 +40,7 @@ import { ProductPage } from "@/pages/shop/ProductPage";
 import { ShopIndexPage } from "@/pages/shop/ShopIndexPage";
 import { SolutionRedirect } from "@/pages/shop/SolutionRedirect";
 
-import { paths } from "./paths";
+import { LEGACY_REDIRECTS, paths } from "./paths";
 
 export const router = createBrowserRouter([
   {
@@ -52,46 +54,28 @@ export const router = createBrowserRouter([
       { path: paths.conditions.migraine, element: <MigrainePage /> },
       { path: paths.conditions.generalWellness, element: <GeneralWellnessPage /> },
 
-      // Redirects from the earlier /conditions/* slugs.
-      {
-        path: "/conditions/sleep-problems",
-        element: <Navigate to={paths.conditions.sleep} replace />,
-      },
-      {
-        path: "/conditions/chronic-pain",
-        element: <Navigate to={paths.conditions.pain} replace />,
-      },
-      {
-        path: "/conditions/stress-anxiety",
-        element: <Navigate to={paths.conditions.stressAnxiety} replace />,
-      },
-      {
-        path: "/conditions/migraine",
-        element: <Navigate to={paths.conditions.migraine} replace />,
-      },
-      {
-        path: "/conditions/general-wellness",
-        element: <Navigate to={paths.conditions.generalWellness} replace />,
-      },
+      // Old English slugs → new German slugs (SEO-FOUNDATION.md §C). SPA-level
+      // redirect today; upgrade to host-level 301s before indexing (§G3).
+      ...Object.entries(LEGACY_REDIRECTS).map(([from, to]) => ({
+        path: from,
+        element: <Navigate to={to} replace />,
+      })),
 
-      // "How It Works" is a homepage section now — redirect to its anchor.
-      {
-        path: paths.howItWorks,
-        element: <Navigate to="/#how-it-works" replace />,
-      },
+      // Standalone "So funktioniert WeCare" page (PO decision A2). The
+      // homepage still has its own "How it works" section (`#how-it-works`).
+      { path: paths.howItWorks, element: <HowItWorksPage /> },
+      { path: "/how-it-works", element: <Navigate to={paths.howItWorks} replace /> },
       { path: paths.faq, element: <FaqPage /> },
       { path: paths.costs, element: <CostsPage /> },
 
       { path: paths.assessment.start, element: <AssessmentStartPage /> },
       { path: paths.assessment.result, element: <ResultPage /> },
+      { path: paths.assessment.medicalReview, element: <MedicalReviewFormPage /> },
       { path: paths.assessment.review, element: <ReviewStatusPage /> },
 
       { path: paths.solution, element: <SolutionRedirect /> },
 
       { path: paths.shop, element: <ShopIndexPage /> },
-      { path: paths.cart, element: <CartPage /> },
-      { path: paths.checkout, element: <CheckoutPage /> },
-      { path: paths.orderConfirmation, element: <OrderConfirmationPage /> },
       { path: "/shop/:productId", element: <ProductPage /> },
 
       {
@@ -105,10 +89,16 @@ export const router = createBrowserRouter([
           { path: "follow-up", element: <DashboardFollowUpPage /> },
           { path: "support", element: <DashboardSupportPage /> },
           { path: "profile", element: <DashboardProfilePage /> },
+          // Purchase flow — kept inside the app shell (no marketing chrome,
+          // no funnel stepper). Old `/shop/*` URLs redirect here.
+          { path: "cart", element: <CartPage /> },
+          { path: "checkout", element: <CheckoutPage /> },
+          { path: "order-confirmation", element: <OrderConfirmationPage /> },
         ],
       },
 
-      { path: paths.login, element: <LoginPage /> },
+      { path: paths.login, element: <LoginPage mode="signIn" /> },
+      { path: paths.signup, element: <LoginPage mode="signUp" /> },
 
       { path: paths.contact, element: <ContactPage /> },
 

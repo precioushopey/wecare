@@ -9,9 +9,7 @@ const modules = import.meta.glob<string>(
 
 const byKey: Record<string, string> = {};
 for (const [path, url] of Object.entries(modules)) {
-  const key = path
-    .split("/assets/images/")[1]
-    ?.replace(/\.(png|jpe?g)$/i, "");
+  const key = path.split("/assets/images/")[1]?.replace(/\.(png|jpe?g)$/i, "");
   if (key) byKey[key] = url;
 }
 
@@ -66,4 +64,7 @@ export const IMG = {
     migraine: "C4 - Migraine/44",
     generalWellness: "Homepage/Hero",
   },
+  /** Dashboard Overview "your next step" panel — a transparent cut-out of a
+   *  clinician reviewing a document at a laptop. */
+  medicalReview: "medical-review",
 } as const;

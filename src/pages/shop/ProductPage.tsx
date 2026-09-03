@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, Navigate, useNavigate, useParams } from "react-router";
 import { useTranslation } from "react-i18next";
-import { ArrowLeft, ShieldCheck } from "lucide-react";
+import { ArrowLeft, ArrowRight, ShieldCheck } from "lucide-react";
 
 import {
   Accordion,
@@ -27,11 +27,17 @@ import {
   type Solution,
 } from "@/data/solutions";
 import { useCart } from "@/features/cart/CartContext";
+import { getMedicalReview } from "@/features/review/review";
 import { useLanguage } from "@/i18n/useLanguage";
 import { AnalyticsEvent, track } from "@/lib/analytics";
 import { formatDate, formatPriceEur } from "@/lib/format";
 
 const FAQ_KEYS = ["dosage", "driving", "delivery"] as const;
+
+/** Primary action on the gradient hero — a solid-white pill (same as the
+ *  Result page's recommendation card). */
+const HERO_CTA_CLASS =
+  "inline-flex h-11 w-full items-center justify-center gap-1.5 rounded-full bg-white px-6 text-sm font-semibold text-petrol-800 shadow-[0_12px_30px_-14px_rgba(0,0,0,0.55)] transition-colors hover:bg-white/90 sm:w-auto";
 /** Each option's badge, if any — guides a beginner instead of leaving four
  * bare numbers to weigh unaided (owner feedback, Aug 2026). Framed as order
  * size / common selection, never as a consumption or dosage recommendation —
@@ -160,7 +166,10 @@ export function ProductPage() {
   const navigate = useNavigate();
 
   const solution = isSolutionId(productId) ? SOLUTION_BY_ID[productId] : null;
-  usePageTitle(solution?.name);
+  usePageTitle(solution?.name, undefined, { noindex: true });
+
+  // Ordering is gated on an approved medical review (PO decision B1).
+  const reviewApproved = getMedicalReview()?.status === "approved";
 
   const [grams, setGrams] = useState(10);
 
@@ -219,7 +228,7 @@ export function ProductPage() {
   };
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-14 sm:px-6">
+    <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6">
       <JourneyStepper current="product" className="mb-8" />
       <Link
         to={paths.shop}
@@ -229,91 +238,115 @@ export function ProductPage() {
         {t("solution.backToShop")}
       </Link>
 
-      <div className="mt-6 grid gap-8 md:grid-cols-2">
-        <div className="glass flex aspect-square items-center justify-center overflow-hidden rounded-2xl p-8 md:rounded-3xl">
-          <SolutionMark
-            solution={solution}
-            className="size-full"
-            iconClassName="size-2/5 drop-shadow-[0_16px_28px_rgba(13,68,75,0.22)]"
-          />
-        </div>
+      {/* Hero on the branded gradient — matches the Result page's
+          recommendation card (owner request, Sept 2026). White text. */}
+      <div className="relative mt-6 overflow-hidden rounded-2xl md:rounded-3xl [background-image:var(--brand-band-gradient)] p-6 text-white shadow-[var(--shadow-float)] sm:p-8">
+        <span
+          aria-hidden
+          className="pointer-events-none absolute -right-20 -top-24 size-64 rounded-full bg-white/10 blur-3xl"
+        />
+        <span
+          aria-hidden
+          className="pointer-events-none absolute -bottom-24 left-1/4 size-56 rounded-full bg-sky-400/15 blur-3xl"
+        />
 
-        <div>
+        <div className="relative">
           <div className="flex flex-wrap gap-1.5">
-            <span className="rounded-full bg-sage-100 px-3 py-1 text-xs font-medium text-petrol-700">
+            <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-medium text-white">
               {t(`solutions.${solution.id}.category`)}
             </span>
-            <span className="rounded-full bg-petrol-50 px-3 py-1 text-xs font-medium text-petrol-700">
+            <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white/80">
               {t("solution.prescriptionBadge")}
             </span>
           </div>
 
-          <h1 className="mt-3 font-display">{solution.name}</h1>
-          <p className="mt-1 text-sm text-ink-muted">
+          <div className="mt-4 flex items-center gap-4">
+            <SolutionMark
+              solution={solution}
+              variant="badge"
+              className="size-14"
+            />
+            <h1 className="font-display text-white">{solution.name}</h1>
+          </div>
+          <p className="mt-2 text-sm text-white/85">
             {t(`solutions.${solution.id}.blurb`)}
           </p>
-          <p className="mt-1 text-xs text-ink-muted">
+          <p className="mt-1 text-xs text-white/70">
             {t("solution.forProblems", { problems })}
           </p>
-          <p className="mt-2 text-sm text-ink-muted">
+          <p className="mt-2 text-sm text-white/70">
             {t("solution.thcRangeLabel")}:{" "}
-            <span className="font-mono text-ink">{solution.thcRange}</span>
+            <span className="font-mono text-white">{solution.thcRange}</span>
           </p>
-          <p className="mt-3 font-mono text-lg text-ink">
+          <p className="mt-3 font-mono text-lg text-white">
             {t("solution.pricePerGram", {
               price: formatPriceEur(solution.priceEur, language),
             })}
             {!PRICES_CONFIRMED ? (
-              <InfoHint className="ml-1.5">{t("pricesIndicative")}</InfoHint>
+              <InfoHint className="ml-1.5 [&_button:hover]:text-white [&_button]:text-white/60">
+                {t("pricesIndicative")}
+              </InfoHint>
             ) : null}
           </p>
 
-          <fieldset className="mt-5">
-            <legend className="text-sm font-medium text-ink">
-              {t("solution.amountLabel")}{" "}
-              <InfoHint className="ml-0.5">
-                {t("solution.amountHint")}
-              </InfoHint>
-            </legend>
-            <div className="mt-3 grid grid-cols-2 gap-2.5 sm:grid-cols-4">
-              {GRAM_OPTIONS.map(({ value: o, badge }) => (
-                <button
-                  key={o}
-                  type="button"
-                  onClick={() => setGrams(o)}
-                  aria-pressed={grams === o}
-                  className={cn(
-                    "relative flex flex-col items-center gap-1 rounded-2xl border px-3 py-3 text-sm font-medium transition-colors",
-                    grams === o
-                      ? "border-primary bg-primary text-primary-foreground"
-                      : "border-border text-ink-muted hover:border-petrol-300 hover:text-ink",
-                  )}
-                >
-                  {badge ? (
-                    <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-sage-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-petrol-700">
-                      {t(`solution.amountBadges.${badge}`)}
-                    </span>
-                  ) : null}
-                  {t("solution.grams", { count: o })}
-                </button>
-              ))}
-            </div>
-          </fieldset>
+          {reviewApproved ? (
+            <>
+              <fieldset className="mt-5">
+                <legend className="text-sm font-medium text-white">
+                  {t("solution.amountLabel")}{" "}
+                  <InfoHint className="ml-0.5 [&_button:hover]:text-white [&_button]:text-white/60">
+                    {t("solution.amountHint")}
+                  </InfoHint>
+                </legend>
+                <div className="mt-4 grid grid-cols-2 gap-2.5 sm:grid-cols-4">
+                  {GRAM_OPTIONS.map(({ value: o, badge }) => (
+                    <button
+                      key={o}
+                      type="button"
+                      onClick={() => setGrams(o)}
+                      aria-pressed={grams === o}
+                      className={cn(
+                        "relative flex flex-col items-center gap-1 rounded-2xl border px-3 py-3 text-sm font-medium transition-colors",
+                        grams === o
+                          ? "border-white bg-white text-petrol-800"
+                          : "border-white/25 text-white/75 hover:border-white/50 hover:text-white",
+                      )}
+                    >
+                      {badge ? (
+                        <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-white/90 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-petrol-700">
+                          {t(`solution.amountBadges.${badge}`)}
+                        </span>
+                      ) : null}
+                      {t("solution.grams", { count: o })}
+                    </button>
+                  ))}
+                </div>
+              </fieldset>
 
-          <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-            <Button
-              type="button"
-              variant="cta"
-              size="lg"
-              onClick={onAdd}
-              className="w-full sm:w-auto"
-            >
-              {t("solution.addToCart")}
-            </Button>
-            <InfoHint align="right">
-              {t("solution.afterApprovalNote")}
-            </InfoHint>
-          </div>
+              <button
+                type="button"
+                onClick={onAdd}
+                className={cn(HERO_CTA_CLASS, "mt-5")}
+              >
+                {t("solution.addToCart")}
+                <ArrowRight className="size-4" aria-hidden />
+              </button>
+            </>
+          ) : (
+            <div className="mt-5 flex flex-col gap-3">
+              {/* Medical review comes before any order (PO decision B1). */}
+              <Link
+                to={paths.assessment.medicalReview}
+                className={HERO_CTA_CLASS}
+              >
+                {t("solution.continueToReview")}
+                <ArrowRight className="size-4" aria-hidden />
+              </Link>
+              <p className="text-sm text-white/70">
+                {t("solution.afterApprovalNote")}
+              </p>
+            </div>
+          )}
         </div>
       </div>
 

@@ -97,8 +97,14 @@ void i18n.use(initReactI18next).init({
   returnNull: false,
 });
 
+/** BCP-47 tag for `<html lang>`. German is Austria-market (`de-AT`); the
+ *  optional English toggle stays a plain `en` (not indexed). */
+function htmlLang(lng: string): string {
+  return lng === "de" ? "de-AT" : lng;
+}
+
 if (typeof document !== "undefined") {
-  document.documentElement.lang = i18n.language;
+  document.documentElement.lang = htmlLang(i18n.language);
 }
 
 /** Persist the chosen language and keep <html lang> in sync. */
@@ -109,7 +115,7 @@ export function persistLanguage(lng: Language): void {
     /* ignore */
   }
   if (typeof document !== "undefined") {
-    document.documentElement.lang = lng;
+    document.documentElement.lang = htmlLang(lng);
   }
 }
 

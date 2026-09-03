@@ -17,7 +17,9 @@ import {
  *  only inside "How WeCare Works", framed as conditional. */
 export function HomePage() {
   const { t } = useTranslation();
-  usePageTitle(undefined, t("pages.home.subtitle"));
+  // PO-approved draft SEO title (A9) — final wording after keyword research +
+  // legal clearance (docs/SEO-FOUNDATION.md §H).
+  usePageTitle(t("pages.home.metaTitle"), t("pages.home.subtitle"));
 
   return (
     <>

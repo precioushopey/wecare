@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router";
 import { useTranslation } from "react-i18next";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Lock } from "lucide-react";
 
 import { Button } from "@/app/components/ui/button";
 import { paths } from "@/app/paths";
@@ -10,31 +10,54 @@ import { AssessmentRing } from "@/components/brand/AssessmentRing";
 import { JourneyStepper } from "@/components/marketing/JourneyStepper";
 import { useAssessment } from "@/features/assessment/AssessmentContext";
 import {
-  answeredCount,
   QUESTIONS,
   TOTAL_QUESTIONS,
   type QuestionId,
 } from "@/features/assessment/questions";
+import { deriveStartPhase, type Phase } from "@/features/assessment/steps";
 import { isConditionKey } from "@/features/conditions/conditions";
 import { confirmAge, isAgeConfirmed } from "@/features/age/age";
 import { AnalyticsEvent, track } from "@/lib/analytics";
 
 import { AgeGate } from "./AgeGate";
+import { PostcodeStep } from "./PostcodeStep";
+import { QuestionStep } from "./QuestionStep";
+
+function prefersReducedMotion(): boolean {
+  return (
+    typeof window !== "undefined" &&
+    typeof window.matchMedia === "function" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
+}
+
+const FADE = "animate-in fade-in duration-200 motion-reduce:animate-none";
 
 /** Single reusable, state-based assessment engine — no route changes between
- *  questions (spec Section 7). */
+ *  steps (spec §7). Phase model: postcode -> questions -> result. Questions
+ *  auto-advance on selection; a secondary Next stays as the keyboard /
+ *  changed-mind path; the last question keeps an explicit CTA. The safety /
+ *  exclusion questions are collected later, on the way to medical review
+ *  (PO decision B2). */
 export function AssessmentEnginePage() {
   const { t } = useTranslation("assessment");
   const { t: tCommon } = useTranslation();
-  const { answers, setAnswer, submit, prefillProblem, reset } = useAssessment();
+  const { answers, postcode, setAnswer, submit, prefillProblem, reset } =
+    useAssessment();
   const navigate = useNavigate();
   const [params] = useSearchParams();
-  usePageTitle(t("start.title"), tCommon("pages.assessmentStart.description"));
+  usePageTitle(t("start.title"), tCommon("pages.assessmentStart.description"), {
+    noindex: true,
+  });
 
   // 18+ self-declaration before the assessment (owner decision D14).
   const [ageOk, setAgeOk] = useState(isAgeConfirmed);
 
   const problemParam = params.get("problem");
+  const prefilledFromLanding = useMemo(
+    () => Boolean(problemParam && isConditionKey(problemParam)),
+    [problemParam],
+  );
 
   useEffect(() => {
     if (problemParam && isConditionKey(problemParam)) {
@@ -48,45 +71,75 @@ export function AssessmentEnginePage() {
     startedTracked.current = true;
     track(AnalyticsEvent.assessmentStarted, {
       problem: problemParam && isConditionKey(problemParam) ? problemParam : null,
-      resumed: answeredCount(answers) > 0,
+      resumed: QUESTIONS.some((q) => Boolean(answers[q.id])),
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ageOk]);
 
-  function recordAnswer(id: QuestionId, value: string) {
-    setAnswer(id, value);
-    // Question id + position only — the answer value is health data (D16).
-    track(AnalyticsEvent.assessmentQuestionAnswered, {
-      question: id,
-      questionIndex: step,
-    });
-    if (id === "q1") {
-      // The problem category is an allowed coarse dimension.
-      track(AnalyticsEvent.problemSelected, { problem: value, source: "assessment" });
-    }
-  }
-
-  const [step, setStep] = useState(() => {
-    const firstUnanswered = QUESTIONS.findIndex((q) => !answers[q.id]);
-    return firstUnanswered === -1 ? 0 : firstUnanswered;
-  });
+  const [{ phase, step }, setPos] = useState<{ phase: Phase; step: number }>(() =>
+    deriveStartPhase({
+      postcode: postcode ?? undefined,
+      answers,
+      prefilled: prefilledFromLanding,
+    }),
+  );
+  const setStep = (updater: number | ((s: number) => number)) =>
+    setPos((p) => ({
+      ...p,
+      step: typeof updater === "function" ? updater(p.step) : updater,
+    }));
 
   const question = QUESTIONS[step];
   const current = answers[question.id];
   const isLast = step === TOTAL_QUESTIONS - 1;
-  const answered = answeredCount(answers);
 
-  const prefilledFromLanding = useMemo(
-    () => Boolean(problemParam && isConditionKey(problemParam)),
-    [problemParam],
-  );
+  // --- auto-advance ----------------------------------------------------------
+  const advanceTimer = useRef<number | null>(null);
+  function clearAdvanceTimer() {
+    if (advanceTimer.current !== null) {
+      window.clearTimeout(advanceTimer.current);
+      advanceTimer.current = null;
+    }
+  }
+  function armAdvance() {
+    clearAdvanceTimer();
+    const delay = prefersReducedMotion() ? 120 : 350;
+    advanceTimer.current = window.setTimeout(() => {
+      advanceTimer.current = null;
+      setStep((s) => Math.min(TOTAL_QUESTIONS - 1, s + 1));
+    }, delay);
+  }
+  useEffect(() => () => clearAdvanceTimer(), []);
+
+  function recordAnswer(id: QuestionId, value: string) {
+    setAnswer(id, value);
+    track(AnalyticsEvent.assessmentQuestionAnswered, {
+      question: id,
+      questionIndex: step,
+      auto_advanced: !isLast,
+    });
+    if (id === "q1") {
+      track(AnalyticsEvent.problemSelected, { problem: value, source: "assessment" });
+    }
+    // Only the last question waits for an explicit CTA — finishing the
+    // assessment should never be an accidental tap.
+    if (!isLast) armAdvance();
+  }
 
   function goBack() {
+    clearAdvanceTimer();
     track(AnalyticsEvent.assessmentBackClicked, { question: question.id });
     setStep((s) => Math.max(0, s - 1));
   }
 
+  function startOver() {
+    clearAdvanceTimer();
+    reset();
+    setPos({ phase: "postcode", step: 0 });
+  }
+
   function goNext() {
+    clearAdvanceTimer();
     if (!current) return;
     if (isLast) {
       const rec = submit();
@@ -110,50 +163,43 @@ export function AssessmentEnginePage() {
     );
   }
 
+  // Progress is measured in the six questions — the same count the eyebrow
+  // ("Question N of 6") and the "six short questions" promise use. The ring +
+  // bar only show in the questions phase (the postcode step is a lead-in).
+  const progressCurrent = step + 1;
+  const eyebrow =
+    phase === "questions"
+      ? t("start.progress", { current: step + 1, total: TOTAL_QUESTIONS })
+      : t("phase.delivery");
+
   return (
-    <div className="mx-auto max-w-2xl px-4 py-14 sm:px-6">
+    <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6">
       <JourneyStepper current="assessment" className="mb-8" />
       <div className="flex items-center justify-between gap-4">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-petrol-600">
             {t("start.title")}
           </p>
-          <p className="mt-1 text-sm text-ink-muted">
-            {t("start.progress", { current: step + 1, total: TOTAL_QUESTIONS })}
-          </p>
+          <p className="mt-1 text-sm text-ink-muted">{eyebrow}</p>
         </div>
-        <AssessmentRing
-          value={answered}
-          total={TOTAL_QUESTIONS}
-          size={72}
-          label={t("start.progress", {
-            current: answered,
-            total: TOTAL_QUESTIONS,
-          })}
-        />
+        {phase === "questions" ? (
+          <AssessmentRing
+            value={progressCurrent}
+            total={TOTAL_QUESTIONS}
+            size={72}
+            label={tCommon("journey.stepOf", {
+              current: progressCurrent,
+              total: TOTAL_QUESTIONS,
+            })}
+          />
+        ) : null}
       </div>
 
-      <div
-        className="mt-4 h-1.5 overflow-hidden rounded-full bg-white/60"
-        role="progressbar"
-        aria-valuemin={0}
-        aria-valuemax={TOTAL_QUESTIONS}
-        aria-valuenow={step + 1}
-      >
-        <div
-          className="h-full rounded-full bg-[linear-gradient(90deg,#7ea9dd,#218390)] transition-[width] duration-300"
-          style={{ width: `${((step + 1) / TOTAL_QUESTIONS) * 100}%` }}
-        />
-      </div>
-
-      {step === 0 ? (
-        <div className="mt-4 space-y-1">
-          <p className="text-ink-muted">{t("start.intro")}</p>
-          <p className="text-sm text-ink-muted">{t("start.reassurance")}</p>
-        </div>
+      {phase === "questions" && step === 0 ? (
+        <p className="mt-4 text-ink-muted">{t("start.intro")}</p>
       ) : null}
 
-      {step === 0 && prefilledFromLanding && current ? (
+      {phase === "questions" && step === 0 && prefilledFromLanding && current ? (
         <p className="mt-6 rounded-lg bg-sage-50 px-4 py-3 text-sm text-petrol-700">
           {t("start.prefilledNote", {
             condition: t(`questions.q1.options.${current}`),
@@ -161,104 +207,70 @@ export function AssessmentEnginePage() {
         </p>
       ) : null}
 
-      <fieldset className="glass-strong mt-8 rounded-2xl md:rounded-3xl p-6 sm:p-8">
-        {/* `float-left w-full` pulls the <legend> into the fieldset's content
-            box — without it the browser renders it straddling/above the top
-            border, so it appears to break out of the rounded card. The next
-            block `clear-both`s so it drops below rather than sitting beside. */}
-        <legend className="float-left mb-1 w-full font-display text-xl md:text-2xl text-ink">
-          {t(`questions.${question.id}.title`)}
-        </legend>
-        {(() => {
-          // Optional plain-language note under the question (e.g. q6 tells a
-          // beginner they can safely pick "Not sure").
-          const note = t(`questions.${question.id}.note`, { defaultValue: "" });
-          return note ? (
-            <p className="clear-both text-sm text-ink-muted">{note}</p>
-          ) : null;
-        })()}
-        <div className="grid gap-4 clear-both mt-16">
-          {question.options.map((opt) => {
-            const id = `${question.id}-${opt}`;
-            // Short gloss for cannabis-format words so a beginner isn't asked
-            // to choose between undefined terms (audit WC-05).
-            const hint = t(`questions.${question.id}.hints.${opt}`, {
-              defaultValue: "",
-            });
-            return (
-              <label
-                key={opt}
-                htmlFor={id}
-                className="flex cursor-pointer items-start gap-3 rounded-xl border-2 border-border bg-surface-raised p-4 transition-colors hover:border-petrol-300 has-[:checked]:border-petrol-600 has-[:checked]:bg-sage-50 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-petrol-600"
-              >
-                <input
-                  type="radio"
-                  id={id}
-                  name={question.id}
-                  value={opt}
-                  checked={current === opt}
-                  onChange={() => recordAnswer(question.id, opt)}
-                  className="mt-0.5 size-4 shrink-0 accent-petrol-600"
-                />
-                <span className="min-w-0">
-                  <span className="block text-ink">
-                    {t(`questions.${question.id}.options.${opt}`)}
-                  </span>
-                  {hint ? (
-                    <span className="mt-0.5 block text-xs text-ink-muted">
-                      {hint}
-                    </span>
-                  ) : null}
-                </span>
-              </label>
-            );
-          })}
+      {phase === "postcode" ? (
+        <div key="postcode" className={FADE}>
+          <PostcodeStep
+            onComplete={() => setPos({ phase: "questions", step: 0 })}
+          />
         </div>
-        {!current ? (
-          <p className="mt-3 text-sm text-ink-muted">
-            {t("start.selectPrompt")}
+      ) : null}
+
+      {phase === "questions" ? (
+        <>
+          <div key={step} className={FADE}>
+            <QuestionStep
+              question={question}
+              current={current}
+              onSelect={(value) => recordAnswer(question.id, value)}
+            />
+          </div>
+
+          <p className="mt-4 flex items-center gap-1.5 text-xs text-ink-muted">
+            <Lock className="size-3.5 shrink-0" aria-hidden />
+            {current ? t("start.privacyNote") : t("start.selectAndPrivacy")}
           </p>
-        ) : null}
-      </fieldset>
 
-      {/* Wraps on narrow screens: "Back" stays on the first line, the
-          "Start over" + primary CTA group drops to a full-width second row so
-          the long submit label never overflows. */}
-      <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
-        <Button
-          type="button"
-          variant="ghost"
-          onClick={goBack}
-          disabled={step === 0}
-        >
-          <ArrowLeft className="size-4" aria-hidden />
-          {t("start.back")}
-        </Button>
+          <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
+            {/* On mobile the rows stack — "Back" sits below the primary
+                Next / Start-over row (owner request, Sept 2026). Desktop
+                keeps Back on the left, Next on the right. */}
+            <Button
+              type="button"
+              variant="ghost"
+              onClick={goBack}
+              disabled={step === 0}
+              className="max-sm:order-2"
+            >
+              <ArrowLeft className="size-4" aria-hidden />
+              {t("start.back")}
+            </Button>
 
-        <div className="flex items-center gap-3 max-sm:w-full max-sm:justify-between">
-          <button
-            type="button"
-            onClick={reset}
-            className="shrink-0 text-sm text-ink-muted underline-offset-4 hover:underline"
-          >
-            {t("start.restart")}
-          </button>
-          <Button
-            type="button"
-            variant={isLast ? "cta" : "default"}
-            onClick={goNext}
-            disabled={!current}
-            className="min-w-0 max-sm:flex-1"
-          >
-            <span className="truncate">
-              {isLast ? t("start.submit") : t("start.next")}
-            </span>
-            {!isLast ? (
-              <ArrowRight className="size-4 shrink-0" aria-hidden />
-            ) : null}
-          </Button>
-        </div>
-      </div>
+            <div className="flex items-center gap-3 max-sm:order-1 max-sm:w-full max-sm:justify-between">
+              <button
+                type="button"
+                onClick={startOver}
+                className="shrink-0 text-sm text-ink-muted underline-offset-4 hover:underline"
+              >
+                {t("start.restart")}
+              </button>
+              <Button
+                type="button"
+                variant={isLast ? "cta" : "default"}
+                onClick={goNext}
+                disabled={!current}
+                className="min-w-0 max-sm:flex-1"
+              >
+                <span className="truncate">
+                  {isLast ? t("start.submit") : t("start.next")}
+                </span>
+                {!isLast ? (
+                  <ArrowRight className="size-4 shrink-0" aria-hidden />
+                ) : null}
+              </Button>
+            </div>
+          </div>
+        </>
+      ) : null}
     </div>
   );
 }

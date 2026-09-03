@@ -11,6 +11,7 @@ import { Button } from "@/app/components/ui/button";
 import { paths } from "@/app/paths";
 import { usePageTitle } from "@/app/usePageTitle";
 import { Reveal } from "@/components/marketing/Reveal";
+import { BreadcrumbJsonLd, FaqJsonLd } from "@/seo/StructuredData";
 
 /**
  * FAQ page — categorised service questions (how it works, medical review,
@@ -25,8 +26,25 @@ export function FaqPage() {
   const { t: tCommon } = useTranslation();
   usePageTitle(t("title"), tCommon("pages.faq.description"));
 
+  // Flatten every category's Q&A for the FAQPage schema. `text` fields are
+  // indexed claims — LEGAL REVIEW alongside the visible copy (§H).
+  const faqItems = CATEGORIES.flatMap((cat) => {
+    const keys = Object.keys(
+      t(`categories.${cat}.items`, { returnObjects: true }) as Record<
+        string,
+        unknown
+      >,
+    );
+    return keys.map((key) => ({
+      question: t(`categories.${cat}.items.${key}.q`),
+      answer: t(`categories.${cat}.items.${key}.a`),
+    }));
+  });
+
   return (
     <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6">
+      <BreadcrumbJsonLd trail={[{ name: t("title"), path: paths.faq }]} />
+      <FaqJsonLd items={faqItems} />
       <Reveal>
         <h1>{t("title")}</h1>
         <p className="mt-3 text-lg text-ink-muted">{t("intro")}</p>

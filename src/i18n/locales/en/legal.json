@@ -40,9 +40,7 @@
         {
           "id": "definitions",
           "heading": "2. Definitions",
-          "body": [
-            "For these Terms:"
-          ],
+          "body": ["For these Terms:"],
           "list": [
             "WeCare, we, us or our: the WeCare service operating this website.",
             "You or your: the consumer using the WeCare website or services.",
@@ -218,9 +216,7 @@
         {
           "id": "user-responsibilities",
           "heading": "13. User responsibilities",
-          "body": [
-            "You agree to:"
-          ],
+          "body": ["You agree to:"],
           "list": [
             "provide accurate and current information;",
             "use the website only for lawful purposes;",
@@ -327,9 +323,7 @@
             "Dispensing of prescription medicine is handled by the responsible pharmacy or other legally authorized entity.",
             "WeCare does not replace emergency medical care."
           ],
-          "bodyAfter": [
-            "© 2026 WeCare. All rights reserved."
-          ]
+          "bodyAfter": ["© 2026 WeCare. All rights reserved."]
         }
       ]
     },
@@ -369,11 +363,11 @@
             },
             {
               "label": "Privacy contact",
-              "value": "datenschutz@wecare.example"
+              "value": "support@wecare360.de"
             },
             {
               "label": "Data protection officer",
-              "value": "Max Mustermann, datenschutz@wecare.example"
+              "value": "Max Mustermann, support@wecare360.de"
             }
           ]
         },
@@ -394,9 +388,7 @@
         {
           "id": "assessment-data",
           "heading": "3. Assessment data",
-          "body": [
-            "The WeCare assessment can involve information such as:"
-          ],
+          "body": ["The WeCare assessment can involve information such as:"],
           "list": [
             "the main concern you select;",
             "how often the concern affects you;",
@@ -464,9 +456,7 @@
         {
           "id": "purposes",
           "heading": "9. How and why we use your data",
-          "body": [
-            "WeCare uses personal data to:"
-          ],
+          "body": ["WeCare uses personal data to:"],
           "list": [
             "operate the website and the guided assessment;",
             "generate a recommendation from your answers and preferences;",
@@ -542,9 +532,7 @@
         {
           "id": "marketing",
           "heading": "15. Marketing and communications",
-          "body": [
-            "WeCare distinguishes between:"
-          ],
+          "body": ["WeCare distinguishes between:"],
           "list": [
             "necessary service communications: such as order confirmations, account and security messages, and service notices, which WeCare sends as part of providing the service; and",
             "marketing communications: such as promotional emails, and, where used, advertising audiences, retargeting, and campaign measurement, which WeCare sends or runs only where you have agreed and where the applicable consent requirements are met."
@@ -670,7 +658,7 @@
           "id": "contact",
           "heading": "25. Contact",
           "body": [
-            "For privacy questions or to exercise a right, contact WeCare at datenschutz@wecare.example, or through the WeCare Contact page. WeCare's full legal and company details are in the WeCare Imprint."
+            "For privacy questions or to exercise a right, contact WeCare at support@wecare360.de, or through the WeCare Contact page. WeCare's full legal and company details are in the WeCare Imprint."
           ]
         }
       ]
@@ -861,7 +849,7 @@
           "fields": [
             {
               "label": "Email",
-              "value": "kontakt@wecare.example"
+              "value": "support@wecare360.de"
             },
             {
               "label": "Phone",
@@ -1133,9 +1121,7 @@
         {
           "id": "damaged-or-incorrect",
           "heading": "4. Damaged, defective or incorrect products",
-          "body": [
-            "If a product arrives:"
-          ],
+          "body": ["If a product arrives:"],
           "list": [
             "damaged;",
             "defective;",

@@ -71,7 +71,8 @@
         "title": "Weiter zu Produkt, Support oder Nachsorge",
         "description": "Geh weiter zu deiner Lösung, frag nach Support oder melde dich später zurück."
       }
-    }
+    },
+    "moreLink": "Den gesamten Ablauf ansehen"
   },
   "solutionsPreview": {
     "eyebrow": "Lösungen",
@@ -213,5 +214,38 @@
       "klagenfurt": "Klagenfurt",
       "stPoelten": "St. Pölten"
     }
+  },
+  "howItWorksPage": {
+    "eyebrow": "Der Ablauf",
+    "title": "So funktioniert WeCare",
+    "intro": "Vom Anliegen zu einer passenden Lösung – mit ärztlicher Prüfung, wenn sie nötig ist, und Nachsorge danach.",
+    "steps": {
+      "problem": {
+        "title": "Wähle dein Anliegen",
+        "body": "Starte mit dem Bereich, der dich betrifft: Schlaf, Schmerzen, Stress und Angst oder Migräne und Kopfspannung."
+      },
+      "assessment": {
+        "title": "Beantworte den kurzen Fragebogen",
+        "body": "Ein paar schnelle Fragen dazu, wie es dir geht. Etwa eine Minute, keine Unterlagen nötig."
+      },
+      "recommendation": {
+        "title": "Erhalte deine empfohlene Lösung",
+        "body": "Auf Basis deiner Antworten wählt WeCare eine passende Lösung für dich aus und erklärt, warum."
+      },
+      "review": {
+        "title": "Weiter zur ärztlichen Prüfung, wenn nötig",
+        "body": "Medizinisches Cannabis ist rezeptpflichtig. Eine lizenzierte Ärztin oder ein lizenzierter Arzt prüft deine Angaben; ein Rezept wird nur ausgestellt, wenn es medizinisch sinnvoll ist."
+      },
+      "fulfilment": {
+        "title": "Abwicklung und nächste Schritte",
+        "body": "Sobald ein Rezept ausgestellt ist, bereitet eine zugelassene Apotheke deine Bestellung vor und versendet sie diskret innerhalb Österreichs."
+      },
+      "followUp": {
+        "title": "Nachsorge in „Mein Bereich“",
+        "body": "Sieh nach, wie deine Lösung wirkt, bestelle nach oder frag jederzeit den Support."
+      }
+    },
+    "ctaHeading": "Bereit anzufangen?",
+    "cta": "Kostenlosen Fragebogen starten"
   }
 }

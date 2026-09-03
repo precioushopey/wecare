@@ -17,9 +17,12 @@ import type { ReviewStatus } from "@/features/review/review";
 
 export function Avatar({
   name,
+  src,
   className,
 }: {
   name: string;
+  /** Data URL of a self-chosen profile photo; falls back to initials. */
+  src?: string;
   className?: string;
 }) {
   const initials =
@@ -29,6 +32,19 @@ export function Avatar({
       .slice(0, 2)
       .map((p) => p[0]?.toUpperCase() ?? "")
       .join("") || "·";
+  if (src) {
+    return (
+      <img
+        src={src}
+        alt=""
+        aria-hidden
+        className={cn(
+          "inline-block shrink-0 rounded-full object-cover shadow-[var(--shadow-glow)]",
+          className,
+        )}
+      />
+    );
+  }
   return (
     <span
       aria-hidden
@@ -386,5 +402,97 @@ export function EmptyState({
         {ctaLabel}
       </Link>
     </div>
+  );
+}
+
+/* ── Gradient hero ─────────────────────────────────────────────────────────
+   Every dashboard page leads with one of these — the branded blue-teal band
+   (`--brand-band-gradient`, same as the marketing "brand" sections) carrying
+   that page's single most important thing. White text; use `HeroStat` for
+   inset value tiles and `HeroCta` for the primary action. */
+
+export function DashboardHero({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <section
+      className={cn(
+        "relative overflow-hidden rounded-3xl [background-image:var(--brand-band-gradient)] p-6 text-white shadow-[var(--shadow-float)] sm:p-8",
+        className,
+      )}
+    >
+      <span
+        aria-hidden
+        className="pointer-events-none absolute -right-20 -top-24 size-64 rounded-full bg-white/10 blur-3xl"
+      />
+      <span
+        aria-hidden
+        className="pointer-events-none absolute -bottom-24 left-1/4 size-56 rounded-full bg-sky-400/15 blur-3xl"
+      />
+      <div className="relative">{children}</div>
+    </section>
+  );
+}
+
+/** Small uppercase eyebrow for a hero (white, low-emphasis). */
+export function HeroEyebrow({ children }: { children: ReactNode }) {
+  return (
+    <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-white/60">
+      {children}
+    </p>
+  );
+}
+
+/** Inset label/value tile that reads on the dark hero gradient. */
+export function HeroStat({
+  label,
+  value,
+  className,
+}: {
+  label: string;
+  value: ReactNode;
+  className?: string;
+}) {
+  return (
+    <div
+      className={cn(
+        "rounded-2xl border border-white/15 bg-white/10 px-3.5 py-3",
+        className,
+      )}
+    >
+      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-white/60">
+        {label}
+      </p>
+      <p className="mt-1 text-sm font-medium text-white">{value}</p>
+    </div>
+  );
+}
+
+/** Primary action on a hero — a solid white pill (max contrast on the dark
+ *  gradient). Renders a router `<Link>`. */
+export function HeroCta({
+  to,
+  children,
+  className,
+}: {
+  to: string;
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <Link
+      to={to}
+      className={cn(
+        "inline-flex h-11 items-center justify-center gap-1.5 rounded-full bg-white px-5 text-sm font-semibold text-petrol-800 shadow-[0_12px_30px_-14px_rgba(0,0,0,0.55)] transition-colors hover:bg-white/90",
+        className,
+      )}
+    >
+      <span className="truncate">{children}</span>
+      <ChevronRight className="size-4 shrink-0" aria-hidden />
+    </Link>
   );
 }

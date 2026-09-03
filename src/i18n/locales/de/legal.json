@@ -40,9 +40,7 @@
         {
           "id": "definitions",
           "heading": "2. Begriffsbestimmungen",
-          "body": [
-            "Für diese Bedingungen gilt:"
-          ],
+          "body": ["Für diese Bedingungen gilt:"],
           "list": [
             "WeCare, wir, uns oder unser: der WeCare-Dienst, der diese Website betreibt.",
             "Sie oder Ihr: die Verbraucherin oder der Verbraucher, die/der die WeCare-Website oder -Dienste nutzt.",
@@ -218,9 +216,7 @@
         {
           "id": "user-responsibilities",
           "heading": "13. Pflichten der Nutzer/innen",
-          "body": [
-            "Sie verpflichten sich:"
-          ],
+          "body": ["Sie verpflichten sich:"],
           "list": [
             "richtige und aktuelle Angaben zu machen;",
             "die Website nur für rechtmäßige Zwecke zu nutzen;",
@@ -327,9 +323,7 @@
             "Die Abgabe verschreibungspflichtiger Arzneimittel erfolgt durch die verantwortliche Apotheke oder eine andere rechtlich befugte Stelle.",
             "WeCare ersetzt keine notfallmedizinische Versorgung."
           ],
-          "bodyAfter": [
-            "© 2026 WeCare. Alle Rechte vorbehalten."
-          ]
+          "bodyAfter": ["© 2026 WeCare. Alle Rechte vorbehalten."]
         }
       ]
     },
@@ -369,20 +363,18 @@
             },
             {
               "label": "Datenschutz-Kontakt",
-              "value": "datenschutz@wecare.example"
+              "value": "support@wecare360.de"
             },
             {
               "label": "Datenschutzbeauftragte:r",
-              "value": "Max Mustermann, datenschutz@wecare.example"
+              "value": "Max Mustermann, support@wecare360.de"
             }
           ]
         },
         {
           "id": "account-data",
           "heading": "2. Konto- und Kontaktdaten",
-          "body": [
-            "Je nachdem, was Sie angeben, kann WeCare erheben:"
-          ],
+          "body": ["Je nachdem, was Sie angeben, kann WeCare erheben:"],
           "list": [
             "Ihren Namen;",
             "Ihre E-Mail-Adresse;",
@@ -394,9 +386,7 @@
         {
           "id": "assessment-data",
           "heading": "3. Fragebogen-Daten",
-          "body": [
-            "Der WeCare-Fragebogen kann Informationen betreffen wie:"
-          ],
+          "body": ["Der WeCare-Fragebogen kann Informationen betreffen wie:"],
           "list": [
             "das von Ihnen gewählte Hauptanliegen;",
             "wie häufig das Anliegen Sie betrifft;",
@@ -464,9 +454,7 @@
         {
           "id": "purposes",
           "heading": "9. Wie und wozu wir Ihre Daten verwenden",
-          "body": [
-            "WeCare verwendet personenbezogene Daten, um:"
-          ],
+          "body": ["WeCare verwendet personenbezogene Daten, um:"],
           "list": [
             "die Website und den geführten Fragebogen zu betreiben;",
             "aus Ihren Antworten und Präferenzen eine Empfehlung zu erstellen;",
@@ -542,9 +530,7 @@
         {
           "id": "marketing",
           "heading": "15. Marketing und Kommunikation",
-          "body": [
-            "WeCare unterscheidet zwischen:"
-          ],
+          "body": ["WeCare unterscheidet zwischen:"],
           "list": [
             "notwendigen Servicemitteilungen – etwa Bestellbestätigungen, Konto- und Sicherheitsnachrichten sowie Servicehinweise, die WeCare im Rahmen der Erbringung des Dienstes sendet; und",
             "Marketingmitteilungen – etwa Werbe-E-Mails sowie, sofern eingesetzt, Werbezielgruppen, Retargeting und Kampagnenmessung, die WeCare nur sendet oder durchführt, sofern Sie zugestimmt haben und die geltenden Einwilligungsanforderungen erfüllt sind."
@@ -670,7 +656,7 @@
           "id": "contact",
           "heading": "25. Kontakt",
           "body": [
-            "Für Datenschutzfragen oder zur Ausübung eines Rechts kontaktieren Sie WeCare unter datenschutz@wecare.example oder über die Kontaktseite von WeCare. Die vollständigen rechtlichen und Unternehmensangaben von WeCare finden Sie im Impressum von WeCare."
+            "Für Datenschutzfragen oder zur Ausübung eines Rechts kontaktieren Sie WeCare unter support@wecare360.de oder über die Kontaktseite von WeCare. Die vollständigen rechtlichen und Unternehmensangaben von WeCare finden Sie im Impressum von WeCare."
           ]
         }
       ]
@@ -861,7 +847,7 @@
           "fields": [
             {
               "label": "E-Mail",
-              "value": "kontakt@wecare.example"
+              "value": "support@wecare360.de"
             },
             {
               "label": "Telefon",
@@ -1133,9 +1119,7 @@
         {
           "id": "damaged-or-incorrect",
           "heading": "4. Beschädigte, mangelhafte oder falsche Produkte",
-          "body": [
-            "Wenn ein Produkt wie folgt ankommt:"
-          ],
+          "body": ["Wenn ein Produkt wie folgt ankommt:"],
           "list": [
             "beschädigt;",
             "mangelhaft;",

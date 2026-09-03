@@ -34,9 +34,12 @@ export function SiteFooter({
   const { isAuthenticated } = useAuth();
   const { reopen: reopenConsent } = useConsent();
   const year = new Date().getFullYear();
-  const account = isAuthenticated
-    ? { to: paths.dashboard, label: t("nav.myArea") }
-    : { to: paths.login, label: t("nav.login") };
+  const accountLinks = isAuthenticated
+    ? [{ to: paths.dashboard, label: t("nav.myArea") }]
+    : [
+        { to: paths.login, label: t("nav.login") },
+        { to: paths.signup, label: t("nav.signup") },
+      ];
 
   return (
     <footer
@@ -160,9 +163,15 @@ export function SiteFooter({
         {/* Bottom bar */}
         <div className="mt-8 flex flex-wrap items-center gap-4 border-t border-white/20 pt-6 text-xs text-white/60">
           <span>{t("footer.copyright", { year })}</span>
-          <Link to={account.to} className="transition-colors hover:text-white">
-            {account.label}
-          </Link>
+          {accountLinks.map((a) => (
+            <Link
+              key={a.to}
+              to={a.to}
+              className="transition-colors hover:text-white"
+            >
+              {a.label}
+            </Link>
+          ))}
           <button
             type="button"
             onClick={reopenConsent}

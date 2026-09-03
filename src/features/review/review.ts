@@ -1,3 +1,4 @@
+import type { AssessmentExclusions } from "@/features/assessment/exclusions";
 import type { AssessmentAnswers } from "@/features/assessment/questions";
 import type { ConditionKey } from "@/features/conditions/conditions";
 
@@ -31,6 +32,8 @@ export interface MedicalReview {
   problem: ConditionKey;
   /** The assessment context handed to the reviewing doctor. */
   answers: AssessmentAnswers;
+  postcode?: string | null;
+  exclusions?: AssessmentExclusions | null;
 }
 
 function isReviewStatus(v: unknown): v is ReviewStatus {
@@ -57,6 +60,8 @@ export function getMedicalReview(): MedicalReview | null {
         status: parsed.status,
         problem: parsed.problem as ConditionKey,
         answers: parsed.answers ?? {},
+        postcode: parsed.postcode ?? null,
+        exclusions: parsed.exclusions ?? null,
       };
     }
   } catch {
@@ -68,6 +73,8 @@ export function getMedicalReview(): MedicalReview | null {
 export function submitMedicalReview(input: {
   problem: ConditionKey;
   answers: AssessmentAnswers;
+  postcode?: string | null;
+  exclusions?: AssessmentExclusions | null;
 }): MedicalReview {
   const review: MedicalReview = {
     id: `WR-${Date.now().toString(36).toUpperCase()}`,
@@ -77,6 +84,8 @@ export function submitMedicalReview(input: {
     status: "inReview",
     problem: input.problem,
     answers: input.answers,
+    postcode: input.postcode ?? null,
+    exclusions: input.exclusions ?? null,
   };
   try {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(review));

@@ -12,16 +12,61 @@
   },
   "start": {
     "title": "Your assessment",
-    "intro": "Six short questions about how you feel (about 60 to 90 seconds). This is not a medical form.",
+    "intro": "Six short questions about how you feel (about 60 to 90 seconds). This is not a medical form, no documents needed, and you can change any answer before you finish.",
     "prefilledNote": "Pre-selected: {{condition}}",
     "progress": "Question {{current}} of {{total}}",
     "back": "Back",
     "next": "Next",
     "submit": "Show My Recommended Solution",
-    "selectPrompt": "Choose an option to continue.",
     "resumeNote": "We saved your previous answers.",
     "restart": "Start over",
-    "reassurance": "No documents needed. You can change any answer before you finish."
+    "privacyNote": "Your answers are private and secure.",
+    "selectAndPrivacy": "Choose an option to continue. Your answers are private and secure."
+  },
+  "phase": {
+    "delivery": "Delivery",
+    "finalChecks": "Final checks"
+  },
+  "postcode": {
+    "heading": "Where should we deliver?",
+    "sub": "We'll check we cover your area. Takes a second.",
+    "placeholder": "e.g. 1010",
+    "continue": "Continue",
+    "error": "Enter a 4-digit Austrian postcode."
+  },
+  "regions": {
+    "wien": "Vienna",
+    "niederoesterreich": "Lower Austria",
+    "oberoesterreich": "Upper Austria",
+    "salzburg": "Salzburg",
+    "tirolVorarlberg": "Tyrol / Vorarlberg",
+    "burgenland": "Burgenland",
+    "steiermark": "Styria",
+    "kaernten": "Carinthia"
+  },
+  "exclusion": {
+    "heading": "A few things your medical reviewer needs to know",
+    "sub": "Please answer the first two questions. They go to your medical reviewer.",
+    "yes": "Yes",
+    "no": "No",
+    "pregnancy": {
+      "q": "Are you pregnant, breastfeeding, or planning to become pregnant?"
+    },
+    "recentSupply": {
+      "q": "In the last 30 days, have you received 100 g or more of cannabis on prescription?"
+    },
+    "conditions": {
+      "q": "Do any of these apply to you?",
+      "heart": "Heart condition",
+      "liverKidney": "Liver or kidney condition",
+      "psychosis": "History of psychosis or schizophrenia",
+      "dependence": "Current or past substance dependence",
+      "allergy": "Known allergy to cannabis, THC or CBD",
+      "none": "None of these"
+    },
+    "flaggedNote": "Thanks. Your medical reviewer will go through these with you before anything is prescribed.",
+    "continue": "Submit for medical review",
+    "requiredPrompt": "Answer the first two questions to continue."
   },
   "questions": {
     "q1": {
@@ -123,8 +168,8 @@
     "nextHeading": "What happens next",
     "next": {
       "view": {
-        "title": "Submit for review",
-        "body": "Send your assessment to a doctor. It's free, and nothing is ordered yet."
+        "title": "View your recommended Solution",
+        "body": "See what was matched and why, then continue to medical review."
       },
       "review": {
         "title": "Medical review",
@@ -136,13 +181,14 @@
       }
     },
     "detailsLabel": "THC, price & ingredients",
-    "altHeading": "Prefer something else?",
-    "altLabelDefault": "Also available",
-    "altStrongerHint": "Usually a stronger option, for later.",
+    "altHeading": "Alternative option",
+    "altLabelDefault": "Another matched option",
+    "altStrongerHint": "Another matched option you can explore.",
     "frequencyNote": "You told us this affects you {{frequency}}. That's noted for your medical review.",
     "formatPreferenceNote": "You mentioned you'd prefer {{format}}. Your doctor confirms the right format for you. For most people starting out, that's an oil.",
     "submitReviewCta": "Submit my assessment for medical review",
-    "viewReviewCta": "View your review status"
+    "viewReviewCta": "View your review status",
+    "exclusionNote": "Your reviewer will also go through the health checks you completed."
   },
   "review": {
     "pageTitle": "Your medical review",
@@ -159,6 +205,25 @@
       "b": "The doctor reviews it and may ask for more information.",
       "c": "You're notified of the outcome by email.",
       "d": "If approved, a licensed pharmacy prepares and ships your order."
+    },
+    "progressHeading": "Where your review is",
+    "stages": {
+      "submitted": {
+        "label": "Submitted",
+        "body": "Your information has been received."
+      },
+      "inReview": {
+        "label": "In review",
+        "body": "A clinician is reviewing your case."
+      },
+      "infoRequired": {
+        "label": "More info needed",
+        "body": "We may contact you for more details."
+      },
+      "approved": {
+        "label": "Approved",
+        "body": "You'll be notified once approved, then a licensed pharmacy prepares your order."
+      }
     },
     "statuses": {
       "submitted": {
@@ -192,5 +257,11 @@
         "body": "The reviewing doctor would like a brief consultation before deciding. Check your email for the next step."
       }
     }
+  },
+  "medicalReview": {
+    "pageTitle": "Continue to medical review",
+    "eyebrow": "Medical review",
+    "heading": "A few things your reviewer needs to know",
+    "intro": "Medical cannabis is prescription-only. A licensed doctor reviews your information before anything is prescribed."
   }
 }

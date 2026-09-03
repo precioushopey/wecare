@@ -7,8 +7,12 @@
 /** Support inbox surfaced on the Contact and Support pages. */
 export const SUPPORT_EMAIL = "support@wecare360.de";
 
-/** Canonical origin — used for the sitemap and share metadata at launch. */
-export const SITE_ORIGIN = "https://wecare.example";
+/**
+ * Canonical origin — used for the sitemap and share metadata at launch.
+ * Reads `VITE_SITE_ORIGIN` (see `.env.example`); the placeholder keeps the
+ * site noindex. Single source of truth: `src/seo/config.ts`.
+ */
+export { siteOrigin as getSiteOrigin } from "@/seo/config";
 
 /**
  * Owner decision D6 — the per-gram prices in `src/data/solutions.ts` are
