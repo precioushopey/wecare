@@ -1,9 +1,11 @@
 {
   "effectiveDateLabel": "Effective from {{date}}",
+  "draftNotEffective": "Draft — not yet in effect",
+  "preLaunchNotice": "Company details will be published before production launch.",
   "tocLabel": "On this page",
   "docs": {
     "terms": {
-      "effectiveDate": "31 August 2026",
+      "effectiveDate": "",
       "intro": "These Terms & Conditions govern your use of the WeCare website, our online assessment, recommendations, medical-review journey where available, and any purchase or other transaction made through WeCare.",
       "sections": [
         {
@@ -328,7 +330,7 @@
       ]
     },
     "privacy": {
-      "effectiveDate": "31 August 2026",
+      "effectiveDate": "",
       "intro": "This Privacy Policy explains how WeCare collects, uses, shares, and protects personal data when you use the WeCare website, complete the assessment, request a recommendation, or place an order. It also explains your rights under the EU General Data Protection Regulation (GDPR) and applicable Austrian data-protection law.",
       "sections": [
         {
@@ -350,24 +352,13 @@
           "id": "controller",
           "heading": "1. Who we are",
           "body": [
-            "WeCare is the controller for the processing described in this policy, except where this policy states that an independent third party (such as a reviewing doctor or a pharmacy) acts as a separate controller for its own processing."
+            "WeCare is the controller for the processing described in this policy, except where this policy states that an independent third party (such as a reviewing doctor or a pharmacy) acts as a separate controller for its own processing.",
+            "The registered company name, address and company-register number of the WeCare controller, and the contact details of the data protection officer, are stated here once confirmed as part of the live WeCare setup. Until then, use the privacy contact below for any data-protection request or to exercise your rights."
           ],
           "fields": [
             {
-              "label": "Controller",
-              "value": "WeCare GmbH, Musterstraße 1, 1010 Wien, Austria"
-            },
-            {
-              "label": "Company register",
-              "value": "Firmenbuchnummer FN 000000a, Firmenbuchgericht Handelsgericht Wien"
-            },
-            {
               "label": "Privacy contact",
               "value": "support@wecare360.de"
-            },
-            {
-              "label": "Data protection officer",
-              "value": "Max Mustermann, support@wecare360.de"
             }
           ]
         },
@@ -664,7 +655,7 @@
       ]
     },
     "cookies": {
-      "effectiveDate": "31 August 2026",
+      "effectiveDate": "",
       "intro": "This Cookie Policy explains how WeCare uses cookies and similar technologies when you visit or use the WeCare website.",
       "sections": [
         {
@@ -806,60 +797,22 @@
       ]
     },
     "imprint": {
-      "effectiveDate": "31 August 2026",
+      "effectiveDate": "",
       "intro": "Information pursuant to the applicable Austrian legal disclosure requirements, including § 5 ECG and, where applicable, § 25 MedienG.",
       "sections": [
         {
-          "id": "provider",
-          "heading": "1. Service provider",
-          "fields": [
-            {
-              "label": "Company",
-              "value": "WeCare GmbH"
-            },
-            {
-              "label": "Legal form",
-              "value": "GmbH"
-            },
-            {
-              "label": "Registered address",
-              "value": "Musterstraße 1, 1010 Wien, Austria"
-            },
-            {
-              "label": "Represented by",
-              "value": "Max Mustermann"
-            },
-            {
-              "label": "Firmenbuchnummer",
-              "value": "FN 000000a"
-            },
-            {
-              "label": "Firmenbuchgericht",
-              "value": "Handelsgericht Wien"
-            },
-            {
-              "label": "UID-Nummer",
-              "value": "ATU00000000"
-            }
-          ]
-        },
-        {
           "id": "contact",
-          "heading": "2. Contact",
+          "heading": "1. Contact",
           "fields": [
             {
               "label": "Email",
               "value": "support@wecare360.de"
-            },
-            {
-              "label": "Phone",
-              "value": "+43 1 0000000"
             }
           ]
         },
         {
           "id": "service-nature",
-          "heading": "3. Nature of the WeCare service",
+          "heading": "2. Nature of the WeCare service",
           "body": [
             "WeCare provides an online platform through which users can receive information and guidance relating to wellness solutions and, where the relevant service is available, access a medical-review process.",
             "The WeCare website is structured around user needs including:"
@@ -879,7 +832,7 @@
         },
         {
           "id": "independent-professionals",
-          "heading": "4. Independent medical professionals and pharmacies",
+          "heading": "3. Independent medical professionals and pharmacies",
           "body": [
             "Where applicable, medical review is carried out by independently licensed doctors.",
             "Dispensing of prescription medicines is carried out by an independently licensed partner pharmacy where legally applicable.",
@@ -889,7 +842,7 @@
         },
         {
           "id": "regulatory",
-          "heading": "5. Regulatory information",
+          "heading": "4. Regulatory information",
           "body": [
             "WeCare operates its website with a focus on the Austrian market.",
             "The availability of particular products, services and formats may depend on applicable Austrian and European laws and regulations.",
@@ -899,7 +852,7 @@
         },
         {
           "id": "dispute-resolution",
-          "heading": "6. Consumer dispute resolution",
+          "heading": "5. Consumer dispute resolution",
           "body": [
             "WeCare is not currently willing to participate in consumer dispute resolution proceedings before a consumer arbitration board, unless otherwise required by applicable law.",
             "The former European Commission Online Dispute Resolution (ODR) platform is no longer available and is therefore not referenced as an active dispute-resolution platform in this Impressum."
@@ -907,7 +860,7 @@
         },
         {
           "id": "liability-content",
-          "heading": "7. Liability for content",
+          "heading": "6. Liability for content",
           "body": [
             "WeCare takes reasonable care to keep the information published on its website accurate and up to date.",
             "However, WeCare does not guarantee that all content is complete, current or suitable for every individual situation.",
@@ -917,7 +870,7 @@
         },
         {
           "id": "external-links",
-          "heading": "8. External links",
+          "heading": "7. External links",
           "body": [
             "The WeCare website may contain links to websites or services operated by third parties.",
             "WeCare does not control the content of external websites and is not responsible for their content or practices.",
@@ -926,7 +879,7 @@
         },
         {
           "id": "copyright",
-          "heading": "9. Copyright",
+          "heading": "8. Copyright",
           "body": [
             "The content and design of the WeCare website, including text, graphics, images, branding and other materials, are protected by applicable intellectual-property laws.",
             "Unless otherwise permitted by law, reproduction, distribution, modification or other use of WeCare content requires the prior written consent of the relevant rights holder."
@@ -934,7 +887,7 @@
         },
         {
           "id": "additional-legal",
-          "heading": "10. Additional legal information",
+          "heading": "9. Additional legal information",
           "body": [
             "The WeCare website should be read together with the other legal documents applicable to the service, including:"
           ],
@@ -952,7 +905,7 @@
       ]
     },
     "shipping": {
-      "effectiveDate": "31 August 2026",
+      "effectiveDate": "",
       "intro": "This Shipping Policy explains how delivery works for products that are legally available for shipment through WeCare in Austria.",
       "sections": [
         {
@@ -1000,15 +953,10 @@
           "id": "delivery-times",
           "heading": "4. Delivery times",
           "body": [
-            "Once an order is ready to ship (after any required order processing and, where applicable, medical review and pharmacy dispensing), WeCare aims to deliver within Austria as follows:"
-          ],
-          "list": [
-            "Orders ready to ship by 12:00 (noon) typically arrive the next day.",
-            "Orders ready to ship after 12:00 (noon) typically arrive within two days."
-          ],
-          "bodyAfter": [
-            "These times apply across Austria and are typical times, not guaranteed delivery dates. Actual delivery times can vary depending on product availability, order processing, the delivery provider, the delivery address, weekends and public holidays, and any verification or other legally required process.",
-            "Once an order has been dispatched, WeCare may provide the customer with available shipment information or tracking details."
+            "Delivery and dispatch times depend on medical review where applicable, product availability, pharmacy processing and the selected delivery method. Any applicable estimated delivery time will be shown before the order is confirmed or during order processing.",
+            "Any timeframe communicated is an estimate, not a guaranteed delivery date, and can vary with the delivery provider, the delivery address, weekends and public holidays, and any verification or other legally required process.",
+            "Once an order has been dispatched, WeCare may provide the customer with available shipment information or tracking details.",
+            "[LEGAL REVIEW REQUIRED]"
           ]
         },
         {
@@ -1072,7 +1020,7 @@
       ]
     },
     "refunds": {
-      "effectiveDate": "31 August 2026",
+      "effectiveDate": "",
       "intro": "This Refund Policy explains the circumstances in which customers may cancel an order, exercise a statutory right of withdrawal, or request a refund for products or services purchased through WeCare.",
       "sections": [
         {

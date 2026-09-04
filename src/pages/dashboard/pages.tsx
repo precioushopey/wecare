@@ -24,7 +24,7 @@ import { paths } from "@/app/paths";
 import { AustriaMap } from "@/components/marketing/AustriaMap";
 import { LanguageToggle } from "@/components/layout/LanguageToggle";
 import { SolutionMark } from "@/components/brand/SolutionMark";
-import { PRICES_CONFIRMED, SUPPORT_EMAIL } from "@/config";
+import { COMMERCE_ENABLED, PRICES_CONFIRMED, SUPPORT_EMAIL } from "@/config";
 import { IMG, siteImage } from "@/data/siteImages";
 import { SOLUTION_BY_ID } from "@/data/solutions";
 import { useAssessment } from "@/features/assessment/AssessmentContext";
@@ -385,26 +385,71 @@ export function DashboardHomePage() {
               <p className="mt-3 text-xs text-ink-muted">
                 {t("delivery.track.noVan")}
               </p>
+
+              {/* Dev-only spec marker — not shown in production builds. */}
+              {import.meta.env.DEV ? (
+                <div className="mt-3 rounded-xl border border-dashed border-border p-3 text-xs text-ink-muted">
+                  <p className="font-semibold uppercase tracking-[0.1em]">
+                    Placeholder — courier tracking map
+                  </p>
+                  <p className="mt-1.5 leading-relaxed">
+                    Dev spec: once the carrier integration is live (see
+                    <code className="mx-1">docs/BACKEND-ARCHITECTURE.md</code>
+                    BE-08), render the live shipment view here — the parcel&rsquo;s
+                    current location / route / ETA from the carrier&rsquo;s tracking
+                    API, the carrier name, a linked tracking number, and a
+                    timestamped shipping-event history. The 4-stage bar above
+                    should then be driven by real pharmacy dispatch +
+                    carrier events, not the mock <code>Order.status</code>. No
+                    fabricated position until then. Dev-only — hidden in
+                    production.
+                  </p>
+                </div>
+              ) : null}
             </div>
           ) : null}
 
-          {/* Coverage map — the seven cities WeCare delivers to. */}
-          <p className="mt-4 text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-ink-muted">
-            {t("delivery.coverage")}
-          </p>
-          <div className="relative mt-2 overflow-hidden rounded-2xl bg-petrol-900/90 p-3">
-            {/* Dot-grid across the whole panel, not just clipped inside the
-                map's landmass (owner request, Sept 2026) — same treatment as
-                the homepage DeliveryBannerSection so map + panel read as one
-                atlas surface. */}
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0 [background-image:radial-gradient(circle,rgba(255,255,255,0.16)_1px,transparent_1.6px)] [background-size:22px_22px]"
-            />
-            <div className="relative">
-              <AustriaMap />
+          {/* Before an order exists: the coverage map. Once it does: where the
+              parcel is going (the map is moot then, and WeCare has no
+              fulfilment origin to draw a route from yet). */}
+          {!latestOrder ? (
+            <>
+              <p className="mt-4 text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-ink-muted">
+                {t("delivery.coverage")}
+              </p>
+              <div className="relative mt-2 overflow-hidden rounded-2xl bg-petrol-900/90 p-3">
+                {/* Dot-grid across the whole panel, not just clipped inside the
+                    map's landmass (owner request, Sept 2026) — same treatment as
+                    the homepage DeliveryBannerSection so map + panel read as one
+                    atlas surface. */}
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 [background-image:radial-gradient(circle,rgba(255,255,255,0.16)_1px,transparent_1.6px)] [background-size:22px_22px]"
+                />
+                <div className="relative">
+                  <AustriaMap />
+                </div>
+              </div>
+              <p className="mt-2 text-xs text-ink-muted">
+                {th("deliveryBanner.coverageNote")}
+              </p>
+            </>
+          ) : latestOrder.shipTo ? (
+            <div className="mt-4 rounded-2xl border border-border bg-surface-raised/60 p-4">
+              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-ink-muted">
+                {t("delivery.shipTo")}
+              </p>
+              <address className="mt-1.5 text-sm not-italic leading-relaxed text-ink">
+                {latestOrder.shipTo.firstName} {latestOrder.shipTo.lastName}
+                <br />
+                {latestOrder.shipTo.street}
+                <br />
+                {latestOrder.shipTo.postalCode} {latestOrder.shipTo.city}
+                <br />
+                {latestOrder.shipTo.country}
+              </address>
             </div>
-          </div>
+          ) : null}
         </SectionCard>
       </div>
 
@@ -803,6 +848,7 @@ export function DashboardRecommendationPage() {
 export function DashboardOrdersPage() {
   const { t } = useTranslation("dashboard");
   const { t: th } = useTranslation("home");
+  const { t: ts } = useTranslation("shop");
   const { language } = useLanguage();
   const { items: cartItems, subtotalEur } = useCart();
   const orders = getOrders();
@@ -830,28 +876,45 @@ export function DashboardOrdersPage() {
                   {SOLUTION_BY_ID[item.productId].name} ·{" "}
                   {t("orders.grams", { count: item.quantity })}
                 </span>
-                <span className="font-mono text-white">
-                  {formatPriceEur(
-                    SOLUTION_BY_ID[item.productId].priceEur * item.quantity,
-                    language,
-                  )}
-                </span>
+                {COMMERCE_ENABLED ? (
+                  <span className="font-mono text-white">
+                    {formatPriceEur(
+                      SOLUTION_BY_ID[item.productId].priceEur * item.quantity,
+                      language,
+                    )}
+                  </span>
+                ) : null}
               </li>
             ))}
           </ul>
 
-          <div className="mt-4 flex items-center justify-between text-sm">
-            <span className="font-medium text-white">
-              {t("orders.pending.total")}
-            </span>
-            <span className="font-mono font-medium text-white">
-              {formatPriceEur(subtotalEur, language)}
-            </span>
-          </div>
-
-          <HeroCta to={paths.checkout} className="mt-5">
-            {t("orders.pending.cta")}
-          </HeroCta>
+          {COMMERCE_ENABLED ? (
+            <>
+              <div className="mt-4 flex items-center justify-between text-sm">
+                <span className="font-medium text-white">
+                  {t("orders.pending.total")}
+                </span>
+                <span className="font-mono font-medium text-white">
+                  {formatPriceEur(subtotalEur, language)}
+                </span>
+              </div>
+              <HeroCta to={paths.checkout} className="mt-5 w-full sm:w-auto">
+                {t("orders.pending.cta")}
+              </HeroCta>
+            </>
+          ) : (
+            <>
+              <p className="mt-4 text-sm text-white/85">
+                {ts("cart.finalPriceNote")}
+              </p>
+              <HeroCta
+                to={paths.dashboardRecommendation}
+                className="mt-5 w-full sm:w-auto"
+              >
+                {ts("checkoutUnavailable.cta")}
+              </HeroCta>
+            </>
+          )}
         </DashboardHero>
       );
     }
@@ -892,6 +955,12 @@ export function DashboardOrdersPage() {
                 date: formatDate(latestOrder.placedAt, language),
               })}
             </p>
+            {latestOrder.paymentMethod ? (
+              <p className="text-sm text-white/70">
+                {t("orders.paymentLabel")}:{" "}
+                {ts(`checkout.paymentMethods.${latestOrder.paymentMethod}`)}
+              </p>
+            ) : null}
           </div>
           <StatusPill
             label={t(`orders.statuses.${latestOrder.status}`)}
@@ -902,6 +971,22 @@ export function DashboardOrdersPage() {
           <Truck className="mt-0.5 size-4 shrink-0" aria-hidden />
           {th("deliveryBanner.body")}
         </p>
+        {latestOrder.shipTo ? (
+          <div className="mt-4 max-w-xs rounded-2xl border border-white/15 bg-white/10 px-3.5 py-3">
+            <p className="text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-white/60">
+              {t("delivery.shipTo")}
+            </p>
+            <address className="mt-1 text-sm not-italic leading-relaxed text-white">
+              {latestOrder.shipTo.firstName} {latestOrder.shipTo.lastName}
+              <br />
+              {latestOrder.shipTo.street}
+              <br />
+              {latestOrder.shipTo.postalCode} {latestOrder.shipTo.city}
+              <br />
+              {latestOrder.shipTo.country}
+            </address>
+          </div>
+        ) : null}
       </DashboardHero>
 
       {/* Desktop — a records table (best-practice for a list you reference). */}
@@ -925,6 +1010,11 @@ export function DashboardOrdersPage() {
               <tr key={order.id} className="glass">
                 <td className="rounded-l-2xl px-4 py-3 font-mono text-ink">
                   {order.id}
+                  {order.shipTo ? (
+                    <span className="mt-1 block font-sans text-xs font-normal text-ink-muted">
+                      {order.shipTo.postalCode} {order.shipTo.city}
+                    </span>
+                  ) : null}
                 </td>
                 <td className="whitespace-nowrap px-4 py-3 text-ink-muted">
                   {formatDate(order.placedAt, language)}
@@ -980,6 +1070,22 @@ export function DashboardOrdersPage() {
             <p className="mt-2 font-mono text-sm text-ink">
               {formatPriceEur(order.totalEur, language)}
             </p>
+            {order.shipTo ? (
+              <div className="mt-3 border-t border-border pt-3">
+                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-ink-muted">
+                  {t("delivery.shipTo")}
+                </p>
+                <address className="mt-1 text-sm not-italic leading-relaxed text-ink">
+                  {order.shipTo.firstName} {order.shipTo.lastName}
+                  <br />
+                  {order.shipTo.street}
+                  <br />
+                  {order.shipTo.postalCode} {order.shipTo.city}
+                  <br />
+                  {order.shipTo.country}
+                </address>
+              </div>
+            ) : null}
           </li>
         ))}
       </ul>
@@ -1107,8 +1213,10 @@ export function DashboardSupportPage() {
   const { t: tc } = useTranslation();
   return (
     <DashboardHero>
-      <MedallionIcon icon={LifeBuoy} className="size-14" />
-      <p className="mt-4 max-w-md text-sm text-white/85">{t("support.body")}</p>
+      <div className="flex items-start gap-4">
+        <MedallionIcon icon={LifeBuoy} className="size-14" />
+        <p className="max-w-md text-sm text-white/85">{t("support.body")}</p>
+      </div>
       <dl className="mt-5 grid gap-3 sm:max-w-lg sm:grid-cols-2">
         <HeroStat
           label={tc("pages.contact.emailHeading")}
@@ -1119,7 +1227,7 @@ export function DashboardSupportPage() {
           value={tc("pages.contact.hoursValue")}
         />
       </dl>
-      <HeroCta to={paths.contact} className="mt-5">
+      <HeroCta to={paths.contact} className="mt-5 w-full sm:w-auto">
         {t("support.contactCta")}
       </HeroCta>
     </DashboardHero>

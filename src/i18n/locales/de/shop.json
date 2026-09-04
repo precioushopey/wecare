@@ -27,6 +27,8 @@
     "addToCart": "In den Warenkorb",
     "checkAvailability": "Verfügbarkeit prüfen",
     "afterApprovalNote": "Bestellen kannst du, sobald deine ärztliche Prüfung freigegeben ist.",
+    "orderingDisabledNote": "Das Bestellen wird möglich, sobald die endgültigen Preise mit der Apotheke bestätigt sind. Der zu zahlende Preis wird immer angezeigt, bevor du eine Bestellung bestätigst.",
+    "backToRecommendation": "Zurück zu meiner Empfehlung",
     "detailsHeading": "Details zur Lösung",
     "whyHeading": "Warum empfohlen",
     "usageHeading": "Anwendung",
@@ -149,7 +151,7 @@
     },
     "delivery": {
       "q": "Wie erfolgt die Lieferung?",
-      "a": "Der Versand erfolgt aus der Apotheke – erst nach ärztlicher Freigabe und Ausstellung des Rezepts. Nach dem Versand dauert die Lieferung innerhalb Österreichs in der Regel einen Tag: am nächsten Tag bei Aufgabe vor 12:00 Uhr, innerhalb von zwei Tagen danach."
+      "a": "Der Versand erfolgt aus der Apotheke – erst nach ärztlicher Freigabe und Ausstellung des Rezepts. Nach dem Versand wird die Bestellung in ganz Österreich zugestellt."
     }
   },
   "cart": {
@@ -167,20 +169,42 @@
     "checkout": "Zur Kasse",
     "continueShopping": "Deine Empfehlung ansehen",
     "prescriptionNotice": "Alle Artikel sind rezeptpflichtig und werden erst nach ärztlicher Freigabe versendet.",
-    "priceAndPrescriptionNotice": "Die angezeigten Preise sind Richtwerte – dein endgültiger Preis wird nach deiner ärztlichen Prüfung bestätigt. Alle Artikel sind rezeptpflichtig und werden erst nach ärztlicher Freigabe versendet."
+    "priceAndPrescriptionNotice": "Die angezeigten Preise sind Richtwerte – dein endgültiger Preis wird nach deiner ärztlichen Prüfung bestätigt. Alle Artikel sind rezeptpflichtig und werden erst nach ärztlicher Freigabe versendet.",
+    "finalPriceNote": "Der endgültige Preis wird angezeigt, bevor du deine Bestellung bestätigst. Alle Artikel sind rezeptpflichtig und werden erst nach ärztlicher Freigabe versendet."
+  },
+  "checkoutSteps": {
+    "label": "Bestellfortschritt",
+    "cart": "Warenkorb",
+    "details": "Angaben",
+    "review": "Prüfen",
+    "complete": "Fertig"
+  },
+  "checkoutUnavailable": {
+    "heading": "Bestellen ist noch nicht möglich",
+    "body": "Die endgültigen Preise werden nach deiner ärztlichen Prüfung mit der Apotheke bestätigt. Der endgültige Preis wird angezeigt, bevor du deine Bestellung bestätigst. In der Zwischenzeit kannst du deine empfohlene Lösung ansehen und dich auf die ärztliche Prüfung vorbereiten.",
+    "cta": "Meine Empfehlung ansehen"
   },
   "checkout": {
     "title": "Kasse",
     "contactHeading": "Kontakt",
     "shippingHeading": "Lieferadresse",
     "fields": {
-      "email": "E-Mail",
       "firstName": "Vorname",
       "lastName": "Nachname",
       "street": "Straße und Hausnummer",
       "postalCode": "PLZ",
       "city": "Ort",
+      "phone": "Telefon",
+      "phoneHint": "Für Lieferbenachrichtigungen, falls verfügbar.",
       "country": "Land"
+    },
+    "optionalLabel": "(optional)",
+    "errors": {
+      "firstName": "Gib deinen Vornamen an.",
+      "lastName": "Gib deinen Nachnamen an.",
+      "street": "Gib deine Straße und Hausnummer an.",
+      "city": "Gib deinen Ort an.",
+      "postalCode": "Gib eine 4-stellige österreichische PLZ an."
     },
     "countryValue": "Österreich",
     "summaryHeading": "Bestellübersicht",
@@ -211,6 +235,10 @@
     "title": "Danke für deine Bestellung",
     "body": "Deine Bestellung ist eingegangen. So geht es weiter – bei jedem Schritt bekommst du eine E-Mail.",
     "orderLabel": "Bestellnummer: {{id}}",
+    "itemsHeading": "Deine Bestellung",
+    "totalLabel": "Gesamt",
+    "paymentLabel": "Zahlung",
+    "shipToHeading": "Lieferung an",
     "stepsHeading": "Wo deine Bestellung steht",
     "steps": {
       "received": {
@@ -226,7 +254,9 @@
         "body": "Sobald die Freigabe da ist, verschickt eine zugelassene Apotheke dein Paket diskret zu dir nach Hause."
       }
     },
-    "toOrders": "Zu meinen Bestellungen",
+    "timingNote": "Der Liefertermin wird angezeigt, sobald deine Bestellung freigegeben und von der Apotheke vorbereitet wurde. Wir halten deinen Bestellstatus auf dem Laufenden.",
+    "support": "Fragen zu deiner Bestellung? Schreib an {{email}}",
+    "toOrders": "Bestellstatus ansehen",
     "toHome": "Zur Übersicht"
   }
 }

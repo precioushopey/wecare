@@ -4,7 +4,8 @@ import { Minus, Plus, Trash2 } from "lucide-react";
 
 import { Button } from "@/app/components/ui/button";
 import { paths } from "@/app/paths";
-import { PRICES_CONFIRMED } from "@/config";
+import { COMMERCE_ENABLED, PRICES_CONFIRMED } from "@/config";
+import { CheckoutSteps } from "@/components/marketing/CheckoutSteps";
 import { SolutionMark } from "@/components/brand/SolutionMark";
 import { SOLUTION_BY_ID } from "@/data/solutions";
 import { useCart } from "@/features/cart/CartContext";
@@ -30,6 +31,9 @@ export function CartPage() {
 
   return (
     <div className="mx-auto max-w-3xl">
+      {COMMERCE_ENABLED ? (
+        <CheckoutSteps current="cart" className="mb-6" />
+      ) : null}
       <ul className="divide-y divide-white/40 rounded-2xl md:rounded-3xl glass-strong">
         {items.map((item) => {
           const s = SOLUTION_BY_ID[item.productId];
@@ -93,26 +97,32 @@ export function CartPage() {
         })}
       </ul>
 
-      <dl className="mt-6 space-y-2 text-sm">
-        <div className="flex justify-between">
-          <dt className="text-ink-muted">{t("cart.subtotal")}</dt>
-          <dd className="font-mono text-ink">
-            {formatPriceEur(subtotalEur, language)}
-          </dd>
-        </div>
-        <div className="flex justify-between">
-          <dt className="text-ink-muted">{t("cart.shipping")}</dt>
-          <dd className="text-ink">{t("cart.shippingFree")}</dd>
-        </div>
-        <div className="flex justify-between border-t border-border pt-2 text-base">
-          <dt className="font-medium text-ink">{t("cart.total")}</dt>
-          <dd className="font-mono font-medium text-ink">
-            {formatPriceEur(subtotalEur, language)}
-          </dd>
-        </div>
-      </dl>
+      {COMMERCE_ENABLED ? (
+        <dl className="mt-6 space-y-2 text-sm">
+          <div className="flex justify-between">
+            <dt className="text-ink-muted">{t("cart.subtotal")}</dt>
+            <dd className="font-mono text-ink">
+              {formatPriceEur(subtotalEur, language)}
+            </dd>
+          </div>
+          <div className="flex justify-between">
+            <dt className="text-ink-muted">{t("cart.shipping")}</dt>
+            <dd className="text-ink">{t("cart.shippingFree")}</dd>
+          </div>
+          <div className="flex justify-between border-t border-border pt-2 text-base">
+            <dt className="font-medium text-ink">{t("cart.total")}</dt>
+            <dd className="font-mono font-medium text-ink">
+              {formatPriceEur(subtotalEur, language)}
+            </dd>
+          </div>
+        </dl>
+      ) : (
+        <p className="mt-6 rounded-xl bg-sage-50 p-4 text-sm text-petrol-700">
+          {t("cart.finalPriceNote")}
+        </p>
+      )}
 
-      {hasPrescriptionItem ? (
+      {COMMERCE_ENABLED && hasPrescriptionItem ? (
         <p className="mt-4 rounded-xl bg-sage-50 p-4 text-sm text-petrol-700">
           {t(
             PRICES_CONFIRMED
@@ -120,14 +130,16 @@ export function CartPage() {
               : "cart.priceAndPrescriptionNotice",
           )}
         </p>
-      ) : !PRICES_CONFIRMED ? (
+      ) : COMMERCE_ENABLED && !PRICES_CONFIRMED ? (
         <p className="mt-4 text-xs text-ink-muted">{t("pricesIndicative")}</p>
       ) : null}
 
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-        <Button asChild variant="cta" size="lg" className="w-full sm:w-auto">
-          <Link to={paths.checkout}>{t("cart.checkout")}</Link>
-        </Button>
+        {COMMERCE_ENABLED ? (
+          <Button asChild variant="cta" size="lg" className="w-full sm:w-auto">
+            <Link to={paths.checkout}>{t("cart.checkout")}</Link>
+          </Button>
+        ) : null}
         <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
           <Link to={paths.dashboardRecommendation}>
             {t("cart.continueShopping")}

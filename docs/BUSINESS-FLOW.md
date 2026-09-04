@@ -158,6 +158,17 @@ Medical cannabis is **prescription-only** in Austria (and Germany). It cannot be
 
 ## 6. Decisions for the brainstorm
 
+> **Resolution status — PO ratification, 2026-09-04** (`CLAUDE.md` §"UX polish + PO commerce/legal ratification"). The brainstorm questions below are kept for context; the PO's answers:
+>
+> - **D-A** — Payment stays **after** medical approval (invoice / bank transfer, D7 unchanged). Going further: **commercial checkout is disabled entirely** (`COMMERCE_ENABLED` in `src/config.ts`) until real pharmacy prices exist — no "Place order" on placeholder totals. HARD PRODUCTION BLOCKER.
+> - **D-B** — Still blocked on the medical partner. No timeframe is shown; stage-based language only (`shop:confirmation.timingNote`).
+> - **D-C** — **HOLD.** No PSP integration yet. A payment abstraction seam exists (`src/features/payments/payments.ts`) so card / SEPA / Klarna can be added later without rewriting checkout.
+> - **D-D** — **No guest checkout.** The regulated journey needs a persistent authenticated identity. Future friction reduction = passwordless magic link / OTP, not a guest path.
+> - **D-E** — Still blocked on the PO setting a real review fee (D5). `/kosten` carries no euro figure.
+> - **D-F** — Resolved earlier by PO decision set 5 / B1: Result → Solution → Medical Review.
+>
+> Also ratified: separate First/Last name at checkout (not "Full name"); optional delivery phone; shipping address stored in `sessionStorage` only (never `localStorage`), pending a server-side record; "View order status" not "Track your order"; no invented delivery date.
+
 > Each: the question, the options, the trade-off, and who has to sign off.
 
 ### D-A — Does the customer *complete and pay for* the order at checkout, or only *request* it?

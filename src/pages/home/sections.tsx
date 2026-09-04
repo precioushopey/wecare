@@ -619,6 +619,9 @@ export function DeliveryBannerSection() {
 
         <Reveal delayMs={80} className="mx-auto mt-12 max-w-2xl">
           <AustriaMap />
+          <p className="mt-4 text-center text-sm text-white/70">
+            {t("deliveryBanner.coverageNote")}
+          </p>
         </Reveal>
       </div>
     </section>

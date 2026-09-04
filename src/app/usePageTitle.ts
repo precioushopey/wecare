@@ -7,6 +7,7 @@ import {
   BRAND_NAME,
   OG_IMAGE_PATH,
   robotsContent,
+  seoIndexable,
   siteOrigin,
 } from "@/seo/config";
 
@@ -47,10 +48,15 @@ export function usePageTitle(
     setMeta("property", "og:title", fullTitle);
     setMeta("property", "og:description", desc);
     setMeta("property", "og:url", canonical);
-    setMeta("property", "og:image", `${siteOrigin()}${OG_IMAGE_PATH}`);
     setMeta("name", "twitter:title", fullTitle);
     setMeta("name", "twitter:description", desc);
-    setMeta("name", "twitter:image", `${siteOrigin()}${OG_IMAGE_PATH}`);
+    // The share image is only emitted once the site is cleared for indexing —
+    // the real 1200x630 banner is a launch deliverable, and until it exists
+    // (and the domain is real) there is nothing valid to point at.
+    if (seoIndexable()) {
+      setMeta("property", "og:image", `${siteOrigin()}${OG_IMAGE_PATH}`);
+      setMeta("name", "twitter:image", `${siteOrigin()}${OG_IMAGE_PATH}`);
+    }
   }, [title, description, noindex, pathname, t]);
 }
 

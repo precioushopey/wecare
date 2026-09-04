@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 
 import { usePageTitle } from "@/app/usePageTitle";
 import { Reveal } from "@/components/marketing/Reveal";
+import { seoIndexable } from "@/seo/config";
 
 export type LegalDoc =
   "imprint" | "privacy" | "terms" | "cookies" | "shipping" | "refunds";
@@ -27,14 +28,27 @@ interface LegalSection {
  * content"), following the project's Austria language rules (never
  * "treats/cures", never a guaranteed prescription). Entity facts (`WeCare
  * GmbH`, `Musterstraße 1, 1010 Wien`, `FN 000000a`, `ATU00000000`, `Max
- * Mustermann`, phone `+43 1 0000000`, effective date `31 August 2026`) are
- * **temporary placeholder values** — obviously-provisional, to be replaced
- * with WeCare's real registered details before launch. The one confirmed
- * detail is the contact email `support@wecare360.de` (owner, Sept 2026 —
- * the only address they gave), now used for every contact/DPO email in the
- * Impressum + Privacy Policy. The visible "draft" banner was removed (owner
- * request, Aug 31 2026). Content lives in `legal.json` (`legal:docs.<doc>`);
- * title/one-line description stay in `common:pages.legal.*`.
+ * Mustermann`, effective date `31 August 2026`) are **temporary placeholder
+ * values** — obviously-provisional, to be replaced with WeCare's real
+ * registered details before launch. The one confirmed detail is the contact
+ * email `support@wecare360.de` (owner, Sept 2026 — the only address they
+ * gave), used for every contact/DPO email.
+ *
+ * The Impressum's "Service provider" block (company / address / represented-by
+ * / Firmenbuch / UID) and its phone number were **removed entirely** (owner
+ * request, Sept 2026 — do not publish fabricated registration data; a real
+ * Impressum requires these, so restore them with genuine registered details
+ * before any public launch). The placeholder entity facts now remain only in
+ * the Privacy Policy's controller section, pending real registration.
+ *
+ * Effective dates are blank until legal sign-off / go-live (PO decision, Sept
+ * 2026 — no plausible-but-fake date); while blank the page shows
+ * "Draft — not yet in effect". `imprint` and `privacy` also carry a
+ * pre-launch notice while the site is not indexable, because their real
+ * registered-entity identification is still a hard launch blocker.
+ *
+ * Content lives in `legal.json` (`legal:docs.<doc>`); title/one-line
+ * description stay in `common:pages.legal.*`.
  */
 export function LegalPage({ doc }: { doc: LegalDoc }) {
   const { t } = useTranslation(["legal", "common"]);
@@ -48,6 +62,8 @@ export function LegalPage({ doc }: { doc: LegalDoc }) {
   const sections = t(`legal:docs.${doc}.sections`, {
     returnObjects: true,
   }) as LegalSection[];
+  const showPreLaunchNotice =
+    !seoIndexable() && (doc === "imprint" || doc === "privacy");
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6">
@@ -57,8 +73,15 @@ export function LegalPage({ doc }: { doc: LegalDoc }) {
         </p>
         <h1 className="mt-3">{t(`common:pages.legal.${doc}.title`)}</h1>
         <p className="mt-2 text-sm text-ink-muted">
-          {t("legal:effectiveDateLabel", { date: effectiveDate })}
+          {effectiveDate
+            ? t("legal:effectiveDateLabel", { date: effectiveDate })
+            : t("legal:draftNotEffective")}
         </p>
+        {showPreLaunchNotice ? (
+          <p className="mt-4 rounded-xl border border-border bg-surface-raised p-3 text-sm text-ink-muted">
+            {t("legal:preLaunchNotice")}
+          </p>
+        ) : null}
         {intro ? <p className="mt-4 text-lg text-ink-muted">{intro}</p> : null}
       </Reveal>
 

@@ -1,9 +1,11 @@
 {
   "effectiveDateLabel": "Gültig ab {{date}}",
+  "draftNotEffective": "Entwurf – noch nicht in Kraft",
+  "preLaunchNotice": "Die Unternehmensangaben werden vor dem Produktivstart veröffentlicht.",
   "tocLabel": "Auf dieser Seite",
   "docs": {
     "terms": {
-      "effectiveDate": "31. August 2026",
+      "effectiveDate": "",
       "intro": "Diese Allgemeinen Geschäftsbedingungen (AGB) regeln Ihre Nutzung der WeCare-Website, unseres Online-Fragebogens, der Empfehlungen, des Ablaufs der ärztlichen Prüfung, sofern verfügbar, sowie jeglichen über WeCare getätigten Kaufs oder sonstiger Transaktionen.",
       "sections": [
         {
@@ -328,7 +330,7 @@
       ]
     },
     "privacy": {
-      "effectiveDate": "31. August 2026",
+      "effectiveDate": "",
       "intro": "Diese Datenschutzerklärung erläutert, wie WeCare personenbezogene Daten erhebt, verwendet, weitergibt und schützt, wenn Sie die WeCare-Website nutzen, den Fragebogen ausfüllen, eine Empfehlung anfordern oder eine Bestellung aufgeben. Sie erläutert außerdem Ihre Rechte nach der EU-Datenschutz-Grundverordnung (DSGVO) und dem geltenden österreichischen Datenschutzrecht.",
       "sections": [
         {
@@ -350,24 +352,13 @@
           "id": "controller",
           "heading": "1. Verantwortlicher",
           "body": [
-            "WeCare ist Verantwortlicher für die in dieser Erklärung beschriebene Verarbeitung, außer wo diese Erklärung angibt, dass ein unabhängiger Dritter (etwa eine prüfende Ärztin oder ein prüfender Arzt oder eine Apotheke) für seine eigene Verarbeitung als eigener Verantwortlicher handelt."
+            "WeCare ist Verantwortlicher für die in dieser Erklärung beschriebene Verarbeitung, außer wo diese Erklärung angibt, dass ein unabhängiger Dritter (etwa eine prüfende Ärztin oder ein prüfender Arzt oder eine Apotheke) für seine eigene Verarbeitung als eigener Verantwortlicher handelt.",
+            "Der eingetragene Firmenname, die Anschrift und die Firmenbuchnummer des WeCare-Verantwortlichen sowie die Kontaktdaten der bzw. des Datenschutzbeauftragten werden hier angegeben, sobald sie als Teil des Live-Betriebs von WeCare feststehen. Bis dahin nutzen Sie für datenschutzbezogene Anfragen oder zur Ausübung Ihrer Rechte den nachstehenden Datenschutz-Kontakt."
           ],
           "fields": [
             {
-              "label": "Verantwortlicher",
-              "value": "WeCare GmbH, Musterstraße 1, 1010 Wien, Österreich"
-            },
-            {
-              "label": "Firmenbuch",
-              "value": "Firmenbuchnummer FN 000000a, Firmenbuchgericht Handelsgericht Wien"
-            },
-            {
               "label": "Datenschutz-Kontakt",
               "value": "support@wecare360.de"
-            },
-            {
-              "label": "Datenschutzbeauftragte:r",
-              "value": "Max Mustermann, support@wecare360.de"
             }
           ]
         },
@@ -662,7 +653,7 @@
       ]
     },
     "cookies": {
-      "effectiveDate": "31. August 2026",
+      "effectiveDate": "",
       "intro": "Diese Cookie-Richtlinie erläutert, wie WeCare Cookies und ähnliche Technologien verwendet, wenn Sie die WeCare-Website besuchen oder nutzen.",
       "sections": [
         {
@@ -804,60 +795,22 @@
       ]
     },
     "imprint": {
-      "effectiveDate": "31. August 2026",
+      "effectiveDate": "",
       "intro": "Angaben gemäß den geltenden österreichischen Offenlegungspflichten, insbesondere § 5 ECG (E-Commerce-Gesetz) und, sofern zutreffend, § 25 Mediengesetz.",
       "sections": [
         {
-          "id": "provider",
-          "heading": "1. Diensteanbieter",
-          "fields": [
-            {
-              "label": "Unternehmen",
-              "value": "WeCare GmbH"
-            },
-            {
-              "label": "Rechtsform",
-              "value": "GmbH"
-            },
-            {
-              "label": "Sitz",
-              "value": "Musterstraße 1, 1010 Wien, Österreich"
-            },
-            {
-              "label": "Vertreten durch",
-              "value": "Max Mustermann"
-            },
-            {
-              "label": "Firmenbuchnummer",
-              "value": "FN 000000a"
-            },
-            {
-              "label": "Firmenbuchgericht",
-              "value": "Handelsgericht Wien"
-            },
-            {
-              "label": "UID-Nummer",
-              "value": "ATU00000000"
-            }
-          ]
-        },
-        {
           "id": "contact",
-          "heading": "2. Kontakt",
+          "heading": "1. Kontakt",
           "fields": [
             {
               "label": "E-Mail",
               "value": "support@wecare360.de"
-            },
-            {
-              "label": "Telefon",
-              "value": "+43 1 0000000"
             }
           ]
         },
         {
           "id": "service-nature",
-          "heading": "3. Art des WeCare-Dienstes",
+          "heading": "2. Art des WeCare-Dienstes",
           "body": [
             "WeCare stellt eine Online-Plattform bereit, über die Nutzer/innen Informationen und Orientierung zu Wellness-Lösungen erhalten und, sofern der jeweilige Dienst verfügbar ist, Zugang zu einem Verfahren der ärztlichen Prüfung erhalten können.",
             "Die WeCare-Website ist um Nutzerbedürfnisse herum aufgebaut, darunter:"
@@ -877,7 +830,7 @@
         },
         {
           "id": "independent-professionals",
-          "heading": "4. Unabhängige medizinische Fachpersonen und Apotheken",
+          "heading": "3. Unabhängige medizinische Fachpersonen und Apotheken",
           "body": [
             "Sofern zutreffend, wird die ärztliche Prüfung von unabhängig approbierten Ärztinnen und Ärzten durchgeführt.",
             "Die Abgabe verschreibungspflichtiger Arzneimittel erfolgt, sofern rechtlich anwendbar, durch eine unabhängig lizenzierte Partnerapotheke.",
@@ -887,7 +840,7 @@
         },
         {
           "id": "regulatory",
-          "heading": "5. Regulatorische Informationen",
+          "heading": "4. Regulatorische Informationen",
           "body": [
             "WeCare betreibt seine Website mit Fokus auf den österreichischen Markt.",
             "Die Verfügbarkeit bestimmter Produkte, Dienstleistungen und Formen kann von den geltenden österreichischen und europäischen Gesetzen und Vorschriften abhängen.",
@@ -897,7 +850,7 @@
         },
         {
           "id": "dispute-resolution",
-          "heading": "6. Verbraucherstreitbeilegung",
+          "heading": "5. Verbraucherstreitbeilegung",
           "body": [
             "WeCare ist derzeit nicht bereit, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen, sofern nicht gesetzlich etwas anderes vorgeschrieben ist.",
             "Die frühere Plattform der Europäischen Kommission zur Online-Streitbeilegung (OS) steht nicht mehr zur Verfügung und wird daher in diesem Impressum nicht als aktive Streitbeilegungsplattform genannt."
@@ -905,7 +858,7 @@
         },
         {
           "id": "liability-content",
-          "heading": "7. Haftung für Inhalte",
+          "heading": "6. Haftung für Inhalte",
           "body": [
             "WeCare achtet mit angemessener Sorgfalt darauf, die auf seiner Website veröffentlichten Informationen richtig und aktuell zu halten.",
             "WeCare gewährleistet jedoch nicht, dass alle Inhalte vollständig, aktuell oder für jede individuelle Situation geeignet sind.",
@@ -915,7 +868,7 @@
         },
         {
           "id": "external-links",
-          "heading": "8. Externe Links",
+          "heading": "7. Externe Links",
           "body": [
             "Die WeCare-Website kann Links zu Websites oder Diensten enthalten, die von Dritten betrieben werden.",
             "WeCare kontrolliert die Inhalte externer Websites nicht und ist für deren Inhalte oder Praktiken nicht verantwortlich.",
@@ -924,7 +877,7 @@
         },
         {
           "id": "copyright",
-          "heading": "9. Urheberrecht",
+          "heading": "8. Urheberrecht",
           "body": [
             "Die Inhalte und die Gestaltung der WeCare-Website, einschließlich Texte, Grafiken, Bilder, Branding und sonstiger Materialien, sind durch die geltenden Gesetze zum geistigen Eigentum geschützt.",
             "Sofern gesetzlich nicht anders zulässig, bedürfen Vervielfältigung, Verbreitung, Bearbeitung oder sonstige Nutzung von WeCare-Inhalten der vorherigen schriftlichen Zustimmung der jeweiligen Rechteinhaberin bzw. des jeweiligen Rechteinhabers."
@@ -932,7 +885,7 @@
         },
         {
           "id": "additional-legal",
-          "heading": "10. Weitere rechtliche Informationen",
+          "heading": "9. Weitere rechtliche Informationen",
           "body": [
             "Die WeCare-Website ist zusammen mit den weiteren für den Dienst geltenden rechtlichen Dokumenten zu lesen, darunter:"
           ],
@@ -950,7 +903,7 @@
       ]
     },
     "shipping": {
-      "effectiveDate": "31. August 2026",
+      "effectiveDate": "",
       "intro": "Diese Versandrichtlinie erläutert, wie die Lieferung von Produkten funktioniert, die über WeCare in Österreich rechtlich zum Versand verfügbar sind.",
       "sections": [
         {
@@ -998,15 +951,10 @@
           "id": "delivery-times",
           "heading": "4. Lieferzeiten",
           "body": [
-            "Sobald eine Bestellung versandbereit ist – nach der erforderlichen Bestellbearbeitung und, sofern zutreffend, nach ärztlicher Prüfung und Abgabe durch die Apotheke – liefert WeCare innerhalb Österreichs wie folgt:"
-          ],
-          "list": [
-            "Bestellungen, die bis 12:00 Uhr mittags versandbereit sind, kommen in der Regel am nächsten Tag an.",
-            "Bestellungen, die nach 12:00 Uhr versandbereit sind, kommen in der Regel innerhalb von zwei Tagen an."
-          ],
-          "bodyAfter": [
-            "Diese Zeiten gelten für ganz Österreich und sind typische Zeiten, keine garantierten Liefertermine. Die tatsächliche Lieferzeit kann abhängig von der Produktverfügbarkeit, der Bestellbearbeitung, dem Lieferdienstleister, der Lieferadresse, Wochenenden und Feiertagen sowie etwaigen gesetzlich vorgeschriebenen Überprüfungen variieren.",
-            "Sobald eine Bestellung versandt wurde, kann WeCare der Kundin bzw. dem Kunden verfügbare Versandinformationen oder Sendungsverfolgungsdetails bereitstellen."
+            "Liefer- und Versandzeiten hängen von der ärztlichen Prüfung, sofern zutreffend, der Produktverfügbarkeit, der Bearbeitung durch die Apotheke und der gewählten Versandart ab. Eine etwaige geschätzte Lieferzeit wird vor der Bestätigung der Bestellung oder während der Bestellbearbeitung angezeigt.",
+            "Ein kommunizierter Zeitrahmen ist eine Schätzung, kein garantierter Liefertermin, und kann abhängig vom Lieferdienstleister, der Lieferadresse, Wochenenden und Feiertagen sowie etwaigen gesetzlich vorgeschriebenen Überprüfungen variieren.",
+            "Sobald eine Bestellung versandt wurde, kann WeCare der Kundin bzw. dem Kunden verfügbare Versandinformationen oder Sendungsverfolgungsdetails bereitstellen.",
+            "[RECHTLICHE PRÜFUNG ERFORDERLICH]"
           ]
         },
         {
@@ -1070,7 +1018,7 @@
       ]
     },
     "refunds": {
-      "effectiveDate": "31. August 2026",
+      "effectiveDate": "",
       "intro": "Diese Rückerstattungsrichtlinie erläutert, unter welchen Umständen Kund/innen eine Bestellung stornieren, ein gesetzliches Rücktrittsrecht ausüben oder eine Rückerstattung für über WeCare gekaufte Produkte oder Dienstleistungen verlangen können.",
       "sections": [
         {

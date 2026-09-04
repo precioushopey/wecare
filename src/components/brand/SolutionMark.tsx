@@ -13,7 +13,9 @@ import { CONDITION_BY_KEY } from "@/features/conditions/conditions";
  * the Solution page's accordion.
  *
  * `variant`:
- * - `medallion` (default) — the soft rounded square, thin teal glyph.
+ * - `medallion` (default) — a crisp near-white tile: hairline petrol ring, a
+ *   soft teal-tinted lift shadow, and a confident petrol glyph. Reads clearly
+ *   on the translucent glass cards where a pale wash used to disappear.
  * - `badge` — a small round blue→teal gradient chip with a white glyph and a
  *   luminous rim; reads on both light surfaces and dark gradient cards.
  */
@@ -58,13 +60,13 @@ export function SolutionMark({
   return (
     <span
       className={cn(
-        "image-glow flex items-center justify-center rounded-2xl bg-gradient-to-br from-sage-100 to-petrol-50 text-petrol-700 ring-1 ring-white/60",
+        "flex items-center justify-center rounded-2xl bg-gradient-to-b from-white to-sage-50/70 text-petrol-700 ring-1 ring-petrol-200/70 shadow-[0_10px_24px_-12px_rgba(33,131,144,0.45)]",
         className,
       )}
     >
       <Icon
-        className={cn("size-2/5", iconClassName)}
-        strokeWidth={1.5}
+        className={cn("size-1/2", iconClassName)}
+        strokeWidth={1.75}
         aria-hidden
       />
     </span>

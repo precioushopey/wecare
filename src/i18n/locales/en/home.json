@@ -203,17 +203,9 @@
   },
   "deliveryBanner": {
     "eyebrow": "Delivery",
-    "headline": "Fast delivery, all across Austria.",
-    "body": "Vienna · Graz · Linz · Salzburg · Innsbruck · Klagenfurt · St. Pölten and more. Order before 12:00 for next-day delivery.",
-    "cities": {
-      "vienna": "Vienna",
-      "graz": "Graz",
-      "linz": "Linz",
-      "salzburg": "Salzburg",
-      "innsbruck": "Innsbruck",
-      "klagenfurt": "Klagenfurt",
-      "stPoelten": "St. Pölten"
-    }
+    "headline": "Delivery across Austria.",
+    "body": "We deliver everywhere in Austria, from the cities to rural areas, once your prescription is issued.",
+    "coverageNote": "Availability depends on medical and pharmacy partner coverage."
   },
   "howItWorksPage": {
     "eyebrow": "The process",
@@ -245,7 +237,6 @@
         "body": "Check in on how your Solution is working, reorder, or ask for support at any time."
       }
     },
-    "ctaHeading": "Ready to start?",
     "cta": "Start free assessment"
   }
 }

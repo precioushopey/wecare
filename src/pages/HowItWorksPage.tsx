@@ -4,9 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Button } from "@/app/components/ui/button";
 import { paths } from "@/app/paths";
 import { usePageTitle } from "@/app/usePageTitle";
-import { AssessmentRing } from "@/components/brand/AssessmentRing";
 import { Reveal } from "@/components/marketing/Reveal";
-import { Section } from "@/components/marketing/Section";
 import { BreadcrumbJsonLd } from "@/seo/StructuredData";
 
 const STEPS = [
@@ -68,21 +66,13 @@ export function HowItWorksPage() {
             </Reveal>
           ))}
         </ol>
-      </div>
 
-      <Section tone="brand">
-        <Reveal className="flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-4">
-            <AssessmentRing variant="decoration" tone="mint" size={56} />
-            <p className="font-display text-xl text-white">
-              {t("howItWorksPage.ctaHeading")}
-            </p>
-          </div>
+        <Reveal className="mt-12">
           <Button asChild variant="cta" size="lg" className="w-full sm:w-auto">
             <Link to={paths.assessment.start}>{t("howItWorksPage.cta")}</Link>
           </Button>
         </Reveal>
-      </Section>
+      </div>
     </>
   );
 }

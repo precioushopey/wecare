@@ -163,9 +163,9 @@
       "description": "How to reach our team.",
       "intro": "Questions about the assessment, a medical review, an order or delivery. Our team is here to help.",
       "emailHeading": "Email us",
-      "emailNote": "We reply within one working day.",
-      "hoursHeading": "Support hours",
-      "hoursValue": "Monday to Friday, 9:00–17:00 (CET)",
+      "emailNote": "The best way to reach our team.",
+      "hoursHeading": "Response time",
+      "hoursValue": "We'll get back to you as soon as possible on business days.",
       "formHeading": "Send a message",
       "formNote": "This opens your email app with the details filled in. No data is stored here.",
       "nameLabel": "Your name",
@@ -229,7 +229,7 @@
     "disclaimer": "The information on this site is general and does not replace individual medical advice, diagnosis or treatment. For health concerns, speak with your doctor."
   },
   "delivery": {
-    "confirmLine": "We deliver to {{postcode}} ({{region}}). Usually next day once your prescription is approved.",
+    "confirmLine": "We deliver to {{postcode}} ({{region}}). Your order ships once your prescription is approved.",
     "regionUnknown": "your area"
   }
 }

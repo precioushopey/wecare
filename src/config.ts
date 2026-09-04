@@ -24,6 +24,17 @@ export { siteOrigin as getSiteOrigin } from "@/seo/config";
 export const PRICES_CONFIRMED = false;
 
 /**
+ * PO decision (Sept 2026) — a HARD PRODUCTION BLOCKER. Commercial checkout
+ * (a customer-facing order total, "Place order", any payment request) must not
+ * run on placeholder prices. While `PRICES_CONFIRMED` is false the cart shows
+ * "Final price will be shown before you confirm your order." instead of a
+ * total, and checkout shows a "not available yet" state. `import.meta.env.DEV`
+ * keeps the flow usable for local development only — the deployed build shows
+ * the gated state.
+ */
+export const COMMERCE_ENABLED = PRICES_CONFIRMED || import.meta.env.DEV;
+
+/**
  * Owner decision D11 — the COA values, batch numbers and test dates in
  * `getProductCoa` / `solutionExampleCoa` are deterministic placeholders, not
  * real lab data. While this is `false` the product page shows a plain "you'll

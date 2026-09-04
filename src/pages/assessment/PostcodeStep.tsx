@@ -106,6 +106,7 @@ export function PostcodeStep({ onComplete }: { onComplete: () => void }) {
           type="submit"
           variant="default"
           disabled={!valid || Boolean(confirmed)}
+          className="w-full sm:w-auto"
         >
           {t("postcode.continue")}
         </Button>

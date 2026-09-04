@@ -143,6 +143,25 @@ export function ReviewStatusPage() {
           </Button>
         ) : null}
       </div>
+
+      {/* Dev-only spec marker — hidden in production builds. */}
+      {import.meta.env.DEV ? (
+        <div className="mt-8 rounded-xl border border-dashed border-border p-3 text-xs text-ink-muted">
+          <p className="font-semibold uppercase tracking-[0.1em]">
+            Placeholder — live review status
+          </p>
+          <p className="mt-1.5 leading-relaxed">
+            Dev spec: this page reads a mock <code>localStorage</code> record and
+            never changes on its own. A real build (see
+            <code className="mx-1">docs/DESIGN-SPECIFICATION.md</code>
+            BE-03 / BE-12) drives it from backend state — the doctor moves the
+            status, this page polls or subscribes, an email fires on every
+            change, and the <code>infoRequired</code> state shows the doctor&rsquo;s
+            actual question plus a reply / upload affordance (none of which
+            exists yet). Dev-only — hidden in production.
+          </p>
+        </div>
+      ) : null}
     </div>
   );
 }

@@ -31,10 +31,17 @@ const SESSION_SCOPED_KEYS = [
   "wecare.review",
 ] as const;
 
+/** Shipping addresses live in sessionStorage only (never localStorage) — see
+ *  src/features/orders/orders.ts. Cleared here too on sign-out / account switch. */
+const SESSION_STORAGE_KEYS = ["wecare.order-addresses"] as const;
+
 function clearSessionScopedStores() {
   try {
     for (const key of SESSION_SCOPED_KEYS) {
       window.localStorage.removeItem(key);
+    }
+    for (const key of SESSION_STORAGE_KEYS) {
+      window.sessionStorage.removeItem(key);
     }
   } catch {
     /* ignore */

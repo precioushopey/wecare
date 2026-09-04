@@ -19,9 +19,17 @@ partner specifications are available.
   date of birth. This is already enforced in `src/lib/analytics.ts`.
 - **Prices are not hard-coded** — served from pharmacy-driven config (D6). The
   frontend flag `PRICES_CONFIRMED` (`src/config.ts`) stays `false` until real
-  prices are in place.
+  prices are in place. **`COMMERCE_ENABLED` disables the whole checkout in
+  production** while prices are placeholders (PO 2026-09-04) — no order total,
+  no "Place order". Lifting `PRICES_CONFIRMED` re-opens it.
 - **Payment after medical approval** for MVP — invoice + bank transfer only
-  (D7). Abstract the payment layer so card / SEPA / Klarna can be added later.
+  (D7). The frontend abstraction seam exists: `src/features/payments/payments.ts`
+  (`PAYMENT_METHODS` with per-method `enabled`, no-op `requestPayment()`). Wire a
+  PSP branch there for card / SEPA / Klarna.
+- **Shipping address** is entered at checkout as separate `first_name` /
+  `last_name` + address + optional phone. The frontend keeps it in
+  `sessionStorage` only (never `localStorage`); the backend must persist it on
+  the authenticated user/order record, EU-hosted.
 
 ## Core flow (D3)
 

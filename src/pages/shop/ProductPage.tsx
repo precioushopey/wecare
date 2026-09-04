@@ -17,7 +17,7 @@ import { JourneyStepper } from "@/components/marketing/JourneyStepper";
 import { SolutionMark } from "@/components/brand/SolutionMark";
 import { paths } from "@/app/paths";
 import { usePageTitle } from "@/app/usePageTitle";
-import { COA_CONFIRMED, PRICES_CONFIRMED } from "@/config";
+import { COA_CONFIRMED, COMMERCE_ENABLED, PRICES_CONFIRMED } from "@/config";
 import { getProductImage, type Product } from "@/data/products";
 import {
   isSolutionId,
@@ -289,7 +289,17 @@ export function ProductPage() {
             ) : null}
           </p>
 
-          {reviewApproved ? (
+          {reviewApproved && !COMMERCE_ENABLED ? (
+            <div className="mt-5 flex flex-col gap-3">
+              <p className="text-sm text-white/85">
+                {t("solution.orderingDisabledNote")}
+              </p>
+              <Link to={paths.dashboardRecommendation} className={HERO_CTA_CLASS}>
+                {t("solution.backToRecommendation")}
+                <ArrowRight className="size-4" aria-hidden />
+              </Link>
+            </div>
+          ) : reviewApproved ? (
             <>
               <fieldset className="mt-5">
                 <legend className="text-sm font-medium text-white">

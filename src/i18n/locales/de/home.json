@@ -203,17 +203,9 @@
   },
   "deliveryBanner": {
     "eyebrow": "Lieferung",
-    "headline": "Schnelle Lieferung in ganz Österreich.",
-    "body": "Wien · Graz · Linz · Salzburg · Innsbruck · Klagenfurt · St. Pölten und mehr – bestelle vor 12:00 Uhr für Lieferung am nächsten Tag.",
-    "cities": {
-      "vienna": "Wien",
-      "graz": "Graz",
-      "linz": "Linz",
-      "salzburg": "Salzburg",
-      "innsbruck": "Innsbruck",
-      "klagenfurt": "Klagenfurt",
-      "stPoelten": "St. Pölten"
-    }
+    "headline": "Lieferung in ganz Österreich.",
+    "body": "Wir liefern überallhin in Österreich, von den Städten bis aufs Land, sobald dein Rezept ausgestellt ist.",
+    "coverageNote": "Die Verfügbarkeit hängt von der Abdeckung durch unsere ärztlichen und Apotheken-Partner ab."
   },
   "howItWorksPage": {
     "eyebrow": "Der Ablauf",
@@ -245,7 +237,6 @@
         "body": "Sieh nach, wie deine Lösung wirkt, bestelle nach oder frag jederzeit den Support."
       }
     },
-    "ctaHeading": "Bereit anzufangen?",
     "cta": "Kostenlosen Fragebogen starten"
   }
 }

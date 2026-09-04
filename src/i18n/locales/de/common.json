@@ -163,9 +163,9 @@
       "description": "So erreichst du unser Team.",
       "intro": "Fragen zum Fragebogen, zur ärztlichen Prüfung, zu einer Bestellung oder Lieferung – unser Team hilft dir weiter.",
       "emailHeading": "Schreib uns",
-      "emailNote": "Wir antworten innerhalb eines Werktags.",
-      "hoursHeading": "Support-Zeiten",
-      "hoursValue": "Montag bis Freitag, 9:00–17:00 Uhr (MEZ)",
+      "emailNote": "Der beste Weg, unser Team zu erreichen.",
+      "hoursHeading": "Antwortzeit",
+      "hoursValue": "Wir melden uns so bald wie möglich an Werktagen zurück.",
       "formHeading": "Nachricht senden",
       "formNote": "Das öffnet deine E-Mail-App mit vorausgefüllten Angaben – hier werden keine Daten gespeichert.",
       "nameLabel": "Dein Name",
@@ -229,7 +229,7 @@
     "disclaimer": "Die Inhalte dieser Website sind allgemein und ersetzen keine individuelle ärztliche Beratung, Diagnose oder Behandlung. Wende dich bei gesundheitlichen Fragen an deine Ärztin oder deinen Arzt."
   },
   "delivery": {
-    "confirmLine": "Wir liefern nach {{postcode}} ({{region}}). Meist am nächsten Tag, sobald die ärztliche Freigabe vorliegt.",
+    "confirmLine": "Wir liefern nach {{postcode}} ({{region}}). Deine Bestellung wird versendet, sobald die ärztliche Freigabe vorliegt.",
     "regionUnknown": "dein Gebiet"
   }
 }

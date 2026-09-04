@@ -11,9 +11,9 @@ import { SUPPORT_EMAIL } from "@/config";
 
 /**
  * Contact / trust page (spec Section 4). No backend: the form composes a
- * `mailto:` so it works today, and the support address + hours are surfaced
- * directly. Swap `SUPPORT_EMAIL` (src/config.ts) for the real inbox and wire a
- * real form handler when the backend lands.
+ * `mailto:` so it works today, and the support address + response-time note
+ * are surfaced directly. Swap `SUPPORT_EMAIL` (src/config.ts) for the real
+ * inbox and wire a real form handler when the backend lands.
  *
  * "How It Works" redirects to the homepage `#how-it-works` section; the FAQ has
  * its own page. About / Careers / For providers were removed (owner decision,

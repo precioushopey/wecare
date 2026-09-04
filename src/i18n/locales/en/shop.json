@@ -27,6 +27,8 @@
     "addToCart": "Add to cart",
     "checkAvailability": "Check availability",
     "afterApprovalNote": "You can order once your medical review is approved.",
+    "orderingDisabledNote": "Ordering opens once final prices are confirmed with the pharmacy. The price you'll pay is always shown before you confirm an order.",
+    "backToRecommendation": "Back to my recommendation",
     "detailsHeading": "Solution details",
     "whyHeading": "Why it's recommended",
     "usageHeading": "How it's used",
@@ -149,7 +151,7 @@
     },
     "delivery": {
       "q": "How is it delivered?",
-      "a": "Shipping is from the pharmacy, only after medical approval and a prescription is issued. Once dispatched, delivery across Austria typically takes a day: next-day if before 12:00, within two days if after."
+      "a": "Shipping is from the pharmacy, only after medical approval and a prescription is issued. Once dispatched, it is delivered across Austria."
     }
   },
   "cart": {
@@ -167,20 +169,42 @@
     "checkout": "Checkout",
     "continueShopping": "View your recommendation",
     "prescriptionNotice": "All items are prescription-only and are shipped only after medical approval.",
-    "priceAndPrescriptionNotice": "Prices shown are indicative, and your final price is confirmed after your medical review. All items are prescription-only and are shipped only after medical approval."
+    "priceAndPrescriptionNotice": "Prices shown are indicative, and your final price is confirmed after your medical review. All items are prescription-only and are shipped only after medical approval.",
+    "finalPriceNote": "The final price will be shown before you confirm your order. All items are prescription-only and are shipped only after medical approval."
+  },
+  "checkoutSteps": {
+    "label": "Checkout progress",
+    "cart": "Cart",
+    "details": "Details",
+    "review": "Review",
+    "complete": "Complete"
+  },
+  "checkoutUnavailable": {
+    "heading": "Ordering isn't available yet",
+    "body": "Final prices are confirmed with the pharmacy after your medical review. The final price will be shown before you confirm your order. You can review your recommended solution and prepare for medical review in the meantime.",
+    "cta": "View my recommendation"
   },
   "checkout": {
     "title": "Checkout",
     "contactHeading": "Contact",
     "shippingHeading": "Shipping address",
     "fields": {
-      "email": "Email",
       "firstName": "First name",
       "lastName": "Last name",
       "street": "Street and number",
       "postalCode": "Postal code",
       "city": "City",
+      "phone": "Phone",
+      "phoneHint": "For delivery updates, if available.",
       "country": "Country"
+    },
+    "optionalLabel": "(optional)",
+    "errors": {
+      "firstName": "Enter your first name.",
+      "lastName": "Enter your last name.",
+      "street": "Enter your street and house number.",
+      "city": "Enter your city or town.",
+      "postalCode": "Enter a 4-digit Austrian postcode."
     },
     "countryValue": "Austria",
     "summaryHeading": "Order summary",
@@ -211,6 +235,10 @@
     "title": "Thank you for your order",
     "body": "Your order is in. Here's what happens next, with an email at each step.",
     "orderLabel": "Order number: {{id}}",
+    "itemsHeading": "Your order",
+    "totalLabel": "Total",
+    "paymentLabel": "Payment",
+    "shipToHeading": "Delivering to",
     "stepsHeading": "Where your order is",
     "steps": {
       "received": {
@@ -226,7 +254,9 @@
         "body": "As soon as it's cleared, a licensed pharmacy ships your parcel discreetly to your door."
       }
     },
-    "toOrders": "Go to my orders",
+    "timingNote": "Delivery timing will be shown once your order has been approved and prepared by the pharmacy. We'll update your order status as it progresses.",
+    "support": "Questions about your order? Email {{email}}",
+    "toOrders": "View order status",
     "toHome": "Back to overview"
   }
 }

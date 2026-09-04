@@ -23,10 +23,10 @@ function SolutionCard({ s }: { s: Solution }) {
       to={paths.shopProduct(s.id)}
       className="group glass glass-hover flex flex-col rounded-2xl md:rounded-3xl p-4"
     >
-      <div className="flex aspect-[4/3] items-center justify-center rounded-2xl">
+      <div className="flex aspect-[5/3] items-center justify-center rounded-2xl bg-gradient-to-b from-sage-100/70 to-petrol-50/50 ring-1 ring-inset ring-white/60">
         <SolutionMark
           solution={s}
-          className="size-24 transition-transform group-hover:scale-105"
+          className="size-24 transition-transform duration-300 group-hover:scale-[1.04]"
         />
       </div>
       <div className="mt-3 flex flex-wrap gap-1.5">

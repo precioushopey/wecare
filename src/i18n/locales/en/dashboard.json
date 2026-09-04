@@ -28,6 +28,7 @@
   },
   "delivery": {
     "coverage": "Where we deliver",
+    "shipTo": "Delivering to",
     "track": {
       "heading": "Your delivery",
       "steps": {
@@ -78,6 +79,7 @@
     "latestHeading": "Latest order",
     "orderLabel": "Order {{id}}",
     "placedOn": "Placed on {{date}}",
+    "paymentLabel": "Payment",
     "status": "Status",
     "col": {
       "id": "Order",

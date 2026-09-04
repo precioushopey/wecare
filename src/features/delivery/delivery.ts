@@ -1,11 +1,13 @@
 /**
  * Delivery-area check for the assessment's postcode step.
  *
- * WeCare ships DHL across all of Austria (no city-level courier micro-zones),
- * so every valid Austrian postcode is serviceable — this exists for the
- * reassurance moment ("yes, we deliver to your area"), not to gate anyone.
- * `isServiceableAt` is kept as a function so a real coverage table can slot
- * in later without touching call sites. No network calls, no dependencies.
+ * BACKEND DEVS: `isServiceableAt` currently returns `true` for **every** valid
+ * Austrian postcode — there is no real coverage data. This is a placeholder for
+ * the reassurance moment ("yes, we deliver to your area"), not a real gate.
+ * Replace with the fulfilment partner's actual serviceable postcodes / regions
+ * (PO data request, Sept 2026; `docs/DESIGN-SPECIFICATION.md` BE-08). Kept as a
+ * function so a real coverage table slots in without touching call sites. No
+ * network calls, no dependencies.
  */
 
 /** Exactly four digits, first digit 1-9 (Austrian postcodes are 1000-9992). */

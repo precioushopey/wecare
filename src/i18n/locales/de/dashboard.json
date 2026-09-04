@@ -28,6 +28,7 @@
   },
   "delivery": {
     "coverage": "Unser Liefergebiet",
+    "shipTo": "Lieferung an",
     "track": {
       "heading": "Deine Lieferung",
       "steps": {
@@ -78,6 +79,7 @@
     "latestHeading": "Letzte Bestellung",
     "orderLabel": "Bestellung {{id}}",
     "placedOn": "Bestellt am {{date}}",
+    "paymentLabel": "Zahlung",
     "status": "Status",
     "col": {
       "id": "Bestellung",
