@@ -21,7 +21,7 @@ import { SUPPORT_EMAIL } from "@/config";
  */
 export function ContactPage() {
   const { t } = useTranslation();
-  usePageTitle(t("pages.contact.title"));
+  usePageTitle(t("pages.contact.title"), t("pages.contact.description"));
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

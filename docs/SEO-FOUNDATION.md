@@ -3,6 +3,8 @@
 **Date:** 2026-09-03 · **Status:** audit + strategy delivered; technical implementation NOT yet built (needs a scope decision — see §G).
 **Market:** Austria · **Primary indexed language:** German (`de-AT`) · **Indexing:** the site stays **noindex** until Product Owner + legal launch approval (owner rule, §4 of the brief).
 
+> **Language & indexing scope (decision needed):** DE and EN are served from the **same URL** — the language toggle persists to `localStorage`, it is not in the path. So there are **no language-distinct URLs, no `hreflang`, and no `og:locale:alternate`**; a crawler only ever sees the `de-AT` default, and EN content is not separately indexable. For an Austria / `de-AT`-primary launch this is a reasonable scope call — but it should be **explicitly confirmed as intentional**, not left as a silent gap. If EN organic traffic is ever wanted, it needs URL-distinct routes (`/en/…` or a subdomain), reciprocal `hreflang` on every page pair, `og:locale:alternate`, and EN entries in the sitemap — a non-trivial routing change, best decided before first indexing. `<html lang>` already resolves `en` → plain `en` (not `en-GB`/`en-US`) via `htmlLang()`; pick a region if EN is ever indexed (T-08).
+
 This document is a strategy + audit reference. It invents **no** search volumes, CPCs, difficulty scores, traffic forecasts, company data, medical claims, prices, COA data, or physician identities. Anything that needs Austrian legal sign-off is tagged **LEGAL REVIEW REQUIRED**. Anything that needs verified keyword tooling is tagged **VOLUME NOT VERIFIED**.
 
 ---
@@ -312,7 +314,7 @@ Do **not** pre-write 100 articles (§44). ~16 in Phase 2, then let GSC choose Ph
 - [ ] Real domain configured (D20) and `VITE_SITE_ORIGIN` set to it everywhere (T-03).
 - [ ] Canonicals resolve to the real domain, self-referencing, one per indexable page (T-02).
 - [ ] `robots.txt` reviewed for production: allows the indexable set, blocks `/fragebogen*`, `/mein-bereich/*`, `/kasse`, `/warenkorb`, `/anmelden`, `/loesungen*` (if noindex), does **not** block CSS/JS (§28).
-- [ ] `sitemap.xml` generated, valid, real `lastmod`, excludes all noindex/private/unapproved URLs (T-10, T-17, T-18).
+- [ ] `sitemap.xml` generated, valid, excludes all noindex/private/unapproved URLs (T-10, T-17, T-18). **Note:** the generator currently stamps every URL's `<lastmod>` with the build date — harmless but a weak signal; wire it to per-page content/git timestamps (or drop `<lastmod>`) before it matters for crawl budget.
 - [ ] Real **404 status** for unknown URLs (T-05); **301s** (not JS bounces) for every renamed slug, no chains (T-11, §29).
 - [x] Prerendered HTML for the marketing routes (G5) — `PRERENDER=true pnpm build` writes real HTML for the 11 `INDEXABLE_ROUTES`; view-source shows the H1/title/description/canonical/JSON-LD without JS. **Re-verify on the go-live build** that each route's `<meta robots>` reads `index, follow` once the flag flips.
 
