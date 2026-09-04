@@ -17,10 +17,12 @@
     <meta name="robots" content="noindex, nofollow" />
 
     <!-- Open Graph / Twitter Card: controls the link-preview shown when this
-         page is shared (Slack, WhatsApp, Telegram, etc.). Prompted by a
-         prototype-share link that had no preview of its own. og:image falls
-         back to the favicon (only social art in the repo so far); swap in a
-         dedicated 1200×630 banner when one exists. -->
+         page is shared (Slack, WhatsApp, Telegram, etc.). This is the static
+         fallback; once the site is indexable `src/app/usePageTitle.ts` emits
+         an absolute `${VITE_SITE_ORIGIN}${OG_IMAGE_PATH}` per route.
+         `/banner.png` still carries a "7/10" pill + a person — swap for the
+         no-person / no-score version before the first indexable deploy
+         (docs/SEO-FOUNDATION.md §51). -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="WeCare" />
     <meta property="og:title" content="WeCare" />
@@ -28,15 +30,15 @@
       property="og:description"
       content="WeCare: die richtige Unterstützung bei Schlafproblemen, Schmerzen, Stress und Migräne. Ärztlich geführt, in Österreich verfügbar."
     />
-    <meta property="og:image" content="/favicon.png" />
+    <meta property="og:image" content="/banner.png" />
     <meta property="og:locale" content="de_AT" />
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="WeCare" />
     <meta
       name="twitter:description"
       content="WeCare: die richtige Unterstützung bei Schlafproblemen, Schmerzen, Stress und Migräne. Ärztlich geführt, in Österreich verfügbar."
     />
-    <meta name="twitter:image" content="/favicon.png" />
+    <meta name="twitter:image" content="/banner.png" />
 
     <link rel="icon" href="/favicon.png" type="image/png" sizes="512x512" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
