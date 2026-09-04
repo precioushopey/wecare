@@ -24,8 +24,8 @@
     "selectAndPrivacy": "Wähle eine Option, um fortzufahren. Deine Antworten sind privat und sicher."
   },
   "phase": {
-    "delivery": "Lieferung",
-    "finalChecks": "Letzte Fragen"
+    "leadIn": "Erste Schritte",
+    "leadInNote": "Kurz zur Lieferung, dann deine Fragen."
   },
   "postcode": {
     "heading": "Wohin sollen wir liefern?",

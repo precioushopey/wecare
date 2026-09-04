@@ -164,13 +164,10 @@ export function AssessmentEnginePage() {
   }
 
   // Progress is measured in the six questions — the same count the eyebrow
-  // ("Question N of 6") and the "six short questions" promise use. The ring +
-  // bar only show in the questions phase (the postcode step is a lead-in).
+  // ("Question N of 6") and the "six short questions" promise use. The ring
+  // only shows in the questions phase; the postcode step is framed as a
+  // one-off lead-in ("Getting started"), not "Your assessment · Question 1".
   const progressCurrent = step + 1;
-  const eyebrow =
-    phase === "questions"
-      ? t("start.progress", { current: step + 1, total: TOTAL_QUESTIONS })
-      : t("phase.delivery");
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6">
@@ -178,9 +175,16 @@ export function AssessmentEnginePage() {
       <div className="flex items-center justify-between gap-4">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-petrol-600">
-            {t("start.title")}
+            {phase === "questions" ? t("start.title") : t("phase.leadIn")}
           </p>
-          <p className="mt-1 text-sm text-ink-muted">{eyebrow}</p>
+          <p className="mt-1 text-sm text-ink-muted">
+            {phase === "questions"
+              ? t("start.progress", {
+                  current: step + 1,
+                  total: TOTAL_QUESTIONS,
+                })
+              : t("phase.leadInNote")}
+          </p>
         </div>
         {phase === "questions" ? (
           <AssessmentRing

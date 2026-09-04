@@ -24,8 +24,8 @@
     "selectAndPrivacy": "Choose an option to continue. Your answers are private and secure."
   },
   "phase": {
-    "delivery": "Delivery",
-    "finalChecks": "Final checks"
+    "leadIn": "Getting started",
+    "leadInNote": "One quick delivery check, then your questions."
   },
   "postcode": {
     "heading": "Where should we deliver?",

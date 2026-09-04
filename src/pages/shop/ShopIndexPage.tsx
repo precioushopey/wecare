@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
 
 import { Button } from "@/app/components/ui/button";
+import { InfoHint } from "@/components/marketing/InfoHint";
 import { SolutionMark } from "@/components/brand/SolutionMark";
 import { paths } from "@/app/paths";
 import { usePageTitle } from "@/app/usePageTitle";
@@ -19,46 +20,65 @@ function SolutionCard({ s }: { s: Solution }) {
     .join(" · ");
 
   return (
-    <Link
-      to={paths.shopProduct(s.id)}
-      className="group glass glass-hover flex flex-col rounded-2xl md:rounded-3xl p-4"
-    >
-      <div className="flex aspect-[5/3] items-center justify-center rounded-2xl bg-gradient-to-b from-sage-100/70 to-petrol-50/50 ring-1 ring-inset ring-white/60">
-        <SolutionMark
-          solution={s}
-          className="size-24 transition-transform duration-300 group-hover:scale-[1.04]"
-        />
-      </div>
-      <div className="mt-3 flex flex-wrap gap-1.5">
-        <span className="w-fit rounded-full bg-sage-100 px-2.5 py-0.5 text-xs font-medium text-petrol-700">
-          {t(`solutions.${s.id}.category`)}
-        </span>
-        <span className="w-fit rounded-full bg-petrol-50 px-2.5 py-0.5 text-xs font-medium text-petrol-700">
-          {t("solution.prescriptionBadge")}
-        </span>
-        {COA_CONFIRMED ? (
-          <span className="w-fit rounded-full bg-white/70 px-2.5 py-0.5 text-xs font-medium text-petrol-700">
-            {t("solution.labTestedBadge")}
+    <div className="relative">
+      <Link
+        to={paths.shopProduct(s.id)}
+        className="group glass glass-hover flex h-full flex-col rounded-2xl md:rounded-3xl bg-gradient-to-b from-petrol-100 to-white p-5"
+      >
+        {/* Same layout as the Solution-page hero (badge inline with the name),
+            on the light card surface rather than the brand gradient. */}
+        <div className="flex flex-wrap gap-1.5">
+          <span className="rounded-full bg-sage-100 px-3 py-1 text-xs font-medium text-petrol-700">
+            {t(`solutions.${s.id}.category`)}
           </span>
-        ) : null}
-      </div>
-      <p className="mt-2 font-display text-lg text-ink">{s.name}</p>
-      <p className="mt-1 text-sm text-ink-muted">{t(`solutions.${s.id}.blurb`)}</p>
-      <p className="mt-1 text-xs text-ink-muted">
-        {t("card.forProblems", { problems })}
-      </p>
-      <p className="mt-1 font-mono text-xs text-ink-muted">
-        THC {s.thcRange}
-      </p>
-      <p className="mt-2 font-mono text-sm text-ink">
-        {t("card.pricePerGram", {
-          price: formatPriceEur(s.priceEur, language),
-        })}
-      </p>
-      <span className="mt-2 text-sm font-medium text-petrol-700 group-hover:underline">
-        {t("card.learnMore")}
-      </span>
-    </Link>
+          {COA_CONFIRMED ? (
+            <span className="rounded-full bg-white/70 px-3 py-1 text-xs font-medium text-petrol-700">
+              {t("solution.labTestedBadge")}
+            </span>
+          ) : null}
+        </div>
+
+        <div className="mt-4 flex items-center gap-4">
+          <SolutionMark
+            solution={s}
+            variant="badge"
+            className="size-14 shrink-0 transition-transform duration-300 group-hover:scale-[1.04]"
+          />
+          <p className="font-display text-2xl font-bold leading-tight text-ink">
+            {s.name}
+          </p>
+        </div>
+        <p className="mt-2 text-sm text-ink-muted">
+          {t(`solutions.${s.id}.blurb`)}
+        </p>
+        <p className="mt-1 text-xs text-ink-muted">
+          {t("card.forProblems", { problems })}
+        </p>
+        <p className="mt-2 text-sm text-ink-muted">
+          {t("solution.thcRangeLabel")}:{" "}
+          <span className="font-mono text-ink">{s.thcRange}</span>
+        </p>
+        <p className="mt-3 font-mono text-lg text-ink">
+          {t("card.pricePerGram", {
+            price: formatPriceEur(s.priceEur, language),
+          })}
+        </p>
+        <span className="mt-3 text-sm font-medium text-petrol-700 group-hover:underline">
+          {t("card.learnMore")}
+        </span>
+      </Link>
+
+      {/* Prescription-only note — the standard hover/focus info icon, top-right.
+          Rendered outside the <Link> so its trigger stays a valid button and a
+          click on it doesn't navigate. */}
+      <InfoHint
+        align="right"
+        label={t("solution.prescriptionBadge")}
+        className="absolute right-4 top-4"
+      >
+        {t("solution.prescriptionBadge")}
+      </InfoHint>
+    </div>
   );
 }
 

@@ -203,7 +203,7 @@ export function DashboardHomePage() {
           cards so the row no longer has a short card + gap. */}
       <DashboardHero>
         <div className="flex flex-col gap-6 lg:flex-row lg:gap-8">
-          {/* the recommended solution — half the row on desktop */}
+          {/* the recommended solution — 1/2 at lg, 1/3 from xl, 1/2 again at 2xl */}
           <div className="min-w-0 flex-1">
             <div className="flex items-center justify-between gap-3">
               <HeroEyebrow>{t("home.recommendationHeading")}</HeroEyebrow>
@@ -239,7 +239,7 @@ export function DashboardHomePage() {
               {ts(`solutions.${primary.id}.blurb`)}
             </p>
 
-            <dl className="mt-5 grid gap-2.5 2xl:grid-cols-2">
+            <dl className="mt-5 flex flex-wrap gap-2.5 [&>*]:min-w-[10rem] [&>*]:flex-1">
               <HeroStat
                 label={ts("solution.thcRangeLabel")}
                 value={<span className="font-mono">{primary.thcRange}</span>}
@@ -256,10 +256,10 @@ export function DashboardHomePage() {
             ) : null}
           </div>
 
-          {/* what to do next — half the row on desktop; inside it a 50/50
-              split: left half = text + CTA, right half = the image (owner
-              request, Sept 2026) */}
-          <div className="flex min-w-0 rounded-2xl border border-white/15 bg-white/10 p-5 lg:flex-1">
+          {/* what to do next — 1/2 at lg, 2/3 from xl, 1/2 again at 2xl; inside
+              it a 50/50 split from xl: left = text + CTA, right = the image
+              (owner request, Sept 2026) */}
+          <div className="flex min-w-0 rounded-2xl border border-white/15 bg-white/10 p-5 lg:flex-1 xl:flex-[2] 2xl:flex-1">
             <div className="flex flex-1 flex-col gap-4 2xl:flex-row 2xl:items-center">
               <div className="flex min-w-0 flex-col 2xl:w-1/2">
                 <HeroEyebrow>{t("home.nextStep")}</HeroEyebrow>
@@ -501,17 +501,16 @@ export function DashboardAssessmentPage() {
       <DashboardHero>
         <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-6">
           <div className="flex min-w-0 flex-1 flex-col items-start gap-3">
-            <HeroEyebrow>{t("nav.assessment")}</HeroEyebrow>
-            {/* Mobile: the review pill sits under the title. From `sm` it moves
-                onto the photo (see the image column). */}
-            {review ? (
-              <div className="sm:hidden">
+            {/* Eyebrow + review status on one wrapping row. */}
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+              <HeroEyebrow>{t("nav.assessment")}</HeroEyebrow>
+              {review ? (
                 <StatusPill
                   label={ta(`review.statuses.${review.status}.label`)}
                   tone={reviewPillTone(review.status)}
                 />
-              </div>
-            ) : null}
+              ) : null}
+            </div>
             <p className="max-w-md text-sm text-white/85">
               {review
                 ? ta(`review.statuses.${review.status}.body`)
@@ -546,14 +545,6 @@ export function DashboardAssessmentPage() {
             </HeroCta>
           </div>
           <div className="relative flex w-full flex-col sm:w-1/2 sm:self-end lg:w-[22rem]">
-            {review ? (
-              <div className="absolute left-0 top-0 z-10 hidden sm:block">
-                <StatusPill
-                  label={ta(`review.statuses.${review.status}.label`)}
-                  tone={reviewPillTone(review.status)}
-                />
-              </div>
-            ) : null}
             <ImageWithFallback
               src={siteImage(IMG.homeHero) ?? ""}
               alt=""
@@ -640,7 +631,7 @@ export function DashboardRecommendationPage() {
       {/* Hero — the recommended Solution + where its medical review stands. */}
       <DashboardHero>
         <div className="flex flex-col gap-6 lg:flex-row lg:gap-8">
-          {/* the recommended solution — half the row on desktop */}
+          {/* the recommended solution — 1/2 at lg, 1/3 from xl, 1/2 again at 2xl */}
           <div className="min-w-0 flex-1">
             <div className="flex items-center justify-between gap-3">
               <HeroEyebrow>{t("recommendation.primary")}</HeroEyebrow>
@@ -674,7 +665,7 @@ export function DashboardRecommendationPage() {
             <p className="mt-3 text-sm text-white/80">
               {ts(`solutions.${primary.id}.blurb`)}
             </p>
-            <dl className="mt-5 grid gap-2.5 2xl:grid-cols-2">
+            <dl className="mt-5 flex flex-wrap gap-2.5 [&>*]:min-w-[10rem] [&>*]:flex-1">
               <HeroStat
                 label={ts("solution.thcRangeLabel")}
                 value={<span className="font-mono">{primary.thcRange}</span>}
@@ -699,9 +690,9 @@ export function DashboardRecommendationPage() {
 
           {/* medical review + next action — half the row; 50/50 inside:
               status + CTA | image (matches the Overview hero, owner request) */}
-          <div className="flex min-w-0 rounded-2xl border border-white/15 bg-white/10 p-5 lg:flex-1">
-            <div className="flex flex-1 flex-col gap-4 2xl:flex-row 2xl:items-center">
-              <div className="flex min-w-0 flex-col 2xl:w-1/2">
+          <div className="flex min-w-0 rounded-2xl border border-white/15 bg-white/10 p-5 lg:flex-1 xl:flex-[2] 2xl:flex-1">
+            <div className="flex flex-1 flex-col gap-4 xl:flex-row xl:items-center">
+              <div className="flex min-w-0 flex-col xl:w-1/2">
                 <HeroEyebrow>{t("recommendation.reviewLabel")}</HeroEyebrow>
                 {review ? (
                   <div className="mt-3">
@@ -721,25 +712,25 @@ export function DashboardRecommendationPage() {
                   to={
                     review ? paths.assessment.review : paths.assessment.result
                   }
-                  className="mt-4 hidden 2xl:inline-flex"
+                  className="mt-4 hidden xl:inline-flex"
                 >
                   {review
                     ? ta("result.viewReviewCta")
                     : ta("result.submitReviewCta")}
                 </HeroCta>
               </div>
-              <div className="flex flex-col 2xl:w-1/2 2xl:self-end">
+              <div className="flex flex-col xl:w-1/2 xl:self-end">
                 <ImageWithFallback
                   src={siteImage(IMG.medicalReview) ?? ""}
                   alt=""
                   loading="lazy"
-                  className="image-fade-lrb block max-h-44 w-full object-contain object-bottom 2xl:-mb-5 2xl:max-h-52"
+                  className="image-fade-lrb block max-h-44 w-full object-contain object-bottom xl:-mb-5 xl:max-h-52"
                 />
                 <HeroCta
                   to={
                     review ? paths.assessment.review : paths.assessment.result
                   }
-                  className="w-full 2xl:hidden"
+                  className="w-full xl:hidden"
                 >
                   {review
                     ? ta("result.viewReviewCta")

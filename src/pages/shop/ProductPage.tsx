@@ -344,10 +344,12 @@ export function ProductPage() {
             </>
           ) : (
             <div className="mt-5 flex flex-col gap-3">
-              {/* Medical review comes before any order (PO decision B1). */}
+              {/* Medical review comes before any order (PO decision B1).
+                  `sm:self-start` lets HERO_CTA_CLASS's `sm:w-auto` win over the
+                  flex-col's default stretch — full-width on mobile only. */}
               <Link
                 to={paths.assessment.medicalReview}
-                className={HERO_CTA_CLASS}
+                className={cn(HERO_CTA_CLASS, "sm:self-start")}
               >
                 {t("solution.continueToReview")}
                 <ArrowRight className="size-4" aria-hidden />
