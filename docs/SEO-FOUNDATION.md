@@ -433,4 +433,4 @@ Legal-review items:   (every CBD/cannabis/effect/condition claim on the page)
 - **Must not contain:** cannabis leaves, buds, smoke, "CBD Shop", strain names, THC %, prices, any medical claim ("hilft bei…", "Rezept in Minuten"), or a person's face implying a testimonial.
 - **Safe zone:** keep text ≥ 80 px from every edge (Slack/WhatsApp/LinkedIn crop differently).
 - **Per-page OG** still overrides `og:title`/`og:description`/`og:url`; a single shared banner image is fine for launch, a per-cluster variant is a Phase-2 nicety.
-- File: `public/og/wecare-default-1200x630.png`; wire as absolute `${VITE_SITE_ORIGIN}/og/wecare-default-1200x630.png`.
+- File: **`public/banner.jpg`** (1200×630, in place — WeCare lockup + DE tagline + a "Fragebogen starten" chip). Wired via `OG_IMAGE_PATH` in `src/seo/config.ts`, emitted as `${VITE_SITE_ORIGIN}/banner.jpg` only when `seoIndexable()`. Review it against the "must not contain" list before go-live; swap for a per-cluster variant later if wanted.

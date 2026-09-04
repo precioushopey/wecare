@@ -385,27 +385,6 @@ export function DashboardHomePage() {
               <p className="mt-3 text-xs text-ink-muted">
                 {t("delivery.track.noVan")}
               </p>
-
-              {/* Dev-only spec marker — not shown in production builds. */}
-              {import.meta.env.DEV ? (
-                <div className="mt-3 rounded-xl border border-dashed border-border p-3 text-xs text-ink-muted">
-                  <p className="font-semibold uppercase tracking-[0.1em]">
-                    Placeholder — courier tracking map
-                  </p>
-                  <p className="mt-1.5 leading-relaxed">
-                    Dev spec: once the carrier integration is live (see
-                    <code className="mx-1">docs/BACKEND-ARCHITECTURE.md</code>
-                    BE-08), render the live shipment view here — the parcel&rsquo;s
-                    current location / route / ETA from the carrier&rsquo;s tracking
-                    API, the carrier name, a linked tracking number, and a
-                    timestamped shipping-event history. The 4-stage bar above
-                    should then be driven by real pharmacy dispatch +
-                    carrier events, not the mock <code>Order.status</code>. No
-                    fabricated position until then. Dev-only — hidden in
-                    production.
-                  </p>
-                </div>
-              ) : null}
             </div>
           ) : null}
 

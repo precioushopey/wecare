@@ -250,12 +250,6 @@ export function CheckoutPage() {
   return (
     <div className="mx-auto max-w-3xl">
       <CheckoutSteps current="details" className="mb-6" />
-      {import.meta.env.DEV && !PRICES_CONFIRMED ? (
-        <p className="mb-6 rounded-xl border border-dashed border-border p-3 text-xs text-ink-muted">
-          Dev only — commercial checkout is disabled in production builds until
-          real pharmacy prices are confirmed.
-        </p>
-      ) : null}
       <form onSubmit={onSubmit} className="grid gap-8 lg:grid-cols-[1fr_20rem]">
         <div className="space-y-8">
           {/* The customer is already signed in to reach checkout — show the

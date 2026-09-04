@@ -5,18 +5,14 @@ import type { PaymentMethodId } from "@/features/payments/payments";
  * MOCK order history — no backend.
  *
  * Order metadata (id / date / lines / total / status / payment method) is kept
- * in `localStorage` so the prototype's "My orders" list survives a reload.
+ * in `localStorage` so the "My orders" list survives a reload. The shipping
+ * address is **not** written to `localStorage` (PO decision, Sept 2026 — real
+ * customer addresses are not persisted to disk in the browser); it lives in
+ * `sessionStorage` only, keyed by order id, and is merged back on read.
  *
- * The shipping address is **deliberately NOT written to `localStorage`** (PO
- * decision, Sept 2026 — real customer addresses must not be persisted to disk
- * in the browser). It lives in `sessionStorage` only, keyed by order id, and
- * is merged back on read. The whole model is:
- *
- *   DEV / STAGING ONLY — MUST BE REPLACED before production with an
- *   authenticated, EU-hosted, server-side user/order record.
- *
- * `wecare.orders` + `wecare.order-addresses` are cleared on sign-out / account
- * switch (see AuthContext).
+ * A real build replaces the whole store with an authenticated, EU-hosted,
+ * server-side user/order record. `wecare.orders` + `wecare.order-addresses` are
+ * cleared on sign-out / account switch (see AuthContext).
  */
 
 const STORAGE_KEY = "wecare.orders";

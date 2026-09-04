@@ -34,8 +34,9 @@ export function orgLegalName(): string {
 /** Public brand name — always safe to emit. */
 export const BRAND_NAME = "WeCare";
 
-/** Default share image (1200×630 banner — see SEO-FOUNDATION.md §51). */
-export const OG_IMAGE_PATH = "/og/wecare-default-1200x630.png";
+/** Default share image (1200×630 branded banner, `public/banner.jpg`). Only
+ *  emitted once `seoIndexable()` — see `usePageTitle.ts`. */
+export const OG_IMAGE_PATH = "/banner.jpg";
 
 /** Absolute URL for a path, canonical form: no query, no hash, no trailing
  *  slash except the root. */

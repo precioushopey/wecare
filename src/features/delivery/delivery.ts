@@ -1,12 +1,10 @@
 /**
  * Delivery-area check for the assessment's postcode step.
  *
- * BACKEND DEVS: `isServiceableAt` currently returns `true` for **every** valid
- * Austrian postcode — there is no real coverage data. This is a placeholder for
- * the reassurance moment ("yes, we deliver to your area"), not a real gate.
- * Replace with the fulfilment partner's actual serviceable postcodes / regions
- * (PO data request, Sept 2026; `docs/DESIGN-SPECIFICATION.md` BE-08). Kept as a
- * function so a real coverage table slots in without touching call sites. No
+ * `isServiceableAt` returns `true` for every valid Austrian postcode — this is
+ * the reassurance moment ("yes, we deliver to your area"), not a real gate, and
+ * there is no coverage data yet. It is a function so the fulfilment partner's
+ * real serviceable postcodes / regions slot in without touching call sites. No
  * network calls, no dependencies.
  */
 

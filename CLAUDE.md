@@ -352,13 +352,13 @@ A session of checkout/fulfilment UX work (Baymard-benchmarked) followed by a **1
 - **Payment abstraction** (PO #9): `src/features/payments/payments.ts` — `PAYMENT_METHODS` with per-method `enabled` (card/sepa/klarna present but off), `ENABLED_PAYMENT_METHODS`, a no-op `requestPayment()`. **No PSP is integrated**; D7 (invoice / bank transfer, settled offline after approval) stands. Checkout renders the radio list from `ENABLED_PAYMENT_METHODS`.
 
 ### Commercial checkout is DISABLED until real prices (PO #11 — HARD PRODUCTION BLOCKER)
-- **`COMMERCE_ENABLED` in `src/config.ts`** = `PRICES_CONFIRMED || import.meta.env.DEV`. While off:
+- **`COMMERCE_ENABLED` in `src/config.ts`** = `PRICES_CONFIRMED` (no dev bypass — the app behaves in dev exactly as in production). While off:
   - `CartPage` shows `cart.finalPriceNote` ("The final price will be shown before you confirm your order.") instead of subtotal/total, and no checkout CTA.
   - `CheckoutPage` (if reached) shows a `checkoutUnavailable.*` panel — no form, no "Place order".
   - The Orders **pending-cart hero** hides prices + points at `/dashboard/recommendation`.
   - `ProductPage`: for an approved review it shows `solution.orderingDisabledNote` instead of the gram selector + "Add to cart".
   - `analytics` `checkout_started` fires only when the form will actually render (past the commerce + review-approval gates).
-- **Local `pnpm dev` keeps the flow usable** (the `import.meta.env.DEV` escape) with a visible dev-only note on checkout; every deployed `pnpm build` shows the gated state. **Stakeholders must review the deployed build, not `pnpm dev`.**
+- The gate applies everywhere — dev and production alike. To exercise the full checkout locally, set `PRICES_CONFIRMED = true` in `src/config.ts` temporarily. It opens for real when pharmacy prices land.
 
 ### Fabricated-certainty removals (PO #1–3, #13–14)
 - **Impressum "Service provider" block + phone number removed entirely** — every value (`WeCare GmbH`, `Musterstraße 1, 1010 Wien`, `Max Mustermann`, `FN 000000a`, `Handelsgericht Wien`, `ATU00000000`, `+43 1 0000000`) was a placeholder. `legal:preLaunchNotice` ("Company details will be published before production launch.") shows on `/impressum` + `/datenschutz` while `!seoIndexable()`. Restoring a real, counsel-reviewed identification block = **hard launch blocker**.
@@ -367,13 +367,12 @@ A session of checkout/fulfilment UX work (Baymard-benchmarked) followed by a **1
 - **Delivery / support claims stay softened** — no city list, no "order before 12:00", no "next-day", no fixed support hours. `common:pages.contact.hoursValue` = "We'll get back to you as soon as possible on business days." `home:deliveryBanner` headline/body are generic ("Delivery across Austria", "everywhere in Austria… once your prescription is issued"). `costs`/`shop` FAQ delivery timing genericised. `common:delivery.confirmLine` dropped "usually next day".
 - **`legal:docs.shipping` "Delivery times"** — the "by 12:00 → next day / within two days" wording replaced with neutral text + a `[LEGAL REVIEW REQUIRED]` marker (PO #13 — don't knowingly leave unsupported operational claims in a legal draft).
 - **Legal effective dates blanked** — all 6 docs' `effectiveDate` is `""`; `LegalPage` renders `legal:draftNotEffective` ("Draft — not yet in effect") until real dates are stamped at go-live (PO #14). The `31 August 2026` value is gone from `legal.json`.
-- **OG/Twitter share image** (`usePageTitle.ts`) is only emitted when `seoIndexable()` — it pointed at a non-existent file on the placeholder domain.
+- **OG/Twitter share image** (`usePageTitle.ts`) is only emitted when `seoIndexable()`. `OG_IMAGE_PATH` → `public/banner.jpg` (1200×630 branded banner).
 
 ### Guest checkout (PO #10)
 Not built — the regulated journey (assessment history, review status, prescription, follow-up, reorder) needs a persistent authenticated identity. Future friction reduction = passwordless magic link / OTP, not conventional guest checkout.
 
 ### Still open / not code-actionable
-- **Two demo overrides are live and MUST be reverted before any commit** — `getMedicalReview()` is force-`"approved"` (see the `⚠️ TEMP DEMO OVERRIDE` block); the earlier `journeyState()` hack was already reverted.
 - As-you-type address lookup (needs a paid address API); WC-17 image pipeline (WebP/`srcset`, still deferred).
 - Everything the PO marked counsel/data/procurement-blocked: real registered-entity data, Austrian advertising review, real per-`DispensingOption` prices + COAs, a chosen PSP, PostHog/GlitchTip/Usercentrics accounts.
 
