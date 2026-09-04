@@ -205,7 +205,16 @@
     "eyebrow": "Lieferung",
     "headline": "Lieferung in ganz Österreich.",
     "body": "Wir liefern überallhin in Österreich, von den Städten bis aufs Land, sobald dein Rezept ausgestellt ist.",
-    "coverageNote": "Die Verfügbarkeit hängt von der Abdeckung durch unsere ärztlichen und Apotheken-Partner ab."
+    "coverageNote": "Die Verfügbarkeit hängt von der Abdeckung durch unsere ärztlichen und Apotheken-Partner ab.",
+    "cities": {
+      "vienna": "Wien",
+      "graz": "Graz",
+      "linz": "Linz",
+      "salzburg": "Salzburg",
+      "innsbruck": "Innsbruck",
+      "klagenfurt": "Klagenfurt",
+      "stPoelten": "St. Pölten"
+    }
   },
   "howItWorksPage": {
     "eyebrow": "Der Ablauf",

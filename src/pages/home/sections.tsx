@@ -105,13 +105,14 @@ export function HeroSection() {
             signals the quiz. The photo and chips are static (no drift); the
             one motion here is the ring's arc sweeping in once on load — the
             AssessmentRing's own sanctioned animation, reduced-motion aware —
-            with the trail dots + "7/10" label fading in as it finishes. */}
+            with the trail dots fading in as it finishes. (No score pill — a
+            "7/10" here read as a fabricated assessment result.) */}
         <div className="relative isolate lg:-mb-12 lg:flex-1 lg:self-end">
-          {/* The ring + trail dots + "7/10" label ride behind the photo
-              (`-z-10`) at every width — scaled down on mobile, full size from
-              `lg`. From `lg` it's pulled in over the subject so her (opaque)
-              form masks the ring's body and only the arc peeks past her,
-              rather than the arc crossing the cut-out's transparent zone. */}
+          {/* The ring + trail dots ride behind the photo (`-z-10`) at every
+              width — scaled down on mobile, full size from `lg`. From `lg`
+              it's pulled in over the subject so her (opaque) form masks the
+              ring's body and only the arc peeks past her, rather than the arc
+              crossing the cut-out's transparent zone. */}
           <div
             aria-hidden
             className="pointer-events-none absolute right-0 -top-3 -z-10 block origin-top-right scale-[0.52] opacity-90 lg:right-16 lg:-top-4 lg:scale-100 lg:opacity-80"
@@ -127,7 +128,6 @@ export function HeroSection() {
               drawDurationMs={2400}
               drawDelayMs={250}
               trail
-              startLabel="7/10"
             />
           </div>
 

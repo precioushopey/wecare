@@ -249,7 +249,7 @@ export function CheckoutPage() {
 
   return (
     <div className="mx-auto max-w-3xl">
-      <CheckoutSteps current="details" className="mb-6" />
+      <CheckoutSteps current="review" className="mb-6" />
       <form onSubmit={onSubmit} className="grid gap-8 lg:grid-cols-[1fr_20rem]">
         <div className="space-y-8">
           {/* The customer is already signed in to reach checkout — show the

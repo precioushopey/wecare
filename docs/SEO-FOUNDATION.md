@@ -433,4 +433,8 @@ Legal-review items:   (every CBD/cannabis/effect/condition claim on the page)
 - **Must not contain:** cannabis leaves, buds, smoke, "CBD Shop", strain names, THC %, prices, any medical claim ("hilft bei…", "Rezept in Minuten"), or a person's face implying a testimonial.
 - **Safe zone:** keep text ≥ 80 px from every edge (Slack/WhatsApp/LinkedIn crop differently).
 - **Per-page OG** still overrides `og:title`/`og:description`/`og:url`; a single shared banner image is fine for launch, a per-cluster variant is a Phase-2 nicety.
-- File: **`public/banner.jpg`** (1200×630, in place — WeCare lockup + DE tagline + a "Fragebogen starten" chip). Wired via `OG_IMAGE_PATH` in `src/seo/config.ts`, emitted as `${VITE_SITE_ORIGIN}/banner.jpg` only when `seoIndexable()`. Review it against the "must not contain" list before go-live; swap for a per-cluster variant later if wanted.
+- File: **`public/banner.png`** (1200×630, in place — a render of the homepage hero: WeCare lockup, DE headline + subheadline, "Fragebogen starten" CTA chip, the assessment-ring arc, and the trust-point strip). Wired via `OG_IMAGE_PATH` in `src/seo/config.ts`, emitted as `${VITE_SITE_ORIGIN}/banner.png` only when `seoIndexable()` (so no user sees it pre-launch).
+- **Pre-launch actions (blockers for the first indexable deploy), both baked into the current image:**
+  1. It shows a **person with a tablet** — trips the "person's face implying a testimonial" rule above.
+  2. It contains the **"7/10" pill**, which was removed from the live homepage (UX-01, 2026-09-04) as a fabricated assessment score — it should not live on in a shareable asset.
+  Replace with a version that drops both: lockup + headline/subheadline + CTA chip + trust strip on the brand gradient, no person, no score pill. Design task; the wiring stays as-is.
