@@ -25,7 +25,7 @@ export function DeliveryConfirmation({
   return (
     <p
       className={cn(
-        "flex items-start gap-2 text-sm text-ink-muted",
+        "flex items-start gap-2 text-sm md:text-base text-ink-muted",
         className,
       )}
     >

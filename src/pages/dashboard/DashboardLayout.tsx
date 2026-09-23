@@ -33,32 +33,17 @@ function matches(pathname: string, item: DashboardNavItem): boolean {
  */
 export function DashboardLayout() {
   const { t } = useTranslation("dashboard");
-  const { t: tShop } = useTranslation("shop");
   const { isAuthenticated, user } = useAuth();
   const location = useLocation();
 
   const here = trimSlash(location.pathname);
   const isHome = here === paths.dashboard;
-  // The purchase-flow pages live under `/dashboard` but aren't nav items —
-  // give them a header title of their own rather than the greeting fallback.
-  const commerceTitle: string | undefined = {
-    [paths.cart]: tShop("cart.title"),
-    [paths.checkout]: tShop("checkout.title"),
-    [paths.orderConfirmation]: tShop("confirmation.title"),
-  }[here];
 
-  usePageTitle(commerceTitle ?? t("title"), undefined, { noindex: true });
+  usePageTitle(t("title"), undefined, { noindex: true });
 
   if (!isAuthenticated) {
     return (
-      <Navigate
-        to={paths.login}
-        replace
-        state={{
-          from: location.pathname,
-          reason: here === paths.checkout ? "checkout" : undefined,
-        }}
-      />
+      <Navigate to={paths.login} replace state={{ from: location.pathname }} />
     );
   }
 
@@ -66,18 +51,12 @@ export function DashboardLayout() {
     user?.name?.split(" ")[0] || user?.name || user?.email?.split("@")[0] || "";
   const activeKey =
     DASHBOARD_NAV.find((n) => matches(location.pathname, n))?.key ?? "home";
-  const headerTitle =
-    commerceTitle ??
-    (isHome
-      ? t(`greeting.${greetingKey()}`, { name: displayName })
-      : t(`nav.${activeKey}`));
+  const headerTitle = isHome
+    ? t(`greeting.${greetingKey()}`, { name: displayName })
+    : t(`nav.${activeKey}`);
 
   return (
-    <DashboardChrome
-      headerTitle={headerTitle}
-      isHome={isHome}
-      hideCartChip={Boolean(commerceTitle)}
-    >
+    <DashboardChrome headerTitle={headerTitle} isHome={isHome}>
       <Outlet />
     </DashboardChrome>
   );

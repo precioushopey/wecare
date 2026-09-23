@@ -89,18 +89,17 @@ export function ConditionLandingPage({
       <section className="relative isolate overflow-hidden rounded-b-2xl md:rounded-b-4xl px-4 pt-14 [background-image:linear-gradient(120deg,#0a2c42_0%,#0d444b_50%,#123f52_100%)] sm:px-6 sm:pt-20 lg:min-h-[30rem] lg:pb-28">
         <div className="relative z-10 mx-auto w-full max-w-6xl">
           <div className="max-w-lg space-y-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-sage-300">
+            <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.16em] text-sage-300">
               {t(`${conditionKey}.shortTitle`)}
             </p>
             <h1 className="text-white">{t(`${conditionKey}.hero.title`)}</h1>
-            <p className="text-lg text-white/80">
+            <p className="text-lg md:text-xl text-white/80">
               {t(`${conditionKey}.hero.subtitle`)}
             </p>
             <div className="pt-1">
               <Button
                 asChild
                 variant="cta"
-                size="xl"
                 className="w-full sm:w-auto"
               >
                 <Link to={assessmentLink(conditionKey)} onClick={onCtaClick}>
@@ -137,13 +136,13 @@ export function ConditionLandingPage({
       <Section tone="surface" reveal={false}>
         <Reveal className="max-w-3xl">
           <SectionHeading title={t("shared.explanationHeading")} />
-          <p className="mt-4 text-lg text-ink-muted">
+          <p className="mt-4 text-lg md:text-xl text-ink-muted">
             {t(`${conditionKey}.explanation`)}
           </p>
         </Reveal>
 
         <Reveal className="mt-12">
-          <h3 className="text-lg">{t("shared.situationsHeading")}</h3>
+          <h3 className="text-lg md:text-xl">{t("shared.situationsHeading")}</h3>
         </Reveal>
         <ul className="mt-6 grid gap-4 sm:grid-cols-2">
           {situations.map((s, i) => (
@@ -175,10 +174,10 @@ export function ConditionLandingPage({
               {/* number + sentence sit in a row on mobile (full-width cards),
                   back to a stack from `sm` where the grid narrows them. */}
               <li className="flex h-full flex-row items-baseline gap-3 glass-strong rounded-2xl md:rounded-3xl p-5 sm:flex-col sm:items-stretch sm:gap-0">
-                <span className="shrink-0 font-mono text-sm font-semibold text-petrol-700">
+                <span className="shrink-0 font-mono text-sm md:text-base font-semibold text-petrol-700">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <p className="text-sm text-ink sm:mt-2">{step}</p>
+                <p className="text-sm md:text-base text-ink sm:mt-2">{step}</p>
               </li>
             </Reveal>
           ))}
@@ -210,7 +209,6 @@ export function ConditionLandingPage({
                 <Button
                   asChild
                   variant="cta"
-                  size="lg"
                   className="w-full lg:w-auto"
                 >
                   <Link to={assessmentLink(conditionKey)} onClick={onCtaClick}>

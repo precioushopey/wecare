@@ -8,6 +8,9 @@ import { Input } from "@/app/components/ui/input";
 import { Label } from "@/app/components/ui/label";
 import { usePageTitle } from "@/app/usePageTitle";
 import { SUPPORT_EMAIL } from "@/config";
+import { InfoTile } from "@/components/marketing/InfoTile";
+import { PageHeader } from "@/components/marketing/PageHeader";
+import { PageShell } from "@/components/marketing/PageShell";
 
 /**
  * Contact / trust page (spec Section 4). No backend: the form composes a
@@ -29,39 +32,37 @@ export function ContactPage() {
 
   function onSubmit(e: FormEvent) {
     e.preventDefault();
-    const subject = encodeURIComponent(`WeCare — ${name || t("pages.contact.title")}`);
+    const subject = encodeURIComponent(`WeCare: ${name || t("pages.contact.title")}`);
     const body = encodeURIComponent(
-      `${message}\n\n— ${name}${email ? ` (${email})` : ""}`,
+      `${message}\n\n${name}${email ? ` (${email})` : ""}`,
     );
     window.location.href = `mailto:${SUPPORT_EMAIL}?subject=${subject}&body=${body}`;
   }
 
   return (
-    <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6">
-      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-petrol-600">
-        {t("footer.headings.wecare")}
-      </p>
-      <h1 className="mt-3">{t("pages.contact.title")}</h1>
-      <p className="mt-4 text-lg text-ink-muted">{t("pages.contact.intro")}</p>
+    <PageShell maxWidth="max-w-2xl" className="py-16">
+      <PageHeader
+        eyebrow={t("footer.headings.wecare")}
+        title={t("pages.contact.title")}
+        intro={t("pages.contact.intro")}
+      />
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2">
-        <div className="glass rounded-2xl md:rounded-3xl p-5">
-          <h2 className="text-base">{t("pages.contact.emailHeading")}</h2>
+        <InfoTile title={t("pages.contact.emailHeading")}>
           <a
             href={`mailto:${SUPPORT_EMAIL}`}
-            className="mt-1 inline-flex items-center gap-2 font-mono text-sm text-petrol-700 underline-offset-4 hover:underline"
+            className="mt-1 inline-flex items-center gap-2 font-mono text-sm md:text-base text-petrol-700 underline-offset-4 hover:underline"
           >
             <Mail className="size-4" aria-hidden />
             {SUPPORT_EMAIL}
           </a>
-          <p className="mt-2 text-xs text-ink-muted">
+          <p className="mt-2 text-sm md:text-base text-ink-muted">
             {t("pages.contact.emailNote")}
           </p>
-        </div>
-        <div className="glass rounded-2xl md:rounded-3xl p-5">
-          <h2 className="text-base">{t("pages.contact.hoursHeading")}</h2>
-          <p className="mt-1 text-sm text-ink">{t("pages.contact.hoursValue")}</p>
-        </div>
+        </InfoTile>
+        <InfoTile title={t("pages.contact.hoursHeading")}>
+          <p className="mt-1 text-sm md:text-base text-ink">{t("pages.contact.hoursValue")}</p>
+        </InfoTile>
       </div>
 
       <form
@@ -69,8 +70,8 @@ export function ContactPage() {
         className="mt-8 space-y-4 glass-strong rounded-2xl md:rounded-3xl p-6"
       >
         <div>
-          <h2 className="text-base">{t("pages.contact.formHeading")}</h2>
-          <p className="mt-1 text-xs text-ink-muted">
+          <h2 className="text-base md:text-lg">{t("pages.contact.formHeading")}</h2>
+          <p className="mt-1 text-sm md:text-base text-ink-muted">
             {t("pages.contact.formNote")}
           </p>
         </div>
@@ -118,10 +119,10 @@ export function ContactPage() {
         </Button>
       </form>
 
-      <p className="mt-6 rounded-xl border border-border bg-surface-raised p-4 text-sm text-ink-muted">
+      <p className="mt-6 rounded-xl border border-border bg-surface-raised p-4 text-sm md:text-base text-ink-muted">
         {t("pages.contact.emergency")}
       </p>
-    </div>
+    </PageShell>
   );
 }
 

@@ -30,6 +30,7 @@ import { AssessmentRing } from "@/components/brand/AssessmentRing";
 import { AustriaMap } from "@/components/marketing/AustriaMap";
 import { FloatingChip } from "@/components/marketing/FloatingChip";
 import { OrbitRings } from "@/components/marketing/OrbitRings";
+import { PhotoTile } from "@/components/marketing/PhotoTile";
 import { Reveal } from "@/components/marketing/Reveal";
 import { RotatingWord } from "@/components/marketing/RotatingWord";
 import { Section, SectionHeading } from "@/components/marketing/Section";
@@ -63,7 +64,7 @@ export function HeroSection() {
       <div className="mx-auto flex max-w-6xl flex-col gap-6 py-12 lg:flex-row lg:items-start lg:gap-12 lg:pt-28">
         <div className="max-w-xl space-y-6 lg:flex-1">
           <div className="space-y-3">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-petrol-600">
+            <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.16em] text-petrol-600">
               {t("hero.kicker")}
             </p>
             {/* Headline leads with the problem — the last word cycles through
@@ -83,17 +84,17 @@ export function HeroSection() {
               <span className="sr-only">{t("hero.title")}</span>
             </h1>
           </div>
-          <p className="text-lg text-ink-muted">{t("hero.subtitle")}</p>
+          <p className="text-lg md:text-xl text-ink-muted">{t("hero.subtitle")}</p>
           {/* Desktop keeps the CTA + "How It Works" pair here. On mobile both
               move out: "How It Works" is dropped and the primary CTA is
               rendered full-width, flush under the photo (see below). */}
           <div className="hidden flex-wrap items-center gap-3 pt-1 lg:flex">
-            <Button asChild variant="cta" size="xl">
+            <Button asChild variant="cta">
               <Link to={assessmentLink()} onClick={trackHomeCta("hero")}>
                 {t("hero.primaryCta")}
               </Link>
             </Button>
-            <Button asChild variant="outline" size="xl">
+            <Button asChild variant="outline">
               <Link to={paths.howItWorks}>{t("hero.secondaryCta")}</Link>
             </Button>
           </div>
@@ -143,7 +144,7 @@ export function HeroSection() {
 
           {/* Mobile-only CTA — full-width and flush to the bottom of the photo
               (no gap) so the image reads as standing on the button. */}
-          <Button asChild variant="cta" size="xl" className="flex w-full lg:hidden">
+          <Button asChild variant="cta" className="flex w-full lg:hidden">
             <Link to={assessmentLink()}>{t("hero.primaryCta")}</Link>
           </Button>
 
@@ -156,7 +157,7 @@ export function HeroSection() {
           >
             <FloatingChip
               icon={<Clock className="size-3.5 sm:size-4" />}
-              className="wc-float-a gap-1.5 px-2.5 py-1 text-[11px] sm:gap-2 sm:px-3.5 sm:py-2 sm:text-sm"
+              className="wc-float-a gap-1.5 px-2.5 py-1 text-sm md:text-base sm:gap-2 sm:px-3.5 sm:py-2 sm:text-sm"
             >
               {t("hero.chipTime")}
             </FloatingChip>
@@ -167,7 +168,7 @@ export function HeroSection() {
           >
             <FloatingChip
               icon={<Sparkles className="size-3.5 sm:size-4" />}
-              className="wc-float-b gap-1.5 px-2.5 py-1 text-[11px] sm:gap-2 sm:px-3.5 sm:py-2 sm:text-sm"
+              className="wc-float-b gap-1.5 px-2.5 py-1 text-sm md:text-base sm:gap-2 sm:px-3.5 sm:py-2 sm:text-sm"
             >
               {t("hero.chipMatch")}
             </FloatingChip>
@@ -189,7 +190,7 @@ export function HeroSection() {
               key={copy}
               data-marquee-clone={copy === 1 ? "" : undefined}
               aria-hidden={copy === 1 || undefined}
-              className="flex shrink-0 items-center gap-x-6 pr-6 text-xs text-ink-muted"
+              className="flex shrink-0 items-center gap-x-6 pr-6 text-sm md:text-base text-ink-muted"
             >
               {trustPoints.map((point) => (
                 <li
@@ -234,50 +235,31 @@ export function ChooseProblemSection() {
               <Link
                 to={assessmentLink(c.assessmentProblem)}
                 onClick={trackHomeProblem("homepage_card")(c.assessmentProblem)}
-                className="group relative flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-2xl md:rounded-3xl glass glass-hover"
+                className="block"
               >
-                {/* Own clip layer: `overflow-hidden` + `rounded` on the card
-                    alone doesn't reliably clip a transformed child (the hover
-                    zoom) at the rounded corners in Chrome, so the photo leaks a
-                    hairline past the radius. translateZ(0) bakes the rounded
-                    clip into a composited layer. */}
-                <div className="absolute inset-0 overflow-hidden rounded-[inherit] [transform:translateZ(0)]">
-                  <ImageWithFallback
-                    src={siteImage(IMG.problem[c.key])}
-                    alt=""
-                    loading="lazy"
-                    decoding="async"
-                    className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                {/* The text panel's own background is the fade: opaque white at
-                    the bottom edge → fully transparent at the top, so the photo
-                    reads through the whole text area, strongest behind the
-                    title. */}
-                <div className="relative flex flex-col bg-gradient-to-t from-white from-30% via-white/90 via-50% to-transparent px-5 pb-5 pt-28">
-                  <div className="mb-2 flex items-center gap-3">
+                <PhotoTile
+                  image={siteImage(IMG.problem[c.key])}
+                  title={t(`chooseProblem.cards.${c.key}.title`)}
+                  description={t(`chooseProblem.cards.${c.key}.description`)}
+                  badge={
                     <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-2xl glass-strong text-petrol-700 shadow-[0_10px_24px_-12px_rgba(13,68,75,0.4)]">
                       <Icon className="size-5" strokeWidth={1.75} aria-hidden />
                     </span>
-                    <h3 className="text-lg leading-tight text-petrol-700">
-                      {t(`chooseProblem.cards.${c.key}.title`)}
-                    </h3>
-                  </div>
-                  <p className="mt-2 text-sm text-ink-muted">
-                    {t(`chooseProblem.cards.${c.key}.description`)}
-                  </p>
-                  {/* Solid Azure pill, white label — reads unmistakably as
-                      the card's action rather than a line of teal body text
-                      (client feedback, Sept 2026: "the link to the
-                      questionnaire should be clearly visible, maybe white"). */}
-                  <span className="mt-4 inline-flex w-fit items-center gap-1.5 rounded-full bg-petrol-600 px-3.5 py-1.5 text-sm font-semibold text-white shadow-[0_10px_24px_-12px_rgba(33,131,144,0.65)] transition-colors group-hover:bg-petrol-700">
-                    {t(`chooseProblem.cards.${c.key}.cta`)}
-                    <ArrowRight
-                      className="size-4 transition-transform group-hover:translate-x-1"
-                      aria-hidden
-                    />
-                  </span>
-                </div>
+                  }
+                  cta={
+                    // Solid Azure pill, white label — reads unmistakably as
+                    // the card's action rather than a line of teal body text
+                    // (client feedback, Sept 2026: "the link to the
+                    // questionnaire should be clearly visible, maybe white").
+                    <span className="mt-4 inline-flex w-fit items-center gap-1.5 rounded-full bg-petrol-600 px-3.5 py-1.5 text-sm md:text-base font-semibold text-white shadow-[0_10px_24px_-12px_rgba(33,131,144,0.65)] transition-colors group-hover:bg-petrol-700">
+                      {t(`chooseProblem.cards.${c.key}.cta`)}
+                      <ArrowRight
+                        className="size-4 transition-transform group-hover:translate-x-1"
+                        aria-hidden
+                      />
+                    </span>
+                  }
+                />
               </Link>
             </Reveal>
           );
@@ -316,29 +298,17 @@ export function HowItWorksSection() {
       <ol className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {HOW_STEPS.map((step, i) => (
           <Reveal key={step} delayMs={i * 60}>
-            <li className="group relative flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-2xl md:rounded-3xl glass glass-hover">
-              <div className="absolute inset-0 overflow-hidden rounded-[inherit] [transform:translateZ(0)]">
-                <ImageWithFallback
-                  src={siteImage(IMG.process[step])}
-                  alt=""
-                  loading="lazy"
-                  decoding="async"
-                  className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <div className="relative flex flex-col bg-gradient-to-t from-white from-30% via-white/90 via-50% to-transparent px-5 pb-5 pt-28">
-                <div className="mb-2 flex items-center gap-3">
-                  <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-2xl font-display text-lg text-white shadow-[0_10px_24px_-10px_rgba(42,167,176,0.55)] [background-image:var(--cta-gradient)]">
+            <li>
+              <PhotoTile
+                image={siteImage(IMG.process[step])}
+                title={t(`howItWorks.steps.${step}.title`)}
+                description={t(`howItWorks.steps.${step}.description`)}
+                badge={
+                  <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-2xl font-display text-lg md:text-xl text-white shadow-[0_10px_24px_-10px_rgba(42,167,176,0.55)] [background-image:var(--cta-gradient)]">
                     {i + 1}
                   </span>
-                  <h3 className="text-lg leading-tight text-petrol-700">
-                    {t(`howItWorks.steps.${step}.title`)}
-                  </h3>
-                </div>
-                <p className="mt-2 text-sm text-ink-muted">
-                  {t(`howItWorks.steps.${step}.description`)}
-                </p>
-              </div>
+                }
+              />
             </li>
           </Reveal>
         ))}
@@ -347,7 +317,7 @@ export function HowItWorksSection() {
       <Reveal className="mt-8">
         <Link
           to={paths.howItWorks}
-          className="text-sm font-medium text-petrol-700 underline-offset-4 hover:underline"
+          className="text-sm md:text-base font-medium text-petrol-700 underline-offset-4 hover:underline"
         >
           {t("howItWorks.moreLink")}
         </Link>
@@ -401,10 +371,10 @@ export function SolutionsPreviewSection() {
                       heading/description are direct flex-col children again and
                       the description's `flex-1` still equalises card heights. */}
                   <div className="min-w-0 sm:contents">
-                    <h3 className="text-base">
+                    <h3 className="text-base md:text-lg">
                       {t(`solutionsPreview.cards.${key}.title`)}
                     </h3>
-                    <p className="mt-2 flex-1 text-sm text-ink-muted">
+                    <p className="mt-2 flex-1 text-sm md:text-base text-ink-muted">
                       {t(`solutionsPreview.cards.${key}.description`)}
                     </p>
                   </div>
@@ -509,8 +479,8 @@ export function TrustSection() {
                 <Icon className="size-5" strokeWidth={1.75} aria-hidden />
               </span>
               <div>
-                <h3 className="text-base">{t(`trust.items.${key}.title`)}</h3>
-                <p className="mt-1 text-sm text-ink-muted">
+                <h3 className="text-base md:text-lg">{t(`trust.items.${key}.title`)}</h3>
+                <p className="mt-1 text-sm md:text-base text-ink-muted">
                   {t(`trust.items.${key}.description`)}
                 </p>
               </div>
@@ -542,7 +512,7 @@ export function ComparisonSection() {
       </Reveal>
       <Reveal>
         <div className="mt-10 overflow-hidden rounded-2xl md:rounded-3xl glass-strong">
-          <div className="grid grid-cols-2 border-b border-white/50 text-sm font-semibold">
+          <div className="grid grid-cols-2 border-b border-white/50 text-sm md:text-base font-semibold">
             <div className="p-4 text-ink-muted sm:p-5">
               {t("comparison.themLabel")}
             </div>
@@ -552,7 +522,7 @@ export function ComparisonSection() {
           </div>
           <dl className="divide-y divide-white/40">
             {COMPARISON_ROWS.map((row) => (
-              <div key={row} className="grid grid-cols-2 text-sm">
+              <div key={row} className="grid grid-cols-2 text-sm md:text-base">
                 <dt className="flex items-start gap-2 p-4 text-ink-muted sm:p-5">
                   <Minus
                     className="mt-0.5 size-4 shrink-0 text-ink-muted/60"
@@ -619,7 +589,7 @@ export function DeliveryBannerSection() {
 
         <Reveal delayMs={80} className="mx-auto mt-12 max-w-2xl">
           <AustriaMap />
-          <p className="mt-4 text-center text-sm text-white/70">
+          <p className="mt-4 text-center text-sm md:text-base text-white/70">
             {t("deliveryBanner.coverageNote")}
           </p>
         </Reveal>
@@ -655,7 +625,6 @@ export function FinalCtaSection() {
           <Button
             asChild
             variant="cta"
-            size="xl"
             className="hidden lg:inline-flex"
           >
             <Link to={assessmentLink()} onClick={trackHomeCta("final")}>
@@ -692,7 +661,6 @@ export function FinalCtaSection() {
           <Button
             asChild
             variant="cta"
-            size="xl"
             className="flex w-full lg:hidden"
           >
             <Link to={assessmentLink()} onClick={trackHomeCta("final")}>
@@ -742,7 +710,7 @@ export function FaqSection() {
           ))}
         </Accordion>
 
-        <p className="mt-8 text-sm text-ink-muted">
+        <p className="mt-8 text-sm md:text-base text-ink-muted">
           {t("faq.more")}{" "}
           <Link
             to={paths.faq}

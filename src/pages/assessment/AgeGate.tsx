@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 
 import { Button } from "@/app/components/ui/button";
 import { paths } from "@/app/paths";
+import { PageShell } from "@/components/marketing/PageShell";
 import { calculateAge } from "@/features/age/age";
 
 function todayIso(): string {
@@ -37,9 +38,9 @@ export function AgeGate({ onConfirm }: { onConfirm: (dobIso: string) => void }) 
   }
 
   return (
-    <div className="mx-auto max-w-xl px-4 py-16 sm:px-6">
+    <PageShell maxWidth="max-w-xl" className="py-16">
       <div className="glass-strong rounded-2xl md:rounded-3xl p-6 sm:p-8">
-        <h1 className="font-display text-2xl text-ink">{t("ageGate.title")}</h1>
+        <h1 className="font-display text-2xl md:text-3xl text-ink">{t("ageGate.title")}</h1>
         <p className="mt-3 text-ink-muted">{t("ageGate.body")}</p>
 
         <label className="mt-6 flex cursor-pointer items-start gap-3 rounded-xl border-2 border-border bg-surface-raised p-4 text-ink has-[:checked]:border-petrol-600 has-[:checked]:bg-sage-50">
@@ -55,7 +56,7 @@ export function AgeGate({ onConfirm }: { onConfirm: (dobIso: string) => void }) 
         <div className="mt-4">
           <label
             htmlFor="age-gate-dob"
-            className="text-sm font-medium text-ink"
+            className="text-sm md:text-base font-medium text-ink"
           >
             {t("ageGate.dobLabel")}
           </label>
@@ -70,11 +71,11 @@ export function AgeGate({ onConfirm }: { onConfirm: (dobIso: string) => void }) 
               setDob(e.target.value);
               setTooYoung(false);
             }}
-            className="mt-1.5 block w-full rounded-xl border border-border bg-surface-raised px-3 py-2.5 text-sm text-ink"
+            className="mt-1.5 block w-full rounded-xl border border-border bg-surface-raised px-3 py-2.5 text-sm md:text-base text-ink"
           />
-          <p className="mt-1.5 text-xs text-ink-muted">{t("ageGate.dobNote")}</p>
+          <p className="mt-1.5 text-sm md:text-base text-ink-muted">{t("ageGate.dobNote")}</p>
           {tooYoung ? (
-            <p className="mt-2 text-sm text-danger-600">
+            <p className="mt-2 text-sm md:text-base text-danger-600">
               {t("ageGate.dobTooYoung")}
             </p>
           ) : null}
@@ -84,20 +85,19 @@ export function AgeGate({ onConfirm }: { onConfirm: (dobIso: string) => void }) 
           <Button
             type="button"
             variant="cta"
-            size="lg"
             disabled={!canSubmit}
             onClick={handleSubmit}
             className="w-full sm:w-auto"
           >
             {t("ageGate.continue")}
           </Button>
-          <Button asChild variant="ghost" size="sm" className="w-full sm:w-auto">
+          <Button asChild variant="ghost" className="w-full sm:w-auto">
             <Link to={paths.home}>{t("ageGate.back")}</Link>
           </Button>
         </div>
 
-        <p className="mt-4 text-xs text-ink-muted">{t("ageGate.under")}</p>
+        <p className="mt-4 text-sm md:text-base text-ink-muted">{t("ageGate.under")}</p>
       </div>
-    </div>
+    </PageShell>
   );
 }

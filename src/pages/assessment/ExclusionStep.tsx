@@ -27,12 +27,12 @@ function YesNoRow({
 }) {
   return (
     <fieldset className="mt-6">
-      <legend className="text-sm font-medium text-ink">{question}</legend>
+      <legend className="text-sm md:text-base font-medium text-ink">{question}</legend>
       <div className="mt-2 flex gap-3">
         {(["yes", "no"] as const).map((opt) => (
           <label
             key={opt}
-            className="flex cursor-pointer items-center gap-2 rounded-xl border border-border bg-surface-raised px-4 py-2 text-sm text-ink has-[:checked]:border-petrol-600 has-[:checked]:bg-sage-50"
+            className="flex cursor-pointer items-center gap-2 rounded-xl border border-border bg-surface-raised px-4 py-2 text-sm md:text-base text-ink has-[:checked]:border-petrol-600 has-[:checked]:bg-sage-50"
           >
             <input
               type="radio"
@@ -57,15 +57,21 @@ function YesNoRow({
 export function ExclusionStep({
   onComplete,
   hideHeading = false,
+  initial,
 }: {
   onComplete: (x: AssessmentExclusions) => void;
   /** The page already supplies a heading + context (medical-review page). */
   hideHeading?: boolean;
+  /** Seed the answers — so stepping back to a prior question and returning
+   *  doesn't wipe the safety answers (the step is keyed / remounts). */
+  initial?: AssessmentExclusions;
 }) {
   const { t } = useTranslation("assessment");
-  const [pregnancy, setPregnancy] = useState<YesNo>(undefined);
-  const [recentSupply, setRecentSupply] = useState<YesNo>(undefined);
-  const [conditions, setConditions] = useState<ExclusionConditionKey[]>([]);
+  const [pregnancy, setPregnancy] = useState<YesNo>(initial?.pregnancy);
+  const [recentSupply, setRecentSupply] = useState<YesNo>(initial?.recentSupply);
+  const [conditions, setConditions] = useState<ExclusionConditionKey[]>(
+    initial?.conditions ?? [],
+  );
 
   const payload = useMemo<AssessmentExclusions>(
     () => ({
@@ -87,7 +93,7 @@ export function ExclusionStep({
             {t("exclusion.heading")}
           </h2>
         )}
-        <p className={hideHeading ? "text-sm text-ink-muted" : "mt-2 text-sm text-ink-muted"}>
+        <p className={hideHeading ? "text-sm md:text-base text-ink-muted" : "mt-2 text-sm md:text-base text-ink-muted"}>
           {t("exclusion.sub")}
         </p>
 
@@ -107,14 +113,14 @@ export function ExclusionStep({
         />
 
         <fieldset className="mt-6">
-          <legend className="text-sm font-medium text-ink">
+          <legend className="text-sm md:text-base font-medium text-ink">
             {t("exclusion.conditions.q")}
           </legend>
           <div className="mt-2 grid gap-2">
             {[...EXCLUSION_CONDITION_KEYS, "none" as const].map((key) => (
               <label
                 key={key}
-                className="flex cursor-pointer items-center gap-3 rounded-xl border border-border bg-surface-raised p-3 text-sm text-ink has-[:checked]:border-petrol-600 has-[:checked]:bg-sage-50"
+                className="flex cursor-pointer items-center gap-3 rounded-xl border border-border bg-surface-raised p-3 text-sm md:text-base text-ink has-[:checked]:border-petrol-600 has-[:checked]:bg-sage-50"
               >
                 <input
                   type="checkbox"
@@ -131,14 +137,14 @@ export function ExclusionStep({
         </fieldset>
 
         {showNote ? (
-          <p className="mt-4 rounded-xl bg-sage-50 p-3 text-sm text-ink-muted">
+          <p className="mt-4 rounded-xl bg-sage-50 p-3 text-sm md:text-base text-ink-muted">
             {t("exclusion.flaggedNote")}
           </p>
         ) : null}
       </div>
 
       {!canSubmit ? (
-        <p className="mt-3 text-sm text-ink-muted">
+        <p className="mt-3 text-sm md:text-base text-ink-muted">
           {t("exclusion.requiredPrompt")}
         </p>
       ) : null}

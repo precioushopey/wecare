@@ -49,7 +49,7 @@ export function Avatar({
     <span
       aria-hidden
       className={cn(
-        "inline-flex shrink-0 items-center justify-center rounded-full font-display text-sm font-semibold text-white [background-image:var(--cta-gradient)] shadow-[var(--shadow-glow)]",
+        "inline-flex shrink-0 items-center justify-center rounded-full font-display text-sm md:text-base font-semibold text-white [background-image:var(--cta-gradient)] shadow-[var(--shadow-glow)]",
         className,
       )}
     >
@@ -109,7 +109,7 @@ export function RowLink({
       <span className="min-w-0 flex-1">
         <span className="block font-medium text-ink">{title}</span>
         {subtitle ? (
-          <span className="mt-0.5 block truncate text-sm text-ink-muted">
+          <span className="mt-0.5 block truncate text-sm md:text-base text-ink-muted">
             {subtitle}
           </span>
         ) : null}
@@ -149,13 +149,13 @@ export function SectionCard({
       )}
     >
       <div className="mb-3 flex items-center justify-between gap-3">
-        <p className="text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-ink-muted">
+        <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.12em] text-ink-muted">
           {title}
         </p>
         {action ? (
           <Link
             to={action.to}
-            className="inline-flex shrink-0 items-center gap-1 text-xs font-medium text-petrol-700 underline-offset-4 hover:underline"
+            className="inline-flex shrink-0 items-center gap-1 text-sm md:text-base font-medium text-petrol-700 underline-offset-4 hover:underline"
           >
             {action.label}
             <ChevronRight className="size-3.5" aria-hidden strokeWidth={2} />
@@ -181,7 +181,7 @@ function StepDot({
   return (
     <span
       className={cn(
-        "flex size-8 shrink-0 items-center justify-center rounded-full text-sm font-semibold",
+        "flex size-8 shrink-0 items-center justify-center rounded-full text-sm md:text-base font-semibold",
         done
           ? "bg-petrol-600 text-white"
           : active
@@ -231,7 +231,7 @@ export function DashboardJourney({
               <StepDot done={done} active={active} index={i} />
               <span
                 className={cn(
-                  "text-sm font-medium",
+                  "text-sm md:text-base font-medium",
                   active || done ? "text-ink" : "text-ink-muted",
                 )}
               >
@@ -275,7 +275,7 @@ export function DashboardJourney({
               <span
                 aria-current={active ? "step" : undefined}
                 className={cn(
-                  "mt-2 text-center text-xs font-medium",
+                  "mt-2 text-center text-sm md:text-base font-medium",
                   active
                     ? "text-petrol-700"
                     : done
@@ -312,10 +312,10 @@ export function StatTile({
         className,
       )}
     >
-      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-ink-muted">
+      <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.1em] text-ink-muted">
         {label}
       </p>
-      <p className="mt-1 text-sm font-medium text-ink">{value}</p>
+      <p className="mt-1 text-sm md:text-base font-medium text-ink">{value}</p>
     </div>
   );
 }
@@ -368,7 +368,7 @@ export function StatusPill({
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-full px-3 py-1 text-xs font-medium",
+        "inline-flex items-center rounded-full px-3 py-1 text-sm md:text-base font-medium",
         PILL_TONE[tone],
         className,
       )}
@@ -397,7 +397,7 @@ export function EmptyState({
       <p className="mt-4 max-w-xs text-ink-muted">{text}</p>
       <Link
         to={to}
-        className="mt-5 inline-flex h-11 items-center justify-center rounded-full px-6 text-sm font-medium text-cta-foreground [background-image:var(--cta-gradient)] shadow-[0_10px_28px_-10px_rgba(42,167,176,0.55)] transition-all hover:brightness-105"
+        className="mt-5 inline-flex h-11 items-center justify-center rounded-full px-6 text-sm md:text-base font-medium text-cta-foreground [background-image:var(--cta-gradient)] shadow-[0_10px_28px_-10px_rgba(42,167,176,0.55)] transition-all hover:brightness-105"
       >
         {ctaLabel}
       </Link>
@@ -441,7 +441,7 @@ export function DashboardHero({
 /** Small uppercase eyebrow for a hero (white, low-emphasis). */
 export function HeroEyebrow({ children }: { children: ReactNode }) {
   return (
-    <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-white/60">
+    <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.14em] text-white/60">
       {children}
     </p>
   );
@@ -464,10 +464,10 @@ export function HeroStat({
         className,
       )}
     >
-      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-white/60">
+      <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.1em] text-white/60">
         {label}
       </p>
-      <p className="mt-1 text-sm font-medium text-white">{value}</p>
+      <p className="mt-1 text-sm md:text-base font-medium text-white">{value}</p>
     </div>
   );
 }
@@ -487,7 +487,7 @@ export function HeroCta({
     <Link
       to={to}
       className={cn(
-        "inline-flex h-11 items-center justify-center gap-1.5 rounded-full bg-white px-5 text-sm font-semibold text-petrol-800 shadow-[0_12px_30px_-14px_rgba(0,0,0,0.55)] transition-colors hover:bg-white/90",
+        "inline-flex h-11 items-center justify-center gap-1.5 rounded-full bg-white px-5 text-sm md:text-base font-semibold text-petrol-800 shadow-[0_12px_30px_-14px_rgba(0,0,0,0.55)] transition-colors hover:bg-white/90",
         className,
       )}
     >

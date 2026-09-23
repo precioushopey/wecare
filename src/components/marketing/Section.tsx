@@ -72,7 +72,7 @@ export function SectionHeading({
       {eyebrow ? (
         <p
           className={cn(
-            "text-xs font-semibold uppercase tracking-[0.16em]",
+            "text-xs md:text-sm font-semibold uppercase tracking-[0.16em]",
             invert ? "text-sage-300" : "text-petrol-600",
           )}
         >
@@ -81,7 +81,7 @@ export function SectionHeading({
       ) : null}
       <h2 className={cn(invert && "text-white")}>{title}</h2>
       {intro ? (
-        <p className={cn("text-lg", invert ? "text-white/80" : "text-ink-muted")}>
+        <p className={cn("text-lg md:text-xl", invert ? "text-white/80" : "text-ink-muted")}>
           {intro}
         </p>
       ) : null}

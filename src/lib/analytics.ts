@@ -46,14 +46,21 @@ export const AnalyticsEvent = {
   recommendationAlternativeSelected: "recommendation_alternative_selected",
   recommendationLearnMoreOpened: "recommendation_learn_more_opened",
   recommendationChangeAnswers: "recommendation_change_answers",
-  recommendationContinueClicked: "recommendation_continue_clicked",
   medicalReviewStarted: "medical_review_started",
   medicalReviewSubmitted: "medical_review_submitted",
   medicalReviewOutcome: "medical_review_outcome",
   productViewed: "product_viewed",
   addToCart: "add_to_cart",
+  /** The "view more solutions" link shown when viewing a non-primary Solution
+   *  (e.g. the alternative/secondary option) while a result exists — links to
+   *  the shop filtered to the visitor's own problem. */
+  solutionViewMoreClicked: "solution_view_more_clicked",
+  /** The post-add-to-cart cross-sell modal on the visitor's own matched
+   *  Solution page, offering the secondary/alternative option. */
+  crossSellShown: "cross_sell_shown",
+  crossSellDismissed: "cross_sell_dismissed",
   checkoutStarted: "checkout_started",
-  orderPlaced: "order_placed",
+  requestSubmitted: "request_submitted",
   login: "login",
   logout: "logout",
   followupSubmitted: "followup_submitted",

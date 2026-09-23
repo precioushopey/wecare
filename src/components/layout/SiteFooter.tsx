@@ -5,14 +5,15 @@ import { paths } from "@/app/paths";
 import { cn } from "@/app/components/ui/utils";
 import { Logo } from "@/components/brand/Logo";
 import { useAuth } from "@/features/auth/AuthContext";
+import { isReturningVisitor } from "@/features/auth/returning";
 import { useConsent } from "@/features/consent/useConsent";
 
 import { TrustBadges } from "./FooterIcons";
 import { LanguageToggle } from "./LanguageToggle";
 
-const footerLink = "text-sm text-white/70 transition-colors hover:text-white";
+const footerLink = "text-sm md:text-base text-white/70 transition-colors hover:text-white";
 const heading =
-  "font-sans text-xs font-semibold uppercase tracking-wider text-white";
+  "font-sans text-xs md:text-sm font-semibold uppercase tracking-wider text-white";
 
 const CONCERNS = [
   { key: "sleep", to: paths.conditions.sleep },
@@ -34,12 +35,11 @@ export function SiteFooter({
   const { isAuthenticated } = useAuth();
   const { reopen: reopenConsent } = useConsent();
   const year = new Date().getFullYear();
-  const accountLinks = isAuthenticated
-    ? [{ to: paths.dashboard, label: t("nav.myArea") }]
-    : [
-        { to: paths.login, label: t("nav.login") },
-        { to: paths.signup, label: t("nav.signup") },
-      ];
+  // One account entry, mirroring the header (Mischa, 2026-09-09) — the auth
+  // screen itself offers log-in vs. create-account.
+  const account = isAuthenticated
+    ? { to: paths.dashboard, label: t("nav.myArea") }
+    : { to: isReturningVisitor() ? paths.login : paths.signup, label: t("nav.account") };
 
   return (
     <footer
@@ -52,7 +52,7 @@ export function SiteFooter({
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-3">
             <Logo inverse />
-            <p className="max-w-xs text-sm text-white/70">
+            <p className="max-w-xs text-sm md:text-base text-white/70">
               {t("brand.tagline")}
             </p>
           </div>
@@ -145,7 +145,7 @@ export function SiteFooter({
           </nav>
         </div>
 
-        <p className="mt-12 max-w-2xl text-xs leading-relaxed text-white/60">
+        <p className="mt-12 max-w-2xl text-sm md:text-base leading-relaxed text-white/60">
           {t("footer.disclaimer")}{" "}
           {t("footer.emergencyDisclaimer")}
         </p>
@@ -161,17 +161,14 @@ export function SiteFooter({
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-8 flex flex-wrap items-center gap-4 border-t border-white/20 pt-6 text-xs text-white/60">
+        <div className="mt-8 flex flex-wrap items-center gap-4 border-t border-white/20 pt-6 text-sm md:text-base text-white/60">
           <span>{t("footer.copyright", { year })}</span>
-          {accountLinks.map((a) => (
-            <Link
-              key={a.to}
-              to={a.to}
-              className="transition-colors hover:text-white"
-            >
-              {a.label}
-            </Link>
-          ))}
+          <Link
+            to={account.to}
+            className="transition-colors hover:text-white"
+          >
+            {account.label}
+          </Link>
           <button
             type="button"
             onClick={reopenConsent}

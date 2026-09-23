@@ -25,12 +25,10 @@ import { FaqPage } from "@/pages/FaqPage";
 import { LabTestsPage } from "@/pages/LabTestsPage";
 import { DashboardLayout } from "@/pages/dashboard/DashboardLayout";
 import {
-  DashboardAssessmentPage,
   DashboardFollowUpPage,
   DashboardHomePage,
   DashboardOrdersPage,
   DashboardProfilePage,
-  DashboardRecommendationPage,
   DashboardSupportPage,
 } from "@/pages/dashboard/pages";
 import { CartPage } from "@/pages/shop/CartPage";
@@ -78,22 +76,22 @@ export const router = createBrowserRouter([
       { path: paths.shop, element: <ShopIndexPage /> },
       { path: "/shop/:productId", element: <ProductPage /> },
 
+      // Purchase flow — standalone funnel routes (funnel re-sequence,
+      // 2026-09-08). Rendered inside `FunnelChrome` for every visitor; old
+      // `/shop/*` and `/dashboard/*` URLs redirect here via `LEGACY_REDIRECTS`.
+      { path: paths.cart, element: <CartPage /> },
+      { path: paths.checkout, element: <CheckoutPage /> },
+      { path: paths.orderConfirmation, element: <OrderConfirmationPage /> },
+
       {
         path: paths.dashboard,
         element: <DashboardLayout />,
         children: [
           { index: true, element: <DashboardHomePage /> },
-          { path: "assessment", element: <DashboardAssessmentPage /> },
-          { path: "recommendation", element: <DashboardRecommendationPage /> },
           { path: "orders", element: <DashboardOrdersPage /> },
           { path: "follow-up", element: <DashboardFollowUpPage /> },
           { path: "support", element: <DashboardSupportPage /> },
           { path: "profile", element: <DashboardProfilePage /> },
-          // Purchase flow — kept inside the app shell (no marketing chrome,
-          // no funnel stepper). Old `/shop/*` URLs redirect here.
-          { path: "cart", element: <CartPage /> },
-          { path: "checkout", element: <CheckoutPage /> },
-          { path: "order-confirmation", element: <OrderConfirmationPage /> },
         ],
       },
 

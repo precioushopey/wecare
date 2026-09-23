@@ -35,7 +35,7 @@ export function DashboardTabBar() {
               }
             >
               <item.icon className="size-5 shrink-0" strokeWidth={1.75} />
-              <span className="w-full truncate text-[0.6rem] font-medium leading-none tracking-tight">
+              <span className="w-full truncate text-sm md:text-base font-medium leading-none tracking-tight">
                 {t(`tabs.${item.key}`)}
               </span>
             </NavLink>

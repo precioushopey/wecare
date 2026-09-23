@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router";
 import { useTranslation } from "react-i18next";
-import { Menu, ShoppingBag } from "lucide-react";
+import { Menu, ShoppingBag, User } from "lucide-react";
 
 import { Button } from "@/app/components/ui/button";
 import {
@@ -20,7 +20,7 @@ import { useCart } from "@/features/cart/CartContext";
 import { LanguageToggle } from "./LanguageToggle";
 
 const navLink =
-  "whitespace-nowrap text-sm font-medium text-ink-muted transition-colors hover:text-ink aria-[current=page]:text-petrol-700";
+  "whitespace-nowrap text-sm md:text-base font-medium text-ink-muted transition-colors hover:text-ink aria-[current=page]:text-petrol-700";
 
 function Wordmark() {
   const { t } = useTranslation();
@@ -42,9 +42,35 @@ function CartLink() {
       className="relative inline-flex size-9 items-center justify-center rounded-md text-ink-muted transition-colors hover:text-ink"
     >
       <ShoppingBag className="size-5" aria-hidden />
-      <span className="absolute -right-0.5 -top-0.5 min-w-4 rounded-full bg-cta px-1 text-center font-mono text-[10px] leading-4 text-cta-foreground">
+      <span className="absolute -right-0.5 -top-0.5 min-w-4 rounded-full bg-cta px-1 text-center font-mono text-sm md:text-base leading-4 text-cta-foreground">
         {lineCount}
       </span>
+    </Link>
+  );
+}
+
+/**
+ * One user icon for the signed-out state — clicking it drops a small menu
+ * offering "Log in" / "Create account" explicitly (owner request, 2026-09-14
+ * — reverses the 2026-09-09 auto-route-by-returning-visitor behaviour, which
+ * silently guessed one and left the choice buried in a cross-link at the
+ * bottom of whichever auth page it opened)) **superseded 2026-09-15, owner
+ * request** — the dropdown is gone; the icon now links straight to
+ * `/signup` (the far more common intent for a new visitor clicking the
+ * account icon). `/login` stays reachable from the "New to WeCare?" /
+ * "Already have an account?" cross-links on the signup/login pages
+ * themselves and from the mobile sheet menu below, which already lists both
+ * as separate buttons.
+ */
+function AccountAuthMenu() {
+  const { t } = useTranslation();
+  return (
+    <Link
+      to={paths.signup}
+      aria-label={t("nav.signup")}
+      className="inline-flex size-9 shrink-0 items-center justify-center rounded-md text-ink-muted transition-colors hover:text-ink"
+    >
+      <User className="size-5" aria-hidden />
     </Link>
   );
 }
@@ -53,15 +79,6 @@ export function SiteHeader() {
   const { t } = useTranslation();
   const { isAuthenticated } = useAuth();
   const [open, setOpen] = useState(false);
-
-  // Signed in → "My area" (→ dashboard); signed out → separate "Log in" and
-  // "Sign up" links (`/login` and `/signup`).
-  const accountLinks = isAuthenticated
-    ? [{ to: paths.dashboard, label: t("nav.myArea") }]
-    : [
-        { to: paths.login, label: t("nav.login") },
-        { to: paths.signup, label: t("nav.signup") },
-      ];
 
   return (
     <header className="sticky top-0 z-40 border-b border-white/40 bg-white/60 px-4 shadow-[0_1px_0_0_rgba(255,255,255,0.6),0_10px_30px_-24px_rgba(13,68,75,0.35)] backdrop-blur-xl backdrop-saturate-150 sm:px-6">
@@ -86,12 +103,14 @@ export function SiteHeader() {
 
         <div className="hidden shrink-0 items-center gap-4 lg:flex">
           <CartLink />
-          {accountLinks.map((a) => (
-            <NavLink key={a.to} to={a.to} className={navLink}>
-              {a.label}
+          {isAuthenticated ? (
+            <NavLink to={paths.dashboard} className={navLink}>
+              {t("nav.myArea")}
             </NavLink>
-          ))}
-          <Button asChild variant="cta" size="sm">
+          ) : (
+            <AccountAuthMenu />
+          )}
+          <Button asChild variant="cta">
             <Link to={paths.assessment.start}>{t("nav.startAssessment")}</Link>
           </Button>
           <LanguageToggle />
@@ -102,7 +121,7 @@ export function SiteHeader() {
           <LanguageToggle />
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" aria-label={t("nav.openMenu")}>
+              <Button variant="ghost" aria-label={t("nav.openMenu")}>
                 <Menu className="size-5" />
               </Button>
             </SheetTrigger>
@@ -120,7 +139,7 @@ export function SiteHeader() {
                       <SheetClose asChild>
                         <NavLink
                           to={item.to}
-                          className="block rounded-md px-3 py-2 text-sm font-medium text-ink transition-colors hover:bg-sage-100 aria-[current=page]:bg-sage-100 aria-[current=page]:text-petrol-700"
+                          className="block rounded-md px-3 py-2 text-sm md:text-base font-medium text-ink transition-colors hover:bg-sage-100 aria-[current=page]:bg-sage-100 aria-[current=page]:text-petrol-700"
                         >
                           {t(`nav.${item.key}`)}
                         </NavLink>
@@ -131,15 +150,33 @@ export function SiteHeader() {
               </nav>
 
               <div className="mt-auto flex flex-col gap-2 border-t border-border p-4">
-                {accountLinks.map((a) => (
-                  <SheetClose key={a.to} asChild>
-                    <Button asChild variant="outline" size="sm">
-                      <Link to={a.to}>{a.label}</Link>
+                {isAuthenticated ? (
+                  <SheetClose asChild>
+                    <Button asChild variant="outline">
+                      <Link to={paths.dashboard}>
+                        {t("nav.myArea")}
+                      </Link>
                     </Button>
                   </SheetClose>
-                ))}
+                ) : (
+                  <>
+                    <SheetClose asChild>
+                      <Button asChild variant="outline">
+                        <Link to={paths.login}>
+                          <User className="size-4" aria-hidden />
+                          {t("nav.login")}
+                        </Link>
+                      </Button>
+                    </SheetClose>
+                    <SheetClose asChild>
+                      <Button asChild variant="outline">
+                        <Link to={paths.signup}>{t("nav.signup")}</Link>
+                      </Button>
+                    </SheetClose>
+                  </>
+                )}
                 <SheetClose asChild>
-                  <Button asChild variant="cta" size="sm">
+                  <Button asChild variant="cta">
                     <Link to={paths.assessment.start}>
                       {t("nav.startAssessment")}
                     </Link>

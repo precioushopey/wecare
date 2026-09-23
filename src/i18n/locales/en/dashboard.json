@@ -3,8 +3,6 @@
   "tabsAria": "Dashboard sections",
   "nav": {
     "home": "Overview",
-    "assessment": "My Assessment",
-    "recommendation": "My Recommendation",
     "orders": "My Orders",
     "followUp": "Follow-up",
     "support": "Support",
@@ -12,23 +10,13 @@
   },
   "tabs": {
     "home": "Overview",
-    "assessment": "Assessment",
-    "recommendation": "Solution",
     "orders": "Orders",
     "profile": "Profile"
-  },
-  "journey": {
-    "heading": "Your journey",
-    "steps": {
-      "assessment": "Assessment",
-      "review": "Medical review",
-      "prescription": "Prescription",
-      "delivery": "Order & delivery"
-    }
   },
   "delivery": {
     "coverage": "Where we deliver",
     "shipTo": "Delivering to",
+    "shipToLine": "Delivering to {{name}}, {{street}}, {{postalCode}} {{city}}, {{country}}.",
     "track": {
       "heading": "Your delivery",
       "steps": {
@@ -37,14 +25,12 @@
         "onTheWay": "On the way",
         "delivered": "Delivered"
       },
-      "noVan": "Step-by-step courier tracking from the carrier is available as soon as your order ships."
+      "noVan": "Step-by-step courier tracking from the carrier is available as soon as your order ships.",
+      "mapHeading": "Live courier map",
+      "mapComingSoon": "Not connected yet"
     }
   },
   "assessment": {
-    "title": "My assessment",
-    "empty": "You haven't completed an assessment yet.",
-    "emptyCta": "Start assessment",
-    "completedNote": "Your answers are saved.",
     "completedLabel": "Completed",
     "problem": "Concern",
     "frequency": "Frequency",
@@ -52,19 +38,11 @@
     "tried": "Tried before",
     "experience": "CBD experience",
     "formatPref": "Preferred format",
-    "retake": "Retake",
-    "reviewNote": "submitted for medical review"
+    "retake": "Retake"
   },
   "recommendation": {
-    "title": "My recommendation",
-    "empty": "No recommendation yet.",
-    "emptyCta": "Start assessment",
-    "primary": "Recommended for you",
     "secondary": "Also available",
-    "view": "View recommended solution",
-    "reviewLabel": "Medical review",
-    "notSubmitted": "Not submitted for review yet.",
-    "inReview": "This recommendation is in medical review."
+    "view": "View recommended solution"
   },
   "orders": {
     "title": "My orders",
@@ -94,7 +72,8 @@
       "shipped": "Shipped",
       "delivered": "Delivered"
     },
-    "grams": "{{count}} g"
+    "grams": "{{count}} g",
+    "totalPending": "Confirmed after review"
   },
   "followUp": {
     "title": "Follow-up",
@@ -127,7 +106,7 @@
       "retake": "Retake assessment",
       "contact": "Contact support"
     },
-    "updateCta": "Update My Recommendation"
+    "updateCta": "Review my options"
   },
   "support": {
     "title": "Support",
@@ -142,6 +121,12 @@
     "phone": "Phone",
     "phoneNone": "Not added",
     "phonePlaceholder": "+43 …",
+    "address": "Address",
+    "addressNone": "Not added",
+    "street": "Street and number",
+    "postalCode": "Postal code",
+    "city": "City",
+    "country": "Country",
     "changePhoto": "Change photo",
     "removePhoto": "Remove photo",
     "photoHint": "A square image works best.",
@@ -153,8 +138,7 @@
     "saved": "Your details are saved.",
     "signOut": "Sign out",
     "detailsLabel": "Details",
-    "more": "More",
-    "exploreSite": "Explore WeCare"
+    "more": "More"
   },
   "auth": {
     "signInTitle": "Login",
@@ -171,8 +155,8 @@
     "continueWithGoogle": "Continue with Google",
     "continueWithApple": "Continue with Apple",
     "orDivider": "or",
-    "newHere": "New to WeCare?",
-    "newHereCta": "Start the assessment",
+    "haveAccount": "Already have an account?",
+    "noAccount": "New here?",
     "requiredNote": "Please sign in to see this area.",
     "checkoutNote": "Please sign in to complete your order. We'll take you back to checkout."
   },

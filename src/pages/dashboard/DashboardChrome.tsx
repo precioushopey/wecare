@@ -15,7 +15,7 @@ import { Avatar } from "./ui";
 
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
   cn(
-    "flex items-center gap-3 rounded-2xl px-3.5 py-2.5 text-sm font-medium outline-none transition-colors focus-visible:ring-2 focus-visible:ring-petrol-600",
+    "flex items-center gap-3 rounded-2xl px-3.5 py-2.5 text-sm md:text-base font-medium outline-none transition-colors focus-visible:ring-2 focus-visible:ring-petrol-600",
     isActive
       ? "bg-white/80 text-petrol-700 shadow-[0_4px_14px_-8px_rgba(13,68,75,0.3)]"
       : "text-ink-muted hover:bg-white/50 hover:text-ink",
@@ -29,7 +29,7 @@ function CartChip({ count, label }: { count: number; label: string }) {
       className="glass glass-hover relative inline-flex size-10 shrink-0 items-center justify-center rounded-full text-ink-muted outline-none transition-colors hover:text-ink focus-visible:ring-2 focus-visible:ring-petrol-600"
     >
       <ShoppingBag className="size-5" aria-hidden />
-      <span className="absolute -right-0.5 -top-0.5 min-w-4 rounded-full bg-cta px-1 text-center font-mono text-[10px] leading-4 text-cta-foreground">
+      <span className="absolute -right-0.5 -top-0.5 min-w-4 rounded-full bg-cta px-1 text-center font-mono text-sm md:text-base leading-4 text-cta-foreground">
         {count}
       </span>
     </NavLink>
@@ -87,9 +87,9 @@ function AccountMenu({
       >
         <Avatar name={name} src={user?.avatarUrl} className="size-8" />
         <span className="hidden max-w-[11rem] flex-col text-left leading-tight xl:flex">
-          <span className="truncate text-sm font-medium text-ink">{name}</span>
+          <span className="truncate text-sm md:text-base font-medium text-ink">{name}</span>
           {email ? (
-            <span className="truncate text-xs text-ink-muted">{email}</span>
+            <span className="truncate text-sm md:text-base text-ink-muted">{email}</span>
           ) : null}
         </span>
         <ChevronDown
@@ -107,12 +107,12 @@ function AccountMenu({
           className="glass-strong absolute right-0 top-[calc(100%+0.5rem)] z-40 w-64 rounded-2xl border border-white/60 p-3 shadow-[var(--shadow-float)]"
         >
           {email ? (
-            <p className="truncate px-1 pb-2 text-xs text-ink-muted xl:hidden">
+            <p className="truncate px-1 pb-2 text-sm md:text-base text-ink-muted xl:hidden">
               {email}
             </p>
           ) : null}
           <div className="flex items-center justify-between gap-2 px-1">
-            <span className="text-xs font-medium text-ink-muted">
+            <span className="text-sm md:text-base font-medium text-ink-muted">
               {tCommon("language.label")}
             </span>
             <LanguageToggle />
@@ -124,7 +124,7 @@ function AccountMenu({
               setOpen(false);
               signOut();
             }}
-            className="mt-2 flex w-full items-center gap-2 rounded-xl px-2.5 py-2 text-sm font-medium text-danger-700 outline-none transition-colors hover:bg-danger-50 focus-visible:ring-2 focus-visible:ring-petrol-600"
+            className="mt-2 flex w-full items-center gap-2 rounded-xl px-2.5 py-2 text-sm md:text-base font-medium text-danger-700 outline-none transition-colors hover:bg-danger-50 focus-visible:ring-2 focus-visible:ring-petrol-600"
           >
             <LogOut className="size-4" aria-hidden />
             {t("profile.signOut")}
@@ -137,16 +137,21 @@ function AccountMenu({
 
 /**
  * The signed-in area's visual shell — a persistent frosted sidebar (desktop)
- * around a centred content column. Used two ways:
+ * around a centred content column.
  *
- * - **`DashboardLayout`** (the `/dashboard/*` routes) passes `headerTitle` /
- *   `isHome` and gets the full chrome: the mobile app-bar + desktop header row
- *   with the section title and cart chip.
- * - **`RootLayout`** wraps the funnel / shop pages a *signed-in* user reaches
- *   (`/shop`, `/shop/:id`, `/assessment/*`) in `<DashboardChrome embed>` so
- *   they render inside the same shell instead of the marketing header/footer.
- *   Embed mode drops the header row (those pages own their headings) and keeps
- *   only a right-aligned cart chip when the cart has items.
+ * Used by **`DashboardLayout`** (the `/dashboard/*` routes), which passes
+ * `headerTitle` / `isHome` and gets the full chrome: the mobile app-bar +
+ * desktop header row with the section title and cart chip.
+ *
+ * `embed` mode is also used directly by `RootLayout` for a `/shop/:id`
+ * product page reached from inside the dashboard (`?origin=dashboard`,
+ * signed-in only — see `RoutedShell`'s `dashboardOrigin` branch, 2026-09-23).
+ * The funnel re-sequence (2026-09-08) had moved every `/shop/:id` visit to
+ * the standalone `FunnelChrome`, which left dashboard links like "Also
+ * available" ejecting the user into a chromeless funnel with no way back;
+ * this reinstates the embed for that one dashboard-originated case only —
+ * the fresh assessment → result → product hand-off still renders in
+ * `FunnelChrome` regardless of auth state.
  *
  * The floating bottom tab bar (`DashboardTabBar`) and `ConsentBanner` are
  * rendered from `RootLayout`, outside `PageReveal`'s transform, so their
@@ -269,16 +274,16 @@ export function DashboardChrome({
                       />
                     </NavLink>
                     <div className="min-w-0 flex-1">
-                      <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-petrol-600">
+                      <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.14em] text-petrol-600">
                         {t("title")}
                       </p>
-                      <h1 className="truncate text-xl leading-tight">
+                      <h1 className="truncate text-xl md:text-2xl leading-tight">
                         {headerTitle}
                       </h1>
                     </div>
                   </div>
                   {isHome ? (
-                    <p className="mt-1.5 text-sm text-ink-muted">
+                    <p className="mt-1.5 text-sm md:text-base text-ink-muted">
                       {t("greeting.subtitle")}
                     </p>
                   ) : null}
@@ -287,14 +292,14 @@ export function DashboardChrome({
                 {/* Desktop page header (hidden below `lg`). */}
                 <div className="hidden items-start justify-between gap-4 pt-8 lg:flex">
                   <div className="min-w-0">
-                    <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-petrol-600">
+                    <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.14em] text-petrol-600">
                       {t("title")}
                     </p>
-                    <h1 className="mt-1 truncate text-2xl leading-tight lg:text-3xl">
+                    <h1 className="mt-1 truncate text-2xl md:text-3xl leading-tight lg:text-3xl">
                       {headerTitle}
                     </h1>
                     {isHome ? (
-                      <p className="mt-2 text-sm text-ink-muted">
+                      <p className="mt-2 text-sm md:text-base text-ink-muted">
                         {t("greeting.subtitle")}
                       </p>
                     ) : null}

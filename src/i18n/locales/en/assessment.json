@@ -10,14 +10,21 @@
     "under": "If you are under 18, please speak with a parent, guardian or your doctor.",
     "back": "Back to home"
   },
+  "legalGate": {
+    "title": "Before you begin",
+    "body": "WeCare's questionnaire is not a medical diagnosis. A licensed doctor reviews every request, and a prescription is never guaranteed.",
+    "checkbox": "I have read and agree to the <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy> (currently in draft; final versions will be confirmed before launch).",
+    "continue": "Continue",
+    "back": "Back to home"
+  },
   "start": {
     "title": "Your assessment",
-    "intro": "Six short questions about how you feel (about 60 to 90 seconds). This is not a medical form, no documents needed, and you can change any answer before you finish.",
+    "intro": "A few short questions about how you feel (about 60 to 90 seconds). This is not a medical form, no documents needed, and you can change any answer before you finish.",
     "prefilledNote": "Pre-selected: {{condition}}",
     "progress": "Question {{current}} of {{total}}",
     "back": "Back",
     "next": "Next",
-    "submit": "Show My Recommended Solution",
+    "submit": "Continue",
     "resumeNote": "We saved your previous answers.",
     "restart": "Start over",
     "privacyNote": "Your answers are private and secure.",
@@ -25,7 +32,9 @@
   },
   "phase": {
     "leadIn": "Getting started",
-    "leadInNote": "One quick delivery check, then your questions."
+    "leadInNote": "One quick delivery check, then your questions.",
+    "finalChecks": "Final checks",
+    "finalChecksNote": "A few safety questions for the doctor reviewing your request."
   },
   "postcode": {
     "heading": "Where should we deliver?",
@@ -65,7 +74,8 @@
       "none": "None of these"
     },
     "flaggedNote": "Thanks. Your medical reviewer will go through these with you before anything is prescribed.",
-    "continue": "Submit for medical review",
+    "continue": "See my recommendation",
+    "back": "Back to the last question",
     "requiredPrompt": "Answer the first two questions to continue."
   },
   "questions": {
@@ -151,12 +161,10 @@
       "strength": "Strength"
     },
     "primaryHeading": "Recommended for you",
-    "secondaryHeading": "Secondary product",
-    "explanationHeading": "Why this recommendation",
     "gentleNudge": "We start gentle with a lower-THC solution, usually an oil for controlled dosing. You can adjust it later with your doctor.",
     "disclaimer": "This recommendation is based on your answers and wellness preferences. It does not replace medical advice.",
-    "viewSolution": "View Recommended Solution",
-    "changeAnswers": "Change My Answers",
+    "reviewingNote": "A doctor is now reviewing your request.",
+    "reviewingLink": "See review status",
     "reviewRequiredNote": "Medical cannabis is prescription-only. Your assessment is reviewed by a doctor; a prescription is issued only if it is medically appropriate.",
     "explanations": {
       "sleep": "Based on your sleep answers, we start with an evening support solution that tends to be calming. A stronger option is available if you need to step up.",
@@ -168,16 +176,16 @@
     "nextHeading": "What happens next",
     "next": {
       "view": {
-        "title": "View your recommended Solution",
-        "body": "See what was matched and why, then continue to medical review."
+        "title": "Choose your amount",
+        "body": "Pick how much you'd like of your matched solution."
       },
       "review": {
         "title": "Medical review",
-        "body": "A doctor checks that it is suitable for you. A prescription is issued only if appropriate."
+        "body": "A doctor is reviewing your answers now. A prescription is issued only if it is medically appropriate."
       },
       "delivery": {
-        "title": "Order & delivery",
-        "body": "Once approved, choose your amount and a licensed pharmacy ships it discreetly to your door."
+        "title": "Prescription & delivery",
+        "body": "If approved, you confirm payment and a licensed pharmacy ships it discreetly to your door."
       }
     },
     "detailsLabel": "THC, price & ingredients",
@@ -257,11 +265,5 @@
         "body": "The reviewing doctor would like a brief consultation before deciding. Check your email for the next step."
       }
     }
-  },
-  "medicalReview": {
-    "pageTitle": "Continue to medical review",
-    "eyebrow": "Medical review",
-    "heading": "A few things your reviewer needs to know",
-    "intro": "Medical cannabis is prescription-only. A licensed doctor reviews your information before anything is prescribed."
   }
 }

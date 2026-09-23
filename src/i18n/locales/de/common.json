@@ -12,8 +12,9 @@
     "howItWorks": "So funktioniert's",
     "faq": "Häufige Fragen",
     "costs": "Kosten",
+    "account": "Konto",
     "login": "Anmelden",
-    "signup": "Registrieren",
+    "signup": "Konto erstellen",
     "myArea": "Mein Bereich",
     "startAssessment": "Fragebogen starten",
     "primary": "Hauptnavigation",
@@ -42,7 +43,9 @@
   },
   "a11y": {
     "skipToContent": "Zum Hauptinhalt springen",
-    "moreInfo": "Mehr Informationen"
+    "moreInfo": "Mehr Informationen",
+    "showPassword": "Passwort anzeigen",
+    "hidePassword": "Passwort verbergen"
   },
   "consent": {
     "title": "Cookies & Datenschutz",
@@ -94,6 +97,17 @@
       "labTests": "Labortests / COA"
     }
   },
+  "funnel": {
+    "label": "Fortschritt",
+    "steps": {
+      "questions": "Fragen",
+      "match": "Deine Empfehlung",
+      "details": "Deine Daten",
+      "done": "Fertig"
+    },
+    "home": "Zur Startseite",
+    "cart": "Warenkorb"
+  },
   "pages": {
     "home": {
       "title": "Finde die richtige Unterstützung bei Schlaf, Schmerzen, Stress und Migräne",
@@ -136,7 +150,7 @@
     },
     "assessmentStart": {
       "title": "Dein Fragebogen",
-      "description": "Sechs kurze Fragen zu deinem Anliegen. Am Ende erhältst du deine empfohlene Lösung."
+      "description": "Ein paar kurze Fragen zu deinem Anliegen. Am Ende erhältst du deine empfohlene Lösung."
     },
     "result": {
       "title": "Deine empfohlene Lösung ist bereit",
@@ -212,15 +226,7 @@
     }
   },
   "journey": {
-    "label": "Dein Weg",
-    "stepOf": "Schritt {{current}} von {{total}}",
-    "steps": {
-      "problem": "Anliegen",
-      "assessment": "Fragebogen",
-      "solution": "Empfehlung",
-      "product": "Produkt",
-      "followUp": "Nachsorge"
-    }
+    "stepOf": "Schritt {{current}} von {{total}}"
   },
   "medicalNotice": {
     "heading": "Wichtige Hinweise zu medizinischem Cannabis",

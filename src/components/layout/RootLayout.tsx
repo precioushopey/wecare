@@ -1,7 +1,13 @@
-import { Outlet, ScrollRestoration, useLocation } from "react-router";
+import { Outlet, ScrollRestoration, useLocation, useSearchParams } from "react-router";
 import { useTranslation } from "react-i18next";
 
-import { isAppShellRoute, paths } from "@/app/paths";
+import {
+  funnelStepFor,
+  hasDashboardOrigin,
+  isDashboardEmbeddableFunnelRoute,
+  isFunnelRoute,
+  paths,
+} from "@/app/paths";
 import { Providers } from "@/app/Providers";
 import { GradientBackdrop } from "@/components/marketing/GradientBackdrop";
 import { PageReveal } from "@/components/marketing/PageReveal";
@@ -11,6 +17,7 @@ import { DashboardTabBar } from "@/pages/dashboard/DashboardTabBar";
 import { SiteStructuredData } from "@/seo/StructuredData";
 
 import { ConsentBanner } from "./ConsentBanner";
+import { FunnelChrome } from "./FunnelChrome";
 import { ScrollToHash } from "./ScrollToHash";
 import { SiteFooter } from "./SiteFooter";
 import { SiteHeader } from "./SiteHeader";
@@ -24,7 +31,7 @@ export function RootLayout() {
       <SiteStructuredData />
       <a
         href="#main-content"
-        className="sr-only rounded-md bg-surface px-4 py-2 text-sm font-medium text-ink shadow-[var(--shadow-float)] focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60]"
+        className="sr-only rounded-md bg-surface px-4 py-2 text-sm md:text-base font-medium text-ink shadow-[var(--shadow-float)] focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60]"
       >
         {t("a11y.skipToContent")}
       </a>
@@ -36,27 +43,71 @@ export function RootLayout() {
 }
 
 /**
- * Chooses the chrome for the current route. Must live inside `<Providers>` so
- * it can read auth state.
+ * Chooses the chrome for the current route (must be inside the Router
+ * context — it reads `useLocation`).
  *
- * - `/dashboard/*` → no marketing header/footer; the route's own
- *   `DashboardLayout` supplies the shell.
- * - A funnel / shop route (`isAppShellRoute`) **while signed in** → wrapped in
- *   `DashboardChrome embed`, so the guided journey stays inside the app shell.
+ * - `/dashboard/*` → the route's own `DashboardLayout` supplies the shell.
+ * - An informational funnel page (`isDashboardEmbeddableFunnelRoute` — a
+ *   product page or the review-status page) reached from the dashboard
+ *   (`?origin=dashboard`, signed-in only) → `DashboardChrome embed`, so
+ *   browsing another Solution's details or checking your review never ejects
+ *   a dashboard user into the standalone funnel (reported bug, 2026-09-23 —
+ *   the "Also available" row and similar dashboard links used to hard-land
+ *   on the funnel shell with no way back to the dashboard).
+ * - Any other funnel route (`isFunnelRoute`) → `FunnelChrome`, for every
+ *   visitor — this is still how a fresh assessment-to-checkout pass renders,
+ *   signed in or not, and how `/cart` / `/checkout` / `/order-confirmation`
+ *   always render (deliberately not embeddable, see
+ *   `isDashboardEmbeddableFunnelRoute`'s comment).
  * - Everything else → the marketing header + footer.
  *
- * `DashboardTabBar` and `ConsentBanner` are rendered outside `PageReveal`
- * (whose transform would trap their `position: fixed`).
+ * `DashboardTabBar` and `ConsentBanner` render outside `PageReveal` (whose
+ * transform would trap their `position: fixed`).
  */
 function RoutedShell() {
   const { pathname } = useLocation();
+  const [searchParams] = useSearchParams();
   const { isAuthenticated } = useAuth();
 
   const isHome = pathname === paths.home;
   const isDashboard =
     pathname === paths.dashboard || pathname.startsWith(`${paths.dashboard}/`);
-  const appShell = !isDashboard && isAuthenticated && isAppShellRoute(pathname);
-  const marketingChrome = !isDashboard && !appShell;
+  const dashboardOrigin =
+    !isDashboard &&
+    isAuthenticated &&
+    isDashboardEmbeddableFunnelRoute(pathname) &&
+    hasDashboardOrigin(searchParams);
+  const funnel = !isDashboard && !dashboardOrigin && isFunnelRoute(pathname);
+  const marketingChrome = !isDashboard && !dashboardOrigin && !funnel;
+
+  if (dashboardOrigin) {
+    return (
+      <>
+        <PageReveal>
+          <DashboardChrome embed>
+            <Outlet />
+          </DashboardChrome>
+        </PageReveal>
+        <ScrollRestoration />
+        <ScrollToHash />
+        <DashboardTabBar />
+      </>
+    );
+  }
+
+  if (funnel) {
+    return (
+      <>
+        <PageReveal>
+          <FunnelChrome step={funnelStepFor(pathname)}>
+            <Outlet />
+          </FunnelChrome>
+        </PageReveal>
+        <ScrollRestoration />
+        <ScrollToHash />
+      </>
+    );
+  }
 
   return (
     <>
@@ -64,20 +115,14 @@ function RoutedShell() {
         {marketingChrome && <SiteHeader />}
         <main id="main-content" className="flex-1">
           <PageReveal>
-            {appShell ? (
-              <DashboardChrome embed>
-                <Outlet />
-              </DashboardChrome>
-            ) : (
-              <Outlet />
-            )}
+            <Outlet />
           </PageReveal>
         </main>
         {marketingChrome && <SiteFooter roundedTop={!isHome} />}
         <ScrollRestoration />
         <ScrollToHash />
       </div>
-      {(isDashboard || appShell) && <DashboardTabBar />}
+      {isDashboard && <DashboardTabBar />}
     </>
   );
 }

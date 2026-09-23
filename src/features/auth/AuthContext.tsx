@@ -10,6 +10,8 @@ import type { ReactNode } from "react";
 
 import { AnalyticsEvent, track } from "@/lib/analytics";
 
+import { markReturningVisitor } from "./returning";
+
 /**
  * MOCK auth — no backend. `signIn` accepts any email and stores a local
  * session so the dashboard flow is demonstrable. Replace with a real
@@ -48,13 +50,37 @@ function clearSessionScopedStores() {
   }
 }
 
+/** A saved contact/delivery address on the profile (mock auth — lives only in
+ *  this browser's `wecare.auth`). Present only once a street has been entered. */
+export interface ProfileAddress {
+  street: string;
+  postalCode: string;
+  city: string;
+  country: string;
+}
+
 export interface AuthUser {
   name: string;
   email: string;
   phone?: string;
+  address?: ProfileAddress;
   /** Data URL of a self-chosen profile photo, resized client-side before it
    *  is stored (mock auth — lives only in this browser's `wecare.auth`). */
   avatarUrl?: string;
+}
+
+function parseAddress(value: unknown): ProfileAddress | undefined {
+  if (!value || typeof value !== "object") return undefined;
+  const a = value as Record<string, unknown>;
+  const street = typeof a.street === "string" ? a.street.trim() : "";
+  if (!street) return undefined;
+  const str = (v: unknown) => (typeof v === "string" ? v.trim() : "");
+  return {
+    street,
+    postalCode: str(a.postalCode),
+    city: str(a.city),
+    country: str(a.country),
+  };
 }
 
 interface AuthContextValue {
@@ -65,7 +91,7 @@ interface AuthContextValue {
   signIn: (email: string, name?: string) => void;
   signOut: () => void;
   updateProfile: (
-    patch: Partial<Pick<AuthUser, "name" | "phone" | "avatarUrl">>,
+    patch: Partial<Pick<AuthUser, "name" | "phone" | "avatarUrl" | "address">>,
   ) => void;
 }
 
@@ -82,6 +108,7 @@ function load(): AuthUser | null {
         email: parsed.email,
         name: parsed.name ?? parsed.email,
         phone: typeof parsed.phone === "string" ? parsed.phone : undefined,
+        address: parseAddress(parsed.address),
         avatarUrl:
           typeof parsed.avatarUrl === "string" && parsed.avatarUrl
             ? parsed.avatarUrl
@@ -128,6 +155,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
       return { email: trimmed, name: name?.trim() || nameFromEmail(trimmed) };
     });
+    // Remember this browser has an account so the auth entry point defaults to
+    // "Log in" next time (device-level; survives sign-out).
+    markReturningVisitor();
     track(AnalyticsEvent.login);
   }, []);
 
@@ -138,7 +168,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const updateProfile = useCallback(
-    (patch: Partial<Pick<AuthUser, "name" | "phone" | "avatarUrl">>) => {
+    (
+      patch: Partial<
+        Pick<AuthUser, "name" | "phone" | "avatarUrl" | "address">
+      >,
+    ) => {
       setUser((prev) => {
         if (!prev) return prev;
         const next = { ...prev, ...patch };
@@ -146,6 +180,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         if (typeof next.phone === "string") {
           const p = next.phone.trim();
           next.phone = p === "" ? undefined : p;
+        }
+        if ("address" in patch) {
+          // Empty street ⇒ no address on file (see parseAddress).
+          next.address = parseAddress(patch.address);
         }
         if (typeof next.avatarUrl === "string" && next.avatarUrl === "") {
           next.avatarUrl = undefined;

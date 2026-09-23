@@ -6,7 +6,9 @@
     "resultCount": "{{count}} Lösungen",
     "guideTitle": "Der beste Weg zu deiner Lösung ist der Fragebogen",
     "guideBody": "Diese Übersicht zeigt alle Lösungen als Referenz. Deine persönliche Empfehlung – und die Belieferung – ergeben sich aus dem Fragebogen und der ärztlichen Prüfung.",
-    "fullRange": "Alle Lösungen"
+    "fullRange": "Alle Lösungen",
+    "filteredHeading": "Weitere Optionen bei {{problem}}",
+    "viewAllSolutions": "Alle Lösungen ansehen"
   },
   "card": {
     "pricePerGram": "ab {{price}} / 1 g",
@@ -16,19 +18,25 @@
   "pricesIndicative": "Die angezeigten Preise sind Richtwerte – dein endgültiger Preis wird nach deiner ärztlichen Prüfung bestätigt.",
   "solution": {
     "backToShop": "Zurück zu den Lösungen",
+    "backToRecommendation": "Zurück zu deiner Empfehlung",
+    "backToDashboard": "Zurück zu meinem Bereich",
+    "viewMoreSolutions": "Weitere Lösungen ansehen",
     "forProblems": "Bei: {{problems}}",
     "prescriptionBadge": "Nur nach ärztlicher Freigabe",
+    "inCartBadge": "{{grams}} g bereits im Warenkorb",
     "thcRangeLabel": "Typischer THC-Bereich",
     "pricePerGram": "ab {{price}} / 1 g",
     "priceLabel": "Preis pro Gramm",
     "oilProfileLabel": "Profil des Einstiegs-Öls",
     "amountLabel": "Menge",
     "grams": "{{count}} g",
-    "addToCart": "In den Warenkorb",
+    "addToCart": "In den Warenkorb legen",
+    "addingToCart": "Wird hinzugefügt …",
+    "addedToCart": "Zum Warenkorb hinzugefügt",
+    "checkoutCta": "Zur Kasse",
+    "crossSellHeading": "Das könnte dir auch gefallen",
+    "seeDetails": "Details ansehen",
     "checkAvailability": "Verfügbarkeit prüfen",
-    "afterApprovalNote": "Bestellen kannst du, sobald deine ärztliche Prüfung freigegeben ist.",
-    "orderingDisabledNote": "Das Bestellen wird möglich, sobald die endgültigen Preise mit der Apotheke bestätigt sind. Der zu zahlende Preis wird immer angezeigt, bevor du eine Bestellung bestätigst.",
-    "backToRecommendation": "Zurück zu meiner Empfehlung",
     "detailsHeading": "Details zur Lösung",
     "whyHeading": "Warum empfohlen",
     "usageHeading": "Anwendung",
@@ -63,14 +71,12 @@
     "oilMelatoninLabel": "Zugesetzt",
     "oilMelatoninValue": "Melatonin",
     "labTestedBadge": "Laborgeprüft",
-    "continue": "Weiter",
     "amountBadges": {
       "starter": "Einsteiger",
       "recommended": "Empfohlen",
       "popular": "Beliebt"
     },
-    "amountHint": "Empfohlene Startmenge basierend auf der häufigsten Kundenwahl. Deine Ärztin oder dein Arzt kann die genaue Menge an deine Bedürfnisse anpassen.",
-    "continueToReview": "Weiter zur ärztlichen Prüfung"
+    "amountHint": "Empfohlene Startmenge basierend auf der häufigsten Kundenwahl. Deine Ärztin oder dein Arzt kann die genaue Menge an deine Bedürfnisse anpassen."
   },
   "solutions": {
     "night-now": {
@@ -166,18 +172,11 @@
     "shipping": "Versand",
     "shippingFree": "Kostenlos",
     "total": "Gesamt",
-    "checkout": "Zur Kasse",
+    "continue": "Zur Kasse",
     "continueShopping": "Deine Empfehlung ansehen",
     "prescriptionNotice": "Alle Artikel sind rezeptpflichtig und werden erst nach ärztlicher Freigabe versendet.",
     "priceAndPrescriptionNotice": "Die angezeigten Preise sind Richtwerte – dein endgültiger Preis wird nach deiner ärztlichen Prüfung bestätigt. Alle Artikel sind rezeptpflichtig und werden erst nach ärztlicher Freigabe versendet.",
     "finalPriceNote": "Der endgültige Preis wird angezeigt, bevor du deine Bestellung bestätigst. Alle Artikel sind rezeptpflichtig und werden erst nach ärztlicher Freigabe versendet."
-  },
-  "checkoutSteps": {
-    "label": "Bestellfortschritt",
-    "cart": "Warenkorb",
-    "details": "Angaben",
-    "review": "Prüfen",
-    "complete": "Fertig"
   },
   "checkoutUnavailable": {
     "heading": "Bestellen ist noch nicht möglich",
@@ -185,8 +184,9 @@
     "cta": "Meine Empfehlung ansehen"
   },
   "checkout": {
-    "title": "Kasse",
-    "contactHeading": "Kontakt",
+    "title": "Anfrage prüfen & bestätigen",
+    "accountHeading": "Konto erstellen",
+    "accountIntro": "Damit verfolgst du deine Anfrage und bestätigst deine Bestellung später.",
     "shippingHeading": "Lieferadresse",
     "fields": {
       "firstName": "Vorname",
@@ -196,7 +196,10 @@
       "city": "Ort",
       "phone": "Telefon",
       "phoneHint": "Für Lieferbenachrichtigungen, falls verfügbar.",
-      "country": "Land"
+      "country": "Land",
+      "email": "E-Mail",
+      "password": "Passwort",
+      "passwordConfirm": "Passwort bestätigen"
     },
     "optionalLabel": "(optional)",
     "errors": {
@@ -204,25 +207,21 @@
       "lastName": "Gib deinen Nachnamen an.",
       "street": "Gib deine Straße und Hausnummer an.",
       "city": "Gib deinen Ort an.",
-      "postalCode": "Gib eine 4-stellige österreichische PLZ an."
+      "postalCode": "Gib eine 4-stellige österreichische PLZ an.",
+      "email": "Bitte gib deine E-Mail-Adresse ein.",
+      "password": "Mindestens 8 Zeichen.",
+      "passwordConfirm": "Die Passwörter stimmen nicht überein."
     },
     "countryValue": "Österreich",
     "summaryHeading": "Bestellübersicht",
-    "placeOrder": "Bestellung abschließen",
-    "paymentNote": "Hier werden keine Kartendaten erfasst – die Zahlung erfolgt per Rechnung oder Überweisung, sobald eine Ärztin oder ein Arzt dein Rezept freigegeben hat.",
+    "summaryCount": "{{count}} Artikel",
+    "priceAfterReview": "Der Preis und eine mögliche Gebühr für die ärztliche Prüfung werden nach der Prüfung bestätigt, vor jeder Zahlung. Jetzt wird nichts berechnet.",
+    "placeOrder": "Anfrage absenden",
     "backToCart": "Zurück zum Warenkorb",
-    "required": "Pflichtfeld",
-    "paymentHeading": "Zahlungsart",
     "paymentMethods": {
       "invoice": "Auf Rechnung",
       "bankTransfer": "Banküberweisung"
     },
-    "deliveryLabel": "Lieferung",
-    "deliveryFree": "Kostenlos",
-    "reviewFeeNote": "Das deckt deine Lösung und die Lieferung ab. Eine eventuelle Gebühr für die ärztliche Prüfung wird separat angezeigt und bestätigt, bevor sie anfällt.",
-    "reviewFeeLink": "Was dich erwartet",
-    "reviewLine": "Ärztliche Prüfung",
-    "reviewLineValue": "Gebühr wird nach der Prüfung bestätigt",
     "nextHeading": "Nachdem du bestellt hast",
     "termsHeading": "Bestätigung",
     "termsLabel": "Ich akzeptiere die <terms>AGB</terms> und die <privacy>Datenschutzerklärung</privacy>.",
@@ -232,31 +231,32 @@
     "signedInAs": "Angemeldet als"
   },
   "confirmation": {
-    "title": "Danke für deine Bestellung",
-    "body": "Deine Bestellung ist eingegangen. So geht es weiter – bei jedem Schritt bekommst du eine E-Mail.",
-    "orderLabel": "Bestellnummer: {{id}}",
+    "title": "Deine Anfrage ist eingegangen",
+    "body": "Deine Anfrage ist eingegangen. Als Nächstes prüft sie eine Ärztin oder ein Arzt, und wir informieren dich per E-Mail bei jedem Schritt.",
+    "orderLabel": "Referenz: {{id}}",
     "itemsHeading": "Deine Bestellung",
     "totalLabel": "Gesamt",
+    "priceAfterReview": "Nach der Prüfung bestätigt",
     "paymentLabel": "Zahlung",
     "shipToHeading": "Lieferung an",
-    "stepsHeading": "Wo deine Bestellung steht",
+    "stepsHeading": "Wo deine Anfrage steht",
     "steps": {
       "received": {
-        "title": "Bestellung eingegangen",
-        "body": "Deine Bestellung und deine Angaben sind bei uns."
+        "title": "Anfrage eingegangen",
+        "body": "Deine Antworten und Lieferdaten sind bei uns."
       },
       "review": {
         "title": "Ärztliche Prüfung",
-        "body": "Eine Ärztin oder ein Arzt prüft deinen Fragebogen – das gehört zu jeder Bestellung."
+        "body": "Eine lizenzierte Ärztin oder ein lizenzierter Arzt prüft deine Anfrage. Ein Rezept wird nur ausgestellt, wenn es sinnvoll ist."
       },
       "dispatch": {
-        "title": "Versand aus der Apotheke",
-        "body": "Sobald die Freigabe da ist, verschickt eine zugelassene Apotheke dein Paket diskret zu dir nach Hause."
+        "title": "Rezept & Lieferung",
+        "body": "Wenn eine Freigabe erfolgt, bestätigst du die Zahlung und eine zugelassene Apotheke liefert diskret zu dir."
       }
     },
-    "timingNote": "Der Liefertermin wird angezeigt, sobald deine Bestellung freigegeben und von der Apotheke vorbereitet wurde. Wir halten deinen Bestellstatus auf dem Laufenden.",
+    "timingNote": "Den Liefertermin siehst du, sobald ein Rezept ausgestellt und deine Bestellung von der Apotheke vorbereitet wurde.",
     "support": "Fragen zu deiner Bestellung? Schreib an {{email}}",
-    "toOrders": "Bestellstatus ansehen",
-    "toHome": "Zur Übersicht"
+    "toOrders": "Anfrage verfolgen",
+    "toHome": "Zur Startseite"
   }
 }

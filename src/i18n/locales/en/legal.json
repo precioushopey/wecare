@@ -1,6 +1,6 @@
 {
   "effectiveDateLabel": "Effective from {{date}}",
-  "draftNotEffective": "Draft — not yet in effect",
+  "draftNotEffective": "Draft: not yet in effect",
   "preLaunchNotice": "Company details will be published before production launch.",
   "tocLabel": "On this page",
   "docs": {

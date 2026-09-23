@@ -6,7 +6,9 @@
     "resultCount": "{{count}} solutions",
     "guideTitle": "The best way to your solution is the assessment",
     "guideBody": "This overview shows all solutions for reference. Your personal recommendation and delivery both come from the assessment and the medical review.",
-    "fullRange": "All solutions"
+    "fullRange": "All solutions",
+    "filteredHeading": "Other options for {{problem}}",
+    "viewAllSolutions": "View all solutions"
   },
   "card": {
     "pricePerGram": "from {{price}} / 1 g",
@@ -16,8 +18,12 @@
   "pricesIndicative": "Prices shown are indicative. Your final price is confirmed after your medical review.",
   "solution": {
     "backToShop": "Back to solutions",
+    "backToRecommendation": "Back to your recommendation",
+    "backToDashboard": "Back to my area",
+    "viewMoreSolutions": "View more solutions",
     "forProblems": "For: {{problems}}",
     "prescriptionBadge": "Only after medical approval",
+    "inCartBadge": "{{grams}} g already in cart",
     "thcRangeLabel": "Typical THC range",
     "pricePerGram": "from {{price}} / 1 g",
     "priceLabel": "Price per gram",
@@ -25,10 +31,12 @@
     "amountLabel": "Amount",
     "grams": "{{count}} g",
     "addToCart": "Add to cart",
+    "addingToCart": "Adding…",
+    "addedToCart": "Added to cart",
+    "checkoutCta": "Checkout",
+    "crossSellHeading": "You might also like this",
+    "seeDetails": "See details",
     "checkAvailability": "Check availability",
-    "afterApprovalNote": "You can order once your medical review is approved.",
-    "orderingDisabledNote": "Ordering opens once final prices are confirmed with the pharmacy. The price you'll pay is always shown before you confirm an order.",
-    "backToRecommendation": "Back to my recommendation",
     "detailsHeading": "Solution details",
     "whyHeading": "Why it's recommended",
     "usageHeading": "How it's used",
@@ -63,14 +71,12 @@
     "oilMelatoninLabel": "Added",
     "oilMelatoninValue": "Melatonin",
     "labTestedBadge": "Lab tested",
-    "continue": "Continue",
     "amountBadges": {
       "starter": "Beginner",
       "recommended": "Recommended",
       "popular": "Most popular"
     },
-    "amountHint": "Recommended starting quantity based on common customer selection. Your prescribing doctor may adjust the exact amount to your needs.",
-    "continueToReview": "Continue to medical review"
+    "amountHint": "Recommended starting quantity based on common customer selection. Your prescribing doctor may adjust the exact amount to your needs."
   },
   "solutions": {
     "night-now": {
@@ -166,18 +172,11 @@
     "shipping": "Shipping",
     "shippingFree": "Free",
     "total": "Total",
-    "checkout": "Checkout",
+    "continue": "Checkout",
     "continueShopping": "View your recommendation",
     "prescriptionNotice": "All items are prescription-only and are shipped only after medical approval.",
     "priceAndPrescriptionNotice": "Prices shown are indicative, and your final price is confirmed after your medical review. All items are prescription-only and are shipped only after medical approval.",
     "finalPriceNote": "The final price will be shown before you confirm your order. All items are prescription-only and are shipped only after medical approval."
-  },
-  "checkoutSteps": {
-    "label": "Checkout progress",
-    "cart": "Cart",
-    "details": "Details",
-    "review": "Review",
-    "complete": "Complete"
   },
   "checkoutUnavailable": {
     "heading": "Ordering isn't available yet",
@@ -185,8 +184,9 @@
     "cta": "View my recommendation"
   },
   "checkout": {
-    "title": "Checkout",
-    "contactHeading": "Contact",
+    "title": "Review & confirm your request",
+    "accountHeading": "Create your account",
+    "accountIntro": "You'll use this to track your request and confirm your order later.",
     "shippingHeading": "Shipping address",
     "fields": {
       "firstName": "First name",
@@ -196,7 +196,10 @@
       "city": "City",
       "phone": "Phone",
       "phoneHint": "For delivery updates, if available.",
-      "country": "Country"
+      "country": "Country",
+      "email": "Email",
+      "password": "Password",
+      "passwordConfirm": "Confirm password"
     },
     "optionalLabel": "(optional)",
     "errors": {
@@ -204,25 +207,21 @@
       "lastName": "Enter your last name.",
       "street": "Enter your street and house number.",
       "city": "Enter your city or town.",
-      "postalCode": "Enter a 4-digit Austrian postcode."
+      "postalCode": "Enter a 4-digit Austrian postcode.",
+      "email": "Enter your email address.",
+      "password": "Use at least 8 characters.",
+      "passwordConfirm": "The passwords don't match."
     },
     "countryValue": "Austria",
     "summaryHeading": "Order summary",
-    "placeOrder": "Place order",
-    "paymentNote": "No card details are collected here. You pay by invoice or bank transfer once a doctor has approved your prescription.",
+    "summaryCount": "{{count}} items",
+    "priceAfterReview": "Price and any medical-review fee are confirmed after your review, before any payment. Nothing is charged now.",
+    "placeOrder": "Submit my request",
     "backToCart": "Back to cart",
-    "required": "Required",
-    "paymentHeading": "Payment method",
     "paymentMethods": {
       "invoice": "Pay by invoice",
       "bankTransfer": "Bank transfer"
     },
-    "deliveryLabel": "Delivery",
-    "deliveryFree": "Free",
-    "reviewFeeNote": "This covers your solution and delivery. Any medical-review fee is shown and confirmed separately before it applies.",
-    "reviewFeeLink": "What to expect",
-    "reviewLine": "Medical review",
-    "reviewLineValue": "Fee confirmed after review",
     "nextHeading": "After you place this order",
     "termsHeading": "Confirmation",
     "termsLabel": "I accept the <terms>Terms & Conditions</terms> and the <privacy>Privacy Policy</privacy>.",
@@ -232,31 +231,32 @@
     "signedInAs": "Signed in as"
   },
   "confirmation": {
-    "title": "Thank you for your order",
-    "body": "Your order is in. Here's what happens next, with an email at each step.",
-    "orderLabel": "Order number: {{id}}",
+    "title": "Your request is in",
+    "body": "Your request is in. A doctor reviews it next, and we'll email you at each step.",
+    "orderLabel": "Reference: {{id}}",
     "itemsHeading": "Your order",
     "totalLabel": "Total",
+    "priceAfterReview": "Confirmed after review",
     "paymentLabel": "Payment",
     "shipToHeading": "Delivering to",
-    "stepsHeading": "Where your order is",
+    "stepsHeading": "Where your request is",
     "steps": {
       "received": {
-        "title": "Order received",
-        "body": "We've got your order and your details."
+        "title": "Request received",
+        "body": "We've got your answers and your delivery details."
       },
       "review": {
-        "title": "Medical review",
-        "body": "A doctor reviews your assessment. This is part of every order."
+        "title": "Doctor review",
+        "body": "A licensed doctor reviews your request. A prescription is issued only if it is appropriate."
       },
       "dispatch": {
-        "title": "Pharmacy dispatch",
-        "body": "As soon as it's cleared, a licensed pharmacy ships your parcel discreetly to your door."
+        "title": "Prescription & delivery",
+        "body": "If approved, you confirm payment and a licensed pharmacy ships discreetly to your door."
       }
     },
-    "timingNote": "Delivery timing will be shown once your order has been approved and prepared by the pharmacy. We'll update your order status as it progresses.",
+    "timingNote": "You'll see delivery timing once a prescription is issued and the pharmacy has prepared your order.",
     "support": "Questions about your order? Email {{email}}",
-    "toOrders": "View order status",
-    "toHome": "Back to overview"
+    "toOrders": "Track my request",
+    "toHome": "Back to home"
   }
 }

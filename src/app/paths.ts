@@ -1,4 +1,22 @@
 /**
+ * Appends the query marker a dashboard link uses to say an otherwise-funnel-
+ * only page is safe to view without leaving the dashboard shell (`RootLayout`
+ * 's `dashboardOrigin` branch, `hasDashboardOrigin` below — see
+ * `shopProductFromDashboard`'s comment for the bug this fixes). Safe to call
+ * on a path that already carries its own query string (e.g. `/shop?problem=
+ * sleep`).
+ */
+function withDashboardOrigin(path: string): string {
+  return `${path}${path.includes("?") ? "&" : "?"}origin=dashboard`;
+}
+
+/** Reads the marker `withDashboardOrigin` sets, from a `URLSearchParams`
+ *  (`RootLayout` and any embeddable page check the same key this way). */
+export function hasDashboardOrigin(searchParams: URLSearchParams): boolean {
+  return searchParams.get("origin") === "dashboard";
+}
+
+/**
  * Single source of truth for route paths.
  *
  * The four problem-landing slugs were renamed English → German for the
@@ -36,25 +54,41 @@ export const paths = {
     medicalReview: "/assessment/medical-review",
     /** Medical-review status page (owner decision D3). */
     review: "/assessment/review",
+    /** The review-status page linked from inside `/dashboard/*` — see
+     *  `shopProductFromDashboard`'s comment; same mechanism, same bug. */
+    reviewFromDashboard: withDashboardOrigin("/assessment/review"),
   },
 
   /** Recommended Solution redirect — resolves to the recommended product page. */
   solution: "/solution",
 
   /** Commerce (spec Section 11). Deliberately NOT in primary nav.
-   *  Cart / checkout / confirmation live UNDER `/dashboard` so the signed-in
-   *  purchase flow never leaves the app shell (owner request, Sept 2026 — a
-   *  non-empty cart only ever belongs to a signed-in, medically-approved
-   *  user). Old `/shop/*` URLs redirect in via `LEGACY_REDIRECTS`. */
+   *  Cart / checkout / confirmation are top-level funnel routes rendered inside
+   *  `FunnelChrome` for every visitor (funnel re-sequence, 2026-09-08 —
+   *  supersedes the Sept-2026 "live under `/dashboard`" decision). Old
+   *  `/shop/*` and `/dashboard/*` URLs redirect in via `LEGACY_REDIRECTS`. */
   shop: "/shop",
   shopProduct: (id: string) => `/shop/${id}`,
-  cart: "/dashboard/cart",
-  checkout: "/dashboard/checkout",
-  orderConfirmation: "/dashboard/order-confirmation",
+  /** A product page linked from inside `/dashboard/*` — the `?origin=
+   *  dashboard` marker tells `RootLayout` (`RoutedShell`'s `dashboardOrigin`
+   *  branch) to keep the signed-in dashboard chrome instead of dropping the
+   *  visitor into the standalone funnel shell they'd otherwise have no way
+   *  back from (reported bug, 2026-09-23). Only safe for pages that are
+   *  purely informational (view a Solution, check a review status) — never
+   *  for `/cart` / `/checkout` / `/order-confirmation`, which stay
+   *  funnel-only on purpose (funnel re-sequence, 2026-09-08). */
+  shopProductFromDashboard: (id: string) => withDashboardOrigin(`/shop/${id}`),
+  /** The shop catalog (optionally filtered to a problem), as linked by a
+   *  dashboard-embedded product page's "View more solutions" and, from
+   *  there, the catalog's own "View all solutions" (same bug/mechanism as
+   *  `shopProductFromDashboard` — 2026-09-23). */
+  shopFromDashboard: (problem?: string) =>
+    withDashboardOrigin(problem ? `/shop?problem=${problem}` : "/shop"),
+  cart: "/cart",
+  checkout: "/checkout",
+  orderConfirmation: "/order-confirmation",
 
   dashboard: "/dashboard",
-  dashboardAssessment: "/dashboard/assessment",
-  dashboardRecommendation: "/dashboard/recommendation",
   dashboardOrders: "/dashboard/orders",
   dashboardFollowUp: "/dashboard/follow-up",
   dashboardSupport: "/dashboard/support",
@@ -81,13 +115,20 @@ export const paths = {
 /**
  * Old path → current path. Wired as SPA redirects in `router.tsx` and (target
  * state) as host-level 301s (SEO-FOUNDATION.md §G3). Covers the English→German
- * slug rename, the even-older `/conditions/*` paths, and the `/shop/*` →
- * `/dashboard/*` move of cart / checkout / confirmation.
+ * slug rename, the even-older `/conditions/*` paths, and the cart / checkout /
+ * confirmation moves (`/shop/*` and `/dashboard/*` → top-level funnel routes).
  */
 export const LEGACY_REDIRECTS: Record<string, string> = {
   "/shop/cart": paths.cart,
   "/shop/checkout": paths.checkout,
   "/shop/confirmation": paths.orderConfirmation,
+  "/dashboard/cart": paths.cart,
+  "/dashboard/checkout": paths.checkout,
+  "/dashboard/order-confirmation": paths.orderConfirmation,
+  // "My Assessment" + "My Recommendation" dashboard pages merged into the
+  // Overview (2026-09-09) — old URLs land there now.
+  "/dashboard/assessment": paths.dashboard,
+  "/dashboard/recommendation": paths.dashboard,
   "/sleep-problems": paths.conditions.sleep,
   "/pain-body-discomfort": paths.conditions.pain,
   "/stress-anxiety": paths.conditions.stressAnxiety,
@@ -111,22 +152,64 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
 };
 
 /**
- * Funnel / shop routes that, for a **signed-in** user, render inside the
- * dashboard shell (`DashboardChrome embed`) instead of the marketing
- * header/footer — so the guided journey never leaves the app once you're
- * logged in. Anonymous visitors still get the marketing chrome on these.
- * `/dashboard/*` is handled by its own route, not this list.
+ * The standalone purchase funnel. These routes render inside `FunnelChrome`
+ * (logo + a 4-step progress bar, no marketing nav, no dashboard shell) for
+ * **every** visitor — signed in or not. The signed-in journey no longer runs
+ * inside the dashboard shell (funnel re-sequence, 2026-09-08 — supersedes the
+ * Sept-2026 "journey stays in the dashboard shell" decision). `/dashboard/*`
+ * is handled by its own route, not this list.
  */
-export function isAppShellRoute(pathname: string): boolean {
-  const p = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
-  if (p === paths.shop || p.startsWith(`${paths.shop}/`)) return true;
+const FUNNEL_EXACT = new Set<string>([
+  paths.assessment.start,
+  paths.assessment.result,
+  paths.assessment.medicalReview,
+  paths.assessment.review,
+  paths.solution,
+  paths.cart,
+  paths.checkout,
+  paths.orderConfirmation,
+]);
+
+function trimTrailingSlash(pathname: string): string {
+  return pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
+}
+
+export function isFunnelRoute(pathname: string): boolean {
+  const p = trimTrailingSlash(pathname);
+  return FUNNEL_EXACT.has(p) || p.startsWith(`${paths.shop}/`);
+}
+
+/**
+ * The subset of funnel routes that are purely informational — the shop
+ * catalog, viewing a Solution, checking a review status — and so safe to
+ * render inside `DashboardChrome embed` instead of `FunnelChrome` when a
+ * signed-in visitor reaches them from the dashboard (`?origin=dashboard`,
+ * see `hasDashboardOrigin`). Note `/shop` (bare) isn't itself a funnel route
+ * (`isFunnelRoute` below) — it already renders with marketing chrome for
+ * every other visitor; this only matters when the origin marker is present.
+ * Deliberately excludes `/cart` / `/checkout` / `/order-confirmation` and the
+ * assessment-taking routes (`start` / `result` / `medicalReview`) — those
+ * stay funnel-only (or marketing-chromed) on purpose, either because they're
+ * a linear commerce step (funnel re-sequence, 2026-09-08) or because they're
+ * actively running a fresh guided flow.
+ */
+export function isDashboardEmbeddableFunnelRoute(pathname: string): boolean {
+  const p = trimTrailingSlash(pathname);
   return (
-    p === paths.solution ||
-    p === paths.assessment.start ||
-    p === paths.assessment.result ||
-    p === paths.assessment.medicalReview ||
-    p === paths.assessment.review
+    p === paths.assessment.review ||
+    p === paths.shop ||
+    p.startsWith(`${paths.shop}/`)
   );
+}
+
+export function funnelStepFor(
+  pathname: string,
+): "questions" | "match" | "details" | "done" {
+  const p = trimTrailingSlash(pathname);
+  if (p === paths.assessment.start) return "questions";
+  if (p === paths.checkout || p === paths.cart) return "details";
+  if (p === paths.orderConfirmation) return "done";
+  return "match"; // result, product, /shop/:id, /solution, medical-review, review
 }
 
 /**

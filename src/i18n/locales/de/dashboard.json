@@ -3,8 +3,6 @@
   "tabsAria": "Navigation Mein Bereich",
   "nav": {
     "home": "Übersicht",
-    "assessment": "Mein Fragebogen",
-    "recommendation": "Meine Empfehlung",
     "orders": "Meine Bestellungen",
     "followUp": "Nachsorge",
     "support": "Support",
@@ -12,23 +10,13 @@
   },
   "tabs": {
     "home": "Übersicht",
-    "assessment": "Fragebogen",
-    "recommendation": "Lösung",
     "orders": "Bestellung",
     "profile": "Profil"
-  },
-  "journey": {
-    "heading": "Dein Weg",
-    "steps": {
-      "assessment": "Fragebogen",
-      "review": "Ärztliche Prüfung",
-      "prescription": "Rezept",
-      "delivery": "Bestellung & Lieferung"
-    }
   },
   "delivery": {
     "coverage": "Unser Liefergebiet",
     "shipTo": "Lieferung an",
+    "shipToLine": "Lieferung an {{name}}, {{street}}, {{postalCode}} {{city}}, {{country}}.",
     "track": {
       "heading": "Deine Lieferung",
       "steps": {
@@ -37,14 +25,12 @@
         "onTheWay": "Unterwegs",
         "delivered": "Geliefert"
       },
-      "noVan": "Die Schritt-für-Schritt-Sendungsverfolgung des Zustelldiensts ist verfügbar, sobald deine Bestellung versendet wird."
+      "noVan": "Die Schritt-für-Schritt-Sendungsverfolgung des Zustelldiensts ist verfügbar, sobald deine Bestellung versendet wird.",
+      "mapHeading": "Live-Kurierkarte",
+      "mapComingSoon": "Noch nicht verbunden"
     }
   },
   "assessment": {
-    "title": "Mein Fragebogen",
-    "empty": "Du hast noch keinen Fragebogen abgeschlossen.",
-    "emptyCta": "Fragebogen starten",
-    "completedNote": "Deine Antworten sind gespeichert.",
     "completedLabel": "Abgeschlossen",
     "problem": "Anliegen",
     "frequency": "Häufigkeit",
@@ -52,19 +38,11 @@
     "tried": "Bereits versucht",
     "experience": "CBD-Erfahrung",
     "formatPref": "Bevorzugte Form",
-    "retake": "Erneut durchführen",
-    "reviewNote": "zur ärztlichen Prüfung eingereicht"
+    "retake": "Erneut durchführen"
   },
   "recommendation": {
-    "title": "Meine Empfehlung",
-    "empty": "Noch keine Empfehlung vorhanden.",
-    "emptyCta": "Fragebogen starten",
-    "primary": "Für dich empfohlen",
     "secondary": "Ebenfalls verfügbar",
-    "view": "Empfohlene Lösung ansehen",
-    "reviewLabel": "Ärztliche Prüfung",
-    "notSubmitted": "Noch nicht zur Prüfung eingereicht.",
-    "inReview": "Diese Empfehlung ist in ärztlicher Prüfung."
+    "view": "Empfohlene Lösung ansehen"
   },
   "orders": {
     "title": "Meine Bestellungen",
@@ -94,7 +72,8 @@
       "shipped": "Versendet",
       "delivered": "Geliefert"
     },
-    "grams": "{{count}} g"
+    "grams": "{{count}} g",
+    "totalPending": "Nach der Prüfung bestätigt"
   },
   "followUp": {
     "title": "Nachsorge",
@@ -127,7 +106,7 @@
       "retake": "Fragebogen wiederholen",
       "contact": "Support kontaktieren"
     },
-    "updateCta": "Meine Empfehlung aktualisieren"
+    "updateCta": "Meine Optionen ansehen"
   },
   "support": {
     "title": "Support",
@@ -142,6 +121,12 @@
     "phone": "Telefon",
     "phoneNone": "Nicht hinterlegt",
     "phonePlaceholder": "+43 …",
+    "address": "Adresse",
+    "addressNone": "Nicht hinterlegt",
+    "street": "Straße und Hausnummer",
+    "postalCode": "PLZ",
+    "city": "Ort",
+    "country": "Land",
     "changePhoto": "Foto ändern",
     "removePhoto": "Foto entfernen",
     "photoHint": "Am besten ein quadratisches Bild.",
@@ -153,8 +138,7 @@
     "saved": "Deine Angaben sind gespeichert.",
     "signOut": "Abmelden",
     "detailsLabel": "Angaben",
-    "more": "Mehr",
-    "exploreSite": "WeCare entdecken"
+    "more": "Mehr"
   },
   "auth": {
     "signInTitle": "Anmelden",
@@ -171,8 +155,8 @@
     "continueWithGoogle": "Mit Google fortfahren",
     "continueWithApple": "Mit Apple fortfahren",
     "orDivider": "oder",
-    "newHere": "Neu bei WeCare?",
-    "newHereCta": "Zum Fragebogen",
+    "haveAccount": "Du hast schon ein Konto?",
+    "noAccount": "Neu hier?",
     "requiredNote": "Bitte melde dich an, um diesen Bereich zu sehen.",
     "checkoutNote": "Bitte melde dich an, um deine Bestellung abzuschließen – danach geht es zurück zur Kasse."
   },

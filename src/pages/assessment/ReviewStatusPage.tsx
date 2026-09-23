@@ -1,12 +1,13 @@
-import { Link, Navigate } from "react-router";
+import { Link, Navigate, useSearchParams } from "react-router";
 import { useTranslation } from "react-i18next";
 import { Check } from "lucide-react";
 
 import { Button } from "@/app/components/ui/button";
 import { cn } from "@/app/components/ui/utils";
-import { paths } from "@/app/paths";
+import { hasDashboardOrigin, paths } from "@/app/paths";
 import { usePageTitle } from "@/app/usePageTitle";
 import { AssessmentRing } from "@/components/brand/AssessmentRing";
+import { PageShell } from "@/components/marketing/PageShell";
 import { useAssessment } from "@/features/assessment/AssessmentContext";
 import { useAuth } from "@/features/auth/AuthContext";
 import { getMedicalReview, type ReviewStatus } from "@/features/review/review";
@@ -37,6 +38,12 @@ export function ReviewStatusPage() {
   const { t } = useTranslation("assessment");
   const { result } = useAssessment();
   const { isAuthenticated } = useAuth();
+  const [searchParams] = useSearchParams();
+  // Set by the dashboard's review-status link (`paths.assessment.
+  // reviewFromDashboard`) — carries the dashboard-embed context onward so
+  // "View solution" below doesn't drop it (same bug/mechanism as
+  // `ProductPage`'s `dashboardOrigin`, 2026-09-23).
+  const dashboardOrigin = hasDashboardOrigin(searchParams);
   usePageTitle(t("review.pageTitle"), undefined, { noindex: true });
 
   const review = getMedicalReview();
@@ -51,22 +58,22 @@ export function ReviewStatusPage() {
     s === "infoRequired" || s === "notApproved" || s === "consultation";
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6">
+    <PageShell>
       <div className="flex flex-col items-start gap-5 sm:flex-row">
         <AssessmentRing variant="complete" tone="deep" size={72} />
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-petrol-600">
+          <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.16em] text-petrol-600">
             {t("review.heading")}
           </p>
           <h1 className="mt-1">{t(`review.statuses.${s}.title`)}</h1>
-          <p className="mt-2 font-mono text-sm text-ink-muted">
+          <p className="mt-2 font-mono text-sm md:text-base text-ink-muted">
             {t("review.idLabel", { id: review.id })}
           </p>
         </div>
       </div>
 
       <div className="mt-6 flex items-center gap-2">
-        <span className="rounded-full bg-sage-100 px-3 py-1 text-xs font-medium text-petrol-700">
+        <span className="rounded-full bg-sage-100 px-3 py-1 text-sm md:text-base font-medium text-petrol-700">
           {t(`review.statuses.${s}.label`)}
         </span>
       </div>
@@ -74,14 +81,14 @@ export function ReviewStatusPage() {
       {/* Status body + "we'll email you" + "not guaranteed" as one paragraph
           rather than three size-stepped blocks with a divider (owner request,
           Sept 2026). */}
-      <p className="mt-4 text-sm leading-relaxed text-ink-muted">
+      <p className="mt-4 text-sm md:text-base leading-relaxed text-ink-muted">
         {t(`review.statuses.${s}.body`)} {t("review.reassure")}{" "}
         {t("review.notGuaranteed")}
       </p>
 
       {/* Status-aware progress: which stage the review is at, not a generic
           explainer. */}
-      <h2 className="mt-10 text-lg">{t("review.progressHeading")}</h2>
+      <h2 className="mt-10 text-lg md:text-xl">{t("review.progressHeading")}</h2>
       <ol className="mt-4 space-y-4">
         {REVIEW_STAGES.map((stage, i) => {
           const isDone = i < done;
@@ -94,7 +101,7 @@ export function ReviewStatusPage() {
             >
               <span
                 className={cn(
-                  "flex size-7 shrink-0 items-center justify-center rounded-lg font-display text-sm",
+                  "flex size-7 shrink-0 items-center justify-center rounded-lg font-display text-sm md:text-base",
                   isDone && "bg-sage-100 text-petrol-700",
                   isCurrent && "bg-petrol-600 text-white",
                   !isDone && !isCurrent &&
@@ -106,14 +113,14 @@ export function ReviewStatusPage() {
               <div>
                 <p
                   className={cn(
-                    "text-sm font-medium",
+                    "text-sm md:text-base font-medium",
                     isCurrent ? "text-ink" : "text-ink-muted",
                     isDone && "text-ink",
                   )}
                 >
                   {t(`review.stages.${stage}.label`)}
                 </p>
-                <p className="mt-0.5 text-xs text-ink-muted">
+                <p className="mt-0.5 text-sm md:text-base text-ink-muted">
                   {t(`review.stages.${stage}.body`)}
                 </p>
               </div>
@@ -132,7 +139,13 @@ export function ReviewStatusPage() {
         </Button>
         {showSolution && result ? (
           <Button asChild variant="outline" className="w-full sm:w-auto">
-            <Link to={paths.shopProduct(result.primarySolutionId)}>
+            <Link
+              to={
+                dashboardOrigin
+                  ? paths.shopProductFromDashboard(result.primarySolutionId)
+                  : paths.shopProduct(result.primarySolutionId)
+              }
+            >
               {t("review.toSolution")}
             </Link>
           </Button>
@@ -143,6 +156,6 @@ export function ReviewStatusPage() {
           </Button>
         ) : null}
       </div>
-    </div>
+    </PageShell>
   );
 }

@@ -52,11 +52,11 @@ export function ComboCard({
     >
       {showHeader ? (
         <>
-          <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-petrol-600">
+          <p className="flex items-center gap-2 text-xs md:text-sm font-semibold uppercase tracking-[0.16em] text-petrol-600">
             <Icon className="size-4" strokeWidth={1.75} aria-hidden />
             {t(`solutionsPreview.combo.problems.${problem}`)}
           </p>
-          <p className="mt-1.5 text-sm text-ink-muted">
+          <p className="mt-1.5 text-sm md:text-base text-ink-muted">
             {t("solutionsPreview.combo.subtitle")}
           </p>
         </>
@@ -82,10 +82,10 @@ export function ComboCard({
               </span>
               <span className="flex min-w-0 flex-col leading-tight">
                 <span className="font-semibold text-ink">{s.name}</span>
-                <span className="text-xs font-medium text-petrol-600">
+                <span className="text-sm md:text-base font-medium text-petrol-600">
                   {t(`shop:solutions.${id}.category`)}
                 </span>
-                <span className="mt-1.5 text-xs text-ink-muted">
+                <span className="mt-1.5 text-sm md:text-base text-ink-muted">
                   {t(`shop:solutions.${id}.blurb`)}
                 </span>
               </span>
@@ -98,7 +98,7 @@ export function ComboCard({
           (problem-first rule / audit WC-23). Only the standalone reuse path
           (`showHeader`, currently no caller) still shows it. */}
       {showHeader ? (
-        <p className="mt-6 font-mono text-xs text-ink-muted">
+        <p className="mt-6 font-mono text-sm md:text-base text-ink-muted">
           {t("solutionsPreview.combo.thc", { range: comboThcRange(ids) })}
         </p>
       ) : null}

@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import { Button } from "@/app/components/ui/button";
 import { paths } from "@/app/paths";
 import { usePageTitle } from "@/app/usePageTitle";
+import { PageHeader } from "@/components/marketing/PageHeader";
+import { PageShell } from "@/components/marketing/PageShell";
 import { Reveal } from "@/components/marketing/Reveal";
 import { BreadcrumbJsonLd } from "@/seo/StructuredData";
 
@@ -36,29 +38,27 @@ export function HowItWorksPage() {
         trail={[{ name: t("howItWorksPage.title"), path: paths.howItWorks }]}
       />
 
-      <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6">
+      <PageShell>
         <Reveal>
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-petrol-600">
-            {t("howItWorksPage.eyebrow")}
-          </p>
-          <h1 className="mt-2">{t("howItWorksPage.title")}</h1>
-          <p className="mt-3 text-lg text-ink-muted">
-            {t("howItWorksPage.intro")}
-          </p>
+          <PageHeader
+            eyebrow={t("howItWorksPage.eyebrow")}
+            title={t("howItWorksPage.title")}
+            intro={t("howItWorksPage.intro")}
+          />
         </Reveal>
 
         <ol className="mt-12 space-y-8">
           {STEPS.map((step, i) => (
             <Reveal key={step} delayMs={i * 40}>
               <li className="flex gap-4">
-                <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-sage-100 font-display text-base text-petrol-700">
+                <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-sage-100 font-display text-base md:text-lg text-petrol-700">
                   {i + 1}
                 </span>
                 <div>
-                  <h2 className="text-lg">
+                  <h2 className="text-lg md:text-xl">
                     {t(`howItWorksPage.steps.${step}.title`)}
                   </h2>
-                  <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">
+                  <p className="mt-1.5 text-sm md:text-base leading-relaxed text-ink-muted">
                     {t(`howItWorksPage.steps.${step}.body`)}
                   </p>
                 </div>
@@ -68,11 +68,11 @@ export function HowItWorksPage() {
         </ol>
 
         <Reveal className="mt-12">
-          <Button asChild variant="cta" size="lg" className="w-full sm:w-auto">
+          <Button asChild variant="cta" className="w-full sm:w-auto">
             <Link to={paths.assessment.start}>{t("howItWorksPage.cta")}</Link>
           </Button>
         </Reveal>
-      </div>
+      </PageShell>
     </>
   );
 }

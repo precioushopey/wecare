@@ -10,14 +10,21 @@
     "under": "Wenn du unter 18 bist, sprich bitte mit einem Elternteil, einer erziehungsberechtigten Person oder deiner Ärztin bzw. deinem Arzt.",
     "back": "Zur Startseite"
   },
+  "legalGate": {
+    "title": "Bevor es losgeht",
+    "body": "Der Fragebogen von WeCare ist keine medizinische Diagnose. Eine Ärztin oder ein Arzt prüft jede Anfrage, ein Rezept wird nie garantiert.",
+    "checkbox": "Ich habe die <terms>AGB</terms> und die <privacy>Datenschutzerklärung</privacy> gelesen und stimme zu (derzeit im Entwurf – die endgültigen Fassungen werden vor dem Launch bestätigt).",
+    "continue": "Weiter",
+    "back": "Zur Startseite"
+  },
   "start": {
     "title": "Dein Fragebogen",
-    "intro": "Sechs kurze Fragen dazu, wie es dir geht – etwa 60 bis 90 Sekunden. Das ist kein medizinisches Formular, du brauchst keine Unterlagen und kannst jede Antwort vor dem Abschluss ändern.",
+    "intro": "Ein paar kurze Fragen dazu, wie es dir geht – etwa 60 bis 90 Sekunden. Das ist kein medizinisches Formular, du brauchst keine Unterlagen und kannst jede Antwort vor dem Abschluss ändern.",
     "prefilledNote": "Vorausgewählt: {{condition}}",
     "progress": "Frage {{current}} von {{total}}",
     "back": "Zurück",
     "next": "Weiter",
-    "submit": "Meine empfohlene Lösung anzeigen",
+    "submit": "Weiter",
     "resumeNote": "Wir haben deine bisherigen Antworten gespeichert.",
     "restart": "Neu beginnen",
     "privacyNote": "Deine Antworten sind privat und sicher.",
@@ -25,7 +32,9 @@
   },
   "phase": {
     "leadIn": "Erste Schritte",
-    "leadInNote": "Kurz zur Lieferung, dann deine Fragen."
+    "leadInNote": "Kurz zur Lieferung, dann deine Fragen.",
+    "finalChecks": "Letzte Fragen",
+    "finalChecksNote": "Ein paar Sicherheitsfragen für die prüfende Ärztin oder den prüfenden Arzt."
   },
   "postcode": {
     "heading": "Wohin sollen wir liefern?",
@@ -65,7 +74,8 @@
       "none": "Nichts davon"
     },
     "flaggedNote": "Danke. Deine prüfende Ärztin oder dein prüfender Arzt geht das mit dir durch, bevor etwas verschrieben wird.",
-    "continue": "Zur ärztlichen Prüfung einreichen",
+    "continue": "Meine Empfehlung ansehen",
+    "back": "Zurück zur letzten Frage",
     "requiredPrompt": "Beantworte die ersten beiden Fragen, um fortzufahren."
   },
   "questions": {
@@ -151,12 +161,10 @@
       "strength": "Stärke"
     },
     "primaryHeading": "Für dich empfohlen",
-    "secondaryHeading": "Zweite Option",
-    "explanationHeading": "Warum diese Empfehlung",
     "gentleNudge": "Wir starten sanft – eine Lösung mit niedrigerem THC, meist als Öl für eine kontrollierte Dosierung. Später lässt sich das mit ärztlicher Begleitung anpassen.",
     "disclaimer": "Diese Empfehlung basiert auf deinen Antworten und Wellness-Präferenzen. Sie ersetzt keine ärztliche Beratung.",
-    "viewSolution": "Empfohlene Lösung ansehen",
-    "changeAnswers": "Meine Antworten ändern",
+    "reviewingNote": "Eine Ärztin oder ein Arzt prüft gerade deine Anfrage.",
+    "reviewingLink": "Prüfstatus ansehen",
     "reviewRequiredNote": "Medizinisches Cannabis ist rezeptpflichtig. Dein Fragebogen wird von einer Ärztin oder einem Arzt geprüft; ein Rezept wird nur ausgestellt, wenn es medizinisch sinnvoll ist.",
     "explanations": {
       "sleep": "Auf Basis deiner Schlaf-Antworten starten wir mit einer Abend-Unterstützung, die eher beruhigend wirkt. Eine stärkere Option ist verfügbar, falls du mehr brauchst.",
@@ -168,16 +176,16 @@
     "nextHeading": "Wie es weitergeht",
     "next": {
       "view": {
-        "title": "Empfohlene Lösung ansehen",
-        "body": "Sieh, was ausgewählt wurde und warum, und geh dann weiter zur ärztlichen Prüfung."
+        "title": "Menge wählen",
+        "body": "Wähle, wie viel du von deiner ausgewählten Lösung möchtest."
       },
       "review": {
         "title": "Ärztliche Prüfung",
-        "body": "Eine Ärztin oder ein Arzt prüft, ob sie für dich geeignet ist. Eine Verschreibung erfolgt nur, wenn es sinnvoll ist."
+        "body": "Eine Ärztin oder ein Arzt prüft gerade deine Antworten. Ein Rezept wird nur ausgestellt, wenn es medizinisch sinnvoll ist."
       },
       "delivery": {
-        "title": "Bestellung & Lieferung",
-        "body": "Nach der Freigabe wählst du deine Menge und eine zugelassene Apotheke liefert sie diskret zu dir."
+        "title": "Rezept & Lieferung",
+        "body": "Wenn eine Freigabe erfolgt, bestätigst du die Zahlung und eine zugelassene Apotheke liefert diskret zu dir."
       }
     },
     "detailsLabel": "THC, Preis & Inhaltsstoffe",
@@ -257,11 +265,5 @@
         "body": "Die prüfende Ärztin oder der prüfende Arzt möchte vor der Entscheidung ein kurzes Gespräch. Die nächsten Schritte findest du in deiner E-Mail."
       }
     }
-  },
-  "medicalReview": {
-    "pageTitle": "Weiter zur ärztlichen Prüfung",
-    "eyebrow": "Ärztliche Prüfung",
-    "heading": "Ein paar Dinge, die deine prüfende Person wissen muss",
-    "intro": "Medizinisches Cannabis ist rezeptpflichtig. Eine lizenzierte Ärztin oder ein lizenzierter Arzt prüft deine Angaben, bevor etwas verschrieben wird."
   }
 }

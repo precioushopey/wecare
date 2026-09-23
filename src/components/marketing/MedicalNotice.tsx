@@ -15,11 +15,11 @@ export function MedicalNotice({ className }: { className?: string }) {
   return (
     <aside
       role="note"
-      className={cn("glass rounded-2xl md:rounded-3xl p-6 text-sm text-ink-muted", className)}
+      className={cn("glass rounded-2xl md:rounded-3xl p-6 text-sm md:text-base text-ink-muted", className)}
     >
       <div className="flex items-center gap-2 text-ink">
         <Info className="size-5 shrink-0 text-petrol-600" aria-hidden />
-        <h2 className="text-base">{t("medicalNotice.heading")}</h2>
+        <h2 className="text-base md:text-lg">{t("medicalNotice.heading")}</h2>
       </div>
       <p className="mt-3">{t("medicalNotice.body")}</p>
       <p className="mt-2">{t("medicalNotice.body2")}</p>

@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
+import { PasswordInput } from "@/app/components/ui/password-input";
 import { Label } from "@/app/components/ui/label";
 import { paths } from "@/app/paths";
 import { usePageTitle } from "@/app/usePageTitle";
@@ -58,9 +59,10 @@ function AppleIcon({ className }: { className?: string }) {
 
 /**
  * Auth screen. `/login` renders `mode="signIn"`, `/signup` renders
- * `mode="signUp"` — no on-page toggle; the header carries the two links.
- * Mock auth (any email; `signIn` ignores the password) — sign-up also
- * carries a display name onto the account.
+ * `mode="signUp"`, with a cross-link between them at the bottom. The header is
+ * one user icon that opens `/signup` for a fresh browser, `/login` for a
+ * returning one (Mischa, 2026-09-09). Mock auth (any email; `signIn` ignores
+ * the password) — sign-up also carries a display name onto the account.
  */
 export function LoginPage({ mode = "signIn" }: { mode?: Mode }) {
   const { t } = useTranslation("dashboard");
@@ -135,11 +137,11 @@ export function LoginPage({ mode = "signIn" }: { mode?: Mode }) {
         </p>
 
         {state?.reason === "checkout" ? (
-          <p className="mt-4 rounded-xl bg-sage-50 p-4 text-sm text-petrol-700">
+          <p className="mt-4 rounded-xl bg-sage-50 p-4 text-sm md:text-base text-petrol-700">
             {t("auth.checkoutNote")}
           </p>
         ) : state?.from ? (
-          <p className="mt-4 rounded-xl bg-sage-50 p-4 text-sm text-petrol-700">
+          <p className="mt-4 rounded-xl bg-sage-50 p-4 text-sm md:text-base text-petrol-700">
             {t("auth.requiredNote")}
           </p>
         ) : null}
@@ -174,10 +176,9 @@ export function LoginPage({ mode = "signIn" }: { mode?: Mode }) {
           </div>
           <div className="space-y-1.5">
             <Label htmlFor="password">{t("auth.password")}</Label>
-            <Input
+            <PasswordInput
               id="password"
               name="password"
-              type="password"
               autoComplete={isSignUp ? "new-password" : "current-password"}
               required
               minLength={8}
@@ -193,10 +194,9 @@ export function LoginPage({ mode = "signIn" }: { mode?: Mode }) {
               <Label htmlFor="passwordConfirm">
                 {t("auth.passwordConfirm")}
               </Label>
-              <Input
+              <PasswordInput
                 id="passwordConfirm"
                 name="passwordConfirm"
-                type="password"
                 autoComplete="new-password"
                 required
                 minLength={8}
@@ -208,19 +208,19 @@ export function LoginPage({ mode = "signIn" }: { mode?: Mode }) {
                 aria-invalid={mismatch || undefined}
               />
               {mismatch ? (
-                <p className="text-sm text-danger-600">
+                <p className="text-sm md:text-base text-danger-600">
                   {t("auth.passwordMismatch")}
                 </p>
               ) : null}
             </div>
           ) : null}
-          <Button type="submit" variant="cta" size="lg" className="w-full">
+          <Button type="submit" variant="cta" className="w-full">
             {isSignUp ? t("auth.createAccount") : t("auth.signIn")}
           </Button>
         </form>
 
         {/* Social sign-in below the manual form (owner request, Sept 2026). */}
-        <div className="my-6 flex items-center gap-3 text-xs font-medium uppercase tracking-wide text-ink-muted">
+        <div className="my-6 flex items-center gap-3 text-xs md:text-sm font-medium uppercase tracking-wide text-ink-muted">
           <span className="h-px flex-1 bg-border" />
           {t("auth.orDivider")}
           <span className="h-px flex-1 bg-border" />
@@ -230,7 +230,7 @@ export function LoginPage({ mode = "signIn" }: { mode?: Mode }) {
           <button
             type="button"
             onClick={() => continueWith("google")}
-            className="flex w-full items-center justify-center gap-3 rounded-full border border-border bg-white px-5 py-2.5 text-sm font-medium text-ink shadow-[var(--shadow-soft)] transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-petrol-600 focus-visible:ring-offset-2"
+            className="flex w-full items-center justify-center gap-3 rounded-full border border-border bg-white px-5 py-2.5 text-sm md:text-base font-medium text-ink shadow-[var(--shadow-soft)] transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-petrol-600 focus-visible:ring-offset-2"
           >
             <GoogleIcon className="size-5 shrink-0" />
             {t("auth.continueWithGoogle")}
@@ -238,21 +238,22 @@ export function LoginPage({ mode = "signIn" }: { mode?: Mode }) {
           <button
             type="button"
             onClick={() => continueWith("apple")}
-            className="flex w-full items-center justify-center gap-3 rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-white shadow-[var(--shadow-soft)] transition-colors hover:bg-ink/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-petrol-600 focus-visible:ring-offset-2"
+            className="flex w-full items-center justify-center gap-3 rounded-full bg-ink px-5 py-2.5 text-sm md:text-base font-medium text-white shadow-[var(--shadow-soft)] transition-colors hover:bg-ink/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-petrol-600 focus-visible:ring-offset-2"
           >
             <AppleIcon className="size-5 shrink-0" />
             {t("auth.continueWithApple")}
           </button>
         </div>
 
-        {/* The assessment is still the main way in for first-timers. */}
-        <p className="mt-6 border-t border-border pt-5 text-sm text-ink-muted">
-          {t("auth.newHere")}{" "}
+        {/* Cross-link between the two modes (Mischa, 2026-09-09 — the header is
+            now one icon, so the switch lives here). */}
+        <p className="mt-6 border-t border-border pt-5 text-sm md:text-base text-ink-muted">
+          {isSignUp ? t("auth.haveAccount") : t("auth.noAccount")}{" "}
           <Link
-            to={paths.assessment.start}
+            to={isSignUp ? paths.login : paths.signup}
             className="font-medium text-petrol-700 underline-offset-4 hover:underline"
           >
-            {t("auth.newHereCta")}
+            {isSignUp ? t("auth.signIn") : t("auth.createAccount")}
           </Link>
         </p>
       </div>

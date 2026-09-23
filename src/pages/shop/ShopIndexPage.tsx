@@ -1,80 +1,121 @@
-import { Link } from "react-router";
+import { Link, useSearchParams } from "react-router";
 import { useTranslation } from "react-i18next";
+import { Check } from "lucide-react";
 
-import { Button } from "@/app/components/ui/button";
+import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 import { InfoHint } from "@/components/marketing/InfoHint";
-import { SolutionMark } from "@/components/brand/SolutionMark";
-import { paths } from "@/app/paths";
+import { PageHeader } from "@/components/marketing/PageHeader";
+import { PageShell } from "@/components/marketing/PageShell";
+import { PromptCard } from "@/components/marketing/PromptCard";
+import { hasDashboardOrigin, paths } from "@/app/paths";
 import { usePageTitle } from "@/app/usePageTitle";
 import { COA_CONFIRMED } from "@/config";
-import { SOLUTIONS, type Solution } from "@/data/solutions";
+import { isConditionKey } from "@/features/conditions/conditions";
+import { getProductImage } from "@/data/products";
+import {
+  solutionHeroStrain,
+  solutionsForCondition,
+  SOLUTIONS,
+  type Solution,
+} from "@/data/solutions";
+import { useCart } from "@/features/cart/CartContext";
 import { useLanguage } from "@/i18n/useLanguage";
 import { formatPriceEur } from "@/lib/format";
 
-function SolutionCard({ s }: { s: Solution }) {
+function SolutionCard({
+  s,
+  dashboardOrigin,
+}: {
+  s: Solution;
+  /** Carried forward from the catalog page (see `ShopIndexPage`'s own
+   *  `dashboardOrigin`) so opening a card doesn't drop the dashboard chrome
+   *  the visitor is already looking at. */
+  dashboardOrigin: boolean;
+}) {
   const { t } = useTranslation("shop");
   const { t: tc } = useTranslation("conditions");
   const { language } = useLanguage();
+  const { items } = useCart();
   const problems = s.conditionKeys
     .map((k) => tc(`${k}.shortTitle`))
     .join(" · ");
+  const cartQuantity =
+    items.find((i) => i.productId === s.id)?.quantity ?? 0;
 
   return (
     <div className="relative">
       <Link
-        to={paths.shopProduct(s.id)}
-        className="group glass glass-hover flex h-full flex-col rounded-2xl md:rounded-3xl bg-gradient-to-b from-petrol-100 to-white p-5"
+        to={
+          dashboardOrigin
+            ? paths.shopProductFromDashboard(s.id)
+            : paths.shopProduct(s.id)
+        }
+        className="group glass glass-hover flex h-full flex-col overflow-hidden rounded-2xl md:rounded-3xl bg-gradient-to-b from-petrol-100 to-white"
       >
-        {/* Same layout as the Solution-page hero (badge inline with the name),
-            on the light card surface rather than the brand gradient. */}
-        <div className="flex flex-wrap gap-1.5">
-          <span className="rounded-full bg-sage-100 px-3 py-1 text-xs font-medium text-petrol-700">
-            {t(`solutions.${s.id}.category`)}
-          </span>
-          {COA_CONFIRMED ? (
-            <span className="rounded-full bg-white/70 px-3 py-1 text-xs font-medium text-petrol-700">
-              {t("solution.labTestedBadge")}
-            </span>
-          ) : null}
+        {/* Full-bleed catalog-style photo, not the abstract Solution medallion
+            — "customer knows what he actually receives" (Mischa, 2026-09-09;
+            same treatment as the Product page hero and dispensing-option
+            tiles). Reversed from the Aug/Sept-2026 medallion-only rule on
+            explicit owner instruction, 2026-09-14; sized up to a full catalog
+            tile per owner follow-up the same day. */}
+        <div className="aspect-square w-full overflow-hidden bg-sage-50/70">
+          <ImageWithFallback
+            src={getProductImage(solutionHeroStrain(s))}
+            alt=""
+            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]"
+          />
         </div>
 
-        <div className="mt-4 flex items-center gap-4">
-          <SolutionMark
-            solution={s}
-            variant="badge"
-            className="size-14 shrink-0 transition-transform duration-300 group-hover:scale-[1.04]"
-          />
-          <p className="font-display text-2xl font-bold leading-tight text-ink">
+        <div className="flex flex-1 flex-col p-5">
+          <div className="flex flex-wrap gap-1.5">
+            <span className="rounded-full bg-sage-100 px-3 py-1 text-sm md:text-base font-medium text-petrol-700">
+              {t(`solutions.${s.id}.category`)}
+            </span>
+            {COA_CONFIRMED ? (
+              <span className="rounded-full bg-white/70 px-3 py-1 text-sm md:text-base font-medium text-petrol-700">
+                {t("solution.labTestedBadge")}
+              </span>
+            ) : null}
+            {cartQuantity > 0 ? (
+              <span className="inline-flex items-center gap-1 rounded-full bg-petrol-700 px-3 py-1 text-sm md:text-base font-medium text-white">
+                <Check className="size-3.5" aria-hidden />
+                {t("solution.inCartBadge", { grams: cartQuantity })}
+              </span>
+            ) : null}
+          </div>
+
+          <p className="mt-3 font-display text-2xl md:text-3xl font-bold leading-tight text-ink">
             {s.name}
           </p>
+          <p className="mt-2 text-sm md:text-base text-ink-muted">
+            {t(`solutions.${s.id}.blurb`)}
+          </p>
+          <p className="mt-1 text-sm md:text-base text-ink-muted">
+            {t("card.forProblems", { problems })}
+          </p>
+          <p className="mt-2 text-sm md:text-base text-ink-muted">
+            {t("solution.thcRangeLabel")}:{" "}
+            <span className="font-mono text-ink">{s.thcRange}</span>
+          </p>
+          <p className="mt-3 font-mono text-lg md:text-xl text-ink">
+            {t("card.pricePerGram", {
+              price: formatPriceEur(s.priceEur, language),
+            })}
+          </p>
+          <span className="mt-3 text-sm md:text-base font-medium text-petrol-700 group-hover:underline">
+            {t("card.learnMore")}
+          </span>
         </div>
-        <p className="mt-2 text-sm text-ink-muted">
-          {t(`solutions.${s.id}.blurb`)}
-        </p>
-        <p className="mt-1 text-xs text-ink-muted">
-          {t("card.forProblems", { problems })}
-        </p>
-        <p className="mt-2 text-sm text-ink-muted">
-          {t("solution.thcRangeLabel")}:{" "}
-          <span className="font-mono text-ink">{s.thcRange}</span>
-        </p>
-        <p className="mt-3 font-mono text-lg text-ink">
-          {t("card.pricePerGram", {
-            price: formatPriceEur(s.priceEur, language),
-          })}
-        </p>
-        <span className="mt-3 text-sm font-medium text-petrol-700 group-hover:underline">
-          {t("card.learnMore")}
-        </span>
       </Link>
 
-      {/* Prescription-only note — the standard hover/focus info icon, top-right.
+      {/* Prescription-only note — the standard hover/focus info icon, top-right
+          over the photo now, so it gets its own frosted chip for contrast.
           Rendered outside the <Link> so its trigger stays a valid button and a
           click on it doesn't navigate. */}
       <InfoHint
         align="right"
         label={t("solution.prescriptionBadge")}
-        className="absolute right-4 top-4"
+        className="absolute right-3 top-3 rounded-full bg-white/85 p-1 shadow-[var(--shadow-soft)] backdrop-blur-sm"
       >
         {t("solution.prescriptionBadge")}
       </InfoHint>
@@ -84,34 +125,61 @@ function SolutionCard({ s }: { s: Solution }) {
 
 export function ShopIndexPage() {
   const { t } = useTranslation("shop");
+  const { t: tc } = useTranslation("conditions");
+  const [searchParams] = useSearchParams();
+
+  // `?problem=<ConditionKey>` (same param the assessment start page reads) —
+  // set by the "view more solutions" link on a non-matched Solution page, so
+  // that link shows other options for the visitor's own issue instead of the
+  // full 5-solution catalog.
+  const problemParam = searchParams.get("problem");
+  const problem = isConditionKey(problemParam) ? problemParam : null;
+  const solutions = problem ? solutionsForCondition(problem) : SOLUTIONS;
+  const dashboardOrigin = hasDashboardOrigin(searchParams);
+
   usePageTitle(t("index.title"), undefined, { noindex: true });
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-      <h1>{t("index.title")}</h1>
-      <p className="mt-3 max-w-2xl text-lg text-ink-muted">{t("index.intro")}</p>
+    <PageShell maxWidth="max-w-6xl">
+      <PageHeader title={t("index.title")} />
+      <p className="mt-3 max-w-2xl text-lg md:text-xl text-ink-muted">{t("index.intro")}</p>
 
       {/* The guided path is the assessment — this grid is reference only. */}
-      <div className="glass-strong mt-8 flex flex-col gap-4 rounded-2xl md:rounded-3xl p-6 sm:flex-row sm:items-center sm:justify-between">
-        <div className="max-w-xl">
-          <p className="font-display text-lg text-ink">{t("index.guideTitle")}</p>
-          <p className="mt-1 text-sm text-ink-muted">{t("index.guideBody")}</p>
-        </div>
-        <Button asChild variant="cta" size="lg" className="w-full sm:w-auto sm:shrink-0">
-          <Link to={paths.assessment.start}>{t("index.startAssessment")}</Link>
-        </Button>
-      </div>
+      <PromptCard
+        title={t("index.guideTitle")}
+        body={t("index.guideBody")}
+        ctaLabel={t("index.startAssessment")}
+        ctaTo={paths.assessment.start}
+        tone="glass-strong"
+        size="lg"
+        className="mt-8"
+      />
 
-      <h2 className="mt-12 text-lg">{t("index.fullRange")}</h2>
-      <p className="mt-1 text-sm text-ink-muted">
-        {t("index.resultCount", { count: SOLUTIONS.length })}
+      <h2 className="mt-12 text-lg md:text-xl">
+        {problem
+          ? t("index.filteredHeading", { problem: tc(`${problem}.shortTitle`) })
+          : t("index.fullRange")}
+      </h2>
+      <p className="mt-1 text-sm md:text-base text-ink-muted">
+        {t("index.resultCount", { count: solutions.length })}
+        {problem ? (
+          <>
+            {" · "}
+            <Link
+              to={dashboardOrigin ? paths.shopFromDashboard() : paths.shop}
+              className="underline underline-offset-2 hover:text-ink"
+            >
+              {t("index.viewAllSolutions")}
+            </Link>
+          </>
+        ) : null}
       </p>
 
       <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {SOLUTIONS.map((s) => (
-          <SolutionCard key={s.id} s={s} />
+        {solutions.map((s) => (
+          <SolutionCard key={s.id} s={s} dashboardOrigin={dashboardOrigin} />
         ))}
       </div>
-    </div>
+    </PageShell>
   );
 }

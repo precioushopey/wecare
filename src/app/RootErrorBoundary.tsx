@@ -12,13 +12,13 @@ import type { ErrorInfo, ReactNode } from "react";
 const COPY = {
   de: {
     title: "Etwas ist schiefgelaufen",
-    body: "Auf dieser Seite ist ein Fehler aufgetreten. Deine Daten sind sicher — lade die Seite neu oder geh zur Startseite.",
+    body: "Auf dieser Seite ist ein Fehler aufgetreten. Deine Daten sind sicher: lade die Seite neu oder geh zur Startseite.",
     reload: "Seite neu laden",
     home: "Zur Startseite",
   },
   en: {
     title: "Something went wrong",
-    body: "This page hit an error. Your data is safe — reload the page or go back to the homepage.",
+    body: "This page hit an error. Your data is safe: reload the page or go back to the homepage.",
     reload: "Reload page",
     home: "Back to home",
   },

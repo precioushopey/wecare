@@ -40,8 +40,8 @@ function ConsentBannerBody() {
       className="fixed inset-x-0 bottom-0 z-50 px-4 pb-4 sm:px-6"
     >
       <div className="mx-auto max-w-3xl rounded-2xl border border-border glass-strong p-5 shadow-[var(--shadow-float)]">
-        <p className="font-display text-base text-ink">{t("consent.title")}</p>
-        <p className="mt-1.5 text-sm text-ink-muted">
+        <p className="font-display text-base md:text-lg text-ink">{t("consent.title")}</p>
+        <p className="mt-1.5 text-sm md:text-base text-ink-muted">
           {t("consent.body")}{" "}
           <Link
             to={paths.legal.cookies}
@@ -61,13 +61,13 @@ function ConsentBannerBody() {
               className="mt-0.5 size-4 shrink-0 accent-petrol-600"
             />
             <span className="min-w-0">
-              <span className="flex flex-wrap items-center gap-2 text-sm font-medium text-ink">
+              <span className="flex flex-wrap items-center gap-2 text-sm md:text-base font-medium text-ink">
                 {t("consent.categories.essential.label")}
-                <span className="rounded-full bg-sage-100 px-2 py-0.5 text-[0.65rem] font-semibold uppercase tracking-wide text-petrol-700">
+                <span className="rounded-full bg-sage-100 px-2 py-0.5 text-xs md:text-sm font-semibold uppercase tracking-wide text-petrol-700">
                   {t("consent.alwaysOn")}
                 </span>
               </span>
-              <span className="mt-0.5 block text-xs text-ink-muted">
+              <span className="mt-0.5 block text-sm md:text-base text-ink-muted">
                 {t("consent.categories.essential.desc")}
               </span>
             </span>
@@ -81,10 +81,10 @@ function ConsentBannerBody() {
                 className="mt-0.5 size-4 shrink-0 accent-petrol-600"
               />
               <span className="min-w-0">
-                <span className="block text-sm font-medium text-ink">
+                <span className="block text-sm md:text-base font-medium text-ink">
                   {t("consent.categories.analytics.label")}
                 </span>
-                <span className="mt-0.5 block text-xs text-ink-muted">
+                <span className="mt-0.5 block text-sm md:text-base text-ink-muted">
                   {t("consent.categories.analytics.desc")}
                 </span>
               </span>
@@ -96,7 +96,6 @@ function ConsentBannerBody() {
           <Button
             type="button"
             variant="cta"
-            size="sm"
             onClick={acceptAll}
             className="w-full sm:w-auto"
           >
@@ -105,7 +104,6 @@ function ConsentBannerBody() {
           <Button
             type="button"
             variant="outline"
-            size="sm"
             onClick={() => setChoice(analytics ? "all" : "essential")}
             className="w-full sm:w-auto"
           >
@@ -114,7 +112,6 @@ function ConsentBannerBody() {
           <Button
             type="button"
             variant="ghost"
-            size="sm"
             onClick={essentialOnly}
             className="w-full sm:w-auto"
           >

@@ -3,13 +3,13 @@ import type { ChangeEvent, FormEvent, ReactNode } from "react";
 import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
 import {
-  ArrowUpRight,
   CalendarCheck,
   ChevronRight,
   ClipboardList,
   Info,
   LifeBuoy,
   LogOut,
+  MapPin,
   Package,
   RotateCcw,
   Sparkles,
@@ -21,7 +21,6 @@ import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
 import { Label } from "@/app/components/ui/label";
 import { paths } from "@/app/paths";
-import { AustriaMap } from "@/components/marketing/AustriaMap";
 import { LanguageToggle } from "@/components/layout/LanguageToggle";
 import { SolutionMark } from "@/components/brand/SolutionMark";
 import { COMMERCE_ENABLED, PRICES_CONFIRMED, SUPPORT_EMAIL } from "@/config";
@@ -38,7 +37,7 @@ import {
   type FollowUpEntry,
 } from "@/features/followup/followup";
 import { getOrders, type OrderStatus } from "@/features/orders/orders";
-import { getMedicalReview, type ReviewStatus } from "@/features/review/review";
+import { getMedicalReview } from "@/features/review/review";
 import { useLanguage } from "@/i18n/useLanguage";
 import { AnalyticsEvent, track } from "@/lib/analytics";
 import { formatDate, formatPriceEur } from "@/lib/format";
@@ -70,22 +69,6 @@ const RECAP_ROWS = [
   { key: "formatPref", qid: "q6" },
 ] as const;
 
-/**
- * Where the four-stage journey sits, from real records only:
- * assessment complete → review (active until `approved`) → prescription
- * (active once approved, no order) → delivery (active once an order exists,
- * done once it's delivered).
- */
-function journeyState(
-  reviewStatus: ReviewStatus | null,
-  orderStatus: string | null,
-): { current: number; complete: boolean } {
-  let current = 1; // assessment done, review is the active stage
-  if (reviewStatus === "approved") current = 2;
-  if (orderStatus) current = 3;
-  return { current, complete: orderStatus === "delivered" };
-}
-
 /** Delivery-tracker stage from the real `Order.status` — no fabricated van
  *  position / ETA (that needs a carrier-tracking integration). */
 const DELIVERY_STAGE: Record<OrderStatus, number> = {
@@ -104,7 +87,7 @@ const DELIVERY_STEP_KEYS = [
 /** Small uppercase section label used to group content within a page. */
 function GroupLabel({ children }: { children: ReactNode }) {
   return (
-    <p className="mb-2.5 text-sm font-semibold uppercase tracking-[0.08em] text-ink-muted">
+    <p className="mb-2.5 text-xs md:text-sm font-semibold uppercase tracking-[0.08em] text-ink-muted">
       {children}
     </p>
   );
@@ -116,10 +99,9 @@ export function DashboardHomePage() {
   const { t } = useTranslation("dashboard");
   const { t: ta } = useTranslation("assessment");
   const { t: ts } = useTranslation("shop");
-  const { t: th } = useTranslation("home");
   const { t: tc } = useTranslation();
   const { language } = useLanguage();
-  const { result, answers } = useAssessment();
+  const { result, answers, completedAt } = useAssessment();
   const [followUp] = useState(() => getFollowUp());
   const latestOrder = getOrders()[0];
   const review = getMedicalReview();
@@ -136,6 +118,10 @@ export function DashboardHomePage() {
   }
 
   const primary = SOLUTION_BY_ID[result.primarySolutionId];
+  const secondary = SOLUTION_BY_ID[result.secondarySolutionId];
+  const secondaryPriceLabel = ts("card.pricePerGram", {
+    price: formatPriceEur(secondary.priceEur, language),
+  });
 
   // The single most useful "what now?" — order in flight beats review status
   // beats "submit for review".
@@ -167,8 +153,8 @@ export function DashboardHomePage() {
           : ta("result.viewReviewCta"),
       to:
         review.status === "approved"
-          ? paths.shopProduct(result.primarySolutionId)
-          : paths.assessment.review,
+          ? paths.shopProductFromDashboard(result.primarySolutionId)
+          : paths.assessment.reviewFromDashboard,
     };
   } else {
     // No review yet — the next step is to look at the recommended Solution
@@ -176,20 +162,9 @@ export function DashboardHomePage() {
     hero = {
       text: t("home.nextReviewPending"),
       cta: t("recommendation.view"),
-      to: paths.shopProduct(result.primarySolutionId),
+      to: paths.shopProductFromDashboard(result.primarySolutionId),
     };
   }
-
-  const journey = journeyState(
-    review?.status ?? null,
-    latestOrder?.status ?? null,
-  );
-  const journeySteps = [
-    t("journey.steps.assessment"),
-    t("journey.steps.review"),
-    t("journey.steps.prescription"),
-    t("journey.steps.delivery"),
-  ];
 
   const priceLabel = ts("card.pricePerGram", {
     price: formatPriceEur(primary.priceEur, language),
@@ -208,8 +183,8 @@ export function DashboardHomePage() {
             <div className="flex items-center justify-between gap-3">
               <HeroEyebrow>{t("home.recommendationHeading")}</HeroEyebrow>
               <Link
-                to={paths.dashboardRecommendation}
-                className="inline-flex shrink-0 items-center gap-1 text-xs font-medium text-white/80 underline-offset-4 transition-colors hover:text-white hover:underline"
+                to={paths.shopProductFromDashboard(result.primarySolutionId)}
+                className="inline-flex shrink-0 items-center gap-1 text-sm md:text-base font-medium text-white/80 underline-offset-4 transition-colors hover:text-white hover:underline"
               >
                 {t("home.viewRecommendation")}
                 <ChevronRight
@@ -227,15 +202,15 @@ export function DashboardHomePage() {
                 className="size-14 shrink-0"
               />
               <div className="min-w-0">
-                <p className="font-display text-xl leading-tight text-white">
+                <p className="font-display text-xl md:text-2xl leading-tight text-white">
                   {primary.name}
                 </p>
-                <p className="text-sm font-medium text-sky-200">
+                <p className="text-sm md:text-base font-medium text-sky-200">
                   {ts(`solutions.${primary.id}.category`)}
                 </p>
               </div>
             </div>
-            <p className="mt-3 text-sm text-white/80">
+            <p className="mt-3 text-sm md:text-base text-white/80">
               {ts(`solutions.${primary.id}.blurb`)}
             </p>
 
@@ -250,7 +225,7 @@ export function DashboardHomePage() {
               />
             </dl>
             {!PRICES_CONFIRMED ? (
-              <p className="mt-2 text-xs text-white/55">
+              <p className="mt-2 text-sm md:text-base text-white/55">
                 {ts("pricesIndicative")}
               </p>
             ) : null}
@@ -264,7 +239,7 @@ export function DashboardHomePage() {
               <div className="flex min-w-0 flex-col 2xl:w-1/2">
                 <HeroEyebrow>{t("home.nextStep")}</HeroEyebrow>
                 {hero.pill ? <div className="mt-3">{hero.pill}</div> : null}
-                <p className="mt-2 text-sm text-white/90">{hero.text}</p>
+                <p className="mt-2 text-sm md:text-base text-white/90">{hero.text}</p>
                 {/* CTA — on desktop it lives in this text column; on mobile it
                     moves below the image (see the image column) */}
                 <HeroCta to={hero.to} className="mt-4 hidden 2xl:inline-flex">
@@ -290,27 +265,14 @@ export function DashboardHomePage() {
         </div>
       </DashboardHero>
 
-      {/* Journey stepper — below `2xl` it's a full-width band directly under
-          the hero (out of the grid); from `2xl` up it moves into the grid's
-          left column, above the recap (owner request, Sept 2026). */}
-      <div className="2xl:hidden">
-        <DashboardJourney
-          steps={journeySteps}
-          current={journey.current}
-          complete={journey.complete}
-        />
-      </div>
-
-      {/* ── 2 · Your answers + safety (left) · delivery (right) ───────── */}
+      {/* ── 2 · Below-hero content — two columns on lg+ (owner request,
+          2026-09-09). Left: your answers + the safety note. Right: the
+          recommended solution + its alternative. Single column below lg. The
+          columns stretch to equal height and the last card in each (`lg:grow`)
+          fills the slack so the two column edges line up. */}
       <div className="grid gap-4 lg:grid-cols-2 lg:gap-6">
+        {/* Left — your assessment answers + the safety note */}
         <div className="flex flex-col gap-4 lg:gap-6">
-          <div className="hidden 2xl:block">
-            <DashboardJourney
-              steps={journeySteps}
-              current={journey.current}
-              complete={journey.complete}
-            />
-          </div>
           <SectionCard
             title={t("home.assessmentSnapshot")}
             action={{
@@ -318,6 +280,12 @@ export function DashboardHomePage() {
               to: paths.assessment.start,
             }}
           >
+            {completedAt ? (
+              <p className="mb-3 text-sm md:text-base text-ink-muted">
+                {t("assessment.completedLabel")}:{" "}
+                {formatDate(completedAt, language)}
+              </p>
+            ) : null}
             <dl className="grid gap-2 sm:grid-cols-2">
               {RECAP_ROWS.map(({ key, qid }) =>
                 answers[qid] ? (
@@ -325,10 +293,10 @@ export function DashboardHomePage() {
                     key={qid}
                     className="rounded-xl border border-border bg-surface-raised/60 px-3.5 py-2.5"
                   >
-                    <dt className="text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-ink-muted">
+                    <dt className="text-xs md:text-sm font-semibold uppercase tracking-[0.1em] text-ink-muted">
                       {t(`assessment.${key}`)}
                     </dt>
-                    <dd className="mt-0.5 text-sm font-medium text-ink">
+                    <dd className="mt-0.5 text-sm md:text-base font-medium text-ink">
                       {ta(`questions.${qid}.options.${answers[qid]}`)}
                     </dd>
                   </div>
@@ -337,102 +305,79 @@ export function DashboardHomePage() {
             </dl>
           </SectionCard>
 
-          <SectionCard title={t("home.goodToKnowHeading")}>
+          <SectionCard title={t("home.goodToKnowHeading")} className="lg:grow">
             <div className="flex gap-3">
               <MedallionIcon icon={Info} />
-              <p className="text-sm text-ink-muted">
+              <p className="text-sm md:text-base text-ink-muted">
                 {tc("medicalNotice.body")}
               </p>
             </div>
           </SectionCard>
         </div>
 
-        <SectionCard title={th("deliveryBanner.eyebrow")}>
-          <div className="flex gap-3">
-            <MedallionIcon icon={Truck} tone="sage" />
-            <div className="min-w-0">
-              <p className="text-sm font-medium text-ink">
-                {th("deliveryBanner.headline")}
-              </p>
-              <p className="mt-1 text-sm text-ink-muted">
-                {th("deliveryBanner.body")}
-              </p>
-            </div>
-          </div>
-
-          {/* Live tracker if an order is on its way — the real `Order.status`,
-              not a fabricated van position. */}
-          {latestOrder ? (
-            <div className="mt-4 rounded-2xl border border-border bg-surface-raised/60 p-4">
-              <div className="flex items-center justify-between gap-3">
-                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-ink-muted">
-                  {t("delivery.track.heading")}
-                </p>
-                <StatusPill
-                  label={t(`orders.statuses.${latestOrder.status}`)}
-                  tone={orderPillTone(latestOrder.status)}
-                />
+        {/* Right — the recommended solution detail + its alternative (merged
+            in from the retired "My Recommendation" page, 2026-09-09). */}
+        <div className="flex flex-col gap-4 lg:gap-6">
+          <SectionCard title={ts("solution.detailsHeading")}>
+            <dl className="flex flex-col gap-3">
+              <div>
+                <dt className="text-xs md:text-sm font-semibold uppercase tracking-[0.1em] text-ink-muted">
+                  {ts("solution.suitabilityHeading")}
+                </dt>
+                <dd className="mt-1 text-sm md:text-base text-ink-muted">
+                  {ts(`solutions.${primary.id}.suitability`)}
+                </dd>
               </div>
-              <DashboardJourney
-                bare
-                className="mt-3"
-                steps={DELIVERY_STEP_KEYS.map((k) =>
-                  t(`delivery.track.steps.${k}`),
-                )}
-                current={DELIVERY_STAGE[latestOrder.status]}
-                complete={latestOrder.status === "delivered"}
+              <div>
+                <dt className="text-xs md:text-sm font-semibold uppercase tracking-[0.1em] text-ink-muted">
+                  {ts("solution.usageHeading")}
+                </dt>
+                <dd className="mt-1 text-sm md:text-base text-ink-muted">
+                  {ts(`solutions.${primary.id}.usage`)}
+                </dd>
+              </div>
+            </dl>
+            {!PRICES_CONFIRMED ? (
+              <p className="mt-3 text-sm md:text-base text-ink-muted">
+                {ts("pricesIndicative")}
+              </p>
+            ) : null}
+          </SectionCard>
+
+          <SectionCard title={t("recommendation.secondary")} className="lg:grow">
+            <Link
+              to={paths.shopProductFromDashboard(secondary.id)}
+              className="-m-2 flex items-start gap-4 rounded-2xl p-2 transition-colors hover:bg-white/40"
+            >
+              <SolutionMark
+                solution={secondary}
+                className="size-12 shrink-0 rounded-xl"
               />
-              <p className="mt-3 text-xs text-ink-muted">
-                {t("delivery.track.noVan")}
-              </p>
-            </div>
-          ) : null}
-
-          {/* Before an order exists: the coverage map. Once it does: where the
-              parcel is going (the map is moot then, and WeCare has no
-              fulfilment origin to draw a route from yet). */}
-          {!latestOrder ? (
-            <>
-              <p className="mt-4 text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-ink-muted">
-                {t("delivery.coverage")}
-              </p>
-              <div className="relative mt-2 overflow-hidden rounded-2xl bg-petrol-900/90 p-3">
-                {/* Dot-grid across the whole panel, not just clipped inside the
-                    map's landmass (owner request, Sept 2026) — same treatment as
-                    the homepage DeliveryBannerSection so map + panel read as one
-                    atlas surface. */}
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute inset-0 [background-image:radial-gradient(circle,rgba(255,255,255,0.16)_1px,transparent_1.6px)] [background-size:22px_22px]"
-                />
-                <div className="relative">
-                  <AustriaMap />
-                </div>
+              <div className="min-w-0 flex-1">
+                <p className="font-display text-base md:text-lg text-ink">
+                  {secondary.name}
+                </p>
+                <p className="text-sm md:text-base font-medium text-petrol-600">
+                  {ts(`solutions.${secondary.id}.category`)}
+                </p>
+                <p className="mt-1 text-sm md:text-base text-ink-muted">
+                  {ts(`solutions.${secondary.id}.blurb`)}
+                </p>
+                <p className="mt-1.5 font-mono text-sm md:text-base text-ink-muted">
+                  {ts("solution.thcRangeLabel")}: {secondary.thcRange} ·{" "}
+                  {secondaryPriceLabel}
+                </p>
               </div>
-              <p className="mt-2 text-xs text-ink-muted">
-                {th("deliveryBanner.coverageNote")}
-              </p>
-            </>
-          ) : latestOrder.shipTo ? (
-            <div className="mt-4 rounded-2xl border border-border bg-surface-raised/60 p-4">
-              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-ink-muted">
-                {t("delivery.shipTo")}
-              </p>
-              <address className="mt-1.5 text-sm not-italic leading-relaxed text-ink">
-                {latestOrder.shipTo.firstName} {latestOrder.shipTo.lastName}
-                <br />
-                {latestOrder.shipTo.street}
-                <br />
-                {latestOrder.shipTo.postalCode} {latestOrder.shipTo.city}
-                <br />
-                {latestOrder.shipTo.country}
-              </address>
-            </div>
-          ) : null}
-        </SectionCard>
+              <ChevronRight
+                className="mt-1 size-5 shrink-0 text-ink-muted"
+                aria-hidden
+              />
+            </Link>
+          </SectionCard>
+        </div>
       </div>
 
-      {/* ── 4 · Staying in touch — two equal-height cards ─────────────── */}
+      {/* ── 3 · Staying in touch — two equal cards ─────────────────────── */}
       <div className="grid gap-4 lg:grid-cols-2 lg:gap-6">
         <SectionCard
           title={t("nav.followUp")}
@@ -443,7 +388,7 @@ export function DashboardHomePage() {
         >
           <div className="flex gap-3">
             <MedallionIcon icon={CalendarCheck} tone="sage" />
-            <p className="text-sm text-ink-muted">
+            <p className="text-sm md:text-base text-ink-muted">
               {followUp ? t("home.followUpDone") : t("home.followUpReminder")}
             </p>
           </div>
@@ -456,359 +401,14 @@ export function DashboardHomePage() {
           <div className="flex gap-3">
             <MedallionIcon icon={LifeBuoy} tone="sage" />
             <div className="min-w-0">
-              <p className="text-sm text-ink-muted">{t("support.body")}</p>
-              <p className="mt-1.5 text-xs text-ink-muted">
+              <p className="text-sm md:text-base text-ink-muted">{t("support.body")}</p>
+              <p className="mt-1.5 text-sm md:text-base text-ink-muted">
                 {tc("pages.contact.hoursValue")}
               </p>
             </div>
           </div>
         </SectionCard>
       </div>
-    </div>
-  );
-}
-
-/* ── My assessment ──────────────────────────────────────────────────────── */
-
-export function DashboardAssessmentPage() {
-  const { t } = useTranslation("dashboard");
-  const { t: ta } = useTranslation("assessment");
-  const { language } = useLanguage();
-  const { answers, completedAt, result } = useAssessment();
-  const review = getMedicalReview();
-  const latestOrder = getOrders()[0];
-
-  if (!completedAt || !result) {
-    return (
-      <EmptyState
-        icon={ClipboardList}
-        text={t("assessment.empty")}
-        ctaLabel={t("assessment.emptyCta")}
-        to={paths.assessment.start}
-      />
-    );
-  }
-
-  const journey = journeyState(
-    review?.status ?? null,
-    latestOrder?.status ?? null,
-  );
-
-  return (
-    <div className="space-y-4 lg:space-y-6">
-      {/* Hero — your assessment is in, and where its review stands. Content on
-          the left, a feathered photo on the right (owner request, Sept 2026). */}
-      <DashboardHero>
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-6">
-          <div className="flex min-w-0 flex-1 flex-col items-start gap-3">
-            {/* Eyebrow + review status on one wrapping row. */}
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-              <HeroEyebrow>{t("nav.assessment")}</HeroEyebrow>
-              {review ? (
-                <StatusPill
-                  label={ta(`review.statuses.${review.status}.label`)}
-                  tone={reviewPillTone(review.status)}
-                />
-              ) : null}
-            </div>
-            <p className="max-w-md text-sm text-white/85">
-              {review
-                ? ta(`review.statuses.${review.status}.body`)
-                : t("assessment.completedNote")}
-            </p>
-            {/* Highlights from the real answers; the full 6-row recap is the
-                SectionCard below (owner request, Sept 2026 — fill the hero). */}
-            <dl className="mt-1 grid w-full max-w-lg gap-2.5 sm:grid-cols-3">
-              <HeroStat
-                label={t("assessment.completedLabel")}
-                value={formatDate(completedAt, language)}
-              />
-              {(["q1", "q2"] as const).map((qid) =>
-                answers[qid] ? (
-                  <HeroStat
-                    key={qid}
-                    label={t(
-                      `assessment.${qid === "q1" ? "problem" : "frequency"}`,
-                    )}
-                    value={ta(`questions.${qid}.options.${answers[qid]}`)}
-                  />
-                ) : null,
-              )}
-            </dl>
-            {/* Retake — on `sm+` it lives here; on mobile it drops below the
-                image, flush (see the image column). */}
-            <HeroCta
-              to={paths.assessment.start}
-              className="mt-2 hidden sm:inline-flex"
-            >
-              {t("assessment.retake")}
-            </HeroCta>
-          </div>
-          <div className="relative flex w-full flex-col sm:w-1/2 sm:self-end lg:w-[22rem]">
-            <ImageWithFallback
-              src={siteImage(IMG.homeHero) ?? ""}
-              alt=""
-              loading="lazy"
-              className="image-fade-lrb block max-h-48 w-full object-contain object-bottom sm:max-h-56"
-            />
-            <HeroCta to={paths.assessment.start} className="w-full sm:hidden">
-              {t("assessment.retake")}
-            </HeroCta>
-          </div>
-        </div>
-      </DashboardHero>
-
-      <DashboardJourney
-        steps={[
-          t("journey.steps.assessment"),
-          t("journey.steps.review"),
-          t("journey.steps.prescription"),
-          t("journey.steps.delivery"),
-        ]}
-        current={journey.current}
-        complete={journey.complete}
-      />
-
-      {/* All six answers — the full context handed to the reviewing doctor. */}
-      <SectionCard title={t("home.assessmentSnapshot")}>
-        <dl className="grid gap-2 sm:grid-cols-2">
-          {RECAP_ROWS.map(({ key, qid }) =>
-            answers[qid] ? (
-              <div
-                key={qid}
-                className="rounded-xl border border-border bg-surface-raised/60 px-3.5 py-2.5"
-              >
-                <dt className="text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-ink-muted">
-                  {t(`assessment.${key}`)}
-                </dt>
-                <dd className="mt-0.5 text-sm font-medium text-ink">
-                  {ta(`questions.${qid}.options.${answers[qid]}`)}
-                </dd>
-              </div>
-            ) : null,
-          )}
-        </dl>
-      </SectionCard>
-    </div>
-  );
-}
-
-/* ── My recommendation ──────────────────────────────────────────────────── */
-
-export function DashboardRecommendationPage() {
-  const { t } = useTranslation("dashboard");
-  const { t: ts } = useTranslation("shop");
-  const { t: ta } = useTranslation("assessment");
-  const { language } = useLanguage();
-  const { result } = useAssessment();
-  const review = getMedicalReview();
-  const latestOrder = getOrders()[0];
-
-  if (!result) {
-    return (
-      <EmptyState
-        icon={Sparkles}
-        text={t("recommendation.empty")}
-        ctaLabel={t("recommendation.emptyCta")}
-        to={paths.assessment.start}
-      />
-    );
-  }
-
-  const primary = SOLUTION_BY_ID[result.primarySolutionId];
-  const secondary = SOLUTION_BY_ID[result.secondarySolutionId];
-  const journey = journeyState(
-    review?.status ?? null,
-    latestOrder?.status ?? null,
-  );
-
-  const secondaryPriceLabel = ts("card.pricePerGram", {
-    price: formatPriceEur(secondary.priceEur, language),
-  });
-
-  return (
-    <div className="space-y-4 lg:space-y-6">
-      {/* Hero — the recommended Solution + where its medical review stands. */}
-      <DashboardHero>
-        <div className="flex flex-col gap-6 lg:flex-row lg:gap-8">
-          {/* the recommended solution — 1/2 at lg, 1/3 from xl, 1/2 again at 2xl */}
-          <div className="min-w-0 flex-1">
-            <div className="flex items-center justify-between gap-3">
-              <HeroEyebrow>{t("recommendation.primary")}</HeroEyebrow>
-              <Link
-                to={paths.shopProduct(result.primarySolutionId)}
-                className="inline-flex shrink-0 items-center gap-1 text-xs font-medium text-white/80 underline-offset-4 transition-colors hover:text-white hover:underline"
-              >
-                {t("home.viewRecommendation")}
-                <ChevronRight
-                  className="size-3.5"
-                  aria-hidden
-                  strokeWidth={2}
-                />
-              </Link>
-            </div>
-            <div className="mt-4 flex items-center gap-4">
-              <SolutionMark
-                solution={primary}
-                variant="badge"
-                className="size-14 shrink-0"
-              />
-              <div className="min-w-0">
-                <p className="font-display text-xl leading-tight text-white">
-                  {primary.name}
-                </p>
-                <p className="text-sm font-medium text-sky-200">
-                  {ts(`solutions.${primary.id}.category`)}
-                </p>
-              </div>
-            </div>
-            <p className="mt-3 text-sm text-white/80">
-              {ts(`solutions.${primary.id}.blurb`)}
-            </p>
-            <dl className="mt-5 flex flex-wrap gap-2.5 [&>*]:min-w-[10rem] [&>*]:flex-1">
-              <HeroStat
-                label={ts("solution.thcRangeLabel")}
-                value={<span className="font-mono">{primary.thcRange}</span>}
-              />
-              <HeroStat
-                label={t("home.recommendationPrice")}
-                value={
-                  <span className="font-mono">
-                    {ts("card.pricePerGram", {
-                      price: formatPriceEur(primary.priceEur, language),
-                    })}
-                  </span>
-                }
-              />
-            </dl>
-            {!PRICES_CONFIRMED ? (
-              <p className="mt-2 text-xs text-white/55">
-                {ts("pricesIndicative")}
-              </p>
-            ) : null}
-          </div>
-
-          {/* medical review + next action — half the row; 50/50 inside:
-              status + CTA | image (matches the Overview hero, owner request) */}
-          <div className="flex min-w-0 rounded-2xl border border-white/15 bg-white/10 p-5 lg:flex-1 xl:flex-[2] 2xl:flex-1">
-            <div className="flex flex-1 flex-col gap-4 xl:flex-row xl:items-center">
-              <div className="flex min-w-0 flex-col xl:w-1/2">
-                <HeroEyebrow>{t("recommendation.reviewLabel")}</HeroEyebrow>
-                {review ? (
-                  <div className="mt-3">
-                    <StatusPill
-                      label={ta(`review.statuses.${review.status}.label`)}
-                      tone={reviewPillTone(review.status)}
-                    />
-                  </div>
-                ) : null}
-                <p className="mt-2 text-sm text-white/90">
-                  {review
-                    ? ta(`review.statuses.${review.status}.body`)
-                    : t("recommendation.notSubmitted")}
-                </p>
-                {/* CTA — desktop position; on mobile it moves below the image */}
-                <HeroCta
-                  to={
-                    review ? paths.assessment.review : paths.assessment.result
-                  }
-                  className="mt-4 hidden xl:inline-flex"
-                >
-                  {review
-                    ? ta("result.viewReviewCta")
-                    : ta("result.submitReviewCta")}
-                </HeroCta>
-              </div>
-              <div className="flex flex-col xl:w-1/2 xl:self-end">
-                <ImageWithFallback
-                  src={siteImage(IMG.medicalReview) ?? ""}
-                  alt=""
-                  loading="lazy"
-                  className="image-fade-lrb block max-h-44 w-full object-contain object-bottom xl:-mb-5 xl:max-h-52"
-                />
-                <HeroCta
-                  to={
-                    review ? paths.assessment.review : paths.assessment.result
-                  }
-                  className="w-full xl:hidden"
-                >
-                  {review
-                    ? ta("result.viewReviewCta")
-                    : ta("result.submitReviewCta")}
-                </HeroCta>
-              </div>
-            </div>
-          </div>
-        </div>
-      </DashboardHero>
-
-      <DashboardJourney
-        steps={[
-          t("journey.steps.assessment"),
-          t("journey.steps.review"),
-          t("journey.steps.prescription"),
-          t("journey.steps.delivery"),
-        ]}
-        current={journey.current}
-        complete={journey.complete}
-      />
-
-      {/* What the primary suits / how it's used — real per-Solution copy. */}
-      <SectionCard title={ts("solution.detailsHeading")}>
-        <dl className="grid gap-3 sm:grid-cols-2">
-          <div>
-            <dt className="text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-ink-muted">
-              {ts("solution.suitabilityHeading")}
-            </dt>
-            <dd className="mt-1 text-sm text-ink-muted">
-              {ts(`solutions.${primary.id}.suitability`)}
-            </dd>
-          </div>
-          <div>
-            <dt className="text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-ink-muted">
-              {ts("solution.usageHeading")}
-            </dt>
-            <dd className="mt-1 text-sm text-ink-muted">
-              {ts(`solutions.${primary.id}.usage`)}
-            </dd>
-          </div>
-        </dl>
-        {!PRICES_CONFIRMED ? (
-          <p className="mt-3 text-xs text-ink-muted">
-            {ts("pricesIndicative")}
-          </p>
-        ) : null}
-      </SectionCard>
-
-      {/* Alternative — demoted below the primary, a single quiet row. */}
-      <SectionCard title={t("recommendation.secondary")}>
-        <Link
-          to={paths.shopProduct(secondary.id)}
-          className="-m-2 flex items-start gap-4 rounded-2xl p-2 transition-colors hover:bg-white/40"
-        >
-          <SolutionMark
-            solution={secondary}
-            className="size-12 shrink-0 rounded-xl"
-          />
-          <div className="min-w-0 flex-1">
-            <p className="font-display text-base text-ink">{secondary.name}</p>
-            <p className="text-sm font-medium text-petrol-600">
-              {ts(`solutions.${secondary.id}.category`)}
-            </p>
-            <p className="mt-1 text-sm text-ink-muted">
-              {ts(`solutions.${secondary.id}.blurb`)}
-            </p>
-            <p className="mt-1.5 font-mono text-xs text-ink-muted">
-              {ts("solution.thcRangeLabel")}: {secondary.thcRange} ·{" "}
-              {secondaryPriceLabel}
-            </p>
-          </div>
-          <ChevronRight
-            className="mt-1 size-5 shrink-0 text-ink-muted"
-            aria-hidden
-          />
-        </Link>
-      </SectionCard>
     </div>
   );
 }
@@ -832,7 +432,7 @@ export function DashboardOrdersPage() {
       return (
         <DashboardHero>
           <HeroEyebrow>{t("orders.pending.heading")}</HeroEyebrow>
-          <p className="mt-2 max-w-md text-sm text-white/85">
+          <p className="mt-2 max-w-md text-sm md:text-base text-white/85">
             {t("orders.pending.note")}
           </p>
 
@@ -840,7 +440,7 @@ export function DashboardOrdersPage() {
             {cartItems.map((item) => (
               <li
                 key={item.productId}
-                className="flex items-center justify-between gap-3 py-3 text-sm"
+                className="flex items-center justify-between gap-3 py-3 text-sm md:text-base"
               >
                 <span className="text-white">
                   {SOLUTION_BY_ID[item.productId].name} ·{" "}
@@ -860,7 +460,7 @@ export function DashboardOrdersPage() {
 
           {COMMERCE_ENABLED ? (
             <>
-              <div className="mt-4 flex items-center justify-between text-sm">
+              <div className="mt-4 flex items-center justify-between text-sm md:text-base">
                 <span className="font-medium text-white">
                   {t("orders.pending.total")}
                 </span>
@@ -874,11 +474,11 @@ export function DashboardOrdersPage() {
             </>
           ) : (
             <>
-              <p className="mt-4 text-sm text-white/85">
+              <p className="mt-4 text-sm md:text-base text-white/85">
                 {ts("cart.finalPriceNote")}
               </p>
               <HeroCta
-                to={paths.dashboardRecommendation}
+                to={paths.dashboard}
                 className="mt-5 w-full sm:w-auto"
               >
                 {ts("checkoutUnavailable.cta")}
@@ -894,7 +494,7 @@ export function DashboardOrdersPage() {
         icon={Package}
         text={t("orders.empty")}
         ctaLabel={t("orders.emptyCta")}
-        to={paths.dashboardRecommendation}
+        to={paths.dashboard}
       />
     );
   }
@@ -912,58 +512,121 @@ export function DashboardOrdersPage() {
 
   return (
     <div className="space-y-4 lg:space-y-6">
-      {/* Hero — the order you're most likely checking on: the latest one. */}
+      {/* Hero — the order you're most likely checking on: the latest one.
+          Meta on the left; a feathered photo fills the right (same
+          `image-fade-lrb` bottom/side blend as the Overview hero's
+          "next step" panel photo). */}
       <DashboardHero>
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <div className="min-w-0">
-            <HeroEyebrow>{t("orders.latestHeading")}</HeroEyebrow>
-            <p className="mt-2 font-mono text-lg text-white">
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-6">
+          <div className="min-w-0 flex-1">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+              <HeroEyebrow>{t("orders.latestHeading")}</HeroEyebrow>
+              <StatusPill
+                label={t(`orders.statuses.${latestOrder.status}`)}
+                tone={orderPillTone(latestOrder.status)}
+              />
+            </div>
+            <p className="mt-3 font-mono text-xl md:text-2xl text-white">
               {latestOrder.id}
             </p>
-            <p className="text-sm text-white/70">
+            <p className="mt-1 text-sm md:text-base text-white/70">
               {t("orders.placedOn", {
                 date: formatDate(latestOrder.placedAt, language),
               })}
             </p>
+            {latestOrder.shipTo ? (
+              <p className="mt-1 text-sm md:text-base text-white/70">
+                {t("delivery.shipToLine", {
+                  name: `${latestOrder.shipTo.firstName} ${latestOrder.shipTo.lastName}`,
+                  street: latestOrder.shipTo.street,
+                  postalCode: latestOrder.shipTo.postalCode,
+                  city: latestOrder.shipTo.city,
+                  country: latestOrder.shipTo.country,
+                })}
+              </p>
+            ) : null}
             {latestOrder.paymentMethod ? (
-              <p className="text-sm text-white/70">
+              <p className="mt-1 text-sm md:text-base text-white/70">
                 {t("orders.paymentLabel")}:{" "}
                 {ts(`checkout.paymentMethods.${latestOrder.paymentMethod}`)}
               </p>
             ) : null}
           </div>
-          <StatusPill
-            label={t(`orders.statuses.${latestOrder.status}`)}
-            tone={orderPillTone(latestOrder.status)}
+
+          <div className="relative w-full sm:w-1/2 sm:self-end lg:w-[20rem]">
+            <ImageWithFallback
+              src={siteImage(IMG.homeHero) ?? ""}
+              alt=""
+              loading="lazy"
+              className="image-fade-lrb block max-h-40 w-full object-contain object-bottom sm:max-h-52"
+            />
+          </div>
+        </div>
+      </DashboardHero>
+
+      {/* Delivery — the "where's my order" block, moved here whole from the
+          Overview page (2026-09-09): the delivery blurb, the status tracker
+          and the courier-map placeholder. This branch only renders when at
+          least one order exists, so no `latestOrder` guards / pre-order
+          coverage map are needed. (The shipping address sits in the hero.) */}
+      <SectionCard title={th("deliveryBanner.eyebrow")}>
+        <div className="flex gap-3">
+          <MedallionIcon icon={Truck} tone="sage" />
+          <div className="min-w-0">
+            <p className="text-sm md:text-base font-medium text-ink">
+              {th("deliveryBanner.headline")}
+            </p>
+            <p className="mt-1 text-sm md:text-base text-ink-muted">
+              {th("deliveryBanner.body")}
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-4 rounded-2xl border border-border bg-surface-raised/60 p-4">
+          <div className="flex items-center justify-between gap-3">
+            <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.1em] text-ink-muted">
+              {t("delivery.track.heading")}
+            </p>
+            <StatusPill
+              label={t(`orders.statuses.${latestOrder.status}`)}
+              tone={orderPillTone(latestOrder.status)}
+            />
+          </div>
+          <DashboardJourney
+            bare
+            className="mt-3"
+            steps={DELIVERY_STEP_KEYS.map((k) => t(`delivery.track.steps.${k}`))}
+            current={DELIVERY_STAGE[latestOrder.status]}
+            complete={latestOrder.status === "delivered"}
           />
         </div>
-        <p className="mt-4 flex items-start gap-2 text-sm text-white/80">
-          <Truck className="mt-0.5 size-4 shrink-0" aria-hidden />
-          {th("deliveryBanner.body")}
+
+        {/* Live courier map — placeholder only. No real carrier-tracking
+            integration yet, so this reserves the space and says so plainly
+            rather than faking a van position. */}
+        <p className="mt-4 text-xs md:text-sm font-semibold uppercase tracking-[0.1em] text-ink-muted">
+          {t("delivery.track.mapHeading")}
         </p>
-        {latestOrder.shipTo ? (
-          <div className="mt-4 max-w-xs rounded-2xl border border-white/15 bg-white/10 px-3.5 py-3">
-            <p className="text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-white/60">
-              {t("delivery.shipTo")}
+        <div className="relative mt-2 overflow-hidden rounded-2xl bg-petrol-900/90 p-6">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 [background-image:radial-gradient(circle,rgba(255,255,255,0.16)_1px,transparent_1.6px)] [background-size:22px_22px]"
+          />
+          <div className="relative flex flex-col items-center gap-2 py-4 text-center">
+            <MapPin className="size-6 text-white/70" aria-hidden />
+            <p className="text-sm md:text-base font-medium text-white">
+              {t("delivery.track.mapComingSoon")}
             </p>
-            <address className="mt-1 text-sm not-italic leading-relaxed text-white">
-              {latestOrder.shipTo.firstName} {latestOrder.shipTo.lastName}
-              <br />
-              {latestOrder.shipTo.street}
-              <br />
-              {latestOrder.shipTo.postalCode} {latestOrder.shipTo.city}
-              <br />
-              {latestOrder.shipTo.country}
-            </address>
+            <p className="text-sm md:text-base text-white/70">{t("delivery.track.noVan")}</p>
           </div>
-        ) : null}
-      </DashboardHero>
+        </div>
+      </SectionCard>
 
       {/* Desktop — a records table (best-practice for a list you reference). */}
       <div className="hidden overflow-x-auto lg:block">
-        <table className="w-full min-w-[42rem] border-separate border-spacing-y-2 text-sm">
+        <table className="w-full min-w-[42rem] border-separate border-spacing-y-2 text-sm md:text-base">
           <thead>
-            <tr className="text-left text-xs uppercase tracking-wide text-ink-muted">
+            <tr className="text-left text-xs md:text-sm uppercase tracking-wide text-ink-muted">
               <th className="px-4 py-2 font-medium">{t("orders.col.id")}</th>
               <th className="px-4 py-2 font-medium">{t("orders.col.date")}</th>
               <th className="px-4 py-2 font-medium">{t("orders.col.items")}</th>
@@ -981,7 +644,7 @@ export function DashboardOrdersPage() {
                 <td className="rounded-l-2xl px-4 py-3 font-mono text-ink">
                   {order.id}
                   {order.shipTo ? (
-                    <span className="mt-1 block font-sans text-xs font-normal text-ink-muted">
+                    <span className="mt-1 block font-sans text-sm md:text-base font-normal text-ink-muted">
                       {order.shipTo.postalCode} {order.shipTo.city}
                     </span>
                   ) : null}
@@ -993,7 +656,9 @@ export function DashboardOrdersPage() {
                   {lineSummary(order)}
                 </td>
                 <td className="whitespace-nowrap px-4 py-3 text-right font-mono text-ink">
-                  {formatPriceEur(order.totalEur, language)}
+                  {order.totalEur == null
+                    ? t("orders.totalPending")
+                    : formatPriceEur(order.totalEur, language)}
                 </td>
                 <td className="rounded-r-2xl px-4 py-3">
                   <StatusPill
@@ -1013,10 +678,10 @@ export function DashboardOrdersPage() {
           <li key={order.id} className="glass rounded-2xl md:rounded-3xl p-5">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
-                <p className="font-mono text-sm text-ink">
+                <p className="font-mono text-sm md:text-base text-ink">
                   {t("orders.orderLabel", { id: order.id })}
                 </p>
-                <p className="text-xs text-ink-muted">
+                <p className="text-sm md:text-base text-ink-muted">
                   {t("orders.placedOn", {
                     date: formatDate(order.placedAt, language),
                   })}
@@ -1027,7 +692,7 @@ export function DashboardOrdersPage() {
                 tone={orderPillTone(order.status)}
               />
             </div>
-            <ul className="mt-3 space-y-1 text-sm text-ink-muted">
+            <ul className="mt-3 space-y-1 text-sm md:text-base text-ink-muted">
               {order.lines.map((l) => {
                 const s = SOLUTION_BY_ID[l.productId];
                 return (
@@ -1037,15 +702,17 @@ export function DashboardOrdersPage() {
                 );
               })}
             </ul>
-            <p className="mt-2 font-mono text-sm text-ink">
-              {formatPriceEur(order.totalEur, language)}
+            <p className="mt-2 font-mono text-sm md:text-base text-ink">
+              {order.totalEur == null
+                ? t("orders.totalPending")
+                : formatPriceEur(order.totalEur, language)}
             </p>
             {order.shipTo ? (
               <div className="mt-3 border-t border-border pt-3">
-                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-ink-muted">
+                <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.1em] text-ink-muted">
                   {t("delivery.shipTo")}
                 </p>
-                <address className="mt-1 text-sm not-italic leading-relaxed text-ink">
+                <address className="mt-1 text-sm md:text-base not-italic leading-relaxed text-ink">
                   {order.shipTo.firstName} {order.shipTo.lastName}
                   <br />
                   {order.shipTo.street}
@@ -1091,8 +758,8 @@ export function DashboardFollowUpPage() {
   if (!entry) {
     return (
       <div className="glass-strong rounded-2xl md:rounded-3xl p-5 sm:p-8">
-        <p className="font-display text-xl text-ink">{t("followUp.prompt")}</p>
-        <p className="mt-2 text-sm text-ink-muted">
+        <p className="font-display text-xl md:text-2xl text-ink">{t("followUp.prompt")}</p>
+        <p className="mt-2 text-sm md:text-base text-ink-muted">
           {t("followUp.promptHint")}
         </p>
         <div className="mt-5 grid gap-2.5 sm:grid-cols-2">
@@ -1110,7 +777,7 @@ export function DashboardFollowUpPage() {
             </button>
           ))}
         </div>
-        <p className="mt-4 text-xs text-ink-muted">
+        <p className="mt-4 text-sm md:text-base text-ink-muted">
           {t("followUp.windowNote")}
         </p>
       </div>
@@ -1119,17 +786,18 @@ export function DashboardFollowUpPage() {
 
   const secondary = SOLUTION_BY_ID[result.secondarySolutionId];
   // Where "Update My Recommendation" sends the user. "I need more guidance" /
-  // "I would like a different option" go to the recommendation overview to
-  // review options with support — NOT straight to a stronger/lighter product
-  // (PO decision B4: the follow-up must not nudge self-adjusting strength).
+  // "I would like a different option" go to the dashboard overview (which now
+  // carries the recommendation) to review options with support — NOT straight
+  // to a stronger/lighter product (PO decision B4: the follow-up must not
+  // nudge self-adjusting strength).
   const updateTarget =
     entry.choice === "format" || entry.choice === "support"
       ? paths.dashboardSupport
-      : paths.dashboardRecommendation;
+      : paths.dashboard;
 
   const actions = [
-    { key: "reorder", to: paths.shopProduct(result.primarySolutionId) },
-    { key: "trySecondary", to: paths.shopProduct(secondary.id) },
+    { key: "reorder", to: paths.shopProductFromDashboard(result.primarySolutionId) },
+    { key: "trySecondary", to: paths.shopProductFromDashboard(secondary.id) },
     { key: "retake", to: paths.assessment.start },
     { key: "contact", to: paths.dashboardSupport },
   ] as const;
@@ -1139,10 +807,10 @@ export function DashboardFollowUpPage() {
       {/* Hero — what you told us at check-in, and what to do about it. */}
       <DashboardHero>
         <HeroEyebrow>{t("followUp.yourAnswer")}</HeroEyebrow>
-        <p className="mt-1.5 font-display text-lg text-white">
+        <p className="mt-1.5 font-display text-lg md:text-xl text-white">
           {t(`followUp.options.${entry.choice}`)}
         </p>
-        <p className="mt-3 text-sm text-white/85">
+        <p className="mt-3 text-sm md:text-base text-white/85">
           {t(`followUp.responses.${entry.choice}`)}
         </p>
         <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
@@ -1153,7 +821,7 @@ export function DashboardFollowUpPage() {
               clearFollowUp();
               setEntry(null);
             }}
-            className="text-sm text-white/80 underline-offset-4 transition-colors hover:text-white hover:underline"
+            className="text-sm md:text-base text-white/80 underline-offset-4 transition-colors hover:text-white hover:underline"
           >
             {t("followUp.change")}
           </button>
@@ -1185,7 +853,7 @@ export function DashboardSupportPage() {
     <DashboardHero>
       <div className="flex items-start gap-4">
         <MedallionIcon icon={LifeBuoy} className="size-14" />
-        <p className="max-w-md text-sm text-white/85">{t("support.body")}</p>
+        <p className="max-w-md text-sm md:text-base text-white/85">{t("support.body")}</p>
       </div>
       <dl className="mt-5 grid gap-3 sm:max-w-lg sm:grid-cols-2">
         <HeroStat
@@ -1214,12 +882,20 @@ export function DashboardProfilePage() {
   const [savedAt, setSavedAt] = useState<number | null>(null);
   const [name, setName] = useState(user?.name ?? "");
   const [phone, setPhone] = useState(user?.phone ?? "");
+  const [street, setStreet] = useState(user?.address?.street ?? "");
+  const [postalCode, setPostalCode] = useState(user?.address?.postalCode ?? "");
+  const [city, setCity] = useState(user?.address?.city ?? "");
+  const [country, setCountry] = useState(user?.address?.country ?? "");
   const photoInput = useRef<HTMLInputElement>(null);
   const [photoError, setPhotoError] = useState(false);
 
   function startEdit() {
     setName(user?.name ?? "");
     setPhone(user?.phone ?? "");
+    setStreet(user?.address?.street ?? "");
+    setPostalCode(user?.address?.postalCode ?? "");
+    setCity(user?.address?.city ?? "");
+    setCountry(user?.address?.country ?? "");
     setSavedAt(null);
     setEditing(true);
   }
@@ -1238,7 +914,12 @@ export function DashboardProfilePage() {
 
   function onSave(e: FormEvent) {
     e.preventDefault();
-    updateProfile({ name: name.trim() || user?.name, phone });
+    updateProfile({
+      name: name.trim() || user?.name,
+      phone,
+      // An empty street clears the stored address (see AuthContext).
+      address: { street, postalCode, city, country },
+    });
     setEditing(false);
     setSavedAt(Date.now());
   }
@@ -1251,13 +932,13 @@ export function DashboardProfilePage() {
           <Avatar
             name={user?.name ?? ""}
             src={user?.avatarUrl}
-            className="size-14 text-base ring-2 ring-white/25"
+            className="size-14 text-base md:text-lg ring-2 ring-white/25"
           />
           <div className="min-w-0">
-            <p className="truncate font-display text-xl text-white">
+            <p className="truncate font-display text-xl md:text-2xl text-white">
               {user?.name}
             </p>
-            <p className="truncate text-sm text-white/70">{user?.email}</p>
+            <p className="truncate text-sm md:text-base text-white/70">{user?.email}</p>
           </div>
         </div>
       </DashboardHero>
@@ -1276,7 +957,7 @@ export function DashboardProfilePage() {
               <Avatar
                 name={user?.name ?? ""}
                 src={user?.avatarUrl}
-                className="size-16 text-lg"
+                className="size-16 text-lg md:text-xl"
               />
               <div className="min-w-0">
                 <input
@@ -1290,7 +971,6 @@ export function DashboardProfilePage() {
                   <Button
                     type="button"
                     variant="outline"
-                    size="sm"
                     onClick={() => photoInput.current?.click()}
                   >
                     {t("profile.changePhoto")}
@@ -1299,13 +979,13 @@ export function DashboardProfilePage() {
                     <button
                       type="button"
                       onClick={() => updateProfile({ avatarUrl: "" })}
-                      className="text-sm text-ink-muted underline-offset-4 hover:underline"
+                      className="text-sm md:text-base text-ink-muted underline-offset-4 hover:underline"
                     >
                       {t("profile.removePhoto")}
                     </button>
                   ) : null}
                 </div>
-                <p className="mt-1.5 text-xs text-ink-muted">
+                <p className="mt-1.5 text-sm md:text-base text-ink-muted">
                   {photoError
                     ? t("profile.photoError")
                     : t("profile.photoHint")}
@@ -1339,12 +1019,59 @@ export function DashboardProfilePage() {
                     onChange={(e) => setPhone(e.target.value)}
                   />
                 </div>
+                <div className="space-y-1.5">
+                  <Label htmlFor="profile-street">{t("profile.street")}</Label>
+                  <Input
+                    id="profile-street"
+                    name="street"
+                    autoComplete="address-line1"
+                    value={street}
+                    onChange={(e) => setStreet(e.target.value)}
+                  />
+                </div>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div className="space-y-1.5">
+                    <Label htmlFor="profile-postal">
+                      {t("profile.postalCode")}
+                    </Label>
+                    <Input
+                      id="profile-postal"
+                      name="postalCode"
+                      autoComplete="postal-code"
+                      inputMode="numeric"
+                      value={postalCode}
+                      onChange={(e) => setPostalCode(e.target.value)}
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="profile-city">{t("profile.city")}</Label>
+                    <Input
+                      id="profile-city"
+                      name="city"
+                      autoComplete="address-level2"
+                      value={city}
+                      onChange={(e) => setCity(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <div className="space-y-1.5">
+                  <Label htmlFor="profile-country">
+                    {t("profile.country")}
+                  </Label>
+                  <Input
+                    id="profile-country"
+                    name="country"
+                    autoComplete="country-name"
+                    value={country}
+                    onChange={(e) => setCountry(e.target.value)}
+                  />
+                </div>
                 <div>
-                  <p className="text-xs uppercase tracking-wide text-ink-muted">
+                  <p className="text-xs md:text-sm uppercase tracking-wide text-ink-muted">
                     {t("profile.email")}
                   </p>
                   <p className="mt-1 text-ink">{user?.email}</p>
-                  <p className="mt-1 text-xs text-ink-muted">
+                  <p className="mt-1 text-sm md:text-base text-ink-muted">
                     {t("profile.emailNote")}
                   </p>
                 </div>
@@ -1359,7 +1086,7 @@ export function DashboardProfilePage() {
                   <button
                     type="button"
                     onClick={() => setEditing(false)}
-                    className="text-sm text-ink-muted underline-offset-4 hover:underline"
+                    className="text-sm md:text-base text-ink-muted underline-offset-4 hover:underline"
                   >
                     {t("profile.cancel")}
                   </button>
@@ -1368,25 +1095,48 @@ export function DashboardProfilePage() {
             ) : (
               <div className="space-y-4">
                 <div>
-                  <p className="text-xs uppercase tracking-wide text-ink-muted">
+                  <p className="text-xs md:text-sm uppercase tracking-wide text-ink-muted">
                     {t("profile.name")}
                   </p>
                   <p className="mt-1 text-ink">{user?.name}</p>
                 </div>
                 <div>
-                  <p className="text-xs uppercase tracking-wide text-ink-muted">
+                  <p className="text-xs md:text-sm uppercase tracking-wide text-ink-muted">
                     {t("profile.phone")}
                   </p>
                   <p className="mt-1 text-ink">
                     {user?.phone || t("profile.phoneNone")}
                   </p>
                 </div>
+                <div>
+                  <p className="text-xs md:text-sm uppercase tracking-wide text-ink-muted">
+                    {t("profile.address")}
+                  </p>
+                  {user?.address ? (
+                    <address className="mt-1 not-italic leading-relaxed text-ink">
+                      {[
+                        user.address.street,
+                        [user.address.postalCode, user.address.city]
+                          .filter(Boolean)
+                          .join(" "),
+                        user.address.country,
+                      ]
+                        .filter(Boolean)
+                        .map((line) => (
+                          <span key={line} className="block">
+                            {line}
+                          </span>
+                        ))}
+                    </address>
+                  ) : (
+                    <p className="mt-1 text-ink">{t("profile.addressNone")}</p>
+                  )}
+                </div>
                 {savedAt ? (
-                  <p className="text-sm text-sage-700">{t("profile.saved")}</p>
+                  <p className="text-sm md:text-base text-sage-700">{t("profile.saved")}</p>
                 ) : null}
                 <Button
                   variant="outline"
-                  size="sm"
                   onClick={startEdit}
                   className="w-full sm:w-auto"
                 >
@@ -1396,14 +1146,6 @@ export function DashboardProfilePage() {
             )}
           </div>
 
-          {/* Language (was an "Appearance" group with a theme toggle too, before
-          dark mode was removed — Sept 2026). */}
-          <div className="glass flex items-center justify-between gap-4 rounded-2xl md:rounded-3xl p-5">
-            <span className="text-sm font-medium text-ink">
-              {t("profile.language")}
-            </span>
-            <LanguageToggle />
-          </div>
         </div>
 
         {/* More */}
@@ -1421,11 +1163,16 @@ export function DashboardProfilePage() {
             title={t("nav.support")}
             to={paths.dashboardSupport}
           />
-          <RowLink
-            icon={ArrowUpRight}
-            title={t("profile.exploreSite")}
-            to={paths.home}
-          />
+
+          {/* Language toggle — sits in the "More" column with the row links
+              (owner request, 2026-09-09; was its own card in the left column). */}
+          <div className="glass flex items-center justify-between gap-4 rounded-2xl md:rounded-3xl p-4">
+            <span className="font-medium text-ink">
+              {t("profile.language")}
+            </span>
+            <LanguageToggle />
+          </div>
+
           <Button
             variant="outline"
             onClick={signOut}

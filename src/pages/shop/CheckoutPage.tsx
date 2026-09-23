@@ -1,33 +1,30 @@
-import { useEffect, useRef, useState } from "react";
+import { startTransition, useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import { Link, Navigate, useNavigate } from "react-router";
 import { Trans, useTranslation } from "react-i18next";
+import { ChevronDown } from "lucide-react";
 
+import { usePageTitle } from "@/app/usePageTitle";
 import { Button } from "@/app/components/ui/button";
+import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 import { Input } from "@/app/components/ui/input";
+import { PasswordInput } from "@/app/components/ui/password-input";
 import { Label } from "@/app/components/ui/label";
 import { paths } from "@/app/paths";
-import { COMMERCE_ENABLED, PRICES_CONFIRMED } from "@/config";
-import { CheckoutSteps } from "@/components/marketing/CheckoutSteps";
 import { DeliveryConfirmation } from "@/components/marketing/DeliveryConfirmation";
 import { NextSteps } from "@/components/marketing/NextSteps";
-import { SolutionMark } from "@/components/brand/SolutionMark";
-import { SOLUTION_BY_ID } from "@/data/solutions";
+import { PageShell } from "@/components/marketing/PageShell";
+import { getProductImage } from "@/data/products";
+import { solutionHeroStrain, SOLUTION_BY_ID } from "@/data/solutions";
 import { useAssessment } from "@/features/assessment/AssessmentContext";
 import { useAuth } from "@/features/auth/AuthContext";
 import { useCart } from "@/features/cart/CartContext";
 import { AT_POSTCODE_RE } from "@/features/delivery/delivery";
 import { addOrder } from "@/features/orders/orders";
-import {
-  ENABLED_PAYMENT_METHODS,
-  type PaymentMethodId,
-} from "@/features/payments/payments";
 import { getMedicalReview } from "@/features/review/review";
-import { useLanguage } from "@/i18n/useLanguage";
 import { AnalyticsEvent, track } from "@/lib/analytics";
-import { formatPriceEur } from "@/lib/format";
 
-const DELIVERY_FEE_EUR = 0;
+import { hasJustSubmittedCheckout, markCheckoutSubmitted } from "./checkoutSubmission";
 
 /** One address field's markup + keyboard/autofill config (Baymard / WHATWG
  *  autocomplete guidance). `phone` is the only optional field. */
@@ -66,25 +63,49 @@ function validateField(name: FieldName, value: string): string {
 }
 
 /**
- * Checkout form (doc section 11). Collects customer details, shipping address,
- * a payment-method choice, and two required confirmations. No real payment is
- * taken — "Place order" records a local mock order.
+ * "Review & confirm your request" (funnel re-sequence, 2026-09-08). Collects a
+ * shipping address and — for a signed-out visitor — inline account fields, plus
+ * two required confirmations. No price, no payment: "Submit my request" records
+ * a local request order (`totalEur: null`) and routes to the confirmation page.
+ * The price and any medical-review fee are confirmed after the review.
  */
 export function CheckoutPage() {
   const { t } = useTranslation("shop");
-  const { language } = useLanguage();
-  const { items, subtotalEur, hasPrescriptionItem, clear } = useCart();
-  const { isAuthenticated, user } = useAuth();
+  const { items, hasPrescriptionItem, clear } = useCart();
+  const { isAuthenticated, user, signIn } = useAuth();
   const { postcode, deliveryRegion } = useAssessment();
   const navigate = useNavigate();
 
+  usePageTitle(t("checkout.title"), undefined, { noindex: true });
+
   const [submitting, setSubmitting] = useState(false);
   const [placed, setPlaced] = useState(false);
-  const [payment, setPayment] = useState<PaymentMethodId>(
-    ENABLED_PAYMENT_METHODS[0]?.id ?? "invoice",
-  );
   const [termsOk, setTermsOk] = useState(false);
   const [disclaimerOk, setDisclaimerOk] = useState(false);
+
+  // Account fields — only collected for a signed-out visitor. This page is no
+  // longer behind an auth guard (funnel re-sequence): on submit we
+  // `signIn(email, name)` so the request order has a persistent identity to be
+  // tracked against.
+  const [account, setAccount] = useState({
+    email: "",
+    password: "",
+    passwordConfirm: "",
+  });
+  const [accountErrors, setAccountErrors] = useState<
+    Partial<Record<"email" | "password" | "passwordConfirm", string>>
+  >({});
+
+  function validateAccount(): boolean {
+    if (isAuthenticated) return true;
+    const e: typeof accountErrors = {};
+    if (!/^\S+@\S+\.\S+$/.test(account.email.trim())) e.email = "email";
+    if (account.password.length < 8) e.password = "password";
+    if (account.password !== account.passwordConfirm)
+      e.passwordConfirm = "passwordConfirm";
+    setAccountErrors(e);
+    return Object.keys(e).length === 0;
+  }
 
   // Address fields — controlled so input survives a validation error (Baymard:
   // never clear form data on error) and so we can validate on blur.
@@ -117,79 +138,27 @@ export function CheckoutPage() {
 
   const checkoutTracked = useRef(false);
   useEffect(() => {
-    // Only a checkout that will actually render the form counts as "started" —
-    // not a hit that redirects to medical review or lands on the gated panel.
-    if (
-      checkoutTracked.current ||
-      !isAuthenticated ||
-      items.length === 0 ||
-      !COMMERCE_ENABLED ||
-      getMedicalReview()?.status !== "approved"
-    ) {
-      return;
-    }
+    if (checkoutTracked.current || items.length === 0) return;
     checkoutTracked.current = true;
-    track(AnalyticsEvent.checkoutStarted, {
-      itemCount: items.length,
-      value: subtotalEur,
-    });
-  }, [isAuthenticated, items.length, subtotalEur]);
+    track(AnalyticsEvent.checkoutStarted, { itemCount: items.length });
+  }, [items.length]);
 
   // Once the order is placed we clear the cart, which empties `items`. Without
   // the `placed` guard the empty-cart redirect below would fire on that same
-  // render and pre-empt the navigation to the confirmation page.
-  if (items.length === 0 && !placed) {
-    return <Navigate to={paths.cart} replace />;
+  // render and pre-empt the navigation to the confirmation page. `placed`
+  // alone isn't enough, though: a signed-out submit's `signIn()` remounts this
+  // component (see checkoutSubmission.ts), which resets `placed` to `false` —
+  // `hasJustSubmittedCheckout()` covers that remount.
+  if (items.length === 0 && !placed && !hasJustSubmittedCheckout()) {
+    return <Navigate to={paths.assessment.result} replace />;
+  }
+  // A request cannot be submitted without a medical review behind it. The
+  // review is created at the end of the assessment pass; a visitor who reached
+  // /checkout without one (e.g. a deep link into /shop/:id) is sent to start.
+  if (!placed && !getMedicalReview() && !hasJustSubmittedCheckout()) {
+    return <Navigate to={paths.assessment.start} replace />;
   }
 
-  // Auth is enforced one level up by `DashboardLayout` (this page is a
-  // `/dashboard/*` route now), which also forwards `reason: "checkout"` to
-  // the login page.
-
-  // No regulated product can be ordered before the medical review is approved
-  // (PO decision B1). Every cart item is prescription-only, so gate the whole
-  // checkout: send the user to their review (or to start it).
-  if (!placed && getMedicalReview()?.status !== "approved") {
-    return (
-      <Navigate
-        to={
-          getMedicalReview()
-            ? paths.assessment.review
-            : paths.assessment.medicalReview
-        }
-        replace
-      />
-    );
-  }
-
-  // Commercial checkout is off until real pharmacy prices exist (PO decision —
-  // hard production blocker). Show what the flow will be, not a "Place order"
-  // running on placeholder totals.
-  if (!COMMERCE_ENABLED && !placed) {
-    return (
-      <div className="mx-auto max-w-2xl">
-        <CheckoutSteps current="review" className="mb-6" />
-        <div className="rounded-2xl md:rounded-3xl glass-strong p-6 text-center">
-          <h2 className="text-lg">{t("checkoutUnavailable.heading")}</h2>
-          <p className="mt-2 text-sm text-ink-muted">
-            {t("checkoutUnavailable.body")}
-          </p>
-          <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-            <Button asChild variant="cta" className="w-full sm:w-auto">
-              <Link to={paths.dashboardRecommendation}>
-                {t("checkoutUnavailable.cta")}
-              </Link>
-            </Button>
-            <Button asChild variant="outline" className="w-full sm:w-auto">
-              <Link to={paths.cart}>{t("checkout.backToCart")}</Link>
-            </Button>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  const totalEur = subtotalEur + DELIVERY_FEE_EUR;
   const canSubmit = termsOk && disclaimerOk && !submitting;
 
   function onSubmit(e: FormEvent<HTMLFormElement>) {
@@ -204,27 +173,32 @@ export function CheckoutPage() {
       const err = validateField(f.name, values[f.name]);
       if (err) nextErrors[f.name] = err;
     }
-    if (Object.keys(nextErrors).length > 0 || !termsOk || !disclaimerOk) {
+    const accountOk = validateAccount();
+    if (
+      Object.keys(nextErrors).length > 0 ||
+      !termsOk ||
+      !disclaimerOk ||
+      !accountOk
+    ) {
       setErrors(nextErrors);
-      setTouched(
-        Object.fromEntries(ADDRESS_FIELDS.map((f) => [f.name, true])),
-      );
+      setTouched(Object.fromEntries(ADDRESS_FIELDS.map((f) => [f.name, true])));
       const first = ADDRESS_FIELDS.find((f) => nextErrors[f.name]);
       if (first) document.getElementById(first.name)?.focus();
       return;
     }
 
+    // Set before any state update so it's already true on whatever render
+    // comes next — including a remounted one from the signIn()-triggered
+    // provider remount below.
+    markCheckoutSubmitted();
     setSubmitting(true);
     setPlaced(true);
     const v = (k: FieldName) => values[k].trim();
+
     const order = addOrder({
-      lines: items.map((i) => ({
-        productId: i.productId,
-        quantity: i.quantity,
-      })),
-      totalEur,
+      lines: items.map((i) => ({ productId: i.productId, quantity: i.quantity })),
+      totalEur: null,
       status: hasPrescriptionItem ? "inReview" : "processing",
-      paymentMethod: payment,
       shipTo: {
         firstName: v("firstName"),
         lastName: v("lastName"),
@@ -236,38 +210,138 @@ export function CheckoutPage() {
       },
     });
     clear();
-    track(AnalyticsEvent.orderPlaced, {
-      orderId: order.id,
-      value: totalEur,
-      paymentMethod: payment,
-    });
+    // (existing) the cart context is keyed by sessionKey; a signed-out submit
+    // calls signIn() below, which remounts CartProvider — remove the key so the
+    // remounted provider loads an empty cart.
+    try {
+      window.localStorage.removeItem("wecare.cart");
+    } catch {
+      /* ignore */
+    }
+    track(AnalyticsEvent.requestSubmitted, { reference: order.id });
     navigate(paths.orderConfirmation, {
       state: { orderId: order.id },
       replace: true,
     });
+    if (!isAuthenticated) {
+      // Defer account creation to the router's transition lane so the
+      // sessionKey-driven remount lands in the same commit as the route
+      // change (at /order-confirmation), not an intermediate one at /checkout.
+      startTransition(() => {
+        signIn(account.email.trim(), `${v("firstName")} ${v("lastName")}`.trim());
+      });
+    }
   }
 
   return (
-    <div className="mx-auto max-w-3xl">
-      <CheckoutSteps current="review" className="mb-6" />
+    <PageShell>
+      {/* Collapsed order summary, mobile only — the full summary otherwise
+          sits in the right-hand aside, which stacks to the very bottom on
+          narrow screens (after the whole address form). This lets a phone
+          visitor confirm what they're ordering before filling anything in,
+          without duplicating the submit button / next-steps block below. */}
+      <details className="group mb-6 rounded-2xl glass-strong p-4 lg:hidden">
+        <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-sm md:text-base font-medium text-ink marker:content-none [&::-webkit-details-marker]:hidden">
+          <span>
+            {t("checkout.summaryHeading")} ·{" "}
+            {t("checkout.summaryCount", { count: items.length })}
+          </span>
+          <ChevronDown
+            className="size-4 shrink-0 text-ink-muted transition-transform group-open:rotate-180"
+            aria-hidden
+          />
+        </summary>
+        <ul className="mt-4 space-y-3 text-sm md:text-base">
+          {items.map((i) => {
+            const s = SOLUTION_BY_ID[i.productId];
+            return (
+              <li key={i.productId} className="flex items-center gap-3">
+                <ImageWithFallback
+                  src={getProductImage(solutionHeroStrain(s))}
+                  alt=""
+                  className="size-9 shrink-0 rounded-lg bg-sage-50/70 object-contain p-0.5"
+                />
+                <span className="min-w-0 flex-1 text-ink-muted">
+                  {s.name} · {t("cart.grams", { count: i.quantity })}
+                </span>
+              </li>
+            );
+          })}
+        </ul>
+        <p className="mt-4 rounded-xl bg-sage-50 p-3 text-sm md:text-base text-petrol-700">
+          {t("checkout.priceAfterReview")}
+        </p>
+      </details>
+
       <form onSubmit={onSubmit} className="grid gap-8 lg:grid-cols-[1fr_20rem]">
         <div className="space-y-8">
-          {/* The customer is already signed in to reach checkout — show the
-              account email as a confirmation instead of asking for it again
-              (stakeholder feedback, Sept 2026: re-entering the email here was a
-              redundant step). */}
-          <fieldset className="space-y-3">
-            <legend className="text-lg font-medium text-ink">
-              {t("checkout.customerHeading")}
-            </legend>
-            <p className="rounded-xl border border-border bg-surface-raised p-3 text-sm text-ink-muted">
-              {t("checkout.signedInAs")}{" "}
-              <span className="font-medium text-ink">{user?.email}</span>
-            </p>
-          </fieldset>
+          {isAuthenticated ? (
+            <fieldset className="space-y-3">
+              <legend className="text-lg md:text-xl font-medium text-ink">
+                {t("checkout.customerHeading")}
+              </legend>
+              <p className="rounded-xl border border-border bg-surface-raised p-3 text-sm md:text-base text-ink-muted">
+                {t("checkout.signedInAs")}{" "}
+                <span className="font-medium text-ink">{user?.email}</span>
+              </p>
+            </fieldset>
+          ) : (
+            <fieldset className="space-y-4">
+              <legend className="text-lg md:text-xl font-medium text-ink">
+                {t("checkout.accountHeading")}
+              </legend>
+              <p className="text-sm md:text-base text-ink-muted">
+                {t("checkout.accountIntro")}
+              </p>
+              {(["email", "password", "passwordConfirm"] as const).map((k) => (
+                <div key={k} className="space-y-1.5">
+                  <Label htmlFor={`acct-${k}`}>{t(`checkout.fields.${k}`)}</Label>
+                  {k === "email" ? (
+                    <Input
+                      id={`acct-${k}`}
+                      type="email"
+                      autoComplete="email"
+                      value={account[k]}
+                      onChange={(e) =>
+                        setAccount((a) => ({ ...a, [k]: e.target.value }))
+                      }
+                      aria-invalid={Boolean(accountErrors[k]) || undefined}
+                      aria-describedby={
+                        accountErrors[k] ? `acct-${k}-error` : undefined
+                      }
+                      required
+                    />
+                  ) : (
+                    <PasswordInput
+                      id={`acct-${k}`}
+                      autoComplete="new-password"
+                      value={account[k]}
+                      onChange={(e) =>
+                        setAccount((a) => ({ ...a, [k]: e.target.value }))
+                      }
+                      aria-invalid={Boolean(accountErrors[k]) || undefined}
+                      aria-describedby={
+                        accountErrors[k] ? `acct-${k}-error` : undefined
+                      }
+                      required
+                    />
+                  )}
+                  {accountErrors[k] ? (
+                    <p
+                      id={`acct-${k}-error`}
+                      role="alert"
+                      className="text-sm md:text-base text-danger-600"
+                    >
+                      {t(`checkout.errors.${accountErrors[k]}`)}
+                    </p>
+                  ) : null}
+                </div>
+              ))}
+            </fieldset>
+          )}
 
           <fieldset className="space-y-4">
-            <legend className="text-lg font-medium text-ink">
+            <legend className="text-lg md:text-xl font-medium text-ink">
               {t("checkout.shippingHeading")}
             </legend>
             <div className="grid gap-4 sm:grid-cols-2">
@@ -314,7 +388,7 @@ export function CheckoutPage() {
                       aria-describedby={describedBy}
                     />
                     {f.name === "phone" ? (
-                      <p id="phone-hint" className="text-xs text-ink-muted">
+                      <p id="phone-hint" className="text-sm md:text-base text-ink-muted">
                         {t("checkout.fields.phoneHint")}
                       </p>
                     ) : null}
@@ -322,7 +396,7 @@ export function CheckoutPage() {
                       <p
                         id={`${f.name}-error`}
                         role="alert"
-                        className="text-sm text-danger-600"
+                        className="text-sm md:text-base text-danger-600"
                       >
                         {t(`checkout.errors.${errors[f.name]}`)}
                       </p>
@@ -350,35 +424,10 @@ export function CheckoutPage() {
           </fieldset>
 
           <fieldset className="space-y-3">
-            <legend className="text-lg font-medium text-ink">
-              {t("checkout.paymentHeading")}
-            </legend>
-            {ENABLED_PAYMENT_METHODS.map(({ id }) => (
-              <label
-                key={id}
-                className="flex cursor-pointer items-center gap-3 rounded-xl border border-border bg-surface-raised p-3 has-[:checked]:border-petrol-600 has-[:checked]:bg-sage-50"
-              >
-                <input
-                  type="radio"
-                  name="payment"
-                  value={id}
-                  checked={payment === id}
-                  onChange={() => setPayment(id)}
-                  className="size-4 accent-petrol-600"
-                />
-                <span className="text-sm text-ink">
-                  {t(`checkout.paymentMethods.${id}`)}
-                </span>
-              </label>
-            ))}
-            <p className="text-sm text-ink-muted">{t("checkout.paymentNote")}</p>
-          </fieldset>
-
-          <fieldset className="space-y-3">
-            <legend className="text-lg font-medium text-ink">
+            <legend className="text-lg md:text-xl font-medium text-ink">
               {t("checkout.termsHeading")}
             </legend>
-            <label className="flex cursor-pointer items-start gap-3 text-sm text-ink">
+            <label className="flex cursor-pointer items-start gap-3 text-sm md:text-base text-ink">
               <input
                 type="checkbox"
                 checked={termsOk}
@@ -411,7 +460,7 @@ export function CheckoutPage() {
                 />
               </span>
             </label>
-            <label className="flex cursor-pointer items-start gap-3 text-sm text-ink">
+            <label className="flex cursor-pointer items-start gap-3 text-sm md:text-base text-ink">
               <input
                 type="checkbox"
                 checked={disclaimerOk}
@@ -425,67 +474,30 @@ export function CheckoutPage() {
         </div>
 
         <aside className="h-fit rounded-2xl md:rounded-3xl glass-strong p-6">
-          <h2 className="text-base">{t("checkout.summaryHeading")}</h2>
-          <ul className="mt-4 space-y-3 text-sm">
+          <h2 className="text-base md:text-lg">{t("checkout.summaryHeading")}</h2>
+          <ul className="mt-4 space-y-3 text-sm md:text-base">
             {items.map((i) => {
               const s = SOLUTION_BY_ID[i.productId];
               return (
                 <li key={i.productId} className="flex items-center gap-3">
-                  <SolutionMark
-                    solution={s}
-                    className="size-9 shrink-0 rounded-lg"
+                  <ImageWithFallback
+                    src={getProductImage(solutionHeroStrain(s))}
+                    alt=""
+                    className="size-9 shrink-0 rounded-lg bg-sage-50/70 object-contain p-0.5"
                   />
                   <span className="min-w-0 flex-1 text-ink-muted">
                     {s.name} · {t("cart.grams", { count: i.quantity })}
-                  </span>
-                  <span className="shrink-0 font-mono text-ink">
-                    {formatPriceEur(s.priceEur * i.quantity, language)}
                   </span>
                 </li>
               );
             })}
           </ul>
-          <div className="mt-4 space-y-1 border-t border-border pt-3 text-sm">
-            <div className="flex justify-between">
-              <span className="text-ink-muted">{t("cart.subtotal")}</span>
-              <span className="font-mono text-ink">
-                {formatPriceEur(subtotalEur, language)}
-              </span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-ink-muted">
-                {t("checkout.deliveryLabel")}
-              </span>
-              <span className="text-ink">
-                {DELIVERY_FEE_EUR === 0
-                  ? t("checkout.deliveryFree")
-                  : formatPriceEur(DELIVERY_FEE_EUR, language)}
-              </span>
-            </div>
-            <div className="flex justify-between gap-3">
-              <span className="text-ink-muted">{t("checkout.reviewLine")}</span>
-              <Link
-                to={paths.costs}
-                className="text-right text-ink underline underline-offset-2 hover:text-ink-muted"
-              >
-                {t("checkout.reviewLineValue")}
-              </Link>
-            </div>
-          </div>
-          <div className="mt-2 flex justify-between border-t border-border pt-3 text-base">
-            <span className="font-medium text-ink">{t("cart.total")}</span>
-            <span className="font-mono font-medium text-ink">
-              {formatPriceEur(totalEur, language)}
-            </span>
-          </div>
-          {!PRICES_CONFIRMED ? (
-            <p className="mt-2 text-xs text-ink-muted">
-              {t("pricesIndicative")}
-            </p>
-          ) : null}
+          <p className="mt-4 rounded-xl bg-sage-50 p-3 text-sm md:text-base text-petrol-700">
+            {t("checkout.priceAfterReview")}
+          </p>
 
           <div className="mt-5 border-t border-border pt-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-ink-muted">
+            <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.16em] text-ink-muted">
               {t("checkout.nextHeading")}
             </p>
             <div className="mt-3">
@@ -501,17 +513,19 @@ export function CheckoutPage() {
           <Button
             type="submit"
             variant="cta"
-            size="lg"
             className="mt-5 w-full"
             disabled={!canSubmit}
           >
             {t("checkout.placeOrder")}
           </Button>
-          <Button asChild variant="ghost" size="sm" className="mt-2 w-full">
+          <Button asChild variant="ghost" className="mt-2 w-full">
+            {/* Was linking to paths.assessment.result — which redirects to the
+                product page, not the cart, since a "Back to cart" button
+                should self-evidently open the cart (bug fix, 2026-09-14). */}
             <Link to={paths.cart}>{t("checkout.backToCart")}</Link>
           </Button>
         </aside>
       </form>
-    </div>
+    </PageShell>
   );
 }

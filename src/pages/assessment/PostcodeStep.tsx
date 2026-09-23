@@ -71,7 +71,7 @@ export function PostcodeStep({ onComplete }: { onComplete: () => void }) {
         <h2 className="font-display text-xl md:text-2xl text-ink">
           {t("postcode.heading")}
         </h2>
-        <p className="mt-2 text-sm text-ink-muted">{t("postcode.sub")}</p>
+        <p className="mt-2 text-sm md:text-base text-ink-muted">{t("postcode.sub")}</p>
 
         <input
           type="text"
@@ -86,10 +86,10 @@ export function PostcodeStep({ onComplete }: { onComplete: () => void }) {
           placeholder={t("postcode.placeholder")}
           aria-invalid={error || undefined}
           disabled={Boolean(confirmed)}
-          className="mt-5 block w-full max-w-[12rem] rounded-xl border border-border bg-surface-raised px-3 py-2.5 text-sm text-ink"
+          className="mt-5 block w-full max-w-[12rem] rounded-xl border border-border bg-surface-raised px-3 py-2.5 text-sm md:text-base text-ink"
         />
         {error ? (
-          <p className="mt-2 text-sm text-danger-600">{t("postcode.error")}</p>
+          <p className="mt-2 text-sm md:text-base text-danger-600">{t("postcode.error")}</p>
         ) : null}
 
         {confirmed ? (

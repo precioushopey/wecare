@@ -1,6 +1,8 @@
 import { useTranslation } from "react-i18next";
 
 import { usePageTitle } from "@/app/usePageTitle";
+import { PageHeader } from "@/components/marketing/PageHeader";
+import { PageShell } from "@/components/marketing/PageShell";
 import { Reveal } from "@/components/marketing/Reveal";
 import { seoIndexable } from "@/seo/config";
 
@@ -66,23 +68,23 @@ export function LegalPage({ doc }: { doc: LegalDoc }) {
     !seoIndexable() && (doc === "imprint" || doc === "privacy");
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6">
+    <PageShell>
       <Reveal>
-        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-petrol-600">
-          {t("common:brand.name")}
-        </p>
-        <h1 className="mt-3">{t(`common:pages.legal.${doc}.title`)}</h1>
-        <p className="mt-2 text-sm text-ink-muted">
+        <PageHeader
+          eyebrow={t("common:brand.name")}
+          title={t(`common:pages.legal.${doc}.title`)}
+        />
+        <p className="mt-2 text-sm md:text-base text-ink-muted">
           {effectiveDate
             ? t("legal:effectiveDateLabel", { date: effectiveDate })
             : t("legal:draftNotEffective")}
         </p>
         {showPreLaunchNotice ? (
-          <p className="mt-4 rounded-xl border border-border bg-surface-raised p-3 text-sm text-ink-muted">
+          <p className="mt-4 rounded-xl border border-border bg-surface-raised p-3 text-sm md:text-base text-ink-muted">
             {t("legal:preLaunchNotice")}
           </p>
         ) : null}
-        {intro ? <p className="mt-4 text-lg text-ink-muted">{intro}</p> : null}
+        {intro ? <p className="mt-4 text-lg md:text-xl text-ink-muted">{intro}</p> : null}
       </Reveal>
 
       {sections.length > 4 ? (
@@ -91,10 +93,10 @@ export function LegalPage({ doc }: { doc: LegalDoc }) {
             aria-label={t("legal:tocLabel")}
             className="glass rounded-2xl p-5"
           >
-            <p className="text-sm font-medium text-ink">
+            <p className="text-sm md:text-base font-medium text-ink">
               {t("legal:tocLabel")}
             </p>
-            <ol className="mt-2 grid gap-1.5 text-sm sm:grid-cols-2">
+            <ol className="mt-2 grid gap-1.5 text-sm md:text-base sm:grid-cols-2">
               {sections.map((s) => (
                 <li key={s.id}>
                   <a
@@ -114,24 +116,24 @@ export function LegalPage({ doc }: { doc: LegalDoc }) {
         {sections.map((s) => (
           <Reveal key={s.id}>
             <section id={s.id} className="scroll-mt-24">
-              <h2 className="text-xl">{s.heading}</h2>
+              <h2 className="text-xl md:text-2xl">{s.heading}</h2>
               {s.body?.map((p, i) => (
                 <p
                   key={i}
-                  className="mt-3 text-sm leading-relaxed text-ink-muted"
+                  className="mt-3 text-sm md:text-base leading-relaxed text-ink-muted"
                 >
                   {p}
                 </p>
               ))}
               {s.list ? (
-                <ul className="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-ink-muted">
+                <ul className="mt-3 list-disc space-y-1.5 pl-5 text-sm md:text-base leading-relaxed text-ink-muted">
                   {s.list.map((item, i) => (
                     <li key={i}>{item}</li>
                   ))}
                 </ul>
               ) : null}
               {s.fields ? (
-                <dl className="mt-3 grid gap-x-6 gap-y-2 text-sm sm:grid-cols-[11rem_1fr]">
+                <dl className="mt-3 grid gap-x-6 gap-y-2 text-sm md:text-base sm:grid-cols-[11rem_1fr]">
                   {s.fields.map((f, i) => (
                     <div key={i} className="contents">
                       <dt className="text-ink">{f.label}</dt>
@@ -143,7 +145,7 @@ export function LegalPage({ doc }: { doc: LegalDoc }) {
               {s.bodyAfter?.map((p, i) => (
                 <p
                   key={i}
-                  className="mt-3 text-sm leading-relaxed text-ink-muted"
+                  className="mt-3 text-sm md:text-base leading-relaxed text-ink-muted"
                 >
                   {p}
                 </p>
@@ -152,6 +154,6 @@ export function LegalPage({ doc }: { doc: LegalDoc }) {
           </Reveal>
         ))}
       </div>
-    </div>
+    </PageShell>
   );
 }

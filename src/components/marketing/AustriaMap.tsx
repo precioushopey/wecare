@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { MapPin } from "lucide-react";
 
 /**
  * Simplified outline of Austria + pins for the major cities WeCare is
@@ -99,12 +100,6 @@ const CITIES: {
   },
 ];
 
-/** lucide `MapPin` geometry (24×24, tip at ~12,21.7), inlined as raw path
- * data so it can be scaled/placed as SVG rather than mounted as a nested
- * icon component. */
-const PIN_OUTLINE =
-  "M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0";
-
 export function AustriaMap() {
   const { t } = useTranslation("home");
 
@@ -171,12 +166,20 @@ export function AustriaMap() {
                 fillOpacity={0.35}
               />
 
-              {/* The pin itself, tip anchored exactly on the city's point. */}
+              {/* The pin itself, tip anchored exactly on the city's point —
+                  the actual lucide `MapPin` icon component (24×24, tip at
+                  ~12,21.7), not a hand-copied path. Nested SVG elements are
+                  valid, so its own <svg> root nests cleanly inside this
+                  transform group. The gradient dot on top is the one bit
+                  the icon's props can't express (its own inner circle would
+                  inherit the same flat `fill`), so it's a small custom
+                  circle layered over the icon's native one. */}
               <g
                 transform={`translate(${c.x},${c.y}) scale(${scale}) translate(-12,-21.7)`}
               >
-                <path
-                  d={PIN_OUTLINE}
+                <MapPin
+                  width={24}
+                  height={24}
                   fill="#ffffff"
                   stroke="#0d444b"
                   strokeWidth={0.75}
@@ -188,7 +191,7 @@ export function AustriaMap() {
                 x={c.x + c.labelDx}
                 y={c.y + c.labelDy}
                 textAnchor={c.anchor}
-                className="fill-white text-[11px] font-semibold font-sans"
+                className="fill-white text-sm md:text-base font-semibold font-sans"
                 style={{ textShadow: "0 1px 3px rgba(1,15,20,0.55)" }}
               >
                 {t(`deliveryBanner.cities.${c.key}`)}

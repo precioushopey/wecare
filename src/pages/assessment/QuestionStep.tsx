@@ -23,9 +23,9 @@ export function QuestionStep({
         {t(`questions.${question.id}.title`)}
       </legend>
       {note ? (
-        <p className="clear-both text-sm text-ink-muted">{note}</p>
+        <p className="clear-both text-sm md:text-base text-ink-muted">{note}</p>
       ) : null}
-      <div className="grid gap-4 clear-both mt-16">
+      <div className="grid gap-4 clear-both mt-12">
         {question.options.map((opt) => {
           const id = `${question.id}-${opt}`;
           const hint = t(`questions.${question.id}.hints.${opt}`, {
@@ -51,7 +51,7 @@ export function QuestionStep({
                   {t(`questions.${question.id}.options.${opt}`)}
                 </span>
                 {hint ? (
-                  <span className="mt-0.5 block text-xs text-ink-muted">
+                  <span className="mt-0.5 block text-sm md:text-base text-ink-muted">
                     {hint}
                   </span>
                 ) : null}

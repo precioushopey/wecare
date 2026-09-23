@@ -21,7 +21,7 @@ export function FloatingChip({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-2 rounded-full px-3.5 py-2 text-sm font-medium backdrop-blur-md",
+        "inline-flex items-center gap-2 rounded-full px-3.5 py-2 text-sm md:text-base font-medium backdrop-blur-md",
         "shadow-[0_12px_32px_-14px_rgba(13,68,75,0.4)]",
         tone === "light"
           ? "bg-white/70 text-ink ring-1 ring-white/70"

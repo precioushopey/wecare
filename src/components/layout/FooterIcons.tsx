@@ -26,7 +26,7 @@ export function TrustBadges({
   paymentMethods: string;
 }) {
   return (
-    <div className="flex flex-wrap items-center gap-3 text-sm text-white/70">
+    <div className="flex flex-wrap items-center gap-3 text-sm md:text-base text-white/70">
       <span className="sr-only">{shippingLabel}</span>
       <WhiteBadge src={dhl} alt="DHL" />
       <span className="mx-1 h-5 w-px bg-white/15" aria-hidden />

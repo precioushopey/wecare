@@ -1,4 +1,3 @@
-import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -7,9 +6,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/app/components/ui/accordion";
-import { Button } from "@/app/components/ui/button";
 import { paths } from "@/app/paths";
 import { usePageTitle } from "@/app/usePageTitle";
+import { PageHeader } from "@/components/marketing/PageHeader";
+import { PageShell } from "@/components/marketing/PageShell";
+import { PromptCard } from "@/components/marketing/PromptCard";
 import { Reveal } from "@/components/marketing/Reveal";
 import { BreadcrumbJsonLd, FaqJsonLd } from "@/seo/StructuredData";
 
@@ -42,12 +43,11 @@ export function FaqPage() {
   });
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6">
+    <PageShell>
       <BreadcrumbJsonLd trail={[{ name: t("title"), path: paths.faq }]} />
       <FaqJsonLd items={faqItems} />
       <Reveal>
-        <h1>{t("title")}</h1>
-        <p className="mt-3 text-lg text-ink-muted">{t("intro")}</p>
+        <PageHeader title={t("title")} intro={t("intro")} />
       </Reveal>
 
       <div className="mt-10 space-y-10">
@@ -61,7 +61,7 @@ export function FaqPage() {
           return (
             <Reveal key={cat}>
               <section>
-                <h2 className="text-xl">{t(`categories.${cat}.heading`)}</h2>
+                <h2 className="text-xl md:text-2xl">{t(`categories.${cat}.heading`)}</h2>
                 <Accordion type="single" collapsible className="mt-3">
                   {items.map((key) => (
                     <AccordionItem key={key} value={`${cat}-${key}`}>
@@ -80,17 +80,15 @@ export function FaqPage() {
         })}
       </div>
 
-      <Reveal className="glass mt-12 flex flex-col gap-3 rounded-2xl md:rounded-3xl p-6 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <p className="font-display text-base text-ink">
-            {t("contact.heading")}
-          </p>
-          <p className="mt-1 text-sm text-ink-muted">{t("contact.body")}</p>
-        </div>
-        <Button asChild variant="cta" className="w-full sm:w-auto sm:shrink-0">
-          <Link to={paths.contact}>{t("contact.cta")}</Link>
-        </Button>
+      <Reveal>
+        <PromptCard
+          title={t("contact.heading")}
+          body={t("contact.body")}
+          ctaLabel={t("contact.cta")}
+          ctaTo={paths.contact}
+          className="mt-12"
+        />
       </Reveal>
-    </div>
+    </PageShell>
   );
 }

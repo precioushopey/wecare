@@ -4,6 +4,7 @@ import { ShieldCheck } from "lucide-react";
 
 import { paths } from "@/app/paths";
 import { usePageTitle } from "@/app/usePageTitle";
+import { PageShell } from "@/components/marketing/PageShell";
 import { COA_CONFIRMED } from "@/config";
 import { SOLUTIONS, solutionExampleCoa } from "@/data/solutions";
 import { useLanguage } from "@/i18n/useLanguage";
@@ -23,28 +24,28 @@ export function LabTestsPage() {
   usePageTitle(t("pages.labTests.title"), t("pages.labTests.description"));
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6">
+    <PageShell maxWidth="max-w-5xl">
       <div className="flex items-center gap-2">
         <ShieldCheck className="size-6 text-petrol-600" aria-hidden />
         <h1>{t("pages.labTests.title")}</h1>
         {COA_CONFIRMED ? (
-          <span className="rounded-full bg-sage-100 px-2.5 py-0.5 text-xs font-medium text-petrol-700">
+          <span className="rounded-full bg-sage-100 px-2.5 py-0.5 text-sm md:text-base font-medium text-petrol-700">
             {ts("solution.labTestedBadge")}
           </span>
         ) : null}
       </div>
-      <p className="mt-3 max-w-2xl text-lg text-ink-muted">
+      <p className="mt-3 max-w-2xl text-lg md:text-xl text-ink-muted">
         {t("pages.labTests.description")}
       </p>
-      <p className="mt-2 max-w-2xl text-sm text-ink-muted">
+      <p className="mt-2 max-w-2xl text-sm md:text-base text-ink-muted">
         {ts(COA_CONFIRMED ? "solution.coaIntro" : "solution.coaPlaceholder")}
       </p>
 
       {COA_CONFIRMED ? (
         <div className="mt-8 overflow-x-auto">
-          <table className="w-full min-w-[46rem] border-separate border-spacing-y-2 text-sm">
+          <table className="w-full min-w-[46rem] border-separate border-spacing-y-2 text-sm md:text-base">
             <thead>
-              <tr className="text-left text-xs uppercase tracking-wide text-ink-muted">
+              <tr className="text-left text-xs md:text-sm uppercase tracking-wide text-ink-muted">
                 <th className="px-3 py-2 font-medium">{ts("coaLabels.product")}</th>
                 <th className="px-3 py-2 font-medium">{ts("coaLabels.cbd")}</th>
                 <th className="px-3 py-2 font-medium">{ts("coaLabels.cbg")}</th>
@@ -63,11 +64,11 @@ export function LabTestsPage() {
                     <td className="rounded-l-2xl px-3 py-3">
                       <Link
                         to={paths.shopProduct(s.id)}
-                        className="font-display text-base text-ink underline-offset-4 hover:underline"
+                        className="font-display text-base md:text-lg text-ink underline-offset-4 hover:underline"
                       >
                         {s.name}
                       </Link>
-                      <span className="block text-xs text-ink-muted">
+                      <span className="block text-sm md:text-base text-ink-muted">
                         {ts(`solutions.${s.id}.category`)}
                       </span>
                     </td>
@@ -94,11 +95,11 @@ export function LabTestsPage() {
             <li key={s.id} className="glass rounded-2xl p-4">
               <Link
                 to={paths.shopProduct(s.id)}
-                className="font-display text-base text-ink underline-offset-4 hover:underline"
+                className="font-display text-base md:text-lg text-ink underline-offset-4 hover:underline"
               >
                 {s.name}
               </Link>
-              <span className="block text-xs text-ink-muted">
+              <span className="block text-sm md:text-base text-ink-muted">
                 {ts(`solutions.${s.id}.category`)}
               </span>
             </li>
@@ -106,9 +107,9 @@ export function LabTestsPage() {
         </ul>
       )}
 
-      <p className="mt-6 text-xs leading-relaxed text-ink-muted">
+      <p className="mt-6 text-sm md:text-base leading-relaxed text-ink-muted">
         {t("footer.disclaimer")}
       </p>
-    </div>
+    </PageShell>
   );
 }

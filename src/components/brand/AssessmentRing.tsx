@@ -245,7 +245,7 @@ export function AssessmentRing({
             display: "inline-flex",
             alignItems: "center",
             fontFamily: "var(--wc-font-accent)",
-            fontSize: Math.max(11, size * 0.045),
+            fontSize: Math.max(14, size * 0.045),
             lineHeight: 1,
             color: toStop,
             background: "rgba(255, 255, 255, 0.85)",
@@ -286,7 +286,7 @@ export function AssessmentRing({
               <span
                 style={{
                   fontFamily: "var(--wc-font-body)",
-                  fontSize: size * 0.13,
+                  fontSize: Math.max(14, size * 0.13),
                   color: "var(--color-ink-muted)",
                 }}
               >

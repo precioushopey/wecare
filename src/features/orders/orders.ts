@@ -43,7 +43,9 @@ export interface Order {
   id: string;
   placedAt: string;
   lines: OrderLine[];
-  totalEur: number;
+  /** `null` for a submitted *request* whose price is confirmed after the
+   *  medical review (funnel re-sequence, 2026-09-08). */
+  totalEur: number | null;
   status: OrderStatus;
   /** Rehydrated from sessionStorage on read; never stored in localStorage. */
   shipTo?: ShippingAddress;
@@ -107,7 +109,7 @@ export function getOrders(): Order[] {
 
 export function addOrder(input: {
   lines: OrderLine[];
-  totalEur: number;
+  totalEur: number | null;
   status: OrderStatus;
   shipTo?: ShippingAddress;
   paymentMethod?: PaymentMethodId;

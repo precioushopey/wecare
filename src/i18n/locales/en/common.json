@@ -12,8 +12,9 @@
     "howItWorks": "How it works",
     "faq": "FAQ",
     "costs": "Costs",
+    "account": "Account",
     "login": "Log in",
-    "signup": "Sign up",
+    "signup": "Create account",
     "myArea": "My area",
     "startAssessment": "Start assessment",
     "primary": "Primary navigation",
@@ -42,7 +43,9 @@
   },
   "a11y": {
     "skipToContent": "Skip to main content",
-    "moreInfo": "More information"
+    "moreInfo": "More information",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password"
   },
   "consent": {
     "title": "Cookies & privacy",
@@ -94,6 +97,17 @@
       "labTests": "Lab tests / COA"
     }
   },
+  "funnel": {
+    "label": "Progress",
+    "steps": {
+      "questions": "Questions",
+      "match": "Your match",
+      "details": "Your details",
+      "done": "Done"
+    },
+    "home": "Back to home",
+    "cart": "Cart"
+  },
   "pages": {
     "home": {
       "title": "Find the right support for sleep, pain, stress and migraine",
@@ -136,7 +150,7 @@
     },
     "assessmentStart": {
       "title": "Your assessment",
-      "description": "Six short questions about your concern. At the end you get your recommended solution."
+      "description": "A few short questions about your concern. At the end you get your recommended solution."
     },
     "result": {
       "title": "Your recommended solution is ready",
@@ -212,15 +226,7 @@
     }
   },
   "journey": {
-    "label": "Your path",
-    "stepOf": "Step {{current}} of {{total}}",
-    "steps": {
-      "problem": "Concern",
-      "assessment": "Assessment",
-      "solution": "Recommendation",
-      "product": "Product",
-      "followUp": "Follow-up"
-    }
+    "stepOf": "Step {{current}} of {{total}}"
   },
   "medicalNotice": {
     "heading": "Important information about medical cannabis",

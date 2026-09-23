@@ -17,12 +17,12 @@ export function NextSteps({
     <ol className="flex flex-col gap-4">
       {steps.map((s, i) => (
         <li key={i} className="flex gap-3">
-          <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-sage-100 font-display text-sm text-petrol-700">
+          <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-sage-100 font-display text-sm md:text-base text-petrol-700">
             {i + 1}
           </span>
           <div>
-            <p className="text-sm font-medium text-ink">{s.title}</p>
-            <p className="mt-0.5 text-xs text-ink-muted">{s.body}</p>
+            <p className="text-sm md:text-base font-medium text-ink">{s.title}</p>
+            <p className="mt-0.5 text-sm md:text-base text-ink-muted">{s.body}</p>
           </div>
         </li>
       ))}
