@@ -346,7 +346,7 @@ export function AssessmentEnginePage() {
             <button
               type="button"
               onClick={startOver}
-              className="shrink-0 text-sm md:text-base text-ink-muted underline-offset-4 hover:underline"
+              className="shrink-0 text-base text-ink-muted underline-offset-4 hover:underline"
             >
               {t("start.restart")}
             </button>
@@ -384,7 +384,7 @@ export function AssessmentEnginePage() {
           <button
             type="button"
             onClick={backToLastQuestion}
-            className="mx-auto mt-4 flex items-center gap-1.5 text-sm md:text-base text-ink-muted underline-offset-4 hover:underline"
+            className="mx-auto mt-4 flex items-center gap-1.5 text-base text-ink-muted underline-offset-4 hover:underline"
           >
             <ArrowLeft className="size-4" aria-hidden />
             {t("exclusion.back")}

@@ -821,7 +821,7 @@ export function DashboardFollowUpPage() {
               clearFollowUp();
               setEntry(null);
             }}
-            className="text-sm md:text-base text-white/80 underline-offset-4 transition-colors hover:text-white hover:underline"
+            className="text-base text-white/80 underline-offset-4 transition-colors hover:text-white hover:underline"
           >
             {t("followUp.change")}
           </button>
@@ -979,7 +979,7 @@ export function DashboardProfilePage() {
                     <button
                       type="button"
                       onClick={() => updateProfile({ avatarUrl: "" })}
-                      className="text-sm md:text-base text-ink-muted underline-offset-4 hover:underline"
+                      className="text-base text-ink-muted underline-offset-4 hover:underline"
                     >
                       {t("profile.removePhoto")}
                     </button>
@@ -1086,7 +1086,7 @@ export function DashboardProfilePage() {
                   <button
                     type="button"
                     onClick={() => setEditing(false)}
-                    className="text-sm md:text-base text-ink-muted underline-offset-4 hover:underline"
+                    className="text-base text-ink-muted underline-offset-4 hover:underline"
                   >
                     {t("profile.cancel")}
                   </button>

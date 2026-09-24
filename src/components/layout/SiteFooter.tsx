@@ -162,7 +162,10 @@ export function SiteFooter({
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-8 flex flex-wrap items-center gap-4 border-t border-white/20 pt-6 text-sm md:text-base text-white/60">
+        {/* text-base: the "Cookie settings" button in this row inherits its size,
+            and buttons are text-base everywhere (owner request, 2026-09-24); the
+            copyright + account link share the row so they follow. */}
+        <div className="mt-8 flex flex-wrap items-center gap-4 border-t border-white/20 pt-6 text-base text-white/60">
           <span>{t("footer.copyright", { year })}</span>
           <Link
             to={account.to}

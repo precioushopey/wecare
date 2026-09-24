@@ -124,7 +124,7 @@ function AccountMenu({
               setOpen(false);
               signOut();
             }}
-            className="mt-2 flex w-full items-center gap-2 rounded-xl px-2.5 py-2 text-sm md:text-base font-medium text-danger-700 outline-none transition-colors hover:bg-danger-50 focus-visible:ring-2 focus-visible:ring-petrol-600"
+            className="mt-2 flex w-full items-center gap-2 rounded-xl px-2.5 py-2 text-base font-medium text-danger-700 outline-none transition-colors hover:bg-danger-50 focus-visible:ring-2 focus-visible:ring-petrol-600"
           >
             <LogOut className="size-4" aria-hidden />
             {t("profile.signOut")}

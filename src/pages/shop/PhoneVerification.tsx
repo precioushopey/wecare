@@ -238,7 +238,7 @@ export function PhoneVerification({
                 type="button"
                 onClick={send}
                 disabled={busy}
-                className="text-sm md:text-base text-ink-muted underline underline-offset-2 hover:text-ink disabled:opacity-60"
+                className="text-base text-ink-muted underline underline-offset-2 hover:text-ink disabled:opacity-60"
               >
                 {t("checkout.phone.resend")}
               </button>

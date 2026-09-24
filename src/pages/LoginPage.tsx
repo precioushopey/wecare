@@ -230,7 +230,7 @@ export function LoginPage({ mode = "signIn" }: { mode?: Mode }) {
           <button
             type="button"
             onClick={() => continueWith("google")}
-            className="flex w-full items-center justify-center gap-3 rounded-full border border-border bg-white px-5 py-2.5 text-sm md:text-base font-medium text-ink shadow-[var(--shadow-soft)] transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-petrol-600 focus-visible:ring-offset-2"
+            className="flex w-full items-center justify-center gap-3 rounded-full border border-border bg-white px-5 py-2.5 text-base font-medium text-ink shadow-[var(--shadow-soft)] transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-petrol-600 focus-visible:ring-offset-2"
           >
             <GoogleIcon className="size-5 shrink-0" />
             {t("auth.continueWithGoogle")}
@@ -238,7 +238,7 @@ export function LoginPage({ mode = "signIn" }: { mode?: Mode }) {
           <button
             type="button"
             onClick={() => continueWith("apple")}
-            className="flex w-full items-center justify-center gap-3 rounded-full bg-ink px-5 py-2.5 text-sm md:text-base font-medium text-white shadow-[var(--shadow-soft)] transition-colors hover:bg-ink/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-petrol-600 focus-visible:ring-offset-2"
+            className="flex w-full items-center justify-center gap-3 rounded-full bg-ink px-5 py-2.5 text-base font-medium text-white shadow-[var(--shadow-soft)] transition-colors hover:bg-ink/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-petrol-600 focus-visible:ring-offset-2"
           >
             <AppleIcon className="size-5 shrink-0" />
             {t("auth.continueWithApple")}

@@ -397,7 +397,7 @@ export function EmptyState({
       <p className="mt-4 max-w-xs text-ink-muted">{text}</p>
       <Link
         to={to}
-        className="mt-5 inline-flex h-11 items-center justify-center rounded-full px-6 text-sm md:text-base font-medium text-cta-foreground [background-image:var(--cta-gradient)] shadow-[0_10px_28px_-10px_rgba(42,167,176,0.55)] transition-all hover:brightness-105"
+        className="mt-5 inline-flex h-11 items-center justify-center rounded-full px-6 text-base font-medium text-cta-foreground [background-image:var(--cta-gradient)] shadow-[0_10px_28px_-10px_rgba(42,167,176,0.55)] transition-all hover:brightness-105"
       >
         {ctaLabel}
       </Link>
@@ -487,7 +487,7 @@ export function HeroCta({
     <Link
       to={to}
       className={cn(
-        "inline-flex h-11 items-center justify-center gap-1.5 rounded-full bg-white px-5 text-sm md:text-base font-semibold text-petrol-800 shadow-[0_12px_30px_-14px_rgba(0,0,0,0.55)] transition-colors hover:bg-white/90",
+        "inline-flex h-11 items-center justify-center gap-1.5 rounded-full bg-white px-5 text-base font-semibold text-petrol-800 shadow-[0_12px_30px_-14px_rgba(0,0,0,0.55)] transition-colors hover:bg-white/90",
         className,
       )}
     >

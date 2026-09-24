@@ -678,7 +678,7 @@ Before adding UI, check for an existing primitive: buttons → `Button`; section
 
 ## 14. Design System / Visual Requirements
 
-**Single source of truth:** `src/styles/index.css` (imports `fonts.css`, imports Tailwind, then `@theme static` → `:root` → `@theme inline` → `@layer base` → `@layer components` → utility classes). There is **no** `tailwind.config.js`; `postcss.config.mjs` is empty. **`:root` is `color-scheme: light` — light-only. Dark mode was removed (owner decision, Sept 2026): no `.dark {}` block, no `@custom-variant dark`, no `src/theme/`, no `ThemeToggle`, no `dark:` utilities.** Do not re-add a dark theme without a new owner decision.
+**Single source of truth:** `src/styles/index.css` (imports `fonts.css`, imports Tailwind, then `@theme static` → `:root` → `@theme inline` → `@layer base` → `@layer components` → utility classes). There is **no** `tailwind.config.js` and no PostCSS config file (the `@tailwindcss/vite` plugin needs none). **`:root` is `color-scheme: light` — light-only. Dark mode was removed (owner decision, Sept 2026): no `.dark {}` block, no `@custom-variant dark`, no `src/theme/`, no `ThemeToggle`, no `dark:` utilities.** Do not re-add a dark theme without a new owner decision.
 
 ### 14.1 Colour
 

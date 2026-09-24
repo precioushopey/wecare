@@ -50,7 +50,7 @@ const FAQ_KEYS = ["dosage", "driving", "delivery"] as const;
 /** Primary action on the gradient hero — a solid-white pill (same as the
  *  Result page's recommendation card). */
 const HERO_CTA_CLASS =
-  "inline-flex h-11 w-full items-center justify-center gap-1.5 rounded-full bg-white px-6 text-sm md:text-base font-semibold text-petrol-800 shadow-[0_12px_30px_-14px_rgba(0,0,0,0.55)] transition-colors hover:bg-white/90 sm:w-auto";
+  "inline-flex h-11 w-full items-center justify-center gap-1.5 rounded-full bg-white px-6 text-base font-semibold text-petrol-800 shadow-[0_12px_30px_-14px_rgba(0,0,0,0.55)] transition-colors hover:bg-white/90 sm:w-auto";
 /** Each option's badge, if any — guides a beginner instead of leaving four
  * bare numbers to weigh unaided (owner feedback, Aug 2026). Framed as order
  * size / common selection, never as a consumption or dosage recommendation —
@@ -205,7 +205,7 @@ function AmountSelector({
             onClick={() => onSelect(o)}
             aria-pressed={grams === o}
             className={cn(
-              "relative flex flex-col items-center gap-1 rounded-2xl border px-3 py-3 text-sm md:text-base font-medium transition-colors",
+              "relative flex flex-col items-center gap-1 rounded-2xl border px-3 py-3 text-base font-medium transition-colors",
               grams === o
                 ? "border-white bg-white text-petrol-800"
                 : "border-white/25 text-white/75 hover:border-white/50 hover:text-white",

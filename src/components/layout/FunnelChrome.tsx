@@ -54,7 +54,7 @@ function FunnelFooter({
   const { t } = useTranslation();
   const { reopen: reopenConsent } = useConsent();
   const link =
-    "text-sm md:text-base text-ink-muted underline-offset-4 hover:text-ink hover:underline";
+    "text-base text-ink-muted underline-offset-4 hover:text-ink hover:underline";
   return (
     <footer
       className={cn(

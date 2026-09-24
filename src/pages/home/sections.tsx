@@ -631,7 +631,7 @@ export function DeliveryBannerSection() {
                   type="button"
                   aria-pressed={country === c}
                   onClick={() => setCountry(c)}
-                  className={`rounded-full px-4 py-1.5 text-sm md:text-base font-medium outline-none transition-colors focus-visible:ring-2 focus-visible:ring-white/70 ${
+                  className={`rounded-full px-4 py-1.5 text-base font-medium outline-none transition-colors focus-visible:ring-2 focus-visible:ring-white/70 ${
                     country === c
                       ? "bg-white text-petrol-800"
                       : "text-white/80 hover:text-white"
