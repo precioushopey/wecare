@@ -6,6 +6,11 @@ import { Button } from "@/app/components/ui/button";
 import { paths } from "@/app/paths";
 import { PageShell } from "@/components/marketing/PageShell";
 
+import { OptionTile } from "./OptionTile";
+import { StepFrame } from "./StepFrame";
+
+const LINK = "underline underline-offset-2 hover:text-ink";
+
 /**
  * Legal-consent gate shown once (per device) before the assessment, after
  * `AgeGate` (PO request, 2026-09-14). Links to the real `/legal/terms` and
@@ -17,21 +22,18 @@ export function LegalConsentGate({ onConfirm }: { onConfirm: () => void }) {
   const [checked, setChecked] = useState(false);
 
   return (
-    <PageShell maxWidth="max-w-xl" className="py-16">
-      <div className="glass-strong rounded-2xl md:rounded-3xl p-6 sm:p-8">
-        <h1 className="font-display text-2xl md:text-3xl text-ink">
-          {t("legalGate.title")}
-        </h1>
-        <p className="mt-3 text-ink-muted">{t("legalGate.body")}</p>
-
-        <label className="mt-6 flex cursor-pointer items-start gap-3 rounded-xl border-2 border-border bg-surface-raised p-4 text-ink has-[:checked]:border-petrol-600 has-[:checked]:bg-sage-50">
-          <input
-            type="checkbox"
-            checked={checked}
-            onChange={(e) => setChecked(e.target.checked)}
-            className="mt-0.5 size-4 shrink-0 accent-petrol-600"
-          />
-          <span>
+    <PageShell maxWidth="max-w-xl" className="py-10">
+      <StepFrame
+        eyebrow={t("phase.leadIn")}
+        title={t("legalGate.title")}
+        subtitle={t("legalGate.body")}
+      >
+        <OptionTile
+          type="checkbox"
+          id="legal-gate-confirm"
+          checked={checked}
+          onChange={() => setChecked((c) => !c)}
+          label={
             <Trans
               t={t}
               i18nKey="legalGate.checkbox"
@@ -41,7 +43,7 @@ export function LegalConsentGate({ onConfirm }: { onConfirm: () => void }) {
                     to={paths.legal.terms}
                     target="_blank"
                     rel="noreferrer"
-                    className="underline underline-offset-2 hover:text-ink"
+                    className={LINK}
                   />
                 ),
                 privacy: (
@@ -49,15 +51,15 @@ export function LegalConsentGate({ onConfirm }: { onConfirm: () => void }) {
                     to={paths.legal.privacy}
                     target="_blank"
                     rel="noreferrer"
-                    className="underline underline-offset-2 hover:text-ink"
+                    className={LINK}
                   />
                 ),
               }}
             />
-          </span>
-        </label>
+          }
+        />
 
-        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center">
           <Button
             type="button"
             variant="cta"
@@ -71,7 +73,7 @@ export function LegalConsentGate({ onConfirm }: { onConfirm: () => void }) {
             <Link to={paths.home}>{t("legalGate.back")}</Link>
           </Button>
         </div>
-      </div>
+      </StepFrame>
     </PageShell>
   );
 }

@@ -16,14 +16,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/app/components/ui/accordion";
-import { Button } from "@/app/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/app/components/ui/dialog";
 import { cn } from "@/app/components/ui/utils";
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 import { AssessmentRing } from "@/components/brand/AssessmentRing";
@@ -187,71 +179,185 @@ function SummaryItem({ label, value }: { label: string; value: string }) {
   );
 }
 
-/** The secondary solution, as a quiet persistent link under "Your answers" —
- * restored on owner request after the cross-sell modal shipped; the two now
- * coexist (the modal offers it right after Add to cart, this link stays for
- * anyone scrolling who hasn't clicked yet, or wants to come back to it
- * later). `hint` is a small low-key strength signal ("usually a stronger
- * option, for later") — only passed when the label itself doesn't already
- * say so (i.e. not for the "Advanced option" case, where that word already
- * carries the meaning). */
-function AlternativeSolutionLink({
+/** The amount picker (5 / 10 / 15 / 30 g) on a gradient product card — shared by
+ *  the matched product's hero and the alternative product's card. */
+function AmountSelector({
+  grams,
+  onSelect,
+}: {
+  grams: number;
+  onSelect: (value: number) => void;
+}) {
+  const { t } = useTranslation("shop");
+  return (
+    <fieldset className="mt-5">
+      <legend className="text-sm md:text-base font-medium text-white">
+        {t("solution.amountLabel")}{" "}
+        <InfoHint className="ml-0.5 [&_button:hover]:text-white [&_button]:text-white/60">
+          {t("solution.amountHint")}
+        </InfoHint>
+      </legend>
+      <div className="mt-4 grid grid-cols-2 gap-2.5 sm:grid-cols-4">
+        {GRAM_OPTIONS.map(({ value: o, badge }) => (
+          <button
+            key={o}
+            type="button"
+            onClick={() => onSelect(o)}
+            aria-pressed={grams === o}
+            className={cn(
+              "relative flex flex-col items-center gap-1 rounded-2xl border px-3 py-3 text-sm md:text-base font-medium transition-colors",
+              grams === o
+                ? "border-white bg-white text-petrol-800"
+                : "border-white/25 text-white/75 hover:border-white/50 hover:text-white",
+            )}
+          >
+            {badge ? (
+              // Deliberate text-xs exception (owner instruction, 2026-09-14) to
+              // the site-wide "nothing smaller than text-sm" rule — this tight
+              // all-caps pill is the one case called out for it.
+              <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-white/90 px-2 py-0.5 text-xs font-semibold uppercase tracking-wide text-petrol-700">
+                {t(`solution.amountBadges.${badge}`)}
+              </span>
+            ) : null}
+            {t("solution.grams", { count: o })}
+          </button>
+        ))}
+      </div>
+    </fieldset>
+  );
+}
+
+/**
+ * The secondary Solution as a full product card in the same style as the
+ * matched one, with its own amount picker and a "Choose" button — so the
+ * customer can pick it directly instead of clicking through a link row first
+ * (Mischa, 2026-09-24: "show it same style like the first product so customer
+ * can choose directly the product … saves the customer one step"). It replaces
+ * the old `AlternativeSolutionLink` row. `hint` is the small low-key strength
+ * signal ("usually a stronger option, for later"), only passed when the label
+ * itself doesn't already say so (not for the "Advanced option" case).
+ */
+function AlternativeProductCard({
   heading,
   label,
   hint,
   solution,
+  inCart,
   dashboardOrigin,
+  onChoose,
 }: {
   heading: string;
   label: string;
   hint?: string;
   solution: Solution;
-  /** Carries the dashboard-embed context forward (see `ProductPage`'s own
-   *  `dashboardOrigin`) so browsing to the alternative Solution doesn't drop
-   *  the dashboard chrome the visitor is already looking at. */
+  /** Already in the cart — the button then reads "Checkout". */
+  inCart: boolean;
   dashboardOrigin?: boolean;
+  onChoose: (grams: number) => void;
 }) {
   const { t } = useTranslation("shop");
+  const { t: tc } = useTranslation("conditions");
+  const { language } = useLanguage();
+  const [grams, setGrams] = useState(10);
+  const problems = solution.conditionKeys
+    .map((k) => tc(`${k}.shortTitle`))
+    .join(" · ");
 
   return (
     <>
       <p className="mt-8 text-xs md:text-sm font-semibold uppercase tracking-[0.16em] text-ink-muted">
         {heading}
       </p>
-      <Link
-        to={
-          dashboardOrigin
-            ? paths.shopProductFromDashboard(solution.id)
-            : paths.shopProduct(solution.id)
-        }
-        onClick={() =>
-          track(AnalyticsEvent.recommendationAlternativeSelected, {
-            solution: solution.id,
-          })
-        }
-        className="group mt-2 flex items-center gap-3 rounded-2xl glass glass-hover p-3"
-      >
-        <ImageWithFallback
-          src={getProductImage(solutionHeroStrain(solution))}
-          alt=""
-          className="size-11 shrink-0 rounded-lg bg-sage-50/70 object-contain p-0.5"
-        />
-        <span className="min-w-0 flex-1">
-          <span className="block text-sm md:text-base font-medium text-ink group-hover:underline">
-            {solution.name}
-          </span>
-          <span className="block text-sm md:text-base text-ink-muted">
-            {label} · {t(`solutions.${solution.id}.category`)}
-          </span>
-          {hint ? (
-            <span className="block text-sm md:text-base text-ink-muted/70">{hint}</span>
-          ) : null}
-        </span>
-        <ArrowRight
-          className="size-4 shrink-0 text-ink-muted transition-transform group-hover:translate-x-0.5"
+      <div className="relative mt-2 overflow-hidden rounded-2xl md:rounded-3xl [background-image:var(--brand-band-gradient)] p-6 text-white shadow-[var(--shadow-float)] sm:p-8">
+        <span
           aria-hidden
+          className="pointer-events-none absolute -right-20 -top-24 size-64 rounded-full bg-white/10 blur-3xl"
         />
-      </Link>
+        <span
+          aria-hidden
+          className="pointer-events-none absolute -bottom-24 left-1/4 size-56 rounded-full bg-sky-400/15 blur-3xl"
+        />
+
+        <div className="relative">
+          <div className="flex flex-wrap gap-1.5">
+            <span className="rounded-full bg-white/15 px-3 py-1 text-sm md:text-base font-medium text-white">
+              {t(`solutions.${solution.id}.category`)}
+            </span>
+            <span className="rounded-full bg-white/10 px-3 py-1 text-sm md:text-base font-medium text-white/80">
+              {t("solution.prescriptionBadge")}
+            </span>
+          </div>
+
+          <div className="mt-5 flex flex-col gap-5 sm:flex-row sm:items-start">
+            <div className="relative mx-auto w-40 shrink-0 sm:mx-0 sm:w-48">
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-0 rounded-full bg-white/30 blur-2xl"
+              />
+              <ImageWithFallback
+                src={getProductImage(solutionHeroStrain(solution))}
+                alt=""
+                className="relative aspect-square w-full rounded-2xl object-contain drop-shadow-[0_18px_30px_-12px_rgba(0,0,0,0.5)]"
+              />
+            </div>
+
+            <div className="min-w-0 flex-1">
+              <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.16em] text-white/60">
+                {label}
+              </p>
+              <h2 className="mt-1 font-display text-white">{solution.name}</h2>
+              <p className="mt-2 text-sm md:text-base text-white/85">
+                {t(`solutions.${solution.id}.blurb`)}{" "}
+                {t("solution.forProblems", { problems })}
+              </p>
+              {hint ? (
+                <p className="mt-2 text-sm md:text-base text-white/70">{hint}</p>
+              ) : null}
+            </div>
+          </div>
+
+          <p className="mt-2 text-sm md:text-base text-white/70">
+            {t("solution.thcRangeLabel")}:{" "}
+            <span className="font-mono text-white">{solution.thcRange}</span>
+          </p>
+          <p className="mt-3 font-mono text-lg md:text-xl text-white">
+            {t("solution.pricePerGram", {
+              price: formatPriceEur(solution.priceEur, language),
+            })}
+            {!PRICES_CONFIRMED ? (
+              <InfoHint className="ml-1.5 [&_button:hover]:text-white [&_button]:text-white/60">
+                {t("pricesIndicative")}
+              </InfoHint>
+            ) : null}
+          </p>
+
+          <AmountSelector grams={grams} onSelect={setGrams} />
+
+          <div className="mt-5 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+            <button
+              type="button"
+              onClick={() => onChoose(grams)}
+              className={HERO_CTA_CLASS}
+            >
+              {inCart
+                ? t("solution.checkoutCta")
+                : t("solution.chooseSolution", { name: solution.name })}
+              <ArrowRight className="size-4" aria-hidden />
+            </button>
+            <Link
+              to={
+                dashboardOrigin
+                  ? paths.shopProductFromDashboard(solution.id)
+                  : paths.shopProduct(solution.id)
+              }
+              className="inline-flex items-center gap-1 text-sm md:text-base font-medium text-white/80 underline-offset-4 hover:text-white hover:underline"
+            >
+              {t("solution.optViewDetails")}
+              <ArrowRight className="size-3.5" aria-hidden />
+            </Link>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
@@ -302,7 +408,6 @@ export function ProductPage() {
       ? "checkout"
       : "idle",
   );
-  const [crossSellOpen, setCrossSellOpen] = useState(false);
   const timeoutsRef = useRef<number[]>([]);
   useEffect(
     () => () => {
@@ -434,6 +539,22 @@ export function ProductPage() {
     }
   };
 
+  // Choosing the alternative straight from its card (Mischa, 2026-09-24): the
+  // same "add + straight to checkout" the alternative's own page has always had.
+  // The matched Solution, if already in the cart, is left there — it can be
+  // removed on the cart page.
+  const onChooseAlternative = (alt: Solution, altGrams: number) => {
+    if (!getMedicalReview()) {
+      navigate(paths.assessment.start);
+      return;
+    }
+    track(AnalyticsEvent.recommendationAlternativeSelected, { solution: alt.id });
+    if (!items.some((i) => i.productId === alt.id)) {
+      addSolution(alt.id, altGrams);
+    }
+    navigate(paths.checkout);
+  };
+
   const onAdd = () => {
     // A medical review must already exist (it's created at the end of the
     // question pass). A visitor who deep-linked into /shop/:id has none — send
@@ -471,13 +592,7 @@ export function ProductPage() {
         addSolution(solution.id, grams);
         setAddState("added");
         timeoutsRef.current.push(
-          window.setTimeout(() => {
-            setAddState("checkout");
-            if (secondary) {
-              setCrossSellOpen(true);
-              track(AnalyticsEvent.crossSellShown, { solution: secondary.id });
-            }
-          }, 700),
+          window.setTimeout(() => setAddState("checkout"), 700),
         );
       }, 500),
     );
@@ -719,41 +834,7 @@ export function ProductPage() {
             </>
           )}
 
-          <fieldset className="mt-5">
-            <legend className="text-sm md:text-base font-medium text-white">
-              {t("solution.amountLabel")}{" "}
-              <InfoHint className="ml-0.5 [&_button:hover]:text-white [&_button]:text-white/60">
-                {t("solution.amountHint")}
-              </InfoHint>
-            </legend>
-            <div className="mt-4 grid grid-cols-2 gap-2.5 sm:grid-cols-4">
-              {GRAM_OPTIONS.map(({ value: o, badge }) => (
-                <button
-                  key={o}
-                  type="button"
-                  onClick={() => onSelectGrams(o)}
-                  aria-pressed={grams === o}
-                  className={cn(
-                    "relative flex flex-col items-center gap-1 rounded-2xl border px-3 py-3 text-sm md:text-base font-medium transition-colors",
-                    grams === o
-                      ? "border-white bg-white text-petrol-800"
-                      : "border-white/25 text-white/75 hover:border-white/50 hover:text-white",
-                  )}
-                >
-                  {badge ? (
-                    // Deliberate text-xs exception (owner instruction,
-                    // 2026-09-14) to the site-wide "nothing smaller than
-                    // text-sm" rule — this tight all-caps pill is the one
-                    // case called out for it.
-                    <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-white/90 px-2 py-0.5 text-xs font-semibold uppercase tracking-wide text-petrol-700">
-                      {t(`solution.amountBadges.${badge}`)}
-                    </span>
-                  ) : null}
-                  {t("solution.grams", { count: o })}
-                </button>
-              ))}
-            </div>
-          </fieldset>
+          <AmountSelector grams={grams} onSelect={onSelectGrams} />
 
           <div className="mt-5 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
             <button
@@ -810,75 +891,6 @@ export function ProductPage() {
         </div>
       </div>
 
-      {/* Cross-sell — offered once the primary's Add to cart has settled
-          (button now reads "Checkout"), not competing with that action for
-          attention. Only for the visitor's own matched Solution; the
-          alternative-option page never opens this. */}
-      {isMatch && secondary ? (
-        <Dialog
-          open={crossSellOpen}
-          onOpenChange={(open) => {
-            setCrossSellOpen(open);
-            if (!open) {
-              track(AnalyticsEvent.crossSellDismissed, {
-                solution: secondary.id,
-              });
-            }
-          }}
-        >
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>{t("solution.crossSellHeading")}</DialogTitle>
-            </DialogHeader>
-            <div className="flex items-center gap-3">
-              <ImageWithFallback
-                src={getProductImage(solutionHeroStrain(secondary))}
-                alt=""
-                className="size-16 shrink-0 rounded-xl bg-sage-50/70 object-contain p-1"
-              />
-              <div className="min-w-0">
-                <p className="font-medium text-ink">{secondary.name}</p>
-                <p className="text-sm md:text-base text-ink-muted">
-                  {result?.secondaryIsAdvanced
-                    ? tAssessment("result.advancedHeading")
-                    : tAssessment("result.altLabelDefault")}{" "}
-                  · {t(`solutions.${secondary.id}.category`)}
-                </p>
-                {!result?.secondaryIsAdvanced ? (
-                  <p className="text-sm md:text-base text-ink-muted/70">
-                    {tAssessment("result.altStrongerHint")}
-                  </p>
-                ) : null}
-              </div>
-            </div>
-            <DialogFooter>
-              <Button
-                type="button"
-                variant="cta"
-                className="w-full"
-                onClick={() => {
-                  addSolution(secondary.id, 10);
-                  setCrossSellOpen(false);
-                }}
-              >
-                {t("solution.addToCart")}
-              </Button>
-              <Button variant="outline" className="w-full" asChild>
-                <Link
-                  to={
-                    dashboardOrigin
-                      ? paths.shopProductFromDashboard(secondary.id)
-                      : paths.shopProduct(secondary.id)
-                  }
-                >
-                  {t("solution.seeDetails")}
-                </Link>
-              </Button>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
-      ) : null}
-
       {isMatch && result ? (
         <>
           <h2 className="mt-10 text-lg md:text-xl">{tAssessment("result.summaryHeading")}</h2>
@@ -902,7 +914,7 @@ export function ProductPage() {
           </dl>
 
           {secondary ? (
-            <AlternativeSolutionLink
+            <AlternativeProductCard
               heading={tAssessment("result.altHeading")}
               label={
                 result.secondaryIsAdvanced
@@ -915,7 +927,9 @@ export function ProductPage() {
                   : tAssessment("result.altStrongerHint")
               }
               solution={secondary}
+              inCart={items.some((i) => i.productId === secondary.id)}
               dashboardOrigin={dashboardOrigin}
+              onChoose={(g) => onChooseAlternative(secondary, g)}
             />
           ) : null}
 

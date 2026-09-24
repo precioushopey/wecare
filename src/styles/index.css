@@ -559,7 +559,7 @@
 /* Static, centred row once it fits (or whenever motion is reduced). The
    point list wraps onto centred lines rather than overflowing if a
    translation is still a touch too wide. */
-@media (min-width: 64rem) {
+@media (min-width: 80rem) {
   .trust-marquee {
     width: 100%;
     justify-content: center;

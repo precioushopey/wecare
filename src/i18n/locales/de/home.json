@@ -35,7 +35,7 @@
       },
       "pain": {
         "title": "Schmerzen",
-        "description": "Anhaltende Schmerzen oder körperliche Beschwerden, die den Alltag bestimmen.",
+        "description": "Anhaltende Schmerzen oder Beschwerden, die den Alltag bestimmen.",
         "cta": "Jetzt unverbl. Fragebogen starten"
       },
       "stressAnxiety": {
@@ -206,6 +206,15 @@
     "headline": "Lieferung in ganz Österreich.",
     "body": "Wir liefern überallhin in Österreich, von den Städten bis aufs Land, sobald dein Rezept ausgestellt ist.",
     "coverageNote": "Die Verfügbarkeit hängt von der Abdeckung durch unsere ärztlichen und Apotheken-Partner ab.",
+    "germany": {
+      "headline": "Lieferung in ganz Deutschland.",
+      "body": "Wir liefern überallhin in Deutschland, von den Städten bis aufs Land, sobald dein Rezept ausgestellt ist."
+    },
+    "countryToggle": "Land wählen",
+    "countries": {
+      "AT": "Österreich",
+      "DE": "Deutschland"
+    },
     "cities": {
       "vienna": "Wien",
       "graz": "Graz",
@@ -213,7 +222,14 @@
       "salzburg": "Salzburg",
       "innsbruck": "Innsbruck",
       "klagenfurt": "Klagenfurt",
-      "stPoelten": "St. Pölten"
+      "stPoelten": "St. Pölten",
+      "hamburg": "Hamburg",
+      "berlin": "Berlin",
+      "leipzig": "Leipzig",
+      "cologne": "Köln",
+      "frankfurt": "Frankfurt",
+      "stuttgart": "Stuttgart",
+      "munich": "München"
     }
   },
   "howItWorksPage": {

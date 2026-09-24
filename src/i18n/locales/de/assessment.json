@@ -32,16 +32,20 @@
   },
   "phase": {
     "leadIn": "Erste Schritte",
-    "leadInNote": "Kurz zur Lieferung, dann deine Fragen.",
-    "finalChecks": "Letzte Fragen",
-    "finalChecksNote": "Ein paar Sicherheitsfragen für die prüfende Ärztin oder den prüfenden Arzt."
+    "finalChecks": "Letzte Fragen"
+  },
+  "existing": {
+    "title": "Schon bei WeCare?",
+    "subtitle": "Hast du bereits ein Rezept über WeCare erhalten?",
+    "yes": "Ja",
+    "no": "Nein"
   },
   "postcode": {
     "heading": "Wohin sollen wir liefern?",
     "sub": "Wir prüfen kurz, ob wir dein Gebiet abdecken. Dauert nur einen Moment.",
-    "placeholder": "z. B. 1010",
+    "placeholder": "z. B. 1010 oder 10115",
     "continue": "Weiter",
-    "error": "Bitte gib eine 4-stellige österreichische Postleitzahl ein."
+    "error": "Bitte gib eine 4-stellige österreichische oder 5-stellige deutsche Postleitzahl ein."
   },
   "regions": {
     "wien": "Wien",

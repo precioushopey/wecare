@@ -102,11 +102,13 @@
     "steps": {
       "questions": "Questions",
       "match": "Your match",
-      "details": "Your details",
+      "details": "Checkout",
       "done": "Done"
     },
     "home": "Back to home",
-    "cart": "Cart"
+    "cart": "Cart",
+    "progress": "Assessment progress",
+    "legalNav": "Legal"
   },
   "pages": {
     "home": {
@@ -225,9 +227,6 @@
       "description": "Certificate-of-analysis values for every WeCare solution: cannabinoids, batch, test date and safety testing."
     }
   },
-  "journey": {
-    "stepOf": "Step {{current}} of {{total}}"
-  },
   "medicalNotice": {
     "heading": "Important information about medical cannabis",
     "body": "Medical cannabis is a prescription medicine. Like any medicine it can have side effects: commonly tiredness, dizziness, reduced concentration, or interactions with other medicines. How it affects you is individual.",
@@ -236,6 +235,7 @@
   },
   "delivery": {
     "confirmLine": "We deliver to {{postcode}} ({{region}}). Your order ships once your prescription is approved.",
-    "regionUnknown": "your area"
+    "regionUnknown": "your area",
+    "germany": "Germany"
   }
 }

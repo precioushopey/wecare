@@ -12,27 +12,41 @@ export type PaymentMethodId =
   | "invoice"
   | "bankTransfer"
   | "card"
+  | "applePay"
+  | "crypto"
   | "sepa"
   | "klarna";
 
 export interface PaymentMethodDef {
   id: PaymentMethodId;
-  /** Whether checkout offers it today. Only the offline methods are on. */
+  /** Whether checkout can take it today. Only the offline methods are on. */
   enabled: boolean;
+  /** Whether checkout lists it. A listed-but-not-enabled method is shown
+   *  greyed out with an "available soon" tag (see `CHECKOUT_PAYMENT_METHODS`). */
+  listed: boolean;
 }
 
-/** Every method the model knows about. `enabled` gates what checkout renders. */
+/** Every method the model knows about. */
 export const PAYMENT_METHODS: PaymentMethodDef[] = [
-  { id: "invoice", enabled: true },
-  { id: "bankTransfer", enabled: true },
-  // Added when a PSP is selected and integrated (PO decision, Sept 2026):
-  { id: "card", enabled: false },
-  { id: "sepa", enabled: false },
-  { id: "klarna", enabled: false },
+  { id: "invoice", enabled: true, listed: false },
+  { id: "bankTransfer", enabled: true, listed: true },
+  // Mischa (2026-09-24) lists card, Apple Pay and crypto at checkout. They are
+  // shown but stay off until a payment provider's API is wired (he has asked
+  // Ilay whether the provider's API has arrived) — flip `enabled` per method.
+  { id: "card", enabled: false, listed: true },
+  { id: "applePay", enabled: false, listed: true },
+  { id: "crypto", enabled: false, listed: true },
+  { id: "sepa", enabled: false, listed: false },
+  { id: "klarna", enabled: false, listed: false },
 ];
 
 export const ENABLED_PAYMENT_METHODS: PaymentMethodDef[] =
   PAYMENT_METHODS.filter((m) => m.enabled);
+
+/** What the checkout's "Choose payment method" section renders, in order:
+ *  wire transfer, credit card, Apple Pay, crypto. */
+export const CHECKOUT_PAYMENT_METHODS: PaymentMethodDef[] =
+  PAYMENT_METHODS.filter((m) => m.listed);
 
 export interface PaymentRequest {
   method: PaymentMethodId;

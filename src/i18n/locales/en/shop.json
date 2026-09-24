@@ -34,8 +34,7 @@
     "addingToCart": "Adding…",
     "addedToCart": "Added to cart",
     "checkoutCta": "Checkout",
-    "crossSellHeading": "You might also like this",
-    "seeDetails": "See details",
+    "chooseSolution": "Choose {{name}}",
     "checkAvailability": "Check availability",
     "detailsHeading": "Solution details",
     "whyHeading": "Why it's recommended",
@@ -185,8 +184,23 @@
   },
   "checkout": {
     "title": "Review & confirm your request",
-    "accountHeading": "Create your account",
-    "accountIntro": "You'll use this to track your request and confirm your order later.",
+    "heading": "Checkout",
+    "phone": {
+      "heading": "Verify your phone number",
+      "intro": "Confirm your mobile number with an SMS code. No password needed.",
+      "previewNote": "Preview: no SMS is sent yet. Enter any 6 digits to continue.",
+      "label": "Mobile number",
+      "hint": "Include the country code, e.g. +43 664 1234567.",
+      "sendCode": "Send code",
+      "sending": "Sending…",
+      "codeLabel": "Verification code",
+      "codeSent": "We sent a 6-digit code to {{phone}}.",
+      "verify": "Verify",
+      "verifying": "Checking…",
+      "resend": "Send a new code",
+      "change": "Change number",
+      "verified": "Phone number verified:"
+    },
     "shippingHeading": "Shipping address",
     "fields": {
       "firstName": "First name",
@@ -194,41 +208,58 @@
       "street": "Street and number",
       "postalCode": "Postal code",
       "city": "City",
-      "phone": "Phone",
-      "phoneHint": "For delivery updates, if available.",
+      "dob": "Date of birth",
+      "dobHint": "Please confirm you are at least 18 years old.",
       "country": "Country",
-      "email": "Email",
-      "password": "Password",
-      "passwordConfirm": "Confirm password"
+      "email": "Email"
     },
-    "optionalLabel": "(optional)",
     "errors": {
       "firstName": "Enter your first name.",
       "lastName": "Enter your last name.",
       "street": "Enter your street and house number.",
       "city": "Enter your city or town.",
       "postalCode": "Enter a 4-digit Austrian postcode.",
+      "postalCodeDe": "Enter a 5-digit German postcode.",
+      "dob": "Enter your date of birth.",
+      "dobUnderage": "You must be at least 18 to submit a request.",
       "email": "Enter your email address.",
-      "password": "Use at least 8 characters.",
-      "passwordConfirm": "The passwords don't match."
+      "phone": "Enter a valid mobile number, e.g. +43 664 1234567.",
+      "phoneUnverified": "Please verify your phone number with the SMS code.",
+      "phoneCode": "Enter the 6-digit code.",
+      "phoneCodeWrong": "That code isn't right. Please try again.",
+      "phoneRateLimited": "Too many attempts. Please wait a moment and try again.",
+      "phoneUnavailable": "Verification isn't available right now. Please try again later."
     },
-    "countryValue": "Austria",
+    "countries": {
+      "AT": "Austria",
+      "DE": "Germany"
+    },
     "summaryHeading": "Order summary",
     "summaryCount": "{{count}} items",
-    "priceAfterReview": "Price and any medical-review fee are confirmed after your review, before any payment. Nothing is charged now.",
+    "summary": {
+      "perGram": "{{grams}} g × {{price}} / g",
+      "shipping": "Shipping (DHL)",
+      "subtotal": "Subtotal",
+      "reviewFee": "Doctor's fee*",
+      "total": "Total",
+      "tbc": "To be confirmed"
+    },
+    "vatNote": "*VAT-exempt pursuant to § 4 No. 14 a) of the German VAT Act (UStG)",
+    "payment": {
+      "heading": "Choose payment method",
+      "soon": "Available soon"
+    },
     "placeOrder": "Submit my request",
     "backToCart": "Back to cart",
     "paymentMethods": {
       "invoice": "Pay by invoice",
-      "bankTransfer": "Bank transfer"
+      "bankTransfer": "Wire transfer",
+      "card": "Credit card",
+      "applePay": "Apple Pay",
+      "crypto": "Crypto"
     },
-    "nextHeading": "After you place this order",
-    "termsHeading": "Confirmation",
     "termsLabel": "I accept the <terms>Terms & Conditions</terms> and the <privacy>Privacy Policy</privacy>.",
-    "termsLabelPlain": "I accept the Terms & Conditions and the Privacy Policy.",
-    "disclaimerLabel": "I understand this product is not intended to diagnose, treat, cure or prevent disease.",
-    "customerHeading": "Customer details",
-    "signedInAs": "Signed in as"
+    "termsLabelPlain": "I accept the Terms & Conditions and the Privacy Policy."
   },
   "confirmation": {
     "title": "Your request is in",

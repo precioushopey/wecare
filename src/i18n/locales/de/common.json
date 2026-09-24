@@ -102,11 +102,13 @@
     "steps": {
       "questions": "Fragen",
       "match": "Deine Empfehlung",
-      "details": "Deine Daten",
+      "details": "Checkout",
       "done": "Fertig"
     },
     "home": "Zur Startseite",
-    "cart": "Warenkorb"
+    "cart": "Warenkorb",
+    "progress": "Fortschritt im Fragebogen",
+    "legalNav": "Rechtliches"
   },
   "pages": {
     "home": {
@@ -225,9 +227,6 @@
       "description": "Analysezertifikat-Werte für jede WeCare-Lösung – Cannabinoide, Charge, Testdatum und Sicherheitsprüfung."
     }
   },
-  "journey": {
-    "stepOf": "Schritt {{current}} von {{total}}"
-  },
   "medicalNotice": {
     "heading": "Wichtige Hinweise zu medizinischem Cannabis",
     "body": "Medizinisches Cannabis ist ein verschreibungspflichtiges Arzneimittel. Wie jedes Medikament kann es Nebenwirkungen haben – häufig Müdigkeit, Schwindel, verminderte Konzentration oder Wechselwirkungen mit anderen Medikamenten. Die Wirkung ist individuell.",
@@ -236,6 +235,7 @@
   },
   "delivery": {
     "confirmLine": "Wir liefern nach {{postcode}} ({{region}}). Deine Bestellung wird versendet, sobald die ärztliche Freigabe vorliegt.",
-    "regionUnknown": "dein Gebiet"
+    "regionUnknown": "dein Gebiet",
+    "germany": "Deutschland"
   }
 }

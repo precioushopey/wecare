@@ -32,16 +32,20 @@
   },
   "phase": {
     "leadIn": "Getting started",
-    "leadInNote": "One quick delivery check, then your questions.",
-    "finalChecks": "Final checks",
-    "finalChecksNote": "A few safety questions for the doctor reviewing your request."
+    "finalChecks": "Final checks"
+  },
+  "existing": {
+    "title": "Already with WeCare?",
+    "subtitle": "Have you already received a prescription through WeCare?",
+    "yes": "Yes",
+    "no": "No"
   },
   "postcode": {
     "heading": "Where should we deliver?",
     "sub": "We'll check we cover your area. Takes a second.",
-    "placeholder": "e.g. 1010",
+    "placeholder": "e.g. 1010 or 10115",
     "continue": "Continue",
-    "error": "Enter a 4-digit Austrian postcode."
+    "error": "Enter a 4-digit Austrian or 5-digit German postcode."
   },
   "regions": {
     "wien": "Vienna",

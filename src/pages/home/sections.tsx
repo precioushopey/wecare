@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
 import {
@@ -27,7 +28,7 @@ import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 import { Button } from "@/app/components/ui/button";
 import { paths } from "@/app/paths";
 import { AssessmentRing } from "@/components/brand/AssessmentRing";
-import { AustriaMap } from "@/components/marketing/AustriaMap";
+import { DeliveryMap } from "@/components/marketing/DeliveryMap";
 import { FloatingChip } from "@/components/marketing/FloatingChip";
 import { OrbitRings } from "@/components/marketing/OrbitRings";
 import { PhotoTile } from "@/components/marketing/PhotoTile";
@@ -36,6 +37,11 @@ import { RotatingWord } from "@/components/marketing/RotatingWord";
 import { Section, SectionHeading } from "@/components/marketing/Section";
 import { IMG, siteImage } from "@/data/siteImages";
 import { CONDITIONS, type ConditionKey } from "@/features/conditions/conditions";
+import {
+  DELIVERY_COUNTRIES,
+  detectVisitorCountry,
+  type DeliveryCountry,
+} from "@/features/delivery/country";
 import { AnalyticsEvent, track } from "@/lib/analytics";
 
 function assessmentLink(problem?: string) {
@@ -108,15 +114,29 @@ export function HeroSection() {
             AssessmentRing's own sanctioned animation, reduced-motion aware —
             with the trail dots fading in as it finishes. (No score pill — a
             "7/10" here read as a fabricated assessment result.) */}
-        <div className="relative isolate lg:-mb-12 lg:flex-1 lg:self-end">
+        <div className="relative isolate lg:-mb-12 lg:flex-1 lg:self-end @container">
           {/* The ring + trail dots ride behind the photo (`-z-10`) at every
-              width — scaled down on mobile, full size from `lg`. From `lg`
-              it's pulled in over the subject so her (opaque) form masks the
-              ring's body and only the arc peeks past her, rather than the arc
-              crossing the cut-out's transparent zone. */}
+              width, sized and pulled in so her (opaque) form masks the
+              ring's body and only the arc peeks past her, rather than the
+              arc crossing the cut-out's transparent zone and ending in open
+              background.
+              Below `lg` the photo is full-bleed (`w-full` of the stacked
+              column), so its rendered width keeps growing with the viewport
+              — from a small phone up to just under the `lg` breakpoint, a
+              ~3x range — while a flat scale (or one tuned to a single `vw`
+              breakpoint) leaves the ring visibly too small/detached at
+              in-between widths, since `vw` tracks the *viewport*, not the
+              photo's own rendered width. This container (`@container` on
+              the wrapper both the ring and the photo sit in) drives size +
+              position from the photo's actual width via `cqw` units, so the
+              ring tracks it continuously across the whole sub-`lg` range —
+              calibrated against the untouched, known-good mobile treatment
+              at the small end. `lg` stays a flat, independently-tuned value
+              (its own container-width range is narrow enough not to need
+              fluid scaling), matching the original desktop design. */}
           <div
             aria-hidden
-            className="pointer-events-none absolute right-0 -top-3 -z-10 block origin-top-right scale-[0.52] opacity-90 lg:right-16 lg:-top-4 lg:scale-100 lg:opacity-80"
+            className="pointer-events-none absolute -z-10 block origin-top-right opacity-85 right-[clamp(0px,calc((100cqw-327px)/632px*56px),56px)] top-[clamp(-16px,calc(-12px-(100cqw-327px)/632px*4px),-8px)] scale-[clamp(0.52,calc(0.52+(100cqw-327px)/632px*0.43),0.95)] lg:right-16 lg:top-[-16px] lg:scale-100"
           >
             <AssessmentRing
               variant="decoration"
@@ -178,9 +198,9 @@ export function HeroSection() {
     </section>
 
     {/* Trust strip — the hero assurance points in a glass pill capped at the
-        section width (no longer a full-bleed band). Below `lg` the row is
+        section width (no longer a full-bleed band). Below `xl` the row is
         wider than the pill and auto-scrolls as a gentle marquee (list
-        rendered twice for a seamless loop); from `lg` up it fits and sits
+        rendered twice for a seamless loop); from `xl` up it fits and sits
         static, centred. */}
     <div className="px-4 sm:px-6">
       <div className="mx-auto max-w-6xl overflow-hidden rounded-full border border-white/50 bg-white/40 px-6 py-3 backdrop-blur-md">
@@ -190,7 +210,7 @@ export function HeroSection() {
               key={copy}
               data-marquee-clone={copy === 1 ? "" : undefined}
               aria-hidden={copy === 1 || undefined}
-              className="flex shrink-0 items-center gap-x-6 pr-6 text-sm md:text-base text-ink-muted"
+              className="flex shrink-0 items-center gap-x-6 xl:gap-x-4 pr-6 text-sm md:text-base text-ink-muted"
             >
               {trustPoints.map((point) => (
                 <li
@@ -246,15 +266,22 @@ export function ChooseProblemSection() {
                       <Icon className="size-5" strokeWidth={1.75} aria-hidden />
                     </span>
                   }
-                  cta={
-                    // Solid Azure pill, white label — reads unmistakably as
-                    // the card's action rather than a line of teal body text
-                    // (client feedback, Sept 2026: "the link to the
-                    // questionnaire should be clearly visible, maybe white").
-                    <span className="mt-4 inline-flex w-fit items-center gap-1.5 rounded-full bg-petrol-600 px-3.5 py-1.5 text-sm md:text-base font-semibold text-white shadow-[0_10px_24px_-12px_rgba(33,131,144,0.65)] transition-colors group-hover:bg-petrol-700">
-                      {t(`chooseProblem.cards.${c.key}.cta`)}
+                  corner={
+                    // Just a white arrow in the card's top-right corner (owner
+                    // request, 2026-09-24: "not a button, maybe just an arrow
+                    // icon", then "upper right, in white"). It replaced a solid
+                    // Azure "Start Free Assessment" pill. The whole card is
+                    // already the <Link>, so the arrow is a visual cue, not a
+                    // second target; the old label stays as screen-reader text
+                    // so the link still announces what it does. The soft shadow
+                    // keeps a white arrow readable over the lighter photos.
+                    <span className="inline-flex text-white drop-shadow-[0_1px_4px_rgba(1,15,20,0.7)]">
+                      <span className="sr-only">
+                        {t(`chooseProblem.cards.${c.key}.cta`)}
+                      </span>
                       <ArrowRight
-                        className="size-4 transition-transform group-hover:translate-x-1"
+                        className="size-6 transition-transform group-hover:translate-x-1"
+                        strokeWidth={2.25}
                         aria-hidden
                       />
                     </span>
@@ -555,6 +582,10 @@ export function ComparisonSection() {
 
 export function DeliveryBannerSection() {
   const { t } = useTranslation("home");
+  // The visitor's country by default (browser time zone / language — not an IP
+  // lookup, see `features/delivery/country`), switchable by hand.
+  const [country, setCountry] = useState<DeliveryCountry>(detectVisitorCountry);
+  const copyKey = country === "DE" ? "deliveryBanner.germany" : "deliveryBanner";
 
   return (
     // Not the shared `Section tone="brand"` here (unlike every other
@@ -580,15 +611,38 @@ export function DeliveryBannerSection() {
         <Reveal>
           <SectionHeading
             eyebrow={t("deliveryBanner.eyebrow")}
-            title={t("deliveryBanner.headline")}
-            intro={t("deliveryBanner.body")}
+            title={t(`${copyKey}.headline`)}
+            intro={t(`${copyKey}.body`)}
             align="center"
             invert
           />
         </Reveal>
 
         <Reveal delayMs={80} className="mx-auto mt-12 max-w-2xl">
-          <AustriaMap />
+          <div
+            role="group"
+            aria-label={t("deliveryBanner.countryToggle")}
+            className="mb-8 flex justify-center"
+          >
+            <div className="inline-flex rounded-full bg-white/10 p-1">
+              {DELIVERY_COUNTRIES.map((c) => (
+                <button
+                  key={c}
+                  type="button"
+                  aria-pressed={country === c}
+                  onClick={() => setCountry(c)}
+                  className={`rounded-full px-4 py-1.5 text-sm md:text-base font-medium outline-none transition-colors focus-visible:ring-2 focus-visible:ring-white/70 ${
+                    country === c
+                      ? "bg-white text-petrol-800"
+                      : "text-white/80 hover:text-white"
+                  }`}
+                >
+                  {t(`deliveryBanner.countries.${c}`)}
+                </button>
+              ))}
+            </div>
+          </div>
+          <DeliveryMap country={country} />
           <p className="mt-4 text-center text-sm md:text-base text-white/70">
             {t("deliveryBanner.coverageNote")}
           </p>

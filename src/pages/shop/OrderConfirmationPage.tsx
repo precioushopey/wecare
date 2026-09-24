@@ -83,16 +83,18 @@ export function OrderConfirmationPage() {
               );
             })}
           </ul>
-          {order.totalEur != null ? (
+          {order.totalEur != null || order.paymentMethod ? (
             <dl className="mt-3 space-y-1 border-t border-border pt-3 text-sm md:text-base">
-              <div className="flex justify-between">
-                <dt className="text-ink-muted">
-                  {t("confirmation.totalLabel")}
-                </dt>
-                <dd className="font-mono font-medium text-ink">
-                  {formatPriceEur(order.totalEur, language)}
-                </dd>
-              </div>
+              {order.totalEur != null ? (
+                <div className="flex justify-between">
+                  <dt className="text-ink-muted">
+                    {t("confirmation.totalLabel")}
+                  </dt>
+                  <dd className="font-mono font-medium text-ink">
+                    {formatPriceEur(order.totalEur, language)}
+                  </dd>
+                </div>
+              ) : null}
               {order.paymentMethod ? (
                 <div className="flex justify-between">
                   <dt className="text-ink-muted">

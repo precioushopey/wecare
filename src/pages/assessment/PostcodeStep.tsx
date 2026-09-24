@@ -6,11 +6,13 @@ import { Button } from "@/app/components/ui/button";
 import { DeliveryConfirmation } from "@/components/marketing/DeliveryConfirmation";
 import { useAssessment } from "@/features/assessment/AssessmentContext";
 import {
-  AT_POSTCODE_RE,
+  countryForPostcode,
   regionForPostcode,
   type RegionKey,
 } from "@/features/delivery/delivery";
 import { AnalyticsEvent, track } from "@/lib/analytics";
+
+import { StepFrame } from "./StepFrame";
 
 function reducedMotion(): boolean {
   return (
@@ -21,7 +23,7 @@ function reducedMotion(): boolean {
 }
 
 /** First step of the assessment: confirm we deliver to the user's area.
- *  Every valid Austrian postcode is serviceable — this is reassurance, not a
+ *  Every valid Austrian (4-digit) or German (5-digit) postcode is serviceable — this is reassurance, not a
  *  gate. Calls `onComplete()` once the confirmation has been shown briefly. */
 export function PostcodeStep({ onComplete }: { onComplete: () => void }) {
   const { t } = useTranslation("assessment");
@@ -41,7 +43,8 @@ export function PostcodeStep({ onComplete }: { onComplete: () => void }) {
     [],
   );
 
-  const valid = AT_POSTCODE_RE.test(value);
+  const postcodeCountry = countryForPostcode(value);
+  const valid = postcodeCountry !== undefined;
 
   function onSubmit(e: FormEvent) {
     e.preventDefault();
@@ -54,7 +57,7 @@ export function PostcodeStep({ onComplete }: { onComplete: () => void }) {
     setPostcode(value, region);
     track(AnalyticsEvent.assessmentPostcodeSubmitted, {
       serviceable: true,
-      region: region ?? "unknown",
+      region: region ?? (postcodeCountry === "DE" ? "de" : "unknown"),
     });
     setConfirmed({ postcode: value, region });
     // The confirmation line is content, not decoration — keep a short dwell
@@ -66,30 +69,35 @@ export function PostcodeStep({ onComplete }: { onComplete: () => void }) {
   }
 
   return (
-    <form onSubmit={onSubmit} className="mt-8">
-      <div className="glass-strong rounded-2xl md:rounded-3xl p-6 sm:p-8">
-        <h2 className="font-display text-xl md:text-2xl text-ink">
-          {t("postcode.heading")}
-        </h2>
-        <p className="mt-2 text-sm md:text-base text-ink-muted">{t("postcode.sub")}</p>
-
+    <form onSubmit={onSubmit}>
+      <StepFrame
+        eyebrow={t("phase.leadIn")}
+        title={t("postcode.heading")}
+        subtitle={t("postcode.sub")}
+      >
         <input
           type="text"
           inputMode="numeric"
           autoComplete="postal-code"
-          maxLength={4}
+          maxLength={5}
           value={value}
           onChange={(e) => {
             setValue(e.target.value.replace(/\D/g, ""));
             setError(false);
           }}
           placeholder={t("postcode.placeholder")}
+          aria-label={t("postcode.heading")}
           aria-invalid={error || undefined}
           disabled={Boolean(confirmed)}
-          className="mt-5 block w-full max-w-[12rem] rounded-xl border border-border bg-surface-raised px-3 py-2.5 text-sm md:text-base text-ink"
+          className="mx-auto block w-full max-w-[14rem] rounded-xl border-2 border-border bg-white/85 px-4 py-3 text-center text-ink"
         />
         {error ? (
-          <p className="mt-2 text-sm md:text-base text-danger-600">{t("postcode.error")}</p>
+          <p
+            role="alert"
+            className="mt-2 text-center text-sm md:text-base text-danger-600"
+          >
+            {t("postcode.error")}
+          </p>
         ) : null}
 
         {confirmed ? (
@@ -99,18 +107,18 @@ export function PostcodeStep({ onComplete }: { onComplete: () => void }) {
             className="mt-4 rounded-xl bg-sage-50 p-3"
           />
         ) : null}
-      </div>
 
-      <div className="mt-8 flex justify-end">
-        <Button
-          type="submit"
-          variant="default"
-          disabled={!valid || Boolean(confirmed)}
-          className="w-full sm:w-auto"
-        >
-          {t("postcode.continue")}
-        </Button>
-      </div>
+        <div className="mt-8 flex justify-center">
+          <Button
+            type="submit"
+            variant="default"
+            disabled={!valid || Boolean(confirmed)}
+            className="w-full sm:w-auto"
+          >
+            {t("postcode.continue")}
+          </Button>
+        </div>
+      </StepFrame>
     </form>
   );
 }

@@ -6,6 +6,7 @@ import {
   hasDashboardOrigin,
   isDashboardEmbeddableFunnelRoute,
   isFunnelRoute,
+  isWideFunnelRoute,
   paths,
 } from "@/app/paths";
 import { Providers } from "@/app/Providers";
@@ -99,7 +100,10 @@ function RoutedShell() {
     return (
       <>
         <PageReveal>
-          <FunnelChrome step={funnelStepFor(pathname)}>
+          <FunnelChrome
+            step={funnelStepFor(pathname)}
+            wide={isWideFunnelRoute(pathname)}
+          >
             <Outlet />
           </FunnelChrome>
         </PageReveal>

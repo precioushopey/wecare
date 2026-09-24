@@ -645,7 +645,7 @@ Hero (blue gradient + condition photo; responsive right-band / below-copy; **sin
 | `MedicalNotice` | `components/marketing/MedicalNotice.tsx` | Standing safety notice | Landing pages + dashboard "good to know". |
 | `GradientBackdrop` | `components/marketing/GradientBackdrop.tsx` | 3 fixed blurred orbs | `-z-10`; drift off under reduced motion. |
 | `FloatingChip` / `InfoHint` | `components/marketing/` | Frosted info pill over imagery / hover tooltip | `InfoHint` used on the product page's "orderable once approved" hint. |
-| `OrbitRings` / `AustriaMap` | `components/marketing/` | Homepage anchor-photo rings / Austria outline + **7 target-city pins** (framed as targets by the `coverageNote` below it — owner override 2026-09-04) | `AustriaMap` also reused in the dashboard delivery card (pre-order only). |
+| `OrbitRings` / `DeliveryMap` (was `AustriaMap`; now Austria + Germany) | `components/marketing/` | Homepage anchor-photo rings / Austria outline + **7 target-city pins** (framed as targets by the `coverageNote` below it — owner override 2026-09-04) | `AustriaMap` also reused in the dashboard delivery card (pre-order only). |
 | `CheckoutSteps` | `components/marketing/CheckoutSteps.tsx` | Cart → Details → Review progress bar; "Complete" on the confirmation page | Non-clickable; hidden on the cart when `!COMMERCE_ENABLED`. |
 | `NextSteps` | `components/marketing/NextSteps.tsx` | Numbered "what happens next" list — **always vertical** (single column) | Result / checkout / confirmation. |
 | `ComboCard` | `components/marketing/ComboCard.tsx` | Matched-pair preview (name + category + blurb medallion tiles, **no photos, no THC line**) | `ComboCarousel` was deleted; only the `showHeader={false}` path has callers now. |

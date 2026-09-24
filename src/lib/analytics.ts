@@ -55,11 +55,13 @@ export const AnalyticsEvent = {
    *  (e.g. the alternative/secondary option) while a result exists — links to
    *  the shop filtered to the visitor's own problem. */
   solutionViewMoreClicked: "solution_view_more_clicked",
-  /** The post-add-to-cart cross-sell modal on the visitor's own matched
-   *  Solution page, offering the secondary/alternative option. */
-  crossSellShown: "cross_sell_shown",
-  crossSellDismissed: "cross_sell_dismissed",
+  /** Anonymous yes/no only — never tied to an identity. */
+  assessmentExistingCustomerAnswered: "assessment_existing_customer_answered",
   checkoutStarted: "checkout_started",
+  /** No payload: the phone number itself is personal data and never leaves the
+   *  device via analytics (D16). */
+  checkoutPhoneCodeSent: "checkout_phone_code_sent",
+  checkoutPhoneVerified: "checkout_phone_verified",
   requestSubmitted: "request_submitted",
   login: "login",
   logout: "logout",

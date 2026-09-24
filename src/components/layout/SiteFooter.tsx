@@ -103,11 +103,12 @@ export function SiteFooter({
 
           {/* The 6 /legal/* documents. Lab tests/COA lives in the WeCare
               column above; it isn't a legal document. Product Disclaimer was
-              dropped (owner decision, Aug 2026) — the required
-              "not intended to diagnose, treat, cure or prevent disease"
-              language still ships as the checkout confirmation checkbox
-              (`shop:*.disclaimerLabel`). "My area" was dropped too: with mock
-              auth it just redirected to Login for everyone. */}
+              dropped (owner decision, Aug 2026). The "not intended to diagnose,
+              treat, cure or prevent disease" checkbox that used to cover it at
+              checkout was removed too (Mischa, 2026-09-24: "on page 1 he
+              confirms already about it") — see CLAUDE.md for the open point.
+              "My area" was dropped too: with mock auth it just redirected to
+              Login for everyone. */}
           <nav aria-label={t("footer.headings.legal")} className="space-y-3">
             <h2 className={heading}>{t("footer.headings.legal")}</h2>
             <ul className="grid grid-cols-2 gap-x-6 gap-y-2 sm:grid-cols-1">

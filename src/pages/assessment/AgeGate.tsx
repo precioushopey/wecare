@@ -7,6 +7,9 @@ import { paths } from "@/app/paths";
 import { PageShell } from "@/components/marketing/PageShell";
 import { calculateAge } from "@/features/age/age";
 
+import { OptionTile } from "./OptionTile";
+import { StepFrame } from "./StepFrame";
+
 function todayIso(): string {
   return new Date().toISOString().slice(0, 10);
 }
@@ -38,20 +41,19 @@ export function AgeGate({ onConfirm }: { onConfirm: (dobIso: string) => void }) 
   }
 
   return (
-    <PageShell maxWidth="max-w-xl" className="py-16">
-      <div className="glass-strong rounded-2xl md:rounded-3xl p-6 sm:p-8">
-        <h1 className="font-display text-2xl md:text-3xl text-ink">{t("ageGate.title")}</h1>
-        <p className="mt-3 text-ink-muted">{t("ageGate.body")}</p>
-
-        <label className="mt-6 flex cursor-pointer items-start gap-3 rounded-xl border-2 border-border bg-surface-raised p-4 text-ink has-[:checked]:border-petrol-600 has-[:checked]:bg-sage-50">
-          <input
-            type="checkbox"
-            checked={checked}
-            onChange={(e) => setChecked(e.target.checked)}
-            className="mt-0.5 size-4 shrink-0 accent-petrol-600"
-          />
-          <span>{t("ageGate.checkbox")}</span>
-        </label>
+    <PageShell maxWidth="max-w-xl" className="py-10">
+      <StepFrame
+        eyebrow={t("phase.leadIn")}
+        title={t("ageGate.title")}
+        subtitle={t("ageGate.body")}
+      >
+        <OptionTile
+          type="checkbox"
+          id="age-gate-confirm"
+          checked={checked}
+          onChange={() => setChecked((c) => !c)}
+          label={t("ageGate.checkbox")}
+        />
 
         <div className="mt-4">
           <label
@@ -71,17 +73,17 @@ export function AgeGate({ onConfirm }: { onConfirm: (dobIso: string) => void }) 
               setDob(e.target.value);
               setTooYoung(false);
             }}
-            className="mt-1.5 block w-full rounded-xl border border-border bg-surface-raised px-3 py-2.5 text-sm md:text-base text-ink"
+            className="mt-1.5 block w-full rounded-xl border-2 border-border bg-white/85 px-4 py-3 text-ink"
           />
           <p className="mt-1.5 text-sm md:text-base text-ink-muted">{t("ageGate.dobNote")}</p>
           {tooYoung ? (
-            <p className="mt-2 text-sm md:text-base text-danger-600">
+            <p role="alert" className="mt-2 text-sm md:text-base text-danger-600">
               {t("ageGate.dobTooYoung")}
             </p>
           ) : null}
         </div>
 
-        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center">
           <Button
             type="button"
             variant="cta"
@@ -96,8 +98,8 @@ export function AgeGate({ onConfirm }: { onConfirm: (dobIso: string) => void }) 
           </Button>
         </div>
 
-        <p className="mt-4 text-sm md:text-base text-ink-muted">{t("ageGate.under")}</p>
-      </div>
+        <p className="mt-4 text-center text-sm md:text-base text-ink-muted">{t("ageGate.under")}</p>
+      </StepFrame>
     </PageShell>
   );
 }

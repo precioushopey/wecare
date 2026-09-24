@@ -213,6 +213,16 @@ export function funnelStepFor(
 }
 
 /**
+ * Funnel routes that get a wider column than the funnel default (`max-w-3xl`).
+ * The checkout is a two-column form + summary, so it was cramped at 768px
+ * (owner request, 2026-09-24). The funnel chrome widens with it on this route
+ * only, so the logo and progress bar stay aligned with the content.
+ */
+export function isWideFunnelRoute(pathname: string): boolean {
+  return trimTrailingSlash(pathname) === paths.checkout;
+}
+
+/**
  * Primary top-nav items, in order. No shop / product-catalog language.
  * "How It Works" and "FAQ" are intentionally NOT in the primary nav — the
  * How-It-Works explainer lives on the homepage as a section after the final

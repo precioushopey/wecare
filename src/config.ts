@@ -42,3 +42,28 @@ export const COMMERCE_ENABLED = PRICES_CONFIRMED;
  * pharmacy/lab supplies real COAs.
  */
 export const COA_CONFIRMED = false;
+
+/**
+ * Changes-matrix (2026-09-24) — checkout verifies the customer's phone number
+ * by SMS instead of asking for a password. **No SMS provider is wired yet.**
+ * While this is `false` the verification step is an honest preview: nothing is
+ * sent, any 6 digits are accepted, and the UI says so (`checkout.phone.previewNote`)
+ * rather than claiming a code was sent. Flip to `true` only together with a real
+ * provider in `src/features/phone/verification.ts`; until that adapter exists the
+ * live branch fails closed ("unavailable"), so flipping early blocks checkout
+ * instead of silently accepting every code.
+ */
+export const PHONE_VERIFICATION_LIVE = false;
+
+/**
+ * Checkout order summary (Mischa, 2026-09-24): "Shipping cost of DHL … Doctor's
+ * fee — I need to ask how much it will be … Total amount". Neither number is
+ * known yet, so both are `null`: the summary shows "To be confirmed" for the
+ * line and for the total instead of a made-up figure. Set a number (EUR, VAT as
+ * quoted by the pharmacy / doctor) and the line and the total appear; the total
+ * only shows once BOTH are set. Prices per gram are still the placeholders in
+ * `src/data/solutions.ts` (see `PRICES_CONFIRMED`), so the summary also carries
+ * the "indicative" note until that flips.
+ */
+export const SHIPPING_FEE_EUR: number | null = null;
+export const REVIEW_FEE_EUR: number | null = null;

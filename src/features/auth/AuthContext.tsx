@@ -59,10 +59,19 @@ export interface ProfileAddress {
   country: string;
 }
 
+/** Editable profile fields — shared by `updateProfile`'s patch type. */
+type ProfilePatch = Partial<
+  Pick<AuthUser, "name" | "phone" | "phoneVerified" | "avatarUrl" | "address">
+>;
+
 export interface AuthUser {
   name: string;
   email: string;
   phone?: string;
+  /** `phone` was confirmed by an SMS code at checkout (changes-matrix,
+   *  2026-09-24). Cleared whenever the number is edited, so a changed number is
+   *  never presented as verified. Mock for now — see `PHONE_VERIFICATION_LIVE`. */
+  phoneVerified?: boolean;
   address?: ProfileAddress;
   /** Data URL of a self-chosen profile photo, resized client-side before it
    *  is stored (mock auth — lives only in this browser's `wecare.auth`). */
@@ -88,11 +97,11 @@ interface AuthContextValue {
   isAuthenticated: boolean;
   /** Changes for every distinct account; used to remount user-scoped state. */
   sessionKey: string;
-  signIn: (email: string, name?: string) => void;
+  /** `verifiedPhone` is a number the caller has just confirmed by SMS; it is
+   *  stored on the profile as verified. */
+  signIn: (email: string, name?: string, verifiedPhone?: string) => void;
   signOut: () => void;
-  updateProfile: (
-    patch: Partial<Pick<AuthUser, "name" | "phone" | "avatarUrl" | "address">>,
-  ) => void;
+  updateProfile: (patch: ProfilePatch) => void;
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null);
@@ -108,6 +117,10 @@ function load(): AuthUser | null {
         email: parsed.email,
         name: parsed.name ?? parsed.email,
         phone: typeof parsed.phone === "string" ? parsed.phone : undefined,
+        phoneVerified:
+          parsed.phoneVerified === true && typeof parsed.phone === "string"
+            ? true
+            : undefined,
         address: parseAddress(parsed.address),
         avatarUrl:
           typeof parsed.avatarUrl === "string" && parsed.avatarUrl
@@ -145,7 +158,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, [user]);
 
-  const signIn = useCallback((email: string, name?: string) => {
+  const signIn = useCallback((email: string, name?: string, verifiedPhone?: string) => {
     const trimmed = email.trim();
     setUser((prev) => {
       // A different account signing in on the same browser must not inherit
@@ -153,7 +166,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (prev && prev.email.toLowerCase() !== trimmed.toLowerCase()) {
         clearSessionScopedStores();
       }
-      return { email: trimmed, name: name?.trim() || nameFromEmail(trimmed) };
+      return {
+        email: trimmed,
+        name: name?.trim() || nameFromEmail(trimmed),
+        ...(verifiedPhone ? { phone: verifiedPhone, phoneVerified: true } : {}),
+      };
     });
     // Remember this browser has an account so the auth entry point defaults to
     // "Log in" next time (device-level; survives sign-out).
@@ -168,11 +185,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const updateProfile = useCallback(
-    (
-      patch: Partial<
-        Pick<AuthUser, "name" | "phone" | "avatarUrl" | "address">
-      >,
-    ) => {
+    (patch: ProfilePatch) => {
       setUser((prev) => {
         if (!prev) return prev;
         const next = { ...prev, ...patch };
@@ -180,6 +193,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         if (typeof next.phone === "string") {
           const p = next.phone.trim();
           next.phone = p === "" ? undefined : p;
+        }
+        // A number that changed (or was cleared) without an explicit verified
+        // flag is no longer the one that was confirmed by SMS.
+        if (
+          !next.phone ||
+          ("phone" in patch && !("phoneVerified" in patch) && next.phone !== prev.phone)
+        ) {
+          next.phoneVerified = undefined;
         }
         if ("address" in patch) {
           // Empty street ⇒ no address on file (see parseAddress).

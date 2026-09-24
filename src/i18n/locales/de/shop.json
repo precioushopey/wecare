@@ -34,8 +34,7 @@
     "addingToCart": "Wird hinzugefügt …",
     "addedToCart": "Zum Warenkorb hinzugefügt",
     "checkoutCta": "Zur Kasse",
-    "crossSellHeading": "Das könnte dir auch gefallen",
-    "seeDetails": "Details ansehen",
+    "chooseSolution": "{{name}} wählen",
     "checkAvailability": "Verfügbarkeit prüfen",
     "detailsHeading": "Details zur Lösung",
     "whyHeading": "Warum empfohlen",
@@ -185,8 +184,23 @@
   },
   "checkout": {
     "title": "Anfrage prüfen & bestätigen",
-    "accountHeading": "Konto erstellen",
-    "accountIntro": "Damit verfolgst du deine Anfrage und bestätigst deine Bestellung später.",
+    "heading": "Checkout",
+    "phone": {
+      "heading": "Telefonnummer bestätigen",
+      "intro": "Bestätige deine Mobilnummer mit einem SMS-Code. Ein Passwort brauchst du nicht.",
+      "previewNote": "Vorschau: Es wird noch keine SMS gesendet. Gib zum Fortfahren beliebige 6 Ziffern ein.",
+      "label": "Mobilnummer",
+      "hint": "Mit Ländervorwahl, z. B. +43 664 1234567.",
+      "sendCode": "Code senden",
+      "sending": "Wird gesendet …",
+      "codeLabel": "Bestätigungscode",
+      "codeSent": "Wir haben einen 6-stelligen Code an {{phone}} gesendet.",
+      "verify": "Bestätigen",
+      "verifying": "Wird geprüft …",
+      "resend": "Neuen Code senden",
+      "change": "Nummer ändern",
+      "verified": "Telefonnummer bestätigt:"
+    },
     "shippingHeading": "Lieferadresse",
     "fields": {
       "firstName": "Vorname",
@@ -194,41 +208,58 @@
       "street": "Straße und Hausnummer",
       "postalCode": "PLZ",
       "city": "Ort",
-      "phone": "Telefon",
-      "phoneHint": "Für Lieferbenachrichtigungen, falls verfügbar.",
+      "dob": "Geburtsdatum",
+      "dobHint": "Bitte bestätige, dass du mindestens 18 Jahre alt bist.",
       "country": "Land",
-      "email": "E-Mail",
-      "password": "Passwort",
-      "passwordConfirm": "Passwort bestätigen"
+      "email": "E-Mail"
     },
-    "optionalLabel": "(optional)",
     "errors": {
       "firstName": "Gib deinen Vornamen an.",
       "lastName": "Gib deinen Nachnamen an.",
       "street": "Gib deine Straße und Hausnummer an.",
       "city": "Gib deinen Ort an.",
       "postalCode": "Gib eine 4-stellige österreichische PLZ an.",
+      "postalCodeDe": "Gib eine 5-stellige deutsche PLZ an.",
+      "dob": "Gib dein Geburtsdatum an.",
+      "dobUnderage": "Für eine Anfrage musst du mindestens 18 Jahre alt sein.",
       "email": "Bitte gib deine E-Mail-Adresse ein.",
-      "password": "Mindestens 8 Zeichen.",
-      "passwordConfirm": "Die Passwörter stimmen nicht überein."
+      "phone": "Gib eine gültige Mobilnummer ein, z. B. +43 664 1234567.",
+      "phoneUnverified": "Bitte bestätige deine Telefonnummer per SMS-Code.",
+      "phoneCode": "Gib den 6-stelligen Code ein.",
+      "phoneCodeWrong": "Dieser Code stimmt nicht. Bitte versuche es erneut.",
+      "phoneRateLimited": "Zu viele Versuche. Bitte warte einen Moment und versuche es erneut.",
+      "phoneUnavailable": "Die Bestätigung ist gerade nicht möglich. Bitte versuche es später erneut."
     },
-    "countryValue": "Österreich",
+    "countries": {
+      "AT": "Österreich",
+      "DE": "Deutschland"
+    },
     "summaryHeading": "Bestellübersicht",
     "summaryCount": "{{count}} Artikel",
-    "priceAfterReview": "Der Preis und eine mögliche Gebühr für die ärztliche Prüfung werden nach der Prüfung bestätigt, vor jeder Zahlung. Jetzt wird nichts berechnet.",
+    "summary": {
+      "perGram": "{{grams}} g × {{price}} / g",
+      "shipping": "Versand (DHL)",
+      "subtotal": "Zwischensumme",
+      "reviewFee": "Gebühr ärztliche Prüfung*",
+      "total": "Gesamt",
+      "tbc": "Wird bestätigt"
+    },
+    "vatNote": "*Umsatzsteuerfrei gemäß § 4 Nr. 14 a) UStG.",
+    "payment": {
+      "heading": "Zahlungsart wählen",
+      "soon": "Bald verfügbar"
+    },
     "placeOrder": "Anfrage absenden",
     "backToCart": "Zurück zum Warenkorb",
     "paymentMethods": {
       "invoice": "Auf Rechnung",
-      "bankTransfer": "Banküberweisung"
+      "bankTransfer": "Banküberweisung",
+      "card": "Kreditkarte",
+      "applePay": "Apple Pay",
+      "crypto": "Krypto"
     },
-    "nextHeading": "Nachdem du bestellt hast",
-    "termsHeading": "Bestätigung",
     "termsLabel": "Ich akzeptiere die <terms>AGB</terms> und die <privacy>Datenschutzerklärung</privacy>.",
-    "termsLabelPlain": "Ich akzeptiere die AGB und die Datenschutzerklärung.",
-    "disclaimerLabel": "Mir ist bewusst, dass dieses Produkt nicht zur Diagnose, Behandlung, Heilung oder Vorbeugung von Krankheiten bestimmt ist.",
-    "customerHeading": "Kundendaten",
-    "signedInAs": "Angemeldet als"
+    "termsLabelPlain": "Ich akzeptiere die AGB und die Datenschutzerklärung."
   },
   "confirmation": {
     "title": "Deine Anfrage ist eingegangen",

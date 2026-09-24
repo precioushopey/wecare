@@ -17,7 +17,7 @@ export function PhotoTile({
   badge,
   title,
   description,
-  cta,
+  corner,
   className,
 }: {
   /** Resolved by `siteImage()`, which can return `undefined` for a missing
@@ -26,8 +26,10 @@ export function PhotoTile({
   badge: ReactNode;
   title: string;
   description: string;
-  /** Optional trailing action (e.g. the problem cards' arrow pill). */
-  cta?: ReactNode;
+  /** Optional mark pinned to the card's top-right corner, over the photo
+   *  (the problem cards' white arrow). Purely visual: the caller wraps the
+   *  whole tile in the `<Link>`, so this is not a second click target. */
+  corner?: ReactNode;
   className?: string;
 }) {
   return (
@@ -54,13 +56,13 @@ export function PhotoTile({
       {/* The text panel's own background is the fade: opaque white at the
           bottom edge → fully transparent at the top, so the photo reads
           through the whole text area, strongest behind the title. */}
+      {corner ? <div className="absolute right-4 top-4 z-10">{corner}</div> : null}
       <div className="relative flex flex-col bg-gradient-to-t from-white from-30% via-white/90 via-50% to-transparent px-5 pb-5 pt-28">
         <div className="mb-2 flex items-center gap-3">
           {badge}
           <h3 className="text-lg md:text-xl leading-tight text-petrol-700">{title}</h3>
         </div>
         <p className="mt-2 text-sm md:text-base text-ink-muted">{description}</p>
-        {cta}
       </div>
     </div>
   );

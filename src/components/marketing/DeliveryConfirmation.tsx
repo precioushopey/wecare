@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Truck } from "lucide-react";
 
 import { cn } from "@/app/components/ui/utils";
-import type { RegionKey } from "@/features/delivery/delivery";
+import { countryForPostcode, type RegionKey } from "@/features/delivery/delivery";
 
 /** One muted line confirming the delivery area. Shown on the postcode step,
  *  the result page and the checkout page. */
@@ -20,7 +20,9 @@ export function DeliveryConfirmation({
 
   const regionLabel = region
     ? t(`regions.${region}`)
-    : tCommon("delivery.regionUnknown");
+    : countryForPostcode(postcode) === "DE"
+      ? tCommon("delivery.germany")
+      : tCommon("delivery.regionUnknown");
 
   return (
     <p

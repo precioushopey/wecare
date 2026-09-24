@@ -24,7 +24,7 @@ const buttonVariants = cva(
         cta: "[background-image:var(--cta-gradient)] text-cta-foreground shadow-[0_10px_28px_-10px_rgba(42,167,176,0.55)] hover:brightness-105 hover:shadow-[0_14px_36px_-10px_rgba(42,167,176,0.7)] focus-visible:ring-cta/40",
       },
       size: {
-        default: "h-9 px-4 py-2 has-[>svg]:px-3",
+        default: "px-4 md:px-6 py-3 has-[>svg]:px-3",
       },
     },
     defaultVariants: {

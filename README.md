@@ -174,7 +174,7 @@ src/
 │   │                        #   LanguageToggle, ScrollToHash, ConsentBanner
 │   └── marketing/           # Section, Reveal, PageReveal, JourneyStepper, MedicalNotice,
 │                            #   GradientBackdrop, FloatingChip, InfoHint, RotatingWord,
-│                            #   OrbitRings, AustriaMap, ComboCard
+│                            #   OrbitRings, DeliveryMap, ComboCard
 ├── features/                # client state (each mirrored to localStorage)
 │   ├── assessment/          # questions.ts, recommendation.ts (pure), AssessmentContext.tsx
 │   ├── auth/AuthContext.tsx           # MOCK (any email); editable name/phone; session-scoped clears

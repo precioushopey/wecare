@@ -1,65 +1,64 @@
+import type { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 
 import type { Question } from "@/features/assessment/questions";
 
-/** One assessment question — the frosted card with a radio option list.
+import { OptionTile } from "./OptionTile";
+import { StepFrame } from "./StepFrame";
+
+/** One assessment question — a centred title with a stack of option tiles.
  *  Selection is reported via `onSelect`; the parent decides whether to
- *  auto-advance. */
+ *  auto-advance. `intro` (the first question's "about 60 to 90 seconds, not a
+ *  medical form" line) replaces the question's own note as the subtitle;
+ *  `topNote` sits above the tiles (the "pre-selected from the page you came
+ *  from" line). */
 export function QuestionStep({
   question,
   current,
   onSelect,
+  eyebrow,
+  intro,
+  topNote,
 }: {
   question: Question;
   current: string | undefined;
   onSelect: (value: string) => void;
+  eyebrow?: ReactNode;
+  intro?: ReactNode;
+  topNote?: ReactNode;
 }) {
   const { t } = useTranslation("assessment");
   const note = t(`questions.${question.id}.note`, { defaultValue: "" });
+  const titleId = `${question.id}-title`;
 
   return (
-    <fieldset className="glass-strong mt-8 rounded-2xl md:rounded-3xl p-6 sm:p-8">
-      <legend className="float-left mb-1 w-full font-display text-xl md:text-2xl text-ink">
-        {t(`questions.${question.id}.title`)}
-      </legend>
-      {note ? (
-        <p className="clear-both text-sm md:text-base text-ink-muted">{note}</p>
+    <StepFrame
+      eyebrow={eyebrow}
+      title={t(`questions.${question.id}.title`)}
+      titleId={titleId}
+      subtitle={intro ?? (note || undefined)}
+    >
+      {topNote ? (
+        <p className="mb-4 rounded-lg bg-sage-50 px-4 py-3 text-center text-sm md:text-base text-petrol-700">
+          {topNote}
+        </p>
       ) : null}
-      <div className="grid gap-4 clear-both mt-12">
-        {question.options.map((opt) => {
-          const id = `${question.id}-${opt}`;
-          const hint = t(`questions.${question.id}.hints.${opt}`, {
-            defaultValue: "",
-          });
-          return (
-            <label
-              key={opt}
-              htmlFor={id}
-              className="flex cursor-pointer items-start gap-3 rounded-xl border-2 border-border bg-surface-raised p-4 transition-colors hover:border-petrol-300 has-[:checked]:border-petrol-600 has-[:checked]:bg-sage-50 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-petrol-600"
-            >
-              <input
-                type="radio"
-                id={id}
-                name={question.id}
-                value={opt}
-                checked={current === opt}
-                onChange={() => onSelect(opt)}
-                className="mt-0.5 size-4 shrink-0 accent-petrol-600"
-              />
-              <span className="min-w-0">
-                <span className="block text-ink">
-                  {t(`questions.${question.id}.options.${opt}`)}
-                </span>
-                {hint ? (
-                  <span className="mt-0.5 block text-sm md:text-base text-ink-muted">
-                    {hint}
-                  </span>
-                ) : null}
-              </span>
-            </label>
-          );
-        })}
+      <div role="radiogroup" aria-labelledby={titleId} className="grid gap-3">
+        {question.options.map((opt) => (
+          <OptionTile
+            key={opt}
+            id={`${question.id}-${opt}`}
+            name={question.id}
+            value={opt}
+            checked={current === opt}
+            onChange={() => onSelect(opt)}
+            label={t(`questions.${question.id}.options.${opt}`)}
+            hint={t(`questions.${question.id}.hints.${opt}`, {
+              defaultValue: "",
+            })}
+          />
+        ))}
       </div>
-    </fieldset>
+    </StepFrame>
   );
 }

@@ -10,15 +10,22 @@ import {
   type ExclusionConditionKey,
 } from "@/features/assessment/exclusions";
 
+import { OptionTile } from "./OptionTile";
+import { StepFrame } from "./StepFrame";
+
 type YesNo = "yes" | "no" | undefined;
 
+/** A required Yes / No question: the question as a small heading, two tiles
+ *  side by side. */
 function YesNoRow({
+  name,
   question,
   value,
   onChange,
   yes,
   no,
 }: {
+  name: string;
   question: string;
   value: YesNo;
   onChange: (v: "yes" | "no") => void;
@@ -27,21 +34,20 @@ function YesNoRow({
 }) {
   return (
     <fieldset className="mt-6">
-      <legend className="text-sm md:text-base font-medium text-ink">{question}</legend>
-      <div className="mt-2 flex gap-3">
+      <legend className="mb-2 text-base md:text-lg font-medium text-ink">
+        {question}
+      </legend>
+      <div className="grid grid-cols-2 gap-3">
         {(["yes", "no"] as const).map((opt) => (
-          <label
+          <OptionTile
             key={opt}
-            className="flex cursor-pointer items-center gap-2 rounded-xl border border-border bg-surface-raised px-4 py-2 text-sm md:text-base text-ink has-[:checked]:border-petrol-600 has-[:checked]:bg-sage-50"
-          >
-            <input
-              type="radio"
-              className="size-4 accent-petrol-600"
-              checked={value === opt}
-              onChange={() => onChange(opt)}
-            />
-            {opt === "yes" ? yes : no}
-          </label>
+            id={`${name}-${opt}`}
+            name={name}
+            value={opt}
+            checked={value === opt}
+            onChange={() => onChange(opt)}
+            label={opt === "yes" ? yes : no}
+          />
         ))}
       </div>
     </fieldset>
@@ -56,12 +62,9 @@ function YesNoRow({
  */
 export function ExclusionStep({
   onComplete,
-  hideHeading = false,
   initial,
 }: {
   onComplete: (x: AssessmentExclusions) => void;
-  /** The page already supplies a heading + context (medical-review page). */
-  hideHeading?: boolean;
   /** Seed the answers — so stepping back to a prior question and returning
    *  doesn't wipe the safety answers (the step is keyed / remounts). */
   initial?: AssessmentExclusions;
@@ -86,69 +89,58 @@ export function ExclusionStep({
   const showNote = hasAnyFlag(payload);
 
   return (
-    <div className="mt-8">
-      <div className="glass-strong rounded-2xl md:rounded-3xl p-6 sm:p-8">
-        {hideHeading ? null : (
-          <h2 className="font-display text-xl md:text-2xl text-ink">
-            {t("exclusion.heading")}
-          </h2>
-        )}
-        <p className={hideHeading ? "text-sm md:text-base text-ink-muted" : "mt-2 text-sm md:text-base text-ink-muted"}>
-          {t("exclusion.sub")}
+    <StepFrame
+      eyebrow={t("phase.finalChecks")}
+      title={t("exclusion.heading")}
+      subtitle={t("exclusion.sub")}
+    >
+      <YesNoRow
+        name="safety-pregnancy"
+        question={t("exclusion.pregnancy.q")}
+        value={pregnancy}
+        onChange={setPregnancy}
+        yes={t("exclusion.yes")}
+        no={t("exclusion.no")}
+      />
+      <YesNoRow
+        name="safety-recent-supply"
+        question={t("exclusion.recentSupply.q")}
+        value={recentSupply}
+        onChange={setRecentSupply}
+        yes={t("exclusion.yes")}
+        no={t("exclusion.no")}
+      />
+
+      <fieldset className="mt-6">
+        <legend className="mb-2 text-base md:text-lg font-medium text-ink">
+          {t("exclusion.conditions.q")}
+        </legend>
+        <div className="grid gap-3">
+          {[...EXCLUSION_CONDITION_KEYS, "none" as const].map((key) => (
+            <OptionTile
+              key={key}
+              type="checkbox"
+              id={`safety-condition-${key}`}
+              checked={conditions.includes(key)}
+              onChange={() => setConditions((c) => toggleCondition(c, key))}
+              label={t(`exclusion.conditions.${key}`)}
+            />
+          ))}
+        </div>
+      </fieldset>
+
+      {showNote ? (
+        <p className="mt-4 rounded-xl bg-sage-50 p-3 text-sm md:text-base text-ink-muted">
+          {t("exclusion.flaggedNote")}
         </p>
-
-        <YesNoRow
-          question={t("exclusion.pregnancy.q")}
-          value={pregnancy}
-          onChange={setPregnancy}
-          yes={t("exclusion.yes")}
-          no={t("exclusion.no")}
-        />
-        <YesNoRow
-          question={t("exclusion.recentSupply.q")}
-          value={recentSupply}
-          onChange={setRecentSupply}
-          yes={t("exclusion.yes")}
-          no={t("exclusion.no")}
-        />
-
-        <fieldset className="mt-6">
-          <legend className="text-sm md:text-base font-medium text-ink">
-            {t("exclusion.conditions.q")}
-          </legend>
-          <div className="mt-2 grid gap-2">
-            {[...EXCLUSION_CONDITION_KEYS, "none" as const].map((key) => (
-              <label
-                key={key}
-                className="flex cursor-pointer items-center gap-3 rounded-xl border border-border bg-surface-raised p-3 text-sm md:text-base text-ink has-[:checked]:border-petrol-600 has-[:checked]:bg-sage-50"
-              >
-                <input
-                  type="checkbox"
-                  className="size-4 accent-petrol-600"
-                  checked={conditions.includes(key)}
-                  onChange={() =>
-                    setConditions((c) => toggleCondition(c, key))
-                  }
-                />
-                {t(`exclusion.conditions.${key}`)}
-              </label>
-            ))}
-          </div>
-        </fieldset>
-
-        {showNote ? (
-          <p className="mt-4 rounded-xl bg-sage-50 p-3 text-sm md:text-base text-ink-muted">
-            {t("exclusion.flaggedNote")}
-          </p>
-        ) : null}
-      </div>
+      ) : null}
 
       {!canSubmit ? (
-        <p className="mt-3 text-sm md:text-base text-ink-muted">
+        <p className="mt-4 text-center text-sm md:text-base text-ink-muted">
           {t("exclusion.requiredPrompt")}
         </p>
       ) : null}
-      <div className="mt-4 flex justify-end">
+      <div className="mt-4 flex justify-center">
         <Button
           type="button"
           variant="cta"
@@ -159,6 +151,6 @@ export function ExclusionStep({
           {t("exclusion.continue")}
         </Button>
       </div>
-    </div>
+    </StepFrame>
   );
 }

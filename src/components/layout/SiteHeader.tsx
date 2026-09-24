@@ -26,7 +26,7 @@ function Wordmark() {
   const { t } = useTranslation();
   return (
     <Link to={paths.home} aria-label={t("brand.name")}>
-      <Logo className="h-3.5" />
+      <Logo className="h-5" />
     </Link>
   );
 }
@@ -82,14 +82,14 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-white/40 bg-white/60 px-4 shadow-[0_1px_0_0_rgba(255,255,255,0.6),0_10px_30px_-24px_rgba(13,68,75,0.35)] backdrop-blur-xl backdrop-saturate-150 sm:px-6">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4">
-        <div className="flex min-w-0 items-center gap-5">
+      <div className="mx-auto flex h-18 max-w-6xl items-center justify-between gap-6">
+        <div className="flex min-w-0 items-center gap-6">
           <Wordmark />
           <nav
             aria-label={t("nav.primary")}
             className="hidden min-w-0 overflow-x-auto [scrollbar-width:thin] lg:block"
           >
-            <ul className="flex w-max items-center gap-5">
+            <ul className="flex w-max items-end gap-6">
               {PRIMARY_NAV.map((item) => (
                 <li key={item.key}>
                   <NavLink to={item.to} className={navLink}>
@@ -110,10 +110,10 @@ export function SiteHeader() {
           ) : (
             <AccountAuthMenu />
           )}
+          <LanguageToggle />
           <Button asChild variant="cta">
             <Link to={paths.assessment.start}>{t("nav.startAssessment")}</Link>
           </Button>
-          <LanguageToggle />
         </div>
 
         <div className="flex items-center gap-2 lg:hidden">
@@ -128,7 +128,7 @@ export function SiteHeader() {
             <SheetContent side="right" className="w-4/5 sm:max-w-sm">
               <SheetHeader>
                 <SheetTitle>
-                  <Logo />
+                  <Logo className="h-5" />
                 </SheetTitle>
               </SheetHeader>
 

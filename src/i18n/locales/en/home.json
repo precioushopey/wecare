@@ -35,7 +35,7 @@
       },
       "pain": {
         "title": "Pain",
-        "description": "Persistent pain or physical discomfort that shapes your day.",
+        "description": "Persistent pain or discomfort that shapes your day.",
         "cta": "Start Free Assessment"
       },
       "stressAnxiety": {
@@ -206,6 +206,15 @@
     "headline": "Delivery across Austria.",
     "body": "We deliver everywhere in Austria, from the cities to rural areas, once your prescription is issued.",
     "coverageNote": "Availability depends on medical and pharmacy partner coverage.",
+    "germany": {
+      "headline": "Delivery across Germany.",
+      "body": "We deliver everywhere in Germany, from the cities to rural areas, once your prescription is issued."
+    },
+    "countryToggle": "Choose country",
+    "countries": {
+      "AT": "Austria",
+      "DE": "Germany"
+    },
     "cities": {
       "vienna": "Vienna",
       "graz": "Graz",
@@ -213,7 +222,14 @@
       "salzburg": "Salzburg",
       "innsbruck": "Innsbruck",
       "klagenfurt": "Klagenfurt",
-      "stPoelten": "St. Pölten"
+      "stPoelten": "St. Pölten",
+      "hamburg": "Hamburg",
+      "berlin": "Berlin",
+      "leipzig": "Leipzig",
+      "cologne": "Cologne",
+      "frankfurt": "Frankfurt",
+      "stuttgart": "Stuttgart",
+      "munich": "Munich"
     }
   },
   "howItWorksPage": {

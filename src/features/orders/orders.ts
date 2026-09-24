@@ -28,7 +28,10 @@ export interface OrderLine {
 /** Shipping address as entered at checkout. `firstName` / `lastName` are kept
  *  as separate canonical fields (PO decision — the identity must map cleanly
  *  to the medical provider / prescription / pharmacy / invoicing downstream).
- *  `phone` is an optional delivery-contact number. */
+ *  `phone` is an optional delivery-contact number. `dateOfBirth` (ISO
+ *  `YYYY-MM-DD`, validated 18+ at checkout) is the third identity-match key for
+ *  the same chain; it rides in the same session-only store as the address and
+ *  is never written to `localStorage` or sent to analytics. */
 export interface ShippingAddress {
   firstName: string;
   lastName: string;
@@ -37,6 +40,7 @@ export interface ShippingAddress {
   city: string;
   country: string;
   phone?: string;
+  dateOfBirth?: string;
 }
 
 export interface Order {

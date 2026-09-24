@@ -6,9 +6,14 @@ import { ArrowLeft, ArrowRight, Lock } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import { paths } from "@/app/paths";
 import { usePageTitle } from "@/app/usePageTitle";
-import { AssessmentRing } from "@/components/brand/AssessmentRing";
+import { useFunnelProgress } from "@/components/layout/FunnelChrome";
 import { PageShell } from "@/components/marketing/PageShell";
 import { useAssessment } from "@/features/assessment/AssessmentContext";
+import {
+  confirmNewCustomer,
+  isNewCustomerConfirmed,
+} from "@/features/assessment/existingCustomer";
+import { useAuth } from "@/features/auth/AuthContext";
 import {
   exclusionFlagCount,
   hasAnyFlag,
@@ -29,6 +34,7 @@ import { AnalyticsEvent, track } from "@/lib/analytics";
 
 import { AgeGate } from "./AgeGate";
 import { ExclusionStep } from "./ExclusionStep";
+import { ExistingCustomerStep } from "./ExistingCustomerStep";
 import { LegalConsentGate } from "./LegalConsentGate";
 import { PostcodeStep } from "./PostcodeStep";
 import { QuestionStep } from "./QuestionStep";
@@ -43,10 +49,15 @@ function prefersReducedMotion(): boolean {
 
 const FADE = "animate-in fade-in duration-200 motion-reduce:animate-none";
 
+/** Steps counted by the thin progress line under the funnel header:
+ *  existing-customer, age, legal, postcode, the six questions, final checks. */
+const PROGRESS_STEPS = 3 + 1 + TOTAL_QUESTIONS + 1;
+
 /** Single reusable, state-based assessment engine — no route changes between
- *  steps (spec §7). Phase model: postcode -> questions -> safety -> result.
- *  Questions auto-advance on selection; a secondary Next stays as the keyboard /
- *  changed-mind path; the last question keeps an explicit CTA. The safety /
+ *  steps (spec §7). Step model: existing-customer -> age -> legal -> postcode ->
+ *  questions -> safety -> product. The first three are once-per-device gates.
+ *  Every question auto-advances on selection (question 6 included); a secondary
+ *  Next / Continue stays as the keyboard / changed-mind path. The safety /
  *  exclusion questions are the final "final checks" step of the pass; the
  *  medical-review record is created when they're answered (funnel re-sequence,
  *  2026-09-08). */
@@ -70,6 +81,13 @@ export function AssessmentEnginePage() {
     noindex: true,
   });
 
+  // "Have you already received a prescription through WeCare?" — the first
+  // step (owner request, 2026-09-24). A signed-in visitor, or a device that has
+  // already said "No", skips it; "Yes" sends the visitor to log in.
+  const { isAuthenticated } = useAuth();
+  const [existingOk, setExistingOk] = useState(
+    () => isAuthenticated || isNewCustomerConfirmed(),
+  );
   // 18+ self-declaration before the assessment (owner decision D14).
   const [ageOk, setAgeOk] = useState(isAgeConfirmed);
   // Legal-consent acknowledgment, shown after the age gate (PO request,
@@ -90,14 +108,14 @@ export function AssessmentEnginePage() {
 
   const startedTracked = useRef(false);
   useEffect(() => {
-    if (!ageOk || !legalOk || startedTracked.current) return;
+    if (!existingOk || !ageOk || !legalOk || startedTracked.current) return;
     startedTracked.current = true;
     track(AnalyticsEvent.assessmentStarted, {
       problem: problemParam && isConditionKey(problemParam) ? problemParam : null,
       resumed: QUESTIONS.some((q) => Boolean(answers[q.id])),
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ageOk, legalOk]);
+  }, [existingOk, ageOk, legalOk]);
 
   const [{ phase, step }, setPos] = useState<{ phase: Phase; step: number }>(() =>
     deriveStartPhase({
@@ -128,9 +146,12 @@ export function AssessmentEnginePage() {
   function armAdvance() {
     clearAdvanceTimer();
     const delay = prefersReducedMotion() ? 120 : 350;
+    const last = isLast;
     advanceTimer.current = window.setTimeout(() => {
       advanceTimer.current = null;
-      setStep((s) => Math.min(TOTAL_QUESTIONS - 1, s + 1));
+      // The last question hands off to the "final checks" step, like Next does.
+      if (last) setPos({ phase: "safety", step: 0 });
+      else setStep((s) => Math.min(TOTAL_QUESTIONS - 1, s + 1));
     }, delay);
   }
   useEffect(() => () => clearAdvanceTimer(), []);
@@ -140,14 +161,18 @@ export function AssessmentEnginePage() {
     track(AnalyticsEvent.assessmentQuestionAnswered, {
       question: id,
       questionIndex: step,
-      auto_advanced: !isLast,
+      auto_advanced: true,
     });
     if (id === "q1") {
       track(AnalyticsEvent.problemSelected, { problem: value, source: "assessment" });
     }
-    // Only the last question waits for an explicit CTA — finishing the
-    // assessment should never be an accidental tap.
-    if (!isLast) armAdvance();
+    // Every question auto-advances, the last one included (Mischa, 2026-09-24:
+    // "from 1-6 it did take me automatically" — question 6 should too). The
+    // last one used to wait for an explicit CTA so finishing was never an
+    // accidental tap; that no longer applies, because it now only leads to the
+    // "final checks" step — nothing is submitted until those are answered.
+    // The Continue button stays as the keyboard / changed-mind path.
+    armAdvance();
   }
 
   function goBack() {
@@ -206,6 +231,34 @@ export function AssessmentEnginePage() {
     setPos({ phase: "questions", step: TOTAL_QUESTIONS - 1 });
   }
 
+  // The thin line under the funnel header: where the visitor is among all the
+  // steps (a device that already did the gates opens partway along). Must run
+  // before the early returns below (hook order).
+  const progressIndex = !existingOk
+    ? 0
+    : !ageOk
+      ? 1
+      : !legalOk
+        ? 2
+        : phase === "postcode"
+          ? 3
+          : phase === "questions"
+            ? 4 + step
+            : PROGRESS_STEPS - 1;
+  useFunnelProgress((progressIndex + 1) / PROGRESS_STEPS);
+
+  if (!existingOk) {
+    return (
+      <ExistingCustomerStep
+        onExisting={() => navigate(paths.login)}
+        onNew={() => {
+          confirmNewCustomer();
+          setExistingOk(true);
+        }}
+      />
+    );
+  }
+
   if (!ageOk) {
     return (
       <AgeGate
@@ -228,66 +281,23 @@ export function AssessmentEnginePage() {
     );
   }
 
-  // Progress is measured in the six questions — the same count the eyebrow
-  // ("Question N of 6") and the "six short questions" promise use. The ring
-  // only shows in the questions phase; the postcode step is framed as a
-  // one-off lead-in ("Getting started"), not "Your assessment · Question 1".
-  const progressCurrent = step + 1;
-
+  // Every step draws its own centred eyebrow + title (`StepFrame`); the
+  // question steps' eyebrow is "Question N of 6" — the same count the "six
+  // short questions" promise uses. Overall progress is the thin line under the
+  // funnel header (`useFunnelProgress` above), which replaced the ring here
+  // (owner request, 2026-09-24).
   return (
-    <PageShell className="pt-14 pb-28 sm:pb-36">
-      <div className="flex items-center justify-between gap-4">
-        <div>
-          <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.16em] text-petrol-600">
-            {phase === "questions"
-              ? t("start.title")
-              : phase === "safety"
-                ? t("phase.finalChecks")
-                : t("phase.leadIn")}
-          </p>
-          <p className="mt-1 text-sm md:text-base text-ink-muted">
-            {phase === "questions"
-              ? t("start.progress", {
-                  current: step + 1,
-                  total: TOTAL_QUESTIONS,
-                })
-              : phase === "safety"
-                ? t("phase.finalChecksNote")
-                : t("phase.leadInNote")}
-          </p>
-        </div>
-        {phase === "questions" ? (
-          <AssessmentRing
-            value={progressCurrent}
-            total={TOTAL_QUESTIONS}
-            size={72}
-            label={tCommon("journey.stepOf", {
-              current: progressCurrent,
-              total: TOTAL_QUESTIONS,
-            })}
-          />
-        ) : phase === "safety" ? (
-          <AssessmentRing
-            value={TOTAL_QUESTIONS}
-            total={TOTAL_QUESTIONS}
-            size={72}
-            label={t("phase.finalChecks")}
-          />
-        ) : null}
-      </div>
-
-      {phase === "questions" && step === 0 ? (
-        <p className="mt-4 text-ink-muted">{t("start.intro")}</p>
-      ) : null}
-
-      {phase === "questions" && step === 0 && prefilledFromLanding && current ? (
-        <p className="mt-6 rounded-lg bg-sage-50 px-4 py-3 text-sm md:text-base text-petrol-700">
-          {t("start.prefilledNote", {
-            condition: t(`questions.q1.options.${current}`),
-          })}
-        </p>
-      ) : null}
-
+    // No bottom padding on a phone while the sticky action bar is showing (the
+    // questions phase): the page then ends exactly at the button group instead
+    // of scrolling past it into empty space (owner request, 2026-09-24). From
+    // `sm` up the floating bar keeps its breathing room.
+    <PageShell
+      className={
+        phase === "questions"
+          ? "flex flex-1 flex-col pt-10 pb-0 sm:block sm:flex-none sm:pb-36"
+          : "pt-10 pb-10 sm:pb-36"
+      }
+    >
       {phase === "postcode" ? (
         <div key="postcode" className={FADE}>
           <PostcodeStep
@@ -303,10 +313,22 @@ export function AssessmentEnginePage() {
               question={question}
               current={current}
               onSelect={(value) => recordAnswer(question.id, value)}
+              eyebrow={t("start.progress", {
+                current: step + 1,
+                total: TOTAL_QUESTIONS,
+              })}
+              intro={step === 0 ? t("start.intro") : undefined}
+              topNote={
+                step === 0 && prefilledFromLanding && current
+                  ? t("start.prefilledNote", {
+                      condition: t(`questions.q1.options.${current}`),
+                    })
+                  : undefined
+              }
             />
           </div>
 
-          <p className="mt-4 flex items-center gap-1.5 text-sm md:text-base text-ink-muted">
+          <p className="mb-6 mt-4 flex items-center justify-center gap-1.5 text-sm md:text-base text-ink-muted sm:mb-0">
             <Lock className="size-3.5 shrink-0" aria-hidden />
             {current ? t("start.privacyNote") : t("start.selectAndPrivacy")}
           </p>
@@ -320,7 +342,7 @@ export function AssessmentEnginePage() {
               floating rounded card with its border. Back / Start over / Next
               stay one row at every width; Next shrinks to fit its label
               instead of stretching. */}
-          <div className="sticky bottom-0 sm:bottom-4 z-20 mt-6 -mx-4 flex flex-row flex-nowrap items-center justify-between gap-3 border-0 bg-white/85 px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] shadow-[0_-18px_32px_-14px_rgba(42,167,176,0.5)] backdrop-blur-xl sm:mx-0 sm:rounded-2xl sm:border sm:border-white/60 sm:pb-3 sm:shadow-[var(--shadow-float)]">
+          <div className="sticky bottom-0 sm:bottom-4 z-20 mt-auto sm:mt-6 -mx-4 flex flex-row flex-nowrap items-center justify-between gap-3 border-0 bg-white/85 px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] shadow-[0_-18px_32px_-14px_rgba(42,167,176,0.5)] backdrop-blur-xl sm:mx-0 sm:rounded-2xl sm:border sm:border-white/60 sm:pb-3 sm:shadow-[var(--shadow-float)]">
             <button
               type="button"
               onClick={startOver}
@@ -356,14 +378,13 @@ export function AssessmentEnginePage() {
       {phase === "safety" ? (
         <div key="safety" className={FADE}>
           <ExclusionStep
-            hideHeading
             initial={exclusions ?? undefined}
             onComplete={handleSafetyComplete}
           />
           <button
             type="button"
             onClick={backToLastQuestion}
-            className="mt-4 inline-flex items-center gap-1.5 text-sm md:text-base text-ink-muted underline-offset-4 hover:underline"
+            className="mx-auto mt-4 flex items-center gap-1.5 text-sm md:text-base text-ink-muted underline-offset-4 hover:underline"
           >
             <ArrowLeft className="size-4" aria-hidden />
             {t("exclusion.back")}
