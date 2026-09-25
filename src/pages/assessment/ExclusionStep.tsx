@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { ArrowLeft } from "lucide-react";
 
 import { Button } from "@/app/components/ui/button";
 import {
@@ -62,9 +63,12 @@ function YesNoRow({
  */
 export function ExclusionStep({
   onComplete,
+  onBack,
   initial,
 }: {
   onComplete: (x: AssessmentExclusions) => void;
+  /** "Back to the last question", rendered in the same row as the primary. */
+  onBack: () => void;
   /** Seed the answers — so stepping back to a prior question and returning
    *  doesn't wipe the safety answers (the step is keyed / remounts). */
   initial?: AssessmentExclusions;
@@ -116,7 +120,8 @@ export function ExclusionStep({
           {t("exclusion.conditions.q")}
         </legend>
         <div className="grid gap-3">
-          {[...EXCLUSION_CONDITION_KEYS, "none" as const].map((key) => (
+          {/* "None of these" first (Mischa, 2026-09-25). */}
+          {(["none", ...EXCLUSION_CONDITION_KEYS] as const).map((key) => (
             <OptionTile
               key={key}
               type="checkbox"
@@ -140,7 +145,12 @@ export function ExclusionStep({
           {t("exclusion.requiredPrompt")}
         </p>
       ) : null}
-      <div className="mt-4 flex justify-center">
+      {/* One row from `sm` up (owner request, 2026-09-25): "Back to the last
+          question" at the left edge, the primary at the right, spread with
+          `justify-between`. `flex-row-reverse` is a visual swap only — the DOM
+          stays primary-first so Tab goes from the last checkbox to the primary,
+          and below `sm` it's the stacked, centred layout with the primary on top. */}
+      <div className="mt-4 flex flex-col items-center gap-3 sm:flex-row-reverse sm:justify-between">
         <Button
           type="button"
           variant="cta"
@@ -150,6 +160,14 @@ export function ExclusionStep({
         >
           {t("exclusion.continue")}
         </Button>
+        <button
+          type="button"
+          onClick={onBack}
+          className="flex items-center gap-1.5 text-base text-ink-muted underline-offset-4 hover:underline"
+        >
+          <ArrowLeft className="size-4" aria-hidden />
+          {t("exclusion.back")}
+        </button>
       </div>
     </StepFrame>
   );

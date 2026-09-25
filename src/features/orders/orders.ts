@@ -18,7 +18,12 @@ import type { PaymentMethodId } from "@/features/payments/payments";
 const STORAGE_KEY = "wecare.orders";
 const ADDRESS_KEY = "wecare.order-addresses"; // sessionStorage only
 
-export type OrderStatus = "processing" | "inReview" | "shipped" | "delivered";
+export type OrderStatus =
+  | "processing"
+  | "inReview"
+  | "shipped"
+  | "delivered"
+  | "cancelled";
 
 export interface OrderLine {
   productId: SolutionId;
@@ -51,6 +56,8 @@ export interface Order {
    *  medical review (funnel re-sequence, 2026-09-08). */
   totalEur: number | null;
   status: OrderStatus;
+  /** ISO time the customer cancelled it; only set alongside `status: "cancelled"`. */
+  cancelledAt?: string;
   /** Rehydrated from sessionStorage on read; never stored in localStorage. */
   shipTo?: ShippingAddress;
   paymentMethod?: PaymentMethodId;
@@ -109,6 +116,40 @@ export function getOrders(): Order[] {
   return readStoredOrders().map((o) =>
     addresses[o.id] ? { ...o, shipTo: addresses[o.id] } : o,
   );
+}
+
+/** A customer can cancel only before dispatch: while the request is still in
+ *  medical review or being processed. Once it has shipped it is with the
+ *  carrier; a delivered or already-cancelled order can't be cancelled. */
+export function canCancelOrder(order: Pick<Order, "status">): boolean {
+  return order.status === "inReview" || order.status === "processing";
+}
+
+/**
+ * Mark an order cancelled (owner request, 2026-09-25). The order stays in the
+ * list as "Cancelled" rather than being deleted. Returns the updated order, or
+ * `null` when there is nothing to cancel (unknown id, or past dispatch).
+ *
+ * MOCK, like the rest of this store: it changes this browser's list only. A real
+ * build needs a server-side cancel that also tells the doctor and pharmacy,
+ * refunds any payment already taken and emails the customer — none of which
+ * happens here (see CLAUDE.md, "Cancel an order").
+ */
+export function cancelOrder(id: string): Order | null {
+  const stored = readStoredOrders();
+  const target = stored.find((o) => o.id === id);
+  if (!target || !canCancelOrder(target)) return null;
+  const next = stored.map((o) =>
+    o.id === id
+      ? { ...o, status: "cancelled" as const, cancelledAt: new Date().toISOString() }
+      : o,
+  );
+  try {
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+  } catch {
+    return null;
+  }
+  return getOrders().find((o) => o.id === id) ?? null;
 }
 
 export function addOrder(input: {

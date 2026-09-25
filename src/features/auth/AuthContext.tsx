@@ -10,11 +10,12 @@ import type { ReactNode } from "react";
 
 import { AnalyticsEvent, track } from "@/lib/analytics";
 
-import { markReturningVisitor } from "./returning";
-
 /**
- * MOCK auth — no backend. `signIn` accepts any email and stores a local
- * session so the dashboard flow is demonstrable. Replace with a real
+ * MOCK auth — no backend. `signIn` (checkout: email + SMS-verified phone) and
+ * `signInWithPhone` (the /login order-tracking screen: an SMS code, no
+ * password) store a local session so the dashboard flow is demonstrable. There
+ * is no account lookup: a phone sign-in starts an empty session, because a real
+ * lookup (phone -> account -> orders) needs the backend. Replace with a real
  * auth provider (see spec Section 4 / open question on auth backend).
  */
 
@@ -61,10 +62,16 @@ export interface ProfileAddress {
 
 /** Editable profile fields — shared by `updateProfile`'s patch type. */
 type ProfilePatch = Partial<
-  Pick<AuthUser, "name" | "phone" | "phoneVerified" | "avatarUrl" | "address">
+  Pick<AuthUser, "name" | "email" | "phone" | "phoneVerified" | "avatarUrl" | "address">
 >;
 
 export interface AuthUser {
+  /** Stable identity of this account — set at sign-in (the lower-cased email, or
+   *  `tel:<phone>` for a phone sign-in) and never changed by profile edits, so
+   *  editing the phone or adding an email later does not remount user-scoped
+   *  state. Drives `sessionKey` and the account-switch check. */
+  accountKey: string;
+  /** Empty for an account that signed in by phone and hasn't given an email. */
   name: string;
   email: string;
   phone?: string;
@@ -100,6 +107,8 @@ interface AuthContextValue {
   /** `verifiedPhone` is a number the caller has just confirmed by SMS; it is
    *  stored on the profile as verified. */
   signIn: (email: string, name?: string, verifiedPhone?: string) => void;
+  /** /login: a number just confirmed by an SMS code. No email, no password. */
+  signInWithPhone: (verifiedPhone: string) => void;
   signOut: () => void;
   updateProfile: (patch: ProfilePatch) => void;
 }
@@ -114,6 +123,11 @@ function load(): AuthUser | null {
     const parsed = JSON.parse(raw) as Partial<AuthUser>;
     if (parsed && typeof parsed.email === "string") {
       return {
+        // Older stored sessions predate `accountKey`: they were keyed by email.
+        accountKey:
+          typeof parsed.accountKey === "string" && parsed.accountKey
+            ? parsed.accountKey
+            : parsed.email.toLowerCase(),
         email: parsed.email,
         name: parsed.name ?? parsed.email,
         phone: typeof parsed.phone === "string" ? parsed.phone : undefined,
@@ -160,21 +174,38 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signIn = useCallback((email: string, name?: string, verifiedPhone?: string) => {
     const trimmed = email.trim();
+    const accountKey = trimmed.toLowerCase();
     setUser((prev) => {
       // A different account signing in on the same browser must not inherit
       // the previous user's assessment / cart / orders / follow-up.
-      if (prev && prev.email.toLowerCase() !== trimmed.toLowerCase()) {
+      if (prev && prev.accountKey !== accountKey) {
         clearSessionScopedStores();
       }
       return {
+        accountKey,
         email: trimmed,
         name: name?.trim() || nameFromEmail(trimmed),
         ...(verifiedPhone ? { phone: verifiedPhone, phoneVerified: true } : {}),
       };
     });
-    // Remember this browser has an account so the auth entry point defaults to
-    // "Log in" next time (device-level; survives sign-out).
-    markReturningVisitor();
+    track(AnalyticsEvent.login);
+  }, []);
+
+  const signInWithPhone = useCallback((verifiedPhone: string) => {
+    const accountKey = `tel:${verifiedPhone}`;
+    setUser((prev) => {
+      if (prev && prev.accountKey !== accountKey) {
+        clearSessionScopedStores();
+      }
+      // No name or email is known yet: they arrive with the first order.
+      return {
+        accountKey,
+        email: "",
+        name: "",
+        phone: verifiedPhone,
+        phoneVerified: true,
+      };
+    });
     track(AnalyticsEvent.login);
   }, []);
 
@@ -190,6 +221,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         if (!prev) return prev;
         const next = { ...prev, ...patch };
         if (typeof next.name === "string") next.name = next.name.trim();
+        if (typeof next.email === "string") next.email = next.email.trim();
         if (typeof next.phone === "string") {
           const p = next.phone.trim();
           next.phone = p === "" ? undefined : p;
@@ -219,12 +251,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     () => ({
       user,
       isAuthenticated: user !== null,
-      sessionKey: user?.email.toLowerCase() ?? "anon",
+      sessionKey: user?.accountKey ?? "anon",
       signIn,
+      signInWithPhone,
       signOut,
       updateProfile,
     }),
-    [user, signIn, signOut, updateProfile],
+    [user, signIn, signInWithPhone, signOut, updateProfile],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

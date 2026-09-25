@@ -1,14 +1,13 @@
 import { useEffect } from "react";
 import { Link, Navigate, useLocation } from "react-router";
 import { useTranslation } from "react-i18next";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Mail, Truck } from "lucide-react";
 
 import { Button } from "@/app/components/ui/button";
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 import { paths } from "@/app/paths";
 import { usePageTitle } from "@/app/usePageTitle";
 import { SUPPORT_EMAIL } from "@/config";
-import { NextSteps } from "@/components/marketing/NextSteps";
 import { PageShell } from "@/components/marketing/PageShell";
 import { getProductImage } from "@/data/products";
 import { solutionHeroStrain, SOLUTION_BY_ID } from "@/data/solutions";
@@ -49,10 +48,27 @@ export function OrderConfirmationPage() {
         strokeWidth={1.5}
         aria-hidden
       />
-      <p className="mt-4 text-ink-muted">{t("confirmation.body")}</p>
-      <p className="mt-4 font-mono text-sm md:text-base text-ink">
+      {/* A thank-you page for a placed order (Mischa, 2026-09-25): it opens with
+          a headline that says so — until now it had none, only an icon and a
+          paragraph, and read as a status page — then, in his order: shipping
+          cut-off, order summary, the email note, "check your orders". This
+          describes the TARGET flow (order placed + paid, doctor already
+          approved in the flow); see the launch dependencies in CLAUDE.md. */}
+      <h1 className="mt-4 font-display text-2xl md:text-3xl text-ink">
+        {t("confirmation.heading")}
+      </h1>
+      <p className="mt-3 text-ink-muted">{t("confirmation.body")}</p>
+      <p className="mt-3 font-mono text-sm md:text-base text-ink">
         {t("confirmation.orderLabel", { id: order.id })}
       </p>
+
+      <div className="mt-6 flex items-start gap-3 rounded-2xl bg-sage-50 p-4 text-left">
+        <Truck className="mt-0.5 size-5 shrink-0 text-petrol-600" aria-hidden />
+        <p className="text-sm md:text-base text-ink">
+          <span className="font-semibold">{t("confirmation.shippingHeading")}</span>{" "}
+          {t("confirmation.shipping")}
+        </p>
+      </div>
 
       {/* Order recap + where it's going — the two things a confirmation page
           must make immediately scannable (Baymard order-tracking guidance). */}
@@ -133,26 +149,17 @@ export function OrderConfirmationPage() {
         ) : null}
       </div>
 
-      {/* Forward-looking status, not an "IF it's approved" sentence
-          (stakeholder feedback, Sept 2026). */}
-      <p className="mt-10 text-xs md:text-sm font-semibold uppercase tracking-[0.16em] text-ink-muted">
-        {t("confirmation.stepsHeading")}
-      </p>
-      <div className="mx-auto mt-4 max-w-md text-left">
-        <NextSteps
-          steps={(["received", "review", "dispatch"] as const).map((k) => ({
-            title: t(`confirmation.steps.${k}.title`),
-            body: t(`confirmation.steps.${k}.body`),
-          }))}
-        />
-        <p className="mt-4 text-sm md:text-base text-ink-muted">
-          {t("confirmation.timingNote")}
-        </p>
+      <div className="mt-6 flex items-start gap-3 text-left">
+        <Mail className="mt-0.5 size-5 shrink-0 text-petrol-600" aria-hidden />
+        <p className="text-sm md:text-base text-ink">{t("confirmation.emailNote")}</p>
       </div>
 
-      <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
+      {/* `sm:flex-row-reverse`: "Back to home" left, "Check your orders" right
+          (owner request, 2026-09-25 — same as the assessment gates). Visual only:
+          the DOM stays primary-first and it stacks primary-on-top on a phone. */}
+      <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row-reverse sm:flex-wrap sm:justify-center">
         <Button asChild variant="cta" className="w-full sm:w-auto">
-          <Link to={paths.dashboard}>{t("confirmation.toOrders")}</Link>
+          <Link to={paths.dashboardOrders}>{t("confirmation.toOrders")}</Link>
         </Button>
         <Button asChild variant="outline" className="w-full sm:w-auto">
           <Link to={paths.home}>{t("confirmation.toHome")}</Link>

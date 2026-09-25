@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { KeyboardEvent } from "react";
 import { useTranslation } from "react-i18next";
-import { Check } from "lucide-react";
+import { Check, CircleAlert } from "lucide-react";
 
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
@@ -24,6 +24,14 @@ interface Props {
   initialPhone?: string;
   /** A `checkout.errors.*` key from the page (a submit attempted unverified). */
   error?: string;
+  /** The /login screen reuses this block: it brings its own page heading, so it
+   *  passes the legend text (hidden visually, still the fieldset's name), sets
+   *  `intro` to `null` to drop the checkout paragraph, and turns the checkout
+   *  analytics off (a sign-in is tracked by `login`, not as a checkout step). */
+  heading?: string;
+  headingHidden?: boolean;
+  intro?: string | null;
+  trackEvents?: boolean;
 }
 
 /** The row's buttons match the inputs' height: `Input` is a fixed `h-9`, while a
@@ -47,6 +55,10 @@ export function PhoneVerification({
   onReset,
   initialPhone = "",
   error,
+  heading,
+  headingHidden = false,
+  intro,
+  trackEvents = true,
 }: Props) {
   const { t } = useTranslation("shop");
   const [input, setInput] = useState(initialPhone);
@@ -78,7 +90,7 @@ export function PhoneVerification({
     }
     setSentTo(phone);
     setCode("");
-    track(AnalyticsEvent.checkoutPhoneCodeSent);
+    if (trackEvents) track(AnalyticsEvent.checkoutPhoneCodeSent);
   }
 
   async function verify() {
@@ -95,7 +107,7 @@ export function PhoneVerification({
       setLocalError(res.reason === "wrongCode" ? "phoneCodeWrong" : "phoneUnavailable");
       return;
     }
-    track(AnalyticsEvent.checkoutPhoneVerified);
+    if (trackEvents) track(AnalyticsEvent.checkoutPhoneVerified);
     setSentTo(null);
     setCode("");
     onVerified(sentTo);
@@ -117,12 +129,18 @@ export function PhoneVerification({
 
   return (
     <fieldset className="space-y-4">
-      <legend className="text-lg md:text-xl font-medium text-ink">
-        {t("checkout.phone.heading")}
+      <legend
+        className={
+          headingHidden ? "sr-only" : "text-lg md:text-xl font-medium text-ink"
+        }
+      >
+        {heading ?? t("checkout.phone.heading")}
       </legend>
-      <p className="text-sm md:text-base text-ink-muted">
-        {t("checkout.phone.intro")}
-      </p>
+      {intro === null ? null : (
+        <p className="text-sm md:text-base text-ink-muted">
+          {intro ?? t("checkout.phone.intro")}
+        </p>
+      )}
       {!PHONE_VERIFICATION_LIVE ? (
         <p className="rounded-xl bg-sage-50 p-3 text-sm md:text-base text-petrol-700">
           {t("checkout.phone.previewNote")}
@@ -168,7 +186,11 @@ export function PhoneVerification({
                 onKeyDown={(e) => onEnter(e, send)}
                 aria-invalid={shownError ? true : undefined}
                 aria-describedby={describedBy}
-                className="sm:flex-1"
+                className={
+                  shownError
+                    ? "sm:flex-1 border-2 border-danger-600 bg-danger-50/40"
+                    : "sm:flex-1"
+                }
               />
               {sentTo === null ? (
                 <Button
@@ -217,7 +239,11 @@ export function PhoneVerification({
                   onKeyDown={(e) => onEnter(e, verify)}
                   aria-invalid={shownError ? true : undefined}
                   aria-describedby={describedBy}
-                  className="sm:flex-1"
+                  className={
+                    shownError
+                      ? "sm:flex-1 border-2 border-danger-600 bg-danger-50/40"
+                      : "sm:flex-1"
+                  }
                 />
                 <Button
                   type="button"
@@ -251,9 +277,10 @@ export function PhoneVerification({
         <p
           id="phone-error"
           role="alert"
-          className="text-sm md:text-base text-danger-600"
+          className="flex items-start gap-1.5 rounded-lg bg-danger-50 px-3 py-2 text-sm md:text-base font-medium text-danger-700"
         >
-          {t(`checkout.errors.${shownError}`)}
+          <CircleAlert className="mt-0.5 size-4 shrink-0" aria-hidden />
+          <span>{t(`checkout.errors.${shownError}`)}</span>
         </p>
       ) : null}
     </fieldset>

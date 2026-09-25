@@ -47,12 +47,16 @@ export function DashboardLayout() {
     );
   }
 
+  // A phone-only account (signed in by SMS code, no order yet) has no name or
+  // email: greet it without a name instead of "Good evening, ".
   const displayName =
     user?.name?.split(" ")[0] || user?.name || user?.email?.split("@")[0] || "";
   const activeKey =
     DASHBOARD_NAV.find((n) => matches(location.pathname, n))?.key ?? "home";
   const headerTitle = isHome
-    ? t(`greeting.${greetingKey()}`, { name: displayName })
+    ? displayName
+      ? t(`greeting.${greetingKey()}`, { name: displayName })
+      : t("greeting.welcomeBack")
     : t(`nav.${activeKey}`);
 
   return (

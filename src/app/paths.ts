@@ -95,7 +95,6 @@ export const paths = {
   dashboardProfile: "/dashboard/profile",
 
   login: "/login",
-  signup: "/signup",
 
   contact: "/kontakt",
 
@@ -119,6 +118,9 @@ export const paths = {
  * confirmation moves (`/shop/*` and `/dashboard/*` → top-level funnel routes).
  */
 export const LEGACY_REDIRECTS: Record<string, string> = {
+  // There is no separate sign-up any more: an account is created by ordering,
+  // and `/login` signs in by SMS code (2026-09-25).
+  "/signup": paths.login,
   "/shop/cart": paths.cart,
   "/shop/checkout": paths.checkout,
   "/shop/confirmation": paths.orderConfirmation,

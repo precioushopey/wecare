@@ -2,7 +2,7 @@ import { startTransition, useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import { Link, Navigate, useNavigate } from "react-router";
 import { Trans, useTranslation } from "react-i18next";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, CircleAlert } from "lucide-react";
 
 import { usePageTitle } from "@/app/usePageTitle";
 import { Button } from "@/app/components/ui/button";
@@ -83,6 +83,23 @@ function todayIso(): string {
   return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
 }
 
+/** Bring a field to the middle of the screen and focus it without a second
+ *  scroll (Baymard: autoscroll to the first error). Centring keeps it clear of
+ *  the sticky funnel header, which "nearest edge" scrolling didn't. Takes
+ *  several ids and uses the first that exists (the phone block shows either the
+ *  number or the code input). */
+function focusField(...ids: string[]) {
+  const el = ids
+    .map((id) => document.getElementById(id))
+    .find((node): node is HTMLElement => node !== null);
+  if (!el) return;
+  const reduceMotion =
+    typeof window.matchMedia === "function" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  el.scrollIntoView({ block: "center", behavior: reduceMotion ? "auto" : "smooth" });
+  el.focus({ preventScroll: true });
+}
+
 /** A native `<select>` styled like `Input` (there's no shadcn Select vendored). */
 const SELECT_CLASS =
   "border-input flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base bg-input-background outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] md:text-sm";
@@ -106,9 +123,13 @@ function validateField(
   }
   if (name === "dob") {
     const age = calculateAge(v);
-    // Empty / unparseable / future / implausible → the generic "enter your date
-    // of birth" message; a real date under 18 gets its own message.
-    if (!v || age < 0 || v > todayIso() || age > MAX_PLAUSIBLE_AGE) return "dob";
+    // Empty → "enter your date of birth". A date that was entered but can't be
+    // right (unparseable / future / implausibly old, e.g. year 1777) gets its
+    // own "that date doesn't look right" message — telling someone who did enter
+    // a date to enter one read as a bug (Mischa, 2026-09-25). A real date under
+    // 18 gets its own message too.
+    if (!v) return "dob";
+    if (age < 0 || v > todayIso() || age > MAX_PLAUSIBLE_AGE) return "dobInvalid";
     return age >= MIN_AGE ? "" : "dobUnderage";
   }
   if (!v) return name; // "firstName" | "lastName" | "street" | "city"
@@ -171,6 +192,10 @@ export function CheckoutPage() {
   const [touched, setTouched] = useState<Partial<Record<FieldName, boolean>>>(
     {},
   );
+  // Set once a submit has failed validation; gates the "please check these
+  // details" summary above the submit button (it shows nothing for a blur-only
+  // error — the field's own message covers that).
+  const [attempted, setAttempted] = useState(false);
 
   const country: DeliveryCountry = values.country === "DE" ? "DE" : "AT";
 
@@ -242,6 +267,25 @@ export function CheckoutPage() {
 
   const canSubmit = termsOk && !submitting;
 
+  // What's currently wrong, in page order (phone block first): feeds the
+  // summary above the submit button. Live, so fixing a field removes its row.
+  const problems: { id: string; label: string; message: string }[] = [
+    ...(phoneError
+      ? [
+          {
+            id: "phone",
+            label: t("checkout.phone.label"),
+            message: t(`checkout.errors.${phoneError}`),
+          },
+        ]
+      : []),
+    ...ADDRESS_FIELDS.filter((f) => errors[f.name] && touched[f.name]).map((f) => ({
+      id: f.name,
+      label: t(`checkout.fields.${f.name}`),
+      message: t(`checkout.errors.${errors[f.name]}`),
+    })),
+  ];
+
   function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (submitting) return;
@@ -262,16 +306,14 @@ export function CheckoutPage() {
     ) {
       setErrors(nextErrors);
       setTouched(Object.fromEntries(ADDRESS_FIELDS.map((f) => [f.name, true])));
+      setAttempted(true);
       if (!phone) {
         // The phone block is the first thing on the page, so it gets focus first.
         setPhoneError("phoneUnverified");
-        (
-          document.getElementById("phone-code") ??
-          document.getElementById("phone")
-        )?.focus();
+        focusField("phone-code", "phone");
       } else {
         const first = ADDRESS_FIELDS.find((f) => nextErrors[f.name]);
-        if (first) document.getElementById(first.name)?.focus();
+        if (first) focusField(first.name);
       }
       return;
     }
@@ -321,8 +363,17 @@ export function CheckoutPage() {
       startTransition(() => {
         signIn(v("email"), `${v("firstName")} ${v("lastName")}`.trim(), phone);
       });
-    } else if (!(user?.phone === phone && user.phoneVerified)) {
-      updateProfile({ phone, phoneVerified: true });
+    } else {
+      // A signed-in account: keep its verified number current, and give a phone-
+      // only account (no name / email yet) the details from this order.
+      const patch: Parameters<typeof updateProfile>[0] = {};
+      if (!(user?.phone === phone && user.phoneVerified)) {
+        patch.phone = phone;
+        patch.phoneVerified = true;
+      }
+      if (!user?.email) patch.email = v("email");
+      if (!user?.name) patch.name = `${v("firstName")} ${v("lastName")}`.trim();
+      if (Object.keys(patch).length > 0) updateProfile(patch);
     }
   }
 
@@ -367,7 +418,16 @@ export function CheckoutPage() {
         </ul>
       </details>
 
-      <form onSubmit={onSubmit} className="grid gap-8 lg:grid-cols-[1fr_22rem]">
+      {/* noValidate: every check is ours (inline errors + the summary above the
+          submit button). Without it the browser's own bubble fires first on an
+          empty or out-of-range field and blocks onSubmit, so the summary would
+          never appear for the most common mistake. `required` stays for
+          assistive tech. */}
+      <form
+        onSubmit={onSubmit}
+        noValidate
+        className="grid gap-8 lg:grid-cols-[1fr_22rem]"
+      >
         <div className="space-y-8">
           <PhoneVerification
             verifiedPhone={verifiedPhone}
@@ -387,8 +447,11 @@ export function CheckoutPage() {
             <div className="grid gap-4 sm:grid-cols-2">
               {ADDRESS_FIELDS.map((f) => {
                 const showError = Boolean(errors[f.name] && touched[f.name]);
-                // The account email can't be edited once signed in.
-                const readOnly = f.name === "email" && isAuthenticated;
+                // The account email can't be edited once signed in — unless the
+                // account has none (it signed in by SMS code, /login): then this
+                // is where it is given, and it is saved to the profile on submit.
+                const readOnly =
+                  f.name === "email" && isAuthenticated && Boolean(user?.email);
                 // First/last and PLZ/city sit side by side; street, date of
                 // birth and email span the row (the DOB helper line wraps badly
                 // in a half-width cell).
@@ -444,23 +507,31 @@ export function CheckoutPage() {
                         onBlur={() => blurField(f.name)}
                         aria-invalid={showError || undefined}
                         aria-describedby={describedBy}
+                        className={cn(
+                          showError && "border-2 border-danger-600 bg-danger-50/40",
+                        )}
                       />
                     )}
+                    {/* The error comes first and is a filled, iconed, medium-
+                        weight line: as plain small red text under the grey hint it
+                        read as more hint (Mischa, 2026-09-25: "hard to see the
+                        error"). */}
+                    {showError ? (
+                      <p
+                        id={`${f.name}-error`}
+                        role="alert"
+                        className="flex items-start gap-1.5 rounded-lg bg-danger-50 px-3 py-2 text-sm md:text-base font-medium text-danger-700"
+                      >
+                        <CircleAlert className="mt-0.5 size-4 shrink-0" aria-hidden />
+                        <span>{t(`checkout.errors.${errors[f.name]}`)}</span>
+                      </p>
+                    ) : null}
                     {hintKey ? (
                       <p
                         id={`${f.name}-hint`}
                         className="text-sm md:text-base text-ink-muted"
                       >
                         {t(`checkout.fields.${hintKey}`)}
-                      </p>
-                    ) : null}
-                    {showError ? (
-                      <p
-                        id={`${f.name}-error`}
-                        role="alert"
-                        className="text-sm md:text-base text-danger-600"
-                      >
-                        {t(`checkout.errors.${errors[f.name]}`)}
                       </p>
                     ) : null}
                   </div>
@@ -598,6 +669,35 @@ export function CheckoutPage() {
               />
             </span>
           </label>
+
+          {/* Right where the click happened: the submit button sits in this
+              column, well away from the fields, so a failed click used to show
+              nothing here. Each row jumps to its field. */}
+          {attempted && problems.length > 0 ? (
+            <div className="rounded-xl border-2 border-danger-600 bg-danger-50 p-4 text-danger-800">
+              <p className="flex items-center gap-2 text-base font-semibold">
+                <CircleAlert className="size-5 shrink-0" aria-hidden />
+                {t("checkout.errorSummary.heading")}
+              </p>
+              <ul className="mt-2 space-y-1 text-sm md:text-base">
+                {problems.map((p) => (
+                  <li key={p.id}>
+                    <a
+                      href={`#${p.id}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        focusField(p.id === "phone" ? "phone-code" : p.id, p.id);
+                      }}
+                      className="font-semibold underline underline-offset-2 hover:text-danger-700"
+                    >
+                      {p.label}
+                    </a>
+                    : {p.message}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
 
           <div>
             <Button

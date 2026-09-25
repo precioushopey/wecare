@@ -51,7 +51,7 @@ export function ExistingCustomerStep({
   }
 
   return (
-    <PageShell maxWidth="max-w-xl" className="py-10">
+    <PageShell className="py-10">
       <StepFrame
         eyebrow={t("phase.leadIn")}
         title={t("existing.title")}

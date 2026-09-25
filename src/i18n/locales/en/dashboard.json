@@ -70,7 +70,15 @@
       "processing": "Processing",
       "inReview": "In medical review",
       "shipped": "Shipped",
-      "delivered": "Delivered"
+      "delivered": "Delivered",
+      "cancelled": "Cancelled"
+    },
+    "cancel": {
+      "button": "Cancel order",
+      "title": "Cancel this order?",
+      "body": "Order {{id}} will be cancelled. This can't be undone.",
+      "keep": "Keep order",
+      "confirm": "Yes, cancel order"
     },
     "grams": "{{count}} g",
     "totalPending": "Confirmed after review"
@@ -117,7 +125,7 @@
     "title": "Profile",
     "name": "Name",
     "email": "Email",
-    "emailNote": "Sign in with a different email to switch accounts.",
+    "emailNote": "You sign in with your mobile number.",
     "phone": "Phone",
     "phoneNone": "Not added",
     "phonePlaceholder": "+43 …",
@@ -141,30 +149,19 @@
     "more": "More"
   },
   "auth": {
-    "signInTitle": "Login",
-    "signInIntro": "Sign in to see your assessment, recommendation and orders.",
-    "signUpTitle": "Create account",
-    "signUpIntro": "Set up an account to follow your assessment, recommendation and orders.",
-    "name": "Full name",
-    "email": "Email",
-    "password": "Password",
-    "passwordConfirm": "Confirm password",
-    "passwordMismatch": "Passwords don't match.",
-    "signIn": "Sign in",
-    "createAccount": "Create account",
-    "continueWithGoogle": "Continue with Google",
-    "continueWithApple": "Continue with Apple",
-    "orDivider": "or",
-    "haveAccount": "Already have an account?",
-    "noAccount": "New here?",
+    "signInTitle": "Track your order",
+    "signInIntro": "Enter the mobile number you ordered with. We'll text you a 6-digit code, no password needed.",
+    "phoneLegend": "Sign in with your mobile number",
     "requiredNote": "Please sign in to see this area.",
-    "checkoutNote": "Please sign in to complete your order. We'll take you back to checkout."
+    "newHere": "New here?",
+    "startAssessment": "Start the assessment"
   },
   "greeting": {
     "morning": "Good morning, {{name}}",
     "afternoon": "Good afternoon, {{name}}",
     "evening": "Good evening, {{name}}",
-    "subtitle": "Your assessment and orders in one place."
+    "subtitle": "Your assessment and orders in one place.",
+    "welcomeBack": "Welcome back"
   },
   "home": {
     "title": "Overview",

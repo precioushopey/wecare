@@ -31,10 +31,7 @@
     "amountLabel": "Menge",
     "grams": "{{count}} g",
     "addToCart": "In den Warenkorb legen",
-    "addingToCart": "Wird hinzugefügt …",
-    "addedToCart": "Zum Warenkorb hinzugefügt",
     "checkoutCta": "Zur Kasse",
-    "chooseSolution": "{{name}} wählen",
     "checkAvailability": "Verfügbarkeit prüfen",
     "detailsHeading": "Details zur Lösung",
     "whyHeading": "Warum empfohlen",
@@ -221,6 +218,7 @@
       "postalCode": "Gib eine 4-stellige österreichische PLZ an.",
       "postalCodeDe": "Gib eine 5-stellige deutsche PLZ an.",
       "dob": "Gib dein Geburtsdatum an.",
+      "dobInvalid": "Dieses Datum passt nicht. Bitte prüfe Tag, Monat und Jahr.",
       "dobUnderage": "Für eine Anfrage musst du mindestens 18 Jahre alt sein.",
       "email": "Bitte gib deine E-Mail-Adresse ein.",
       "phone": "Gib eine gültige Mobilnummer ein, z. B. +43 664 1234567.",
@@ -229,6 +227,9 @@
       "phoneCodeWrong": "Dieser Code stimmt nicht. Bitte versuche es erneut.",
       "phoneRateLimited": "Zu viele Versuche. Bitte warte einen Moment und versuche es erneut.",
       "phoneUnavailable": "Die Bestätigung ist gerade nicht möglich. Bitte versuche es später erneut."
+    },
+    "errorSummary": {
+      "heading": "Bitte prüfe diese Angaben, bevor du fortfährst:"
     },
     "countries": {
       "AT": "Österreich",
@@ -262,32 +263,20 @@
     "termsLabelPlain": "Ich akzeptiere die AGB und die Datenschutzerklärung."
   },
   "confirmation": {
-    "title": "Deine Anfrage ist eingegangen",
-    "body": "Deine Anfrage ist eingegangen. Als Nächstes prüft sie eine Ärztin oder ein Arzt, und wir informieren dich per E-Mail bei jedem Schritt.",
+    "title": "Vielen Dank für deine Bestellung",
+    "heading": "Vielen Dank für deine Bestellung",
+    "body": "Deine Bestellung ist bestätigt. Hier ist eine Zusammenfassung für deine Unterlagen.",
     "orderLabel": "Referenz: {{id}}",
-    "itemsHeading": "Deine Bestellung",
+    "shippingHeading": "Versand:",
+    "shipping": "Bestellungen vor 12:00 Uhr werden noch am selben Tag versendet, Bestellungen nach 12:00 Uhr am nächsten Tag.",
+    "itemsHeading": "Bestellübersicht",
     "totalLabel": "Gesamt",
     "priceAfterReview": "Nach der Prüfung bestätigt",
     "paymentLabel": "Zahlung",
     "shipToHeading": "Lieferung an",
-    "stepsHeading": "Wo deine Anfrage steht",
-    "steps": {
-      "received": {
-        "title": "Anfrage eingegangen",
-        "body": "Deine Antworten und Lieferdaten sind bei uns."
-      },
-      "review": {
-        "title": "Ärztliche Prüfung",
-        "body": "Eine lizenzierte Ärztin oder ein lizenzierter Arzt prüft deine Anfrage. Ein Rezept wird nur ausgestellt, wenn es sinnvoll ist."
-      },
-      "dispatch": {
-        "title": "Rezept & Lieferung",
-        "body": "Wenn eine Freigabe erfolgt, bestätigst du die Zahlung und eine zugelassene Apotheke liefert diskret zu dir."
-      }
-    },
-    "timingNote": "Den Liefertermin siehst du, sobald ein Rezept ausgestellt und deine Bestellung von der Apotheke vorbereitet wurde.",
+    "emailNote": "Wir schicken dir eine E-Mail, sobald dein DHL-Paket unterwegs ist.",
     "support": "Fragen zu deiner Bestellung? Schreib an {{email}}",
-    "toOrders": "Anfrage verfolgen",
+    "toOrders": "Deine Bestellungen ansehen",
     "toHome": "Zur Startseite"
   }
 }

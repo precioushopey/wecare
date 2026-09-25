@@ -5,7 +5,6 @@ import { paths } from "@/app/paths";
 import { cn } from "@/app/components/ui/utils";
 import { Logo } from "@/components/brand/Logo";
 import { useAuth } from "@/features/auth/AuthContext";
-import { isReturningVisitor } from "@/features/auth/returning";
 import { useConsent } from "@/features/consent/useConsent";
 
 import { TrustBadges } from "./FooterIcons";
@@ -35,11 +34,11 @@ export function SiteFooter({
   const { isAuthenticated } = useAuth();
   const { reopen: reopenConsent } = useConsent();
   const year = new Date().getFullYear();
-  // One account entry, mirroring the header (Mischa, 2026-09-09) — the auth
-  // screen itself offers log-in vs. create-account.
+  // One account entry, mirroring the header (Mischa, 2026-09-09). Signed out it
+  // is the SMS "track your order" sign-in; there is no separate create-account.
   const account = isAuthenticated
     ? { to: paths.dashboard, label: t("nav.myArea") }
-    : { to: isReturningVisitor() ? paths.login : paths.signup, label: t("nav.account") };
+    : { to: paths.login, label: t("nav.account") };
 
   return (
     <footer

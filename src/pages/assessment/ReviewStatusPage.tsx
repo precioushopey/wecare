@@ -131,9 +131,9 @@ export function ReviewStatusPage() {
 
       <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
         <Button asChild variant="cta" className="w-full sm:w-auto">
-          {/* A new user has no account yet — send them to sign up (they land
-              on the dashboard after). A signed-in user goes straight there. */}
-          <Link to={isAuthenticated ? paths.dashboard : paths.signup}>
+          {/* A signed-in user goes straight to their area; anyone else signs in
+              by SMS code first (they land on the dashboard after). */}
+          <Link to={isAuthenticated ? paths.dashboard : paths.login}>
             {t("review.toDashboard")}
           </Link>
         </Button>

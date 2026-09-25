@@ -89,12 +89,12 @@ export function PostcodeStep({ onComplete }: { onComplete: () => void }) {
           aria-label={t("postcode.heading")}
           aria-invalid={error || undefined}
           disabled={Boolean(confirmed)}
-          className="mx-auto block w-full max-w-[14rem] rounded-xl border-2 border-border bg-white/85 px-4 py-3 text-center text-ink"
+          className="block w-full rounded-xl border-2 border-border bg-white/85 px-4 py-3 text-ink"
         />
         {error ? (
           <p
             role="alert"
-            className="mt-2 text-center text-sm md:text-base text-danger-600"
+            className="mt-2 text-sm md:text-base text-danger-600"
           >
             {t("postcode.error")}
           </p>

@@ -41,7 +41,7 @@ export function AgeGate({ onConfirm }: { onConfirm: (dobIso: string) => void }) 
   }
 
   return (
-    <PageShell maxWidth="max-w-xl" className="py-10">
+    <PageShell className="py-10">
       <StepFrame
         eyebrow={t("phase.leadIn")}
         title={t("ageGate.title")}
@@ -83,7 +83,11 @@ export function AgeGate({ onConfirm }: { onConfirm: (dobIso: string) => void }) 
           ) : null}
         </div>
 
-        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center">
+        {/* `sm:flex-row-reverse`: "Back to home" on the left, the primary on the
+            right (Mischa/owner, 2026-09-25) — a visual swap only. The DOM order
+            stays primary-first so Tab goes from the date field straight to
+            Continue, and the stacked phone layout keeps Continue on top. */}
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row-reverse sm:flex-wrap sm:items-center sm:justify-center">
           <Button
             type="button"
             variant="cta"

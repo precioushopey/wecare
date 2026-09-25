@@ -176,8 +176,14 @@ export function DashboardChrome({
   const { user } = useAuth();
   const { lineCount } = useCart();
 
+  // Falls back to the mobile number for an account that has no name or email yet
+  // (it signed in by SMS code); the menu shows the number as its name then.
   const displayName =
-    user?.name?.split(" ")[0] || user?.name || user?.email?.split("@")[0] || "";
+    user?.name?.split(" ")[0] ||
+    user?.name ||
+    user?.email?.split("@")[0] ||
+    user?.phone ||
+    "";
   const shopLabel = tCommon("footer.links.shop");
 
   return (
@@ -253,7 +259,7 @@ export function DashboardChrome({
                 ) : null}
                 <AccountMenu
                   name={displayName}
-                  email={user?.email}
+                  email={user?.email || undefined}
                   className="hidden lg:block"
                 />
               </div>
@@ -308,7 +314,7 @@ export function DashboardChrome({
                     {lineCount > 0 && !hideCartChip ? (
                       <CartChip count={lineCount} label={shopLabel} />
                     ) : null}
-                    <AccountMenu name={displayName} email={user?.email} />
+                    <AccountMenu name={displayName} email={user?.email || undefined} />
                   </div>
                 </div>
               </>

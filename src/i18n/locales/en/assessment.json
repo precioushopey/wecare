@@ -12,8 +12,14 @@
   },
   "legalGate": {
     "title": "Before you begin",
-    "body": "WeCare's questionnaire is not a medical diagnosis. A licensed doctor reviews every request, and a prescription is never guaranteed.",
-    "checkbox": "I have read and agree to the <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy> (currently in draft; final versions will be confirmed before launch).",
+    "body": "Please read these notes carefully and confirm them.",
+    "notes": {
+      "truthful": "I will answer all questions <b>truthfully, to the best of my knowledge</b>. I understand that incorrect information can be harmful to my health, and that my answers are for my personal use only.",
+      "noDiagnosis": "This questionnaire is <b>not a medical diagnosis</b>, and WeCare's service is not intended to diagnose, treat, cure or prevent any disease.",
+      "doctorDecides": "A licensed doctor reviews every request and <b>decides</b> whether a prescription is medically appropriate and, if so, what is prescribed. <b>A prescription is never guaranteed</b>, and I have no claim to a particular product.",
+      "dataSharing": "I understand that, if I go ahead, WeCare passes <b>the information needed for the medical review</b> to the responsible doctor and, if a prescription is issued, the information needed to dispense and deliver to the pharmacy."
+    },
+    "checkbox": "I have read all the notes and agree to the <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy> (currently in draft; final versions will be confirmed before launch).",
     "continue": "Continue",
     "back": "Back to home"
   },
@@ -193,7 +199,7 @@
       }
     },
     "detailsLabel": "THC, price & ingredients",
-    "altHeading": "Alternative option",
+    "altHeading": "You might also like this alternative option",
     "altLabelDefault": "Another matched option",
     "altStrongerHint": "Another matched option you can explore.",
     "frequencyNote": "You told us this affects you {{frequency}}. That's noted for your medical review.",

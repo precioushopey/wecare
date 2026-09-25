@@ -6,7 +6,6 @@ import {
   ArrowRight,
   Check,
   Info,
-  Loader2,
   ShieldCheck,
 } from "lucide-react";
 
@@ -242,23 +241,30 @@ function AlternativeProductCard({
   label,
   hint,
   solution,
-  inCart,
+  cartQuantity,
   dashboardOrigin,
   onChoose,
+  onChangeGrams,
 }: {
   heading: string;
   label: string;
   hint?: string;
   solution: Solution;
-  /** Already in the cart — the button then reads "Checkout". */
-  inCart: boolean;
+  /** Grams of this Solution already in the cart (0 = not in it). Once it is, the
+   *  button reads "Checkout" and the amount selector edits that cart line. */
+  cartQuantity: number;
   dashboardOrigin?: boolean;
+  /** The button: adds it (button reads "Add to cart"), or — once it is in the
+   *  cart (button reads "Checkout") — goes on to checkout. */
   onChoose: (grams: number) => void;
+  /** An amount was picked while it is already in the cart. */
+  onChangeGrams: (grams: number) => void;
 }) {
   const { t } = useTranslation("shop");
   const { t: tc } = useTranslation("conditions");
   const { language } = useLanguage();
-  const [grams, setGrams] = useState(10);
+  const inCart = cartQuantity > 0;
+  const [grams, setGrams] = useState(cartQuantity || 10);
   const problems = solution.conditionKeys
     .map((k) => tc(`${k}.shortTitle`))
     .join(" · ");
@@ -331,7 +337,13 @@ function AlternativeProductCard({
             ) : null}
           </p>
 
-          <AmountSelector grams={grams} onSelect={setGrams} />
+          <AmountSelector
+            grams={grams}
+            onSelect={(g) => {
+              setGrams(g);
+              if (inCart) onChangeGrams(g);
+            }}
+          />
 
           <div className="mt-5 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
             <button
@@ -339,9 +351,7 @@ function AlternativeProductCard({
               onClick={() => onChoose(grams)}
               className={HERO_CTA_CLASS}
             >
-              {inCart
-                ? t("solution.checkoutCta")
-                : t("solution.chooseSolution", { name: solution.name })}
+              {inCart ? t("solution.checkoutCta") : t("solution.addToCart")}
               <ArrowRight className="size-4" aria-hidden />
             </button>
             <Link
@@ -390,30 +400,12 @@ export function ProductPage() {
         items.find((i) => i.productId === solution.id)?.quantity) ||
       10,
   );
+  // The alternative-option card: adding the matched Solution scrolls here.
+  const altRef = useRef<HTMLDivElement>(null);
 
   const viewedId = solution?.id;
   const isViewingMatch = Boolean(
     viewedId && result?.primarySolutionId === viewedId,
-  );
-
-  // Add-to-cart button state on the visitor's own matched Solution only
-  // (idle -> adding -> added -> checkout). A revisit with the item already
-  // in the cart skips straight to "checkout" — no replayed animation, no
-  // double-adding. The alternative-option view never leaves "idle": it keeps
-  // its original single-click "add + straight to checkout" behaviour.
-  const [addState, setAddState] = useState<
-    "idle" | "adding" | "added" | "checkout"
-  >(() =>
-    isViewingMatch && items.some((i) => i.productId === viewedId)
-      ? "checkout"
-      : "idle",
-  );
-  const timeoutsRef = useRef<number[]>([]);
-  useEffect(
-    () => () => {
-      timeoutsRef.current.forEach((id) => window.clearTimeout(id));
-    },
-    [],
   );
 
   useEffect(() => {
@@ -539,22 +531,41 @@ export function ProductPage() {
     }
   };
 
-  // Choosing the alternative straight from its card (Mischa, 2026-09-24): the
-  // same "add + straight to checkout" the alternative's own page has always had.
-  // The matched Solution, if already in the cart, is left there — it can be
+  const scrollToAlternative = () => {
+    const reduceMotion =
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    altRef.current?.scrollIntoView({
+      behavior: reduceMotion ? "auto" : "smooth",
+      block: "start",
+    });
+  };
+
+  // The alternative card's button (owner request, 2026-09-25 — it used to add
+  // and jump straight to checkout): "Add to cart" adds it and stays put, the
+  // button then reads "Checkout" and only that second click goes on. The
+  // matched Solution, if it's already in the cart, is left there — it can be
   // removed on the cart page.
   const onChooseAlternative = (alt: Solution, altGrams: number) => {
     if (!getMedicalReview()) {
       navigate(paths.assessment.start);
       return;
     }
-    track(AnalyticsEvent.recommendationAlternativeSelected, { solution: alt.id });
     if (!items.some((i) => i.productId === alt.id)) {
+      track(AnalyticsEvent.recommendationAlternativeSelected, { solution: alt.id });
       addSolution(alt.id, altGrams);
+      return;
     }
     navigate(paths.checkout);
   };
 
+  // The main button. On the visitor's own matched Solution, when there is an
+  // alternative to show, the first click only adds it and scrolls down to the
+  // "you might also like" card — no jump to checkout (owner request,
+  // 2026-09-25; this reverses the same-day "one click opens checkout", which
+  // is kept everywhere there is nothing to offer). The button then reads
+  // "Checkout" (it's in the cart now) and the second click goes on. Once it's
+  // in the cart the amount selector edits that line directly (`onSelectGrams`).
   const onAdd = () => {
     // A medical review must already exist (it's created at the end of the
     // question pass). A visitor who deep-linked into /shop/:id has none — send
@@ -564,38 +575,16 @@ export function ProductPage() {
       return;
     }
 
-    if (!isMatch) {
-      // Alternative-option / plain catalog view — unchanged single-click
-      // "add + straight to checkout" flow (funnel re-sequence, 2026-09-14).
-      // Already in the cart (e.g. from the cross-sell modal, or a previous
-      // visit)? Don't add it again — just go straight to checkout, same as
-      // the matched page's "checkout" state below.
-      if (cartQuantity === 0) {
-        addSolution(solution.id, grams);
+    // Already in the cart (a revisit, or a step back from checkout)? Don't add
+    // it again — just go on.
+    if (cartQuantity === 0) {
+      addSolution(solution.id, grams);
+      if (isMatch && secondary) {
+        scrollToAlternative();
+        return;
       }
-      navigate(paths.checkout);
-      return;
     }
-
-    if (addState === "checkout") {
-      navigate(paths.checkout);
-      return;
-    }
-
-    // The visitor's own matched Solution — a staged loading -> success
-    // sequence (owner request) before the button settles on "Checkout".
-    // `addSolution` itself is synchronous; the delays are pure perceived-
-    // feedback, not real async work.
-    setAddState("adding");
-    timeoutsRef.current.push(
-      window.setTimeout(() => {
-        addSolution(solution.id, grams);
-        setAddState("added");
-        timeoutsRef.current.push(
-          window.setTimeout(() => setAddState("checkout"), 700),
-        );
-      }, 500),
-    );
+    navigate(paths.checkout);
   };
 
   return (
@@ -637,13 +626,24 @@ export function ProductPage() {
           (Steps 2+3 merged into this one screen, 2026-09-14). A plain
           catalog visit from `/shop` skips this entirely. */}
       {isMatch ? (
-        <div className="mt-6 flex flex-col items-start gap-5 sm:flex-row">
-          <AssessmentRing variant="complete" tone="deep" size={72} animate />
-          <div>
-            <p className="font-display text-xl md:text-2xl text-ink">
-              {tAssessment("result.title")}
-            </p>
-            <p className="mt-2 text-ink-muted">
+        // Owner request, 2026-09-25: on a phone only the ring and the headline
+        // share a row; the intro paragraph + delivery line drop below it at full
+        // width instead of being squeezed into the narrow column beside the ring.
+        // From `sm` up it's the original layout — ring on the left spanning both
+        // rows, headline + details stacked to its right.
+        <div className="mt-6 grid grid-cols-[auto_minmax(0,1fr)] items-start gap-x-4 gap-y-4 sm:gap-x-5 sm:gap-y-0">
+          <AssessmentRing
+            variant="complete"
+            tone="deep"
+            size={72}
+            animate
+            className="shrink-0 sm:row-span-2"
+          />
+          <p className="self-center font-display text-xl md:text-2xl text-ink sm:self-start">
+            {tAssessment("result.title")}
+          </p>
+          <div className="col-span-2 min-w-0 sm:col-span-1 sm:col-start-2">
+            <p className="text-ink-muted sm:mt-2">
               {tAssessment("result.intro")}
               {existingReview ? (
                 <>
@@ -837,27 +837,8 @@ export function ProductPage() {
           <AmountSelector grams={grams} onSelect={onSelectGrams} />
 
           <div className="mt-5 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-            <button
-              type="button"
-              onClick={onAdd}
-              disabled={addState === "adding" || addState === "added"}
-              className={cn(
-                HERO_CTA_CLASS,
-                "disabled:pointer-events-none disabled:opacity-90",
-              )}
-            >
-              {addState === "adding" ? (
-                <>
-                  <Loader2 className="size-4 animate-spin" aria-hidden />
-                  {t("solution.addingToCart")}
-                </>
-              ) : addState === "added" ? (
-                <>
-                  <Check className="size-4" aria-hidden />
-                  {t("solution.addedToCart")}
-                </>
-              ) : addState === "checkout" ||
-                (!isMatch && cartQuantity > 0) ? (
+            <button type="button" onClick={onAdd} className={HERO_CTA_CLASS}>
+              {cartQuantity > 0 ? (
                 <>
                   {t("solution.checkoutCta")}
                   <ArrowRight className="size-4" aria-hidden />
@@ -914,23 +895,30 @@ export function ProductPage() {
           </dl>
 
           {secondary ? (
-            <AlternativeProductCard
-              heading={tAssessment("result.altHeading")}
-              label={
-                result.secondaryIsAdvanced
-                  ? tAssessment("result.advancedHeading")
-                  : tAssessment("result.altLabelDefault")
-              }
-              hint={
-                result.secondaryIsAdvanced
-                  ? undefined
-                  : tAssessment("result.altStrongerHint")
-              }
-              solution={secondary}
-              inCart={items.some((i) => i.productId === secondary.id)}
-              dashboardOrigin={dashboardOrigin}
-              onChoose={(g) => onChooseAlternative(secondary, g)}
-            />
+            // `scroll-mt-24` keeps the heading clear of the sticky funnel header
+            // when adding the matched Solution scrolls here.
+            <div ref={altRef} className="scroll-mt-24">
+              <AlternativeProductCard
+                heading={tAssessment("result.altHeading")}
+                label={
+                  result.secondaryIsAdvanced
+                    ? tAssessment("result.advancedHeading")
+                    : tAssessment("result.altLabelDefault")
+                }
+                hint={
+                  result.secondaryIsAdvanced
+                    ? undefined
+                    : tAssessment("result.altStrongerHint")
+                }
+                solution={secondary}
+                cartQuantity={
+                  items.find((i) => i.productId === secondary.id)?.quantity ?? 0
+                }
+                dashboardOrigin={dashboardOrigin}
+                onChoose={(g) => onChooseAlternative(secondary, g)}
+                onChangeGrams={(g) => setQuantity(secondary.id, g)}
+              />
+            </div>
           ) : null}
 
           {/* The trailing notes — review-required, the gentle-start nudge when

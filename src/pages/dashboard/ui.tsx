@@ -30,7 +30,7 @@ export function Avatar({
       .split(/\s+/)
       .filter(Boolean)
       .slice(0, 2)
-      .map((p) => p[0]?.toUpperCase() ?? "")
+      .map((p) => (/\p{L}/u.test(p[0] ?? "") ? p[0].toUpperCase() : ""))
       .join("") || "·";
   if (src) {
     return (
@@ -336,6 +336,8 @@ const ORDER_TONE: Record<OrderStatus, PillTone> = {
   inReview: "petrol",
   shipped: "sage",
   delivered: "sage",
+  // Not an error: the customer chose it. Grey, not the functional danger red.
+  cancelled: "neutral",
 };
 
 // No amber in the brand palette — "attention needed" states read as neutral,

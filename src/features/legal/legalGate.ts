@@ -8,12 +8,14 @@
  * (see `legal:draftNotEffective`), so this gate makes no claim that those
  * documents are final.
  *
- * Device-level, not versioned: stored as a bare flag, same mechanics as
- * `age.ts`. Re-asking on a document update is a real future need but isn't
- * built here — would need a version/date stamp per document.
+ * Device-level: stored as a bare flag, same mechanics as `age.ts`. There is no
+ * per-document version stamp, so the key itself carries the version: it went
+ * `v2` on 2026-09-25 when the gate grew from one sentence to four notes, so a
+ * device that accepted the old wording is asked again. Bump the suffix whenever
+ * the notes or the documents they point at change materially.
  */
 
-const STORAGE_KEY = "wecare.legalConsent";
+const STORAGE_KEY = "wecare.legalConsent.v2";
 
 export function isLegalGateAccepted(): boolean {
   if (typeof window === "undefined") return false;

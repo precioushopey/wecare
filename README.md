@@ -95,7 +95,7 @@ One real authorization boundary: **authenticated vs. not**, and it gates **only 
 | Authenticated (mock) | submit **any non-empty email** at `/login` or `/signup` (password `required minLength={8}` but ignored; "Continue with Google / Apple" run the same mock sign-in); session in `localStorage:wecare.auth` | Everything, incl. `/dashboard/*`. Editable profile. A number verified at checkout is stored on the profile (`phoneVerified`). |
 | Doctor / Pharmacy / Admin | — | **not modelled** |
 
-> On sign-out and on a **different-email** sign-in, `wecare.assessment` / `cart` / `orders` / `followup` / `review` (and the session-only order addresses) are cleared; a first sign-in from anonymous is not cleared. `wecare.language`, `wecare.consent`, `wecare.ageConfirmed`, `wecare.legalConsent`, `wecare.newCustomer` and `wecare.returning` are device preferences and are kept.
+> On sign-out and on a **different-account** sign-in (by email at checkout, or by phone at `/login`), `wecare.assessment` / `cart` / `orders` / `followup` / `review` (and the session-only order addresses) are cleared; a first sign-in from anonymous is not cleared. `wecare.language`, `wecare.consent`, `wecare.ageConfirmed`, `wecare.legalConsent.v2` and `wecare.newCustomer` are device preferences and are kept.
 
 ## User Flows
 

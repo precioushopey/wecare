@@ -31,10 +31,7 @@
     "amountLabel": "Amount",
     "grams": "{{count}} g",
     "addToCart": "Add to cart",
-    "addingToCart": "Adding…",
-    "addedToCart": "Added to cart",
     "checkoutCta": "Checkout",
-    "chooseSolution": "Choose {{name}}",
     "checkAvailability": "Check availability",
     "detailsHeading": "Solution details",
     "whyHeading": "Why it's recommended",
@@ -221,6 +218,7 @@
       "postalCode": "Enter a 4-digit Austrian postcode.",
       "postalCodeDe": "Enter a 5-digit German postcode.",
       "dob": "Enter your date of birth.",
+      "dobInvalid": "That date doesn't look right. Please check the day, month and year.",
       "dobUnderage": "You must be at least 18 to submit a request.",
       "email": "Enter your email address.",
       "phone": "Enter a valid mobile number, e.g. +43 664 1234567.",
@@ -229,6 +227,9 @@
       "phoneCodeWrong": "That code isn't right. Please try again.",
       "phoneRateLimited": "Too many attempts. Please wait a moment and try again.",
       "phoneUnavailable": "Verification isn't available right now. Please try again later."
+    },
+    "errorSummary": {
+      "heading": "Please check these details before you continue:"
     },
     "countries": {
       "AT": "Austria",
@@ -262,32 +263,20 @@
     "termsLabelPlain": "I accept the Terms & Conditions and the Privacy Policy."
   },
   "confirmation": {
-    "title": "Your request is in",
-    "body": "Your request is in. A doctor reviews it next, and we'll email you at each step.",
+    "title": "Thank you for your order",
+    "heading": "Thank you for your order",
+    "body": "Your order is confirmed. Here is a summary for your records.",
     "orderLabel": "Reference: {{id}}",
-    "itemsHeading": "Your order",
+    "shippingHeading": "Shipping:",
+    "shipping": "Orders placed before 12:00 ship the same day. Orders placed after 12:00 ship the next day.",
+    "itemsHeading": "Order summary",
     "totalLabel": "Total",
     "priceAfterReview": "Confirmed after review",
     "paymentLabel": "Payment",
     "shipToHeading": "Delivering to",
-    "stepsHeading": "Where your request is",
-    "steps": {
-      "received": {
-        "title": "Request received",
-        "body": "We've got your answers and your delivery details."
-      },
-      "review": {
-        "title": "Doctor review",
-        "body": "A licensed doctor reviews your request. A prescription is issued only if it is appropriate."
-      },
-      "dispatch": {
-        "title": "Prescription & delivery",
-        "body": "If approved, you confirm payment and a licensed pharmacy ships discreetly to your door."
-      }
-    },
-    "timingNote": "You'll see delivery timing once a prescription is issued and the pharmacy has prepared your order.",
+    "emailNote": "We'll email you as soon as your DHL package is on its way.",
     "support": "Questions about your order? Email {{email}}",
-    "toOrders": "Track my request",
+    "toOrders": "Check your orders",
     "toHome": "Back to home"
   }
 }

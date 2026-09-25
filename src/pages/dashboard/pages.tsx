@@ -36,13 +36,19 @@ import {
   setFollowUp,
   type FollowUpEntry,
 } from "@/features/followup/followup";
-import { getOrders, type OrderStatus } from "@/features/orders/orders";
+import {
+  cancelOrder,
+  canCancelOrder,
+  getOrders,
+  type OrderStatus,
+} from "@/features/orders/orders";
 import { getMedicalReview } from "@/features/review/review";
 import { useLanguage } from "@/i18n/useLanguage";
 import { AnalyticsEvent, track } from "@/lib/analytics";
 import { formatDate, formatPriceEur } from "@/lib/format";
 import { resizeImageToDataUrl } from "@/lib/image";
 
+import { CancelOrderDialog } from "./CancelOrderDialog";
 import {
   Avatar,
   DashboardHero,
@@ -76,6 +82,8 @@ const DELIVERY_STAGE: Record<OrderStatus, number> = {
   processing: 1,
   shipped: 2,
   delivered: 3,
+  // Never shown: the tracker only follows a live order (see `trackedOrder`).
+  cancelled: 0,
 };
 const DELIVERY_STEP_KEYS = [
   "ordered",
@@ -103,7 +111,9 @@ export function DashboardHomePage() {
   const { language } = useLanguage();
   const { result, answers, completedAt } = useAssessment();
   const [followUp] = useState(() => getFollowUp());
-  const latestOrder = getOrders()[0];
+  // The latest order still in play — a cancelled one isn't "in flight", so it
+  // falls through to the review state instead.
+  const latestOrder = getOrders().find((o) => o.status !== "cancelled");
   const review = getMedicalReview();
 
   if (!result) {
@@ -421,7 +431,19 @@ export function DashboardOrdersPage() {
   const { t: ts } = useTranslation("shop");
   const { language } = useLanguage();
   const { items: cartItems, subtotalEur } = useCart();
-  const orders = getOrders();
+  // Held in state (it used to be read straight from storage on every render) so
+  // cancelling an order re-renders the list.
+  const [orders, setOrders] = useState(getOrders);
+  // Id of the order whose "Cancel this order?" dialog is open (null = closed).
+  const [cancelTarget, setCancelTarget] = useState<string | null>(null);
+
+  const confirmCancel = () => {
+    if (cancelTarget && cancelOrder(cancelTarget)) {
+      track(AnalyticsEvent.orderCancelled);
+      setOrders(getOrders());
+    }
+    setCancelTarget(null);
+  };
 
   if (orders.length === 0) {
     // A cart isn't an order yet — it becomes one only once checkout is
@@ -500,6 +522,9 @@ export function DashboardOrdersPage() {
   }
 
   const latestOrder = orders[0];
+  // The delivery tracker follows the newest order that can still move: a
+  // cancelled one has no delivery to track. All cancelled = no tracker at all.
+  const trackedOrder = orders.find((o) => o.status !== "cancelled");
   const lineSummary = (order: (typeof orders)[number]) =>
     order.lines
       .map(
@@ -569,58 +594,60 @@ export function DashboardOrdersPage() {
           and the courier-map placeholder. This branch only renders when at
           least one order exists, so no `latestOrder` guards / pre-order
           coverage map are needed. (The shipping address sits in the hero.) */}
-      <SectionCard title={th("deliveryBanner.eyebrow")}>
-        <div className="flex gap-3">
-          <MedallionIcon icon={Truck} tone="sage" />
-          <div className="min-w-0">
-            <p className="text-sm md:text-base font-medium text-ink">
-              {th("deliveryBanner.headline")}
-            </p>
-            <p className="mt-1 text-sm md:text-base text-ink-muted">
-              {th("deliveryBanner.body")}
-            </p>
+      {trackedOrder ? (
+        <SectionCard title={th("deliveryBanner.eyebrow")}>
+          <div className="flex gap-3">
+            <MedallionIcon icon={Truck} tone="sage" />
+            <div className="min-w-0">
+              <p className="text-sm md:text-base font-medium text-ink">
+                {th("deliveryBanner.headline")}
+              </p>
+              <p className="mt-1 text-sm md:text-base text-ink-muted">
+                {th("deliveryBanner.body")}
+              </p>
+            </div>
           </div>
-        </div>
 
-        <div className="mt-4 rounded-2xl border border-border bg-surface-raised/60 p-4">
-          <div className="flex items-center justify-between gap-3">
-            <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.1em] text-ink-muted">
-              {t("delivery.track.heading")}
-            </p>
-            <StatusPill
-              label={t(`orders.statuses.${latestOrder.status}`)}
-              tone={orderPillTone(latestOrder.status)}
+          <div className="mt-4 rounded-2xl border border-border bg-surface-raised/60 p-4">
+            <div className="flex items-center justify-between gap-3">
+              <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.1em] text-ink-muted">
+                {t("delivery.track.heading")}
+              </p>
+              <StatusPill
+                label={t(`orders.statuses.${trackedOrder.status}`)}
+                tone={orderPillTone(trackedOrder.status)}
+              />
+            </div>
+            <DashboardJourney
+              bare
+              className="mt-3"
+              steps={DELIVERY_STEP_KEYS.map((k) => t(`delivery.track.steps.${k}`))}
+              current={DELIVERY_STAGE[trackedOrder.status]}
+              complete={trackedOrder.status === "delivered"}
             />
           </div>
-          <DashboardJourney
-            bare
-            className="mt-3"
-            steps={DELIVERY_STEP_KEYS.map((k) => t(`delivery.track.steps.${k}`))}
-            current={DELIVERY_STAGE[latestOrder.status]}
-            complete={latestOrder.status === "delivered"}
-          />
-        </div>
 
-        {/* Live courier map — placeholder only. No real carrier-tracking
-            integration yet, so this reserves the space and says so plainly
-            rather than faking a van position. */}
-        <p className="mt-4 text-xs md:text-sm font-semibold uppercase tracking-[0.1em] text-ink-muted">
-          {t("delivery.track.mapHeading")}
-        </p>
-        <div className="relative mt-2 overflow-hidden rounded-2xl bg-petrol-900/90 p-6">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 [background-image:radial-gradient(circle,rgba(255,255,255,0.16)_1px,transparent_1.6px)] [background-size:22px_22px]"
-          />
-          <div className="relative flex flex-col items-center gap-2 py-4 text-center">
-            <MapPin className="size-6 text-white/70" aria-hidden />
-            <p className="text-sm md:text-base font-medium text-white">
-              {t("delivery.track.mapComingSoon")}
-            </p>
-            <p className="text-sm md:text-base text-white/70">{t("delivery.track.noVan")}</p>
+          {/* Live courier map — placeholder only. No real carrier-tracking
+              integration yet, so this reserves the space and says so plainly
+              rather than faking a van position. */}
+          <p className="mt-4 text-xs md:text-sm font-semibold uppercase tracking-[0.1em] text-ink-muted">
+            {t("delivery.track.mapHeading")}
+          </p>
+          <div className="relative mt-2 overflow-hidden rounded-2xl bg-petrol-900/90 p-6">
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 [background-image:radial-gradient(circle,rgba(255,255,255,0.16)_1px,transparent_1.6px)] [background-size:22px_22px]"
+            />
+            <div className="relative flex flex-col items-center gap-2 py-4 text-center">
+              <MapPin className="size-6 text-white/70" aria-hidden />
+              <p className="text-sm md:text-base font-medium text-white">
+                {t("delivery.track.mapComingSoon")}
+              </p>
+              <p className="text-sm md:text-base text-white/70">{t("delivery.track.noVan")}</p>
+            </div>
           </div>
-        </div>
-      </SectionCard>
+        </SectionCard>
+      ) : null}
 
       {/* Desktop — a records table (best-practice for a list you reference). */}
       <div className="hidden overflow-x-auto lg:block">
@@ -665,6 +692,21 @@ export function DashboardOrdersPage() {
                     label={t(`orders.statuses.${order.status}`)}
                     tone={orderPillTone(order.status)}
                   />
+                  {/* Under the status it depends on, not a column of its own: a
+                      sixth column squeezed the others onto three lines at 1280 px.
+                      Only before dispatch (`canCancelOrder`). */}
+                  {canCancelOrder(order) ? (
+                    <div className="mt-2">
+                      <Button
+                        type="button"
+                        variant="outline"
+                        onClick={() => setCancelTarget(order.id)}
+                        className="h-8 px-4 py-0"
+                      >
+                        {t("orders.cancel.button")}
+                      </Button>
+                    </div>
+                  ) : null}
                 </td>
               </tr>
             ))}
@@ -723,9 +765,25 @@ export function DashboardOrdersPage() {
                 </address>
               </div>
             ) : null}
+            {canCancelOrder(order) ? (
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setCancelTarget(order.id)}
+                className="mt-4 w-full"
+              >
+                {t("orders.cancel.button")}
+              </Button>
+            ) : null}
           </li>
         ))}
       </ul>
+
+      <CancelOrderDialog
+        orderId={cancelTarget}
+        onKeep={() => setCancelTarget(null)}
+        onConfirm={confirmCancel}
+      />
     </div>
   );
 }
@@ -936,9 +994,11 @@ export function DashboardProfilePage() {
           />
           <div className="min-w-0">
             <p className="truncate font-display text-xl md:text-2xl text-white">
-              {user?.name}
+              {user?.name || user?.phone}
             </p>
-            <p className="truncate text-sm md:text-base text-white/70">{user?.email}</p>
+            {user?.email ? (
+              <p className="truncate text-sm md:text-base text-white/70">{user.email}</p>
+            ) : null}
           </div>
         </div>
       </DashboardHero>
@@ -1070,7 +1130,7 @@ export function DashboardProfilePage() {
                   <p className="text-xs md:text-sm uppercase tracking-wide text-ink-muted">
                     {t("profile.email")}
                   </p>
-                  <p className="mt-1 text-ink">{user?.email}</p>
+                  <p className="mt-1 text-ink">{user?.email || "—"}</p>
                   <p className="mt-1 text-sm md:text-base text-ink-muted">
                     {t("profile.emailNote")}
                   </p>
@@ -1098,7 +1158,7 @@ export function DashboardProfilePage() {
                   <p className="text-xs md:text-sm uppercase tracking-wide text-ink-muted">
                     {t("profile.name")}
                   </p>
-                  <p className="mt-1 text-ink">{user?.name}</p>
+                  <p className="mt-1 text-ink">{user?.name || "—"}</p>
                 </div>
                 <div>
                   <p className="text-xs md:text-sm uppercase tracking-wide text-ink-muted">

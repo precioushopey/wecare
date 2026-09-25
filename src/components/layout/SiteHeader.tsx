@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router";
 import { useTranslation } from "react-i18next";
-import { Menu, ShoppingBag, User } from "lucide-react";
+import { Menu, PackageSearch, ShoppingBag } from "lucide-react";
 
 import { Button } from "@/app/components/ui/button";
 import {
@@ -50,27 +50,23 @@ function CartLink() {
 }
 
 /**
- * One user icon for the signed-out state — clicking it drops a small menu
- * offering "Log in" / "Create account" explicitly (owner request, 2026-09-14
- * — reverses the 2026-09-09 auto-route-by-returning-visitor behaviour, which
- * silently guessed one and left the choice buried in a cross-link at the
- * bottom of whichever auth page it opened)) **superseded 2026-09-15, owner
- * request** — the dropdown is gone; the icon now links straight to
- * `/signup` (the far more common intent for a new visitor clicking the
- * account icon). `/login` stays reachable from the "New to WeCare?" /
- * "Already have an account?" cross-links on the signup/login pages
- * themselves and from the mobile sheet menu below, which already lists both
- * as separate buttons.
+ * One icon for the signed-out state, linking straight to `/login`. That is the
+ * SMS "track your order" sign-in now (2026-09-25): there is no separate sign-up
+ * (an account is created by ordering) and `/signup` redirects to `/login`, so
+ * the earlier "Log in" / "Create account" split is gone. The icon is a package
+ * with a magnifier, not a person, and the link is named to match (owner
+ * request: "since it's for tracking").
  */
 function AccountAuthMenu() {
   const { t } = useTranslation();
   return (
     <Link
-      to={paths.signup}
-      aria-label={t("nav.signup")}
+      to={paths.login}
+      aria-label={t("nav.trackOrder")}
+      title={t("nav.trackOrder")}
       className="inline-flex size-9 shrink-0 items-center justify-center rounded-md text-ink-muted transition-colors hover:text-ink"
     >
-      <User className="size-5" aria-hidden />
+      <PackageSearch className="size-5" aria-hidden />
     </Link>
   );
 }
@@ -159,21 +155,14 @@ export function SiteHeader() {
                     </Button>
                   </SheetClose>
                 ) : (
-                  <>
-                    <SheetClose asChild>
-                      <Button asChild variant="outline">
-                        <Link to={paths.login}>
-                          <User className="size-4" aria-hidden />
-                          {t("nav.login")}
-                        </Link>
-                      </Button>
-                    </SheetClose>
-                    <SheetClose asChild>
-                      <Button asChild variant="outline">
-                        <Link to={paths.signup}>{t("nav.signup")}</Link>
-                      </Button>
-                    </SheetClose>
-                  </>
+                  <SheetClose asChild>
+                    <Button asChild variant="outline">
+                      <Link to={paths.login}>
+                        <PackageSearch className="size-4" aria-hidden />
+                        {t("nav.trackOrder")}
+                      </Link>
+                    </Button>
+                  </SheetClose>
                 )}
                 <SheetClose asChild>
                   <Button asChild variant="cta">

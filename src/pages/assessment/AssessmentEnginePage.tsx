@@ -380,15 +380,8 @@ export function AssessmentEnginePage() {
           <ExclusionStep
             initial={exclusions ?? undefined}
             onComplete={handleSafetyComplete}
+            onBack={backToLastQuestion}
           />
-          <button
-            type="button"
-            onClick={backToLastQuestion}
-            className="mx-auto mt-4 flex items-center gap-1.5 text-base text-ink-muted underline-offset-4 hover:underline"
-          >
-            <ArrowLeft className="size-4" aria-hidden />
-            {t("exclusion.back")}
-          </button>
         </div>
       ) : null}
     </PageShell>
