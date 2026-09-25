@@ -1,6 +1,6 @@
 # WeCare — Claim-Language Review Queue
 
-**Date:** 2026-09-04 · **For:** Austrian/EU counsel (medicine & product advertising — §50a / §51 AMG, UWG, LMSVG where relevant).
+**Date:** 2026-09-04 (updated 2026-09-25: see §F and §G, questions 7–11, and a corrected mitigating point) · **For:** Austrian/EU counsel (medicine & product advertising — §50a / §51 AMG, UWG, LMSVG where relevant).
 
 ## Purpose
 
@@ -12,7 +12,7 @@ Present site-wide, so counsel can weigh the copy below against it:
 
 - Every recommendation carries "**a recommendation, not a guarantee of treatment**" and "**issued only if a doctor decides it is medically appropriate**" (`home:faq.items.prescription.a`, `faq:categories.review.items.*`).
 - `recommendation.ts` sets `requiresMedicalReview = true` for **every** result — the funnel always routes through medical review.
-- Checkout requires the explicit checkbox: "**I understand this product is not intended to diagnose, treat, cure or prevent disease.**" (`shop:checkout.disclaimerLabel`).
+- The sentence "**not intended to diagnose, treat, cure or prevent any disease**" is shown on the **first assessment screen** and must be ticked before the questionnaire starts (`assessment:legalGate.notes.noDiagnosis`, CL-47). **Correction 2026-09-25:** this document used to say it was a separate checkout checkbox (`shop:checkout.disclaimerLabel`). That checkbox was removed on 2026-09-24 at the owner's request ("on page 1 he confirms already about it") and the sentence was added to page 1 on 2026-09-25 to make that true. It no longer appears at checkout.
 - Condition pages carry `<MedicalNotice>` ("side effects… not a substitute for standard therapy… not individual medical advice").
 - Assessment framing: "helps **understand** / **place** how this affects you" — not "assess your condition".
 - No "treats", "cures", "guaranteed", "relief guaranteed", "Rezept in Minuten" anywhere (verified).
@@ -25,6 +25,8 @@ Present site-wide, so counsel can weigh the copy below against it:
 | **C** | Comparative product claim — "stronger", "deeper", "advanced", "gentle" applied to a solution |
 | **R** | Suitability framing — "for [condition]", "recommended for", a product named as being *for* a symptom |
 | **S** | Condition framing in a headline / list — describes the visitor's problem on a page that then recommends a medicine |
+| **P** | Promotional / cross-sell wording near a prescription product ("you might also like…") — added 2026-09-25 |
+| **O** | Operational promise — delivery timing, notifications, "confirmed" (consumer-law / misleading-statement risk, not §50a) — added 2026-09-25 |
 
 ---
 
@@ -100,6 +102,31 @@ Present site-wide, so counsel can weigh the copy below against it:
 | CL-38 | `common:nav.migraine` | "Migraine" / "Migraine / Head Tension" | S |
 | CL-39 | `assessment:questions.q1.title` | "What do you need help with today?" + options "Pain / Body Discomfort", "Stress & Anxiety", "Migraine / Head Tension" | S |
 
+## F. Added 2026-09-25 — alternative option and order pages
+
+`src/i18n/locales/{en,de}/assessment.json` and `shop.json`
+
+| ID | Key | Phrase (EN) | Risk |
+|---|---|---|---|
+| CL-40 | `assessment:result.altHeading` | "You might also like this alternative option" (was the neutral "Alternative option") | P, C |
+| CL-41 | `assessment:result.altStrongerHint` | "Usually a stronger option, for later." (shown under that card; existed before, not previously listed) | C |
+| CL-42 | `shop:solution.addToCart` on the alternative card | "Add to cart" (was "Choose {name}"): a one-tap add of the second, usually stronger, Solution before any medical review | P (a process question, see Q7) |
+| CL-43 | `shop:confirmation.heading` / `.body` | "Thank you for your order" / "Your order is confirmed. Here is a summary for your records." (the doctor-review step was removed from this page) | O |
+| CL-44 | `shop:confirmation.shipping` | "Orders placed before 12:00 ship the same day. Orders placed after 12:00 ship the next day." (not in the Shipping policy text; earlier removed by the 2026-09-04 product-owner ruling) | O |
+| CL-45 | `shop:confirmation.emailNote` | "We'll email you as soon as your DHL package is on its way." (the prototype sends no email) | O |
+
+## G. Added 2026-09-25 — consent and disclosure copy on the first assessment screen
+
+`assessment:legalGate.*`, shown once per device before the questionnaire. These are **not advertising claims**; they are consent and disclosure statements the owner asked for (modelled on a competitor's "Important!" page), listed so counsel reviews them too. German equivalents exist for each. Deliberately **not** copied: the § 630a BGB remote-treatment intro, the GoÄ billing note, the invoice/doctor's-letter note and "punishable by law".
+
+| ID | Key | Phrase (EN) | Nature |
+|---|---|---|---|
+| CL-46 | `legalGate.notes.truthful` | "I will answer all questions truthfully, to the best of my knowledge. I understand that incorrect information can be harmful to my health, and that my answers are for my personal use only." | disclosure |
+| CL-47 | `legalGate.notes.noDiagnosis` | "This questionnaire is not a medical diagnosis, and WeCare's service is not intended to diagnose, treat, cure or prevent any disease." | disclosure (**moved here from a checkout checkbox**) |
+| CL-48 | `legalGate.notes.doctorDecides` | "A licensed doctor reviews every request and decides whether a prescription is medically appropriate and, if so, what is prescribed. A prescription is never guaranteed, and I have no claim to a particular product." | disclosure |
+| CL-49 | `legalGate.notes.dataSharing` | "I understand that, if I go ahead, WeCare passes the information needed for the medical review to the responsible doctor and, if a prescription is issued, the information needed to dispense and deliver to the pharmacy." | health-data sharing (Art. 9) |
+| CL-50 | `legalGate.checkbox` | "I have read all the notes and agree to the Terms of Service and Privacy Policy (currently in draft; final versions will be confirmed before launch)." | consent |
+
 ---
 
 ## Questions for counsel
@@ -110,6 +137,11 @@ Present site-wide, so counsel can weigh the copy below against it:
 4. **Condition headlines** (CL-27…CL-30): problem-framing questions on a page whose CTA leads to a medicine recommendation. Standard health-marketing, or do they need softening?
 5. **`hero.subtitle`** (CL-20): the homepage names "CBD-based solution" in the hero. Confirm this early transparency (required by prior user feedback) does not itself constitute prohibited advertising.
 6. **DE parity:** every ID above has a German equivalent in `de/*.json` — the same ruling applies to both; German phrasing may carry different weight (e.g. "Unterstützung", "stärkere Option", "sanft").
+7. **Cross-sell framing and one-tap add** (CL-40…CL-42): the recommendation page now says "You might also like this alternative option" beside a stronger prescription product, with an "Add to cart" that adds it to the request before any medical review. Is promotional wording acceptable there, or must it stay neutral ("Alternative option", the wording ruled earlier)? Is adding a second, stronger product to the request before the doctor's decision acceptable? (A similar cross-sell pop-up was removed on 2026-09-24 for that reason.)
+8. **"Order confirmed" wording** (CL-43, CL-45): the confirmation page says "Thank you for your order / Your order is confirmed" and no longer mentions the doctor. Does that imply a prescription has been issued? What must a confirmation say for a prescription product, and at what point may it say "confirmed"?
+9. **Shipping cut-off** (CL-44): "Orders placed before 12:00 ship the same day". The Shipping policy text is deliberately neutral (`[LEGAL REVIEW REQUIRED]`). Which text governs, and what must operations be able to guarantee before either says this?
+10. **The consent screen** (CL-46…CL-50): one checkbox covers the notes, the Terms and the Privacy Policy, including the health-data hand-off (CL-49). Is a single shared checkbox acceptable, or does the health-data note need its own explicit Art. 9 consent? Is showing the "not intended to diagnose, treat, cure or prevent" disclaimer on the first screen (instead of at checkout) sufficient?
+11. **Cancellation:** My Orders lets a customer cancel an order before dispatch (no claim is made; the copy says nothing about refunds). How does this relate to the statutory withdrawal right and `legal:docs.refund`, what must the cancellation confirmation say, and how must a payment already taken be handled?
 
 ## After the ruling
 
