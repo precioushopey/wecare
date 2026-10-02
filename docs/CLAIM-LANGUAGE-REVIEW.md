@@ -141,7 +141,7 @@ Present site-wide, so counsel can weigh the copy below against it:
 8. **"Order confirmed" wording** (CL-43, CL-45): the confirmation page says "Thank you for your order / Your order is confirmed" and no longer mentions the doctor. Does that imply a prescription has been issued? What must a confirmation say for a prescription product, and at what point may it say "confirmed"?
 9. **Shipping cut-off** (CL-44): "Orders placed before 12:00 ship the same day". The Shipping policy text is deliberately neutral (`[LEGAL REVIEW REQUIRED]`). Which text governs, and what must operations be able to guarantee before either says this?
 10. **The consent screen** (CL-46…CL-50): one checkbox covers the notes, the Terms and the Privacy Policy, including the health-data hand-off (CL-49). Is a single shared checkbox acceptable, or does the health-data note need its own explicit Art. 9 consent? Is showing the "not intended to diagnose, treat, cure or prevent" disclaimer on the first screen (instead of at checkout) sufficient?
-11. **Cancellation:** My Orders lets a customer cancel an order before dispatch (no claim is made; the copy says nothing about refunds). How does this relate to the statutory withdrawal right and `legal:docs.refund`, what must the cancellation confirmation say, and how must a payment already taken be handled?
+11. **Cancellation:** there is no in-app cancel button (removed 2026-10-01); My Orders tells the customer to email support with the order number, and the copy says nothing about refunds. How does cancelling by email relate to the statutory withdrawal right and `legal:docs.refund`, what must the cancellation confirmation say, and how must a payment already taken be handled?
 
 ## After the ruling
 

@@ -121,7 +121,7 @@ Full list in `docs/DESIGN-SPECIFICATION.md` §11, plus the later owner decisions
 - **Every** recommendation always requires a medical review; no Solution is ever sold directly. The review record is created when the final safety checks are answered; a prescription is never guaranteed.
 - The **18+/DOB gate** and the **legal-consent gate** must each be passed once per device before the assessment renders (device-local, self-reported — not identity verification). Checkout re-collects and re-validates the date of birth (18+).
 - **Checkout:** no password — the customer verifies a mobile number by SMS (an honest preview until a provider exists: nothing is sent, any 6 digits pass, and the page says so). Country is **Austria or Germany**, and the postcode format follows it (4 vs 5 digits). "Submit" needs only the **Terms + Privacy** box (the "not intended to diagnose, treat, cure or prevent disease" checkbox was removed at the owner's instruction — see the open point in `CLAUDE.md`). Wire transfer is the only payment method that works; card / Apple Pay / crypto are listed but disabled until a provider is wired.
-- **Order summary amounts:** DHL shipping and the doctor's fee are `null` in `src/config.ts` (`SHIPPING_FEE_EUR`, `REVIEW_FEE_EUR`) until confirmed, so they read "To be confirmed" and the **total appears only once both are set**. Per-gram prices are placeholders, so the summary carries the "indicative" note.
+- **Order summary amounts:** the DHL fee is `null` in `src/config.ts` (`SHIPPING_FEE_EUR`) until confirmed, so that line reads "To be confirmed" and the total is labelled "excl. shipping" until it is set. There is no doctor's-fee line (removed 2026-10-01). Per-gram prices are placeholders, so the summary carries the "indicative" note.
 - Primary nav = **exactly** the 4 problems (Sleep · **Pain & Body Comfort** · Stress & Anxiety · Migraine). No Shop/Products; "How It Works" & "FAQ" deliberately excluded.
 - German is the default **and** fallback locale; no `navigator` auto-detect; every string ships DE **and** EN with identical key trees; DE copy uses "Fragebogen", not "Assessment" and the slash gender form (`Nutzer/innen`).
 - Austria language rules: never "treats/cures"; "recommended solution" not "prescription"; a prescription is never guaranteed. No leaf/smoke/recreational imagery or language; no strain names up front; product photos only after the assessment (and on the reference `/shop` pages — a tracked compliance tension).
@@ -164,7 +164,7 @@ Full list in `docs/DESIGN-SPECIFICATION.md` §11, plus the later owner decisions
 src/
 ├── main.tsx                 # entry (StrictMode; imports i18n + styles)
 ├── config.ts                # SUPPORT_EMAIL · PRICES_CONFIRMED · COMMERCE_ENABLED · COA_CONFIRMED
-│                            #   · PHONE_VERIFICATION_LIVE · SHIPPING_FEE_EUR · REVIEW_FEE_EUR
+│                            #   · PHONE_VERIFICATION_LIVE · SHIPPING_FEE_EUR
 ├── app/
 │   ├── App.tsx              # <RootErrorBoundary><RouterProvider>
 │   ├── RootErrorBoundary.tsx# app-wide render-error fallback (bilingual)
@@ -258,7 +258,7 @@ integrations — copy to `.env.local`:
 
 `src/config.ts` holds the hard-coded switches: `SUPPORT_EMAIL`, `PRICES_CONFIRMED = false`,
 `COMMERCE_ENABLED` (= `PRICES_CONFIRMED`), `COA_CONFIRMED = false`,
-`PHONE_VERIFICATION_LIVE = false`, and `SHIPPING_FEE_EUR` / `REVIEW_FEE_EUR` (both `null`
+`PHONE_VERIFICATION_LIVE = false`, and `SHIPPING_FEE_EUR` (`null`
 until confirmed). All future hosting + sub-processors must be **EU/EEA region** (owner decision D16).
 
 ## Running the Project
