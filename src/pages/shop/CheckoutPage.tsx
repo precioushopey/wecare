@@ -543,6 +543,7 @@ export function CheckoutPage() {
               <DeliveryConfirmation
                 postcode={postcode}
                 region={deliveryRegion}
+                city={values.city}
               />
             ) : null}
           </fieldset>
