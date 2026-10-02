@@ -233,8 +233,8 @@
     "disclaimer": "Die Inhalte dieser Website sind allgemein und ersetzen keine individuelle ärztliche Beratung, Diagnose oder Behandlung. Wende dich bei gesundheitlichen Fragen an deine Ärztin oder deinen Arzt."
   },
   "delivery": {
-    "confirmLine": "Wir liefern nach {{postcode}} ({{region}}). Deine Bestellung wird versendet, sobald die ärztliche Freigabe vorliegt.",
-    "regionUnknown": "dein Gebiet",
-    "germany": "Deutschland"
+    "confirmLine": "Wir liefern nach {{postcode}} {{region}}. Bestellungen vor 12:00 Uhr werden noch am gleichen Tag versendet, nach 12:00 Uhr am folgenden Werktag darauf.",
+    "confirmLineCountry": "Wir liefern nach {{postcode}} (Deutschland). Bestellungen vor 12:00 Uhr werden noch am gleichen Tag versendet, nach 12:00 Uhr am folgenden Werktag darauf.",
+    "regionUnknown": "dein Gebiet"
   }
 }

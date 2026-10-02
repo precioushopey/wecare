@@ -233,8 +233,8 @@
     "disclaimer": "The information on this site is general and does not replace individual medical advice, diagnosis or treatment. For health concerns, speak with your doctor."
   },
   "delivery": {
-    "confirmLine": "We deliver to {{postcode}} ({{region}}). Your order ships once your prescription is approved.",
-    "regionUnknown": "your area",
-    "germany": "Germany"
+    "confirmLine": "We deliver to {{postcode}} {{region}}. Orders placed before 12:00 are shipped the same day, orders after 12:00 on the next working day.",
+    "confirmLineCountry": "We deliver to {{postcode}} (Germany). Orders placed before 12:00 are shipped the same day, orders after 12:00 on the next working day.",
+    "regionUnknown": "your area"
   }
 }

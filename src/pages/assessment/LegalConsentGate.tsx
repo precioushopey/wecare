@@ -23,7 +23,7 @@ const LINK = "underline underline-offset-2 hover:text-ink";
  * needs its own explicit Art. 9 consent rather than this shared checkbox) and
  * the "punishable by law" line quick-green has, which is left out on purpose.
  */
-const NOTES = ["truthful", "noDiagnosis", "doctorDecides", "dataSharing"] as const;
+const NOTES = ["truthful", "noDiagnosis", "doctorDecides", "dataSharing", "acceptTerms"] as const;
 
 /**
  * Legal-consent gate shown once (per device) before the assessment, after
@@ -53,7 +53,25 @@ export function LegalConsentGate({ onConfirm }: { onConfirm: () => void }) {
                 <Trans
                   t={t}
                   i18nKey={`legalGate.notes.${note}`}
-                  components={{ b: <strong className="font-semibold" /> }}
+                  components={{
+                    b: <strong className="font-semibold" />,
+                    terms: (
+                      <Link
+                        to={paths.legal.terms}
+                        target="_blank"
+                        rel="noreferrer"
+                        className={LINK}
+                      />
+                    ),
+                    privacy: (
+                      <Link
+                        to={paths.legal.privacy}
+                        target="_blank"
+                        rel="noreferrer"
+                        className={LINK}
+                      />
+                    ),
+                  }}
                 />
               </span>
             </li>
@@ -65,30 +83,7 @@ export function LegalConsentGate({ onConfirm }: { onConfirm: () => void }) {
           id="legal-gate-confirm"
           checked={checked}
           onChange={() => setChecked((c) => !c)}
-          label={
-            <Trans
-              t={t}
-              i18nKey="legalGate.checkbox"
-              components={{
-                terms: (
-                  <Link
-                    to={paths.legal.terms}
-                    target="_blank"
-                    rel="noreferrer"
-                    className={LINK}
-                  />
-                ),
-                privacy: (
-                  <Link
-                    to={paths.legal.privacy}
-                    target="_blank"
-                    rel="noreferrer"
-                    className={LINK}
-                  />
-                ),
-              }}
-            />
-          }
+          label={<span className="text-lg font-medium">{t("legalGate.checkbox")}</span>}
         />
 
         {/* Same visual swap as `AgeGate` (Back left, primary right on `sm+`;

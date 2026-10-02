@@ -64,7 +64,6 @@ export const AnalyticsEvent = {
   checkoutPhoneVerified: "checkout_phone_verified",
   requestSubmitted: "request_submitted",
   /** No payload: the order id is a reference tied to a person (D16). */
-  orderCancelled: "order_cancelled",
   login: "login",
   logout: "logout",
   followupSubmitted: "followup_submitted",

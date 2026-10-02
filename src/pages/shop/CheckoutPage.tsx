@@ -11,7 +11,7 @@ import { Input } from "@/app/components/ui/input";
 import { Label } from "@/app/components/ui/label";
 import { cn } from "@/app/components/ui/utils";
 import { paths } from "@/app/paths";
-import { PRICES_CONFIRMED, REVIEW_FEE_EUR, SHIPPING_FEE_EUR } from "@/config";
+import { PRICES_CONFIRMED, SHIPPING_FEE_EUR } from "@/config";
 import { FUNNEL_MAX_W_WIDE } from "@/components/layout/FunnelChrome";
 import { DeliveryConfirmation } from "@/components/marketing/DeliveryConfirmation";
 import { PageShell } from "@/components/marketing/PageShell";
@@ -258,10 +258,11 @@ export function CheckoutPage() {
   });
   const productsEur = lines.reduce((sum, l) => sum + l.lineTotal, 0);
   const subtotalEur = productsEur + (SHIPPING_FEE_EUR ?? 0);
-  const totalEur =
-    SHIPPING_FEE_EUR !== null && REVIEW_FEE_EUR !== null
-      ? subtotalEur + REVIEW_FEE_EUR
-      : null;
+  // The total always shows (Mischa, 2026-10-01: "Total Amount is not
+  // displayed"). While the DHL fee is unconfirmed it is the products only and is
+  // labelled "excl. shipping"; the order record keeps `null` until it is final.
+  const shippingKnown = SHIPPING_FEE_EUR !== null;
+  const totalEur = shippingKnown ? subtotalEur : null;
   const money = (v: number | null) =>
     v === null ? t("checkout.summary.tbc") : formatPriceEur(v, i18n.language);
 
@@ -585,16 +586,13 @@ export function CheckoutPage() {
                 {formatPriceEur(subtotalEur, i18n.language)}
               </dd>
             </div>
-            <div className="flex items-baseline justify-between gap-3">
-              <dt className="text-ink-muted">{t("checkout.summary.reviewFee")}</dt>
-              <dd className="tabular-nums text-ink-muted">{money(REVIEW_FEE_EUR)}</dd>
-            </div>
             <div className="flex items-baseline justify-between gap-3 border-t border-border pt-3 text-base md:text-lg">
-              <dt className="font-semibold text-ink">{t("checkout.summary.total")}</dt>
-              <dd className="tabular-nums font-semibold text-ink">{money(totalEur)}</dd>
+              <dt className="font-semibold text-ink">{t(shippingKnown ? "checkout.summary.total" : "checkout.summary.totalExclShipping")}</dt>
+              <dd className="tabular-nums font-semibold text-ink">
+                {formatPriceEur(subtotalEur, i18n.language)}
+              </dd>
             </div>
           </dl>
-          <p className="text-xs md:text-sm text-ink-muted">{t("checkout.vatNote")}</p>
           {!PRICES_CONFIRMED ? (
             <p className="rounded-xl bg-sage-50 p-3 text-sm md:text-base text-petrol-700">
               {t("pricesIndicative")}

@@ -73,13 +73,7 @@
       "delivered": "Delivered",
       "cancelled": "Cancelled"
     },
-    "cancel": {
-      "button": "Cancel order",
-      "title": "Cancel this order?",
-      "body": "Order {{id}} will be cancelled. This can't be undone.",
-      "keep": "Keep order",
-      "confirm": "Yes, cancel order"
-    },
+    "cancelNote": "To cancel an order, send us an email at {{email}} with your order number.",
     "grams": "{{count}} g",
     "totalPending": "Confirmed after review"
   },

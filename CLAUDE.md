@@ -518,7 +518,7 @@ Owner request (with two screenshots): the age gate's tiles and date field were a
 
 Verified: `pnpm typecheck`, DE/EN parity (`shop` 218/218, `assessment` 179/179), and headless-puppeteer walks. Add-to-cart flow (desktop + 390 px, 31 checks, all passing): both buttons start as "Add to cart"; the alternative heading text; the primary click stays on `/shop/night-now`, adds one `night-now` line, flips to "Checkout" and scrolls the alternative heading into view; the alternative click stays put, adds `calm-night`, both read "Checkout"; 15 g on the alternative updates its line; its "Checkout" opens `/checkout` listing both; a lone primary second click opens `/checkout` with one line; the alternative's own page is still one click to checkout. Header ring + final-checks row measured at 1280 / 390 / 320 (layouts pass; the 320 px overflow above is the only failure). Not done: real-device pass.
 
-## Cancel an order (2026-09-25, same branch)
+## Cancel an order (2026-09-25, same branch) — **SUPERSEDED 2026-10-01: the button, dialog, `cancelOrder`/`canCancelOrder` and the `order_cancelled` event were removed (Mischa: customers cancel by email). My Orders now ends with `orders.cancelNote` ("email {{email}} with your order number"). The `"cancelled"` status + pill stay so support can set it. Text below is history.**
 
 Owner request (screenshot of the My Orders table): "there should be a way to cancel order here". Design approved in chat before building.
 
@@ -556,3 +556,11 @@ The follow-up to "anything we missed?" (the owner picked these two):
 Also corrected today: three passages in this file that still described the old email/password `/login` (now marked superseded).
 
 Flag anything in the codebase that conflicts with the spec instead of silently working around it.
+
+## Mischa feedback round (2026-10-01, branch `main`, uncommitted)
+
+- **Legal gate:** a 5th note `acceptTerms` ("Ich akzeptiere die Datenschutzerklärung und AGB der Plattform.", both linked); the checkbox box now reads only "Ich habe alle Hinweise gelesen und stimme zu" in `text-lg`. Storage key bumped to `wecare.legalConsent.v3` (re-asks devices). His "missing important content about the Law in Germany" has no wording yet; not invented, needs counsel/Mischa.
+- **Delivery line** (`common:delivery.confirmLine`): "Wir liefern nach {{postcode}} {{region}}. Bestellungen vor 12:00 Uhr werden noch am gleichen Tag versendet, nach 12:00 Uhr am folgenden Werktag darauf." German postcodes use `confirmLineCountry` ("…10107 (Deutschland)…"; no postcode→city table exists, so no "Berlin"). Reinstates the 12:00 claim the 2026-09-04 pass removed, on his instruction; counsel queue CL-44 still applies.
+- **Checkout summary:** doctor's-fee row, its `*` and the VAT sentence removed (Ilay agreed); `REVIEW_FEE_EUR` deleted. The total always shows: products only labelled "Gesamt zzgl. Versand" until `SHIPPING_FEE_EUR` is set, then "Gesamt". The order record keeps `totalEur: null` until shipping is known.
+- **Submit button:** "Bestellung abschließen" / "Complete order" (his option for payment handled on this page). If a PSP redirect is built, switch to "Zur Bezahlung".
+- **Cancel order removed** (see above).

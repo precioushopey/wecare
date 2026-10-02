@@ -37,8 +37,6 @@ import {
   type FollowUpEntry,
 } from "@/features/followup/followup";
 import {
-  cancelOrder,
-  canCancelOrder,
   getOrders,
   type OrderStatus,
 } from "@/features/orders/orders";
@@ -48,7 +46,6 @@ import { AnalyticsEvent, track } from "@/lib/analytics";
 import { formatDate, formatPriceEur } from "@/lib/format";
 import { resizeImageToDataUrl } from "@/lib/image";
 
-import { CancelOrderDialog } from "./CancelOrderDialog";
 import {
   Avatar,
   DashboardHero,
@@ -431,19 +428,7 @@ export function DashboardOrdersPage() {
   const { t: ts } = useTranslation("shop");
   const { language } = useLanguage();
   const { items: cartItems, subtotalEur } = useCart();
-  // Held in state (it used to be read straight from storage on every render) so
-  // cancelling an order re-renders the list.
-  const [orders, setOrders] = useState(getOrders);
-  // Id of the order whose "Cancel this order?" dialog is open (null = closed).
-  const [cancelTarget, setCancelTarget] = useState<string | null>(null);
-
-  const confirmCancel = () => {
-    if (cancelTarget && cancelOrder(cancelTarget)) {
-      track(AnalyticsEvent.orderCancelled);
-      setOrders(getOrders());
-    }
-    setCancelTarget(null);
-  };
+  const orders = getOrders();
 
   if (orders.length === 0) {
     // A cart isn't an order yet — it becomes one only once checkout is
@@ -692,21 +677,6 @@ export function DashboardOrdersPage() {
                     label={t(`orders.statuses.${order.status}`)}
                     tone={orderPillTone(order.status)}
                   />
-                  {/* Under the status it depends on, not a column of its own: a
-                      sixth column squeezed the others onto three lines at 1280 px.
-                      Only before dispatch (`canCancelOrder`). */}
-                  {canCancelOrder(order) ? (
-                    <div className="mt-2">
-                      <Button
-                        type="button"
-                        variant="outline"
-                        onClick={() => setCancelTarget(order.id)}
-                        className="h-8 px-4 py-0"
-                      >
-                        {t("orders.cancel.button")}
-                      </Button>
-                    </div>
-                  ) : null}
                 </td>
               </tr>
             ))}
@@ -765,25 +735,14 @@ export function DashboardOrdersPage() {
                 </address>
               </div>
             ) : null}
-            {canCancelOrder(order) ? (
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => setCancelTarget(order.id)}
-                className="mt-4 w-full"
-              >
-                {t("orders.cancel.button")}
-              </Button>
-            ) : null}
           </li>
         ))}
       </ul>
 
-      <CancelOrderDialog
-        orderId={cancelTarget}
-        onKeep={() => setCancelTarget(null)}
-        onConfirm={confirmCancel}
-      />
+      {/* No in-app cancel button (Mischa, 2026-10-01): a customer asks by email. */}
+      <p className="text-sm md:text-base text-ink-muted">
+        {t("orders.cancelNote", { email: SUPPORT_EMAIL })}
+      </p>
     </div>
   );
 }

@@ -18,11 +18,12 @@ export function DeliveryConfirmation({
   const { t } = useTranslation("assessment");
   const { t: tCommon } = useTranslation();
 
+  // German postcodes have no region/city table, so they get the country form
+  // ("10107 (Deutschland)") instead of a made-up city.
+  const isGermany = !region && countryForPostcode(postcode) === "DE";
   const regionLabel = region
     ? t(`regions.${region}`)
-    : countryForPostcode(postcode) === "DE"
-      ? tCommon("delivery.germany")
-      : tCommon("delivery.regionUnknown");
+    : tCommon("delivery.regionUnknown");
 
   return (
     <p
@@ -33,7 +34,9 @@ export function DeliveryConfirmation({
     >
       <Truck className="mt-0.5 size-4 shrink-0 text-petrol-600" aria-hidden />
       <span>
-        {tCommon("delivery.confirmLine", { postcode, region: regionLabel })}
+        {isGermany
+          ? tCommon("delivery.confirmLineCountry", { postcode })
+          : tCommon("delivery.confirmLine", { postcode, region: regionLabel })}
       </span>
     </p>
   );

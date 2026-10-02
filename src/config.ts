@@ -66,4 +66,3 @@ export const PHONE_VERIFICATION_LIVE = false;
  * the "indicative" note until that flips.
  */
 export const SHIPPING_FEE_EUR: number | null = null;
-export const REVIEW_FEE_EUR: number | null = null;

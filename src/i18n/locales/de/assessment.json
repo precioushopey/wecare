@@ -17,9 +17,10 @@
       "truthful": "Ich beantworte alle Fragen <b>wahrheitsgemäß und nach bestem Wissen</b>. Mir ist bewusst, dass falsche Angaben meiner Gesundheit schaden können und dass meine Antworten nur für meinen persönlichen Gebrauch bestimmt sind.",
       "noDiagnosis": "Dieser Fragebogen ist <b>keine medizinische Diagnose</b>, und der Service von WeCare ist nicht dazu bestimmt, Krankheiten zu diagnostizieren, zu behandeln, zu heilen oder zu verhindern.",
       "doctorDecides": "Eine Ärztin oder ein Arzt prüft jede Anfrage und <b>entscheidet</b>, ob ein Rezept medizinisch sinnvoll ist und, falls ja, was verschrieben wird. <b>Ein Rezept wird nie garantiert</b>, und ich habe keinen Anspruch auf ein bestimmtes Produkt.",
-      "dataSharing": "Mir ist bewusst, dass WeCare, wenn ich fortfahre, <b>die für die ärztliche Prüfung nötigen Angaben</b> an die zuständige Ärztin oder den zuständigen Arzt weitergibt und, falls ein Rezept ausgestellt wird, die für Abgabe und Lieferung nötigen Angaben an die Apotheke."
+      "dataSharing": "Mir ist bewusst, dass WeCare, wenn ich fortfahre, <b>die für die ärztliche Prüfung nötigen Angaben</b> an die zuständige Ärztin oder den zuständigen Arzt weitergibt und, falls ein Rezept ausgestellt wird, die für Abgabe und Lieferung nötigen Angaben an die Apotheke.",
+      "acceptTerms": "Ich akzeptiere die <privacy>Datenschutzerklärung</privacy> und <terms>AGB</terms> der Plattform."
     },
-    "checkbox": "Ich habe alle Hinweise gelesen und stimme den <terms>AGB</terms> und der <privacy>Datenschutzerklärung</privacy> zu (derzeit im Entwurf – die endgültigen Fassungen werden vor dem Launch bestätigt).",
+    "checkbox": "Ich habe alle Hinweise gelesen und stimme zu",
     "continue": "Weiter",
     "back": "Zur Startseite"
   },

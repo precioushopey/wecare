@@ -241,16 +241,15 @@
       "perGram": "{{grams}} g × {{price}} / g",
       "shipping": "Versand (DHL)",
       "subtotal": "Zwischensumme",
-      "reviewFee": "Gebühr ärztliche Prüfung*",
       "total": "Gesamt",
+      "totalExclShipping": "Gesamt zzgl. Versand",
       "tbc": "Wird bestätigt"
     },
-    "vatNote": "*Umsatzsteuerfrei gemäß § 4 Nr. 14 a) UStG.",
     "payment": {
       "heading": "Zahlungsart wählen",
       "soon": "Bald verfügbar"
     },
-    "placeOrder": "Anfrage absenden",
+    "placeOrder": "Bestellung abschließen",
     "backToCart": "Zurück zum Warenkorb",
     "paymentMethods": {
       "invoice": "Auf Rechnung",

@@ -73,13 +73,7 @@
       "delivered": "Geliefert",
       "cancelled": "Storniert"
     },
-    "cancel": {
-      "button": "Bestellung stornieren",
-      "title": "Diese Bestellung stornieren?",
-      "body": "Die Bestellung {{id}} wird storniert. Das lässt sich nicht rückgängig machen.",
-      "keep": "Bestellung behalten",
-      "confirm": "Ja, Bestellung stornieren"
-    },
+    "cancelNote": "Um eine Bestellung zu stornieren, schreibe uns eine E-Mail an {{email}} und nenne deine Bestellnummer.",
     "grams": "{{count}} g",
     "totalPending": "Nach der Prüfung bestätigt"
   },

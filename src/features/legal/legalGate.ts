@@ -15,7 +15,7 @@
  * the notes or the documents they point at change materially.
  */
 
-const STORAGE_KEY = "wecare.legalConsent.v2";
+const STORAGE_KEY = "wecare.legalConsent.v3";
 
 export function isLegalGateAccepted(): boolean {
   if (typeof window === "undefined") return false;

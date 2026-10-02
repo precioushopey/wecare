@@ -241,16 +241,15 @@
       "perGram": "{{grams}} g × {{price}} / g",
       "shipping": "Shipping (DHL)",
       "subtotal": "Subtotal",
-      "reviewFee": "Doctor's fee*",
       "total": "Total",
+      "totalExclShipping": "Total excl. shipping",
       "tbc": "To be confirmed"
     },
-    "vatNote": "*VAT-exempt pursuant to § 4 No. 14 a) of the German VAT Act (UStG)",
     "payment": {
       "heading": "Choose payment method",
       "soon": "Available soon"
     },
-    "placeOrder": "Submit my request",
+    "placeOrder": "Complete order",
     "backToCart": "Back to cart",
     "paymentMethods": {
       "invoice": "Pay by invoice",
