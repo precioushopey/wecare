@@ -148,7 +148,7 @@
     #f5f8fb 42%,
     #ecf6f2 100%
   );
-  --cta-gradient: linear-gradient(118deg, #218390 0%, #2aa7b0 100%);
+  --cta-gradient: linear-gradient(118deg, #1b7380 0%, #20808d 100%);
   --footer-gradient: linear-gradient(
     162deg,
     #0a2c42 0%,
@@ -313,6 +313,12 @@
        widens the page. */
     overflow-wrap: break-word;
     hyphens: auto;
+  }
+
+  /* Focus moved here programmatically after a route change (`RouteFocus`);
+     it isn't an interactive control, so no ring. */
+  h1[tabindex="-1"]:focus {
+    outline: none;
   }
 
   h1 {

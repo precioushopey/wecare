@@ -156,37 +156,39 @@ export function FunnelChrome({
 
   return (
     <div className="flex min-h-screen flex-col">
-      <header
-        className={cn(
-          "mx-auto flex w-full items-center justify-between px-4 py-5 sm:px-6",
-          maxW,
-        )}
-      >
-        <Link
-          to={paths.home}
-          aria-label={t("funnel.home")}
-          className="rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-petrol-600"
-        >
-          <Logo className="h-5" />
-        </Link>
-        <CartLink />
-      </header>
-
-      {progress !== null ? (
+      <header>
         <div
-          role="progressbar"
-          aria-label={t("funnel.progress")}
-          aria-valuemin={0}
-          aria-valuemax={100}
-          aria-valuenow={pct}
-          className="mb-4 h-[3px] w-full bg-petrol-600/15"
+          className={cn(
+            "mx-auto flex w-full items-center justify-between px-4 py-5 sm:px-6",
+            maxW,
+          )}
         >
-          <div
-            className="h-full rounded-r-full bg-petrol-600 transition-[width] duration-500 ease-out motion-reduce:transition-none"
-            style={{ width: `${pct}%` }}
-          />
+          <Link
+            to={paths.home}
+            aria-label={t("funnel.home")}
+            className="rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-petrol-600"
+          >
+            <Logo className="h-5" />
+          </Link>
+          <CartLink />
         </div>
-      ) : null}
+
+        {progress !== null ? (
+          <div
+            role="progressbar"
+            aria-label={t("funnel.progress")}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-valuenow={pct}
+            className="mb-4 h-[3px] w-full bg-petrol-600/15"
+          >
+            <div
+              className="h-full rounded-r-full bg-petrol-600 transition-[width] duration-500 ease-out motion-reduce:transition-none"
+              style={{ width: `${pct}%` }}
+            />
+          </div>
+        ) : null}
+      </header>
 
       <nav
         aria-label={t("funnel.label")}
@@ -202,7 +204,7 @@ export function FunnelChrome({
                   className={cn(
                     "flex size-6 shrink-0 items-center justify-center rounded-full text-sm md:text-base font-semibold",
                     isDone && "bg-sage-500 text-white",
-                    isActive && "bg-primary text-primary-foreground",
+                    isActive && "bg-petrol-700 text-white",
                     !isDone && !isActive && "bg-white/60 text-ink-muted",
                   )}
                 >

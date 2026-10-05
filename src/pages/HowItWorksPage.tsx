@@ -49,20 +49,18 @@ export function HowItWorksPage() {
 
         <ol className="mt-12 space-y-8">
           {STEPS.map((step, i) => (
-            <Reveal key={step} delayMs={i * 40}>
-              <li className="flex gap-4">
+            <Reveal as="li" key={step} delayMs={i * 40} className="flex gap-4">
                 <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-sage-100 font-display text-base md:text-lg text-petrol-700">
-                  {i + 1}
-                </span>
-                <div>
-                  <h2 className="text-lg md:text-xl">
-                    {t(`howItWorksPage.steps.${step}.title`)}
-                  </h2>
-                  <p className="mt-1.5 text-sm md:text-base leading-relaxed text-ink-muted">
-                    {t(`howItWorksPage.steps.${step}.body`)}
-                  </p>
-                </div>
-              </li>
+                {i + 1}
+              </span>
+              <div>
+                <h2 className="text-lg md:text-xl">
+                  {t(`howItWorksPage.steps.${step}.title`)}
+                </h2>
+                <p className="mt-1.5 text-sm md:text-base leading-relaxed text-ink-muted">
+                  {t(`howItWorksPage.steps.${step}.body`)}
+                </p>
+              </div>
             </Reveal>
           ))}
         </ol>

@@ -155,12 +155,35 @@ export function AssessmentEnginePage() {
   }
   useEffect(() => () => clearAdvanceTimer(), []);
 
+  // Was the last input a key press? Arrowing through a radio group *selects*
+  // each option it passes, so auto-advancing after a keyboard selection would
+  // jump a keyboard user away mid-navigation (WCAG 3.2.2). Pointer and touch
+  // users auto-advance as before; keyboard users use the Continue button.
+  const keyboardInput = useRef(false);
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Tab" || e.key === " " || e.key === "Enter" || e.key.startsWith("Arrow")) {
+        keyboardInput.current = true;
+      }
+    };
+    const onPointer = () => {
+      keyboardInput.current = false;
+    };
+    window.addEventListener("keydown", onKey, true);
+    window.addEventListener("pointerdown", onPointer, true);
+    return () => {
+      window.removeEventListener("keydown", onKey, true);
+      window.removeEventListener("pointerdown", onPointer, true);
+    };
+  }, []);
+
   function recordAnswer(id: QuestionId, value: string) {
     setAnswer(id, value);
+    const viaKeyboard = keyboardInput.current;
     track(AnalyticsEvent.assessmentQuestionAnswered, {
       question: id,
       questionIndex: step,
-      auto_advanced: true,
+      auto_advanced: !viaKeyboard,
     });
     if (id === "q1") {
       track(AnalyticsEvent.problemSelected, { problem: value, source: "assessment" });
@@ -171,7 +194,7 @@ export function AssessmentEnginePage() {
     // accidental tap; that no longer applies, because it now only leads to the
     // "final checks" step — nothing is submitted until those are answered.
     // The Continue button stays as the keyboard / changed-mind path.
-    armAdvance();
+    if (!viaKeyboard) armAdvance();
   }
 
   function goBack() {
@@ -243,6 +266,21 @@ export function AssessmentEnginePage() {
           ? 3 + step
           : PROGRESS_STEPS - 1;
   useFunnelProgress((progressIndex + 1) / PROGRESS_STEPS);
+
+  // Steps swap inside one route, so the control that had focus (an option tile,
+  // the Continue button) unmounts and focus falls back to <body>. Move it to the
+  // new step's heading so keyboard and screen-reader users land on the new
+  // question instead of restarting from the top of the page. Not on first
+  // render (that would skip past the "skip to content" link).
+  const lastProgressIndex = useRef(progressIndex);
+  useEffect(() => {
+    if (lastProgressIndex.current === progressIndex) return;
+    lastProgressIndex.current = progressIndex;
+    const h1 = document.querySelector<HTMLElement>("main h1");
+    if (!h1) return;
+    if (!h1.hasAttribute("tabindex")) h1.setAttribute("tabindex", "-1");
+    h1.focus({ preventScroll: true });
+  }, [progressIndex]);
 
   if (!existingOk) {
     return (

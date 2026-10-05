@@ -19,6 +19,7 @@ import { SiteStructuredData } from "@/seo/StructuredData";
 
 import { ConsentBanner } from "./ConsentBanner";
 import { FunnelChrome } from "./FunnelChrome";
+import { RouteFocus } from "./RouteFocus";
 import { ScrollToHash } from "./ScrollToHash";
 import { SiteFooter } from "./SiteFooter";
 import { SiteHeader } from "./SiteHeader";
@@ -91,6 +92,7 @@ function RoutedShell() {
         </PageReveal>
         <ScrollRestoration />
         <ScrollToHash />
+        <RouteFocus />
         <DashboardTabBar />
       </>
     );
@@ -109,6 +111,7 @@ function RoutedShell() {
         </PageReveal>
         <ScrollRestoration />
         <ScrollToHash />
+        <RouteFocus />
       </>
     );
   }
@@ -125,6 +128,7 @@ function RoutedShell() {
         {marketingChrome && <SiteFooter roundedTop={!isHome} />}
         <ScrollRestoration />
         <ScrollToHash />
+        <RouteFocus />
       </div>
       {isDashboard && <DashboardTabBar />}
     </>

@@ -146,15 +146,18 @@ export function ConditionLandingPage({
         </Reveal>
         <ul className="mt-6 grid gap-4 sm:grid-cols-2">
           {situations.map((s, i) => (
-            <Reveal key={i} delayMs={i * 50}>
-              <li className="flex items-start gap-3 glass p-4">
-                <Check
-                  className="mt-0.5 size-5 shrink-0 text-sage-500"
-                  strokeWidth={2}
-                  aria-hidden
-                />
-                <span className="text-ink">{s}</span>
-              </li>
+            <Reveal
+              as="li"
+              key={i}
+              delayMs={i * 50}
+              className="flex items-start gap-3 glass p-4"
+            >
+              <Check
+                className="mt-0.5 size-5 shrink-0 text-sage-500"
+                strokeWidth={2}
+                aria-hidden
+              />
+              <span className="text-ink">{s}</span>
             </Reveal>
           ))}
         </ul>
@@ -170,15 +173,18 @@ export function ConditionLandingPage({
         </Reveal>
         <ol className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {helpSteps.map((step, i) => (
-            <Reveal key={i} delayMs={i * 60}>
-              {/* number + sentence sit in a row on mobile (full-width cards),
-                  back to a stack from `sm` where the grid narrows them. */}
-              <li className="flex h-full flex-row items-baseline gap-3 glass-strong rounded-2xl md:rounded-3xl p-5 sm:flex-col sm:items-stretch sm:gap-0">
-                <span className="shrink-0 font-mono text-sm md:text-base font-semibold text-petrol-700">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <p className="text-sm md:text-base text-ink sm:mt-2">{step}</p>
-              </li>
+            /* number + sentence sit in a row on mobile (full-width cards),
+               back to a stack from `sm` where the grid narrows them. */
+            <Reveal
+              as="li"
+              key={i}
+              delayMs={i * 60}
+              className="flex h-full flex-row items-baseline gap-3 glass-strong rounded-2xl md:rounded-3xl p-5 sm:flex-col sm:items-stretch sm:gap-0"
+            >
+              <span className="shrink-0 font-mono text-sm md:text-base font-semibold text-petrol-700">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <p className="text-sm md:text-base text-ink sm:mt-2">{step}</p>
             </Reveal>
           ))}
         </ol>

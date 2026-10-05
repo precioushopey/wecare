@@ -11,12 +11,16 @@ export function Reveal({
   children,
   className,
   delayMs = 0,
+  as: Tag = "div",
 }: {
   children: ReactNode;
   className?: string;
   delayMs?: number;
+  /** Render as a list item when the reveal is a direct child of a `ul` / `ol`
+   *  (a wrapper `div` there is invalid markup and breaks list semantics). */
+  as?: "div" | "li";
 }) {
-  const ref = useRef<HTMLDivElement | null>(null);
+  const ref = useRef<HTMLElement | null>(null);
   const [shown, setShown] = useState(false);
 
   useEffect(() => {
@@ -49,8 +53,8 @@ export function Reveal({
   }, []);
 
   return (
-    <div
-      ref={ref}
+    <Tag
+      ref={ref as never}
       className={cn(
         "transition-[opacity,transform] duration-500 ease-out motion-reduce:transition-none",
         shown ? "translate-y-0 opacity-100" : "translate-y-[10px] opacity-0",
@@ -59,6 +63,6 @@ export function Reveal({
       style={{ transitionDelay: shown ? `${delayMs}ms` : "0ms" }}
     >
       {children}
-    </div>
+    </Tag>
   );
 }

@@ -773,7 +773,10 @@ export function ProductPage() {
               }}
             >
               <AccordionItem value="hero-details" className="border-white/15">
-                <AccordionTrigger className="text-sm md:text-base text-white hover:no-underline [&>svg]:text-white/70">
+                <AccordionTrigger
+                  headingLevel={2}
+                  className="text-sm md:text-base text-white hover:no-underline [&>svg]:text-white/70"
+                >
                   {tAssessment("result.detailsLabel")}
                 </AccordionTrigger>
                 <AccordionContent>

@@ -450,6 +450,8 @@ export function HeroEyebrow({ children }: { children: ReactNode }) {
 }
 
 /** Inset label/value tile that reads on the dark hero gradient. */
+/** A label / value tile. Must sit inside a `<dl>` (it renders a `dt` / `dd`
+ *  pair in a `div` group). */
 export function HeroStat({
   label,
   value,
@@ -466,10 +468,10 @@ export function HeroStat({
         className,
       )}
     >
-      <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.1em] text-white/60">
+      <dt className="text-xs md:text-sm font-semibold uppercase tracking-[0.1em] text-white/60">
         {label}
-      </p>
-      <p className="mt-1 text-sm md:text-base font-medium text-white">{value}</p>
+      </dt>
+      <dd className="mt-1 text-sm md:text-base font-medium text-white">{value}</dd>
     </div>
   );
 }

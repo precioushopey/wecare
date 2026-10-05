@@ -324,19 +324,17 @@ export function HowItWorksSection() {
 
       <ol className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {HOW_STEPS.map((step, i) => (
-          <Reveal key={step} delayMs={i * 60}>
-            <li>
+          <Reveal as="li" key={step} delayMs={i * 60}>
               <PhotoTile
                 image={siteImage(IMG.process[step])}
                 title={t(`howItWorks.steps.${step}.title`)}
                 description={t(`howItWorks.steps.${step}.description`)}
                 badge={
                   <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-2xl font-display text-lg md:text-xl text-white shadow-[0_10px_24px_-10px_rgba(42,167,176,0.55)] [background-image:var(--cta-gradient)]">
-                    {i + 1}
-                  </span>
-                }
-              />
-            </li>
+                  {i + 1}
+                </span>
+              }
+            />
           </Reveal>
         ))}
       </ol>
