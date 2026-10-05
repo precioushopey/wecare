@@ -80,7 +80,7 @@
   "followUp": {
     "title": "Nachsorge",
     "empty": "Dein Check-in erscheint hier, sobald du eine empfohlene Lösung hast.",
-    "emptyCta": "Fragebogen starten",
+    "emptyCta": "Behandlung anfragen",
     "prompt": "Wie war deine Erfahrung mit deiner empfohlenen Lösung?",
     "promptHint": "Es gibt keine falsche Antwort – das hilft uns nur, dich weiter zu begleiten.",
     "options": {
@@ -148,7 +148,7 @@
     "phoneLegend": "Mit deiner Mobilnummer anmelden",
     "requiredNote": "Bitte melde dich an, um diesen Bereich zu sehen.",
     "newHere": "Neu hier?",
-    "startAssessment": "Fragebogen starten"
+    "startAssessment": "Behandlung anfragen"
   },
   "greeting": {
     "morning": "Guten Morgen, {{name}}",
@@ -181,6 +181,6 @@
     "viewOrders": "Bestellungen ansehen",
     "supportCta": "Support kontaktieren",
     "empty": "Schließe den Fragebogen ab, um deinen Bereich einzurichten.",
-    "emptyCta": "Fragebogen starten"
+    "emptyCta": "Behandlung anfragen"
   }
 }

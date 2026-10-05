@@ -1,19 +1,9 @@
 {
-  "ageGate": {
-    "title": "Zuerst eine kurze Bestätigung",
-    "body": "Die Empfehlungen von WeCare und eine mögliche ärztliche Prüfung beziehen sich auf ein verschreibungspflichtiges Arzneimittel, das nur für Erwachsene verfügbar ist.",
-    "checkbox": "Ich bestätige, dass ich 18 Jahre oder älter bin.",
-    "dobLabel": "Geburtsdatum",
-    "dobNote": "Wird nur verwendet, um dein Alter zu bestätigen – bleibt auf diesem Gerät und wird nicht mit deinem Namen verknüpft.",
-    "dobTooYoung": "Das eingegebene Geburtsdatum zeigt, dass du unter 18 bist. Der Fragebogen und die ärztliche Prüfung von WeCare stehen nur Erwachsenen zur Verfügung.",
-    "continue": "Weiter zum Fragebogen",
-    "under": "Wenn du unter 18 bist, sprich bitte mit einem Elternteil, einer erziehungsberechtigten Person oder deiner Ärztin bzw. deinem Arzt.",
-    "back": "Zur Startseite"
-  },
   "legalGate": {
     "title": "Bevor es losgeht",
     "body": "Bitte lies diese Hinweise sorgfältig und bestätige sie.",
     "notes": {
+      "adult": "Ich bestätige, dass ich <b>18 Jahre oder älter</b> bin.",
       "truthful": "Ich beantworte alle Fragen <b>wahrheitsgemäß und nach bestem Wissen</b>. Mir ist bewusst, dass falsche Angaben meiner Gesundheit schaden können und dass meine Antworten nur für meinen persönlichen Gebrauch bestimmt sind.",
       "noDiagnosis": "Dieser Fragebogen ist <b>keine medizinische Diagnose</b>, und der Service von WeCare ist nicht dazu bestimmt, Krankheiten zu diagnostizieren, zu behandeln, zu heilen oder zu verhindern.",
       "doctorDecides": "Eine Ärztin oder ein Arzt prüft jede Anfrage und <b>entscheidet</b>, ob ein Rezept medizinisch sinnvoll ist und, falls ja, was verschrieben wird. <b>Ein Rezept wird nie garantiert</b>, und ich habe keinen Anspruch auf ein bestimmtes Produkt.",

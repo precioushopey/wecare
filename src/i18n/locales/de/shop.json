@@ -2,7 +2,7 @@
   "index": {
     "title": "Unsere Lösungen",
     "intro": "Fünf abgestimmte Lösungen für Schlaf, Schmerzen, Stress und Migräne. Welche zu dir passt, ergibt sich aus dem Fragebogen.",
-    "startAssessment": "Fragebogen starten",
+    "startAssessment": "Behandlung anfragen",
     "resultCount": "{{count}} Lösungen",
     "guideTitle": "Der beste Weg zu deiner Lösung ist der Fragebogen",
     "guideBody": "Diese Übersicht zeigt alle Lösungen als Referenz. Deine persönliche Empfehlung – und die Belieferung – ergeben sich aus dem Fragebogen und der ärztlichen Prüfung.",
@@ -54,7 +54,7 @@
     "coaIntro": "Laborwerte einer repräsentativen Charge. Jede Lieferung enthält ein chargenspezifisches Zertifikat.",
     "notSureTitle": "Nicht sicher, ob das zu dir passt?",
     "notSureBody": "Der Fragebogen führt dich in wenigen Minuten zur passenden Empfehlung.",
-    "notSureCta": "Fragebogen starten",
+    "notSureCta": "Behandlung anfragen",
     "formatHeading": "Produktform",
     "formatValue": "Erhältlich als Öl oder getrocknete Blüte. Öl ist die übliche Einstiegsform; die passende Form bestätigt die verschreibende Ärztin oder der Arzt.",
     "ingredientsHeading": "Wichtigste Inhaltsstoffe",

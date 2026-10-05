@@ -46,16 +46,3 @@ export function calculateAge(dobIso: string): number {
   }
   return age;
 }
-
-export function isAgeConfirmed(): boolean {
-  const dob = getStoredDob();
-  return dob !== null && calculateAge(dob) >= 18;
-}
-
-export function confirmAge(dobIso: string): void {
-  try {
-    window.localStorage.setItem(STORAGE_KEY, dobIso);
-  } catch {
-    /* ignore */
-  }
-}

@@ -92,11 +92,6 @@ export function SiteFooter({
                   {t("footer.links.contact")}
                 </Link>
               </li>
-              <li>
-                <Link to={paths.labTests} className={footerLink}>
-                  {t("footer.links.labTests")}
-                </Link>
-              </li>
             </ul>
           </nav>
 

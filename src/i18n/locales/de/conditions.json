@@ -6,12 +6,12 @@
     "matchedHeading": "Womit du gematcht werden könntest",
     "matchedNote": "Dein persönliches Match siehst du nach dem Fragebogen – nicht vorher.",
     "notSurePrompt": "Nicht sicher, ob das dein Anliegen ist?",
-    "notSureCta": "Jetzt unverbl. Fragebogen starten",
+    "notSureCta": "Behandlung anfragen",
     "finalCtaHeading": "Uns ist wichtig, wie es dir geht. Starte, wenn du bereit bist."
   },
   "sleep": {
     "shortTitle": "Schlaf",
-    "assessmentCta": "Jetzt unverbl. Fragebogen starten",
+    "assessmentCta": "Behandlung anfragen",
     "hero": {
       "title": "Schwierigkeiten beim Ein- oder Durchschlafen?",
       "subtitle": "Beantworte einen kurzen Fragebogen und entdecke eine passende Abend-Unterstützung."
@@ -35,7 +35,7 @@
   },
   "pain": {
     "shortTitle": "Schmerzen & Körperkomfort",
-    "assessmentCta": "Jetzt unverbl. Fragebogen starten",
+    "assessmentCta": "Behandlung anfragen",
     "hero": {
       "title": "Lebst du mit täglichen Schmerzen oder Körperbeschwerden?",
       "subtitle": "Fülle einen kurzen Fragebogen aus und finde eine passende Körper-Komfort-Lösung."
@@ -59,7 +59,7 @@
   },
   "stressAnxiety": {
     "shortTitle": "Alltags-Balance",
-    "assessmentCta": "Jetzt unverbl. Fragebogen starten",
+    "assessmentCta": "Behandlung anfragen",
     "hero": {
       "title": "Gestresst, angespannt oder unfähig abzuschalten?",
       "subtitle": "Beantworte einen kurzen Fragebogen und finde eine passende Alltags-Balance-Lösung."
@@ -83,7 +83,7 @@
   },
   "migraine": {
     "shortTitle": "Kopfspannung",
-    "assessmentCta": "Jetzt unverbl. Fragebogen starten",
+    "assessmentCta": "Behandlung anfragen",
     "hero": {
       "title": "Wiederkehrende Kopfspannung oder migränebedingte Beschwerden?",
       "subtitle": "Starte einen kurzen Fragebogen und entdecke einen passenden Unterstützungsweg."
@@ -107,7 +107,7 @@
   },
   "generalWellness": {
     "shortTitle": "Allgemeines Wohlbefinden",
-    "assessmentCta": "Jetzt unverbl. Fragebogen starten",
+    "assessmentCta": "Behandlung anfragen",
     "hero": {
       "title": "Nicht sicher, worum es geht?",
       "subtitle": "Dieser Fragebogen hilft dir, dein Anliegen einzuordnen."

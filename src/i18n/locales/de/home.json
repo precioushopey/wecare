@@ -10,7 +10,7 @@
       "Migräne"
     ],
     "subtitle": "Beantworte einen kurzen Fragebogen – wir finden die passende CBD-basierte Lösung für deine Bedürfnisse.",
-    "primaryCta": "Kostenlosen Fragebogen starten",
+    "primaryCta": "Behandlung anfragen",
     "secondaryCta": "So funktioniert's",
     "ariaImage": "Frau sitzt entspannt zu Hause und liest auf einem Tablet",
     "chipTime": "Etwa 60–90 Sekunden",
@@ -31,22 +31,22 @@
       "sleep": {
         "title": "Schlafprobleme",
         "description": "Schwer einschlafen, nachts aufwachen oder schlechte Schlafqualität.",
-        "cta": "Jetzt unverbl. Fragebogen starten"
+        "cta": "Behandlung anfragen"
       },
       "pain": {
         "title": "Schmerzen",
         "description": "Anhaltende Schmerzen oder Beschwerden, die den Alltag bestimmen.",
-        "cta": "Jetzt unverbl. Fragebogen starten"
+        "cta": "Behandlung anfragen"
       },
       "stressAnxiety": {
         "title": "Stress & Angst",
         "description": "Innere Unruhe, kreisende Gedanken oder dauerhafte Anspannung.",
-        "cta": "Jetzt unverbl. Fragebogen starten"
+        "cta": "Behandlung anfragen"
       },
       "migraine": {
         "title": "Migräne",
         "description": "Wiederkehrende Migräne-Attacken oder häufige Spannungskopfschmerzen.",
-        "cta": "Jetzt unverbl. Fragebogen starten"
+        "cta": "Behandlung anfragen"
       }
     }
   },
@@ -141,7 +141,7 @@
   "finalCta": {
     "title": "Damit du das nicht allein herausfinden musst.",
     "subtitle": "Starte mit deinem Anliegen. Der Fragebogen ist kostenlos und dauert etwa eine Minute.",
-    "cta": "Kostenlosen Fragebogen starten"
+    "cta": "Behandlung anfragen"
   },
   "comparison": {
     "eyebrow": "Warum WeCare",
@@ -262,6 +262,6 @@
         "body": "Sieh nach, wie deine Lösung wirkt, bestelle nach oder frag jederzeit den Support."
       }
     },
-    "cta": "Kostenlosen Fragebogen starten"
+    "cta": "Behandlung anfragen"
   }
 }

@@ -28,11 +28,9 @@ import { deriveStartPhase, type Phase } from "@/features/assessment/steps";
 import { useCart } from "@/features/cart/CartContext";
 import { submitMedicalReview } from "@/features/review/review";
 import { isConditionKey } from "@/features/conditions/conditions";
-import { confirmAge, isAgeConfirmed } from "@/features/age/age";
 import { acceptLegalGate, isLegalGateAccepted } from "@/features/legal/legalGate";
 import { AnalyticsEvent, track } from "@/lib/analytics";
 
-import { AgeGate } from "./AgeGate";
 import { ExclusionStep } from "./ExclusionStep";
 import { ExistingCustomerStep } from "./ExistingCustomerStep";
 import { LegalConsentGate } from "./LegalConsentGate";
@@ -50,12 +48,13 @@ function prefersReducedMotion(): boolean {
 const FADE = "animate-in fade-in duration-200 motion-reduce:animate-none";
 
 /** Steps counted by the thin progress line under the funnel header:
- *  existing-customer, age, legal, postcode, the six questions, final checks. */
-const PROGRESS_STEPS = 3 + 1 + TOTAL_QUESTIONS + 1;
+ *  existing-customer, legal, postcode, the six questions, final checks. */
+const PROGRESS_STEPS = 2 + 1 + TOTAL_QUESTIONS + 1;
 
 /** Single reusable, state-based assessment engine — no route changes between
- *  steps (spec §7). Step model: existing-customer -> age -> legal -> postcode ->
- *  questions -> safety -> product. The first three are once-per-device gates.
+ *  steps (spec §7). Step model: existing-customer -> legal (incl. the 18+
+ *  confirmation) -> postcode -> questions -> safety -> product. The first two
+ *  are once-per-device gates.
  *  Every question auto-advances on selection (question 6 included); a secondary
  *  Next / Continue stays as the keyboard / changed-mind path. The safety /
  *  exclusion questions are the final "final checks" step of the pass; the
@@ -88,10 +87,10 @@ export function AssessmentEnginePage() {
   const [existingOk, setExistingOk] = useState(
     () => isAuthenticated || isNewCustomerConfirmed(),
   );
-  // 18+ self-declaration before the assessment (owner decision D14).
-  const [ageOk, setAgeOk] = useState(isAgeConfirmed);
-  // Legal-consent acknowledgment, shown after the age gate (PO request,
-  // 2026-09-14).
+  // Legal-consent acknowledgment (PO request, 2026-09-14). It also carries the
+  // "I am 18 or older" sentence: the separate age / date-of-birth step was
+  // removed on Mischa's instruction (2026-10-06); the birthday is asked once,
+  // at checkout.
   const [legalOk, setLegalOk] = useState(isLegalGateAccepted);
 
   const problemParam = params.get("problem");
@@ -108,14 +107,14 @@ export function AssessmentEnginePage() {
 
   const startedTracked = useRef(false);
   useEffect(() => {
-    if (!existingOk || !ageOk || !legalOk || startedTracked.current) return;
+    if (!existingOk || !legalOk || startedTracked.current) return;
     startedTracked.current = true;
     track(AnalyticsEvent.assessmentStarted, {
       problem: problemParam && isConditionKey(problemParam) ? problemParam : null,
       resumed: QUESTIONS.some((q) => Boolean(answers[q.id])),
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [existingOk, ageOk, legalOk]);
+  }, [existingOk, legalOk]);
 
   const [{ phase, step }, setPos] = useState<{ phase: Phase; step: number }>(() =>
     deriveStartPhase({
@@ -236,15 +235,13 @@ export function AssessmentEnginePage() {
   // before the early returns below (hook order).
   const progressIndex = !existingOk
     ? 0
-    : !ageOk
+    : !legalOk
       ? 1
-      : !legalOk
+      : phase === "postcode"
         ? 2
-        : phase === "postcode"
-          ? 3
-          : phase === "questions"
-            ? 4 + step
-            : PROGRESS_STEPS - 1;
+        : phase === "questions"
+          ? 3 + step
+          : PROGRESS_STEPS - 1;
   useFunnelProgress((progressIndex + 1) / PROGRESS_STEPS);
 
   if (!existingOk) {
@@ -254,17 +251,6 @@ export function AssessmentEnginePage() {
         onNew={() => {
           confirmNewCustomer();
           setExistingOk(true);
-        }}
-      />
-    );
-  }
-
-  if (!ageOk) {
-    return (
-      <AgeGate
-        onConfirm={(dobIso) => {
-          confirmAge(dobIso);
-          setAgeOk(true);
         }}
       />
     );

@@ -92,8 +92,7 @@
       "cookies": "Cookie policy",
       "cookieSettings": "Cookie settings",
       "shipping": "Shipping policy",
-      "refunds": "Refund policy",
-      "labTests": "Lab tests / COA"
+      "refunds": "Refund policy"
     }
   },
   "funnel": {
@@ -187,7 +186,9 @@
       "emailLabel": "Your email",
       "messageLabel": "Message",
       "send": "Open email",
-      "emergency": "This is not an emergency service. In a medical emergency call 144 (Austria) or 112, or contact your doctor."
+      "responseTime": "We do our best to answer your request today (during our business hours). If you write to us in the evening or at the weekend, we will reply on the next working day.",
+      "phoneLabel": "Phone number (optional)",
+      "prefixLabel": "Country code"
     },
     "legal": {
       "imprint": {

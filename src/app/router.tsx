@@ -22,7 +22,6 @@ import { HowItWorksPage } from "@/pages/HowItWorksPage";
 import { LegalPage } from "@/pages/legal/LegalPage";
 import { CostsPage } from "@/pages/CostsPage";
 import { FaqPage } from "@/pages/FaqPage";
-import { LabTestsPage } from "@/pages/LabTestsPage";
 import { DashboardLayout } from "@/pages/dashboard/DashboardLayout";
 import {
   DashboardFollowUpPage,
@@ -105,7 +104,6 @@ export const router = createBrowserRouter([
       { path: paths.legal.cookies, element: <LegalPage doc="cookies" /> },
       { path: paths.legal.shipping, element: <LegalPage doc="shipping" /> },
       { path: paths.legal.refunds, element: <LegalPage doc="refunds" /> },
-      { path: paths.labTests, element: <LabTestsPage /> },
 
       { path: "*", element: <NotFoundPage /> },
     ],

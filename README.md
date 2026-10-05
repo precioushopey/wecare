@@ -95,7 +95,7 @@ One real authorization boundary: **authenticated vs. not**, and it gates **only 
 | Authenticated (mock) | submit **any non-empty email** at `/login` or `/signup` (password `required minLength={8}` but ignored; "Continue with Google / Apple" run the same mock sign-in); session in `localStorage:wecare.auth` | Everything, incl. `/dashboard/*`. Editable profile. A number verified at checkout is stored on the profile (`phoneVerified`). |
 | Doctor / Pharmacy / Admin | — | **not modelled** |
 
-> On sign-out and on a **different-account** sign-in (by email at checkout, or by phone at `/login`), `wecare.assessment` / `cart` / `orders` / `followup` / `review` (and the session-only order addresses) are cleared; a first sign-in from anonymous is not cleared. `wecare.language`, `wecare.consent`, `wecare.ageConfirmed`, `wecare.legalConsent.v3` and `wecare.newCustomer` are device preferences and are kept.
+> On sign-out and on a **different-account** sign-in (by email at checkout, or by phone at `/login`), `wecare.assessment` / `cart` / `orders` / `followup` / `review` (and the session-only order addresses) are cleared; a first sign-in from anonymous is not cleared. `wecare.language`, `wecare.consent`, `wecare.ageConfirmed`, `wecare.legalConsent.v4` and `wecare.newCustomer` are device preferences and are kept.
 
 ## User Flows
 
@@ -207,7 +207,7 @@ src/
 │   ├── HomePage.tsx + home/sections.tsx   (9 sections)
 │   ├── conditions.tsx + conditions/ConditionLandingPage.tsx  (shared template ×5)
 │   ├── assessment.tsx + assessment/  (AssessmentEnginePage + StepFrame, OptionTile, ExistingCustomerStep,
-│   │                                  AgeGate, LegalConsentGate, PostcodeStep, QuestionStep, ExclusionStep,
+│   │                                  LegalConsentGate, PostcodeStep, QuestionStep, ExclusionStep,
 │   │                                  ReviewStatusPage; ResultPage + MedicalReviewFormPage are redirects)
 │   ├── shop/ (ShopIndex, Product, Cart, Checkout, PhoneVerification, OrderConfirmation, SolutionRedirect)
 │   ├── dashboard/ (DashboardLayout, DashboardChrome, DashboardTabBar, nav.ts, ui.tsx, pages.tsx)

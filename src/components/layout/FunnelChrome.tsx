@@ -213,6 +213,10 @@ export function FunnelChrome({
                   className={cn(
                     "ml-1.5 whitespace-nowrap text-sm md:text-base font-medium",
                     isActive || isDone ? "text-petrol-700" : "text-ink-muted",
+                    // Under ~380px all three labels + "Fertig" don't fit the
+                    // pill: keep only the current step's label visible (the
+                    // others stay for screen readers).
+                    !isActive && "max-[379px]:sr-only",
                   )}
                 >
                   {t(`funnel.steps.${s}`)}

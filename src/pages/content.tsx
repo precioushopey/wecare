@@ -28,6 +28,8 @@ export function ContactPage() {
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [prefix, setPrefix] = useState("+43");
+  const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
 
   function onSubmit(e: FormEvent) {
@@ -61,7 +63,7 @@ export function ContactPage() {
           </p>
         </InfoTile>
         <InfoTile title={t("pages.contact.hoursHeading")}>
-          <p className="mt-1 text-sm md:text-base text-ink">{t("pages.contact.hoursValue")}</p>
+          <p className="mt-1 text-sm md:text-base text-ink">{t("pages.contact.responseTime")}</p>
         </InfoTile>
       </div>
 
@@ -101,6 +103,30 @@ export function ContactPage() {
           </div>
         </div>
         <div className="space-y-1.5">
+          <Label htmlFor="contact-phone">{t("pages.contact.phoneLabel")}</Label>
+          <div className="flex gap-2">
+            <select
+              aria-label={t("pages.contact.prefixLabel")}
+              value={prefix}
+              onChange={(e) => setPrefix(e.target.value)}
+              className="h-9 w-24 shrink-0 rounded-md border border-input bg-input-background px-2 text-base outline-none focus-visible:ring-2 focus-visible:ring-petrol-600 md:text-sm"
+            >
+              <option value="+43">+43</option>
+              <option value="+49">+49</option>
+              <option value="+41">+41</option>
+            </select>
+            <Input
+              id="contact-phone"
+              name="phone"
+              type="tel"
+              inputMode="tel"
+              autoComplete="tel-national"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="space-y-1.5">
           <Label htmlFor="contact-message">
             {t("pages.contact.messageLabel")}
           </Label>
@@ -119,9 +145,6 @@ export function ContactPage() {
         </Button>
       </form>
 
-      <p className="mt-6 rounded-xl border border-border bg-surface-raised p-4 text-sm md:text-base text-ink-muted">
-        {t("pages.contact.emergency")}
-      </p>
     </PageShell>
   );
 }

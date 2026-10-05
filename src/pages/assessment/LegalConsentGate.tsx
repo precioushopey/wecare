@@ -12,7 +12,7 @@ import { StepFrame } from "./StepFrame";
 const LINK = "underline underline-offset-2 hover:text-ink";
 
 /**
- * The four notes shown above the checkbox (PO request, 2026-09-25, modelled on
+ * The notes shown above the checkbox (PO request, 2026-09-25, modelled on
  * quick-green's "Important! Please read the following notes and confirm them"
  * page). Deliberately NOT carried over from that page: the GoÄ billing note, the
  * § 630a BGB remote-treatment intro and the invoice/doctor's-letter note — German
@@ -23,11 +23,11 @@ const LINK = "underline underline-offset-2 hover:text-ink";
  * needs its own explicit Art. 9 consent rather than this shared checkbox) and
  * the "punishable by law" line quick-green has, which is left out on purpose.
  */
-const NOTES = ["truthful", "noDiagnosis", "doctorDecides", "dataSharing", "acceptTerms"] as const;
+const NOTES = ["adult", "truthful", "noDiagnosis", "doctorDecides", "dataSharing", "acceptTerms"] as const;
 
 /**
- * Legal-consent gate shown once (per device) before the assessment, after
- * `AgeGate` (PO request, 2026-09-14). Links to the real `/legal/terms` and
+ * Legal-consent gate shown once (per device) before the assessment, (PO request, 2026-09-14; it also holds the 18+ confirmation since the separate
+ * age step was removed, 2026-10-06). Links to the real `/legal/terms` and
  * `/legal/privacy` documents rather than restating or inventing their
  * content — those pages carry their own "draft, not yet in effect" notice.
  */
@@ -86,8 +86,7 @@ export function LegalConsentGate({ onConfirm }: { onConfirm: () => void }) {
           label={<span className="text-lg font-medium">{t("legalGate.checkbox")}</span>}
         />
 
-        {/* Same visual swap as `AgeGate` (Back left, primary right on `sm+`;
-            DOM stays primary-first). */}
+        {/* Back left, primary right on `sm+`; DOM stays primary-first. */}
         <div className="mt-6 flex flex-col gap-3 sm:flex-row-reverse sm:flex-wrap sm:items-center sm:justify-center">
           <Button
             type="button"

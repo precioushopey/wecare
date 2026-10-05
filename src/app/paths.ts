@@ -144,7 +144,6 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
   "/faq": paths.faq,
   "/costs": paths.costs,
   "/contact": paths.contact,
-  "/lab-tests": paths.labTests,
   "/legal/imprint": paths.legal.imprint,
   "/legal/privacy": paths.legal.privacy,
   "/legal/terms": paths.legal.terms,

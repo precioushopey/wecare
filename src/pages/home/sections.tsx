@@ -203,7 +203,7 @@ export function HeroSection() {
         rendered twice for a seamless loop); from `xl` up it fits and sits
         static, centred. */}
     <div className="px-4 sm:px-6">
-      <div className="mx-auto max-w-6xl overflow-hidden rounded-full border border-white/50 bg-white/40 px-6 py-3 backdrop-blur-md">
+      <div className="mx-auto max-w-6xl xl:max-w-7xl overflow-hidden rounded-full border border-white/50 bg-white/40 px-6 py-3 backdrop-blur-md">
         <div className="trust-marquee">
           {[0, 1].map((copy) => (
             <ul

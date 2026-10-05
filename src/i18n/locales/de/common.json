@@ -15,13 +15,13 @@
     "account": "Konto",
     "trackOrder": "Bestellung verfolgen",
     "myArea": "Mein Bereich",
-    "startAssessment": "Fragebogen starten",
+    "startAssessment": "Behandlung anfragen",
     "primary": "Hauptnavigation",
     "openMenu": "Menü öffnen",
     "closeMenu": "Menü schließen"
   },
   "cta": {
-    "startFreeAssessment": "Kostenlosen Fragebogen starten",
+    "startFreeAssessment": "Behandlung anfragen",
     "howItWorks": "So funktioniert's",
     "showRecommendation": "Meine empfohlene Lösung anzeigen",
     "viewRecommendedSolution": "Empfohlene Lösung ansehen",
@@ -92,8 +92,7 @@
       "cookies": "Cookie-Richtlinie",
       "cookieSettings": "Cookie-Einstellungen",
       "shipping": "Versandrichtlinie",
-      "refunds": "Rückerstattung",
-      "labTests": "Labortests / COA"
+      "refunds": "Rückerstattung"
     }
   },
   "funnel": {
@@ -187,7 +186,9 @@
       "emailLabel": "Deine E-Mail",
       "messageLabel": "Nachricht",
       "send": "E-Mail öffnen",
-      "emergency": "Dies ist kein Notfalldienst. Wähle im medizinischen Notfall 144 (Österreich) oder 112 oder wende dich an deine Ärztin oder deinen Arzt."
+      "responseTime": "Wir tun unser Bestes, um Ihre Anfrage noch heute zu beantworten (während unserer Geschäftszeiten). Wenn Sie uns abends oder am Wochenende schreiben, antworten wir Ihnen gleich am folgenden Werktag von uns.",
+      "phoneLabel": "Telefonnummer (optional)",
+      "prefixLabel": "Vorwahl"
     },
     "legal": {
       "imprint": {

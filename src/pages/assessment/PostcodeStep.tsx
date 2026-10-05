@@ -60,11 +60,13 @@ export function PostcodeStep({ onComplete }: { onComplete: () => void }) {
       region: region ?? (postcodeCountry === "DE" ? "de" : "unknown"),
     });
     setConfirmed({ postcode: value, region });
-    // The confirmation line is content, not decoration — keep a short dwell
-    // even under reduced motion so it is actually read.
+    // The confirmation line is content, not decoration: it carries the
+    // delivery and 12:00 cut-off promise, so hold it long enough to read
+    // (Mischa, 2026-10-06: "keep the page 2-3 seconds"). Reduced motion only
+    // removes animation, not reading time, so it gets nearly the same dwell.
     advanceTimer.current = window.setTimeout(
       onComplete,
-      reducedMotion() ? 600 : 1000,
+      reducedMotion() ? 2500 : 3000,
     );
   }
 

@@ -1,6 +1,5 @@
 /**
- * Legal-consent gate shown once (per device) before the assessment, after the
- * age gate (PO request, 2026-09-14 WhatsApp thread — modeled on a quick-green.de
+ * Legal-consent gate shown once (per device) before the assessment, (PO request, 2026-09-14 WhatsApp thread — modeled on a quick-green.de
  * "please read and confirm your legal rights" screen). Distinct from
  * `src/features/age/age.ts` (18+ / DOB) and `src/features/consent/consent.ts`
  * (cookie / analytics consent) — this is acknowledgment of the Terms of
@@ -10,12 +9,12 @@
  *
  * Device-level: stored as a bare flag, same mechanics as `age.ts`. There is no
  * per-document version stamp, so the key itself carries the version: it went
- * `v2` on 2026-09-25 when the gate grew from one sentence to four notes, so a
+ * `v2` on 2026-09-25 when the gate grew from one sentence to four notes, and `v4` on 2026-10-06 when the 18+ sentence moved in from the removed age step, so a
  * device that accepted the old wording is asked again. Bump the suffix whenever
  * the notes or the documents they point at change materially.
  */
 
-const STORAGE_KEY = "wecare.legalConsent.v3";
+const STORAGE_KEY = "wecare.legalConsent.v4";
 
 export function isLegalGateAccepted(): boolean {
   if (typeof window === "undefined") return false;
